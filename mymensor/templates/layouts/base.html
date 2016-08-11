@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+	<head>
+		<title>
+			{% block title %}
+				MyMensorApp Project
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		{% block header %}{% endblock %}
+	</head>
+	<body>
+		<header>
+				<h1>MyMensor App</h1>
+				<nav>
+					<ul>
+						<li>
+							<a href="{% url 'home' %}">Home</a>
+						</li>
+						<li>
+							<a href="{% url 'about' %}">About</a>
+						</li>
+						<li>
+							<a href="{% url 'contact' %}">Contact</a>
+						</li>
+					</ul>
+				</nav>
+		</header>
+		{% block content %}{% endblock %}
+		{% block footer %}{% endblock %}
+	</body>
+</html>
