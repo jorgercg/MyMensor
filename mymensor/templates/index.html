@@ -1,6 +1,8 @@
 {% extends 'layouts/base.html' %}
 {% block title %}Homepage - {{ block.super }}{% endblock %}
 {% block content %}
-		<h1>Hello World!</h1>
-		<p>This is the start....</p>
+		{% for photo in photos %}
+		<h2>{{ photo.photoMillisSinceEpoch }}</h2>
+		<p>{{ photo.photoStorageURL }}</p>
+		{% endfor %}
 {% endblock %}
