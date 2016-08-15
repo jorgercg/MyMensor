@@ -1,36 +1,54 @@
 {% load staticfiles %}
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport"content="width=device-width, initial-scale=1">
 		<title>
 			{% block title %}
 				MyMensorApp Project
 			{% endblock %}
 		</title>
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 		{% block header %}{% endblock %}
 	</head>
 	<body>
-		<header>
-				<h1>MyMensor App</h1>
-				<nav>
-					<ul>
-						<li>
-							<a href="{% url 'home' %}">Home</a>
-						</li>
-						<li>
-							<a href="{% url 'about' %}">About</a>
-						</li>
-						<li>
-							<a href="{% url 'contact' %}">Contact</a>
-						</li>
-					</ul>
-				</nav>
-		</header>
+		
+				<div class="container">
+					<nav class="navbar navbar-default">
+					    <div class="container-fluid">
+					        <div class="navbar-header">
+								<a class="navbar-brand" href="#">MyMensor App</a>
+					        </div>
+							<div id="navbar" class="navbar-collapse collapse">
+                        		<ul class="nav navbar-nav">
+                            		<li class="active"><a href="{% url 'home'%}">Home</a></li>
+                            		<li><a href="{% url 'about'%}">About</a></li>
+                            		<li><a href="{% url 'contact'%}">Contact</a></li>
+                            		{% if user.is_authenticated %}
+                            			<li><a href="{% url 'about' %}">Create Hike</a></li>
+                            		{% endif %}
+                        		</ul>
+                        		<ul class="nav navbar-nav navbar-right">
+                            		{% if user.is_authenticated %}
+                            			<li><a href="{% url 'about' %}">Profile</a></li>
+                            			<li><a href="{% url 'about' %}">Logout</a></li>
+                            		{% else %}
+                            			<li><a href="{% url 'about' %}">Login</a></li>
+                            			<li><a href="{% url 'contact' %}">Register</a></li>
+                            		{% endif %}
+                        		</ul>
+                    		</div><!--/.nav-collapse -->
+                		</div><!--/.container-fluid -->
+            		</nav>
+				</div><!-- container -->
+		
 		{% block content %}{% endblock %}
 		{% block footer %}{% endblock %}
 		{% block scripts %}
-		<script src="{% static '/js/all.js' %}"></script>
+		<script src="{% static '/static/js/all.js' %}"></script>
 		{% endblock scripts %}
 	</body>
 </html>
