@@ -2,7 +2,7 @@
 {% block title %}Homepage - {{ block.super }}{% endblock %}
 {% block content %}
 		{% for photo in photos %}
-		<h2>{{ photo.photoMillisSinceEpoch }}</h2>
+		<h1>{{ photo.photoMillisSinceEpoch }}</h1>
 		<img src="{{ photo.photoStorageURL }}" alt=""/>
 		{% endfor %}
 {% endblock %}
