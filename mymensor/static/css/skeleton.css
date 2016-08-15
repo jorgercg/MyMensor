@@ -31,7 +31,7 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1280px; /* 960px */
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
@@ -286,7 +286,7 @@ label > .label-body {
 
 
 /* Lists
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+–––––––––––––––––––––––––––––––––––––––––––––––––– 
 ul {
   list-style: circle inside; }
 ol {
@@ -299,10 +299,7 @@ ul ol,
 ol ol,
 ol ul {
   margin: 1.5rem 0 1.5rem 3rem;
-  font-size: 90%; }
-li {
-  margin-bottom: 1rem; }
-
+  font-size: 90%; }*/
 
 /* Code
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -392,6 +389,41 @@ hr {
   clear: both; }
 
 
+/* CSSTerm.com Simple CSS menu 
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+br { clear:left }
+
+.menu_simple {
+      width: 100%;
+      background-color: #005555;
+}
+
+.menu_simple ul {
+      margin: 0; padding: 0;
+      float: left;
+}
+
+.menu_simple ul li {
+      display: inline;
+}
+
+.menu_simple ul li a {
+      float: left; text-decoration: none;
+      color: white; 
+      padding: 10.5px 11px;
+      background-color:  #005555;
+}
+ 
+.menu_simple ul li a:visited {
+      color: white;
+}
+ 
+.menu_simple ul li a:hover, .menu_simple ul li .current {
+      color: white;
+      background-color: #5FD367;
+}
+
+
 /* Media Queries
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 /*
@@ -416,3 +448,9 @@ there.
 
 /* Larger than Desktop HD */
 @media (min-width: 1200px) {}
+	
+	
+
+	
+	
+
