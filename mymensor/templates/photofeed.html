@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% block title %}Portfolio - {{ block.super }}{% endblock %}
+{% block title %}Photo Feed - {{ block.super }}{% endblock %}
 {% block content %}
 		{% for photo in photos %}
 		<h1>{{ photo.photoMillisSinceEpoch }}</h1>
