@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Setup - {{ block.super }}{% endblock %}
+{% block content %}
+		<h1>Setup Asset Owner</h1>
+		<form role="form" action="" methos="post">
+			{% csrf_token %}
+			{{ form.as_p}}
+			<button type="submit">Submit</button>
+		</form>
+{% endblock %}
