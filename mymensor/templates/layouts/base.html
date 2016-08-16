@@ -38,35 +38,11 @@
               <input class="trigger" type="checkbox" id="mainNavButton">
               <label for="mainNavButton" onclick>Menu</label>
               <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About Us</a>
-                    <ul>
-                      <li><a href="{% url 'contact' %}">Sub Nav Item</a></li>
-                      <li><a href="{% url 'contact' %}">Sub Nav Item</a>
-                        <ul>
-                          <li><a href="{% url 'contact' %}">Sub Sub Nav Item</a></li>
-                          <li><a href="{% url 'contact' %}">Sub Sub Nav Item</a></li>
-                          <li><a href="{% url 'contact' %}">Sub Sub Nav Item</a></li>
-                          <li><a href="{% url 'contact' %}">Sub Sub Nav Item</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="{% url 'about' %}">Sub Nav Item</a></li>
-                      <li><a href="{% url 'about' %}">Sub Nav Item</a></li>
-                    </ul>
-                </li>
-                <li><a href="{% url 'about' %}">Products</a></li>
+                <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                <li><a href="{% url 'photofeed' %}">Photo Feed</a></li>
+                <li><a href="{% url 'contact' %}">Contacts</a></li>
               </ul>
             </nav>
-
-			<!--
-			<div class="menu_simple">
-		            		 <ul>
-		                		 <li><a href="{% url 'home' %}">Home </a></li>
-		                		 <li><a href="{% url 'about' %}">About</a></li>
-		                		 <li><a href="{% url 'contact' %}">Contact</a></li>
-		            		 </ul>
-							 <br />
-					 </div> -->
 		</header>		
 		{% block content %}{% endblock %}
 		{% block footer %}{% endblock %}
