@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'mymensorapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mymensor',
+        'NAME': 'mymensor_dev',
         'USER': 'jorgercg',
         'PASSWORD': '01sea01',
         'HOST': '127.0.0.1',
