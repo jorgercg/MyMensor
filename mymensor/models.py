@@ -10,7 +10,7 @@ class AssetOwner(models.Model):
     assetOwnerLogoURL = models.CharField(max_length=255, null=True)
 
 class Asset(models.Model):
-    assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
+    #assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
     assetDescription = models.CharField(max_length=1024, null=True)
@@ -20,7 +20,7 @@ class Asset(models.Model):
     assetStoragePassword = models.CharField(max_length=255, null=True)
 
 class Dci(models.Model):
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
+    #asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     dciNumber = models.IntegerField()
     dciIsActive = models.BooleanField(default=True)
     dciUserPassword = models.CharField(max_length=50, null=True)
@@ -44,7 +44,7 @@ class Vp(models.Model):
     vpIsActive = models.BooleanField(default=True)
     vpListNumber = models.IntegerField(null=True)
     vpDescription = models.CharField(max_length=1024)
-    dci = models.ForeignKey(Dci, on_delete=models.CASCADE)  ###### FK
+    #dci = models.ForeignKey(Dci, on_delete=models.CASCADE)  ###### FK
     vpStdPhotoStorageURL = models.CharField(max_length=255)
     vpStdTagDescPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpStdMarkerPhotoStorageURL = models.CharField(max_length=255, null=True)
@@ -71,7 +71,7 @@ class Vp(models.Model):
     vpFrequencyValue = models.IntegerField(null=True)
     
 class Tag(models.Model):
-    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
+    #vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
     tagNumber = models.IntegerField()
     tagIsActive = models.BooleanField(default=True)
     tagDescription = models.CharField(max_length=1024)
@@ -93,7 +93,7 @@ class Tag(models.Model):
 class Photo(models.Model):
     photoMillisSinceEpoch = models.BigIntegerField()
     photoVpNumber = models.IntegerField()
-#   vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
+    #vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
     photoAssetOwnerNumber = models.IntegerField()
     photoAssetNumber = models.IntegerField()
     photoStorageURL = models.CharField(max_length=255)
@@ -104,15 +104,15 @@ class Photo(models.Model):
     photoProcessed = models.NullBooleanField()    
     
 class ProcessedTag(models.Model):
-    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)   ###### FK
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)   ###### FK
+    #photo = models.ForeignKey(Photo, on_delete=models.CASCADE)   ###### FK
+    #tag = models.ForeignKey(Tag, on_delete=models.CASCADE)   ###### FK
     valValueEvaluated = models.FloatField()
     valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     tagStateEvaluated = models.IntegerField()
     
 class Value(models.Model):
-    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)   ###### FK
-    processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL)      ###### FK
+    #processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)   ###### FK
+    #processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)      ###### FK
     valValue = models.FloatField()
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
