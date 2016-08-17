@@ -8,19 +8,19 @@ class AssetOwnerAdmin(admin.ModelAdmin):
 
 class AssetAdmin(admin.ModelAdmin):
     model = Asset
-    list_display = ('assetNumber', 'assetIsActive',)
+    list_display = ('assetOwner', 'assetNumber', 'assetIsActive',)
 
 class DciAdmin(admin.ModelAdmin):
     model = Dci
-    list_display = ('dciNumber', 'dciIsActive', 'dciFrequencyUnit', 'dciFrequencyValue', 'dciTolerancePosition', 'dciToleranceRotation')
+    list_display = ('asset', 'dciNumber', 'dciIsActive', 'dciFrequencyUnit', 'dciFrequencyValue', 'dciTolerancePosition', 'dciToleranceRotation')
 
 class VpAdmin(admin.ModelAdmin):
     model = Vp
-    list_display = ('vpNumber', 'vpIsActive', 'vpDescription', 'vpStdPhotoStorageURL',)
+    list_display = ('dci', 'vpNumber', 'vpIsActive', 'vpDescription', 'vpStdPhotoStorageURL',)
 
 class PhotoAdmin(admin.ModelAdmin):
     model = Photo
-    list_display = ('photoMillisSinceEpoch', 'photoVpNumber', 'photoAssetOwnerNumber', 'photoAssetNumber', 'photoStorageURL', 'photoImageLatitude', 'photoImageLongitude', 'photoDBTimeStamp', 'photoTimeStamp', 'photoProcessed',)
+    list_display = ('vp', 'photoMillisSinceEpoch', 'photoVpNumber', 'photoAssetOwnerNumber', 'photoAssetNumber', 'photoStorageURL', 'photoImageLatitude', 'photoImageLongitude', 'photoDBTimeStamp', 'photoTimeStamp', 'photoProcessed',)
     
 # Register your models here.
 admin.site.register(AssetOwner, AssetOwnerAdmin)
