@@ -3,21 +3,42 @@ from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
 
-# Create your models here.
+class AssetOwner(models.Model):
+    assetOwnerNumber = models.IntegerField()
+    assetOwnerIsActive = models.BooleanField(default=True)
+    assetOwnerDescription = models.CharField(max_length=1024, null=True)    
+    assetOwnerLogoURL = models.CharField(max_length=255, null=True)
 
-class Photo(models.Model):
-    photoMillisSinceEpoch = models.BigIntegerField()
-    photoVpNumber = models.IntegerField()
-    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
-    photoAssetOwnerNumber = models.IntegerField()
-    photoAssetNumber = models.IntegerField()
-    photoStorageURL = models.CharField(max_length=255)
-    photoImageLatitude = models.FloatField()
-    photoImageLongitude = models.FloatField()
-    photoDBTimeStamp = models.DateTimeField(auto_now_add=True)
-    photoTimeStamp = models.DateTimeField(auto_now=False)
-    photoProcessed = models.NullBooleanField()
+class Asset(models.Model):
+    assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
+    assetNumber = models.IntegerField()
+    assetIsActive = models.BooleanField(default=True)
+    assetDescription = models.CharField(max_length=1024, null=True)
+    assetRegistryCode = models.CharField(max_length=255, null=True)
+    assetProviderAcc = models.CharField(max_length=255, null=True)
+    assetProviderAccPassword = models.CharField(max_length=255, null=True)
+    assetStoragePassword = models.CharField(max_length=255, null=True)
 
+class Dci(models.Model):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
+    dciNumber = models.IntegerField()
+    dciIsActive = models.BooleanField(default=True)
+    dciUserPassword = models.CharField(max_length=50, null=True)
+    dciConfigPassword = models.CharField(max_length=50, null=True)
+    dciFrequencyUnit = models.CharField(max_length=50)
+    dciFrequencyValue = models.IntegerField()
+    dciQtyVps = models.IntegerField(null=True)
+    dciTolerancePosition = models.IntegerField(default=50)
+    dciToleranceRotation = models.IntegerField(default=10)
+    dciIMEI = models.CharField(max_length=50, null=True)
+    dciModel = models.CharField(max_length=50, null=True)
+    dciWifiMAC = models.CharField(max_length=50, null=True)
+    dciRemotePassword = models.CharField(max_length=50, null=True)
+    dciDciBoxWifiModel = models.CharField(max_length=50, null=True)
+    dciDciBoxWifiSSID = models.CharField(max_length=50, null=True)
+    dciDciBoxWifiPassword = models.CharField(max_length=50, null=True)
+    dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
+    
 class Vp(models.Model):
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
@@ -49,42 +70,6 @@ class Vp(models.Model):
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
     
-class Dci(models.Model):
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
-    dciNumber = models.IntegerField()
-    dciIsActive = models.BooleanField(default=True)
-    dciUserPassword = models.CharField(max_length=50, null=True)
-    dciConfigPassword = models.CharField(max_length=50, null=True)
-    dciFrequencyUnit = models.CharField(max_length=50)
-    dciFrequencyValue = models.IntegerField()
-    dciQtyVps = models.IntegerField(null=True)
-    dciTolerancePosition = models.IntegerField(default=50)
-    dciToleranceRotation = models.IntegerField(default=10)
-    dciIMEI = models.CharField(max_length=50, null=True)
-    dciModel = models.CharField(max_length=50, null=True)
-    dciWifiMAC = models.CharField(max_length=50, null=True)
-    dciRemotePassword = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiModel = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiSSID = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiPassword = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
-    
-class Asset(models.Model):
-    assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
-    assetNumber = models.IntegerField()
-    assetIsActive = models.BooleanField(default=True)
-    assetDescription = models.CharField(max_length=1024)
-    assetRegistryCode = models.CharField(max_length=255)
-    assetProviderAcc = models.CharField(max_length=255)
-    assetProviderAccPassword = models.CharField(max_length=255)
-    assetStoragePassword = models.CharField(max_length=255)
-    
-class AssetOwner(models.Model):
-    assetOwnerNumber = models.IntegerField()
-    assetOwnerIsActive = models.BooleanField(default=True)
-    assetOwnerDescription = models.CharField(max_length=1024)    
-    assetOwnerLogoURL = models.CharField(max_length=255, null=True)
-    
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
     tagNumber = models.IntegerField()
@@ -104,6 +89,19 @@ class Tag(models.Model):
     tagMaxLagFromSlaveTagsInMillis = models.BigIntegerField(null=True)
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
+
+class Photo(models.Model):
+    photoMillisSinceEpoch = models.BigIntegerField()
+    photoVpNumber = models.IntegerField()
+#   vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
+    photoAssetOwnerNumber = models.IntegerField()
+    photoAssetNumber = models.IntegerField()
+    photoStorageURL = models.CharField(max_length=255)
+    photoImageLatitude = models.FloatField()
+    photoImageLongitude = models.FloatField()
+    photoDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    photoTimeStamp = models.DateTimeField(auto_now=False)
+    photoProcessed = models.NullBooleanField()    
     
 class ProcessedTag(models.Model):
     photo = models.ForeignKey(Photo, on_delete=models.CASCADE)   ###### FK
@@ -118,7 +116,4 @@ class Value(models.Model):
     valValue = models.FloatField()
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
-    tagStateResultingFromValValue = models.IntegerField()
-    
-    
-    
+    tagStateResultingFromValValueStatus = models.IntegerField()
