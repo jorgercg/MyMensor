@@ -1,7 +1,12 @@
-from django.forms import ModelForm
-from mymensor.models import AssetOwner
+from django import forms
 
-class AssetOwnerForm(ModelForm):
-    class Meta:
-        model = AssetOwner
-        fields = ('assetOwnerNumber','assetOwnerIsActive','assetOwnerDescription','assetOwnerLogoURL',)
+from selectable.forms import AutoCompleteWidget
+
+from mymensor.lookups import AssetOwnerLookup
+
+class AssetOwnerForm(forms.Form):
+    autocomplete = forms.CharField(
+        label='AssetOwnerDescription (AutoCompleteWidget)',
+        widget=AutoCompleteWidget(AssetOwnerLookup),
+        required=False,
+    )

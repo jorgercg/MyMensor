@@ -20,9 +20,10 @@ from mymensor import views
 
 urlpatterns = [
     url(r'^$', views.portfolio, name='portfolio'),
-    url(r'^portfolio/$', views.photofeed,name='photofeed'),
+    url(r'^photofeed/$', views.photofeed,name='photofeed'),
     url(r'^setup/$',views.setup,name='setup'),
     url(r'^contact/$',
         TemplateView.as_view(template_name='contact.html'),name='contact'),
     url(r'^admin/', admin.site.urls),
+    url(r'^selectable/', include('selectable.urls')),
 ]
