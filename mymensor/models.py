@@ -2,13 +2,19 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
+from django.utils.encoding import python_2_unicode_compatible
 
+@python_2_unicode_compatible
 class AssetOwner(models.Model):
     assetOwnerNumber = models.IntegerField()
     assetOwnerIsActive = models.BooleanField(default=True)
     assetOwnerDescription = models.CharField(max_length=1024, null=True)    
     assetOwnerLogoURL = models.CharField(max_length=255, null=True)
-
+    
+    def __str__(self):
+        return self.assetOwnerDescription
+        
+@python_2_unicode_compatible
 class Asset(models.Model):
     assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
     assetNumber = models.IntegerField()
@@ -18,7 +24,11 @@ class Asset(models.Model):
     assetProviderAcc = models.CharField(max_length=255, null=True)
     assetProviderAccPassword = models.CharField(max_length=255, null=True)
     assetStoragePassword = models.CharField(max_length=255, null=True)
+    
+    def __str__(self):
+        return self.assetDescription
 
+@python_2_unicode_compatible
 class Dci(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     dciNumber = models.IntegerField()
@@ -39,6 +49,10 @@ class Dci(models.Model):
     dciDciBoxWifiPassword = models.CharField(max_length=50, null=True)
     dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
     
+    def __str__(self):
+        return self.dciUserPassword
+
+@python_2_unicode_compatible    
 class Vp(models.Model):
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
@@ -70,6 +84,10 @@ class Vp(models.Model):
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
     
+    def __str__(self):
+        return self.vpDescription
+
+@python_2_unicode_compatible        
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
     tagNumber = models.IntegerField()
@@ -89,6 +107,9 @@ class Tag(models.Model):
     tagMaxLagFromSlaveTagsInMillis = models.BigIntegerField(null=True)
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
+    
+    def __str__(self):
+        return self.tagDescription
 
 class Photo(models.Model):
     photoMillisSinceEpoch = models.BigIntegerField()
