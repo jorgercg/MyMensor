@@ -92,6 +92,7 @@ class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
     tagNumber = models.IntegerField()
     tagIsActive = models.BooleanField(default=True)
+    tagListNumber = models.IntegerField(null=True)
     tagDescription = models.CharField(max_length=1024)
     tagQuestion = models.CharField(max_length=1024)
     tagLowRedValue = models.FloatField(null=True)
