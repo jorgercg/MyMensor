@@ -1,12 +1,6 @@
 from django import forms
+from django.db import models
 
-from selectable.forms import AutoCompleteWidget
+from mymensor.models import Photo, AssetOwner, Asset, Dci, Vp, Tag
+import mymensor.models
 
-from mymensor.lookups import AssetOwnerLookup
-
-class AssetOwnerForm(forms.Form):
-    autocomplete = forms.CharField(
-        label='AssetOwnerDescription (AutoCompleteWidget)',
-        widget=AutoCompleteWidget(AssetOwnerLookup),
-        required=False,
-    )

@@ -21,9 +21,12 @@ from mymensor import views
 urlpatterns = [
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed,name='photofeed'),
-    url(r'^setup/$',views.setup,name='setup'),
-    url(r'^contact/$',
-        TemplateView.as_view(template_name='contact.html'),name='contact'),
+    url(r'^setup/$',views.myMensorSetupSideFormView,name='setup'),
+    url(r'^get_assets/\w/$',views.get_assets,name='get_assets'),
+    url(r'^get_dcis/$',views.get_dcis,name='get_dcis'),
+    url(r'^get_vps/$',views.get_vps,name='get_vps'),
+    url(r'^get_tags/$',views.get_tags,name='get_tags'),
+    url(r'^contact/$',TemplateView.as_view(template_name='contact.html'),name='contact'),
     url(r'^admin/', admin.site.urls),
-    url(r'^selectable/', include('selectable.urls')),
+    url(r'^chaining/', include('smart_selects.urls')),
 ]
