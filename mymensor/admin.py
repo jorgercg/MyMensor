@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mymensor.models import AssetOwner, Asset, Dci, Vp, Photo
+from mymensor.models import AssetOwner, Asset, Dci, Vp, Photo, Tag
 
 class AssetOwnerAdmin(admin.ModelAdmin):
     model = AssetOwner
@@ -22,9 +22,15 @@ class PhotoAdmin(admin.ModelAdmin):
     model = Photo
     list_display = ('vp', 'photoMillisSinceEpoch', 'photoVpNumber', 'photoAssetOwnerNumber', 'photoAssetNumber', 'photoStorageURL', 'photoImageLatitude', 'photoImageLongitude', 'photoDBTimeStamp', 'photoTimeStamp', 'photoProcessed',)
     
+class TagAdmin(admin.ModelAdmin):
+    model = Tag
+    list_display = ('vp', 'tagNumber', 'tagIsActive', 'tagListNumber', 'tagDescription' )    
+    
+    
 # Register your models here.
 admin.site.register(AssetOwner, AssetOwnerAdmin)
 admin.site.register(Asset, AssetAdmin)
 admin.site.register(Dci, DciAdmin)
 admin.site.register(Vp, VpAdmin)
 admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Tag, TagAdmin)

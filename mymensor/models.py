@@ -2,7 +2,10 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
+from django.forms import ModelForm
 from django.utils.encoding import python_2_unicode_compatible
+
+from smart_selects.db_fields import ChainedForeignKey
 
 @python_2_unicode_compatible
 class AssetOwner(models.Model):
@@ -32,6 +35,7 @@ class Asset(models.Model):
 class Dci(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     dciNumber = models.IntegerField()
+    dciDescription = models.CharField(max_length=1024, null=True)  
     dciIsActive = models.BooleanField(default=True)
     dciUserPassword = models.CharField(max_length=50, null=True)
     dciConfigPassword = models.CharField(max_length=50, null=True)
@@ -50,7 +54,7 @@ class Dci(models.Model):
     dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
     
     def __str__(self):
-        return self.dciUserPassword
+        return self.dciDescription
 
 @python_2_unicode_compatible    
 class Vp(models.Model):
@@ -139,3 +143,15 @@ class Value(models.Model):
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
+    
+class MyMensorConfiguration(models.Model):
+    assetOwner = models.ForeignKey(AssetOwner)
+    asset = ChainedForeignKey(Asset, chained_field='assetOwner', chained_model_field='assetOwner', show_all=False, auto_choose=True)
+    dci = ChainedForeignKey(Dci, chained_field='asset', chained_model_field='asset', show_all=False, auto_choose=True)
+    vp = ChainedForeignKey(Vp, chained_field='dci', chained_model_field='dci', show_all=False, auto_choose=True)
+    tag = ChainedForeignKey(Tag, chained_field='vp', chained_model_field='vp', show_all=False, auto_choose=True)
+    
+class MyMensorConfigurationForm(ModelForm):
+    class Meta:
+        model=MyMensorConfiguration
+        fields = ['assetOwner', 'asset', 'dci', 'vp', 'tag']

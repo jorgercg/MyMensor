@@ -1,7 +1,7 @@
 {% load staticfiles %}
-{% load selectable_tags %}
-{% include_jquery_libs %}
-{% include_ui_theme 'cupertino' %}
+<script src="{% static "js/jquery-3.1.0.min.js" %}"></script>
+<script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
+<!--<script src="{% static "js/mymensor-jquery.js" %}"></script>-->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +10,7 @@
 		<meta charset="utf-8">
 		<title>
 			{% block title %}
-				MyMensorApp Project
+				MyMensor
 			{% endblock %}
 		</title>
 	    <meta name="MyMensorApp Project" content="">
@@ -30,9 +30,11 @@
 	    <link rel="stylesheet" href="{% static 'css/skeleton.css' %}">
 		<link rel="stylesheet" href="{% static 'css/menuflexbox.css' %}">
 		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
 	    <!-- Favicon
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+				
 		{% block header %}{% endblock %}
 	</head>
 	<body>
