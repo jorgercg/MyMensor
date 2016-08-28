@@ -4,7 +4,7 @@
 <script src="{% static "js/bootstrap.min.js" %}"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-<!--<script src="{% static "js/mymensor-jquery.js" %}"></script>-->
+<script src="{% static "js/mymensor-jquery.js" %}"></script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -60,9 +60,9 @@
                   <img alt="MyMensor"src="{% static 'images/Logo_MyMensor_h48px.png' %}">
               </a>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
+            <div id="navbar" class="collapse navbar-collapse navbar-right">
               <ul class="nav navbar-nav">
-                <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                <li class="active"><a href="{% url 'portfolio' %}">Portfolio</a></li>
                 <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
                 <li><a href="{% url 'setup' %}">Setup</a></li>
                 <li><a href="{% url 'contact' %}">Contact</a></li>

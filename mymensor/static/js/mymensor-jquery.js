@@ -1,16 +1,11 @@
 $(document).ready(function() {
 // JQuery code to be added in here.
-    $('select[name=assetOwner]').change(function(){
-        id_assetOwner = $(this).val();
-        request_url = '/get_assets/' + id_assetOwner + '/';
-        $.ajax({
-            url: request_url,
-            success: function(data){
-                $.each(data[0], function(key, value){
-                    $('select[name=asset]').append('<option value="' + this.key + '">' + this.value +'</option>');
-                });
-            }
-            
-        })
-    })
+    var url = window.location;
+    // Will only work if string in href matches with location
+        $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+
+    // Will also work for relative and absolute hrefs
+        $('ul.nav a').filter(function () {
+            return this.href == url;
+        }).parent().addClass('active').parent().parent().addClass('active');
 });

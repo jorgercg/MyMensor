@@ -29,6 +29,12 @@ body {
     color: #ffffff;
     background-color: #E7E7E7;
 }
+.navbar-default .navbar-nav > .active > a {
+    color: #fff;
+    background-color: transparent;
+    padding-bottom: 10px;
+    border-bottom: 5px solid #fff;
+}
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
