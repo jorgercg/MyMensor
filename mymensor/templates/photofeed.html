@@ -3,6 +3,6 @@
 {% block content %}
 		{% for photo in photos %}
 		<h1>{{ photo.photoMillisSinceEpoch }}</h1>
-		<img src="{{ photo.photoStorageURL }}" alt=""/>
+		<img src="{{ photo.photoStorageURL }}" class="img-responsive" alt=""/>
 		{% endfor %}
 {% endblock %}
