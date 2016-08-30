@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+from os import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -27,12 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
     'mymensor',
     'smart_selects',
+    'django_stormpath',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mymensorapp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -86,6 +85,32 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# Changes introduced by Stormpath
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_stormpath.backends.StormpathBackend',
+    'django_stormpath.backends.StormpathIdSiteBackend',
+)
+
+AUTH_USER_MODEL = 'django_stormpath.StormpathUser'
+
+STORMPATH_ID = '24DUYCP861BY2QC66UBM3H4ZS'
+STORMPATH_SECRET = 'pP8DfAhKlvHkeSom1hbMqp30+f6pT9coq+/0bIf4bcc'
+STORMPATH_APPLICATION = 'https://api.stormpath.com/v1/applications/35Hekpz6w92B0tytOmRWqp'
+
+USE_ID_SITE = True
+
+# This should be set to the same URI you've specified in your Stormpath ID
+# Site dashboard.  NOTE: This URL must be *exactly* the same as the one in
+# your Stormpath ID Site dashboard (under the Authorized Redirect URLs input
+# box).
+STORMPATH_ID_SITE_CALLBACK_URI = 'http://localhost:8000/handle-callback/stormpath/'
+
+# The URL you'd like to redirect users to after they've successfully logged
+# into their account.
+LOGIN_REDIRECT_URL = 'http://localhost:8000/'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -105,7 +130,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -118,7 +142,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
