@@ -16,8 +16,8 @@
     <schema id="5" parent="1" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>1131</introspection-state-number>
-      <introspection-timestamp>2016-08-24.10:07:08.066</introspection-timestamp>
+      <introspection-state-number>1142</introspection-state-number>
+      <introspection-timestamp>2016-08-29.19:26:03.153</introspection-timestamp>
     </schema>
     <schema id="6" parent="1" name="pg_catalog">
       <object-id>11</object-id>
@@ -70,1487 +70,1753 @@
       <object-id>18126</object-id>
       <state-number>1032</state-number>
     </sequence>
-    <sequence id="20" parent="5" name="mymensor_asset_id_seq">
+    <sequence id="20" parent="5" name="django_stormpath_stormpathuser_groups_id_seq">
+      <object-id>18625</object-id>
+      <state-number>1140</state-number>
+    </sequence>
+    <sequence id="21" parent="5" name="django_stormpath_stormpathuser_id_seq">
+      <object-id>18610</object-id>
+      <state-number>1140</state-number>
+    </sequence>
+    <sequence id="22" parent="5" name="django_stormpath_stormpathuser_user_permissions_id_seq">
+      <object-id>18633</object-id>
+      <state-number>1140</state-number>
+    </sequence>
+    <sequence id="23" parent="5" name="mymensor_asset_id_seq">
       <object-id>18284</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="21" parent="5" name="mymensor_assetowner_id_seq">
+    <sequence id="24" parent="5" name="mymensor_assetowner_id_seq">
       <object-id>18295</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="22" parent="5" name="mymensor_dci_id_seq">
+    <sequence id="25" parent="5" name="mymensor_dci_id_seq">
       <object-id>18306</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="23" parent="5" name="mymensor_mymensorconfiguration_id_seq">
+    <sequence id="26" parent="5" name="mymensor_mymensorconfiguration_id_seq">
       <object-id>18547</object-id>
       <state-number>1127</state-number>
     </sequence>
-    <sequence id="24" parent="5" name="mymensor_photo_id_seq">
+    <sequence id="27" parent="5" name="mymensor_photo_id_seq">
       <object-id>18276</object-id>
       <state-number>1052</state-number>
     </sequence>
-    <sequence id="25" parent="5" name="mymensor_processedtag_id_seq">
+    <sequence id="28" parent="5" name="mymensor_processedtag_id_seq">
       <object-id>18317</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="26" parent="5" name="mymensor_tag_id_seq">
+    <sequence id="29" parent="5" name="mymensor_tag_id_seq">
       <object-id>18325</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="27" parent="5" name="mymensor_value_id_seq">
+    <sequence id="30" parent="5" name="mymensor_value_id_seq">
       <object-id>18336</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <sequence id="28" parent="5" name="mymensor_vp_id_seq">
+    <sequence id="31" parent="5" name="mymensor_vp_id_seq">
       <object-id>18344</object-id>
       <state-number>1054</state-number>
     </sequence>
-    <table id="29" parent="5" name="auth_group">
+    <table id="32" parent="5" name="auth_group">
       <object-id>18157</object-id>
-      <state-number>1035</state-number>
+      <state-number>1142</state-number>
     </table>
-    <table id="30" parent="5" name="auth_group_permissions">
+    <table id="33" parent="5" name="auth_group_permissions">
       <object-id>18167</object-id>
       <state-number>1035</state-number>
     </table>
-    <table id="31" parent="5" name="auth_permission">
+    <table id="34" parent="5" name="auth_permission">
       <object-id>18149</object-id>
-      <state-number>1035</state-number>
+      <state-number>1140</state-number>
     </table>
-    <table id="32" parent="5" name="auth_user">
+    <table id="35" parent="5" name="auth_user">
       <object-id>18175</object-id>
       <state-number>1064</state-number>
     </table>
-    <table id="33" parent="5" name="auth_user_groups">
+    <table id="36" parent="5" name="auth_user_groups">
       <object-id>18185</object-id>
       <state-number>1035</state-number>
     </table>
-    <table id="34" parent="5" name="auth_user_user_permissions">
+    <table id="37" parent="5" name="auth_user_user_permissions">
       <object-id>18193</object-id>
       <state-number>1035</state-number>
     </table>
-    <table id="35" parent="5" name="django_admin_log">
+    <table id="38" parent="5" name="django_admin_log">
       <object-id>18253</object-id>
       <state-number>1037</state-number>
     </table>
-    <table id="36" parent="5" name="django_content_type">
+    <table id="39" parent="5" name="django_content_type">
       <object-id>18139</object-id>
       <state-number>1037</state-number>
     </table>
-    <table id="37" parent="5" name="django_migrations">
+    <table id="40" parent="5" name="django_migrations">
       <object-id>18128</object-id>
       <state-number>1032</state-number>
     </table>
-    <table id="38" parent="5" name="django_session">
+    <table id="41" parent="5" name="django_session">
       <object-id>18536</object-id>
       <state-number>1066</state-number>
     </table>
-    <table id="39" parent="5" name="mymensor_asset">
+    <table id="42" parent="5" name="django_stormpath_stormpathuser">
+      <object-id>18612</object-id>
+      <state-number>1142</state-number>
+    </table>
+    <table id="43" parent="5" name="django_stormpath_stormpathuser_groups">
+      <object-id>18627</object-id>
+      <state-number>1142</state-number>
+    </table>
+    <table id="44" parent="5" name="django_stormpath_stormpathuser_user_permissions">
+      <object-id>18635</object-id>
+      <state-number>1140</state-number>
+    </table>
+    <table id="45" parent="5" name="mymensor_asset">
       <object-id>18286</object-id>
       <state-number>1131</state-number>
     </table>
-    <table id="40" parent="5" name="mymensor_assetowner">
+    <table id="46" parent="5" name="mymensor_assetowner">
       <object-id>18297</object-id>
       <state-number>1131</state-number>
     </table>
-    <table id="41" parent="5" name="mymensor_dci">
+    <table id="47" parent="5" name="mymensor_dci">
       <object-id>18308</object-id>
       <state-number>1131</state-number>
     </table>
-    <table id="42" parent="5" name="mymensor_mymensorconfiguration">
+    <table id="48" parent="5" name="mymensor_mymensorconfiguration">
       <object-id>18549</object-id>
       <state-number>1131</state-number>
     </table>
-    <table id="43" parent="5" name="mymensor_photo">
+    <table id="49" parent="5" name="mymensor_photo">
       <object-id>18278</object-id>
       <state-number>1064</state-number>
     </table>
-    <table id="44" parent="5" name="mymensor_processedtag">
+    <table id="50" parent="5" name="mymensor_processedtag">
       <object-id>18319</object-id>
       <state-number>1064</state-number>
     </table>
-    <table id="45" parent="5" name="mymensor_tag">
+    <table id="51" parent="5" name="mymensor_tag">
       <object-id>18327</object-id>
       <state-number>1131</state-number>
     </table>
-    <table id="46" parent="5" name="mymensor_value">
+    <table id="52" parent="5" name="mymensor_value">
       <object-id>18338</object-id>
       <state-number>1064</state-number>
     </table>
-    <table id="47" parent="5" name="mymensor_vp">
+    <table id="53" parent="5" name="mymensor_vp">
       <object-id>18346</object-id>
       <state-number>1131</state-number>
     </table>
-    <column id="48" parent="29" name="id">
+    <column id="54" parent="32" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_group_id_seq'::regclass)</default-expression>
     </column>
-    <column id="49" parent="29" name="name">
+    <column id="55" parent="32" name="name">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(80)|0</data-type>
     </column>
-    <index id="50" parent="29" name="auth_group_pkey">
+    <index id="56" parent="32" name="auth_group_pkey">
       <object-id>18161</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="51" parent="29" name="auth_group_name_key">
+    <index id="57" parent="32" name="auth_group_name_key">
       <object-id>18163</object-id>
       <columns>name</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="52" parent="29" name="auth_group_name_a6ea08ec_like">
+    <index id="58" parent="32" name="auth_group_name_a6ea08ec_like">
       <object-id>18207</object-id>
       <columns>name</columns>
       <desc-columns />
     </index>
-    <key id="53" parent="29" name="auth_group_pkey">
+    <key id="59" parent="32" name="auth_group_pkey">
       <object-id>18162</object-id>
       <columns>id</columns>
       <underlying-index>auth_group_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="54" parent="29" name="auth_group_name_key">
+    <key id="60" parent="32" name="auth_group_name_key">
       <object-id>18164</object-id>
       <columns>name</columns>
       <underlying-index>auth_group_name_key</underlying-index>
     </key>
-    <column id="55" parent="30" name="id">
+    <column id="61" parent="33" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_group_permissions_id_seq'::regclass)</default-expression>
     </column>
-    <column id="56" parent="30" name="group_id">
+    <column id="62" parent="33" name="group_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="57" parent="30" name="permission_id">
+    <column id="63" parent="33" name="permission_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="58" parent="30" name="auth_group_permissions_pkey">
+    <index id="64" parent="33" name="auth_group_permissions_pkey">
       <object-id>18171</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="59" parent="30" name="auth_group_permissions_group_id_0cd325b0_uniq">
+    <index id="65" parent="33" name="auth_group_permissions_group_id_0cd325b0_uniq">
       <object-id>18218</object-id>
       <columns>group_id
 permission_id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="60" parent="30" name="auth_group_permissions_0e939a4f">
+    <index id="66" parent="33" name="auth_group_permissions_0e939a4f">
       <object-id>18220</object-id>
       <columns>group_id</columns>
       <desc-columns />
     </index>
-    <index id="61" parent="30" name="auth_group_permissions_8373b171">
+    <index id="67" parent="33" name="auth_group_permissions_8373b171">
       <object-id>18221</object-id>
       <columns>permission_id</columns>
       <desc-columns />
     </index>
-    <key id="62" parent="30" name="auth_group_permissions_pkey">
+    <key id="68" parent="33" name="auth_group_permissions_pkey">
       <object-id>18172</object-id>
       <columns>id</columns>
       <underlying-index>auth_group_permissions_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="63" parent="30" name="auth_group_permissions_group_id_0cd325b0_uniq">
+    <key id="69" parent="33" name="auth_group_permissions_group_id_0cd325b0_uniq">
       <object-id>18219</object-id>
       <columns>group_id
 permission_id</columns>
       <underlying-index>auth_group_permissions_group_id_0cd325b0_uniq</underlying-index>
     </key>
-    <foreign-key id="64" parent="30" name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id">
+    <foreign-key id="70" parent="33" name="auth_group_permissions_group_id_b120cbf9_fk_auth_group_id">
       <object-id>18208</object-id>
       <columns>group_id</columns>
       <ref-key>~.auth_group.auth_group_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="65" parent="30" name="auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id">
+    <foreign-key id="71" parent="33" name="auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id">
       <object-id>18213</object-id>
       <columns>permission_id</columns>
       <ref-key>~.auth_permission.auth_permission_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="66" parent="31" name="id">
+    <column id="72" parent="34" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_permission_id_seq'::regclass)</default-expression>
     </column>
-    <column id="67" parent="31" name="name">
+    <column id="73" parent="34" name="name">
       <state-number>1043</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="68" parent="31" name="content_type_id">
+    <column id="74" parent="34" name="content_type_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="69" parent="31" name="codename">
+    <column id="75" parent="34" name="codename">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <index id="70" parent="31" name="auth_permission_pkey">
+    <index id="76" parent="34" name="auth_permission_pkey">
       <object-id>18153</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="71" parent="31" name="auth_permission_content_type_id_01ab375a_uniq">
+    <index id="77" parent="34" name="auth_permission_content_type_id_01ab375a_uniq">
       <object-id>18204</object-id>
       <columns>content_type_id
 codename</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="72" parent="31" name="auth_permission_417f1b1c">
+    <index id="78" parent="34" name="auth_permission_417f1b1c">
       <object-id>18206</object-id>
       <columns>content_type_id</columns>
       <desc-columns />
     </index>
-    <key id="73" parent="31" name="auth_permission_pkey">
+    <key id="79" parent="34" name="auth_permission_pkey">
       <object-id>18154</object-id>
       <columns>id</columns>
       <underlying-index>auth_permission_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="74" parent="31" name="auth_permission_content_type_id_01ab375a_uniq">
+    <key id="80" parent="34" name="auth_permission_content_type_id_01ab375a_uniq">
       <object-id>18205</object-id>
       <columns>content_type_id
 codename</columns>
       <underlying-index>auth_permission_content_type_id_01ab375a_uniq</underlying-index>
     </key>
-    <foreign-key id="75" parent="31" name="auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id">
+    <foreign-key id="81" parent="34" name="auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id">
       <object-id>18199</object-id>
       <columns>content_type_id</columns>
       <ref-key>~.django_content_type.django_content_type_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="76" parent="32" name="id">
+    <column id="82" parent="35" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_user_id_seq'::regclass)</default-expression>
     </column>
-    <column id="77" parent="32" name="password">
+    <column id="83" parent="35" name="password">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(128)|0</data-type>
     </column>
-    <column id="78" parent="32" name="last_login">
+    <column id="84" parent="35" name="last_login">
       <state-number>1048</state-number>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="79" parent="32" name="is_superuser">
+    <column id="85" parent="35" name="is_superuser">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="80" parent="32" name="username">
+    <column id="86" parent="35" name="username">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(30)|0</data-type>
     </column>
-    <column id="81" parent="32" name="first_name">
+    <column id="87" parent="35" name="first_name">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(30)|0</data-type>
     </column>
-    <column id="82" parent="32" name="last_name">
+    <column id="88" parent="35" name="last_name">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(30)|0</data-type>
     </column>
-    <column id="83" parent="32" name="email">
+    <column id="89" parent="35" name="email">
       <state-number>1045</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(254)|0</data-type>
     </column>
-    <column id="84" parent="32" name="is_staff">
+    <column id="90" parent="35" name="is_staff">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="85" parent="32" name="is_active">
+    <column id="91" parent="35" name="is_active">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="86" parent="32" name="date_joined">
+    <column id="92" parent="35" name="date_joined">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <index id="87" parent="32" name="auth_user_pkey">
+    <index id="93" parent="35" name="auth_user_pkey">
       <object-id>18179</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="88" parent="32" name="auth_user_username_key">
+    <index id="94" parent="35" name="auth_user_username_key">
       <object-id>18181</object-id>
       <columns>username</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="89" parent="32" name="auth_user_username_6821ab7c_like">
+    <index id="95" parent="35" name="auth_user_username_6821ab7c_like">
       <object-id>18222</object-id>
       <columns>username</columns>
       <desc-columns />
     </index>
-    <key id="90" parent="32" name="auth_user_pkey">
+    <key id="96" parent="35" name="auth_user_pkey">
       <object-id>18180</object-id>
       <columns>id</columns>
       <underlying-index>auth_user_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="91" parent="32" name="auth_user_username_key">
+    <key id="97" parent="35" name="auth_user_username_key">
       <object-id>18182</object-id>
       <columns>username</columns>
       <underlying-index>auth_user_username_key</underlying-index>
     </key>
-    <column id="92" parent="33" name="id">
+    <column id="98" parent="36" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_user_groups_id_seq'::regclass)</default-expression>
     </column>
-    <column id="93" parent="33" name="user_id">
+    <column id="99" parent="36" name="user_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="94" parent="33" name="group_id">
+    <column id="100" parent="36" name="group_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="95" parent="33" name="auth_user_groups_pkey">
+    <index id="101" parent="36" name="auth_user_groups_pkey">
       <object-id>18189</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="96" parent="33" name="auth_user_groups_user_id_94350c0c_uniq">
+    <index id="102" parent="36" name="auth_user_groups_user_id_94350c0c_uniq">
       <object-id>18233</object-id>
       <columns>user_id
 group_id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="97" parent="33" name="auth_user_groups_e8701ad4">
+    <index id="103" parent="36" name="auth_user_groups_e8701ad4">
       <object-id>18235</object-id>
       <columns>user_id</columns>
       <desc-columns />
     </index>
-    <index id="98" parent="33" name="auth_user_groups_0e939a4f">
+    <index id="104" parent="36" name="auth_user_groups_0e939a4f">
       <object-id>18236</object-id>
       <columns>group_id</columns>
       <desc-columns />
     </index>
-    <key id="99" parent="33" name="auth_user_groups_pkey">
+    <key id="105" parent="36" name="auth_user_groups_pkey">
       <object-id>18190</object-id>
       <columns>id</columns>
       <underlying-index>auth_user_groups_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="100" parent="33" name="auth_user_groups_user_id_94350c0c_uniq">
+    <key id="106" parent="36" name="auth_user_groups_user_id_94350c0c_uniq">
       <object-id>18234</object-id>
       <columns>user_id
 group_id</columns>
       <underlying-index>auth_user_groups_user_id_94350c0c_uniq</underlying-index>
     </key>
-    <foreign-key id="101" parent="33" name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id">
+    <foreign-key id="107" parent="36" name="auth_user_groups_user_id_6a12ed8b_fk_auth_user_id">
       <object-id>18223</object-id>
       <columns>user_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="102" parent="33" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
+    <foreign-key id="108" parent="36" name="auth_user_groups_group_id_97559544_fk_auth_group_id">
       <object-id>18228</object-id>
       <columns>group_id</columns>
       <ref-key>~.auth_group.auth_group_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="103" parent="34" name="id">
+    <column id="109" parent="37" name="id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('auth_user_user_permissions_id_seq'::regclass)</default-expression>
     </column>
-    <column id="104" parent="34" name="user_id">
+    <column id="110" parent="37" name="user_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="105" parent="34" name="permission_id">
+    <column id="111" parent="37" name="permission_id">
       <state-number>1035</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="106" parent="34" name="auth_user_user_permissions_pkey">
+    <index id="112" parent="37" name="auth_user_user_permissions_pkey">
       <object-id>18197</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="107" parent="34" name="auth_user_user_permissions_user_id_14a6b632_uniq">
+    <index id="113" parent="37" name="auth_user_user_permissions_user_id_14a6b632_uniq">
       <object-id>18247</object-id>
       <columns>user_id
 permission_id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="108" parent="34" name="auth_user_user_permissions_e8701ad4">
+    <index id="114" parent="37" name="auth_user_user_permissions_e8701ad4">
       <object-id>18249</object-id>
       <columns>user_id</columns>
       <desc-columns />
     </index>
-    <index id="109" parent="34" name="auth_user_user_permissions_8373b171">
+    <index id="115" parent="37" name="auth_user_user_permissions_8373b171">
       <object-id>18250</object-id>
       <columns>permission_id</columns>
       <desc-columns />
     </index>
-    <key id="110" parent="34" name="auth_user_user_permissions_pkey">
+    <key id="116" parent="37" name="auth_user_user_permissions_pkey">
       <object-id>18198</object-id>
       <columns>id</columns>
       <underlying-index>auth_user_user_permissions_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="111" parent="34" name="auth_user_user_permissions_user_id_14a6b632_uniq">
+    <key id="117" parent="37" name="auth_user_user_permissions_user_id_14a6b632_uniq">
       <object-id>18248</object-id>
       <columns>user_id
 permission_id</columns>
       <underlying-index>auth_user_user_permissions_user_id_14a6b632_uniq</underlying-index>
     </key>
-    <foreign-key id="112" parent="34" name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id">
+    <foreign-key id="118" parent="37" name="auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id">
       <object-id>18237</object-id>
       <columns>user_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="113" parent="34" name="auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id">
+    <foreign-key id="119" parent="37" name="auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id">
       <object-id>18242</object-id>
       <columns>permission_id</columns>
       <ref-key>~.auth_permission.auth_permission_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="114" parent="35" name="id">
+    <column id="120" parent="38" name="id">
       <state-number>1037</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('django_admin_log_id_seq'::regclass)</default-expression>
     </column>
-    <column id="115" parent="35" name="action_time">
+    <column id="121" parent="38" name="action_time">
       <state-number>1039</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="116" parent="35" name="object_id">
+    <column id="122" parent="38" name="object_id">
       <state-number>1037</state-number>
       <data-type>text|0</data-type>
     </column>
-    <column id="117" parent="35" name="object_repr">
+    <column id="123" parent="38" name="object_repr">
       <state-number>1037</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(200)|0</data-type>
     </column>
-    <column id="118" parent="35" name="action_flag">
+    <column id="124" parent="38" name="action_flag">
       <state-number>1037</state-number>
       <mandatory>1</mandatory>
       <data-type>smallint|0</data-type>
     </column>
-    <column id="119" parent="35" name="change_message">
+    <column id="125" parent="38" name="change_message">
       <state-number>1037</state-number>
       <mandatory>1</mandatory>
       <data-type>text|0</data-type>
     </column>
-    <column id="120" parent="35" name="content_type_id">
+    <column id="126" parent="38" name="content_type_id">
       <state-number>1037</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="121" parent="35" name="user_id">
+    <column id="127" parent="38" name="user_id">
       <state-number>1037</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="122" parent="35" name="django_admin_log_pkey">
+    <index id="128" parent="38" name="django_admin_log_pkey">
       <object-id>18261</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="123" parent="35" name="django_admin_log_417f1b1c">
+    <index id="129" parent="38" name="django_admin_log_417f1b1c">
       <object-id>18273</object-id>
       <columns>content_type_id</columns>
       <desc-columns />
     </index>
-    <index id="124" parent="35" name="django_admin_log_e8701ad4">
+    <index id="130" parent="38" name="django_admin_log_e8701ad4">
       <object-id>18274</object-id>
       <columns>user_id</columns>
       <desc-columns />
     </index>
-    <key id="125" parent="35" name="django_admin_log_pkey">
+    <key id="131" parent="38" name="django_admin_log_pkey">
       <object-id>18262</object-id>
       <columns>id</columns>
       <underlying-index>django_admin_log_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="126" parent="35" name="django_admin_content_type_id_c4bce8eb_fk_django_content_type_id">
+    <foreign-key id="132" parent="38" name="django_admin_content_type_id_c4bce8eb_fk_django_content_type_id">
       <object-id>18263</object-id>
       <columns>content_type_id</columns>
       <ref-key>~.django_content_type.django_content_type_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="127" parent="35" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
+    <foreign-key id="133" parent="38" name="django_admin_log_user_id_c564eba6_fk_auth_user_id">
       <object-id>18268</object-id>
       <columns>user_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <check id="128" parent="35" name="django_admin_log_action_flag_check">
+    <check id="134" parent="38" name="django_admin_log_action_flag_check">
       <object-id>18257</object-id>
       <columns>action_flag</columns>
       <predicate>action_flag &gt;= 0</predicate>
     </check>
-    <column id="129" parent="36" name="id">
+    <column id="135" parent="39" name="id">
       <state-number>1033</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('django_content_type_id_seq'::regclass)</default-expression>
     </column>
-    <column id="130" parent="36" name="app_label">
+    <column id="136" parent="39" name="app_label">
       <state-number>1033</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <column id="131" parent="36" name="model">
+    <column id="137" parent="39" name="model">
       <state-number>1033</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(100)|0</data-type>
     </column>
-    <index id="132" parent="36" name="django_content_type_pkey">
+    <index id="138" parent="39" name="django_content_type_pkey">
       <object-id>18143</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="133" parent="36" name="django_content_type_app_label_76bd3d3b_uniq">
+    <index id="139" parent="39" name="django_content_type_app_label_76bd3d3b_uniq">
       <object-id>18145</object-id>
       <columns>app_label
 model</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <key id="134" parent="36" name="django_content_type_pkey">
+    <key id="140" parent="39" name="django_content_type_pkey">
       <object-id>18144</object-id>
       <columns>id</columns>
       <underlying-index>django_content_type_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="135" parent="36" name="django_content_type_app_label_76bd3d3b_uniq">
+    <key id="141" parent="39" name="django_content_type_app_label_76bd3d3b_uniq">
       <object-id>18146</object-id>
       <columns>app_label
 model</columns>
       <underlying-index>django_content_type_app_label_76bd3d3b_uniq</underlying-index>
     </key>
-    <column id="136" parent="37" name="id">
+    <column id="142" parent="40" name="id">
       <state-number>1032</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('django_migrations_id_seq'::regclass)</default-expression>
     </column>
-    <column id="137" parent="37" name="app">
+    <column id="143" parent="40" name="app">
       <state-number>1032</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="138" parent="37" name="name">
+    <column id="144" parent="40" name="name">
       <state-number>1032</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="139" parent="37" name="applied">
+    <column id="145" parent="40" name="applied">
       <state-number>1032</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <index id="140" parent="37" name="django_migrations_pkey">
+    <index id="146" parent="40" name="django_migrations_pkey">
       <object-id>18135</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <key id="141" parent="37" name="django_migrations_pkey">
+    <key id="147" parent="40" name="django_migrations_pkey">
       <object-id>18136</object-id>
       <columns>id</columns>
       <underlying-index>django_migrations_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <column id="142" parent="38" name="session_key">
+    <column id="148" parent="41" name="session_key">
       <state-number>1066</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="143" parent="38" name="session_data">
+    <column id="149" parent="41" name="session_data">
       <state-number>1066</state-number>
       <mandatory>1</mandatory>
       <data-type>text|0</data-type>
     </column>
-    <column id="144" parent="38" name="expire_date">
+    <column id="150" parent="41" name="expire_date">
       <state-number>1066</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <index id="145" parent="38" name="django_session_pkey">
+    <index id="151" parent="41" name="django_session_pkey">
       <object-id>18542</object-id>
       <columns>session_key</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="146" parent="38" name="django_session_session_key_c0390e0f_like">
+    <index id="152" parent="41" name="django_session_session_key_c0390e0f_like">
       <object-id>18545</object-id>
       <columns>session_key</columns>
       <desc-columns />
     </index>
-    <index id="147" parent="38" name="django_session_de54fa62">
+    <index id="153" parent="41" name="django_session_de54fa62">
       <object-id>18544</object-id>
       <columns>expire_date</columns>
       <desc-columns />
     </index>
-    <key id="148" parent="38" name="django_session_pkey">
+    <key id="154" parent="41" name="django_session_pkey">
       <object-id>18543</object-id>
       <columns>session_key</columns>
       <underlying-index>django_session_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <column id="149" parent="39" name="id">
+    <column id="155" parent="42" name="id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('django_stormpath_stormpathuser_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="156" parent="42" name="password">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(128)|0</data-type>
+    </column>
+    <column id="157" parent="42" name="last_login">
+      <state-number>1140</state-number>
+      <data-type>timestamp with time zone|0</data-type>
+    </column>
+    <column id="158" parent="42" name="is_superuser">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>boolean|0</data-type>
+    </column>
+    <column id="159" parent="42" name="href">
+      <state-number>1140</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="160" parent="42" name="username">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="161" parent="42" name="given_name">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="162" parent="42" name="surname">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="163" parent="42" name="middle_name">
+      <state-number>1140</state-number>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="164" parent="42" name="email">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="165" parent="42" name="is_active">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>boolean|0</data-type>
+    </column>
+    <column id="166" parent="42" name="is_admin">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>boolean|0</data-type>
+    </column>
+    <column id="167" parent="42" name="is_staff">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>boolean|0</data-type>
+    </column>
+    <column id="168" parent="42" name="is_verified">
+      <state-number>1142</state-number>
+      <mandatory>1</mandatory>
+      <data-type>boolean|0</data-type>
+    </column>
+    <index id="169" parent="42" name="django_stormpath_stormpathuser_pkey">
+      <object-id>18619</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="170" parent="42" name="django_stormpath_stormpathuser_username_key">
+      <object-id>18621</object-id>
+      <columns>username</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="171" parent="42" name="django_stormpath_stormpathuser_email_key">
+      <object-id>18623</object-id>
+      <columns>email</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="172" parent="42" name="django_stormpath_stormpathuser_username_713c8386_like">
+      <object-id>18641</object-id>
+      <columns>username</columns>
+      <desc-columns />
+    </index>
+    <index id="173" parent="42" name="django_stormpath_stormpathuser_email_7233c8ef_like">
+      <object-id>18642</object-id>
+      <columns>email</columns>
+      <desc-columns />
+    </index>
+    <key id="174" parent="42" name="django_stormpath_stormpathuser_pkey">
+      <object-id>18620</object-id>
+      <columns>id</columns>
+      <underlying-index>django_stormpath_stormpathuser_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <key id="175" parent="42" name="django_stormpath_stormpathuser_username_key">
+      <object-id>18622</object-id>
+      <columns>username</columns>
+      <underlying-index>django_stormpath_stormpathuser_username_key</underlying-index>
+    </key>
+    <key id="176" parent="42" name="django_stormpath_stormpathuser_email_key">
+      <object-id>18624</object-id>
+      <columns>email</columns>
+      <underlying-index>django_stormpath_stormpathuser_email_key</underlying-index>
+    </key>
+    <column id="177" parent="43" name="id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('django_stormpath_stormpathuser_groups_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="178" parent="43" name="stormpathuser_id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="179" parent="43" name="group_id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="180" parent="43" name="django_stormpath_stormpathuser_groups_pkey">
+      <object-id>18631</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="181" parent="43" name="django_stormpath_stormpathuser_g_stormpathuser_id_2c91e827_uniq">
+      <object-id>18653</object-id>
+      <columns>stormpathuser_id
+group_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="182" parent="43" name="django_stormpath_stormpathuser_groups_2251dcec">
+      <object-id>18655</object-id>
+      <columns>stormpathuser_id</columns>
+      <desc-columns />
+    </index>
+    <index id="183" parent="43" name="django_stormpath_stormpathuser_groups_0e939a4f">
+      <object-id>18656</object-id>
+      <columns>group_id</columns>
+      <desc-columns />
+    </index>
+    <key id="184" parent="43" name="django_stormpath_stormpathuser_groups_pkey">
+      <object-id>18632</object-id>
+      <columns>id</columns>
+      <underlying-index>django_stormpath_stormpathuser_groups_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <key id="185" parent="43" name="django_stormpath_stormpathuser_g_stormpathuser_id_2c91e827_uniq">
+      <object-id>18654</object-id>
+      <columns>stormpathuser_id
+group_id</columns>
+      <underlying-index>django_stormpath_stormpathuser_g_stormpathuser_id_2c91e827_uniq</underlying-index>
+    </key>
+    <foreign-key id="186" parent="43" name="stormpathuser_id_629ad9c0_fk_django_stormpath_stormpathuser_id">
+      <object-id>18688</object-id>
+      <columns>stormpathuser_id</columns>
+      <ref-key>~.django_stormpath_stormpathuser.django_stormpath_stormpathuser_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="187" parent="43" name="django_stormpath_stormpathus_group_id_661ae68c_fk_auth_group_id">
+      <object-id>18683</object-id>
+      <columns>group_id</columns>
+      <ref-key>~.auth_group.auth_group_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="188" parent="44" name="id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval('django_stormpath_stormpathuser_user_permissions_id_seq'::regclass)</default-expression>
+    </column>
+    <column id="189" parent="44" name="stormpathuser_id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="190" parent="44" name="permission_id">
+      <state-number>1140</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="191" parent="44" name="django_stormpath_stormpathuser_user_permissions_pkey">
+      <object-id>18639</object-id>
+      <columns>id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="192" parent="44" name="django_stormpath_stormpathuser_u_stormpathuser_id_6f8229a0_uniq">
+      <object-id>18667</object-id>
+      <columns>stormpathuser_id
+permission_id</columns>
+      <desc-columns />
+      <unique>1</unique>
+    </index>
+    <index id="193" parent="44" name="django_stormpath_stormpathuser_user_permissions_2251dcec">
+      <object-id>18669</object-id>
+      <columns>stormpathuser_id</columns>
+      <desc-columns />
+    </index>
+    <index id="194" parent="44" name="django_stormpath_stormpathuser_user_permissions_8373b171">
+      <object-id>18670</object-id>
+      <columns>permission_id</columns>
+      <desc-columns />
+    </index>
+    <key id="195" parent="44" name="django_stormpath_stormpathuser_user_permissions_pkey">
+      <object-id>18640</object-id>
+      <columns>id</columns>
+      <underlying-index>django_stormpath_stormpathuser_user_permissions_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <key id="196" parent="44" name="django_stormpath_stormpathuser_u_stormpathuser_id_6f8229a0_uniq">
+      <object-id>18668</object-id>
+      <columns>stormpathuser_id
+permission_id</columns>
+      <underlying-index>django_stormpath_stormpathuser_u_stormpathuser_id_6f8229a0_uniq</underlying-index>
+    </key>
+    <foreign-key id="197" parent="44" name="stormpathuser_id_51c514f7_fk_django_stormpath_stormpathuser_id">
+      <object-id>18657</object-id>
+      <columns>stormpathuser_id</columns>
+      <ref-key>~.django_stormpath_stormpathuser.django_stormpath_stormpathuser_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="198" parent="44" name="django_stormpath_s_permission_id_65f5bce8_fk_auth_permission_id">
+      <object-id>18662</object-id>
+      <columns>permission_id</columns>
+      <ref-key>~.auth_permission.auth_permission_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="199" parent="45" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_asset_id_seq'::regclass)</default-expression>
     </column>
-    <column id="150" parent="39" name="assetNumber">
+    <column id="200" parent="45" name="assetNumber">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="151" parent="39" name="assetIsActive">
+    <column id="201" parent="45" name="assetIsActive">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="152" parent="39" name="assetDescription">
+    <column id="202" parent="45" name="assetDescription">
       <state-number>1060</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="153" parent="39" name="assetRegistryCode">
+    <column id="203" parent="45" name="assetRegistryCode">
       <state-number>1060</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="154" parent="39" name="assetProviderAcc">
+    <column id="204" parent="45" name="assetProviderAcc">
       <state-number>1060</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="155" parent="39" name="assetProviderAccPassword">
+    <column id="205" parent="45" name="assetProviderAccPassword">
       <state-number>1060</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="156" parent="39" name="assetStoragePassword">
+    <column id="206" parent="45" name="assetStoragePassword">
       <state-number>1060</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="157" parent="39" name="assetOwner_id">
+    <column id="207" parent="45" name="assetOwner_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="158" parent="39" name="mymensor_asset_pkey">
+    <index id="208" parent="45" name="mymensor_asset_pkey">
       <object-id>18293</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="159" parent="39" name="mymensor_asset_2d8cf4a0">
+    <index id="209" parent="45" name="mymensor_asset_2d8cf4a0">
       <object-id>18482</object-id>
       <columns>assetOwner_id</columns>
       <desc-columns />
     </index>
-    <key id="160" parent="39" name="mymensor_asset_pkey">
+    <key id="210" parent="45" name="mymensor_asset_pkey">
       <object-id>18294</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_asset_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="161" parent="39" name="mymensor_asset_assetOwner_id_8734afda_fk_mymensor_assetowner_id">
+    <foreign-key id="211" parent="45" name="mymensor_asset_assetOwner_id_8734afda_fk_mymensor_assetowner_id">
       <object-id>18483</object-id>
       <columns>assetOwner_id</columns>
       <ref-key>~.mymensor_assetowner.mymensor_assetowner_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="162" parent="40" name="id">
+    <column id="212" parent="46" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_assetowner_id_seq'::regclass)</default-expression>
     </column>
-    <column id="163" parent="40" name="assetOwnerNumber">
+    <column id="213" parent="46" name="assetOwnerNumber">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="164" parent="40" name="assetOwnerIsActive">
+    <column id="214" parent="46" name="assetOwnerIsActive">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="165" parent="40" name="assetOwnerDescription">
+    <column id="215" parent="46" name="assetOwnerDescription">
       <state-number>1060</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="166" parent="40" name="assetOwnerLogoURL">
+    <column id="216" parent="46" name="assetOwnerLogoURL">
       <state-number>1054</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <index id="167" parent="40" name="mymensor_assetowner_pkey">
+    <index id="217" parent="46" name="mymensor_assetowner_pkey">
       <object-id>18304</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <key id="168" parent="40" name="mymensor_assetowner_pkey">
+    <key id="218" parent="46" name="mymensor_assetowner_pkey">
       <object-id>18305</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_assetowner_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <column id="169" parent="41" name="id">
+    <column id="219" parent="47" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_dci_id_seq'::regclass)</default-expression>
     </column>
-    <column id="170" parent="41" name="dciNumber">
+    <column id="220" parent="47" name="dciNumber">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="171" parent="41" name="dciIsActive">
+    <column id="221" parent="47" name="dciIsActive">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="172" parent="41" name="dciUserPassword">
+    <column id="222" parent="47" name="dciUserPassword">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="173" parent="41" name="dciConfigPassword">
+    <column id="223" parent="47" name="dciConfigPassword">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="174" parent="41" name="dciFrequencyUnit">
+    <column id="224" parent="47" name="dciFrequencyUnit">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="175" parent="41" name="dciFrequencyValue">
+    <column id="225" parent="47" name="dciFrequencyValue">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="176" parent="41" name="dciQtyVps">
+    <column id="226" parent="47" name="dciQtyVps">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="177" parent="41" name="dciTolerancePosition">
+    <column id="227" parent="47" name="dciTolerancePosition">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="178" parent="41" name="dciToleranceRotation">
+    <column id="228" parent="47" name="dciToleranceRotation">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="179" parent="41" name="dciIMEI">
+    <column id="229" parent="47" name="dciIMEI">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="180" parent="41" name="dciModel">
+    <column id="230" parent="47" name="dciModel">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="181" parent="41" name="dciWifiMAC">
+    <column id="231" parent="47" name="dciWifiMAC">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="182" parent="41" name="dciRemotePassword">
+    <column id="232" parent="47" name="dciRemotePassword">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="183" parent="41" name="dciDciBoxWifiModel">
+    <column id="233" parent="47" name="dciDciBoxWifiModel">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="184" parent="41" name="dciDciBoxWifiSSID">
+    <column id="234" parent="47" name="dciDciBoxWifiSSID">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="185" parent="41" name="dciDciBoxWifiPassword">
+    <column id="235" parent="47" name="dciDciBoxWifiPassword">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="186" parent="41" name="dciDciBoxWifiAdministrator">
+    <column id="236" parent="47" name="dciDciBoxWifiAdministrator">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="187" parent="41" name="asset_id">
+    <column id="237" parent="47" name="asset_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="188" parent="41" name="dciDescription">
+    <column id="238" parent="47" name="dciDescription">
       <state-number>1119</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <index id="189" parent="41" name="mymensor_dci_pkey">
+    <index id="239" parent="47" name="mymensor_dci_pkey">
       <object-id>18315</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="190" parent="41" name="mymensor_dci_51c6d5db">
+    <index id="240" parent="47" name="mymensor_dci_51c6d5db">
       <object-id>18488</object-id>
       <columns>asset_id</columns>
       <desc-columns />
     </index>
-    <key id="191" parent="41" name="mymensor_dci_pkey">
+    <key id="241" parent="47" name="mymensor_dci_pkey">
       <object-id>18316</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_dci_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="192" parent="41" name="mymensor_dci_asset_id_1a702bbc_fk_mymensor_asset_id">
+    <foreign-key id="242" parent="47" name="mymensor_dci_asset_id_1a702bbc_fk_mymensor_asset_id">
       <object-id>18489</object-id>
       <columns>asset_id</columns>
       <ref-key>~.mymensor_asset.mymensor_asset_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="193" parent="42" name="id">
+    <column id="243" parent="48" name="id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_mymensorconfiguration_id_seq'::regclass)</default-expression>
     </column>
-    <column id="194" parent="42" name="asset_id">
+    <column id="244" parent="48" name="asset_id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="195" parent="42" name="assetOwner_id">
+    <column id="245" parent="48" name="assetOwner_id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="196" parent="42" name="dci_id">
+    <column id="246" parent="48" name="dci_id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="197" parent="42" name="tag_id">
+    <column id="247" parent="48" name="tag_id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="198" parent="42" name="vp_id">
+    <column id="248" parent="48" name="vp_id">
       <state-number>1127</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="199" parent="42" name="mymensor_mymensorconfiguration_pkey">
+    <index id="249" parent="48" name="mymensor_mymensorconfiguration_pkey">
       <object-id>18553</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="200" parent="42" name="mymensor_mymensorconfiguration_51c6d5db">
+    <index id="250" parent="48" name="mymensor_mymensorconfiguration_51c6d5db">
       <object-id>18580</object-id>
       <columns>asset_id</columns>
       <desc-columns />
     </index>
-    <index id="201" parent="42" name="mymensor_mymensorconfiguration_2d8cf4a0">
+    <index id="251" parent="48" name="mymensor_mymensorconfiguration_2d8cf4a0">
       <object-id>18581</object-id>
       <columns>assetOwner_id</columns>
       <desc-columns />
     </index>
-    <index id="202" parent="42" name="mymensor_mymensorconfiguration_0948c612">
+    <index id="252" parent="48" name="mymensor_mymensorconfiguration_0948c612">
       <object-id>18582</object-id>
       <columns>dci_id</columns>
       <desc-columns />
     </index>
-    <index id="203" parent="42" name="mymensor_mymensorconfiguration_76f094bc">
+    <index id="253" parent="48" name="mymensor_mymensorconfiguration_76f094bc">
       <object-id>18583</object-id>
       <columns>tag_id</columns>
       <desc-columns />
     </index>
-    <index id="204" parent="42" name="mymensor_mymensorconfiguration_6af77b12">
+    <index id="254" parent="48" name="mymensor_mymensorconfiguration_6af77b12">
       <object-id>18584</object-id>
       <columns>vp_id</columns>
       <desc-columns />
     </index>
-    <key id="205" parent="42" name="mymensor_mymensorconfiguration_pkey">
+    <key id="255" parent="48" name="mymensor_mymensorconfiguration_pkey">
       <object-id>18554</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_mymensorconfiguration_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="206" parent="42" name="mymensor_mymensorconfigu_asset_id_66b556dc_fk_mymensor_asset_id">
+    <foreign-key id="256" parent="48" name="mymensor_mymensorconfigu_asset_id_66b556dc_fk_mymensor_asset_id">
       <object-id>18585</object-id>
       <columns>asset_id</columns>
       <ref-key>~.mymensor_asset.mymensor_asset_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="207" parent="42" name="mymensor_mymen_assetOwner_id_631a2f15_fk_mymensor_assetowner_id">
+    <foreign-key id="257" parent="48" name="mymensor_mymen_assetOwner_id_631a2f15_fk_mymensor_assetowner_id">
       <object-id>18590</object-id>
       <columns>assetOwner_id</columns>
       <ref-key>~.mymensor_assetowner.mymensor_assetowner_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="208" parent="42" name="mymensor_mymensorconfigurati_dci_id_b9b1a438_fk_mymensor_dci_id">
+    <foreign-key id="258" parent="48" name="mymensor_mymensorconfigurati_dci_id_b9b1a438_fk_mymensor_dci_id">
       <object-id>18595</object-id>
       <columns>dci_id</columns>
       <ref-key>~.mymensor_dci.mymensor_dci_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="209" parent="42" name="mymensor_mymensorconfigurati_tag_id_e64c472e_fk_mymensor_tag_id">
+    <foreign-key id="259" parent="48" name="mymensor_mymensorconfigurati_tag_id_e64c472e_fk_mymensor_tag_id">
       <object-id>18600</object-id>
       <columns>tag_id</columns>
       <ref-key>~.mymensor_tag.mymensor_tag_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="210" parent="42" name="mymensor_mymensorconfiguration_vp_id_bf021866_fk_mymensor_vp_id">
+    <foreign-key id="260" parent="48" name="mymensor_mymensorconfiguration_vp_id_bf021866_fk_mymensor_vp_id">
       <object-id>18605</object-id>
       <columns>vp_id</columns>
       <ref-key>~.mymensor_vp.mymensor_vp_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="211" parent="43" name="id">
+    <column id="261" parent="49" name="id">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_photo_id_seq'::regclass)</default-expression>
     </column>
-    <column id="212" parent="43" name="photoMillisSinceEpoch">
+    <column id="262" parent="49" name="photoMillisSinceEpoch">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="213" parent="43" name="photoVpNumber">
+    <column id="263" parent="49" name="photoVpNumber">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="214" parent="43" name="photoAssetOwnerNumber">
+    <column id="264" parent="49" name="photoAssetOwnerNumber">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="215" parent="43" name="photoAssetNumber">
+    <column id="265" parent="49" name="photoAssetNumber">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="216" parent="43" name="photoStorageURL">
+    <column id="266" parent="49" name="photoStorageURL">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="217" parent="43" name="photoImageLatitude">
+    <column id="267" parent="49" name="photoImageLatitude">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="218" parent="43" name="photoImageLongitude">
+    <column id="268" parent="49" name="photoImageLongitude">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="219" parent="43" name="photoDBTimeStamp">
+    <column id="269" parent="49" name="photoDBTimeStamp">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="220" parent="43" name="photoTimeStamp">
+    <column id="270" parent="49" name="photoTimeStamp">
       <state-number>1052</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="221" parent="43" name="photoProcessed">
+    <column id="271" parent="49" name="photoProcessed">
       <state-number>1052</state-number>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="222" parent="43" name="vp_id">
+    <column id="272" parent="49" name="vp_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="223" parent="43" name="mymensor_photo_pkey">
+    <index id="273" parent="49" name="mymensor_photo_pkey">
       <object-id>18282</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="224" parent="43" name="mymensor_photo_6af77b12">
+    <index id="274" parent="49" name="mymensor_photo_6af77b12">
       <object-id>18494</object-id>
       <columns>vp_id</columns>
       <desc-columns />
     </index>
-    <key id="225" parent="43" name="mymensor_photo_pkey">
+    <key id="275" parent="49" name="mymensor_photo_pkey">
       <object-id>18283</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_photo_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="226" parent="43" name="mymensor_photo_vp_id_ec1155e7_fk_mymensor_vp_id">
+    <foreign-key id="276" parent="49" name="mymensor_photo_vp_id_ec1155e7_fk_mymensor_vp_id">
       <object-id>18495</object-id>
       <columns>vp_id</columns>
       <ref-key>~.mymensor_vp.mymensor_vp_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="227" parent="44" name="id">
+    <column id="277" parent="50" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_processedtag_id_seq'::regclass)</default-expression>
     </column>
-    <column id="228" parent="44" name="valValueEvaluated">
+    <column id="278" parent="50" name="valValueEvaluated">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="229" parent="44" name="valValueEvaluatedEntryDBTimeStamp">
+    <column id="279" parent="50" name="valValueEvaluatedEntryDBTimeStamp">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="230" parent="44" name="tagStateEvaluated">
+    <column id="280" parent="50" name="tagStateEvaluated">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="231" parent="44" name="photo_id">
+    <column id="281" parent="50" name="photo_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="232" parent="44" name="tag_id">
+    <column id="282" parent="50" name="tag_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="233" parent="44" name="mymensor_processedtag_pkey">
+    <index id="283" parent="50" name="mymensor_processedtag_pkey">
       <object-id>18323</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="234" parent="44" name="mymensor_processedtag_b4e75e23">
+    <index id="284" parent="50" name="mymensor_processedtag_b4e75e23">
       <object-id>18500</object-id>
       <columns>photo_id</columns>
       <desc-columns />
     </index>
-    <index id="235" parent="44" name="mymensor_processedtag_76f094bc">
+    <index id="285" parent="50" name="mymensor_processedtag_76f094bc">
       <object-id>18506</object-id>
       <columns>tag_id</columns>
       <desc-columns />
     </index>
-    <key id="236" parent="44" name="mymensor_processedtag_pkey">
+    <key id="286" parent="50" name="mymensor_processedtag_pkey">
       <object-id>18324</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_processedtag_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="237" parent="44" name="mymensor_processedtag_photo_id_5edf0e53_fk_mymensor_photo_id">
+    <foreign-key id="287" parent="50" name="mymensor_processedtag_photo_id_5edf0e53_fk_mymensor_photo_id">
       <object-id>18501</object-id>
       <columns>photo_id</columns>
       <ref-key>~.mymensor_photo.mymensor_photo_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="238" parent="44" name="mymensor_processedtag_tag_id_c13915fc_fk_mymensor_tag_id">
+    <foreign-key id="288" parent="50" name="mymensor_processedtag_tag_id_c13915fc_fk_mymensor_tag_id">
       <object-id>18507</object-id>
       <columns>tag_id</columns>
       <ref-key>~.mymensor_tag.mymensor_tag_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="239" parent="45" name="id">
+    <column id="289" parent="51" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_tag_id_seq'::regclass)</default-expression>
     </column>
-    <column id="240" parent="45" name="tagNumber">
+    <column id="290" parent="51" name="tagNumber">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="241" parent="45" name="tagIsActive">
+    <column id="291" parent="51" name="tagIsActive">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="242" parent="45" name="tagDescription">
+    <column id="292" parent="51" name="tagDescription">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="243" parent="45" name="tagQuestion">
+    <column id="293" parent="51" name="tagQuestion">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="244" parent="45" name="tagLowRedValue">
+    <column id="294" parent="51" name="tagLowRedValue">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="245" parent="45" name="tagLowYellow">
+    <column id="295" parent="51" name="tagLowYellow">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="246" parent="45" name="tagLowGreen">
+    <column id="296" parent="51" name="tagLowGreen">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="247" parent="45" name="tagExpValue">
+    <column id="297" parent="51" name="tagExpValue">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="248" parent="45" name="tagHighGreen">
+    <column id="298" parent="51" name="tagHighGreen">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="249" parent="45" name="tagHighYellow">
+    <column id="299" parent="51" name="tagHighYellow">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="250" parent="45" name="tagHighRed">
+    <column id="300" parent="51" name="tagHighRed">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="251" parent="45" name="tagType">
+    <column id="301" parent="51" name="tagType">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="252" parent="45" name="tagIsDependantOfMasterTagNumber">
+    <column id="302" parent="51" name="tagIsDependantOfMasterTagNumber">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="253" parent="45" name="tagMaxLagFromMasterTagInMillis">
+    <column id="303" parent="51" name="tagMaxLagFromMasterTagInMillis">
       <state-number>1054</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="254" parent="45" name="tagMaxLagFromSlaveTagsInMillis">
+    <column id="304" parent="51" name="tagMaxLagFromSlaveTagsInMillis">
       <state-number>1054</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="255" parent="45" name="tagIsSetForSpecialCheck">
+    <column id="305" parent="51" name="tagIsSetForSpecialCheck">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="256" parent="45" name="tagSpecialCheckAcceptableDiscrepancy">
+    <column id="306" parent="51" name="tagSpecialCheckAcceptableDiscrepancy">
       <state-number>1054</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="257" parent="45" name="vp_id">
+    <column id="307" parent="51" name="vp_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="258" parent="45" name="tagListNumber">
+    <column id="308" parent="51" name="tagListNumber">
       <state-number>1117</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <index id="259" parent="45" name="mymensor_tag_pkey">
+    <index id="309" parent="51" name="mymensor_tag_pkey">
       <object-id>18334</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="260" parent="45" name="mymensor_tag_6af77b12">
+    <index id="310" parent="51" name="mymensor_tag_6af77b12">
       <object-id>18512</object-id>
       <columns>vp_id</columns>
       <desc-columns />
     </index>
-    <key id="261" parent="45" name="mymensor_tag_pkey">
+    <key id="311" parent="51" name="mymensor_tag_pkey">
       <object-id>18335</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_tag_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="262" parent="45" name="mymensor_tag_vp_id_dce49e82_fk_mymensor_vp_id">
+    <foreign-key id="312" parent="51" name="mymensor_tag_vp_id_dce49e82_fk_mymensor_vp_id">
       <object-id>18513</object-id>
       <columns>vp_id</columns>
       <ref-key>~.mymensor_vp.mymensor_vp_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="263" parent="46" name="id">
+    <column id="313" parent="52" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_value_id_seq'::regclass)</default-expression>
     </column>
-    <column id="264" parent="46" name="valValue">
+    <column id="314" parent="52" name="valValue">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="265" parent="46" name="valValueEntryDBTimeStamp">
+    <column id="315" parent="52" name="valValueEntryDBTimeStamp">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="266" parent="46" name="valEvalStatus">
+    <column id="316" parent="52" name="valEvalStatus">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="267" parent="46" name="tagStateResultingFromValValueStatus">
+    <column id="317" parent="52" name="tagStateResultingFromValValueStatus">
       <state-number>1056</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="268" parent="46" name="processedTag_id">
+    <column id="318" parent="52" name="processedTag_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="269" parent="46" name="processorUserId_id">
+    <column id="319" parent="52" name="processorUserId_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="270" parent="46" name="mymensor_value_pkey">
+    <index id="320" parent="52" name="mymensor_value_pkey">
       <object-id>18342</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="271" parent="46" name="mymensor_value_a7890fc0">
+    <index id="321" parent="52" name="mymensor_value_a7890fc0">
       <object-id>18518</object-id>
       <columns>processedTag_id</columns>
       <desc-columns />
     </index>
-    <index id="272" parent="46" name="mymensor_value_b0f5b982">
+    <index id="322" parent="52" name="mymensor_value_b0f5b982">
       <object-id>18524</object-id>
       <columns>processorUserId_id</columns>
       <desc-columns />
     </index>
-    <key id="273" parent="46" name="mymensor_value_pkey">
+    <key id="323" parent="52" name="mymensor_value_pkey">
       <object-id>18343</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_value_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="274" parent="46" name="mymensor_v_processedTag_id_eeaa5a5c_fk_mymensor_processedtag_id">
+    <foreign-key id="324" parent="52" name="mymensor_v_processedTag_id_eeaa5a5c_fk_mymensor_processedtag_id">
       <object-id>18519</object-id>
       <columns>processedTag_id</columns>
       <ref-key>~.mymensor_processedtag.mymensor_processedtag_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="275" parent="46" name="mymensor_value_processorUserId_id_3747e2b0_fk_auth_user_id">
+    <foreign-key id="325" parent="52" name="mymensor_value_processorUserId_id_3747e2b0_fk_auth_user_id">
       <object-id>18525</object-id>
       <columns>processorUserId_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="276" parent="47" name="id">
+    <column id="326" parent="53" name="id">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval('mymensor_vp_id_seq'::regclass)</default-expression>
     </column>
-    <column id="277" parent="47" name="vpNumber">
+    <column id="327" parent="53" name="vpNumber">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="278" parent="47" name="vpIsActive">
+    <column id="328" parent="53" name="vpIsActive">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="279" parent="47" name="vpListNumber">
+    <column id="329" parent="53" name="vpListNumber">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="280" parent="47" name="vpDescription">
+    <column id="330" parent="53" name="vpDescription">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="281" parent="47" name="vpStdPhotoStorageURL">
+    <column id="331" parent="53" name="vpStdPhotoStorageURL">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="282" parent="47" name="vpStdTagDescPhotoStorageURL">
+    <column id="332" parent="53" name="vpStdTagDescPhotoStorageURL">
       <state-number>1054</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="283" parent="47" name="vpStdMarkerPhotoStorageURL">
+    <column id="333" parent="53" name="vpStdMarkerPhotoStorageURL">
       <state-number>1054</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="284" parent="47" name="vpMarkerId">
+    <column id="334" parent="53" name="vpMarkerId">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="285" parent="47" name="vpStdIdMarkerPhotoStorageURL">
+    <column id="335" parent="53" name="vpStdIdMarkerPhotoStorageURL">
       <state-number>1054</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="286" parent="47" name="vpConfiguredMillis">
+    <column id="336" parent="53" name="vpConfiguredMillis">
       <state-number>1054</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="287" parent="47" name="vpXDistance">
+    <column id="337" parent="53" name="vpXDistance">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="288" parent="47" name="vpYDistance">
+    <column id="338" parent="53" name="vpYDistance">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="289" parent="47" name="vpZDistance">
+    <column id="339" parent="53" name="vpZDistance">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="290" parent="47" name="vpXRotation">
+    <column id="340" parent="53" name="vpXRotation">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="291" parent="47" name="vpYRotation">
+    <column id="341" parent="53" name="vpYRotation">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="292" parent="47" name="vpZRotation">
+    <column id="342" parent="53" name="vpZRotation">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="293" parent="47" name="vpMarkerlessMarkerWidth">
+    <column id="343" parent="53" name="vpMarkerlessMarkerWidth">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="294" parent="47" name="vpMarkerlessMarkerHeigth">
+    <column id="344" parent="53" name="vpMarkerlessMarkerHeigth">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="295" parent="47" name="vpIsAmbiguos">
+    <column id="345" parent="53" name="vpIsAmbiguos">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="296" parent="47" name="vpIsSuperSingle">
+    <column id="346" parent="53" name="vpIsSuperSingle">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="297" parent="47" name="vpIsSuperMultiple">
+    <column id="347" parent="53" name="vpIsSuperMultiple">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="298" parent="47" name="vpFlashTorchIsOn">
+    <column id="348" parent="53" name="vpFlashTorchIsOn">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="299" parent="47" name="vpSuperIdIsSmall">
+    <column id="349" parent="53" name="vpSuperIdIsSmall">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="300" parent="47" name="vpSuperIdIsMedium">
+    <column id="350" parent="53" name="vpSuperIdIsMedium">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="301" parent="47" name="vpSuperIdIsLarge">
+    <column id="351" parent="53" name="vpSuperIdIsLarge">
       <state-number>1054</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="302" parent="47" name="vpSuperMarkerId">
+    <column id="352" parent="53" name="vpSuperMarkerId">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="303" parent="47" name="vpFrequencyUnit">
+    <column id="353" parent="53" name="vpFrequencyUnit">
       <state-number>1054</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="304" parent="47" name="vpFrequencyValue">
+    <column id="354" parent="53" name="vpFrequencyValue">
       <state-number>1054</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="305" parent="47" name="dci_id">
+    <column id="355" parent="53" name="dci_id">
       <state-number>1064</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="306" parent="47" name="mymensor_vp_pkey">
+    <index id="356" parent="53" name="mymensor_vp_pkey">
       <object-id>18353</object-id>
       <columns>id</columns>
       <desc-columns />
       <unique>1</unique>
     </index>
-    <index id="307" parent="47" name="mymensor_vp_0948c612">
+    <index id="357" parent="53" name="mymensor_vp_0948c612">
       <object-id>18530</object-id>
       <columns>dci_id</columns>
       <desc-columns />
     </index>
-    <key id="308" parent="47" name="mymensor_vp_pkey">
+    <key id="358" parent="53" name="mymensor_vp_pkey">
       <object-id>18354</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_vp_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="309" parent="47" name="mymensor_vp_dci_id_a4fda130_fk_mymensor_dci_id">
+    <foreign-key id="359" parent="53" name="mymensor_vp_dci_id_a4fda130_fk_mymensor_dci_id">
       <object-id>18531</object-id>
       <columns>dci_id</columns>
       <ref-key>~.mymensor_dci.mymensor_dci_pkey</ref-key>

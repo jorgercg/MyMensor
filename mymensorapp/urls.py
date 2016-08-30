@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from mymensor import views
 
-urlpatterns = [
+urlpatterns = patterns('',
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed,name='photofeed'),
     url(r'^setup/$',views.myMensorSetupSideFormView,name='setup'),
     url(r'^contact/$',TemplateView.as_view(template_name='contact.html'),name='contact'),
     url(r'^admin/', admin.site.urls),
     url(r'^chaining/', include('smart_selects.urls')),
-]
+    url(r'', include('django_stormpath.urls')),
+)

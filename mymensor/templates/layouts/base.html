@@ -63,23 +63,38 @@
             <div id="navbar" class="collapse navbar-collapse navbar-right">
               <ul class="nav navbar-nav">
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
-                <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
-                <li><a href="{% url 'setup' %}">Setup</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+                    <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
+                    <li><a href="{% url 'setup' %}">Setup</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li class="visible-xs-inline"><a href="#">Reset Password</a></li>
+                    <li class="visible-xs-inline"><a href="{% url 'stormpath_id_site_logout' %}">Logout</a></li>
                 {% else %}
-                <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
-                <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
+                    <li><a href="{% url 'stormpath_id_site_login' %}">Login</a></li>
+                    <li><a href="{% url 'stormpath_id_site_register' %}">Register</a></li>
                 {% endif %}
               </ul>
-              <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">{{ user.get_username }}</a></p>
-      <ul class="nav navbar-nav navbar-right">
-            </div><!--/.nav-collapse -->
+              {% if user.is_authenticated %}
+                <div id="nav-options" class="btn-group pull-right hidden-xs">
+                    <button id="userloggedin" type="button" class="btn btn-default dropdown-toggle navbar-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Logged in as: {{ user.get_username }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Reset Password</a></li>
+                        <li><a href="{% url 'stormpath_id_site_logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+              {% endif %}
+             </div><!--/.nav-collapse -->
           </div>
         </nav>
         <div class="container">
           <div class="starter-template">
-            {% block content %}{% endblock %}
+            {% if user.is_authenticated %}
+                {% block content %}{% endblock %}
+            {% else %}
+                <img src="{% static 'images/notloggedin.jpg' %}" class="img-responsive" alt=""/>
+            {% endif %}
             {% block footer %}{% endblock %}
           </div>
         </div><!-- /.container -->
