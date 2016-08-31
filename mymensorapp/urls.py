@@ -21,7 +21,7 @@ from mymensor import views
 urlpatterns = patterns('',
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed,name='photofeed'),
-    url(r'^setup/$',views.myMensorSetupSideFormView,name='setup'),
+    url(r'^setup/$',views.myMensorSetupFormView,name='setup'),
     url(r'^contact/$',TemplateView.as_view(template_name='contact.html'),name='contact'),
     url(r'^admin/', admin.site.urls),
     url(r'^chaining/', include('smart_selects.urls')),
