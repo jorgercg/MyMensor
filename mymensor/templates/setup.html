@@ -3,23 +3,29 @@
 {% block header %}
 {% endblock %}
 {% block content %}
-<div id="form-edit">
-    <form action="" method="post" >
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn">Submit</button>
-    </form>
-	    {% if form.is_valid %}
-        <div>
-            <h2>Cleaned Data</h2>
-            <pre>{{ cleaned_data }}</pre>
-        </div>
-    {% endif %}
-    {% if raw_post %}
-        <div>
-            <h2>Raw POST data:</h2>
-            <pre>{{ raw_post }}</pre>
-        </div>
-    {% endif %}
+<div class="row">
+    <div id="form-edit" class="col-md-3">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ formSide.as_p }}
+            <input type="submit" />
+        </form>
+    </div>
+    <div id="selection-edit" class="col-md-9">
+        <p class="text-left">Text on the left of the column.</p>
+        {% if formSide.is_valid %}
+            <ul>
+                {% for key, value in formSide.clean.items %}
+                    <li>{{key}} - {{value}}</li>
+                {% endfor %}
+            </ul>
+            <p class="text-left">{{ formSide.clean.viewvalues }}</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ formAssetOwner.as_p }}
+                <input type="submit" />
+            </form>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

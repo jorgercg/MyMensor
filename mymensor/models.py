@@ -7,16 +7,18 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from smart_selects.db_fields import ChainedForeignKey
 
+
 @python_2_unicode_compatible
 class AssetOwner(models.Model):
     assetOwnerNumber = models.IntegerField()
     assetOwnerIsActive = models.BooleanField(default=True)
-    assetOwnerDescription = models.CharField(max_length=1024, null=True)    
+    assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerLogoURL = models.CharField(max_length=255, null=True)
-    
+
     def __str__(self):
         return self.assetOwnerDescription
-        
+
+
 @python_2_unicode_compatible
 class Asset(models.Model):
     assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
@@ -27,15 +29,16 @@ class Asset(models.Model):
     assetProviderAcc = models.CharField(max_length=255, null=True)
     assetProviderAccPassword = models.CharField(max_length=255, null=True)
     assetStoragePassword = models.CharField(max_length=255, null=True)
-    
+
     def __str__(self):
         return self.assetDescription
+
 
 @python_2_unicode_compatible
 class Dci(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     dciNumber = models.IntegerField()
-    dciDescription = models.CharField(max_length=1024, null=True)  
+    dciDescription = models.CharField(max_length=1024, null=True)
     dciIsActive = models.BooleanField(default=True)
     dciUserPassword = models.CharField(max_length=50, null=True)
     dciConfigPassword = models.CharField(max_length=50, null=True)
@@ -52,11 +55,12 @@ class Dci(models.Model):
     dciDciBoxWifiSSID = models.CharField(max_length=50, null=True)
     dciDciBoxWifiPassword = models.CharField(max_length=50, null=True)
     dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
-    
+
     def __str__(self):
         return self.dciDescription
 
-@python_2_unicode_compatible    
+
+@python_2_unicode_compatible
 class Vp(models.Model):
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
@@ -87,13 +91,14 @@ class Vp(models.Model):
     vpSuperMarkerId = models.IntegerField(null=True)
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
-    
+
     def __str__(self):
         return self.vpDescription
 
-@python_2_unicode_compatible        
+
+@python_2_unicode_compatible
 class Tag(models.Model):
-    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
+    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
     tagNumber = models.IntegerField()
     tagIsActive = models.BooleanField(default=True)
     tagListNumber = models.IntegerField(null=True)
@@ -112,14 +117,15 @@ class Tag(models.Model):
     tagMaxLagFromSlaveTagsInMillis = models.BigIntegerField(null=True)
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
-    
+
     def __str__(self):
         return self.tagDescription
+
 
 class Photo(models.Model):
     photoMillisSinceEpoch = models.BigIntegerField()
     photoVpNumber = models.IntegerField()
-    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)   ###### FK
+    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
     photoAssetOwnerNumber = models.IntegerField()
     photoAssetNumber = models.IntegerField()
     photoStorageURL = models.CharField(max_length=255)
@@ -127,31 +133,42 @@ class Photo(models.Model):
     photoImageLongitude = models.FloatField()
     photoDBTimeStamp = models.DateTimeField(auto_now_add=True)
     photoTimeStamp = models.DateTimeField(auto_now=False)
-    photoProcessed = models.NullBooleanField()    
-    
+    photoProcessed = models.NullBooleanField()
+
+
 class ProcessedTag(models.Model):
-    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)   ###### FK
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)   ###### FK
+    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)  ###### FK
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
     valValueEvaluated = models.FloatField()
     valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     tagStateEvaluated = models.IntegerField()
-    
+
+
 class Value(models.Model):
-    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)   ###### FK
-    processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)      ###### FK
+    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
+    processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  ###### FK
     valValue = models.FloatField()
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
-    
+
+
 class MyMensorConfiguration(models.Model):
     assetOwner = models.ForeignKey(AssetOwner)
-    asset = ChainedForeignKey(Asset, chained_field='assetOwner', chained_model_field='assetOwner', show_all=False, auto_choose=True)
+    asset = ChainedForeignKey(Asset, chained_field='assetOwner', chained_model_field='assetOwner', show_all=False,
+                              auto_choose=True)
     dci = ChainedForeignKey(Dci, chained_field='asset', chained_model_field='asset', show_all=False, auto_choose=True)
     vp = ChainedForeignKey(Vp, chained_field='dci', chained_model_field='dci', show_all=False, auto_choose=True)
     tag = ChainedForeignKey(Tag, chained_field='vp', chained_model_field='vp', show_all=False, auto_choose=True)
-    
+
+
 class MyMensorConfigurationForm(ModelForm):
     class Meta:
-        model=MyMensorConfiguration
+        model = MyMensorConfiguration
         fields = ['assetOwner', 'asset', 'dci', 'vp', 'tag']
+
+
+class AssetOwnerConfigurationForm(ModelForm):
+    class Meta:
+        model = AssetOwner
+        fields = '__all__'
