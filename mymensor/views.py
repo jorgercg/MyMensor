@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from mymensor.models import Photo, AssetOwner, Asset, Dci, Vp, Tag, MyMensorConfiguration, MyMensorConfigurationForm, AssetOwnerConfigurationForm
-
+from django.forms import modelformset_factory
+from mymensor.models import Photo, AssetOwner, Asset
+from mymensor.forms import AssetConfigurationForm
 
 # Portfolio View
 def portfolio(request):
@@ -16,16 +17,14 @@ def photofeed(request):
 
 # Setup Side View
 def myMensorSetupFormView(request):
+    AssetOwnerConfigurationFormSet = modelformset_factory(AssetOwner, fields='__all__', can_delete=True)
     if request.method == 'POST':
-        sideForm = MyMensorConfigurationForm(request.POST, prefix='sideForm')
-        assetOwnerForm = AssetOwnerConfigurationForm(request.POST, prefix='assetOwnerForm')
-        if sideForm.is_valid() and assetOwnerForm.is_valid():
-            assetOwner = assetOwnerForm.save(commit=False)
-            assetOwner.save()
+        assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
+        if assetOwnerFormSet.is_valid():
+            assetOwnerFormSet.save()
         # process the data in form.cleaned_data as required
         # ...
         # redirect to a new URL:
     else:
-        sideForm = MyMensorConfigurationForm(prefix='sideForm')
-        assetOwnerForm = AssetOwnerConfigurationForm(prefix='assetOwnerForm')
-    return render(request, 'setup.html', {'formSide': sideForm, 'formAssetOwner': assetOwnerForm,})
+        assetOwnerFormSet = AssetOwnerConfigurationFormSet(prefix='assetOwnerFormSet')
+    return render(request, 'setup.html', {'formSetAssetOwner': assetOwnerFormSet,})

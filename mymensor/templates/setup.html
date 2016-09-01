@@ -3,29 +3,14 @@
 {% block header %}
 {% endblock %}
 {% block content %}
+{% load crispy_forms_tags %}
 <div class="row">
     <div id="form-edit" class="col-md-3">
         <form action="" method="post">
             {% csrf_token %}
-            {{ formSide.as_p }}
+            {% crispy formSetAssetOwner %}
             <input type="submit" />
         </form>
-    </div>
-    <div id="selection-edit" class="col-md-9">
-        <p class="text-left">Text on the left of the column.</p>
-        {% if formSide.is_valid %}
-            <ul>
-                {% for key, value in formSide.clean.items %}
-                    <li>{{key}} - {{value}}</li>
-                {% endfor %}
-            </ul>
-            <p class="text-left">{{ formSide.clean.viewvalues }}</p>
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ formAssetOwner.as_p }}
-                <input type="submit" />
-            </form>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
