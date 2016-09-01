@@ -1,6 +1,12 @@
-from django import forms
-from django.db import models
+from django.forms import ModelForm
+from mymensor.models import AssetOwner, Asset
 
-from mymensor.models import Photo, AssetOwner, Asset, Dci, Vp, Tag
-import mymensor.models
+class AssetConfigurationForm(ModelForm):
+    class Meta:
+        model = Asset
+        fields = '__all__'
+
+
+
+
 
