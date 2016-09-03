@@ -2,48 +2,24 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
-from django.forms import ModelForm
 from django.utils.encoding import python_2_unicode_compatible
-
-from smart_selects.db_fields import ChainedForeignKey
-
-
-@python_2_unicode_compatible
-class AssetOwner(models.Model):
-    assetOwnerDescription = models.CharField(max_length=1024, null=True)
-    assetOwnerNumber = models.IntegerField()
-    assetOwnerIsActive = models.BooleanField(default=True)
-    assetOwnerLogoURL = models.CharField(max_length=255, null=True)
-
-    def __str__(self):
-        return self.assetOwnerDescription
 
 
 @python_2_unicode_compatible
 class Asset(models.Model):
-    assetOwner = models.ForeignKey(AssetOwner, on_delete=models.CASCADE)  ###### FK
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
+    assetOwnerDescription = models.CharField(max_length=1024, null=True)
+    assetOwnerKey = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
     assetProviderAcc = models.CharField(max_length=255, null=True)
     assetProviderAccPassword = models.CharField(max_length=255, null=True)
     assetStoragePassword = models.CharField(max_length=255, null=True)
-
-    def __str__(self):
-        return self.assetDescription
-
-
-@python_2_unicode_compatible
-class Dci(models.Model):
-    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
-    dciDescription = models.CharField(max_length=1024, null=True)
-    dciNumber = models.IntegerField()
-    dciIsActive = models.BooleanField(default=True)
     dciUserPassword = models.CharField(max_length=50, null=True)
     dciConfigPassword = models.CharField(max_length=50, null=True)
-    dciFrequencyUnit = models.CharField(max_length=50)
-    dciFrequencyValue = models.IntegerField()
+    dciFrequencyUnit = models.CharField(max_length=50, null=True)
+    dciFrequencyValue = models.IntegerField(null=True)
     dciQtyVps = models.IntegerField(null=True)
     dciTolerancePosition = models.IntegerField(default=50)
     dciToleranceRotation = models.IntegerField(default=10)
@@ -57,12 +33,12 @@ class Dci(models.Model):
     dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
 
     def __str__(self):
-        return self.dciDescription
+        return self.assetDescription
 
 
 @python_2_unicode_compatible
 class Vp(models.Model):
-    dci = models.ForeignKey(Dci, on_delete=models.CASCADE)  ###### FK
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     vpDescription = models.CharField(max_length=1024)
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
@@ -126,7 +102,6 @@ class Photo(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
     photoMillisSinceEpoch = models.BigIntegerField()
     photoVpNumber = models.IntegerField()
-    photoAssetOwnerNumber = models.IntegerField()
     photoAssetNumber = models.IntegerField()
     photoStorageURL = models.CharField(max_length=255)
     photoImageLatitude = models.FloatField()
@@ -151,18 +126,3 @@ class Value(models.Model):
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
-
-
-class MyMensorConfiguration(models.Model):
-    assetOwner = models.ForeignKey(AssetOwner)
-    asset = ChainedForeignKey(Asset, chained_field='assetOwner', chained_model_field='assetOwner', show_all=False,
-                              auto_choose=True)
-    dci = ChainedForeignKey(Dci, chained_field='asset', chained_model_field='asset', show_all=False, auto_choose=True)
-    vp = ChainedForeignKey(Vp, chained_field='dci', chained_model_field='dci', show_all=False, auto_choose=True)
-    tag = ChainedForeignKey(Tag, chained_field='vp', chained_model_field='vp', show_all=False, auto_choose=True)
-
-
-class MyMensorConfigurationForm(ModelForm):
-    class Meta:
-        model = MyMensorConfiguration
-        fields = ['assetOwner', 'asset', 'dci', 'vp', 'tag']
