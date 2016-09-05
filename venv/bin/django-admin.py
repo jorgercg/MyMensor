@@ -1,4 +1,4 @@
-#!/Users/jorgercg/projects/mymensorapp/venv/bin/python2.7
+#!/Users/jorgercg/projects/mymensorapp/venv/bin/python
 from django.core import management
 
 if __name__ == "__main__":
