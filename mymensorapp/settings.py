@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+# Heroku Settings
+
+
 import os
 from os import environ
 
@@ -107,11 +110,11 @@ USE_ID_SITE = True
 # Site dashboard.  NOTE: This URL must be *exactly* the same as the one in
 # your Stormpath ID Site dashboard (under the Authorized Redirect URLs input
 # box).
-STORMPATH_ID_SITE_CALLBACK_URI = 'http://localhost:8000/handle-callback/stormpath/'
+STORMPATH_ID_SITE_CALLBACK_URI = 'http://mymensor.herokuapp.com/handle-callback/stormpath/'
 
 # The URL you'd like to redirect users to after they've successfully logged
 # into their account.
-LOGIN_REDIRECT_URL = 'http://localhost:8000/'
+LOGIN_REDIRECT_URL = 'http://mymensor.herokuapp.com/'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
