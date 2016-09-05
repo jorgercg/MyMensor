@@ -70,7 +70,7 @@
                     <li class="visible-xs-inline"><a href="{% url 'stormpath_id_site_logout' %}">Logout</a></li>
                 {% else %}
                     <li><a href="{% url 'stormpath_id_site_login' %}">Login</a></li>
-                    <li><a href="{% url 'stormpath_id_site_register' %}">Register</a></li>
+                    <li><a id="regnewuser" href="{% url 'stormpath_id_site_register' %}">Register</a></li>
                 {% endif %}
               </ul>
               {% if user.is_authenticated %}
