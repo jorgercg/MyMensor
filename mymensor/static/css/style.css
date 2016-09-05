@@ -5,6 +5,8 @@ body {
 /* navbar */
 .navbar-default {
     background-color: #ffffff;
+    padding-top: 15px;
+    border-color: #FFFFFF;
     border-bottom-color: #00afef ;
     font-size: 16px;
 }
@@ -74,6 +76,10 @@ body {
 }
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #00afef;
+}
+
+.navbar-fixed-top {
+    border-width: 0px 0px 2px;
 }
 
 #userloggedin {
