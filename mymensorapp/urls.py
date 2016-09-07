@@ -13,16 +13,35 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, patterns, include
+from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, RedirectView
 from mymensor import views
 
-urlpatterns = patterns('',
-    url(r'^$', views.portfolio, name='portfolio'),
-    url(r'^photofeed/$', views.photofeed,name='photofeed'),
+urlpatterns = [
+    url(r'^$',views.portfolio, name='portfolio'),
+    url(r'^photofeed/$',views.photofeed,name='photofeed'),
     url(r'^setup/$',views.myMensorSetupFormView,name='setup'),
     url(r'^contact/$',TemplateView.as_view(template_name='contact.html'),name='contact'),
-    url(r'^admin/', admin.site.urls),
-    url(r'^chaining/', include('smart_selects.urls')),
-)
+    url(r'^admin/',admin.site.urls),
+    url(r'^chaining/',include('smart_selects.urls')),
+    url(r'^signup/$',TemplateView.as_view(template_name="signup.html"),name='signup'),
+    url(r'^email-verification/$',TemplateView.as_view(template_name="email_verification.html"),name='email-verification'),
+    url(r'^login/$',TemplateView.as_view(template_name="login.html"),name='login'),
+    url(r'^logout/$',TemplateView.as_view(template_name="logout.html"),name='logout'),
+    url(r'^password-reset/$',TemplateView.as_view(template_name="password_reset.html"),name='password-reset'),
+    url(r'^password-reset/confirm/$',TemplateView.as_view(template_name="password_reset_confirm.html"),name='password-reset-confirm'),
+    url(r'^user-details/$',TemplateView.as_view(template_name="user_details.html"),name='user-details'),
+    url(r'^password-change/$',TemplateView.as_view(template_name="password_change.html"),name='password-change'),
+
+    # this url is used to generate email content
+    url(r'^password-reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        TemplateView.as_view(template_name="password_reset_confirm.html"),
+        name='password_reset_confirm'),
+
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^account/', include('allauth.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
+]
