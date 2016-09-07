@@ -67,10 +67,10 @@
                     <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
                     <li><a href="{% url 'setup' %}">Setup</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li class="visible-xs-inline"><a href="{% url 'stormpath_id_site_logout' %}">Logout</a></li>
+                    <li class="visible-xs-inline"><a href="{% url 'contact' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'stormpath_id_site_login' %}">Login</a></li>
-                    <li><a id="regnewuser" href="{% url 'stormpath_id_site_register' %}">Register</a></li>
+                    <li><a href="{% url 'contact' %}">Login</a></li>
+                    <li><a id="regnewuser" href="{% url 'contact' %}">Register</a></li>
                 {% endif %}
               </ul>
               {% if user.is_authenticated %}
@@ -79,7 +79,7 @@
                         Logged in as: {{ user.get_username }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'stormpath_id_site_logout' %}">Logout</a></li>
+                        <li><a href="{% url 'contact' %}">Logout</a></li>
                     </ul>
                 </div>
               {% endif %}

@@ -25,5 +25,4 @@ urlpatterns = patterns('',
     url(r'^contact/$',TemplateView.as_view(template_name='contact.html'),name='contact'),
     url(r'^admin/', admin.site.urls),
     url(r'^chaining/', include('smart_selects.urls')),
-    url(r'', include('django_stormpath.urls')),
 )

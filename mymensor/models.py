@@ -99,7 +99,7 @@ class Tag(models.Model):
 
 
 class Photo(models.Model):
-    vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
+    vp = models.ForeignKey(Vp, on_delete=models.CASCADE, null=True)  ###### FK
     photoMillisSinceEpoch = models.BigIntegerField()
     photoVpNumber = models.IntegerField()
     photoAssetNumber = models.IntegerField()
