@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
-from registration.backends.simple.views import RegistrationView
+from registration.backends.default.views import RegistrationView, ActivationView
 from mymensor import views
 
 urlpatterns = [
