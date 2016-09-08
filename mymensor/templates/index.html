@@ -1,8 +1,12 @@
 {% extends 'layouts/base.html' %}
-{% block title %}Portfolio - {{ block.super }}{% endblock %}
-{% block content %}
+{% if user.is_authenticated %}
+    {% block title %}Portfolio - {{ block.super }}{% endblock %}
+    {% block content %}
 		{% for photo in photos %}
 		<h1>{{ photo.photoMillisSinceEpoch }}</h1>
 		<img src="{{ photo.photoStorageURL }}" class="img-responsive" alt=""/>
 		{% endfor %}
-{% endblock %}
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

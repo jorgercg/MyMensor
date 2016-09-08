@@ -1,20 +1,24 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from mymensor.models import Photo, Asset
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 # Portfolio View
+@login_required
 def portfolio(request):
     photos = Photo.objects.all()
     return render(request, 'index.html', {'photos': photos,})
 
 
 # Photo Feed View
+@login_required
 def photofeed(request):
     photos = Photo.objects.all()
     return render(request, 'photofeed.html', {'photos': photos,})
 
 
 # Setup Side View
+@login_required
 def myMensorSetupFormView(request):
     pass
     #if request.method == 'POST':

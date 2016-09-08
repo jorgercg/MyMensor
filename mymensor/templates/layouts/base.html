@@ -31,7 +31,6 @@
 	    <!-- CSS
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
-        <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}" >
         <link rel="stylesheet" href="{% static 'css/starter-template.css' %}" >
 	    <link rel="stylesheet" href="{% static 'css/ie10-viewport-bug-workaround.css' %}" >
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -68,13 +67,10 @@
                     <li><a href="{% url 'photofeed' %}">Photofeed</a></li>
                     <li><a href="{% url 'setup' %}">Setup</a></li>
                     <li><a href="{% url 'contact' %}">Contact</a></li>
-                    <li class="visible-xs-inline"><a href="{% url 'logout' %}">Logout</a></li>
+                    <li class="visible-xs-inline"><a href="{% url 'auth_logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                    <li><a id="regnewuser" href="{% url 'signup' %}">Register</a></li>
-                    <li><a href="{% url 'email-verification' %}">E-mail verification</a></li>
-                    <li><a href="{% url 'password-reset' %}">Password Reset</a></li>
-                    <li><a href="{% url 'password-reset-confirm' %}">Password Reset Confirm</a></li>
+                    <li><a href="{% url 'auth_login' %}">Login</a></li>
+                    <li><a id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
                 {% endif %}
               </ul>
               {% if user.is_authenticated %}
@@ -83,35 +79,19 @@
                         Logged in as: {{ user.get_username }}
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url 'user-details' %}">User details</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                        <li><a href="{% url 'password-change' %}">Password change</a></li>
+                        <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                        <li><a href="{% url 'auth_password_change' %}">Password change</a></li>
                     </ul>
                 </div>
               {% endif %}
              </div><!--/.nav-collapse -->
           </div>
         </nav>
-        <div class="container theme-showcase" role="main">
+        <div class="container">
+          <div class="starter-template">
             {% block content %}{% endblock %}
+            {% block footer %}{% endblock %}
+          </div>
         </div><!-- /.container -->
-        <script type="text/javascript">
-            var error_response = function(data){
-                $('.api-response').html("API Response: " + data.status + ' ' + data.statusText + '<br/>Content: ' + data.responseText);
-            }
-            var susccess_response = function(data){
-                $('.api-response').html("API Response: OK<br/>Content: " + JSON.stringify(data));
-            }
-            $().ready(function(){
-                $('form.ajax-post button[type=submit]').click(function(){
-                    var form = $('form.ajax-post');
-                    $.post(form.attr('action'), form.serialize())
-                    .fail(function(data){error_response(data);})
-                    .done(function(data){susccess_response(data);});
-                    return false;
-                });
-            });
-        </script>
-        {% block script %}{% endblock %}
     </body>
 </html>
