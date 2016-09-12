@@ -11,6 +11,7 @@ class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
+    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerKey = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
