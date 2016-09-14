@@ -43,5 +43,9 @@ urlpatterns = [
         name="password_reset_complete"),
     url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
 
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^sns-notifications/', views.amazon_sns_processor),
+
     url(r'^admin/', include(admin.site.urls)),
 ]

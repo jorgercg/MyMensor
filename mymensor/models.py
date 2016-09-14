@@ -11,7 +11,7 @@ class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
-    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    assetOwnerUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerKey = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
@@ -128,3 +128,28 @@ class Value(models.Model):
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
+
+class AmazonSNSNotification(models.Model):
+    snsMessage = models.CharField(max_length=4096, null=True)
+    snsMessageId = models.CharField(max_length=1024, null=True)
+    snsSignature = models.CharField(max_length=1024, null=True)
+    snsSubject = models.CharField(max_length=1024, null=True)
+    snsTimestamp =  models.CharField(max_length=1024, null=True)
+    snsTopicArn = models.CharField(max_length=1244, null=True)
+    snsType = models.CharField(max_length=1024, null=True)
+    snsUnsubscribeURL = models.CharField(max_length=1024, null=True)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
