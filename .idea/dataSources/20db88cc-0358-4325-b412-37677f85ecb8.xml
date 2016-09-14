@@ -39,8 +39,8 @@
     <schema id="11" parent="4" name="public">
       <object-id>2200</object-id>
       <visible>1</visible>
-      <introspection-state-number>1545</introspection-state-number>
-      <introspection-timestamp>2016-09-14.12:37:55.957</introspection-timestamp>
+      <introspection-state-number>1558</introspection-state-number>
+      <introspection-timestamp>2016-09-14.20:59:39.106</introspection-timestamp>
     </schema>
     <schema id="12" parent="4" name="pg_catalog">
       <object-id>11</object-id>
@@ -303,7 +303,7 @@
     </table>
     <table id="78" parent="11" name="mymensor_amazonsnsnotification">
       <object-id>19112</object-id>
-      <state-number>1545</state-number>
+      <state-number>1554</state-number>
     </table>
     <table id="79" parent="11" name="mymensor_asset">
       <object-id>18971</object-id>
@@ -2164,716 +2164,728 @@ model</columns>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_amazonsnsnotification_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="430" parent="78" name="snsMessage">
-      <state-number>1545</state-number>
+    <column id="430" parent="78" name="Message">
+      <state-number>1558</state-number>
       <data-type>varchar(4096)|0</data-type>
     </column>
-    <column id="431" parent="78" name="snsMessageId">
-      <state-number>1545</state-number>
+    <column id="431" parent="78" name="MessageId">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="432" parent="78" name="snsSignature">
-      <state-number>1545</state-number>
+    <column id="432" parent="78" name="Signature">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="433" parent="78" name="snsSubject">
-      <state-number>1545</state-number>
+    <column id="433" parent="78" name="SignatureVersion">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="434" parent="78" name="snsTimestamp">
-      <state-number>1545</state-number>
+    <column id="434" parent="78" name="Subject">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="435" parent="78" name="snsTopicArn">
-      <state-number>1545</state-number>
+    <column id="435" parent="78" name="TopicArn">
+      <state-number>1558</state-number>
       <data-type>varchar(1244)|0</data-type>
     </column>
-    <column id="436" parent="78" name="snsType">
-      <state-number>1545</state-number>
+    <column id="436" parent="78" name="SubscribeURL">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="437" parent="78" name="snsUnsubscribeURL">
-      <state-number>1545</state-number>
+    <column id="437" parent="78" name="Timestamp">
+      <state-number>1558</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <index id="438" parent="78" name="mymensor_amazonsnsnotification_pkey">
+    <column id="438" parent="78" name="Token">
+      <state-number>1558</state-number>
+      <data-type>varchar(1024)|0</data-type>
+    </column>
+    <column id="439" parent="78" name="Type">
+      <state-number>1558</state-number>
+      <data-type>varchar(1024)|0</data-type>
+    </column>
+    <column id="440" parent="78" name="UnsubscribeURL">
+      <state-number>1558</state-number>
+      <data-type>varchar(1024)|0</data-type>
+    </column>
+    <index id="441" parent="78" name="mymensor_amazonsnsnotification_pkey">
       <object-id>19119</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="439" parent="78" name="mymensor_amazonsnsnotification_pkey">
+    <key id="442" parent="78" name="mymensor_amazonsnsnotification_pkey">
       <object-id>19120</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_amazonsnsnotification_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <column id="440" parent="79" name="id">
+    <column id="443" parent="79" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_asset_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="441" parent="79" name="assetDescription">
+    <column id="444" parent="79" name="assetDescription">
       <state-number>1504</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="442" parent="79" name="assetNumber">
+    <column id="445" parent="79" name="assetNumber">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="443" parent="79" name="assetIsActive">
+    <column id="446" parent="79" name="assetIsActive">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="444" parent="79" name="assetOwnerDescription">
+    <column id="447" parent="79" name="assetOwnerDescription">
       <state-number>1504</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="445" parent="79" name="assetOwnerKey">
+    <column id="448" parent="79" name="assetOwnerKey">
       <state-number>1504</state-number>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="446" parent="79" name="assetRegistryCode">
+    <column id="449" parent="79" name="assetRegistryCode">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="447" parent="79" name="assetProviderAcc">
+    <column id="450" parent="79" name="assetProviderAcc">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="448" parent="79" name="assetProviderAccPassword">
+    <column id="451" parent="79" name="assetProviderAccPassword">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="449" parent="79" name="assetStoragePassword">
+    <column id="452" parent="79" name="assetStoragePassword">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="450" parent="79" name="dciUserPassword">
+    <column id="453" parent="79" name="dciUserPassword">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="451" parent="79" name="dciConfigPassword">
+    <column id="454" parent="79" name="dciConfigPassword">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="452" parent="79" name="dciFrequencyUnit">
+    <column id="455" parent="79" name="dciFrequencyUnit">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="453" parent="79" name="dciFrequencyValue">
+    <column id="456" parent="79" name="dciFrequencyValue">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="454" parent="79" name="dciQtyVps">
+    <column id="457" parent="79" name="dciQtyVps">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="455" parent="79" name="dciTolerancePosition">
+    <column id="458" parent="79" name="dciTolerancePosition">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="456" parent="79" name="dciToleranceRotation">
+    <column id="459" parent="79" name="dciToleranceRotation">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="457" parent="79" name="dciIMEI">
+    <column id="460" parent="79" name="dciIMEI">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="458" parent="79" name="dciModel">
+    <column id="461" parent="79" name="dciModel">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="459" parent="79" name="dciWifiMAC">
+    <column id="462" parent="79" name="dciWifiMAC">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="460" parent="79" name="dciRemotePassword">
+    <column id="463" parent="79" name="dciRemotePassword">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="461" parent="79" name="dciDciBoxWifiModel">
+    <column id="464" parent="79" name="dciDciBoxWifiModel">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="462" parent="79" name="dciDciBoxWifiSSID">
+    <column id="465" parent="79" name="dciDciBoxWifiSSID">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="463" parent="79" name="dciDciBoxWifiPassword">
+    <column id="466" parent="79" name="dciDciBoxWifiPassword">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="464" parent="79" name="dciDciBoxWifiAdministrator">
+    <column id="467" parent="79" name="dciDciBoxWifiAdministrator">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="465" parent="79" name="assetOwnerUserId_id">
+    <column id="468" parent="79" name="assetOwnerUserId_id">
       <state-number>1529</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="466" parent="79" name="mymensor_asset_pkey">
+    <index id="469" parent="79" name="mymensor_asset_pkey">
       <object-id>18978</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="467" parent="79" name="mymensor_asset_38129657">
+    <index id="470" parent="79" name="mymensor_asset_38129657">
       <object-id>19104</object-id>
       <columns>assetOwnerUserId_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="468" parent="79" name="mymensor_asset_pkey">
+    <key id="471" parent="79" name="mymensor_asset_pkey">
       <object-id>18979</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_asset_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="469" parent="79" name="mymensor_asset_assetOwnerUserId_id_a93c260f_fk_auth_user_id">
+    <foreign-key id="472" parent="79" name="mymensor_asset_assetOwnerUserId_id_a93c260f_fk_auth_user_id">
       <object-id>19105</object-id>
       <columns>assetOwnerUserId_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="470" parent="80" name="id">
+    <column id="473" parent="80" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_photo_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="471" parent="80" name="photoMillisSinceEpoch">
+    <column id="474" parent="80" name="photoMillisSinceEpoch">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="472" parent="80" name="photoVpNumber">
+    <column id="475" parent="80" name="photoVpNumber">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="473" parent="80" name="photoAssetNumber">
+    <column id="476" parent="80" name="photoAssetNumber">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="474" parent="80" name="photoStorageURL">
+    <column id="477" parent="80" name="photoStorageURL">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="475" parent="80" name="photoImageLatitude">
+    <column id="478" parent="80" name="photoImageLatitude">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="476" parent="80" name="photoImageLongitude">
+    <column id="479" parent="80" name="photoImageLongitude">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="477" parent="80" name="photoDBTimeStamp">
+    <column id="480" parent="80" name="photoDBTimeStamp">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="478" parent="80" name="photoTimeStamp">
+    <column id="481" parent="80" name="photoTimeStamp">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="479" parent="80" name="photoProcessed">
+    <column id="482" parent="80" name="photoProcessed">
       <state-number>1504</state-number>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="480" parent="80" name="vp_id">
+    <column id="483" parent="80" name="vp_id">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <index id="481" parent="80" name="mymensor_photo_pkey">
+    <index id="484" parent="80" name="mymensor_photo_pkey">
       <object-id>18986</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="482" parent="80" name="mymensor_photo_6af77b12">
+    <index id="485" parent="80" name="mymensor_photo_6af77b12">
       <object-id>19062</object-id>
       <columns>vp_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="483" parent="80" name="mymensor_photo_pkey">
+    <key id="486" parent="80" name="mymensor_photo_pkey">
       <object-id>18987</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_photo_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="484" parent="80" name="mymensor_photo_vp_id_ec1155e7_fk_mymensor_vp_id">
+    <foreign-key id="487" parent="80" name="mymensor_photo_vp_id_ec1155e7_fk_mymensor_vp_id">
       <object-id>19063</object-id>
       <columns>vp_id</columns>
       <ref-key>~.mymensor_vp.mymensor_vp_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="485" parent="81" name="id">
+    <column id="488" parent="81" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_processedtag_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="486" parent="81" name="valValueEvaluated">
+    <column id="489" parent="81" name="valValueEvaluated">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="487" parent="81" name="valValueEvaluatedEntryDBTimeStamp">
+    <column id="490" parent="81" name="valValueEvaluatedEntryDBTimeStamp">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="488" parent="81" name="tagStateEvaluated">
+    <column id="491" parent="81" name="tagStateEvaluated">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="489" parent="81" name="photo_id">
+    <column id="492" parent="81" name="photo_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="490" parent="81" name="tag_id">
+    <column id="493" parent="81" name="tag_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="491" parent="81" name="mymensor_processedtag_pkey">
+    <index id="494" parent="81" name="mymensor_processedtag_pkey">
       <object-id>18994</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="492" parent="81" name="mymensor_processedtag_b4e75e23">
+    <index id="495" parent="81" name="mymensor_processedtag_b4e75e23">
       <object-id>19031</object-id>
       <columns>photo_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="493" parent="81" name="mymensor_processedtag_76f094bc">
+    <index id="496" parent="81" name="mymensor_processedtag_76f094bc">
       <object-id>19056</object-id>
       <columns>tag_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="494" parent="81" name="mymensor_processedtag_pkey">
+    <key id="497" parent="81" name="mymensor_processedtag_pkey">
       <object-id>18995</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_processedtag_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="495" parent="81" name="mymensor_processedtag_photo_id_5edf0e53_fk_mymensor_photo_id">
+    <foreign-key id="498" parent="81" name="mymensor_processedtag_photo_id_5edf0e53_fk_mymensor_photo_id">
       <object-id>19026</object-id>
       <columns>photo_id</columns>
       <ref-key>~.mymensor_photo.mymensor_photo_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="496" parent="81" name="mymensor_processedtag_tag_id_c13915fc_fk_mymensor_tag_id">
+    <foreign-key id="499" parent="81" name="mymensor_processedtag_tag_id_c13915fc_fk_mymensor_tag_id">
       <object-id>19057</object-id>
       <columns>tag_id</columns>
       <ref-key>~.mymensor_tag.mymensor_tag_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="497" parent="82" name="id">
+    <column id="500" parent="82" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_tag_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="498" parent="82" name="tagDescription">
+    <column id="501" parent="82" name="tagDescription">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="499" parent="82" name="tagNumber">
+    <column id="502" parent="82" name="tagNumber">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="500" parent="82" name="tagIsActive">
+    <column id="503" parent="82" name="tagIsActive">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="501" parent="82" name="tagListNumber">
+    <column id="504" parent="82" name="tagListNumber">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="502" parent="82" name="tagQuestion">
+    <column id="505" parent="82" name="tagQuestion">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="503" parent="82" name="tagLowRedValue">
+    <column id="506" parent="82" name="tagLowRedValue">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="504" parent="82" name="tagLowYellow">
+    <column id="507" parent="82" name="tagLowYellow">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="505" parent="82" name="tagLowGreen">
+    <column id="508" parent="82" name="tagLowGreen">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="506" parent="82" name="tagExpValue">
+    <column id="509" parent="82" name="tagExpValue">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="507" parent="82" name="tagHighGreen">
+    <column id="510" parent="82" name="tagHighGreen">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="508" parent="82" name="tagHighYellow">
+    <column id="511" parent="82" name="tagHighYellow">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="509" parent="82" name="tagHighRed">
+    <column id="512" parent="82" name="tagHighRed">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="510" parent="82" name="tagType">
+    <column id="513" parent="82" name="tagType">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="511" parent="82" name="tagIsDependantOfMasterTagNumber">
+    <column id="514" parent="82" name="tagIsDependantOfMasterTagNumber">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="512" parent="82" name="tagMaxLagFromMasterTagInMillis">
+    <column id="515" parent="82" name="tagMaxLagFromMasterTagInMillis">
       <state-number>1504</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="513" parent="82" name="tagMaxLagFromSlaveTagsInMillis">
+    <column id="516" parent="82" name="tagMaxLagFromSlaveTagsInMillis">
       <state-number>1504</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="514" parent="82" name="tagIsSetForSpecialCheck">
+    <column id="517" parent="82" name="tagIsSetForSpecialCheck">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="515" parent="82" name="tagSpecialCheckAcceptableDiscrepancy">
+    <column id="518" parent="82" name="tagSpecialCheckAcceptableDiscrepancy">
       <state-number>1504</state-number>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="516" parent="82" name="vp_id">
+    <column id="519" parent="82" name="vp_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="517" parent="82" name="mymensor_tag_pkey">
+    <index id="520" parent="82" name="mymensor_tag_pkey">
       <object-id>19005</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="518" parent="82" name="mymensor_tag_6af77b12">
+    <index id="521" parent="82" name="mymensor_tag_6af77b12">
       <object-id>19050</object-id>
       <columns>vp_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="519" parent="82" name="mymensor_tag_pkey">
+    <key id="522" parent="82" name="mymensor_tag_pkey">
       <object-id>19006</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_tag_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="520" parent="82" name="mymensor_tag_vp_id_dce49e82_fk_mymensor_vp_id">
+    <foreign-key id="523" parent="82" name="mymensor_tag_vp_id_dce49e82_fk_mymensor_vp_id">
       <object-id>19051</object-id>
       <columns>vp_id</columns>
       <ref-key>~.mymensor_vp.mymensor_vp_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="521" parent="83" name="id">
+    <column id="524" parent="83" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_value_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="522" parent="83" name="valValue">
+    <column id="525" parent="83" name="valValue">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>double precision|0</data-type>
     </column>
-    <column id="523" parent="83" name="valValueEntryDBTimeStamp">
+    <column id="526" parent="83" name="valValueEntryDBTimeStamp">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>timestamp with time zone|0</data-type>
     </column>
-    <column id="524" parent="83" name="valEvalStatus">
+    <column id="527" parent="83" name="valEvalStatus">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="525" parent="83" name="tagStateResultingFromValValueStatus">
+    <column id="528" parent="83" name="tagStateResultingFromValValueStatus">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="526" parent="83" name="processedTag_id">
+    <column id="529" parent="83" name="processedTag_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="527" parent="83" name="processorUserId_id">
+    <column id="530" parent="83" name="processorUserId_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="528" parent="83" name="mymensor_value_pkey">
+    <index id="531" parent="83" name="mymensor_value_pkey">
       <object-id>19013</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="529" parent="83" name="mymensor_value_a7890fc0">
+    <index id="532" parent="83" name="mymensor_value_a7890fc0">
       <object-id>19042</object-id>
       <columns>processedTag_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <index id="530" parent="83" name="mymensor_value_b0f5b982">
+    <index id="533" parent="83" name="mymensor_value_b0f5b982">
       <object-id>19043</object-id>
       <columns>processorUserId_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="531" parent="83" name="mymensor_value_pkey">
+    <key id="534" parent="83" name="mymensor_value_pkey">
       <object-id>19014</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_value_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="532" parent="83" name="mymensor_v_processedTag_id_eeaa5a5c_fk_mymensor_processedtag_id">
+    <foreign-key id="535" parent="83" name="mymensor_v_processedTag_id_eeaa5a5c_fk_mymensor_processedtag_id">
       <object-id>19032</object-id>
       <columns>processedTag_id</columns>
       <ref-key>~.mymensor_processedtag.mymensor_processedtag_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <foreign-key id="533" parent="83" name="mymensor_value_processorUserId_id_3747e2b0_fk_auth_user_id">
+    <foreign-key id="536" parent="83" name="mymensor_value_processorUserId_id_3747e2b0_fk_auth_user_id">
       <object-id>19037</object-id>
       <columns>processorUserId_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="534" parent="84" name="id">
+    <column id="537" parent="84" name="id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;mymensor_vp_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="535" parent="84" name="vpDescription">
+    <column id="538" parent="84" name="vpDescription">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(1024)|0</data-type>
     </column>
-    <column id="536" parent="84" name="vpNumber">
+    <column id="539" parent="84" name="vpNumber">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="537" parent="84" name="vpIsActive">
+    <column id="540" parent="84" name="vpIsActive">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="538" parent="84" name="vpListNumber">
+    <column id="541" parent="84" name="vpListNumber">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="539" parent="84" name="vpStdPhotoStorageURL">
+    <column id="542" parent="84" name="vpStdPhotoStorageURL">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="540" parent="84" name="vpStdTagDescPhotoStorageURL">
+    <column id="543" parent="84" name="vpStdTagDescPhotoStorageURL">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="541" parent="84" name="vpStdMarkerPhotoStorageURL">
+    <column id="544" parent="84" name="vpStdMarkerPhotoStorageURL">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="542" parent="84" name="vpMarkerId">
+    <column id="545" parent="84" name="vpMarkerId">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="543" parent="84" name="vpStdIdMarkerPhotoStorageURL">
+    <column id="546" parent="84" name="vpStdIdMarkerPhotoStorageURL">
       <state-number>1504</state-number>
       <data-type>varchar(255)|0</data-type>
     </column>
-    <column id="544" parent="84" name="vpConfiguredMillis">
+    <column id="547" parent="84" name="vpConfiguredMillis">
       <state-number>1504</state-number>
       <data-type>bigint|0</data-type>
     </column>
-    <column id="545" parent="84" name="vpXDistance">
+    <column id="548" parent="84" name="vpXDistance">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="546" parent="84" name="vpYDistance">
+    <column id="549" parent="84" name="vpYDistance">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="547" parent="84" name="vpZDistance">
+    <column id="550" parent="84" name="vpZDistance">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="548" parent="84" name="vpXRotation">
+    <column id="551" parent="84" name="vpXRotation">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="549" parent="84" name="vpYRotation">
+    <column id="552" parent="84" name="vpYRotation">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="550" parent="84" name="vpZRotation">
+    <column id="553" parent="84" name="vpZRotation">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="551" parent="84" name="vpMarkerlessMarkerWidth">
+    <column id="554" parent="84" name="vpMarkerlessMarkerWidth">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="552" parent="84" name="vpMarkerlessMarkerHeigth">
+    <column id="555" parent="84" name="vpMarkerlessMarkerHeigth">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="553" parent="84" name="vpIsAmbiguos">
+    <column id="556" parent="84" name="vpIsAmbiguos">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="554" parent="84" name="vpIsSuperSingle">
+    <column id="557" parent="84" name="vpIsSuperSingle">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="555" parent="84" name="vpIsSuperMultiple">
+    <column id="558" parent="84" name="vpIsSuperMultiple">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="556" parent="84" name="vpFlashTorchIsOn">
+    <column id="559" parent="84" name="vpFlashTorchIsOn">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="557" parent="84" name="vpSuperIdIsSmall">
+    <column id="560" parent="84" name="vpSuperIdIsSmall">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="558" parent="84" name="vpSuperIdIsMedium">
+    <column id="561" parent="84" name="vpSuperIdIsMedium">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="559" parent="84" name="vpSuperIdIsLarge">
+    <column id="562" parent="84" name="vpSuperIdIsLarge">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <column id="560" parent="84" name="vpSuperMarkerId">
+    <column id="563" parent="84" name="vpSuperMarkerId">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="561" parent="84" name="vpFrequencyUnit">
+    <column id="564" parent="84" name="vpFrequencyUnit">
       <state-number>1504</state-number>
       <data-type>varchar(50)|0</data-type>
     </column>
-    <column id="562" parent="84" name="vpFrequencyValue">
+    <column id="565" parent="84" name="vpFrequencyValue">
       <state-number>1504</state-number>
       <data-type>integer|0</data-type>
     </column>
-    <column id="563" parent="84" name="asset_id">
+    <column id="566" parent="84" name="asset_id">
       <state-number>1504</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <index id="564" parent="84" name="mymensor_vp_pkey">
+    <index id="567" parent="84" name="mymensor_vp_pkey">
       <object-id>19024</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="565" parent="84" name="mymensor_vp_51c6d5db">
+    <index id="568" parent="84" name="mymensor_vp_51c6d5db">
       <object-id>19049</object-id>
       <columns>asset_id</columns>
       <desc-columns></desc-columns>
     </index>
-    <key id="566" parent="84" name="mymensor_vp_pkey">
+    <key id="569" parent="84" name="mymensor_vp_pkey">
       <object-id>19025</object-id>
       <columns>id</columns>
       <underlying-index>mymensor_vp_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <foreign-key id="567" parent="84" name="mymensor_vp_asset_id_c5d10970_fk_mymensor_asset_id">
+    <foreign-key id="570" parent="84" name="mymensor_vp_asset_id_c5d10970_fk_mymensor_asset_id">
       <object-id>19044</object-id>
       <columns>asset_id</columns>
       <ref-key>~.mymensor_asset.mymensor_asset_pkey</ref-key>
       <cascade-update-rule>restrict</cascade-update-rule>
       <cascade-delete-rule>restrict</cascade-delete-rule>
     </foreign-key>
-    <column id="568" parent="85" name="id">
+    <column id="571" parent="85" name="id">
       <state-number>1516</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
       <default-expression>nextval(&apos;registration_registrationprofile_id_seq&apos;::regclass)</default-expression>
     </column>
-    <column id="569" parent="85" name="activation_key">
+    <column id="572" parent="85" name="activation_key">
       <state-number>1516</state-number>
       <mandatory>1</mandatory>
       <data-type>varchar(40)|0</data-type>
     </column>
-    <column id="570" parent="85" name="user_id">
+    <column id="573" parent="85" name="user_id">
       <state-number>1516</state-number>
       <mandatory>1</mandatory>
       <data-type>integer|0</data-type>
     </column>
-    <column id="571" parent="85" name="activated">
+    <column id="574" parent="85" name="activated">
       <state-number>1518</state-number>
       <mandatory>1</mandatory>
       <data-type>boolean|0</data-type>
     </column>
-    <index id="572" parent="85" name="registration_registrationprofile_pkey">
+    <index id="575" parent="85" name="registration_registrationprofile_pkey">
       <object-id>19081</object-id>
       <columns>id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <index id="573" parent="85" name="registration_registrationprofile_user_id_key">
+    <index id="576" parent="85" name="registration_registrationprofile_user_id_key">
       <object-id>19083</object-id>
       <columns>user_id</columns>
       <desc-columns></desc-columns>
       <unique>1</unique>
     </index>
-    <key id="574" parent="85" name="registration_registrationprofile_pkey">
+    <key id="577" parent="85" name="registration_registrationprofile_pkey">
       <object-id>19082</object-id>
       <columns>id</columns>
       <underlying-index>registration_registrationprofile_pkey</underlying-index>
       <primary>1</primary>
     </key>
-    <key id="575" parent="85" name="registration_registrationprofile_user_id_key">
+    <key id="578" parent="85" name="registration_registrationprofile_user_id_key">
       <object-id>19084</object-id>
       <columns>user_id</columns>
       <underlying-index>registration_registrationprofile_user_id_key</underlying-index>
     </key>
-    <foreign-key id="576" parent="85" name="registration_registrationprofi_user_id_5fcbf725_fk_auth_user_id">
+    <foreign-key id="579" parent="85" name="registration_registrationprofi_user_id_5fcbf725_fk_auth_user_id">
       <object-id>19085</object-id>
       <columns>user_id</columns>
       <ref-key>~.auth_user.auth_user_pkey</ref-key>
