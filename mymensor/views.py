@@ -17,12 +17,13 @@ def amazon_sns_processor(request):
         serializer = AmazonSNSNotificationSerializer(data=request.data)
         if serializer.is_valid():
            if serializer.validated_data['Type'] == "Notification":
-               serializer.save()
+               notification = serializer.save()
+               render(request, 'sns.html', {'notification':notification})
            if serializer.validated_data['Type'] == "SubscriptionConfirmation":
                r = requests.get(serializer.validated_data['SubscribeURL'])
-               serializer.save()
+               notification = serializer.save()
            if serializer.validated_data['Type'] == "UnsubscribeConfirmation":
-               serializer.save()
+               notification = serializer.save()
            return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
