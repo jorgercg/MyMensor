@@ -20,6 +20,9 @@ from django.contrib.auth.views import (password_reset, password_reset_done, pass
 from registration.backends.default.views import RegistrationView, ActivationView
 from mymensor import views
 
+
+
+
 urlpatterns = [
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed, name='photofeed'),

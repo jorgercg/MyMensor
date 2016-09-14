@@ -130,26 +130,14 @@ class Value(models.Model):
     tagStateResultingFromValValueStatus = models.IntegerField()
 
 class AmazonSNSNotification(models.Model):
-    snsMessage = models.CharField(max_length=4096, null=True)
-    snsMessageId = models.CharField(max_length=1024, null=True)
-    snsSignature = models.CharField(max_length=1024, null=True)
-    snsSubject = models.CharField(max_length=1024, null=True)
-    snsTimestamp =  models.CharField(max_length=1024, null=True)
-    snsTopicArn = models.CharField(max_length=1244, null=True)
-    snsType = models.CharField(max_length=1024, null=True)
-    snsUnsubscribeURL = models.CharField(max_length=1024, null=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    Message = models.CharField(max_length=4096, null=True)
+    MessageId = models.CharField(max_length=1024, null=True)
+    Signature = models.CharField(max_length=1024, null=True)
+    Subject = models.CharField(max_length=1024, null=True)
+    Timestamp =  models.CharField(max_length=1024, null=True)
+    TopicArn = models.CharField(max_length=1244, null=True)
+    Type = models.CharField(max_length=1024, null=True)
+    UnsubscribeURL = models.CharField(max_length=1024, null=True)
+    SignatureVersion = models.CharField(max_length=1024, null=True)
+    SubscribeURL = models.CharField(max_length=1024, null=True)
+    Token = models.CharField(max_length=1024, null=True)

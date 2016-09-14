@@ -1,19 +1,31 @@
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from mymensor.models import Photo, Asset
+from mymensor.models import Photo
 from mymensor.serializer import AmazonSNSNotificationSerializer
+import requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 # Amazon SNS Notification Processor View
+@csrf_exempt
+@api_view(['POST'])
 def amazon_sns_processor(request):
-    if request.method == "POST":
+     if request.method == "POST":
         serializer = AmazonSNSNotificationSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+           if serializer.validated_data['Type'] == "Notification":
+               serializer.save()
+           if serializer.validated_data['Type'] == "SubscriptionConfirmation":
+               r = requests.get(serializer.validated_data['SubscribeURL'])
+               serializer.save()
+           if serializer.validated_data['Type'] == "UnsubscribeConfirmation":
+               serializer.save()
+           return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 # Portfolio View
 @login_required
 def portfolio(request):
