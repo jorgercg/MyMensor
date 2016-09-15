@@ -23,6 +23,7 @@ from mymensor import views
 
 
 
+
 urlpatterns = [
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed, name='photofeed'),
@@ -50,8 +51,5 @@ urlpatterns = [
 
     url(r'^sns-notifications/', views.amazon_sns_processor),
 
-    url(r'^sns/$', views.amazon_sns_processor, name='sns'),
-
     url(r'^admin/', include(admin.site.urls)),
 ]
-
