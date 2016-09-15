@@ -14,18 +14,8 @@ import requests
 @api_view(['POST'])
 def amazon_sns_processor(request):
      if request.method == "POST":
-        serializer = AmazonSNSNotificationSerializer(data=request.data)
-        if serializer.is_valid():
-           if serializer.validated_data['Type'] == "Notification":
-               notification = serializer.save()
-               render(request, 'sns.html', {'notification':notification})
-           if serializer.validated_data['Type'] == "SubscriptionConfirmation":
-               r = requests.get(serializer.validated_data['SubscribeURL'])
-               notification = serializer.save()
-           if serializer.validated_data['Type'] == "UnsubscribeConfirmation":
-               notification = serializer.save()
-           return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        print (request.data)
+     return Response(request, status=status.HTTP_400_BAD_REQUEST)
 
 # Portfolio View
 @login_required

@@ -50,5 +50,8 @@ urlpatterns = [
 
     url(r'^sns-notifications/', views.amazon_sns_processor),
 
+    url(r'^sns/$', views.amazon_sns_processor, name='sns'),
+
     url(r'^admin/', include(admin.site.urls)),
 ]
+
