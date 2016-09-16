@@ -1,18 +1,22 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from mymensor.models import Photo
 from django.http import HttpResponse
-from mymensor.serializer import AmazonSNSNotificationSerializer
-import requests
+from mymensor.models import Photo, AmazonSNSNotification
+import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 # Amazon SNS Notification Processor View
 @csrf_exempt
+def parse_data(request):
+     pass
+     return request.POST
+
+@csrf_exempt
 def amazon_sns_processor(request):
-     if request.method == "POST":
+    if request.method == "POST":
         print (request.body)
-     return HttpResponse(request.body)
+    return HttpResponse(request.body, status=200)
 
 # Portfolio View
 @login_required
