@@ -9,11 +9,6 @@ import json, requests
 
 # Amazon SNS Notification Processor View
 @csrf_exempt
-def parse_data(request):
-     pass
-     return request.POST
-
-@csrf_exempt
 def amazon_sns_processor(request):
     if request.method == "POST":
         body_unicode = request.body.decode('utf-8')
@@ -21,8 +16,8 @@ def amazon_sns_processor(request):
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse(request.body, status=200)
-    return HttpResponse(request.body, status=400)
+            return HttpResponse(status=200)
+    return HttpResponse(status=400)
 
 # Portfolio View
 @login_required

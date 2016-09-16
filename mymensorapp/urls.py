@@ -20,10 +20,6 @@ from django.contrib.auth.views import (password_reset, password_reset_done, pass
 from registration.backends.default.views import RegistrationView, ActivationView
 from mymensor import views
 
-
-
-
-
 urlpatterns = [
     url(r'^$', views.portfolio, name='portfolio'),
     url(r'^photofeed/$', views.photofeed, name='photofeed'),
@@ -48,6 +44,8 @@ urlpatterns = [
     url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    url(r'^openid/', include('oidc_provider.urls', namespace='oidc_provider')),
 
     url(r'^sns-notifications/', views.amazon_sns_processor),
 
