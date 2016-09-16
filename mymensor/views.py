@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse
 from mymensor.models import Photo, AmazonSNSNotification
+from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -15,8 +16,13 @@ def parse_data(request):
 @csrf_exempt
 def amazon_sns_processor(request):
     if request.method == "POST":
-        print (request.body)
-    return HttpResponse(request.body, status=200)
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        serializer = AmazonSNSNotificationSerializer(data=body)
+        if serializer.is_valid():
+            serializer.save()
+            return HttpResponse(request.body, status=200)
+    return HttpResponse(request.body, status=400)
 
 # Portfolio View
 @login_required
