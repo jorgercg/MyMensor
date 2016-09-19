@@ -50,4 +50,6 @@ urlpatterns = [
     url(r'^sns-notifications/', views.amazon_sns_processor),
 
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^.well-known/acme-challenge/$', views.portfolio),
 ]
