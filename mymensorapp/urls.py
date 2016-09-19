@@ -51,5 +51,5 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^.well-known/acme-challenge/$', views.portfolio),
+    url(r'^.well-known/acme-challenge/DKD638HJvYbPLUZfjnTgtBaf3zXvJLDnTROa0_hR-Wk/$', views.zerossl),
 ]

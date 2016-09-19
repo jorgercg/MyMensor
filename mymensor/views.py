@@ -33,6 +33,11 @@ def photofeed(request):
     return render(request, 'photofeed.html', {'photos': photos,})
 
 
+def zerossl(request):
+    if request.method == "GET":
+        return HttpResponse("DKD638HJvYbPLUZfjnTgtBaf3zXvJLDnTROa0_hR-Wk")
+
+
 # Setup Side View
 @login_required
 def myMensorSetupFormView(request):
