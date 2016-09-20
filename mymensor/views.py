@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template.response import TemplateResponse
 from mymensor.models import Photo, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, requests
@@ -35,8 +36,7 @@ def photofeed(request):
 
 def zerossl(request):
     if request.method == "GET":
-        return HttpResponse("DKD638HJvYbPLUZfjnTgtBaf3zXvJLDnTROa0_hR-Wk")
-
+        return TemplateResponse(request, "temp.html")
 
 # Setup Side View
 @login_required
