@@ -6,7 +6,7 @@
 {% block content %}
 <h1>{% trans "Request for Permission" %}</h1>
 
-<p>{% trans "Client" %}<strong>{{ client.name }}</strong>{% trans "would like to access this information of you ..."%}</p>
+<p>{% trans "Client " %}<strong>{{ client.name }}</strong>{% trans " would like to access this information of you ..."%}</p>
 
 <form method="post" action="{% url 'oidc_provider:authorize' %}">
 
