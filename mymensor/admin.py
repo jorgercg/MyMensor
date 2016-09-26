@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from mymensor.models import Asset, Vp, Photo, Tag, ProcessedTag, Value
 
+
+
 class AssetAdmin(admin.ModelAdmin):
     model = Asset
     list_display = ('assetDescription', 'assetOwnerDescription', 'assetNumber', 'assetIsActive',)
