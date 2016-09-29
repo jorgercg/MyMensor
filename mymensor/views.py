@@ -44,7 +44,7 @@ def zerossl(request):
 
 def android_assetlinks(request):
     if request.method == "GET":
-        return TemplateResponse(request, "android_assetlinks.html")
+        return TemplateResponse(request, "android_assetlinks.html", content_type="application/json")
 
 # Setup Side View
 @login_required
