@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from mymensor.models import Photo, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
@@ -22,9 +22,7 @@ def amazon_sns_processor(request):
 
 #URL Redirect for OPENID Connect purposes
 def oauth2redirect(request):
-    if request.method == "GET":
-        return HttpResponse(status=200)
-    return HttpResponse(status=400)
+    return HttpResponseRedirect('https://app.mymensor.com/oauth2redirect')
 
 # Portfolio View
 @login_required
