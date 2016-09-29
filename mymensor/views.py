@@ -20,6 +20,12 @@ def amazon_sns_processor(request):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
+#URL Redirect for OPENID Connect purposes
+def oauth2redirect(request):
+    if request.method == "GET":
+        return HttpResponse(status=200)
+    return HttpResponse(status=400)
+
 # Portfolio View
 @login_required
 def portfolio(request):
