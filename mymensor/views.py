@@ -40,14 +40,11 @@ def photofeed(request):
 
 def zerossl(request):
     if request.method == "GET":
-        return TemplateResponse(request, "temp.html")
+        return TemplateResponse(request, "zerossl.html")
 
 def android_assetlinks(request):
     if request.method == "GET":
-        return JsonResponse([{  "relation": ["delegate_permission/common.handle_all_urls"],
-                                "target" : { "namespace": "android_app", "package_name": "net.openid.appauthdemo",
-                                            "sha256_cert_fingerprints": ["D7:6C:37:83:CC:EA:40:CD:F5:4C:95:69:07:90:93:E6:2E:D9:78:04:24:79:57:5E:6D:9D:50:98:13:66:4C:B1"] }
-}])
+        return TemplateResponse(request, "android_assetlinks.html")
 
 # Setup Side View
 @login_required

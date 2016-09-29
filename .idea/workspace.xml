@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/templates/zerossl.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mymensor/templates/temp.html" afterPath="$PROJECT_DIR$/mymensor/templates/android_assetlinks.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/views.py" afterPath="$PROJECT_DIR$/mymensor/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/urls.py" afterPath="$PROJECT_DIR$/mymensorapp/urls.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,8 +69,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="543">
+              <caret line="46" column="65" selection-start-line="46" selection-start-column="65" selection-end-line="46" selection-end-column="65" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -101,7 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/django_stormpath/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/static/css/starter-template.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/user_details.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/fragments/login_form.html" />
@@ -151,6 +151,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/oidc_provider/error.html" />
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/android_assetlinks.html" />
         <option value="$PROJECT_DIR$/mymensor/views.py" />
       </list>
     </option>
@@ -368,17 +369,17 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mymensor/templates" />
+      <recent name="$PROJECT_DIR$/mymensor/templates/layouts" />
+      <recent name="$PROJECT_DIR$/mymensor/templates/registration" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mymensor/templates/.well-known/acme-challenge/DKD638HJvYbPLUZfjnTgtBaf3zXvJLDnTROa0_hR-Wk" />
       <recent name="$PROJECT_DIR$/mymensor/templates" />
       <recent name="$PROJECT_DIR$/mymensor" />
       <recent name="$PROJECT_DIR$/mymensor/templates/registration" />
       <recent name="$PROJECT_DIR$" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mymensor/templates" />
-      <recent name="$PROJECT_DIR$/mymensor/templates/layouts" />
-      <recent name="$PROJECT_DIR$/mymensor/templates/registration" />
     </key>
   </component>
   <component name="RunManager" selected="Django server.mymensorapp">
@@ -654,13 +655,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-00042" summary="commit 05set2016 18h31min">
-      <created>1473098905361</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1473098905361</updated>
     </task>
     <task id="LOCAL-00043" summary="commit 05set2016 18h31min">
       <created>1473099077939</created>
@@ -998,7 +992,14 @@
       <option name="project" value="LOCAL" />
       <updated>1475138705943</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="commit 29set2016 11h33min">
+      <created>1475145225728</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1475145225728</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1012,12 +1013,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882413" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.5063898" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26951092" sideWeight="0.47870076" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26951092" sideWeight="0.47870076" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882413" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.4914803" order="12" side_tool="false" content_ui="tabs" />
@@ -1069,7 +1070,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="commit 14set2016 21h15min" />
     <MESSAGE value="commit 15set2016 21h24min" />
     <MESSAGE value="commit 15set2016 21h28min" />
     <MESSAGE value="commit 15set2016 21h48min" />
@@ -1094,14 +1094,14 @@
     <MESSAGE value="commit 29set2016 09h27min" />
     <MESSAGE value="commit 29set2016 09h41min" />
     <MESSAGE value="commit 29set2016 09h44min" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit 29set2016 09h44min" />
+    <MESSAGE value="commit 29set2016 11h33min" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit 29set2016 11h33min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/migrations/0001_initial.py" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/rest_framework/parsers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -1404,7 +1404,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1414,7 +1414,7 @@
         <state relative-caret-position="-540">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1424,12 +1424,12 @@
         <state relative-caret-position="-1770">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/temp.html">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/zerossl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1445,10 +1445,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/android_assetlinks.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="57" selection-start-line="0" selection-start-column="57" selection-end-line="0" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+        <state relative-caret-position="543">
+          <caret line="46" column="65" selection-start-line="46" selection-start-column="65" selection-end-line="46" selection-end-column="65" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
