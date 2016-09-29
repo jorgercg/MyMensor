@@ -22,7 +22,7 @@ def amazon_sns_processor(request):
 
 #URL Redirect for OPENID Connect purposes
 def oauth2redirect(request):
-    return HttpResponseRedirect('https://app.mymensor.com/oauth2redirect')
+    return HttpResponse(request)
 
 # Portfolio View
 @login_required
