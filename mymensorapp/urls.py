@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
 from registration.backends.default.views import RegistrationView, ActivationView
-from mymensor import views
+from rest_framework.authtoken import views
+
+from mymensor import mymviews
 
 urlpatterns = [
-    url(r'^$', views.portfolio, name='portfolio'),
-    url(r'^photofeed/$', views.photofeed, name='photofeed'),
-    url(r'^setup/$', views.myMensorSetupFormView, name='setup'),
+    url(r'^$', mymviews.portfolio, name='portfolio'),
+    url(r'^photofeed/$', mymviews.photofeed, name='photofeed'),
+    url(r'^setup/$', mymviews.myMensorSetupFormView, name='setup'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^chaining/', include('smart_selects.urls')),
 
@@ -41,10 +43,12 @@ urlpatterns = [
 
     url(r'^openid/', include('oidc_provider.urls', namespace='oidc_provider')),
 
-    url(r'^sns-notifications/', views.amazon_sns_processor),
+    url(r'^sns-notifications/', mymviews.amazon_sns_processor),
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^.well-known/acme-challenge/6tkddfaSb9H4On2KEHI9q8sKzO3eIW225xNkH-4PMnU/$', views.zerossl),
+    url(r'^.well-known/acme-challenge/6tkddfaSb9H4On2KEHI9q8sKzO3eIW225xNkH-4PMnU/$', mymviews.zerossl),
+
+    url(r'^api-token-auth/', views.obtain_auth_token),
 ]
 
