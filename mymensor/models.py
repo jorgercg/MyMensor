@@ -8,7 +8,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-import  rest_framework
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 @python_2_unicode_compatible
 class Asset(models.Model):
@@ -145,8 +148,3 @@ class AmazonSNSNotification(models.Model):
     SignatureVersion = models.CharField(max_length=1024, null=True)
     SubscribeURL = models.CharField(max_length=1024, null=True)
     Token = models.CharField(max_length=1024, null=True)
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        rest_framework.authtoken.models.Token.objects.create(user=instance)
