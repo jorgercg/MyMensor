@@ -22,7 +22,10 @@ def amazon_sns_processor(request):
 
 #URL Redirect for OPENID Connect purposes
 def oauth2redirect(request):
-    return HttpResponse(request)
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        #body = json.loads(body_unicode)
+    return render(request, 'oauth2redir.html', {'body_unicode':body_unicode,})
 
 # Portfolio View
 @login_required
