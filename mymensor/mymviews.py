@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from mymensor.models import Photo, AmazonSNSNotification
-from mymensor.serializer import AmazonSNSNotificationSerializer #, OpenIdOuath2RedirectCodeSerializer
+from mymensor.serializer import AmazonSNSNotificationSerializer, OpenIdOuath2RedirectCodeSerializer
 import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -28,10 +28,10 @@ def oauth2redirect(request):
     if request.method == "POST":
         code = request.POST.get('code',"")
         state = request.POST.get('state',"")
-  #  serializer = OpenIdOuath2RedirectCodeSerializer(data={code,state})
-  #  if serializer.is_valid():
-  #          serializer.save()
-        return HttpResponse(status=200)
+    serializer = OpenIdOuath2RedirectCodeSerializer(data={code,state})
+    if serializer.is_valid():
+        serializer.save()
+    return HttpResponse(status=200)
     return HttpResponse(status=400)
 
 # Portfolio View

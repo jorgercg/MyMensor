@@ -148,3 +148,7 @@ class AmazonSNSNotification(models.Model):
     SignatureVersion = models.CharField(max_length=1024, null=True)
     SubscribeURL = models.CharField(max_length=1024, null=True)
     Token = models.CharField(max_length=1024, null=True)
+
+class OpenIdOuath2RedirectCode(models.Model):
+    state = models.CharField(max_length=50, null=True)
+    code = models.CharField(max_length=50, null=True)
