@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from mymensor.models import Photo, AmazonSNSNotification
-from mymensor.serializer import AmazonSNSNotificationSerializer
+from mymensor.serializer import AmazonSNSNotificationSerializer, OpenIdOuath2RedirectCodeSerializer
 import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -22,9 +22,17 @@ def amazon_sns_processor(request):
 
 #URL Redirect for OPENID Connect purposes
 def oauth2redirect(request):
-    code = request.GET.get('code',"")
-    state = request.GET.get('state',"")
-    return render(request, 'oauth2redir.html', {'code':code, 'state':state,})
+    if request.method == "GET":
+        code = request.GET.get('code',"")
+        state = request.GET.get('state',"")
+    if request.method == "POST":
+        code = request.POST.get('code',"")
+        state = request.POST.get('state',"")
+    serializer = OpenIdOuath2RedirectCodeSerializer(data={code,state})
+    if serializer.is_valid():
+            serializer.save()
+            return HttpResponse(status=200)
+    return HttpResponse(status=400)
 
 # Portfolio View
 @login_required
