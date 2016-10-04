@@ -22,8 +22,8 @@ def amazon_sns_processor(request):
 
 #URL Redirect for OPENID Connect purposes
 def oauth2redirect(request):
-    code = request.get('code')
-    state = request.get('state')
+    code = request.POST.get('code',"")
+    state = request.POST.get('state',"")
     return render(request, 'oauth2redir.html', {'code':code, 'state':state,})
 
 # Portfolio View
