@@ -28,10 +28,10 @@ def oauth2redirect(request):
     if request.method == "POST":
         code = request.POST.get('code',"")
         state = request.POST.get('state',"")
-    serializer = OpenIdOuath2RedirectCodeSerializer(data={code,state})
+    serializer = OpenIdOuath2RedirectCodeSerializer(data = {'code': code, 'state': state})
     if serializer.is_valid():
         serializer.save()
-    return HttpResponse(status=200)
+        return HttpResponse(status=200)
     return HttpResponse(status=400)
 
 # Portfolio View
