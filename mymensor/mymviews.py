@@ -21,6 +21,7 @@ def amazon_sns_processor(request):
     return HttpResponse(status=400)
 
 #URL Redirect for OPENID Connect purposes
+@csrf_exempt
 def oauth2redirect(request):
     if request.method == "GET":
         code = request.GET.get('code',"")
@@ -35,6 +36,7 @@ def oauth2redirect(request):
     return HttpResponse(status=400)
 
 #Returning the last code value received from the specific state
+@csrf_exempt
 def oauth2redirectreturn(request):
     if request.method == "POST":
         returnstate = request.POST.get('state',"")
