@@ -52,5 +52,7 @@ urlpatterns = [
     url(r'^api-token-auth/', views.obtain_auth_token),
 
     url(r'^oauth2redirect/', mymviews.oauth2redirect),
+
+    url(r'^oauth2redirectreturn/', mymviews.oauth2redirectreturn),
 ]
 

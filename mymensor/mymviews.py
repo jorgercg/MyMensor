@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
-from mymensor.models import Photo, AmazonSNSNotification
+from mymensor.models import Photo, AmazonSNSNotification, OpenIdOuath2RedirectCode
 from mymensor.serializer import AmazonSNSNotificationSerializer, OpenIdOuath2RedirectCodeSerializer
 import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
@@ -32,6 +32,14 @@ def oauth2redirect(request):
     if serializer.is_valid():
         serializer.save()
         return HttpResponse(status=200)
+    return HttpResponse(status=400)
+
+#Returning the last code value received from the specific state
+def oauth2redirectreturn(request):
+    if request.method == "POST":
+        returnstate = request.POST.get('state',"")
+        returncode = OpenIdOuath2RedirectCode.objects.get(state=returnstate).order_by('id')[0].values('code')
+        return JsonResponse({'code': returncode, 'state':returnstate})
     return HttpResponse(status=400)
 
 # Portfolio View
