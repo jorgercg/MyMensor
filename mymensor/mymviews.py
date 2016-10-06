@@ -53,11 +53,12 @@ def portfolio(request):
 
 
 # Photo Feed View
-@login_required
+#@login_required
 @api_view(['POST','GET'])
 def photofeed(request):
-    photos = Photo.objects.all()
-    return render(request, 'photofeed.html', {'photos': photos,})
+    if request.user.is_authenticated:
+        photos = Photo.objects.all()
+        return render(request, 'photofeed.html', {'photos': photos,})
 
 
 def zerossl(request):
