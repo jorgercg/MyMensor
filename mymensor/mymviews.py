@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
+from rest_framework.decorators import api_view
 from mymensor.models import Photo, AmazonSNSNotification, OpenIdOuath2RedirectCode
 from mymensor.serializer import AmazonSNSNotificationSerializer, OpenIdOuath2RedirectCodeSerializer
 import json, requests
@@ -53,6 +54,7 @@ def portfolio(request):
 
 # Photo Feed View
 @login_required
+@api_view(['POST','GET'])
 def photofeed(request):
     photos = Photo.objects.all()
     return render(request, 'photofeed.html', {'photos': photos,})
