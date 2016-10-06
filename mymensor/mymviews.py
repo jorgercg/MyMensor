@@ -4,8 +4,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view
-from mymensor.models import Photo, AmazonSNSNotification, OpenIdOuath2RedirectCode
-from mymensor.serializer import AmazonSNSNotificationSerializer, OpenIdOuath2RedirectCodeSerializer
+from mymensor.models import Photo, AmazonSNSNotification
+from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, requests
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -21,45 +21,18 @@ def amazon_sns_processor(request):
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
-#URL Redirect for OPENID Connect purposes
-@csrf_exempt
-def oauth2redirect(request):
-    if request.method == "GET":
-        code = request.GET.get('code',"")
-        state = request.GET.get('state',"")
-    if request.method == "POST":
-        code = request.POST.get('code',"")
-        state = request.POST.get('state',"")
-    serializer = OpenIdOuath2RedirectCodeSerializer(data = {'code': code, 'state': state})
-    if serializer.is_valid():
-        serializer.save()
-        return HttpResponse(status=200)
-    return HttpResponse(status=400)
-
-#Returning the last code value received from the specific state
-@csrf_exempt
-def oauth2redirectreturn(request):
-    if request.method == "POST":
-        returnstate = request.POST.get('state',"")
-        returncode = OpenIdOuath2RedirectCode.objects.get(state=returnstate).order_by('id')[0].values('code')
-        return JsonResponse({'code': returncode, 'state':returnstate})
-    return HttpResponse(status=400)
-
 # Portfolio View
 @login_required
 def portfolio(request):
     photos = Photo.objects.all()
     return render(request, 'index.html', {'photos': photos,})
 
-
 # Photo Feed View
-#@login_required
-@api_view(['POST','GET'])
+@login_required
 def photofeed(request):
     if request.user.is_authenticated:
         photos = Photo.objects.all()
         return render(request, 'photofeed.html', {'photos': photos,})
-
 
 def zerossl(request):
     if request.method == "GET":

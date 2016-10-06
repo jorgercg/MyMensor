@@ -41,8 +41,6 @@ urlpatterns = [
 
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    url(r'^openid/', include('oidc_provider.urls', namespace='oidc_provider')),
-
     url(r'^sns-notifications/', mymviews.amazon_sns_processor),
 
     url(r'^admin/', include(admin.site.urls)),
@@ -51,8 +49,5 @@ urlpatterns = [
 
     url(r'^api-token-auth/', views.obtain_auth_token),
 
-    url(r'^oauth2redirect/', mymviews.oauth2redirect),
-
-    url(r'^oauth2redirectreturn/', mymviews.oauth2redirectreturn),
 ]
 
