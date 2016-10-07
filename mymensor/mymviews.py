@@ -56,7 +56,6 @@ def cognitoauth(request):
             },
             TokenDuration=600
         )
-
         return JsonResponse(response)
     return HttpResponse(status=400)
 
