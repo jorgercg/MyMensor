@@ -42,7 +42,10 @@ def photofeed(request):
 def cognitoauth(request):
     if request.method == "GET":
         client = boto3.client(
-            'cognito-identity','eu-west-1',
+            'cognito-identity',
+            'eu-west-1',
+            aws_access_key_id = 'AKIAI4HUWKFMXTSLG5JA',
+            aws_secret_access_key = '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',
             )
 
         response = client.get_open_id_token_for_developer_identity(
