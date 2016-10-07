@@ -3,10 +3,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from mymensor.models import Photo, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
-import json, requests
+import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 # Amazon SNS Notification Processor View
@@ -33,6 +35,26 @@ def photofeed(request):
     if request.user.is_authenticated:
         photos = Photo.objects.all()
         return render(request, 'photofeed.html', {'photos': photos,})
+
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def cognitoauth(request):
+    if request.method == "GET":
+        client = boto3.client(
+            'cognito-identity',
+            aws_access_key_id='AKIAI4HUWKFMXTSLG5JA',
+            aws_secret_access_key='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',)
+        response = client.get_open_id_token_for_developer_identity(
+            IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
+            IdentityId='pacatatucotianao',
+            Logins={
+                'cogdevserv.mymensor.com': 'jrcgonc@gmail.com'
+            },
+            TokenDuration=600
+        )
+        return HttpResponse(response)
+    return HttpResponse(status=400)
 
 def zerossl(request):
     if request.method == "GET":
