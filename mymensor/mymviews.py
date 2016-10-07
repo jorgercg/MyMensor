@@ -47,7 +47,7 @@ def cognitoauth(request):
             aws_secret_access_key='4QOQWz6jJVoq2PmWVga5AoDzD0oF+Jv0ew3oTJmE',)
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
-            IdentityId='pacatatucotianao',
+            IdentityId='eu-west-1:pacatatucotianao',
             Logins={
                 'cogdevserv.mymensor.com': 'jrcgonc@gmail.com'
             },
