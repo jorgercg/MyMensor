@@ -56,7 +56,8 @@ def cognitoauth(request):
             },
             TokenDuration=600
         )
-        return HttpResponse(response)
+
+        return JsonResponse(response)
     return HttpResponse(status=400)
 
 def zerossl(request):
