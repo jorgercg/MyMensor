@@ -43,7 +43,7 @@ urlpatterns = [
 
     url(r'^sns-notifications/', mymviews.amazon_sns_processor),
 
-    url(r'^cognito-auth/gettoken', mymviews.cognitoauth),
+    url(r'^cognito-auth/', mymviews.cognitoauth),
 
     url(r'^admin/', include(admin.site.urls)),
 
