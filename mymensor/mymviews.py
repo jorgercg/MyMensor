@@ -56,6 +56,9 @@ def cognitoauth(request):
             },
             TokenDuration=600
         )
+        response.update({'IdentityPoolId':'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
+        response.update({'IdentityId':'eu-west-1:750809e0-cc0e-47d8-bab0-659bd6b55424'})
+        response.update({'key': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
         return JsonResponse(response)
     return HttpResponse(status=400)
 
