@@ -45,7 +45,7 @@ urlpatterns = [
 
     url(r'^cognito-auth/', mymviews.cognitoauth),
 
-    url(r'^cognito-auth/login/', mymviews.cognitoauthlogin),
+    url(r'^cognito-login/', mymviews.cognitoauthlogin),
 
     url(r'^admin/', include(admin.site.urls)),
 
