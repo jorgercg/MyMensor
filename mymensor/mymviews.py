@@ -36,9 +36,9 @@ def photofeed(request):
         photos = Photo.objects.all()
         return render(request, 'photofeed.html', {'photos': photos,})
 
-@api_view(['GET'])
-@authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+#@api_view(['GET'])
+#@authentication_classes((TokenAuthentication,))
+#@permission_classes((IsAuthenticated,))
 def cognitoauth(request):
     if request.method == "GET":
         client = boto3.client(
