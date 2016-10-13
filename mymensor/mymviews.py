@@ -62,7 +62,7 @@ def cognitoauth(request):
 def cognitoauthlogin(request):
     if request.method == "GET":
         pass
-    return HttpResponse({'key': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
+    return JsonResponse({'key': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
 
 def zerossl(request):
     if request.method == "GET":
