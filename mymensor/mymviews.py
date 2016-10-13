@@ -59,6 +59,11 @@ def cognitoauth(request):
         return JsonResponse(response)
     return HttpResponse(status=400)
 
+def cognitoauthlogin(request):
+    if request.method == "GET":
+        pass
+    return JsonResponse({'token': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
+
 def zerossl(request):
     if request.method == "GET":
         return TemplateResponse(request, "zerossl.html")
