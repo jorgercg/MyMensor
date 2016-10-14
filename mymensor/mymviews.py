@@ -65,7 +65,7 @@ def cognitoauth(request):
         response.update({'identityPoolId':'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'key': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
         response.update({'email': email })
-        response.update(eval({'ntoken' : token }))
+        response.update({'ntoken' : token })
         return JsonResponse(response)
     return HttpResponse(status=400)
 
