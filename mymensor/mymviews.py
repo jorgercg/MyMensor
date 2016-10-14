@@ -50,7 +50,7 @@ def cognitoauth(request):
             aws_secret_access_key = '4QOQWz6jJVoq2PmWVga5AoDzD0oF+Jv0ew3oTJmE',
             )
 
-        token = Token.objects.get(token = request.auth)
+        token = Token.objects.get(user_id = request.user.id)
 
         email = request.user.email
 
