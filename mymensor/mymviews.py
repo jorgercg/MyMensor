@@ -6,6 +6,7 @@ from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 from mymensor.models import Photo, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, boto3
@@ -49,7 +50,7 @@ def cognitoauth(request):
             aws_secret_access_key = '4QOQWz6jJVoq2PmWVga5AoDzD0oF+Jv0ew3oTJmE',
             )
 
-        token = request.auth
+        token = Token.objects.get(token = request.auth)
 
         email = request.user.email
 
