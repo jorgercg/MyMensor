@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -48,8 +49,7 @@ def cognitoauth(request):
             aws_secret_access_key = '4QOQWz6jJVoq2PmWVga5AoDzD0oF+Jv0ew3oTJmE',
             )
         token = request.auth
-        user = unicode(request.user)
-        email = unicode(user.email)
+        email = request.user.email
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
             IdentityId='eu-west-1:750809e0-cc0e-47d8-bab0-659bd6b55424',
