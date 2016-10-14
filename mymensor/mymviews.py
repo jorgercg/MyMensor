@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -45,21 +44,21 @@ def cognitoauth(request):
         client = boto3.client(
             'cognito-identity',
             'eu-west-1',
-            aws_access_key_id = 'AKIAI4HUWKFMXTrequest.authSLG5JA',
+            aws_access_key_id = 'AKIAI4HUWKFMXTSLG5JA',
             aws_secret_access_key = '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',
             )
-        token = request.auth
-        email = request.user.email
+
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
             IdentityId='eu-west-1:750809e0-cc0e-47d8-bab0-659bd6b55424',
-            Logins=eval(json.dumps({'cogdevserv.mymensor.com': email})),
+            Logins={
+                'cogdevserv.mymensor.com': 'jrcgonc@gmail.com'
+            },
             TokenDuration=600
         )
         response.update({'identityPoolId':'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'identityId':'eu-west-1:750809e0-cc0e-47d8-bab0-659bd6b55424'})
-
-        response.update(json.dumps({'key': token}))
+        response.update({'key': '07cda8a18180252862884d7c748faf8bb5c0cb89'})
         return JsonResponse(response)
     return HttpResponse(status=400)
 
