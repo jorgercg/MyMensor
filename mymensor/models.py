@@ -100,6 +100,7 @@ class Media(models.Model):
     mediaVpNumber = models.IntegerField()
     mediaAssetNumber = models.IntegerField()
     mediaStorageURL = models.CharField(max_length=255)
+    mediaContentType = models.CharField(max_length=255)
     mediaLatitude = models.FloatField()
     mediaLongitude = models.FloatField()
     mediaAltitude = models.FloatField()
