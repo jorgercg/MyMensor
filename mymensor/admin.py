@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mymensor.models import Asset, Vp, Photo, Tag, ProcessedTag, Value
+from mymensor.models import Asset, Vp, Media, Tag, ProcessedTag, Value
 
 
 
@@ -16,13 +16,13 @@ class TagAdmin(admin.ModelAdmin):
     model = Tag
     list_display = ('vp', 'tagNumber', 'tagIsActive', 'tagListNumber', 'tagDescription' )    
 
-class PhotoAdmin(admin.ModelAdmin):
-    model = Photo
-    list_display = ('vp', 'photoMillisSinceEpoch', 'photoVpNumber', 'photoAssetNumber', 'photoStorageURL', 'photoImageLatitude', 'photoImageLongitude', 'photoDBTimeStamp', 'photoTimeStamp', 'photoProcessed' )
+class MediaAdmin(admin.ModelAdmin):
+    model = Media
+    list_display = ('vp', 'mediaMillisSinceEpoch', 'mediaVpNumber', 'mediaAssetNumber', 'mediaStorageURL', 'mediaLatitude', 'mediaLongitude', 'mediaDBTimeStamp', 'mediaTimeStamp', 'mediaProcessed' )
 
 class ProcesedTagAdmin(admin.ModelAdmin):
     model = ProcessedTag
-    list_display = ( 'photo', 'tag', 'valValueEvaluated', 'valValueEvaluatedEntryDBTimeStamp', 'tagStateEvaluated' )
+    list_display = ( 'media', 'tag', 'valValueEvaluated', 'valValueEvaluatedEntryDBTimeStamp', 'tagStateEvaluated' )
 
 class ValueAdmin(admin.ModelAdmin):
     model = Value
@@ -33,6 +33,6 @@ class ValueAdmin(admin.ModelAdmin):
 admin.site.register(Asset, AssetAdmin)
 admin.site.register(Vp, VpAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Photo, PhotoAdmin)
+admin.site.register(Media, MediaAdmin)
 admin.site.register(ProcessedTag, ProcesedTagAdmin)
 admin.site.register(Value, ValueAdmin)

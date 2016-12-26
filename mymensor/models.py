@@ -22,24 +22,11 @@ class Asset(models.Model):
     assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerKey = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
-    assetProviderAcc = models.CharField(max_length=255, null=True)
-    assetProviderAccPassword = models.CharField(max_length=255, null=True)
-    assetStoragePassword = models.CharField(max_length=255, null=True)
-    dciUserPassword = models.CharField(max_length=50, null=True)
-    dciConfigPassword = models.CharField(max_length=50, null=True)
-    dciFrequencyUnit = models.CharField(max_length=50, null=True)
-    dciFrequencyValue = models.IntegerField(null=True)
-    dciQtyVps = models.IntegerField(null=True)
-    dciTolerancePosition = models.IntegerField(default=50)
-    dciToleranceRotation = models.IntegerField(default=10)
-    dciIMEI = models.CharField(max_length=50, null=True)
-    dciModel = models.CharField(max_length=50, null=True)
-    dciWifiMAC = models.CharField(max_length=50, null=True)
-    dciRemotePassword = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiModel = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiSSID = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiPassword = models.CharField(max_length=50, null=True)
-    dciDciBoxWifiAdministrator = models.CharField(max_length=50, null=True)
+    assetDciFrequencyUnit = models.CharField(max_length=50, default="millis")
+    assetDciFrequencyValue = models.IntegerField(default=20000)
+    assetDciQtyVps = models.IntegerField(default=2)
+    assetDciTolerancePosition = models.IntegerField(default=50)
+    assetDciToleranceRotation = models.IntegerField(default=10)
 
     def __str__(self):
         return self.assetDescription
@@ -55,6 +42,8 @@ class Vp(models.Model):
     vpStdPhotoStorageURL = models.CharField(max_length=255)
     vpStdTagDescPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpStdMarkerPhotoStorageURL = models.CharField(max_length=255, null=True)
+    vpStdPhotoFileSize = models.BigIntegerField(null=True)
+    vpStdMarkerPhotoFileSize = models.BigIntegerField(null=True)
     vpMarkerId = models.IntegerField(null=True)
     vpStdIdMarkerPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpConfiguredMillis = models.BigIntegerField(null=True)
@@ -66,13 +55,11 @@ class Vp(models.Model):
     vpZRotation = models.IntegerField(null=True)
     vpMarkerlessMarkerWidth = models.IntegerField(null=True)
     vpMarkerlessMarkerHeigth = models.IntegerField(null=True)
+    vpArIsConfigured = models.BooleanField(default=False)
+    vpIsVideo = models.BooleanField(default=False)
     vpIsAmbiguos = models.BooleanField(default=False)
     vpIsSuperSingle = models.BooleanField(default=False)
-    vpIsSuperMultiple = models.BooleanField(default=False)
     vpFlashTorchIsOn = models.BooleanField(default=False)
-    vpSuperIdIsSmall = models.BooleanField(default=False)
-    vpSuperIdIsMedium = models.BooleanField(default=False)
-    vpSuperIdIsLarge = models.BooleanField(default=False)
     vpSuperMarkerId = models.IntegerField(null=True)
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
@@ -107,21 +94,30 @@ class Tag(models.Model):
         return self.tagDescription
 
 
-class Photo(models.Model):
+class Media(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE, null=True)  ###### FK
-    photoMillisSinceEpoch = models.BigIntegerField()
-    photoVpNumber = models.IntegerField()
-    photoAssetNumber = models.IntegerField()
-    photoStorageURL = models.CharField(max_length=255)
-    photoImageLatitude = models.FloatField()
-    photoImageLongitude = models.FloatField()
-    photoDBTimeStamp = models.DateTimeField(auto_now_add=True)
-    photoTimeStamp = models.DateTimeField(auto_now=False)
-    photoProcessed = models.NullBooleanField()
+    mediaMillisSinceEpoch = models.BigIntegerField()
+    mediaVpNumber = models.IntegerField()
+    mediaAssetNumber = models.IntegerField()
+    mediaStorageURL = models.CharField(max_length=255)
+    mediaLatitude = models.FloatField()
+    mediaLongitude = models.FloatField()
+    mediaAltitude = models.FloatField()
+    mediaLocPrecisionInMeters = models.FloatField()
+    mediaLocMethod = models.CharField(max_length=255)
+    mediaLocMillis = models.BigIntegerField()
+    mediaSha256 = models.CharField(max_length=1024, null=True)
+    mediaLocIsCertified = models.NullBooleanField()
+    mediaTimeIsCertified = models.NullBooleanField()
+    mediaArIsOn = models.NullBooleanField()
+    mediaDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    mediaTimeStamp = models.DateTimeField(auto_now=False)
+    mediaMymensorAccount = models.CharField(max_length=255)
+    mediaProcessed = models.NullBooleanField()
 
 
 class ProcessedTag(models.Model):
-    photo = models.ForeignKey(Photo, on_delete=models.CASCADE)  ###### FK
+    media = models.ForeignKey(Media, on_delete=models.CASCADE)  ###### FK
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
     valValueEvaluated = models.FloatField()
     valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)

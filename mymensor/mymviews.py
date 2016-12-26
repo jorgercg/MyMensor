@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from mymensor.models import Photo, AmazonSNSNotification
+from mymensor.models import Media, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
@@ -27,14 +27,14 @@ def amazon_sns_processor(request):
 # Portfolio View
 @login_required
 def portfolio(request):
-    photos = Photo.objects.all()
+    photos = Media.objects.all()
     return render(request, 'index.html', {'photos': photos,})
 
 # Photo Feed View
 @login_required
 def photofeed(request):
     if request.user.is_authenticated:
-        photos = Photo.objects.all()
+        photos = Media.objects.all()
         return render(request, 'photofeed.html', {'photos': photos,})
 
 @api_view(['GET'])
