@@ -7,11 +7,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+#from mymensor.serializer import AmazonS3MessageSerializer
+import json
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
 
 @python_2_unicode_compatible
 class Asset(models.Model):
@@ -133,6 +136,29 @@ class Value(models.Model):
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
 
+
+class AmazonS3Message(models.Model):
+    eventVersion = models.CharField(max_length=1024, null=True)
+    eventSource = models.CharField(max_length=1024, null=True)
+    awsRegion = models.CharField(max_length=1024, null=True)
+    eventTime = models.CharField(max_length=1024, null=True)
+    eventName = models.CharField(max_length=1024, null=True)
+    userIdentity_principalId = models.CharField(max_length=1024, null=True)
+    requestParameters_sourceIPAddress = models.CharField(max_length=1024, null=True)
+    responseElements_x_amz_request_id = models.CharField(max_length=1024, null=True)
+    responseElements_x_amz_id_2 = models.CharField(max_length=1024, null=True)
+    s3_s3SchemaVersion = models.CharField(max_length=1024, null=True)
+    s3_configurationId = models.CharField(max_length=1024, null=True)
+    s3_bucket_name = models.CharField(max_length=1024, null=True)
+    s3_bucket_ownerIdentity_principalId = models.CharField(max_length=1024, null=True)
+    s3_bucket_arn = models.CharField(max_length=1024, null=True)
+    s3_object_key = models.CharField(max_length=1024, null=True)
+    s3_object_size = models.CharField(max_length=1024, null=True)
+    s3_object_eTag = models.CharField(max_length=1024, null=True)
+    s3_object_versionId = models.CharField(max_length=1024, null=True)
+    s3_object_sequencer = models.CharField(max_length=1024, null=True)
+
+
 class AmazonSNSNotification(models.Model):
     Message = models.CharField(max_length=4096, null=True)
     MessageId = models.CharField(max_length=1024, null=True)
@@ -145,3 +171,10 @@ class AmazonSNSNotification(models.Model):
     SignatureVersion = models.CharField(max_length=1024, null=True)
     SubscribeURL = models.CharField(max_length=1024, null=True)
     Token = models.CharField(max_length=1024, null=True)
+
+    def save_base(self, *args, **kwargs):
+        super(AmazonSNSNotification, self).save( *args, **kwargs)
+        body = json.loads(AmazonSNSNotification.Message)
+        serializer = AmazonS3MessageSerializer(data=body)
+        if serializer.is_valid():
+            serializer.save()

@@ -1,10 +1,4 @@
 {% load staticfiles %}
-<script src="{% static "js/jquery-3.1.0.min.js" %}"></script>
-<script src="{% static "js/chainedfk.js" %}"></script>
-<script src="{% static "js/bootstrap.min.js" %}"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-<script src="{% static "js/mymensor-jquery.js" %}"></script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -93,5 +87,11 @@
             {% block footer %}{% endblock %}
           </div>
         </div><!-- /.container -->
+        <script src="{% static "js/jquery-3.1.0.min.js" %}"></script>
+        <script src="{% static "js/chainedfk.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+        <script src="{% static "js/mymensor-jquery.js" %}"></script>
     </body>
 </html>
