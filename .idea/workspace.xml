@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="05jan2017 19h27min">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/venv/bin/django-admin" afterPath="$PROJECT_DIR$/venv/bin/django-admin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/venv/bin/waitress-serve" afterPath="$PROJECT_DIR$/venv/bin/waitress-serve" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,11 +64,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="161" column="5" lean-forward="false" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
+            <state relative-caret-position="413">
+              <caret line="172" column="52" lean-forward="false" selection-start-line="172" selection-start-column="52" selection-end-line="172" selection-end-column="52" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -77,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="serializer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="serializer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/serializer.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
@@ -162,8 +161,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/layouts/base.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
-        <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/serializer.py" />
+        <option value="$PROJECT_DIR$/mymensor/models.py" />
       </list>
     </option>
   </component>
@@ -601,20 +600,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-00134" summary="13oct2016 17h42min">
-      <created>1476377755263</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1476377755263</updated>
-    </task>
-    <task id="LOCAL-00135" summary="13oct2016 18h05min">
-      <created>1476378312343</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1476378312343</updated>
-    </task>
     <task id="LOCAL-00136" summary="13oct2016 18h05min">
       <created>1476378484287</created>
       <option name="number" value="00136" />
@@ -944,7 +929,21 @@
       <option name="project" value="LOCAL" />
       <updated>1483644459269</updated>
     </task>
-    <option name="localTasksCounter" value="183" />
+    <task id="LOCAL-00183" summary="05jan2017 19h27min">
+      <created>1483644480332</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1483644480332</updated>
+    </task>
+    <task id="LOCAL-00184" summary="05jan2017 19h30min">
+      <created>1483644654991</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1483644654991</updated>
+    </task>
+    <option name="localTasksCounter" value="185" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1018,7 +1017,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="13oct2016 19h30min" />
     <MESSAGE value="14oct2016 12h04min" />
     <MESSAGE value="14oct2016 15h47min" />
     <MESSAGE value="14oct2016 18h09min" />
@@ -1043,7 +1041,8 @@
     <MESSAGE value="05jan2017 18h39min" />
     <MESSAGE value="05jan2017 18h52min" />
     <MESSAGE value="05jan2017 19h27min" />
-    <option name="LAST_COMMIT_MESSAGE" value="05jan2017 19h27min" />
+    <MESSAGE value="05jan2017 19h30min" />
+    <option name="LAST_COMMIT_MESSAGE" value="05jan2017 19h30min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1336,22 +1335,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="161" column="5" lean-forward="false" selection-start-line="161" selection-start-column="5" selection-end-line="161" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/serializer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="57" lean-forward="false" selection-start-line="4" selection-start-column="57" selection-end-line="4" selection-end-column="57" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="172" column="52" lean-forward="false" selection-start-line="172" selection-start-column="52" selection-end-line="172" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
