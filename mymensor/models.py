@@ -181,5 +181,5 @@ def save_s3_message(sender, instance=None, created=False, **kwargs):
             print (key, value)
             if key == "key":
                 amzs3msg.s3_object_key = value
-        amzs3msg.save()
+        #amzs3msg.save()
 
