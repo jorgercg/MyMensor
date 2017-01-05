@@ -173,10 +173,10 @@ class AmazonSNSNotification(models.Model):
 
 
 
-    #def save(self, **kwargs):
-    #    super(AmazonSNSNotification, self).save( **kwargs)
-    #    from mymensor.serializer import AmazonS3MessageSerializer
-    #    body = json.loads(AmazonSNSNotification.Message)
-    #    serializer = AmazonS3MessageSerializer(data=body)
-    #    if serializer.is_valid():
-    #        serializer.save()
+    def save(self, *args, **kwargs):
+        from mymensor.serializer import AmazonS3MessageSerializer
+        body = json.loads(AmazonSNSNotification.Message)
+        serializer = AmazonS3MessageSerializer(data=body)
+        if serializer.is_valid():
+            serializer.save()
+        super(AmazonSNSNotification, self).save( *args, **kwargs)
