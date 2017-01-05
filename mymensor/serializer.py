@@ -9,8 +9,8 @@ class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
         model = AmazonSNSNotification
         fields = '__all__'
 
-    def create(self, validated_data):
-        return AmazonSNSNotification.objects.create(**validated_data)
+    #def create(self, validated_data):
+    #    return AmazonSNSNotification.objects.create(**validated_data)
 
 
 class AmazonS3MessageSerializer(serializers.ModelSerializer):
