@@ -7,6 +7,7 @@ class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AmazonSNSNotification
+        fields = '__all__'
 
     def create(self, validated_data):
         return AmazonSNSNotification.objects.create(**validated_data)
