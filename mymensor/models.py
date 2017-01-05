@@ -172,12 +172,12 @@ class AmazonSNSNotification(models.Model):
     Token = models.CharField(max_length=1024, null=True)
 
 
-@receiver(post_save, sender=AmazonSNSNotification)
-def save_s3_message(sender, instance=None, created=False, **kwargs):
-    from mymensor.serializer import AmazonS3MessageSerializer
-    if created:
-        body = json.loads(AmazonSNSNotification.Message)
-        serializer = AmazonS3MessageSerializer(data=body)
-        if serializer.is_valid():
-            serializer.save()
+#@receiver(post_save, sender=AmazonSNSNotification)
+#def save_s3_message(sender, instance=None, created=False, **kwargs):
+#    from mymensor.serializer import AmazonS3MessageSerializer
+#    if created:
+#        s3message = json.loads(AmazonSNSNotification.Message)
+#        s3messageSerializer = AmazonS3MessageSerializer(data=s3message)
+#        if s3messageSerializer.is_valid():
+#            s3messageSerializer.save()
 
