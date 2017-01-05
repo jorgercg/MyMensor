@@ -174,12 +174,12 @@ class AmazonSNSNotification(models.Model):
 
 @receiver(post_save, sender=AmazonSNSNotification)
 def save_s3_message(sender, instance=None, created=False, **kwargs):
-    if created:
-        s3message = json.loads(AmazonSNSNotification.Message)
-        amzs3msg = AmazonS3Message()
-        for key, value in s3message.items():
-            print (key, value)
-            if key == "key":
-                amzs3msg.s3_object_key = value
-        #amzs3msg.save()
+    body_unicode = sender.Message.body.decode('utf-8')
+    s3message = json.loads(body_unicode)
+    amzs3msg = AmazonS3Message()
+    for key, value in s3message.items():
+        print (key, value)
+        if key == "key":
+            amzs3msg.s3_object_key = value
+        amzs3msg.save()
 
