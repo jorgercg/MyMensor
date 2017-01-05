@@ -7,6 +7,9 @@ class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = AmazonSNSNotification
 
+    def create(self, validated_data):
+        return AmazonSNSNotification.objects.create(**validated_data)
+
 class AmazonS3MessageSerializer(serializers.ModelSerializer):
     eventVersion = serializers.CharField(source='Records.eventVersion')
     eventSource = serializers.CharField(source='Records.eventSource')
