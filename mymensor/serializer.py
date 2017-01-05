@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import AmazonSNSNotification, AmazonS3Message
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    s3_object_key = serializers.CharField(source='properties.Message.Records.s3.object.key')
+    s3_object_key = serializers.CharField(source='Message.Records.s3.object.key')
 
     class Meta:
         model = AmazonSNSNotification
