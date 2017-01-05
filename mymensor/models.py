@@ -177,6 +177,8 @@ def save_s3_message(sender, instance=None, created=False, **kwargs):
     if created:
         s3message = json.loads(AmazonSNSNotification.Message)
         amzs3msg = AmazonS3Message()
-        amzs3msg.s3_object_key = s3message.get('Records.s3.object.key', None)
+        for key, value in s3message.items():
+            if (key == 'key'):
+                amzs3msg.s3_object_key = value
         amzs3msg.save()
 
