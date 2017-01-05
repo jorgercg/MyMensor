@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-#from mymensor.serializer import AmazonS3MessageSerializer
 import json
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
@@ -173,6 +172,7 @@ class AmazonSNSNotification(models.Model):
     Token = models.CharField(max_length=1024, null=True)
 
     def save_base(self, *args, **kwargs):
+        from mymensor.serializer import AmazonS3MessageSerializer
         super(AmazonSNSNotification, self).save( *args, **kwargs)
         body = json.loads(AmazonSNSNotification.Message)
         serializer = AmazonS3MessageSerializer(data=body)
