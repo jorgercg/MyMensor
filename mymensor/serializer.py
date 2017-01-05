@@ -2,6 +2,8 @@ from rest_framework import serializers
 from .models import AmazonSNSNotification, AmazonS3Message
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
+    s3_object_key = serializers.CharField(source='properties.Message.Records.s3.object.key')
+
     class Meta:
         model = AmazonSNSNotification
 
@@ -20,7 +22,7 @@ class AmazonS3MessageSerializer(serializers.ModelSerializer):
     s3_bucket_name = serializers.CharField(source='Records.s3.bucket.name')
     s3_bucket_ownerIdentity_principalId = serializers.CharField(source='Records.s3.bucket.ownerIdentity.principalId')
     s3_bucket_arn = serializers.CharField(source='Records.s3.bucket.arn')
-    s3_object_key = serializers.CharField(source='Records.s3.object.key')
+    s3_object_key = serializers.CharField(source='properties.Message.Records.s3.object.key')
     s3_object_size = serializers.CharField(source='Records.s3.object.size')
     s3_object_eTag = serializers.CharField(source='Records.s3.object.eTag')
     s3_object_versionId = serializers.CharField(source='Records.s3.object.versionId')

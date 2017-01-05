@@ -170,6 +170,7 @@ class AmazonSNSNotification(models.Model):
     SignatureVersion = models.CharField(max_length=1024, null=True)
     SubscribeURL = models.CharField(max_length=1024, null=True)
     Token = models.CharField(max_length=1024, null=True)
+    s3_object_key = models.CharField(max_length=1024, null=True)
 
 
 #@receiver(post_save, sender=AmazonSNSNotification)
