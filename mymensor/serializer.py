@@ -2,8 +2,6 @@ from rest_framework import serializers
 from .models import AmazonSNSNotification, AmazonS3Message
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    s3_object_key = serializers.JSONField(source='properties.Message')
-
     class Meta:
         model = AmazonSNSNotification
 

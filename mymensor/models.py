@@ -159,7 +159,7 @@ class AmazonS3Message(models.Model):
 
 
 class AmazonSNSNotification(models.Model):
-    #Message = models.CharField(max_length=4096, null=True)
+    Message = models.CharField(max_length=4096, null=True)
     MessageId = models.CharField(max_length=1024, null=True)
     Signature = models.CharField(max_length=1024, null=True)
     Subject = models.CharField(max_length=1024, null=True)
@@ -170,15 +170,13 @@ class AmazonSNSNotification(models.Model):
     SignatureVersion = models.CharField(max_length=1024, null=True)
     SubscribeURL = models.CharField(max_length=1024, null=True)
     Token = models.CharField(max_length=1024, null=True)
-    s3_object_key = models.CharField(max_length=4096, null=True)
 
 
-#@receiver(post_save, sender=AmazonSNSNotification)
-#def save_s3_message(sender, instance=None, created=False, **kwargs):
-#    from mymensor.serializer import AmazonS3MessageSerializer
-#    if created:
-#        s3message = json.loads(AmazonSNSNotification.Message)
-#        s3messageSerializer = AmazonS3MessageSerializer(data=s3message)
-#        if s3messageSerializer.is_valid():
-#            s3messageSerializer.save()
+@receiver(post_save, sender=AmazonSNSNotification)
+def save_s3_message(sender, instance=None, created=False, **kwargs):
+    if created:
+        s3message = json.loads(AmazonSNSNotification.Message)
+        amzs3msg = AmazonS3Message()
+        amzs3msg.s3_object_key = s3message['properties']['Message']['Records']['s3']['object']['key']
+        amzs3msg.save()
 
