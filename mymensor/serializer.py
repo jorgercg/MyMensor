@@ -3,7 +3,7 @@ from .models import AmazonSNSNotification, AmazonS3Message
 
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    Message = serializers.CharField(source="Message.Records.s3.object.key")
+    Message = serializers.CharField(source="Message.Records.s3.object.key", read_only=True)
 
     class Meta:
         model = AmazonSNSNotification
