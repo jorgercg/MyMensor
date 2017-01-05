@@ -1,14 +1,16 @@
 from rest_framework import serializers
 from .models import AmazonSNSNotification, AmazonS3Message
 
+
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    Message = serializers.CharField(source="Message.Records")
+    Message = serializers.CharField(source="Message.Records.s3.object.key")
 
     class Meta:
         model = AmazonSNSNotification
 
     def create(self, validated_data):
         return AmazonSNSNotification.objects.create(**validated_data)
+
 
 class AmazonS3MessageSerializer(serializers.ModelSerializer):
     eventVersion = serializers.CharField(source='Records.eventVersion')
