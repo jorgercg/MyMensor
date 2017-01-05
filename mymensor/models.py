@@ -159,7 +159,7 @@ class AmazonS3Message(models.Model):
 
 
 class AmazonSNSNotification(models.Model):
-    Message = models.CharField(max_length=4096, null=True)
+    #Message = models.CharField(max_length=4096, null=True)
     MessageId = models.CharField(max_length=1024, null=True)
     Signature = models.CharField(max_length=1024, null=True)
     Subject = models.CharField(max_length=1024, null=True)
