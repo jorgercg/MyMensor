@@ -3,14 +3,17 @@ from .models import AmazonSNSNotification, AmazonS3Message
 
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    Message = serializers.CharField(source="Message.Records.s3.object.key", read_only=True)
+    Message = serializers.CharField(source='Message.Records.s3.object.key')
 
     class Meta:
         model = AmazonSNSNotification
         fields = '__all__'
 
-    #def create(self, validated_data):
-    #    return AmazonSNSNotification.objects.create(**validated_data)
+    def create(self, validated_data):
+        return AmazonSNSNotification.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.Message = validated_data.get('Message.Records.s3.object.key', instance.Message)
 
 
 class AmazonS3MessageSerializer(serializers.ModelSerializer):
