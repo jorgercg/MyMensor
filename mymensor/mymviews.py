@@ -25,6 +25,7 @@ def amazon_sns_processor(request):
             amzs3msg = AmazonS3Message()
             message_items = message_json['Records'][0]
             amzs3msg.eventVersion = message_items['eventVersion']
+            amzs3msg.eventSource = message_items['eventSource']
             amzs3msg.awsRegion = message_items['awsRegion']
             amzs3msg.eventTime = message_items['eventTime']
             amzs3msg.eventName = message_items['eventName']
