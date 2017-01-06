@@ -59,7 +59,7 @@ def amazon_sns_processor(request):
 
             media_received = Media()
 
-            media_received.mediaStorageURL = obj_metadata[0]['x-amz-meta-mymensoraccount']
+            media_received.mediaStorageURL = obj_metadata['x-amz-meta-mymensoraccount']
 
 
             return HttpResponse(status=200)
