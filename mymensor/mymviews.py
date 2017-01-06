@@ -24,7 +24,24 @@ def amazon_sns_processor(request):
             message_json = json.loads(body['Message'])
             amzs3msg = AmazonS3Message()
             message_items = message_json['Records'][0]
-            amzs3msg.eventVersion = message_items['eventVersion'] #eventVersion
+            amzs3msg.eventVersion = message_items['eventVersion']
+            amzs3msg.awsRegion = message_items['awsRegion']
+            amzs3msg.eventTime = message_items['eventTime']
+            amzs3msg.eventName = message_items['eventName']
+            amzs3msg.userIdentity_principalId = message_items['userIdentity']['principalId']
+            amzs3msg.requestParameters_sourceIPAddress = message_items['requestParameters']['sourceIPAddress']
+            amzs3msg.responseElements_x_amz_request_id = message_items['responseElements']['x-amz-request-id']
+            amzs3msg.responseElements_x_amz_id_2 = message_items['responseElements']['x-amz-id-2']
+            amzs3msg.s3_s3SchemaVersion = message_items['s3']['s3SchemaVersion']
+            amzs3msg.s3_configurationId = message_items['s3']['configurationId']
+            amzs3msg.s3_bucket_name = message_items['s3']['bucket']['name']
+            amzs3msg.s3_bucket_arn = message_items['s3']['bucket']['arn']
+            amzs3msg.s3_bucket_ownerIdentity_principalId = message_items['s3']['bucket']['ownerIdentity']['principalId']
+            amzs3msg.s3_object_key = message_items['s3']['object']['key']
+            amzs3msg.s3_object_size = message_items['s3']['object']['size']
+            amzs3msg.s3_object_eTag = message_items['s3']['object']['eTag']
+            amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
+            amzs3msg.s3_object_sequencer = message_items['s3']['object']['sequencer']
             amzs3msg.save()
             return HttpResponse(status=200)
     return HttpResponse(status=400)
