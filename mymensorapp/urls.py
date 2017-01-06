@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^setup/$', mymviews.myMensorSetupFormView, name='setup'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^sns/$', TemplateView.as_view(template_name='sns.html'), name='sns'),
 
     url(r'^accounts/', include('registration.backends.default.urls')),
 
