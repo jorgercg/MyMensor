@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from mymensor.models import Media
+from mymensor.models import Media, AmazonS3Message
 from mymensor.serializer import AmazonSNSNotificationSerializer
 import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
@@ -21,6 +21,9 @@ def amazon_sns_processor(request):
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
             serializer.save()
+            amzs3msg = AmazonS3Message()
+            amzs3msg.eventVersion = body['Message']['Records']['eventVersion']
+            amzs3msg.save()
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
