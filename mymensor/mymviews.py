@@ -16,13 +16,14 @@ import json, boto3
 @csrf_exempt
 def amazon_sns_processor(request):
     if request.method == "POST":
+        body_initial = request.body
         body_unicode = request.body.decode('utf-8')
         body = json.loads(body_unicode)
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
             serializer.save()
             amzs3msg = AmazonS3Message()
-            amzs3msg.eventVersion = body[1]['Message']['Records']['eventVersion'] #eventVersion
+            amzs3msg.eventVersion = body_initial['Message']['Records']['eventVersion'] #eventVersion
             amzs3msg.save()
             return HttpResponse(status=200)
     return HttpResponse(status=400)
