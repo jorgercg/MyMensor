@@ -59,7 +59,7 @@ def amazon_sns_processor(request):
 
             media_received = Media()
 
-            media_received.mediaSha256 = obj_metadata
+            media_received.mediaSha256 = obj_metadata['sha-256']
 
             media_received.save()
 
