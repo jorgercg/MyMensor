@@ -14,6 +14,7 @@ class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         instance.Message = validated_data.get('Message.Records.eventVersion', instance.Message['Message']['Records']['eventVersion'])
+        instance.save()
         return instance
 
 
