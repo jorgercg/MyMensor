@@ -61,6 +61,8 @@ def amazon_sns_processor(request):
 
             media_received.mediaStorageURL = obj_metadata
 
+            media_received.save()
+
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
