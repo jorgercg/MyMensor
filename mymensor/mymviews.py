@@ -21,10 +21,10 @@ def amazon_sns_processor(request):
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
             serializer.save()
-            amzs3msg = AmazonS3Message()
-            amzs3msg.eventVersion = body[2][0][0][0] #eventVersion
-            amzs3msg.save()
-            return HttpResponse(status=200)
+            #amzs3msg = AmazonS3Message()
+            #amzs3msg.eventVersion = body[2][0][0][0] #eventVersion
+            #amzs3msg.save()
+            return render(body, 'sns.html', status=200)
     return HttpResponse(status=400)
 
 # Portfolio View
