@@ -3,7 +3,7 @@ from .models import AmazonSNSNotification, AmazonS3Message
 
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
-    Message = serializers.CharField(source='Records.eventVersion')
+    Message = serializers.CharField(source='Message.Records.eventVersion')
 
     class Meta:
         model = AmazonSNSNotification
@@ -13,7 +13,7 @@ class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
         return AmazonSNSNotification.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.Message = validated_data.get('Records.eventVersion', instance.Message)
+        instance.Message = validated_data.get('Message.Records.eventVersion', instance.Message)
         return instance
 
 
