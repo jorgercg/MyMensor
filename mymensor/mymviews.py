@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from mymensor.models import Media, AmazonS3Message
 from mymensor.serializer import AmazonSNSNotificationSerializer
+from mymensor.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -44,6 +45,12 @@ def amazon_sns_processor(request):
             amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
             amzs3msg.s3_object_sequencer = message_items['s3']['object']['sequencer']
             amzs3msg.save()
+
+
+
+
+
+
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
