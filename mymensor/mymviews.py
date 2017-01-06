@@ -23,7 +23,7 @@ def amazon_sns_processor(request):
         if serializer.is_valid():
             serializer.save()
             amzs3msg = AmazonS3Message()
-            amzs3msg.eventVersion = body_initial[0][4][0][0] #eventVersion
+            amzs3msg.eventVersion = body_initial[0][1][0][0] #eventVersion
             amzs3msg.save()
             return HttpResponse(status=200)
     return HttpResponse(status=400)
