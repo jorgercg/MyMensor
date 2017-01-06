@@ -23,7 +23,7 @@ def amazon_sns_processor(request):
             serializer.save()
             message_json = json.loads(body['Message'])
             amzs3msg = AmazonS3Message()
-            amzs3msg.eventVersion = message_json['Records'] #eventVersion
+            amzs3msg.eventVersion = message_json['Records']['eventVersion'] #eventVersion
             amzs3msg.save()
             return HttpResponse(status=200)
     return HttpResponse(status=400)
