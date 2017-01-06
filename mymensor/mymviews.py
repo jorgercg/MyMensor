@@ -46,7 +46,12 @@ def amazon_sns_processor(request):
             amzs3msg.s3_object_sequencer = message_items['s3']['object']['sequencer']
             amzs3msg.save()
 
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 
+            s3 = session.resource('s3')
+
+            #s3.Bucket(AWS_S3_BUCKET_NAME)
 
 
 
@@ -76,8 +81,8 @@ def cognitoauth(request):
         client = boto3.client(
             'cognito-identity',
             'eu-west-1',
-            aws_access_key_id = 'AKIAI4HUWKFMXTSLG5JA',
-            aws_secret_access_key = '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',
+            aws_access_key_id = AWS_ACCESS_KEY_ID,
+            aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
             )
 
         token = (Token.objects.get(user_id = request.user.id)).key
