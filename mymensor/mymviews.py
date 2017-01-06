@@ -51,9 +51,15 @@ def amazon_sns_processor(request):
 
             s3 = session.resource('s3')
 
-            #s3.Bucket(AWS_S3_BUCKET_NAME)
+            object = s3.Object(amzs3msg.s3_bucket_name,amzs3msg.s3_object_key)
 
+            object.load()
 
+            obj_metadata = object.metadata
+
+            media_received = Media()
+
+            media_received.mediaStorageURL = obj_metadata[0]['x-amz-meta-mymensoraccount']
 
 
             return HttpResponse(status=200)
