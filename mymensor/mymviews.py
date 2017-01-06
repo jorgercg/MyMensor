@@ -24,7 +24,7 @@ def amazon_sns_processor(request):
             #amzs3msg = AmazonS3Message()
             #amzs3msg.eventVersion = body[2][0][0][0] #eventVersion
             #amzs3msg.save()
-            return render(body, 'sns.html', status=200)
+            return render(request, 'sns.html', {'notification': body,}, status=200)
     return HttpResponse(status=400)
 
 # Portfolio View
