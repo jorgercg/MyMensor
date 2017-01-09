@@ -65,7 +65,11 @@ def amazon_sns_processor(request):
 
             media_asset_id = Asset.objects.get(assetOwnerUserId=media_user_id).pk
 
-            media_received.vp = Vp.objects.get(asset=media_asset_id, vpNumber=media_received.mediaVpNumber).pk
+            vp_tmp = Vp()
+
+            vp_tmp = Vp.objects.get(asset=media_asset_id, vpNumber=media_received.mediaVpNumber).pk
+
+            media_received.vp = vp_tmp
 
             media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
 
