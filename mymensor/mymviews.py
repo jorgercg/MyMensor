@@ -26,6 +26,7 @@ def amazon_sns_processor(request):
             serializer.save()
             message_json = json.loads(body['Message'])
             amzs3msg = AmazonS3Message()
+            amzs3msg.amazonSNSNotification = serializer
             message_items = message_json['Records'][0]
             amzs3msg.eventVersion = message_items['eventVersion']
             amzs3msg.eventSource = message_items['eventSource']
@@ -55,6 +56,7 @@ def amazon_sns_processor(request):
             object.load()
             obj_metadata = object.metadata
             media_received = Media()
+            media_received.amazonS3Message = amzs3msg
             media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
             media_received.mediaVpNumber = obj_metadata['vp']
             media_received.mediaMymensorAccount = obj_metadata['mymensoraccount']
