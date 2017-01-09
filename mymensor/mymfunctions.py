@@ -3,7 +3,7 @@ def setup_new_user(instance, **kwargs):
     from mymensor.models import Asset, Vp
     asset = Asset(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email)
     asset.save()
-    maxqtyvps = 32  ###### Maximum quantity of vps in a DCI + 1 !!!!!!!
+    maxqtyvps = 31  ###### Maximum quantity of vps in a DCI + 1 !!!!!!!
     for i in range(0, maxqtyvps):
         vpdescription = "VP#"+str(i)
         if i<2:
