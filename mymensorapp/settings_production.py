@@ -8,7 +8,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
 # UPDATE BEFORE LAUNCH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-ALLOWED_HOSTS = ['app.mymensor.com']
+ALLOWED_HOSTS = ['app.mymensor.com', 'mymensor.herokuapp.com']
 
 DEBUG = True
 
