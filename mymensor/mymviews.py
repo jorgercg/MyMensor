@@ -65,7 +65,7 @@ def amazon_sns_processor(request):
 
             media_asset_id = Asset.objects.get(assetOwnerUserId=media_user_id).pk
 
-            media_received.vp = (Vp.objects.filter(asset=media_asset_id).filter(vpNumber=media_received.mediaVpNumber)[0]).pk
+            media_received.vp = (Vp.objects.filter(asset=media_asset_id).filter(vpNumber=media_received.mediaVpNumber)).pk
 
             media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
 
