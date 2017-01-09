@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -7,11 +8,12 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from mymensor.models import Media, AmazonS3Message
+from mymensor.models import Asset, Vp, Media, AmazonS3Message
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
+
 
 # Amazon SNS Notification Processor View
 @csrf_exempt
@@ -48,37 +50,89 @@ def amazon_sns_processor(request):
 
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-
             s3 = session.resource('s3')
-
             object = s3.Object(amzs3msg.s3_bucket_name,amzs3msg.s3_object_key)
-
             object.load()
-
             obj_metadata = object.metadata
-
             media_received = Media()
+            media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
+            media_received.mediaVpNumber = obj_metadata['vp']
+            media_received.mediaMymensorAccount = obj_metadata['mymensoraccount']
+
+            # Fetching the info necessary to fill the vp_id i.e. pk information
+
+            media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
+
+            media_asset_id = Asset.objects.get(assetOwnerUserId=media_user_id).pk
+
+            media_received.vp = (Vp.objects.filter(asset=media_asset_id).filter(vpNumber=media_received.mediaVpNumber)[0]).pk
+
+            media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
+
+            media_received.mediaObjectS3Key = amzs3msg.s3_object_key
+
+            media_received.mediaContentType = object.content_type
 
             media_received.mediaSha256 = obj_metadata['sha-256']
 
-            media_received.save()
+            media_received.mediaLatitude = obj_metadata['loclatitude']
 
+            media_received.mediaLongitude = obj_metadata['loclongitude']
+
+            media_received.mediaAltitude = obj_metadata['localtitude']
+
+            media_received.mediaLocPrecisionInMeters = obj_metadata['locprecisioninm']
+
+            media_received.mediaLocMethod = obj_metadata['locmethod']
+
+            media_received.mediaLocMillis = obj_metadata['locmillis']
+
+            media_received.mediaLocIsCertified = obj_metadata['loccertified']
+
+            media_received.mediaTimeIsCertified = obj_metadata['timecertified']
+
+            media_received.mediaArIsOn = obj_metadata['isarswitchon']
+
+            media_received.mediaTimeStamp = obj_metadata['datetime']
+
+            # Presently the Mobile App DOES NOT PROCESS the VPs
+            media_received.mediaProcessed = False
+
+            media_received.save()
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
+
 # Portfolio View
 @login_required
 def portfolio(request):
-    medias = Media.objects.all()
-    return render(request, 'index.html', {'medias': medias,})
+    if request.user.is_authenticated:
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        medias = Media.objects.all()
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
+                                    ExpiresIn=900)
+        return render(request, 'index.html', {'medias': medias,})
+
 
 # Photo Feed View
 @login_required
 def photofeed(request):
     if request.user.is_authenticated:
-        photos = Media.objects.all()
-        return render(request, 'photofeed.html', {'photos': photos,})
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        medias = Media.objects.all(vp__asset__assetOwnerUserId=request.user)
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
+                                    ExpiresIn=900)
+        return render(request, 'photofeed.html', {'medias': medias,})
+
 
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
@@ -109,13 +163,16 @@ def cognitoauth(request):
         return JsonResponse(response)
     return HttpResponse(status=400)
 
+
 def zerossl(request):
     if request.method == "GET":
         return TemplateResponse(request, "zerossl.html")
 
+
 def android_assetlinks(request):
     if request.method == "GET":
         return TemplateResponse(request, "android_assetlinks.html", content_type="application/json")
+
 
 # Setup Side View
 @login_required

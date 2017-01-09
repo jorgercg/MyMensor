@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-import json
+
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -101,7 +101,8 @@ class Media(models.Model):
     mediaMillisSinceEpoch = models.BigIntegerField(null=True)
     mediaVpNumber = models.IntegerField(null=True)
     mediaAssetNumber = models.IntegerField(null=True)
-    mediaStorageURL = models.CharField(max_length=255, null=True)
+    mediaObjectS3Key = models.CharField(max_length=255, null=True)
+    mediaStorageURL = models.CharField(max_length=1024, null=True)
     mediaContentType = models.CharField(max_length=255, null=True)
     mediaLatitude = models.FloatField(null=True)
     mediaLongitude = models.FloatField(null=True)
