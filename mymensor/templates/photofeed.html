@@ -9,7 +9,7 @@
                 <img src="{{ media.mediaStorageURL }}" class="img-responsive" alt=""/>
             {% endif %}
             {% if media.mediaContentType == "video/mp4" %}
-                <source src="{{ media.mediaStorageURL }}" type="video/mp4" class="img-responsive" alt=""/>
+                <source src="{{ media.mediaStorageURL }}" type="video/mp4"/>
             {% endif %}
 		{% endfor %}
     {% endblock %}
