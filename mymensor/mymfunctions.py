@@ -1,7 +1,7 @@
 
 def setup_new_user(instance, **kwargs):
     from mymensor.models import Asset, Vp
-    Asset.objects.create(assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email)
+    Asset.objects.create(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email)
     asset = Asset(assetOwner=instance)
     maxQtyVps = 31  ###### Maximum quantity of vps in a DCI
     for i in range(0, maxQtyVps-1):
