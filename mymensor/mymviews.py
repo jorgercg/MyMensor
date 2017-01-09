@@ -126,7 +126,7 @@ def photofeed(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.all(vp__asset__assetOwnerUserId=request.user)
+        medias = Media.objects.filter(vp__asset__assetOwnerUserId=request.user)
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
