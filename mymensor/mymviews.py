@@ -64,7 +64,7 @@ def amazon_sns_processor(request):
 
             # Fetching the info necessary to fill the vp_id i.e. pk information
             media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
-            media_asset_id = Asset.objects.get(assetOwnerUserId=media_user_id).pk
+            media_asset_id = Asset.objects.get(assetOwner=media_user_id).pk
             media_received.vp = Vp.objects.get(asset=media_asset_id, vpNumber=media_received.mediaVpNumber)
             media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
             media_received.mediaObjectS3Key = amzs3msg.s3_object_key
@@ -112,7 +112,7 @@ def photofeed(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.filter(vp__asset__assetOwnerUserId=request.user)
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user)
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
