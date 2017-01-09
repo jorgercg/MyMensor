@@ -3,7 +3,8 @@
     {% block title %}Photo Feed - {{ block.super }}{% endblock %}
     {% block content %}
         {% for media in medias %}
-		<h1>{{ media.mediaMillisSinceEpoch }}</h1>
+		<h1>{{ media.mediaMymensorAccount }}</h1>
+            <h2>{{ media.mediaMillisSinceEpoch }}</h2>
 		<img src="{{ media.mediaStorageURL }}" class="img-responsive" alt=""/>
 		{% endfor %}
     {% endblock %}
