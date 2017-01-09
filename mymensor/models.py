@@ -16,7 +16,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
         setup_new_user(instance)
 
-@python_2_unicode_compatible
+
 class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
@@ -31,11 +31,7 @@ class Asset(models.Model):
     assetDciTolerancePosition = models.IntegerField(default=50)
     assetDciToleranceRotation = models.IntegerField(default=10)
 
-    def __str__(self):
-        return self.assetDescription
 
-
-@python_2_unicode_compatible
 class Vp(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     vpDescription = models.CharField(max_length=1024)
@@ -64,11 +60,7 @@ class Vp(models.Model):
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
 
-    def __str__(self):
-        return self.vpDescription
 
-
-@python_2_unicode_compatible
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
     tagDescription = models.CharField(max_length=1024)
@@ -89,9 +81,6 @@ class Tag(models.Model):
     tagMaxLagFromSlaveTagsInMillis = models.BigIntegerField(null=True)
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
-
-    def __str__(self):
-        return self.tagDescription
 
 
 class AmazonSNSNotification(models.Model):
