@@ -7,20 +7,21 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+from mymensor.mymfunctions import setup_new_user
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-
+        setup_new_user(instance)
 
 @python_2_unicode_compatible
 class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
-    assetOwnerUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerKey = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
@@ -41,28 +42,25 @@ class Vp(models.Model):
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
     vpListNumber = models.IntegerField(null=True)
-    vpStdPhotoStorageURL = models.CharField(max_length=255)
+    vpStdPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpStdTagDescPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpStdMarkerPhotoStorageURL = models.CharField(max_length=255, null=True)
     vpStdPhotoFileSize = models.BigIntegerField(null=True)
     vpStdMarkerPhotoFileSize = models.BigIntegerField(null=True)
-    vpMarkerId = models.IntegerField(null=True)
-    vpStdIdMarkerPhotoStorageURL = models.CharField(max_length=255, null=True)
-    vpConfiguredMillis = models.BigIntegerField(null=True)
-    vpXDistance = models.IntegerField(null=True)
-    vpYDistance = models.IntegerField(null=True)
-    vpZDistance = models.IntegerField(null=True)
-    vpXRotation = models.IntegerField(null=True)
-    vpYRotation = models.IntegerField(null=True)
-    vpZRotation = models.IntegerField(null=True)
-    vpMarkerlessMarkerWidth = models.IntegerField(null=True)
-    vpMarkerlessMarkerHeigth = models.IntegerField(null=True)
+    vpXDistance = models.IntegerField(default=0)
+    vpYDistance = models.IntegerField(default=0)
+    vpZDistance = models.IntegerField(default=0)
+    vpXRotation = models.IntegerField(default=0)
+    vpYRotation = models.IntegerField(default=0)
+    vpZRotation = models.IntegerField(default=0)
+    vpMarkerlessMarkerWidth = models.IntegerField(default=400)
+    vpMarkerlessMarkerHeigth = models.IntegerField(default=400)
     vpArIsConfigured = models.BooleanField(default=False)
     vpIsVideo = models.BooleanField(default=False)
     vpIsAmbiguos = models.BooleanField(default=False)
     vpIsSuperSingle = models.BooleanField(default=False)
     vpFlashTorchIsOn = models.BooleanField(default=False)
-    vpSuperMarkerId = models.IntegerField(null=True)
+    vpSuperMarkerId = models.IntegerField(default=0)
     vpFrequencyUnit = models.CharField(max_length=50, null=True)
     vpFrequencyValue = models.IntegerField(null=True)
 
