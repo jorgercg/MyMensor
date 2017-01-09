@@ -5,7 +5,12 @@
         {% for media in medias %}
 		<h1>{{ media.mediaMymensorAccount }}</h1>
             <h2>{{ media.mediaMillisSinceEpoch }}</h2>
-		<img src="{{ media.mediaStorageURL }}" class="img-responsive" alt=""/>
+            {% if media.mediaContentType == "image/jpeg" %}
+                <img src="{{ media.mediaStorageURL }}" class="img-responsive" alt=""/>
+            {% endif %}
+            {% if media.mediaContentType == "video/mp4" %}
+                <source src="{{ media.mediaStorageURL }}" type="video/mp4" class="img-responsive" alt=""/>
+            {% endif %}
 		{% endfor %}
     {% endblock %}
 {% else %}
