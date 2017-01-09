@@ -23,10 +23,10 @@ def amazon_sns_processor(request):
         body = json.loads(body_unicode)
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
-            serializer.save()
+            amzSns = AmazonSNSNotification(**serializer.validated_data)
+            amzSns.save()
             message_json = json.loads(body['Message'])
             amzs3msg = AmazonS3Message()
-            amzSns = AmazonSNSNotification(data=serializer.validated_data)
             amzs3msg.amazonSNSNotification = amzSns
             message_items = message_json['Records'][0]
             amzs3msg.eventVersion = message_items['eventVersion']
