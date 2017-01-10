@@ -3,9 +3,8 @@
     {% block content %}
 		{% for media in medias %}
 		<h1>{{ media.mediaMymensorAccount }}</h1>
-            <h2>{{ media.mediaMillisSinceEpoch }}</h2>
 		    {% if media.mediaContentType == "image/jpeg" %}
-                 <div class="card">
+                 <div class="card card-outline-primary">
                  <div class="card-header text-success"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
                     <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
                     <div class="card-block">
@@ -16,7 +15,7 @@
                  </div>
             {% endif %}
             {% if media.mediaContentType == "video/mp4" %}
-                <div class="card">
+                <div class="card card-outline-primary">
                 <div class="card-header text-success"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
