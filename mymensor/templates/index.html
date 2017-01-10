@@ -2,30 +2,32 @@
 {% if user.is_authenticated %}
     {% block content %}
 		{% for media in medias %}
-		<h1>{{ media.mediaMymensorAccount }}</h1>
-		    {% if media.mediaContentType == "image/jpeg" %}
-                 <div class="card card-outline-primary">
-                    <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
-                    <div class="card-block">
-                        <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
-                        <p class="card-text">{{ media.mediaTimeStamp }}</p>
-                    </div>
-                 <div class="card-footer text-muted">Received at{{ media.mediaDBTimeStamp }}</div>
-                 </div>
-            {% endif %}
-            {% if media.mediaContentType == "video/mp4" %}
-                <div class="card card-outline-primary">
-                <div class="card-header text-primary"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
-                    </div>
-                    <div class="card-block">
-                        <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
-                        <p class="card-text">{{ media.mediaTimeStamp }}</p>
-                    </div>
-                <div class="card-footer text-muted">Received at{{ media.mediaDBTimeStamp }}</div>
-                </div>
-            {% endif %}
+            <div class="d-flex p-5">
+                <h1>{{ media.mediaMymensorAccount }}</h1>
+                    {% if media.mediaContentType == "image/jpeg" %}
+                         <div class="card card-outline-primary">
+                            <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
+                            <div class="card-block">
+                                <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
+                                <p class="card-text">{{ media.mediaTimeStamp }}</p>
+                            </div>
+                         <div class="card-footer text-muted">Received at{{ media.mediaDBTimeStamp }}</div>
+                         </div>
+                    {% endif %}
+                    {% if media.mediaContentType == "video/mp4" %}
+                        <div class="card card-outline-primary">
+                        <div class="card-header text-primary"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
+                            </div>
+                            <div class="card-block">
+                                <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
+                                <p class="card-text">{{ media.mediaTimeStamp }}</p>
+                            </div>
+                        <div class="card-footer text-muted">Received at{{ media.mediaDBTimeStamp }}</div>
+                        </div>
+                    {% endif %}
+            </div>
 		{% endfor %}
     {% endblock %}
 {% else %}
