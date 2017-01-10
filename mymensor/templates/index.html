@@ -1,17 +1,28 @@
 {% extends 'layouts/base.html' %}
 {% if user.is_authenticated %}
-    {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
 		{% for media in medias %}
 		<h1>{{ media.mediaMymensorAccount }}</h1>
             <h2>{{ media.mediaMillisSinceEpoch }}</h2>
 		    {% if media.mediaContentType == "image/jpeg" %}
-                <img src="{{ media.mediaStorageURL }}" class="img-responsive" alt=""/>
+                 <div class="card">
+                    <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
+                    <div class="card-block">
+                        <h3 class="card-title">"VP#"{{ media.mediaVpNumber }}</h3>
+                        <p class="card-text">{{ media.mediaTimeStamp }}</p>
+                    </div>
+                </div>
             {% endif %}
             {% if media.mediaContentType == "video/mp4" %}
-                <video controls>
-                    <source src="{{ media.mediaStorageURL }}" type="video/mp4"/>
-                </video>
+                <div class="card">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
+                    </div>
+                    <div class="card-block">
+                        <h3 class="card-title">"VP#"{{ media.mediaVpNumber }}</h3>
+                        <p class="card-text">{{ media.mediaTimeStamp }}</p>
+                    </div>
+                </div>
             {% endif %}
 		{% endfor %}
     {% endblock %}
