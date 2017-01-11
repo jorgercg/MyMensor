@@ -46,7 +46,7 @@
               <img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" heoght="46" alt="">
             </a>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
-                <ul class="navbar-nav pull-right">
+                <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
@@ -59,7 +59,7 @@
                     {% endif %}
 
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown pull-right">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Logged in as: {{ user.get_username }}
                             </a>
