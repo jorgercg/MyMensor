@@ -57,19 +57,19 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
                     {% endif %}
-                </ul>
-                {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Logged in as: {{ user.get_username }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
-                            <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
-                        </div>
-                    </li>
-                {% endif %}
 
+                    {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Logged in as: {{ user.get_username }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
+                                <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
+                            </div>
+                        </li>
+                    {% endif %}
+                </ul>
             </div><!--/.nav-collapse -->
         </nav>
         <div class="container-fluid">
