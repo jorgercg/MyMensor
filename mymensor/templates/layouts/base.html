@@ -38,40 +38,41 @@
 		{% block header %}{% endblock %}
 	</head>
     <body>
-            <nav class="navbar navbar-toggleable-md navbar-light navbar-fixed-top bg-faded">
-                <button type="button" class="navbar-toggler navbar-toggler-left" data-toggle="collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'portfolio' %}">
-                  <img alt="MyMensor"src="{% static 'images/Logo_MyMensor_NEW3_46px.png' %}" class="d-inline-block align-top">
-                </a>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
-                        {% if user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'setup' %}">Setup</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}">Logout</a></li>
-                        {% else %}
-                            <li class="nav-item"><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
-                        {% endif %}
+        <nav class="navbar navbar-toggleable-md navbar-light navbar-fixed-top bg-faded">
+            <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'portfolio' %}">
+              <img alt="MyMensor"src="{% static 'images/Logo_MyMensor_NEW3_46px.png' %}" class="d-inline-block align-top">
+            </a>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Logged in as: {{ user.get_username }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
-                                <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
-                            </div>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'setup' %}">Setup</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
                     {% endif %}
-                     </ul>
-                </div><!--/.nav-collapse -->
-            </nav>
-        <div class="container">
+                </ul>
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Logged in as: {{ user.get_username }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
+                            <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
+                        </div>
+                    </li>
+                {% endif %}
+
+            </div><!--/.nav-collapse -->
+        </nav>
+        <div class="container-fluid">
             {% block content %}{% endblock %}
             {% block footer %}{% endblock %}
         </div><!-- /.container -->
