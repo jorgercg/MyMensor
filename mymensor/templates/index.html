@@ -3,7 +3,6 @@
     {% block content %}
 		{% for media in medias %}
             <div class="d-flex flex-wrap">
-                <h1>{{ media.mediaMymensorAccount }}</h1>
                     {% if media.mediaContentType == "image/jpeg" %}
                          <div class="card card-outline-primary" style="width: 20rem;">
                             <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
@@ -11,7 +10,7 @@
                                 <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
                                 <p class="card-text">{{ media.mediaTimeStamp }}</p>
                             </div>
-                         <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
+                            <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
                          </div>
                     {% endif %}
                     {% if media.mediaContentType == "video/mp4" %}
@@ -24,7 +23,7 @@
                                 <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
                                 <p class="card-text">{{ media.mediaTimeStamp }}</p>
                             </div>
-                        <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
+                            <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
                         </div>
                     {% endif %}
             </div>
