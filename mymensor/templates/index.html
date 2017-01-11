@@ -2,10 +2,10 @@
 {% if user.is_authenticated %}
     {% block content %}
 		{% for media in medias %}
-            <div class="d-flex p-1">
+            <div class="d-flex pflex-wrap">
                 <h1>{{ media.mediaMymensorAccount }}</h1>
                     {% if media.mediaContentType == "image/jpeg" %}
-                         <div class="card card-outline-primary">
+                         <div class="card card-outline-primary" style="width: 20rem;">
                             <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
                             <div class="card-block">
                                 <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
@@ -15,7 +15,7 @@
                          </div>
                     {% endif %}
                     {% if media.mediaContentType == "video/mp4" %}
-                        <div class="card card-outline-primary">
+                        <div class="card card-outline-primary" style="width: 20rem;">
                         <div class="card-header text-primary"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
