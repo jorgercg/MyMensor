@@ -5,7 +5,7 @@
             <div class="d-flex flex-wrap">
                     {% if media.mediaContentType == "image/jpeg" %}
                          <div class="card card-outline-primary" style="width: 20rem;">
-                            <img class="card-img-top" height="auto" src="{{ media.mediaStorageURL }}" alt="">
+                            <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                             <div class="card-block">
                                 <h4 class="card-title">VP#{{ media.mediaVpNumber }}</h4>
                                 <p class="card-text">{{ media.mediaTimeStamp }}</p>
