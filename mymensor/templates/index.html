@@ -5,9 +5,9 @@
             <div class="d-flex flex-wrap">
                     {% if media.mediaContentType == "image/jpeg" %}
                          <div class="card card-outline-primary" style="width: 20rem;">
-                            <img class="card-img-top" src="{{ media.mediaStorageURL }}" alt="">
+                            <img class="card-img-top" height="auto" src="{{ media.mediaStorageURL }}" alt="">
                             <div class="card-block">
-                                <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
+                                <h4 class="card-title">VP#{{ media.mediaVpNumber }}</h4>
                                 <p class="card-text">{{ media.mediaTimeStamp }}</p>
                             </div>
                             <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
@@ -20,7 +20,7 @@
                                 <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
                             </div>
                             <div class="card-block">
-                                <h3 class="card-title">VP#{{ media.mediaVpNumber }}</h3>
+                                <h4 class="card-title">VP#{{ media.mediaVpNumber }}</h4>
                                 <p class="card-text">{{ media.mediaTimeStamp }}</p>
                             </div>
                             <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
