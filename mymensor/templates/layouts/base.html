@@ -46,7 +46,7 @@
               <img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" heoght="46" alt="">
             </a>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav pull-right">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
