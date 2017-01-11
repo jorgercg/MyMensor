@@ -45,7 +45,7 @@
             <a class="navbar-brand" href="{% url 'portfolio' %}">
               <img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" heoght="46" alt="">
             </a>
-            <div id="navbar" class="collapse navbar-collapse">
+            <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
