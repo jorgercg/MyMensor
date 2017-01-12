@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %}
 {% if user.is_authenticated %}
     {% block content %}
-        <div class="d-flex flex-wrap">
+        <div class="d-flex align-content-start flex-wrap">
 		    {% for media in medias %}
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-1" style="width: 20rem;">
