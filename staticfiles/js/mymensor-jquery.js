@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
     $('ul li').click(function () {
-        alert("cliked!!!");
+        $('ul li').find('.active').removeClass('active');
+        $(this).addClass('active');
     });
 
 });
