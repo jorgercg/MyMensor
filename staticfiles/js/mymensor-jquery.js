@@ -1,6 +1,5 @@
-var selector = '.li';
+$(document).ready(function() {
 
-$(selector).on('click', function(){
-    $(selector).removeClass('active');
-    $(this).addClass('active');
+    alert("hello?")
+
 });
