@@ -49,7 +49,7 @@
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link active" href="{% url 'portfolio' %}">Portfolio<span class="sr-only">(current)</span> </a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio<span class="sr-only">(current)</span> </a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'setup' %}">Setup</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
@@ -83,6 +83,14 @@
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-        <script src="{% static "js/mymensor-jquery.js" %}"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var url = window.location;
+                $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+                $('ul.nav a').filter(function() {
+                    return this.href == url;
+                }).parent().addClass('active');
+            });
+        </script>
     </body>
 </html>
