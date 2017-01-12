@@ -107,7 +107,7 @@ def portfolio(request):
 
 # Photo Feed View
 @login_required
-def photofeed(request):
+def mediafeed(request):
     if request.user.is_authenticated:
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -117,7 +117,7 @@ def photofeed(request):
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=900)
-        return render(request, 'photofeed.html', {'medias': medias,})
+        return render(request, 'mediafeed.html', {'medias': medias, })
 
 
 @api_view(['GET'])

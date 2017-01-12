@@ -23,8 +23,8 @@ from rest_framework.authtoken import views
 from mymensor import mymviews
 
 urlpatterns = [
-    url(r'^$', mymviews.portfolio, name='portfolio'),
-    url(r'^photofeed/$', mymviews.photofeed, name='photofeed'),
+    url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
+    url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^setup/$', mymviews.myMensorSetupFormView, name='setup'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
     url(r'^chaining/', include('smart_selects.urls')),
