@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-    $('.nav a').click(function () {
-        $('.nav').find('.active').removeClass('active');
-        $(this).parent().addClass('active');
+    $('ul li').click(function () {
+        $('ul li').find('.active').removeClass('active');
+        $(this).addClass('active');
         alert('clicked');
     });
 
