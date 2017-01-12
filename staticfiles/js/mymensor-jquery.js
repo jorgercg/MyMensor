@@ -1,9 +1,8 @@
 $(document).ready(function() {
 
-    $('ul li').click(function () {
-        $('ul li').find('.active').removeClass('active');
-        $(this).addClass('active');
-        alert('clicked');
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
     });
 
 });
