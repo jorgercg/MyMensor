@@ -5,9 +5,10 @@
 		    {% for media in medias %}
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary" style="width: 20rem;">
+                     <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
                         <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                         <div class="card-block">
-                            <h4 class="card-title">VP#{{ media.mediaVpNumber }}</h4>
+                            <h4 class="card-title">Captured on</h4>
                             <p class="card-text">{{ media.mediaTimeStamp }}</p>
                         </div>
                         <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
@@ -15,12 +16,12 @@
                 {% endif %}
                 {% if media.mediaContentType == "video/mp4" %}
                     <div class="card card-outline-primary" style="width: 20rem;">
-                    <div class="card-header text-primary"><h2>VP#{{ media.mediaVpNumber }}</h2></div>
+                    <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
                         </div>
                         <div class="card-block">
-                            <h4 class="card-title">VP#{{ media.mediaVpNumber }}</h4>
+                            <h4 class="card-title">Captured on</h4>
                             <p class="card-text">{{ media.mediaTimeStamp }}</p>
                         </div>
                         <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
