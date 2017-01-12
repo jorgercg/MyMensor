@@ -40,7 +40,7 @@
 		{% block header %}{% endblock %}
 	</head>
     <body>
-        <nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-right" style="background-color: #e3f2fd;" id="myNavbar">
             <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,7 +48,7 @@
               <img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" heoght="46" alt="">
             </a>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
-                <ul class="navbar-nav navbar-right">
+                <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'mediafeed' %}" href="{% url 'mediafeed' %}">Mediafeed</a></li>
