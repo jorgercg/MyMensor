@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
-    alert("hello?")
+    $('ul li').click(function () {
+        alert("cliked!!!");
+    });
 
 });
