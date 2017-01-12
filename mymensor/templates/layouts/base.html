@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load is_active %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -49,14 +50,14 @@
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'portfolio' %}">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'photofeed' %}">Photofeed</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'setup' %}">Setup</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_logout' %}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'photofeed' %}" href="{% url 'photofeed' %}">Photofeed</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'setup' %}" href="{% url 'setup' %}">Setup</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'contact' %}" href="{% url 'contact' %}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'auth_logout' %}" href="{% url 'auth_logout' %}">Logout</a></li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{% url 'auth_login' %}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}" href="{% url 'auth_login' %}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
                     {% endif %}
 
                     {% if user.is_authenticated %}
@@ -78,7 +79,6 @@
             {% block footer %}{% endblock %}
         </div><!-- /.container -->
         <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-        <script src="{% static "js/mymensor-jquery.js" %}"></script>
         <script src="{% static "js/tether.min.js" %}"></script>
         <script src="{% static "js/chainedfk.js" %}"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
