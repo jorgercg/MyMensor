@@ -4,7 +4,7 @@
         <div class="d-flex align-content-start flex-wrap">
 		    {% for media in medias %}
                 {% if media.mediaContentType == "image/jpeg" %}
-                     <div class="card card-outline-primary m-auto" style="width: 20rem;">
+                     <div class="card card-outline-primary m-2" style="width: 20rem;">
                      <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
                         <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                         <div class="card-block">
@@ -15,7 +15,7 @@
                      </div>
                 {% endif %}
                 {% if media.mediaContentType == "video/mp4" %}
-                    <div class="card card-outline-primary m-auto" style="width: 20rem;">
+                    <div class="card card-outline-primary m-2" style="width: 20rem;">
                     <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="{{ media.mediaStorageURL }}" allowfullscreen></iframe>
