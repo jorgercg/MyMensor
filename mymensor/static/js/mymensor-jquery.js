@@ -1,4 +1,4 @@
-var selector = '.nav li';
+var selector = '.li';
 
 $(selector).on('click', function(){
     $(selector).removeClass('active');
