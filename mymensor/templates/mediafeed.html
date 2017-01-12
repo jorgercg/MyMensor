@@ -6,10 +6,8 @@
             {% for media in medias %}
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
-                     <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
-                            <a id="myLightbox" data-toggle="lightbox">
-                                <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
-                            </a>
+                        <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
+                        <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                         <div class="card-block">
                             <h4 class="card-title">Captured on</h4>
                             <p class="card-text">{{ media.mediaTimeStamp }}</p>
@@ -19,7 +17,7 @@
                 {% endif %}
                 {% if media.mediaContentType == "video/mp4" %}
                     <div class="card card-outline-primary m-2" style="width: 20rem;">
-                    <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
+                        <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
                         <div class="embed-responsive embed-responsive-16by9">
                             <video controls>
                                 <source src="{{ media.mediaStorageURL }}" type="video/mp4">
