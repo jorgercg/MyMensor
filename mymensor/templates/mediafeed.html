@@ -7,7 +7,7 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary"><h4>VP#{{ media.mediaVpNumber }}</h4></div>
-                        <a data-toggle="modal" data-target="#myModal">
+                        <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
                             <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                         </a>
                         <div class="card-block">
@@ -33,6 +33,18 @@
                     </div>
                 {% endif %}
             {% endfor %}
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header"></div>
+                    <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer"></div>
+            </div>
+          </div>
         </div>
     {% endblock %}
 {% else %}
