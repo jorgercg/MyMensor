@@ -101,11 +101,11 @@ def portfolio(request):
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=900)
+                                    ExpiresIn=3600)
         return render(request, 'index.html', {'medias': medias,})
 
 
-# Photo Feed View
+# Media Feed View
 @login_required
 def mediafeed(request):
     if request.user.is_authenticated:
@@ -116,7 +116,22 @@ def mediafeed(request):
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=900)
+                                    ExpiresIn=3600)
+        return render(request, 'mediafeed.html', {'medias': medias, })
+
+
+@login_required
+def updatemediafeed(request, **kwargs):
+    ownerofrceivedmedia = kwargs.get('ownerofrceivedmedia')
+    if request.user == ownerofrceivedmedia:
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp')
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
+                                    ExpiresIn=3600)
         return render(request, 'mediafeed.html', {'medias': medias, })
 
 
