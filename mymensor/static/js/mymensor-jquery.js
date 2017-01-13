@@ -7,7 +7,7 @@ $(document).ready(function() {
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         alert(recipient)
         var modal = $(this)
-        modal.find('#mediaContent').val(src=recipient)
+        modal.find('#mediaContent').attr('src',recipient)
     })
 
 

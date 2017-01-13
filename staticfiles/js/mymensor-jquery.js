@@ -8,7 +8,7 @@ $('#mediaModal').on('show.bs.modal', function (event) {
             alert(recipient)
 
         var modal = $(this)
-        modal.find('#mediaContent').val(src=recipient)
-    })
+ modal.find('#mediaContent').attr('src',recipient)
+})
 
 });
