@@ -132,7 +132,7 @@ def updatemediafeed(request, **kwargs):
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        render(request, 'mediafeed.html', {'medias': medias, })
+        return render(request, 'mediafeed.html', {'medias': medias, })
 
 
 @api_view(['GET'])
