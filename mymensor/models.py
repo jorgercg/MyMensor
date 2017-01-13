@@ -149,3 +149,4 @@ class Value(models.Model):
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
+
