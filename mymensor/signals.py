@@ -16,4 +16,4 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 def update_mediafeed_view(sender, instance=None, created=False, **kwargs):
     receivedmedia = instance
     ownerofrceivedmedia = settings.AUTH_USER_MODEL.object.get(pk=receivedmedia.vp__asset_assetOwner)
-    updatemediafeed(receivedmedia, ownerofrceivedmedia)
+    updatemediafeed(ownerofrceivedmedia)
