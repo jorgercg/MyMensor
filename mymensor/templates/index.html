@@ -1,5 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% if user.is_authenticated %}
+    {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
         <div class="d-flex align-content-start flex-wrap">
 		    {% for media in medias %}

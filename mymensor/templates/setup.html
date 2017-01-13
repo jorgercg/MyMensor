@@ -3,15 +3,5 @@
 {% block header %}
 {% endblock %}
 {% block content %}
-{% load crispy_forms_tags %}
-<div class="row">
-    <div id="form-edit" class="col-md-3">
-        <form action="" method="post">
-            {% crispy formSetAssetOwner %}
-            {% crispy formSetAsset %}
-            {% crispy formSetDci %}
-            <input type="submit" />
-        </form>
-    </div>
-</div>
+
 {% endblock %}
