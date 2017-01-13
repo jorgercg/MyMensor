@@ -97,7 +97,7 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.all()
+        medias = Media.objects.all().order_by('mediaVpNumber', '-mediaTimeStamp')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
@@ -112,7 +112,7 @@ def mediafeed(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user)
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
