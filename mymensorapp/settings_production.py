@@ -17,7 +17,7 @@ SITE_NAME = "MyMensor"
 
 # optionnal settings
 CENTRIFUGO_HOST = 'https://centrifugo-mym.herokuapp.com' #default: localhost
-CENTRIFUGO_PORT = 8012 # default: 8001
+#CENTRIFUGO_PORT = 8012 # default: 8001
 INSTANT_PUBLIC_CHANNEL = "public" #default: SITE_SLUG+'_public'
 
 # UPDATE BEFORE LAUNCH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
