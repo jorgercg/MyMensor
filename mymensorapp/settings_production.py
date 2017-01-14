@@ -21,6 +21,8 @@ CENTRIFUGO_HOST = 'https://centrifugo-mym.herokuapp.com' #default: localhost
 INSTANT_PUBLIC_CHANNEL = "public" #default: SITE_SLUG+'_public'
 INSTANT_ENABLE_USERS_CHANNEL = "$mediafeed"
 
+INSTANT_DEBUG = True
+
 # UPDATE BEFORE LAUNCH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ALLOWED_HOSTS = ['app.mymensor.com', 'mymensor.herokuapp.com']
 
