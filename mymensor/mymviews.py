@@ -11,6 +11,7 @@ from rest_framework.authtoken.models import Token
 from mymensor.models import Asset, Vp, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
+from instant.utils import signed_response
 import json, boto3
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
@@ -120,21 +121,6 @@ def mediafeed(request):
         return render(request, 'mediafeed.html', {'medias': medias, })
 
 
-@login_required
-def updatemediafeed(request, **kwargs):
-    ownerofrceivedmedia = kwargs.get('ownerofrceivedmedia')
-    if request.user == ownerofrceivedmedia:
-        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-        s3Client = session.client('s3')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp')
-        for media in medias:
-            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=3600)
-        return render(request, 'mediafeed.html', {'medias': medias, })
-
-
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
@@ -174,6 +160,21 @@ def android_assetlinks(request):
     if request.method == "GET":
         return TemplateResponse(request, "android_assetlinks.html", content_type="application/json")
 
+@csrf_exempt
+def mychan_auth_view(request):
+    if not request.is_ajax() or not request.method == "POST":
+        return HttpResponse(status=404)
+    data = json.loads(request.body)
+    channels = data["channels"]
+    client = data["client"]
+    response = {}
+    for channel in channels:
+        response[channel] = {"status", "403"}
+        if channel == "$mediafeed":
+            # checks come here
+            if request.user.is_authenticated():
+                response[channel] = signed_response(channel, client)
+    return JsonResponse(response)
 
 # Setup Side View
 @login_required

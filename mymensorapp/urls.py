@@ -19,7 +19,6 @@ from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
 from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
-from instant.views import instant_auth
 
 from mymensor import mymviews
 
@@ -55,6 +54,6 @@ urlpatterns = [
 
     url('^instant/', include('instant.urls')),
 
-    url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
+    url(r'^centrifuge/auth/$', mymviews.mychan_auth_view),
 
 ]
