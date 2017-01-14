@@ -58,4 +58,3 @@ urlpatterns = [
     url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
 
 ]
-
