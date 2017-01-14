@@ -37,9 +37,6 @@
         <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
         <meta name="msapplication-config" content="images/browserconfig.xml">
         <meta name="theme-color" content="#00afef">
-        <!-- Django Instant client engine
-	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        {% include "instant/client.html" %}
 		{% block header %}{% endblock %}
 	</head>
     <body>
@@ -88,5 +85,8 @@
         <script src="{% static "js/mymensor-jquery.js" %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+        <!-- Django Instant client engine
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        {% include "instant/client.html" %}
     </body>
 </html>
