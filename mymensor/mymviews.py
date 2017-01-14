@@ -160,21 +160,6 @@ def android_assetlinks(request):
     if request.method == "GET":
         return TemplateResponse(request, "android_assetlinks.html", content_type="application/json")
 
-@csrf_exempt
-def mychan_auth_view(request):
-    if not request.is_ajax() or not request.method == "POST":
-        return HttpResponse(status=404)
-    data = json.loads(request.body)
-    channels = data["channels"]
-    client = data["client"]
-    response = {}
-    for channel in channels:
-        response[channel] = {"status", "403"}
-        if channel == "$mediafeed":
-            # checks come here
-            if request.user.is_authenticated():
-                response[channel] = signed_response(channel, client)
-    return JsonResponse(response)
 
 # Setup Side View
 @login_required

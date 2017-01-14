@@ -88,20 +88,5 @@
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "instant/client.html" %}
-        <script>
-            var my_callbacks = {
-                "message": function(dataset) {
-                // the debug variable is set via INSTANT_DEBUG = True in settings.py
-                if (debug === true) { console.log('EVENT: '+JSON.stringify(dataset));}
-                // do something with the data
-                $(document).ready(function() {
-                    alert('EVENT: '+JSON.stringify(dataset));
-                    location.reload(); });
-                },
-                {% include "instant/js/join_events.js" %}
-                };
-
-                var subscription = centrifuge.subscribe("$mediafeed", my_callbacks);
-        </script>
     </body>
 </html>
