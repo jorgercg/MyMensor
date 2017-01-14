@@ -88,5 +88,8 @@
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "instant/client.html" %}
+        {% if user.is_authenticated and request.path == "/private/" %}
+            {% include "client.html" %}
+        {% endif %}
     </body>
 </html>
