@@ -11,6 +11,7 @@ SECURE_SSL_REDIRECT = True
 
 # required settings
 CENTRIFUGO_SECRET_KEY = "7da2d4f3f367734c07b7267368d4b37ce641c3aba2c15cca01396c145aae6d9d" # the_key_that_is_in_config.json
+CENTRIFUGE_SECRET = "7da2d4f3f367734c07b7267368d4b37ce641c3aba2c15cca01396c145aae6d9d"
 
 SITE_SLUG = "my_mensor" # used internaly to prefix the channels
 SITE_NAME = "MyMensor"
