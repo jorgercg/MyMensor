@@ -26,11 +26,11 @@ var public_callbacks = {
     	var data = res['data']
     	var channel = res['channel'];
     	var site = res['site'];
+    	/*
     	if ("{{user.get_username}}"===JSON.stringify(data.username).replace(/\"/g, "")) {
-
     		$(document).ready(function ($) {
   				refresh();});
-		}
+		} */
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
