@@ -29,11 +29,11 @@ var public_callbacks = {
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
-    	var usrname = data.username;
-    	alert(usrname);
+    	var message = data.username;
+
     	//var alert_on_event = handlers_for_event(event_class, channel, message, data, site, timestamp);
-		if (usrname === centrifuge.user ) {
-			// default behavior: popup a message on the top right corner
+		 {
+			// default behavior: popup a message on the top right corner    if (usrname === centrifuge.user )
 			$('#streambox').prepend(format_data(message, event_class));
 			num_msgs = increment_counter();
 			if (num_msgs > 0) {
