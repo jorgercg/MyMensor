@@ -9,21 +9,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 SECURE_SSL_REDIRECT = True
 
-# required settings
-CENTRIFUGO_SECRET_KEY = "7da2d4f3f367734c07b7267368d4b37ce641c3aba2c15cca01396c145aae6d9d" # the_key_that_is_in_config.json
-CENTRIFUGE_SECRET = "7da2d4f3f367734c07b7267368d4b37ce641c3aba2c15cca01396c145aae6d9d"
-
-SITE_SLUG = "my_mensor" # used internaly to prefix the channels
-SITE_NAME = "MyMensor"
-
-# optionnal settings
-CENTRIFUGO_HOST = 'http://centrifugo.mymensor.com' #default: localhost
-CENTRIFUGO_PORT = 8012 # default: 8001
-INSTANT_PUBLIC_CHANNEL = "public" #default: SITE_SLUG+'_public'
-#INSTANT_ENABLE_USERS_CHANNEL = "$mediafeed"
-
-INSTANT_DEBUG = True
-
 # UPDATE BEFORE LAUNCH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ALLOWED_HOSTS = ['app.mymensor.com', 'mymensor.herokuapp.com']
 
