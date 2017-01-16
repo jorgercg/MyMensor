@@ -87,7 +87,7 @@ def amazon_sns_processor(request):
 
             media_received.save()
 
-            broadcast(message='New media arrived on server')
+            #broadcast(message='New media arrived on server')
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
