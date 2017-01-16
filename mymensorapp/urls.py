@@ -53,7 +53,7 @@ urlpatterns = [
 
     url(r'^api-token-auth/', views.obtain_auth_token),
 
-    url('^instant/', include('instant.urls')),
+    url(r'^instant/', include('instant.urls')),
 
     url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
 
