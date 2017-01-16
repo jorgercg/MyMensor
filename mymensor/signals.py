@@ -15,4 +15,5 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 @receiver(post_save, sender=Media)
 def update_mediafeed_view(sender, instance=None, created=False, **kwargs):
-    broadcast(message='New media arrived on server')
+    if created:
+        broadcast(message='New media arrived on server')
