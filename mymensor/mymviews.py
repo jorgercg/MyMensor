@@ -87,7 +87,10 @@ def amazon_sns_processor(request):
 
             media_received.save()
 
-            #broadcast(message='New media arrived on server')
+            broadcast(message='New media arrived on server', channel="$mediafeed", event_class="NewMedia", data={"username":media_received.mediaMymensorAccount})
+
+
+            #broadcast_py(message, event_class="default", data={}, channel=None, site=SITE_NAME, target=None):
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
