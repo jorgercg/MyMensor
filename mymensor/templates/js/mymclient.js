@@ -29,10 +29,11 @@ var public_callbacks = {
 
     	if ("{{user.get_username}}"===JSON.stringify(data.username).replace(/\"/g, "")) {
 
-    		refresh();
+    		$(document).ready(function ($) {
+  				refresh();});
 		}
 
-    	/*
+
 
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
@@ -48,7 +49,7 @@ var public_callbacks = {
 		    	$('#streambox').delay(15000).fadeOut();
 			}
 		}
-		*/
+
     }}
     {% include "instant/js/join_events.js" %}
 }
