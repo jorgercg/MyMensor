@@ -24,15 +24,19 @@ var public_callbacks = {
     	var event_class = res['event_class']
     	var message_label = res['message_label']
     	var data = res['data']
+		var usrname = "";
+		if (dataset['data'].hasOwnProperty('username')) {
+			var usrname = dataset['data']['username'];
+		}
     	var channel = res['channel'];
     	var site = res['site'];
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
     	var alert_on_event = handlers_for_event(event_class, channel, message, data, site, timestamp);
-		if (alert_on_event === true ) {
+		if (alert_on_event === true) {
 			// default behavior: popup a message on the top right corner
-			$('#streambox').prepend(format_data(message, event_class));
+			$('#streambox').prepend(format_data(message, usrname));  //event_class
 			num_msgs = increment_counter();
 			if (num_msgs > 0) {
 		    	$('#msgs_counter').show();
@@ -78,3 +82,24 @@ centrifuge.on('disconnect', function(context) {
 {% endif %}
 
 centrifuge.connect();
+
+
+
+var event_class = "";
+	if (dataset['data'].hasOwnProperty('event_class')) {
+		var event_class = dataset['data']['event_class'];
+	}
+	var data = "";
+	if (dataset['data'].hasOwnProperty('data')) {
+		var data = dataset['data']['data'];
+	}
+	var site = "";
+	if (dataset['data'].hasOwnProperty('site')) {
+		var site = dataset['data']['site'];
+	}
+	var res = {"channel":channel, "message": message, "event_class": event_class, "message_label": message_label, "data": data, "site":site}
+	return res
+
+
+
+
