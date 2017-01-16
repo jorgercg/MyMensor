@@ -20,18 +20,18 @@ var public_callbacks = {
     	var d = new Date();
     	var timestamp = new Date(dataset['timestamp']*1000 + d.getTimezoneOffset() * 60000);
     	res = unpack_data(dataset);
-    	//var message = res['message'];
+    	var message = res['message'];
     	var event_class = res['event_class'];
     	var message_label = res['message_label'];
-    	var message = res['data'];
+    	var data = res['data'];
     	var channel = res['channel'];
     	var site = res['site'];
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
-    	var usrobj = JSON.parse(data);
+    	var usrname = data.username;
     	//var alert_on_event = handlers_for_event(event_class, channel, message, data, site, timestamp);
-		//if (usrobj.username === centrifuge.user ) {
+		if (usrname === centrifuge.user ) {
 			// default behavior: popup a message on the top right corner
 			$('#streambox').prepend(format_data(message, event_class));
 			num_msgs = increment_counter();
@@ -40,9 +40,8 @@ var public_callbacks = {
 		    	$('#streambox').show();
 		    	$('#streambox').delay(15000).fadeOut();
 			}
-		//}
-		;
-    },
+		};
+    }};
     {% include "instant/js/join_events.js" %}
 }
 
