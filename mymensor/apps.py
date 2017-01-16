@@ -6,4 +6,4 @@ class MymensorConfig(AppConfig):
     name = 'mymensor'
 
     def ready(self):
-        import mymensor.signals
+        from . import signals

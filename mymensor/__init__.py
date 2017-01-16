@@ -1,1 +1,1 @@
-import mymensor.signals
+default_app_config = 'mymensor.apps.MymensorConfig'
