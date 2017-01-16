@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from instant.producers import broadcast
 from mymensor.models import Asset, Vp, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -85,6 +86,8 @@ def amazon_sns_processor(request):
             media_received.mediaProcessed = False
 
             media_received.save()
+
+            broadcast(message='New media arrived on server')
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
