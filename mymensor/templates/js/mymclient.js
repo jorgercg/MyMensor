@@ -26,26 +26,21 @@ var public_callbacks = {
     	var data = res['data']
     	var channel = res['channel'];
     	var site = res['site'];
-    	/*
-    	if ("{{user.get_username}}"===JSON.stringify(data.username).replace(/\"/g, "")) {
-    		$(document).ready(function ($) {
-  				refresh();});
-		} */
     	if ( debug === true ) {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
     	var alert_on_event = handlers_for_event(event_class, channel, message, data, site, timestamp);
 		if (alert_on_event === true ) {
 			// default behavior: popup a message on the top right corner
-			$('#streambox').prepend(format_data(("{{user.get_username}}"==JSON.stringify(data.username).replace(/\"/g, "")), event_class)); //JSON.stringify(data.username)
+			$('#streambox').prepend(format_data(message, event_class));
 			num_msgs = increment_counter();
 			if (num_msgs > 0) {
 		    	$('#msgs_counter').show();
 		    	$('#streambox').show();
 		    	$('#streambox').delay(15000).fadeOut();
 			}
-		}
-    }};
+		};
+    },
     {% include "instant/js/join_events.js" %}
 }
 
