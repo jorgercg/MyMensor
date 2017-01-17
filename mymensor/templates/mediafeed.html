@@ -8,13 +8,13 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h4>VP#{{ media.mediaVpNumber }}
+                            <h5>VP#{{ media.mediaVpNumber }}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
                                     <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% endif %}
-                            </h4>
+                            </h5>
                         </div>
                         <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
                             <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
@@ -51,13 +51,13 @@
                 {% if media.mediaContentType == "video/mp4" %}
                     <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h4>VP#{{ media.mediaVpNumber }}
+                            <h5>VP#{{ media.mediaVpNumber }}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
                                     <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% endif %}
-                            </h4>
+                            </h5>
                         </div>
                         <div class="embed-responsive embed-responsive-16by9">
                             <video controls>
