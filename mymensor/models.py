@@ -132,6 +132,7 @@ class Media(models.Model):
     mediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
     mediaMymensorAccount = models.CharField(max_length=255, null=True)
     mediaProcessed = models.NullBooleanField(null=True)
+    mediaStateEvaluated = models.IntegerField(null=True)
 
 
 class ProcessedTag(models.Model):

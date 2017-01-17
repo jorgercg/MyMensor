@@ -17,9 +17,21 @@
                         </a>
                         <div class="card-block">
                              <p class="card-text">
-                                <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR</span>
-                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                 {% if media.mediaArIsOn %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                 {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                 {% endif %}
+                                 {% if media.mediaTimeIsCertified %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                 {% endif %}
+                                 {% if media.mediaLocIsCertified %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                 {% endif %}
                             </p>
                         </div>
                         <div class="card-block">
