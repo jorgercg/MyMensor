@@ -44,7 +44,10 @@
             </div>
           </div>
         </div>
-
+        <!-- Django Instant client engine
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        {% include "mymclient.html" %}
+        {% include "mymmessages.html" %}
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>
