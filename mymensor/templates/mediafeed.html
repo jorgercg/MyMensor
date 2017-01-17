@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% if user.is_authenticated %}
     {% block title %}Mediafeed - {{ block.super }}{% endblock %}
     {% block content %}
@@ -7,7 +8,10 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h4>VP#{{ media.mediaVpNumber }}<span class="fa fa-bar-chart vpnotprocessed"></span></h4>
+                            <h4>VP#{{ media.mediaVpNumber }}
+                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Log in' %}"></span>
+
+                            </h4>
                         </div>
                         <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
                             <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
