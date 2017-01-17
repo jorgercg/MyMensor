@@ -7,7 +7,7 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <p>VP#{{ media.mediaVpNumber }}<span class="fa fa-bar-chart vpnotprocessed"></span></p>
+                            <h4>VP#{{ media.mediaVpNumber }}<span class="fa fa-bar-chart vpnotprocessed"></span></h4>
                         </div>
                         <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
                             <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
