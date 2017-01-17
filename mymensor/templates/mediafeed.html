@@ -9,18 +9,20 @@
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
                             <h4>VP#{{ media.mediaVpNumber }}
-                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Log in' %}"></span>
-
+                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                             </h4>
                         </div>
                         <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
                             <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                         </a>
                         <div class="card-block">
-                            <h4 class="card-title">Captured on</h4>
-                            <p class="card-text">{{ media.mediaTimeStamp }}</p>
+                            <p class="card-text">
+                                <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp }}
+                            </p>
                         </div>
-                        <div class="card-footer text-muted">Received at {{ media.mediaDBTimeStamp }}</div>
+                        <div class="card-footer text-muted">
+                            <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp }}
+                        </div>
                      </div>
                 {% endif %}
                 {% if media.mediaContentType == "video/mp4" %}
