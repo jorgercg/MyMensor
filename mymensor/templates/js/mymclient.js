@@ -35,10 +35,10 @@ var public_callbacks = {
 			$('#streambox').prepend(format_data(message, event_class));
 			num_msgs = increment_counter();
 			if (num_msgs > 0) {
-		    	$('#msgs_counter').show();
+		    	location.reload(true);
+				$('#msgs_counter').show();
 		    	$('#streambox').show();
 		    	$('#streambox').delay(15000).fadeOut();
-		    	location.reload(true);
 			}
 		};
     },
