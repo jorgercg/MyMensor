@@ -30,7 +30,7 @@ var public_callbacks = {
     		console.log('Msg: '+message+"\nChan: "+channel+"\nEvent_class: "+event_class+'\nData: '+JSON.stringify(data));
     	}
     	var alert_on_event = handlers_for_event(event_class, channel, message, data, site, timestamp);
-		if (alert_on_event === true ) {
+		if (alert_on_event === true && ("{{user.get_username}}"==JSON.stringify(data.username).replace(/\"/g, ""))) {
 			// default behavior: popup a message on the top right corner
 			$('#streambox').prepend(format_data(message, event_class));
 			num_msgs = increment_counter();
