@@ -116,12 +116,11 @@ def mediafeed(request):
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp')
-        vps = Vp.objects.filter(vpNumber=Media.mediaVpNumber)
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'mediafeed.html', {'medias': medias, 'vps':vps})
+        return render(request, 'mediafeed.html', {'medias': medias,})
 
 
 @api_view(['GET'])
