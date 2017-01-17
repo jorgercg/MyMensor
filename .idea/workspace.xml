@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/mediafeed.html" afterPath="$PROJECT_DIR$/mymensor/templates/mediafeed.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" afterPath="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -131,7 +130,6 @@
         <option value="$PROJECT_DIR$/mymensor/static/css/style.css" />
         <option value="$PROJECT_DIR$/staticfiles/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensorapp/tags.py" />
-        <option value="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" />
         <option value="$PROJECT_DIR$/staticfiles/js/mymensor-jquery.js" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/app.py" />
@@ -170,6 +168,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/mediafeed.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
+        <option value="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" />
       </list>
     </option>
   </component>
@@ -315,7 +314,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -338,50 +337,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensorapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensorapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensorapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensorapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mymensor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -731,13 +686,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-00448" summary="16jan2017 09h21min">
-      <created>1484570976817</created>
-      <option name="number" value="00448" />
-      <option name="presentableId" value="LOCAL-00448" />
-      <option name="project" value="LOCAL" />
-      <updated>1484570976817</updated>
-    </task>
     <task id="LOCAL-00449" summary="16jan2017 09h21min">
       <created>1484587822083</created>
       <option name="number" value="00449" />
@@ -1074,7 +1022,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484652659453</updated>
     </task>
-    <option name="localTasksCounter" value="497" />
+    <task id="LOCAL-00497" summary="17jan2017 09h23min">
+      <created>1484653696464</created>
+      <option name="number" value="00497" />
+      <option name="presentableId" value="LOCAL-00497" />
+      <option name="project" value="LOCAL" />
+      <updated>1484653696464</updated>
+    </task>
+    <option name="localTasksCounter" value="498" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1182,14 +1137,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/password_change_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/password_reset_complete.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1575,6 +1522,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="3" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="3" />
           <folding />
         </state>
       </provider>
