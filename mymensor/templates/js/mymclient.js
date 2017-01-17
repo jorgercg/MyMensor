@@ -36,9 +36,9 @@ var public_callbacks = {
 			num_msgs = increment_counter();
 			if (num_msgs > 0) {
 		    	location.reload(true);
-				$('#msgs_counter').show();
-		    	$('#streambox').show();
-		    	$('#streambox').delay(15000).fadeOut();
+				//$('#msgs_counter').show();
+		    	//$('#streambox').show();
+		    	//$('#streambox').delay(15000).fadeOut();
 			}
 		};
     },
