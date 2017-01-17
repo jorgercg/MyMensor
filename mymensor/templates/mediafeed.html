@@ -9,7 +9,11 @@
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
                             <h4>VP#{{ media.mediaVpNumber }}
-                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                {% if media.mediaProcessed %}
+                                    <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                {% endif %}
                             </h4>
                         </div>
                         <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">

@@ -15,21 +15,31 @@ body {
 	top:1em;
 	right:1em;
     z-index: 1080;
+    line-height: inherit;
 }
 
 .vpnotprocessed {
     color: gray;
     float: right;
+    line-height: inherit;
+}
+
+.vpprocessed {
+    color: blue;
+    float: right;
+    line-height: inherit;
 }
 
 .vpalarmed {
     color: red;
     float: right;
+    line-height: inherit;
 }
 
 .vpok {
     color: green;
     float: right;
+    line-height: inherit;
 }
 
 .loccert {
