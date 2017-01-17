@@ -38,6 +38,7 @@ var public_callbacks = {
 		    	$('#msgs_counter').show();
 		    	$('#streambox').show();
 		    	$('#streambox').delay(15000).fadeOut();
+		    	location.reload(true);
 			}
 		};
     },
