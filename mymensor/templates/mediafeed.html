@@ -40,7 +40,7 @@
                         </div>
                         <div class="card-block">
                             <p class="card-text">
-                                <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"r T" }}
+                                <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"y-b-d H:i:sO" }}
                             </p>
                         </div>
                         <div class="card-footer text-muted">
