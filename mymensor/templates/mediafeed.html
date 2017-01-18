@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz mymfilters%}
+{% load i18n tz %}
 {% if user.is_authenticated %}
     {% block title %}Mediafeed - {{ block.super }}{% endblock %}
     {% block content %}
