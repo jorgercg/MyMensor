@@ -4,4 +4,7 @@ register = template.Library()
 
 @register.filter(name="lookupvpnumber")
 def lookupvpnumber(value, key):
-    return value[key]
+    try:
+        return value[key]
+    except:
+        return key
