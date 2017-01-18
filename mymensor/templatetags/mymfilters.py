@@ -2,6 +2,6 @@ from django import template
 
 register = template.Library()
 
-@register.filter(name="lookup")
-def lookup(value, key):
-    return value.filter(key)
+@register.filter(name="lookupvpnumber")
+def lookupvpnumber(value, key):
+    return value.filter(vpNumber=key)
