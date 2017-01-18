@@ -102,12 +102,12 @@ def portfolio(request):
         s3Client = session.client('s3')
         medias = Media.objects.all().order_by('mediaVpNumber', '-mediaTimeStamp')
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
-        qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
+        #qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'index.html', {'medias': medias, 'vps': vps, })
+        return render(request, 'index.html', {'medias': medias, 'vps': vps,})
 
 
 # Media Feed View

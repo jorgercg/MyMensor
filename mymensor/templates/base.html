@@ -65,7 +65,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Logged in as: {{ user.get_username }}
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
                                 <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
                             </div>
