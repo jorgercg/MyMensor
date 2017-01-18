@@ -100,7 +100,7 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.all().order_by('mediaVpNumber', '-mediaTimeStamp')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('mediaVpNumber', '-mediaTimeStamp')
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         #qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
         for media in medias:
