@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz %}
+{% load i18n tz mymfilters%}
 {% if user.is_authenticated %}
     {% block title %}Mediafeed - {{ block.super }}{% endblock %}
     {% block content %}
@@ -8,7 +8,9 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h5 data-toggle="tooltip" data-placement="top" title={{ media.vp_vpDescription }}>VP#{{ media.mediaVpNumber }}
+                            {% trans "vptitle" as vp_title %}
+                            {% with lookup_result=vps|lookup:media.vp %}{{ lookup_result.vpDescription }}{% endwith %}
+                            <h5 data-toggle="tooltip" data-placement="top" title={{ vptitle }}>VP#{{ media.mediaVpNumber }}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
