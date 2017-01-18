@@ -16,7 +16,7 @@ class Asset(models.Model):
     assetRegistryCode = models.CharField(max_length=255, null=True)
     assetDciFrequencyUnit = models.CharField(max_length=50, default="millis")
     assetDciFrequencyValue = models.IntegerField(default=20000)
-    assetDciQtyVps = models.IntegerField(default=2)
+    assetDciQtyVps = models.IntegerField(default=31)
     assetDciTolerancePosition = models.IntegerField(default=50)
     assetDciToleranceRotation = models.IntegerField(default=10)
 
