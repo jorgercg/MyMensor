@@ -8,11 +8,11 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            {% for vp in vps %}
-                                {% if vp.vpNumber == media.mediaVpNumber %}
-                                    <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
-                                {% endif %}
-                            {% endfor %}
+                        {% for vp in vps %}
+                        {% if vp.vpNumber == media.mediaVpNumber %}
+                           <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
+                        {% endif %}
+                        {% endfor %}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
@@ -55,7 +55,11 @@
                 {% if media.mediaContentType == "video/mp4" %}
                     <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h5 data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}">VP#{{ media.mediaVpNumber }}
+                        {% for vp in vps %}
+                        {% if vp.vpNumber == media.mediaVpNumber %}
+                            <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
+                        {% endif %}
+                        {% endfor %}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
