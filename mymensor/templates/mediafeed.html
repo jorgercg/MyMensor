@@ -8,7 +8,9 @@
                 {% if media.mediaContentType == "image/jpeg" %}
                      <div class="card card-outline-primary m-2" style="width: 20rem;">
                         <div class="card-header text-primary">
-                            <h5 data-toggle="tooltip" data-placement="top" title={% with lookup_result=vps|lookupvpnumber:media.mediaVpNumber %}{{ lookup_result.vpDescription }}{% endwith %}>VP#{{ media.mediaVpNumber }}
+                            {% with lookup_result=vps|lookupvpnumber:media.mediaVpNumber%}
+                            <h5 data-toggle="tooltip" data-placement="top" title={{ lookup_result.vpDescription }}>VP#{{ media.mediaVpNumber }}
+                            {% endwith %}
                                 {% if media.mediaProcessed %}
                                     <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% else %}
