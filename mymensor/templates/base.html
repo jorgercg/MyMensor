@@ -45,6 +45,7 @@
             <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <a class="navbar-brand" href="{% url 'portfolio' %}">MyMensor</a>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
