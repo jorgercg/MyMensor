@@ -167,12 +167,31 @@ body {
   }
 }
 
-
 @media (min-width: 1440px) {
   .modal-xl {
     max-width: 1300px;
   }
 }
+
+
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin-right: 1rem;
+  font-size: 1.25rem;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar-brand:focus, .navbar-brand:hover {
+  text-decoration: none;
+}
+
+
+
+
 
 #streambox {
 	position:fixed;
