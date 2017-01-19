@@ -6,96 +6,96 @@
         <div class="d-flex align-content-start flex-wrap">
             {% for vp in vps %}
                 {% for media in medias %}
-                        {% if vp.vpNumber == media.mediaVpNumber %}
-                            {% if media.mediaContentType == "image/jpeg" %}
-                                 <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                    <div class="card-header text-primary">
-                                       <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
-                                            {% if media.mediaProcessed %}
-                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
-                                            {% else %}
-                                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
-                                            {% endif %}
-                                        </h5>
-                                    </div>
-                                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
-                                        <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
-                                    </a>
-                                    <div class="card-block">
-                                         <p class="card-text">
-                                             {% if media.mediaArIsOn %}
-                                                <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                             {% else %}
-                                                <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                             {% endif %}
-                                             {% if media.mediaTimeIsCertified %}
-                                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                                             {% else %}
-                                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                                             {% endif %}
-                                             {% if media.mediaLocIsCertified %}
-                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                                             {% else %}
-                                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                                             {% endif %}
-                                        </p>
-                                    </div>
-                                    <div class="card-block">
-                                        <p class="card-text">
-                                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO" }}
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
-                                    </div>
-                                 </div>
-                            {% endif %}
-                            {% if media.mediaContentType == "video/mp4" %}
-                                <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                    <div class="card-header text-primary">
-                                        <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
-                                            {% if media.mediaProcessed %}
-                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
-                                            {% else %}
-                                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
-                                            {% endif %}
-                                        </h5>
-                                    </div>
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <video controls>
-                                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
-                                        </video>
-                                    </div>
-                                    <div class="card-block">
-                                         <p class="card-text">
-                                             {% if media.mediaArIsOn %}
-                                                <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                             {% else %}
-                                                <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                             {% endif %}
-                                             {% if media.mediaTimeIsCertified %}
-                                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                                             {% else %}
-                                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                                             {% endif %}
-                                             {% if media.mediaLocIsCertified %}
-                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                                             {% else %}
-                                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                                             {% endif %}
-                                        </p>
-                                    </div>
-                                    <div class="card-block">
-                                        <p class="card-text">
-                                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO"}}
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
-                                    </div>
+                    {% if vp.vpNumber == media.mediaVpNumber %}
+                        {% if media.mediaContentType == "image/jpeg" %}
+                             <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                <div class="card-header text-primary">
+                                   <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
+                                        {% if media.mediaProcessed %}
+                                            <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                        {% else %}
+                                            <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                        {% endif %}
+                                    </h5>
                                 </div>
-                            {% endif %}
+                                <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
+                                    <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+                                </a>
+                                <div class="card-block">
+                                     <p class="card-text">
+                                         {% if media.mediaArIsOn %}
+                                            <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                         {% else %}
+                                            <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                         {% endif %}
+                                         {% if media.mediaTimeIsCertified %}
+                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                         {% else %}
+                                            <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                         {% endif %}
+                                         {% if media.mediaLocIsCertified %}
+                                            <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                         {% else %}
+                                            <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                         {% endif %}
+                                    </p>
+                                </div>
+                                <div class="card-block">
+                                    <p class="card-text">
+                                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO" }}
+                                    </p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
+                                </div>
+                             </div>
                         {% endif %}
+                        {% if media.mediaContentType == "video/mp4" %}
+                            <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                <div class="card-header text-primary">
+                                    <h5 data-toggle="tooltip" data-placement="top" title={{ vp.vpDescription }}>VP#{{ media.mediaVpNumber }}
+                                        {% if media.mediaProcessed %}
+                                            <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                        {% else %}
+                                            <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                        {% endif %}
+                                    </h5>
+                                </div>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video controls>
+                                        <source src="{{ media.mediaStorageURL }}" type="video/mp4">
+                                    </video>
+                                </div>
+                                <div class="card-block">
+                                     <p class="card-text">
+                                         {% if media.mediaArIsOn %}
+                                            <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                         {% else %}
+                                            <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                         {% endif %}
+                                         {% if media.mediaTimeIsCertified %}
+                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                         {% else %}
+                                            <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                         {% endif %}
+                                         {% if media.mediaLocIsCertified %}
+                                            <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                         {% else %}
+                                            <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                         {% endif %}
+                                    </p>
+                                </div>
+                                <div class="card-block">
+                                    <p class="card-text">
+                                        <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO"}}
+                                    </p>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
         </div>
