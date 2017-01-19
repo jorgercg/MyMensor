@@ -12,7 +12,7 @@
                             {% if media.mediaContentType == "image/jpeg" %}
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
-                                       <h5 data-toggle="tooltip" data-placement="top" title={{ mediaqtyinvp }}>VP#{{ media.mediaVpNumber }}-{{ forloop.parentloop.counter }}
+                                       <h5 data-toggle="tooltip" data-placement="top" title={{ mediaqtyinvp }}>VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
                                                 <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% else %}
@@ -55,7 +55,7 @@
                             {% if media.mediaContentType == "video/mp4" %}
                                 <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
-                                        <h5 data-toggle="tooltip" data-placement="top" title={{ forloop.counter }}>VP#{{ media.mediaVpNumber }}-{{ forloop.parentloop.counter }}
+                                        <h5 data-toggle="tooltip" data-placement="top" title={{ forloop.counter }}>VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
                                                 <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% else %}
@@ -101,6 +101,7 @@
                     {% endif %}
                 {% endfor %}
             </div>
+            <hr>
         {% endfor %}
         <!-- Modal -->
         <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
