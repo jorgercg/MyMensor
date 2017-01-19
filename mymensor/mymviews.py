@@ -101,7 +101,7 @@ def portfolio(request):
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
-        medias = Media.objects.filter(vp=vps).order_by('-mediaTimeStamp').order_by('mediaVpNumber')[:10].filter()
+        medias = Media.objects.filter(asset__assetOwner=request.user).order_by('-mediaTimeStamp').order_by('mediaVpNumber')[:10].filter()
         #qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
