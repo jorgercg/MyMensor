@@ -45,8 +45,8 @@
             <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'portfolio' %}">MyMensor</a>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
+                <a class="navbar-brand" href="{% url 'portfolio' %}">MyMensor</a>
                 <ul class="navbar-nav mr-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
