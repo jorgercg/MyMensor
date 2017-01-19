@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz %}
+{% load i18n tz counter %}
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
@@ -7,10 +7,11 @@
             {% for vp in vps %}
                 {% for media in medias %}
                     {% if vp.vpNumber == media.mediaVpNumber %}
+                        {% counter start=1 silent=True assign='mediaqtyinvp' %}
                         {% if media.mediaContentType == "image/jpeg" %}
                              <div class="card card-outline-primary m-2" style="width: 20rem;">
                                 <div class="card-header text-primary">
-                                   <h5 data-toggle="tooltip" data-placement="top" title={{ forloop.counter }}>VP#{{ media.mediaVpNumber }}-{{ forloop.parentloop.counter }}
+                                   <h5 data-toggle="tooltip" data-placement="top" title={{ mediaqtyinvp }}>VP#{{ media.mediaVpNumber }}-{{ forloop.parentloop.counter }}
                                         {% if media.mediaProcessed %}
                                             <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                         {% else %}
