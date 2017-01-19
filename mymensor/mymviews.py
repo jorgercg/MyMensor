@@ -104,7 +104,7 @@ def portfolio(request):
         allmedias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         medias = Media()
         for vp in vps:
-            medias = allmedias.objects.filter(vp=vp)[:10]
+            medias = allmedias.filter(vp=vp)[:5]
         #qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
