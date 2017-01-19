@@ -6,7 +6,6 @@
         <div class="d-flex align-content-start flex-wrap">
             {% for vp in vps %}
                 {% for media in medias %}
-                    {% if forloop.counter < 6 %}
                         {% if vp.vpNumber == media.mediaVpNumber %}
                             {% if media.mediaContentType == "image/jpeg" %}
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
@@ -97,7 +96,6 @@
                                 </div>
                             {% endif %}
                         {% endif %}
-                    {% endif %}
                 {% endfor %}
             {% endfor %}
         </div>
