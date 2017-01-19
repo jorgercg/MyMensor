@@ -3,8 +3,8 @@
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
-        <div class="d-flex align-content-start flex-wrap">
-            {% for vp in vps %}
+        {% for vp in vps %}
+            <div class="d-flex align-content-start flex-wrap">
                 {% for media in medias %}
                     {% if vp.vpNumber == media.mediaVpNumber %}
                         {% counter start=1 silent=True assign='mediaqtyinvp' %}
@@ -100,8 +100,8 @@
                         {% endif %}
                     {% endif %}
                 {% endfor %}
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
         <!-- Modal -->
         <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
