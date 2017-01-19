@@ -6,7 +6,7 @@
         <div class="dashhead">
             <div class="dashhead-toolbar">
                 <div class="input-with-icon dashhead-toolbar-item">
-                    <div class="input-daterange input-group" id="datepicker">
+                    <div class="input-daterange input-group" id="datepickerportfolio">
                         <input type="text" class="input-sm form-control" name="start" />
                         <span class="input-group-addon">to</span>
                         <input type="text" class="input-sm form-control" name="end" />
@@ -136,6 +136,11 @@
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "mymclient.html" %}
         {% include "mymmessages.html" %}
+        <!-- Page Local Scripts
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script>
+            $('#datepickerportfolio .input-daterange').datepicker({});
+        </script>
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>
