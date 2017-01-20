@@ -173,12 +173,20 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
         });
-        $(document.body).on('change','#start', function () {
-            alert('Nada!!!!! Start');
+
+        $(function () {
+
+            $(document.body).on('change','#start', function () {
+                alert('Nada!!!!! Start');
+            });
+
+            $(document.body).on('change','#end', function () {
+                alert('Nada!!!!! end');
+            });
+
         });
-        $(document.body).on('change','#end', function () {
-            alert('Nada!!!!! end');
-        });
+
+
         </script>
     {% endblock %}
 {% else %}
