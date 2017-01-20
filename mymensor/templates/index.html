@@ -174,16 +174,13 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
         });
-
-        $(function () {
-
-            $('#daterange').daterangepicker();
-            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-                alert(picker.startDate.format('YYYY-MM-DD'));
-                console.log(picker.endDate.format('YYYY-MM-DD'));
-            });
-
+        $('#daterange').daterangepicker();
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            alert(picker.startDate.format('YYYY-MM-DD'));
+            console.log(picker.endDate.format('YYYY-MM-DD'));
         });
+
+
 
 
         </script>
