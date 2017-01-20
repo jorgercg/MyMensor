@@ -162,7 +162,7 @@
             $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
                 //do something, like clearing an input
                 $.ajax({
-                    url: '/ajax/validate_username/',
+                    url: '{% url 'portfolio' %}',
                     data: {
                         'startdate': start,
                         'enddate': end
