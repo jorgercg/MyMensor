@@ -180,7 +180,7 @@
                         'enddate': enddate
                     },
                     success: function(data) {
-                        $().load(data);
+                        $.get(data);
                     },
                     error : function(xhr,errmsg,err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
