@@ -98,6 +98,7 @@ def amazon_sns_processor(request):
 
 # Portfolio View
 @login_required
+@csrf_exempt
 def portfolio(request):
     if request.user.is_authenticated:
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
