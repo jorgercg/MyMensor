@@ -106,7 +106,7 @@ def portfolio(request):
         s3Client = session.client('s3')
         startdate = dateutil.parser.parse(request.GET.get('startdate',(datetime.today()-dateutil.relativedelta.relativedelta(months=-1)), '%Y-%m-%d'))
         enddate = dateutil.parser.parse(request.GET.get('enddate',datetime.today()), '%Y-%m-%d')
-        new_enddate = enddate + datetime.timedelta(days=1)
+        new_enddate = enddate + dateutil.relativedelta.relativedelta(days=1)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         for media in medias:
