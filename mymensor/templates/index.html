@@ -177,7 +177,7 @@
             var startdate = $('#start').val();
             var enddate = $('#end').val();
             $.ajax({
-                url: '/ajax/validate_username/',
+                url: '{% url 'portfolio' %}',
                 data: {
                   'startdate': startdate,
                     'enddate': enddate
