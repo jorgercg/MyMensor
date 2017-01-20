@@ -165,8 +165,8 @@
             cb(start, end);
 
             $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-                var startdate = picker.startDate.format('YYYY-MM-DD');
-                var enddate = picker.endDate.format('YYYY-MM-DD');
+                var startdate = picker.startDate;
+                var enddate = picker.endDate;
                 console.log(startdate);
                 console.log(enddate);
                 console.log('{% url "portfolio" %}');
