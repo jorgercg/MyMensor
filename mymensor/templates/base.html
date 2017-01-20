@@ -48,7 +48,7 @@
             </button>
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <a class="navbar-brand" href="{% url 'portfolio' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt=""></a>
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'mediafeed' %}" href="{% url 'mediafeed' %}">Mediafeed</a></li>
