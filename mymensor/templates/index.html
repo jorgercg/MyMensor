@@ -8,7 +8,7 @@
                 <div class="input-with-icon dashhead-toolbar-item">
                     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: auto ">
                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                        <span></span> <b class="caret"></b>
+                        <span id="selcdates"></span> <b class="caret"></b>
                     </div>
                 </div>
                 <div class="dashhead-toolbar-item">
@@ -140,7 +140,7 @@
             var end = moment();
 
             function cb(start, end) {
-                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+                $('#selcdates').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
 
             $('#reportrange').daterangepicker({
@@ -166,7 +166,7 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
         });
-        $("#reportrange span").change(function () {
+        $("#selcdates").change(function () {
           console.log( $(this).val() );
         });
         </script>
