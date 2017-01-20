@@ -173,14 +173,15 @@
                 console.log(enddate);
                 console.log('{% url "portfolio" %}');
                 $.ajax({
+                    method: 'POST',
                     url: '{% url "portfolio" %}',
                     dataType: 'json',
                     data: {
                         'startdate': startdate,
                         'enddate': enddate
                     },
-                    success: function(data) {
-                        $.get(data);
+                    success: function() {
+                        console.log('Success!!!!!!!!');
                     },
                     error : function(xhr,errmsg,err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
