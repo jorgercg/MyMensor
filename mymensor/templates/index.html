@@ -169,6 +169,18 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
+                console.log('{% url "portfolio" %}');
+                $.ajax({
+                    url: '{% url "portfolio" %}',
+                    dataType: 'json',
+                    data: {
+                        'startdate': startdate,
+                        'enddate': enddate
+                    },
+                    sucess: function() {
+                        console.log("Sucesso!!!!")
+                    }
+                })
             });
 
         });
