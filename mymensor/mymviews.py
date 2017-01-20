@@ -12,7 +12,7 @@ from instant.producers import broadcast
 from mymensor.models import Asset, Vp, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
-import json, boto3
+import json, boto3, datetime
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 
@@ -100,9 +100,11 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
+        startdate = request.POST.get('startdate',(datetime.date.today()-datetime.timedelta(days=30)))
+        enddate = request.POST.get('enddate',datetime.date.today())
+        new_enddate = enddate + datetime.timedelta(days=1)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
-        #qtyvps = Asset.objects.get(assetOwner=request.user).assetDciQtyVps
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
