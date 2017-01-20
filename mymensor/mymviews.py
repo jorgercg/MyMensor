@@ -112,7 +112,7 @@ def portfolio(request):
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'startdate':startdate, 'enddate':new_enddate}, status=200)
+        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'startdate':startdate, 'enddate':new_enddate})
 
 
 # Media Feed View
