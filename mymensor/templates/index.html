@@ -127,6 +127,10 @@
             </div>
           </div>
         </div>
+        <!-- Date Range Picker Hidden Fields
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <input type="hidden" name="to" id="to" value="">
+        <input type="hidden" name="from" id="from" value="">
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "mymclient.html" %}
@@ -134,36 +138,16 @@
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
-        var startDate;
-        var endDate;
 
         $(function() {
 
             var start = moment().subtract(29, 'days');
             var end = moment();
 
-            function cj(startdate, enddate) {
-                var sendInfo = {
-                    startdate: startdate,
-                    enddate: enddate
-                };
-
-                $.ajax({
-                    type: "GET",
-                    url: '{% url 'portfolio' %}',
-                    dataType: 'json',
-                    success: function () {
-                        alert("Delivered")
-                    },
-                    data: sendInfo
-                });
-            }
-
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
-                startDate = start;
-                endDate = end;
-                cj(startDate,endDate);
+                $('#to').val(start.format('YYYY-MMM-DD'));
+                $('#from').val(end.format('YYYY-MMM-DD'));
             }
 
             $('#reportrange').daterangepicker({
