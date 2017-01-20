@@ -176,6 +176,7 @@
         $("#start").change(function () {
             var startdate = $('#start').val();
             var enddate = $('#end').val();
+            alert(startdate);
             $.ajax({
                 url: '{% url 'portfolio' %}',
                 data: {
