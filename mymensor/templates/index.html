@@ -141,16 +141,20 @@
 
             function cb(start, end) {
                 $('#selcdates').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+
+                var sendInfo = {
+                    startdate: start,
+                    enddate: end
+                };
+
                 $.ajax({
+                    type: "GET",
                     url: '{% url 'portfolio' %}',
-                    data: {
-                        'startdate': start,
-                        'enddate': end
-                    },
                     dataType: 'json',
                     success: function () {
                         alert("Delivered")
-                    }
+                    },
+                    data: sendInfo
                 });
             }
 
