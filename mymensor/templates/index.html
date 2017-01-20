@@ -174,21 +174,10 @@
             }
         });
         $(document.body).on('change','#start', function () {
-            var startdate = $('#start').val();
-            var enddate = $('#end').val();
-            alert(startdate);
-            $.ajax({
-                url: '{% url 'portfolio' %}',
-                data: {
-                  'startdate': startdate,
-                    'enddate': enddate
-                },
-                dataType: 'json',
-                success: function () {
-                    alert("Success!!!");
-                }
-              });
-
+            alert('Nada!!!!! Start');
+        });
+        $(document.body).on('change','#end', function () {
+            alert('Nada!!!!! end');
         });
         </script>
     {% endblock %}
