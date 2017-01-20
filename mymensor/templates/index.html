@@ -141,6 +141,17 @@
 
             function cb(start, end) {
                 $('#selcdates').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+                $.ajax({
+                    url: '{% url 'portfolio' %}',
+                    data: {
+                        'startdate': start,
+                        'enddate': end
+                    },
+                    dataType: 'json',
+                    success: function () {
+                        alert("Delivered")
+                    }
+                });
             }
 
             $('#reportrange').daterangepicker({
@@ -158,21 +169,6 @@
             }, cb);
 
             cb(start, end);
-
-            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-                //do something, like clearing an input
-                $.ajax({
-                    url: '{% url 'portfolio' %}',
-                    data: {
-                        'startdate': start,
-                        'enddate': end
-                    },
-                    dataType: 'json',
-                    success: function () {
-                        alert("Delivered")
-                    }
-                });
-            });
 
         });
         $(function(){
