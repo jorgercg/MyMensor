@@ -168,9 +168,11 @@
             cb(start, end);
 
             $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-            alert(picker.startDate.format('YYYY-MM-DD'));
-            console.log(picker.endDate.format('YYYY-MM-DD'));
-        });
+                var startdate = picker.startDate.format('YYYY-MM-DD');
+                var enddate = picker.endDate.format('YYYY-MM-DD');
+                console.log(startdate);
+                console.log(enddate);
+            });
 
         });
         $(function(){
