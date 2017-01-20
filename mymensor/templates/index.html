@@ -176,12 +176,10 @@
 
         $(function () {
 
-            $(document.body).on('change','#start', function () {
-                alert('Nada!!!!! Start');
-            });
-
-            $(document.body).on('change','#end', function () {
-                alert('Nada!!!!! end');
+            $('#daterange').daterangepicker();
+            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+                alert(picker.startDate.format('YYYY-MM-DD'));
+                console.log(picker.endDate.format('YYYY-MM-DD'));
             });
 
         });
