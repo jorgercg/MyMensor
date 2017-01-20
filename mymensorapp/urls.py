@@ -26,6 +26,7 @@ from mymensor import mymviews
 urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/portfolio/')),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
+    url(r'^vpsrefresh/$', mymviews.vpsrefresh, name='vpsrefresh'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^setup/$', mymviews.myMensorSetupFormView, name='setup'),
     url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
