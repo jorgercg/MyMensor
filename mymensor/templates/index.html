@@ -169,6 +169,10 @@
         $("#selcdates").change(function () {
           alert( $(this).val() );
         });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            //do something, like clearing an input
+            alert("Applied");
+        });
         </script>
     {% endblock %}
 {% else %}
