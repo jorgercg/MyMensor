@@ -114,6 +114,12 @@
             cb(start, end);
 
         });
+        $(function(){
+            var $select = $(".1-100");
+            for (i=1;i<=20;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+        });
         </script>
     </body>
 </html>
