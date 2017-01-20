@@ -133,7 +133,7 @@ def vpsrefresh(request):
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
         return render(request, 'vpstemplate.html',
-                      {'medias': medias, 'vps': vps, 'startdate': startdate, 'enddate': new_enddate}, status=200)
+                      {'medias': medias, 'vps': vps, 'startdate': startdate, 'enddate': new_enddate})
 
 
 # Media Feed View

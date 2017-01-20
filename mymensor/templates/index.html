@@ -171,9 +171,9 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                console.log('{% url "portfolio" %}');
+                console.log('{% url "vpsrefresh" %}');
                 $.ajax({
-                    url: '{% url "portfolio" %}',
+                    url: '{% url "vpsrefresh" %}',
                     dataType: 'json',
                     data: {
                         'startdate': startdate,
