@@ -160,9 +160,19 @@
             cb(start, end);
 
             $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-            //do something, like clearing an input
-            alert("Applied");
-        });
+                //do something, like clearing an input
+                $.ajax({
+                    url: '/ajax/validate_username/',
+                    data: {
+                        'startdate': start,
+                        'enddate': end
+                    },
+                    dataType: 'json',
+                    success: function () {
+                        alert("Delivered")
+                    }
+                });
+            });
 
         });
         $(function(){
