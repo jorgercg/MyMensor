@@ -138,7 +138,11 @@
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
-
+        $('#daterange').daterangepicker();
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            alert(picker.startDate.format('YYYY-MM-DD'));
+            console.log(picker.endDate.format('YYYY-MM-DD'));
+        });
         $(function() {
 
             var start = moment().subtract(29, 'days');
@@ -174,15 +178,6 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
         });
-        $('#daterange').daterangepicker();
-        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-            alert(picker.startDate.format('YYYY-MM-DD'));
-            console.log(picker.endDate.format('YYYY-MM-DD'));
-        });
-
-
-
-
         </script>
     {% endblock %}
 {% else %}
