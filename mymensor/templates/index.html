@@ -159,19 +159,17 @@
 
             cb(start, end);
 
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+            //do something, like clearing an input
+            alert("Applied");
+        });
+
         });
         $(function(){
             var $select = $(".1-100");
             for (i=1;i<=20;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
-        });
-        $("#selcdates").change(function () {
-          alert( $(this).val() );
-        });
-        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-            //do something, like clearing an input
-            alert("Applied");
         });
         </script>
     {% endblock %}
