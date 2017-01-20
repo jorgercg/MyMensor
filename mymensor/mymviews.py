@@ -13,7 +13,10 @@ from mymensor.models import Asset, Vp, Media, AmazonS3Message, AmazonSNSNotifica
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
-from datetime import datetime
+import dateutil.parser
+import dateutil.relativedelta
+from datetime import *
+
 #from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
 
 
@@ -101,8 +104,8 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-datetime.timedelta(days=30))), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate',datetime.today()), '%Y-%m-%d')
+        startdate = dateutil.parser.parse(request.GET.get('startdate',(datetime.today()-dateutil.relativedelta.relativedelta(months=-1)), '%Y-%m-%d'))
+        enddate = dateutil.parser.parse(request.GET.get('enddate',datetime.today()), '%Y-%m-%d')
         new_enddate = enddate + datetime.timedelta(days=1)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
