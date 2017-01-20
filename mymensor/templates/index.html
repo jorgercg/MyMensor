@@ -4,14 +4,17 @@
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
         <div class="dashhead">
-                <div class="dashhead-toolbar input-with-icon dashhead-toolbar-item">
+            <div class="dashhead-toolbar">
+                <div class="input-with-icon dashhead-toolbar-item">
                     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: auto ">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <div>
-                        <select id="qtytodisplaypervp" class="1-100"></select>
-                    </div>
                 </div>
+                <span class="dashhead-toolbar-divider hidden-xs"></span>
+                <div class="dashhead-toolbar-item">
+                    <select id="qtytodisplaypervp" class="1-100"></select>
+                </div>
+            </div>
         </div>
         <hr>
         {% for vp in vps %}
