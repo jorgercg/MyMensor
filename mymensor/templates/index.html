@@ -9,6 +9,10 @@
                     <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: auto ">
                         <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                         <span id="selcdates"></span> <b class="caret"></b>
+                        <!-- Date Range Picker Hidden Fields
+	                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+                        <input type="hidden" name="start" id="start" value="">
+                        <input type="hidden" name="end" id="end" value="">
                     </div>
                 </div>
                 <div class="dashhead-toolbar-item">
@@ -127,10 +131,6 @@
             </div>
           </div>
         </div>
-        <!-- Date Range Picker Hidden Fields
-	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <input type="hidden" name="start" id="start" value="">
-        <input type="hidden" name="end" id="end" value="">
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "mymclient.html" %}
