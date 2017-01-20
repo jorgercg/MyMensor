@@ -104,7 +104,7 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = dateutil.parser.parse(request.GET.get('startdate',(datetime.today()-dateutil.relativedelta.relativedelta(months=-1)), '%Y-%m-%d'))
+        startdate = dateutil.parser.parse(request.GET.get('startdate',(datetime.today()-dateutil.relativedelta.relativedelta(months=-1))), '%Y-%m-%d')
         enddate = dateutil.parser.parse(request.GET.get('enddate',datetime.today()), '%Y-%m-%d')
         new_enddate = enddate + dateutil.relativedelta.relativedelta(days=1)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
