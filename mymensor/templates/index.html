@@ -166,6 +166,9 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
         });
+        $("#reportrange").change(function () {
+          console.log( $(this).val() );
+        });
         </script>
     {% endblock %}
 {% else %}
