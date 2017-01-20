@@ -141,21 +141,6 @@
 
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
-
-                var sendInfo = {
-                    startdate: start,
-                    enddate: end
-                };
-
-                $.ajax({
-                    type: "GET",
-                    url: '{% url 'portfolio' %}',
-                    dataType: 'json',
-                    success: function () {
-                        alert("Delivered")
-                    },
-                    data: sendInfo
-                });
             }
 
             $('#reportrange').daterangepicker({
