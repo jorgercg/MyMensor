@@ -23,7 +23,7 @@
                 {% for media in medias %}
                     {% if vp.vpNumber == media.mediaVpNumber %}
                         {% counter start=1 silent=True assign='mediaqtyinvp' %}
-                        {% if mediaqtyinvp < 6 %}
+                        {% if mediaqtyinvp < ({{ qtypervp }} + 1) %}
                             {% if media.mediaContentType == "image/jpeg" %}
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
