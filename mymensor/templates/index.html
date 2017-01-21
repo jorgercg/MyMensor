@@ -173,7 +173,7 @@
                 console.log(enddate);
                 $('#start').val(startdate);
                 $('#end').val(enddate);
-                window.location.reload(true);
+                window.location.href({% url 'portfolio' %});
             });
 
         });
