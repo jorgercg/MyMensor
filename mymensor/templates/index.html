@@ -178,12 +178,9 @@
         $(function(){
             var $select = $('list20');
             for (i=1;i<=20;i++){
-                if (i=={{ qtypervp }}) {
-                    $select.append($('<option selected="selected"></option>').val(i).html(i))
-                } else {
-                    $select.append($('<option></option>').val(i).html(i))
-                }
+                $select.append($('<option></option>').val(i).html(i))
             }
+            $('.list20 option[value={{ qtypervp }}]').attr('selected','selected');
             $('#qtytodisplaypervp').change(function(){
                 console.log($('#qtytodisplaypervp').val())
 
