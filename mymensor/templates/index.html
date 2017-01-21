@@ -139,16 +139,16 @@
 
         $(function() {
 
-            var start = {{ start }};
-            var end = {{ end }};
+            var start = moment().subtract(29, 'days');
+            var end = moment();
 
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
 
             $('#reportrange').daterangepicker({
-                startDate: start,
-                endDate: end,
+                startDate: {{ start }},
+                endDate: {{ end }},
                 "alwaysShowCalendars": true,
                 ranges: {
                    'Today': [moment(), moment()],
