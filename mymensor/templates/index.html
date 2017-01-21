@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz counter %}
+{% load i18n tz counter assign%}
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
@@ -11,8 +11,8 @@
                         <span id="selcdates"></span> <b class="caret"></b>
                         <!-- Date Range Picker Hidden Fields
 	                    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-                        <input type="hidden" name="start" id="start" value="">
-                        <input type="hidden" name="end" id="end" value="">
+                        {% assign name="start_date" silent=1 %}<input type="hidden" name="start" id="start" value="">{% endassign %}
+                        {% assign name="end_date" silent=1 %}<input type="hidden" name="end" id="end" value="">{% endassign %}
                     </div>
                 </div>
                 <div class="dashhead-toolbar-item">
@@ -171,27 +171,13 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                console.log('{% url "portfolio" %}');
-                $.ajax({
-                    url: '{% url "portfolio" %}',
-                    dataType: 'json',
-                    data: {
-                        'startdate': startdate,
-                        'enddate': enddate
-                    },
-                    success: function(data) {
-                        $().load(data);
-                    },
-                    error : function(xhr,errmsg,err) {
-                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                    }
-                })
+                $('start').val(startdate);
+                $('end').val(enddate);
+                window.load();
             });
 
         });
         $(function(){
-            console.log("{{ startdate }}");
-            console.log("{{ enddate }}");
             var $select = $('.1-100');
             for (i=1;i<=20;i++){
                 $select.append($('<option></option>').val(i).html(i))
