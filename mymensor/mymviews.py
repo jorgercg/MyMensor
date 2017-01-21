@@ -109,11 +109,13 @@ def portfolio(request):
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         #medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'start': startdate, 'end': enddate})
+        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted})
 
 
 # Media Feed View
