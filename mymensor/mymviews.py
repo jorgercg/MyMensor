@@ -103,11 +103,11 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=30)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
+        qtypervp = request.GET.get('qtypervp', 5)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
-        #medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
@@ -115,7 +115,7 @@ def portfolio(request):
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted})
+        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
 
 
 # Media Feed View

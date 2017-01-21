@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div class="dashhead-toolbar-item">
-                    <select id="qtytodisplaypervp" class="1-100"></select>
+                    <select id="qtytodisplaypervp" class="list20"></select>
                 </div>
             </div>
         </div>
@@ -137,6 +137,9 @@
     {% block javascript %}
         <script type="text/javascript">
 
+        var start_date = {{ start }};
+        var end_date = {{ end }};
+
         $(function() {
 
             var start = moment("{{ start }}");
@@ -173,10 +176,18 @@
 
         });
         $(function(){
-            var $select = $('.1-100');
+            var $select = $('list20');
             for (i=1;i<=20;i++){
-                $select.append($('<option></option>').val(i).html(i))
+                if (i=={{ qtypervp }}) {
+                    $select.append($('<option selected="selected"></option>').val(i).html(i))
+                } else {
+                    $select.append($('<option></option>').val(i).html(i))
+                }
             }
+            $('#qtytodisplaypervp').change(function(){
+                console.log($('#qtytodisplaypervp').val())
+
+            });
         });
         </script>
     {% endblock %}
