@@ -168,7 +168,7 @@
                 console.log(startdate);
                 console.log(enddate);
                 console.log({% url 'portfolio' %});
-                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate;
+                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
             });
 
         });
@@ -181,6 +181,7 @@
             $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
+                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+qtyselected;
             });
         });
         </script>
