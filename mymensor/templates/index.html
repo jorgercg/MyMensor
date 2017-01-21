@@ -181,7 +181,7 @@
             $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
-                window.location={% url 'portfolio' %}+'?startdate='+{{ start }}+'&enddate='+{{ end }}+'&qtypervp='+qtyselected;
+                window.location={% url 'portfolio' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
             });
         });
         </script>
