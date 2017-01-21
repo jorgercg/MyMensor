@@ -177,7 +177,12 @@
             for (i=1;i<=20;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
-            $('.1-100 option[value="{{ qtypervp }}"]').attr('selected','selected');
+            $('.1-100 option[value="{{ qtypervp }}]').attr('selected','selected');
+            $('#qtytodisplaypervp').change(function(e){
+                e.preventDefault();
+                var qtyselected = $(this).val;
+                console.log(qtyselected);
+            });
         });
         </script>
     {% endblock %}
