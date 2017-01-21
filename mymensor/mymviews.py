@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
+from django.db.models import Count
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -108,7 +109,7 @@ def portfolio(request):
         new_enddate = enddate + timedelta(days=1)
         qtypervp = request.GET.get('qtypervp', 5)
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaTimeStamp').order_by('mediaVpNumber')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).annotate(Count('mediaVpNumber')).order_by('-mediaTimeStamp')[:qtypervp]
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
