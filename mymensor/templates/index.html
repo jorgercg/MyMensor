@@ -179,7 +179,7 @@
             }
             $('.1-100 option[value="{{ qtypervp }}"]').attr('selected','selected');
             $('#qtytodisplaypervp').change(function(){
-                var qtyselected = $(this).val;
+                var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
             });
         });
