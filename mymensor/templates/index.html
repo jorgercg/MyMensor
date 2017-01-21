@@ -178,8 +178,7 @@
                 $select.append($('<option></option>').val(i).html(i))
             }
             $('.1-100 option[value="{{ qtypervp }}"]').attr('selected','selected');
-            $('#qtytodisplaypervp').change(function(e){
-                e.preventDefault();
+            $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).val;
                 console.log(qtyselected);
             });
