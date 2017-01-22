@@ -51,9 +51,8 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'mediafeed' %}" href="{% url 'mediafeed' %}">Mediafeed</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'setup' %}" href="{% url 'setup' %}">Setup</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'contact' %}" href="{% url 'contact' %}">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'auth_logout' %}" href="{% url 'auth_logout' %}">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">Setup</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'support' %}" href="{% url 'support' %}">Support</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}" href="{% url 'auth_login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
@@ -66,6 +65,9 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
                                 <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
+                                <a class="dropdown-item" href="{% url 'assetsetup' %}">Asset Setup</a>
+                                <a class="dropdown-item" href="{% url 'vpsetup' %}">VPs Setup</a>
+                                <a class="dropdown-item" href="{% url 'tagsetup' %}">TAGs Setup</a>
                             </div>
                         </li>
                     {% endif %}
