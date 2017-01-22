@@ -107,7 +107,7 @@ def portfolio(request):
         startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = request.GET.get('qtypervp', 5)
+        qtypervp = int(request.GET.get('qtypervp', 5))
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate,new_enddate]).annotate(Count('mediaVpNumber')).order_by('-mediaTimeStamp')[:qtypervp]
         startdateformatted = startdate.strftime('%Y-%m-%d')
