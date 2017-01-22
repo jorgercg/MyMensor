@@ -27,8 +27,12 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/portfolio/')),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
-    url(r'^setup/$', mymviews.myMensorSetupFormView, name='setup'),
-    url(r'^contact/$', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    url(r'^tagstatus/$', TemplateView.as_view(template_name='contact.html'), name='tagstatus'),
+    url(r'^support/$', TemplateView.as_view(template_name='contact.html'), name='support'),
+    url(r'^assetsetup/$', mymviews.myMensorSetupFormView, name='assetsetup'),
+    url(r'^vpsetup/$', mymviews.myMensorSetupFormView, name='vpsetup'),
+    url(r'^tagsetup/$', mymviews.myMensorSetupFormView, name='tagsetup'),
+
     url(r'^chaining/', include('smart_selects.urls')),
 
     url(r'^accounts/', include('registration.backends.default.urls')),
