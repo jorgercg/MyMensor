@@ -51,7 +51,7 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'mediafeed' %}" href="{% url 'mediafeed' %}">Mediafeed</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">Setup</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">Tag Status</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'support' %}" href="{% url 'support' %}">Support</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}" href="{% url 'auth_login' %}">Login</a></li>
