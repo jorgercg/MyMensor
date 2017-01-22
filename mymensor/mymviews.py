@@ -15,8 +15,7 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-
-#from mymensor.forms import AssetOwnerConfigurationFormSet, AssetConfigurationFormSet, DciConfigurationFormSet
+from mymensor.forms import AssetForm
 
 
 # Amazon SNS Notification Processor View
@@ -176,9 +175,12 @@ def android_assetlinks(request):
 
 # Setup Side View
 @login_required
-def myMensorSetupFormView(request):
-    pass
-    #if request.method == 'POST':
+def assetSetupFormView(request):
+    if request.method == 'POST':
+        form = AssetForm(request.POST)
+        if form.is_valid():
+            form.save()
+
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
         #assetFormSet = AssetConfigurationFormSet(request.POST, request.FILES, prefix='assetFormSet')
         #dciFormSet = DciConfigurationFormSet(request.POST, request.FILES, prefix='dciFormSet')

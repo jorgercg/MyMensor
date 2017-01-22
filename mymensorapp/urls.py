@@ -29,9 +29,9 @@ urlpatterns = [
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^tagstatus/$', TemplateView.as_view(template_name='contact.html'), name='tagstatus'),
     url(r'^support/$', TemplateView.as_view(template_name='contact.html'), name='support'),
-    url(r'^assetsetup/$', mymviews.myMensorSetupFormView, name='assetsetup'),
-    url(r'^vpsetup/$', mymviews.myMensorSetupFormView, name='vpsetup'),
-    url(r'^tagsetup/$', mymviews.myMensorSetupFormView, name='tagsetup'),
+    url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
+    url(r'^vpsetup/$', mymviews.assetSetupFormView, name='vpsetup'),
+    url(r'^tagsetup/$', mymviews.assetSetupFormView, name='tagsetup'),
 
     url(r'^chaining/', include('smart_selects.urls')),
 

@@ -1,6 +1,13 @@
-from django.forms import modelformset_factory, inlineformset_factory
+from django.db import models
+from django.forms import ModelForm, BaseModelFormSet
 from mymensor.models import Asset
 
+class AssetForm(ModelForm):
+    class Meta:
+        model = Asset
+        fields = ['assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue', 'assetDciTolerancePosition', 'assetDciToleranceRotation']
 
-#AssetConfigurationFormSet = inlineformset_factory(AssetOwner, Asset, fields='__all__', can_delete=True)
-
+class BaseAssetFormSet(BaseModelFormSet):
+    def __init__(self, *args, **kwargs):
+        super(BaseAssetFormSet, self).__init__(*args, **kwargs)
+        self.queryset = Asset.objects.filter(assetOwner=request.user)
