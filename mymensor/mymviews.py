@@ -189,7 +189,7 @@ def assetSetupFormView(request):
 # Vp Setup View
 @login_required
 def vpSetupFormView(request):
-    VpFormSet = modelformset_factory(Vp)
+    VpFormSet = modelformset_factory(Vp, fields=('__all__'))
     if request.method == 'POST':
         formset = VpFormSet(request.POST, request.FILES)
         if formset.is_valid():
