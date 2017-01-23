@@ -5,7 +5,7 @@ from django import forms
 
 class AssetForm(ModelForm):
 
-    FREQ_UNIT_CHOICES = ( 'millis', 'hour', 'day', 'week', 'month')
+    FREQ_UNIT_CHOICES = ('millis', 'hour', 'day', 'week', 'month')
 
     assetDescription = forms.CharField(max_length=1024)
     assetNumber = forms.IntegerField(widget=forms.HiddenInput)
