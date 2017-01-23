@@ -28,9 +28,10 @@ urlpatterns = [
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^tagstatus/$', TemplateView.as_view(template_name='contact.html'), name='tagstatus'),
+    url(r'^taganalysis/$', TemplateView.as_view(template_name='contact.html'), name='taganalysis'),
     url(r'^support/$', TemplateView.as_view(template_name='contact.html'), name='support'),
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
-    url(r'^vpsetup/$', mymviews.assetSetupFormView, name='vpsetup'),
+    url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.assetSetupFormView, name='tagsetup'),
 
     url(r'^chaining/', include('smart_selects.urls')),

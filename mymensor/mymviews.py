@@ -16,7 +16,7 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm
+from mymensor.forms import AssetForm, VpFormSet
 
 
 # Amazon SNS Notification Processor View
@@ -189,14 +189,14 @@ def assetSetupFormView(request):
 # Vp Setup View
 @login_required
 def vpSetupFormView(request):
-    assetFormset = modelformset_factory(Asset, fields=('assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue', 'assetDciTolerancePosition', 'assetDciToleranceRotation'))
+    vp = Vp.objects.filter(asset__assetOwner=request.user)
+    formset = VpFormSet(request.POST, instance=vp)
     if request.method == 'POST':
-        formset = assetFormset(request.POST, request.FILES, queryset=Asset.objects.filter(assetOwner=request.user), )
         if formset.is_valid():
             formset.save()
     else:
-        formset = assetFormset(queryset=Asset.objects.filter(assetOwner=request.user))
-    return render(request, 'assetsetup.html', { 'formset': formset})
+        formset = VpFormSet(request.POST, instance=vp)
+    return render(request, 'vpsetup.html', {'formset': formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
         #assetFormSet = AssetConfigurationFormSet(request.POST, request.FILES, prefix='assetFormSet')

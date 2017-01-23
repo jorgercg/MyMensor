@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n counter%}
+{% block title %}Asset Setup - {{ block.super }}{% endblock %}
+{% block header %}
+{% endblock %}
+{% block content %}
+    <form method="post" action="">
+        {{ formset.management_form }}
+        {% for form in formset %}
+            {% counter start=0 silent=True assign='vpinform' %}
+            <h5>VP#{{ vpinform }}</h5>
+            {{ form }}
+            <hr>
+        {% endfor %}
+    </form>
+{% endblock %}
