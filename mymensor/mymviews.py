@@ -193,7 +193,7 @@ def vpSetupFormView(request):
     if request.method == 'POST':
         formset = VpFormSet(request.POST, request.FILES, queryset=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user))
         if formset.is_valid():
-            instances = formset.save()
+            instances = formset.save(commit=False)
             for instance in instances:
                 instance.save()
     else:
