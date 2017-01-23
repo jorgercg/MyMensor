@@ -16,7 +16,7 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm, VpFormSet
+from mymensor.forms import AssetForm, VpForm
 
 
 # Amazon SNS Notification Processor View
@@ -189,27 +189,20 @@ def assetSetupFormView(request):
 # Vp Setup View
 @login_required
 def vpSetupFormView(request):
-    VpFormSet = modelformset_factory(Vp, fields=('__all__'), extra=0)
+    currentvp = 0
+    qtyvps = 2
     if request.method == 'POST':
-        formset = VpFormSet(request.POST, request.FILES, queryset=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user))
-        if formset.is_valid():
-            instances = formset.save(commit=False)
-            for instance in instances:
-                instance.save()
+        qtyvps = int(request.POST.get('qtyvps', 2))
+        currentvp = int(request.POST.get('currentvp', 0))
+    if request.method == 'GET':
+        qtyvps = int(request.GET.get('qtyvps', 2))
+        currentvp = int(request.GET.get('currentvp', 0))
+    vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp)
+    form = VpForm(request.POST, instance=vp)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
     else:
-        formset = VpFormSet(queryset=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user))
-    return render(request, 'vpsetup.html', {'formset': formset})
+        form = VpForm(instance=vp)
+    return render(request, 'vpsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp})
 
-        #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
-        #assetFormSet = AssetConfigurationFormSet(request.POST, request.FILES, prefix='assetFormSet')
-        #dciFormSet = DciConfigurationFormSet(request.POST, request.FILES, prefix='dciFormSet')
-        #if assetOwnerFormSet.is_valid() and assetFormSet.is_valid() and dciFormSet.is_valid():
-        #    assetOwnerFormSet.save()
-        # process the data in form.cleaned_data as required
-        # ...
-        # redirect to a new URL:
-    #else:
-        #assetOwnerFormSet = AssetOwnerConfigurationFormSet(prefix='assetOwnerFormSet')
-        #dciFormSet = DciConfigurationFormSet()
-        #assetFormSet = AssetConfigurationFormSet()
-    #return render(request, 'assetsetup.html', {'formSetAssetOwner': assetOwnerFormSet, 'formSetAsset': assetFormSet, 'formSetDci':dciFormSet})

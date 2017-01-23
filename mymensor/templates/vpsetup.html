@@ -4,15 +4,33 @@
 {% block header %}
 {% endblock %}
 {% block content %}
+    <div class="dashhead-toolbar">
+        <div id="vpselector" class="dashhead-toolbar-item">
+            <p>{% trans 'Media quantity per VP: ' %}</p>
+            <select id="currentvp" class="1-30"></select>
+        </div>
+    </div>
     <form method="post" action="">
-        {{ formset.management_form }}
-        {% for form in formset %}
-            {% counter start=0 silent=True assign='vpinform' %}
-            <h5>VP#{{ vpinform }}</h5>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <hr>
-        {% endfor %}
+        {% csrf_token %}
+        {{ form.as_p }}
         <input type="submit" value="{% trans 'Submit' %}" />
     </form>
+{% endblock %}
+{% block javascript %}
+        <script type="text/javascript">
+        $(function(){
+            console.log({{ qtyvps }});
+            var qtvps = {{ qtyvps }};
+            var $select = $('.1-30');
+            for (i=0; i < qtvps ;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
+            $('#currentvp').change(function(){
+                var vpselected = $(this).find(":selected").val();
+                console.log(vpselected);
+                window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
+            });
+        });
+        </script>
 {% endblock %}

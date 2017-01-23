@@ -1,5 +1,5 @@
 from django.db import models
-from django.forms import ModelForm, BaseModelFormSet
+from django.forms import ModelForm
 from mymensor.models import Asset, User, Vp
 from django import forms
 
@@ -25,7 +25,7 @@ class AssetForm(ModelForm):
         fields = '__all__'
 
 
-class VpFormSet(BaseModelFormSet):
+class VpForm(ModelForm):
 
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
