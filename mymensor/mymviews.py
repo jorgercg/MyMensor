@@ -190,11 +190,11 @@ def assetSetupFormView(request):
 @login_required
 def vpSetupFormView(request):
     if request.method == 'POST':
-        formset = VpFormSet(request.POST, request.FILES, queryset=Vp.objects.filter(asset__assetOwner=request.user))
+        formset = VpFormSet(request.POST, request.FILES, queryset=Vp.objects.filter(asset__assetOwner=request.user, vpIsActive=True))
         if formset.is_valid():
             formset.save()
     else:
-        formset = VpFormSet(queryset=Vp.objects.filter(asset__assetOwner=request.user))
+        formset = VpFormSet(queryset=Vp.objects.filter(asset__assetOwner=request.user, vpIsActive=True))
     return render(request, 'vpsetup.html', {'formset': formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
