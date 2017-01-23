@@ -178,11 +178,11 @@ def android_assetlinks(request):
 def assetSetupFormView(request):
     assetFormset = modelformset_factory(Asset, fields=('assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue', 'assetDciTolerancePosition', 'assetDciToleranceRotation'))
     if request.method == 'POST':
-        formset = assetFormset(request.POST, request.FILES, queryset=Asset.objects.filter(assetOwner=request.user), )
+        formset = assetFormset(request.POST, request.FILES, queryset=Asset.objects.filter(assetOwner=request.user.pk), )
         if formset.is_valid():
             formset.save()
     else:
-        formset = assetFormset(queryset=Asset.objects.filter(assetOwner=request.user))
+        formset = assetFormset(queryset=Asset.objects.filter(assetOwner=request.user.pk))
     return render(request, 'assetsetup.html', { formset: formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
