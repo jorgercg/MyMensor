@@ -3,15 +3,17 @@
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
-        <div class="dashhead-toolbar">
-            <div class="dashhead-toolbar-item">
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                    <span id="selcdates"></span> <b class="caret"></b>
+        <div class="d-flex align-content-start flex-wrap">
+            <div class="dashhead-toolbar">
+                <div class="dashhead-toolbar-item">
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
                 </div>
-            </div>
-            <div class="dashhead-toolbar-item">
-                <select id="qtytodisplaypervp" class="1-100">{% trans 'Media quantity per VP' %}</select>
+                <div class="dashhead-toolbar-item">
+                    <select id="qtytodisplaypervp" class="1-100">{% trans 'Media quantity per VP' %}</select>
+                </div>
             </div>
         </div>
         <hr>
