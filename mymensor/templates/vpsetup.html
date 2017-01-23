@@ -9,6 +9,7 @@
         {% for form in formset %}
             {% counter start=0 silent=True assign='vpinform' %}
             <h5>VP#{{ vpinform }}</h5>
+            {% csrf_token %}
             {{ form.as_p }}
             <input type="submit" value="{% trans 'Submit' %}" />
             <hr>
