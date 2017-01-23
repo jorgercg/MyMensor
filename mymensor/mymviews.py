@@ -184,7 +184,7 @@ def assetSetupFormView(request):
         if formset.is_valid():
             formset.save()
     else:
-        formset = assetFormset(None, assetOwner=request.user)
+        formset = assetFormset(None, user=request.user)
     return render(request, 'assetsetup.html', { formset: formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
