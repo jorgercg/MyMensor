@@ -1,39 +1,45 @@
 {% extends 'base.html' %}
-{% load i18n counter%}
-{% block title %}VPs Setup - {{ block.super }}{% endblock %}
-{% block header %}
-{% endblock %}
-{% block content %}
-    <div class="dashhead-toolbar">
-        <div id="qtyselector" class="dashhead-toolbar-item">
-            <p>{% trans 'VP # ' %}</p>
-            <select id="currentvp" class="1-30"></select>
+{% load i18n%}
+{% if user.is_authenticated %}
+    {% block title %}VPs Setup - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="d-flex align-content-start flex-wrap">
+            <div class="dashhead-toolbar">
+                <div id="qtyselector" class="dashhead-toolbar-item">
+                    <p>{% trans 'VP # ' %}</p>
+                    <select id="currentvp" class="1-30"></select>
+                </div>
+            </div>
         </div>
-    </div>
-    <hr>
-    <div id="vpedition">
-        <form method="post" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="{% trans 'Submit' %}" />
-        </form>
-    </div>
-{% endblock %}
-{% block javascript %}
-    <script type="text/javascript">
-    $(function(){
-        console.log({{ qtyvps }});
-        var qtvps = {{ qtyvps }};
-        var $select = $('.1-30');
-        for (i=0; i < qtvps ;i++){
-            $select.append($('<option></option>').val(i).html(i))
-        }
-        $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
-        $('#currentvp').change(function(){
-            var vpselected = $(this).find(":selected").val();
-            console.log(vpselected);
-            window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
+        <hr>
+        <div id="vpedition">
+            <form method="post" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="{% trans 'Submit' %}" />
+            </form>
+        </div>
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript">
+        $(function(){
+            console.log({{ qtyvps }});
+            var qtvps = {{ qtyvps }};
+            var $select = $('.1-30');
+            for (i=0; i < qtvps ;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
+            $('#currentvp').change(function(){
+                var vpselected = $(this).find(":selected").val();
+                console.log(vpselected);
+                window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
+            });
         });
-    });
-    </script>
-{% endblock %}
+        </script>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}
