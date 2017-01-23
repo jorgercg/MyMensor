@@ -209,7 +209,7 @@ def tagSetupFormView(request):
     currentvp = 1
     currenttag = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    qtytags = Tag.objects.filter(tagIsActive=True).filter(asset__assetOwner=request.user).count()
+    qtytags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).count()
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag', 1))
