@@ -1,6 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
-from mymensor.models import Asset
+from mymensor.models import Asset, User
 from django import forms
 
 class AssetForm(ModelForm):
@@ -10,7 +10,7 @@ class AssetForm(ModelForm):
     assetDescription = forms.CharField(max_length=1024)
     assetNumber = forms.IntegerField(widget=forms.HiddenInput)
     assetIsActive = forms.BooleanField(widget=forms.HiddenInput)
-    assetOwner = forms.ModelChoiceField(widget=forms.HiddenInput)  ###### FK
+    assetOwner = forms.ModelChoiceField(queryset=User.objects.get(user=Asset.assetOwner), widget=forms.HiddenInput)  ###### FK
     assetOwnerDescription = forms.CharField(max_length=1024)
     assetOwnerKey = forms.CharField(max_length=1024)
     assetRegistryCode = forms.CharField(max_length=255)
