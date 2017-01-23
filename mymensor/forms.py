@@ -29,7 +29,7 @@ class VpFormSet(BaseModelFormSet):
 
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
-    asset = models.ForeignKey(queryset=Asset.objects.all(), widget=forms.HiddenInput)  ###### FK
+    asset = forms.ModelChoiceField(queryset=Asset.objects.all(), widget=forms.HiddenInput)  ###### FK
     vpDescription = forms.CharField(max_length=1024)
     vpNumber = forms.IntegerField(widget=forms.HiddenInput)
     vpIsActive = forms.BooleanField(widget=forms.HiddenInput)
