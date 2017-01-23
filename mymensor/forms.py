@@ -9,5 +9,10 @@ class AssetForm(ModelForm):
 
 class BaseAssetFormSet(BaseModelFormSet):
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super(BaseAssetFormSet, self).__init__(*args, **kwargs)
-        self.queryset = Asset.objects.filter(assetOwner=request.user)
+
+    def _construct_form(self, i, **kwargs):
+        self.forms = []
+        for i in xrange(self.total_form_count()):
+            self.forms.append(self._construct_form(i, assetOwner=self.user))

@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.forms import modelformset_factory
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -15,7 +16,7 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm
+from mymensor.forms import AssetForm, BaseAssetFormSet
 
 
 # Amazon SNS Notification Processor View
@@ -124,7 +125,7 @@ def mediafeed(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaTimeStamp')[:50]
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).order_by('-mediaMillisSinceEpoch')[:50]
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
@@ -176,10 +177,15 @@ def android_assetlinks(request):
 # Setup Side View
 @login_required
 def assetSetupFormView(request):
+    assetFormset = modelformset_factory(Asset, AssetForm, BaseAssetFormSet)
     if request.method == 'POST':
-        form = AssetForm(request.POST)
-        if form.is_valid():
-            form.save()
+        data = request.POST.copy()
+        formset = assetFormset(data, assetOwner=request.user)
+        if formset.is_valid():
+            formset.save()
+    else:
+        formset = assetFormset(None, assetOwner=request.user)
+    return render(request, 'assetsetup.html', { formset: formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
         #assetFormSet = AssetConfigurationFormSet(request.POST, request.FILES, prefix='assetFormSet')
@@ -193,4 +199,4 @@ def assetSetupFormView(request):
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(prefix='assetOwnerFormSet')
         #dciFormSet = DciConfigurationFormSet()
         #assetFormSet = AssetConfigurationFormSet()
-    #return render(request, 'setup.html', {'formSetAssetOwner': assetOwnerFormSet, 'formSetAsset': assetFormSet, 'formSetDci':dciFormSet})
+    #return render(request, 'assetsetup.html', {'formSetAssetOwner': assetOwnerFormSet, 'formSetAsset': assetFormSet, 'formSetDci':dciFormSet})
