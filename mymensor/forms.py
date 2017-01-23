@@ -22,4 +22,4 @@ class AssetForm(ModelForm):
 
     class Meta:
         model = Asset
-
+        fields = '__all__'
