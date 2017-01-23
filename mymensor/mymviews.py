@@ -197,7 +197,7 @@ def vpSetupFormView(request):
     if request.method == 'GET':
         qtyvps = int(request.GET.get('qtyvps', 2))
         currentvp = int(request.GET.get('currentvp', 0))
-    vp = Vp.objects.get(vpIsActive=True)[:1]  #.filter(asset__assetOwner=request.user).filter(vpNumber=currentvp)
+    vp = Vp.objects.get(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp)
     form = VpForm(request.POST, instance=vp)
     if request.method == 'POST':
         if form.is_valid():
