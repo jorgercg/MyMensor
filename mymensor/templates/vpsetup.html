@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n counter%}
-{% block title %}Asset Setup - {{ block.super }}{% endblock %}
+{% block title %}VPs Setup - {{ block.super }}{% endblock %}
 {% block header %}
 {% endblock %}
 {% block content %}
@@ -10,6 +10,7 @@
             {% counter start=0 silent=True assign='vpinform' %}
             <h5>VP#{{ vpinform }}</h5>
             {{ form.as_p }}
+            <input type="submit" value="{% trans 'Submit' %}" />
             <hr>
         {% endfor %}
     </form>
