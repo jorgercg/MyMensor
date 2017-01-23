@@ -190,12 +190,10 @@ def assetSetupFormView(request):
 @login_required
 def vpSetupFormView(request):
     currentvp = 0
-    qtyvps = 2
+    qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
-        qtyvps = int(request.POST.get('qtyvps', 2))
         currentvp = int(request.POST.get('currentvp', 0))
     if request.method == 'GET':
-        qtyvps = int(request.GET.get('qtyvps', 2))
         currentvp = int(request.GET.get('currentvp', 0))
     vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
     form = VpForm(request.POST, instance=vp)

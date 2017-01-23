@@ -5,11 +5,12 @@
 {% endblock %}
 {% block content %}
     <div class="dashhead-toolbar">
-        <div id="vpselector" class="dashhead-toolbar-item">
-            <p>{% trans 'Media quantity per VP: ' %}</p>
+        <div id="qtyselector" class="dashhead-toolbar-item">
+            <p>{% trans 'VP # ' %}</p>
             <select id="currentvp" class="1-30"></select>
         </div>
     </div>
+    <hr>
     <form method="post" action="">
         {% csrf_token %}
         {{ form.as_p }}
