@@ -179,16 +179,11 @@ def assetSetupFormView(request):
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
     if request.method == 'POST':
-        #form = AssetForm(instance=asset)
         if form.is_valid():
             form.save()
     else:
         form = AssetForm(instance=asset)
     return render(request, 'assetsetup.html', {'form': form})
-
-
-
-
 
 
 # Vp Setup View
