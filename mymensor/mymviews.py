@@ -176,13 +176,14 @@ def android_assetlinks(request):
 
 @login_required
 def assetSetupFormView(request):
-    asset = Asset.objects.get(assetOwner=request.user)
+    #asset = Asset.objects.get(assetOwner=request.user)
+    form = AssetForm(request.POST, instance=request.user)
     if request.method == 'POST':
-        form = AssetForm(instance=asset)
+        #form = AssetForm(instance=asset)
         if form.is_valid():
             form.save()
     else:
-        form = AssetForm(instance=asset)
+        form = AssetForm(instance=request.user)
     return render(request, 'assetsetup.html', {'form': form})
 
 
