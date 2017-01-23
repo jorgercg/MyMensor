@@ -191,11 +191,11 @@ def assetSetupFormView(request):
 def vpSetupFormView(request):
     VpFormSet = modelformset_factory(Vp, fields=('__all__'))
     if request.method == 'POST':
-        formset = VpFormSet(request.POST, request.FILES)
+        formset = VpFormSet(request.POST, request.FILES, queryset=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user))
         if formset.is_valid():
             formset.save()
     else:
-        formset = VpFormSet()
+        formset = VpFormSet(queryset=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user))
     return render(request, 'vpsetup.html', {'formset': formset})
 
         #assetOwnerFormSet = AssetOwnerConfigurationFormSet(request.POST, request.FILES, prefix='assetOwnerFormSet')
