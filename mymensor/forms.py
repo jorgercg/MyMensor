@@ -1,6 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
-from mymensor.models import Asset, User, Vp
+from mymensor.models import Asset, User, Vp, Tag
 from django import forms
 
 class AssetForm(ModelForm):
@@ -59,3 +59,31 @@ class VpForm(ModelForm):
     class Meta:
         model = Vp
         fields = '__all__'
+
+
+class TagForm(ModelForm):
+
+    vp = forms.ModelChoiceField(queryset=Vp.objects.all(), widget=forms.HiddenInput)  ###### FK
+    tagDescription = forms.CharField(max_length=1024)
+    tagNumber = forms.IntegerField()
+    tagIsActive = forms.BooleanField(initial=True)
+    tagListNumber = forms.IntegerField()
+    tagQuestion = forms.CharField(max_length=1024)
+    tagLowRedValue = forms.FloatField()
+    tagLowYellow = forms.FloatField()
+    tagLowGreen = forms.FloatField()
+    tagExpValue = forms.FloatField()
+    tagHighGreen = forms.FloatField()
+    tagHighYellow = forms.FloatField()
+    tagHighRed = forms.FloatField()
+    tagType = forms.CharField(max_length=50)
+    tagIsDependantOfMasterTagNumber = forms.IntegerField(initial=0)
+    tagMaxLagFromMasterTagInMillis = forms.IntegerField()
+    tagMaxLagFromSlaveTagsInMillis = forms.IntegerField()
+    tagIsSetForSpecialCheck = forms.BooleanField(initial=False)
+    tagSpecialCheckAcceptableDiscrepancy = forms.FloatField(initial=0)
+
+    class Meta:
+        model = Tag
+        fields = '__all__'
+

@@ -33,7 +33,7 @@ urlpatterns = [
     url(r'^support/$', TemplateView.as_view(template_name='support.html'), name='support'),
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
-    url(r'^tagsetup/$', mymviews.assetSetupFormView, name='tagsetup'),
+    url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
 
     url(r'^chaining/', include('smart_selects.urls')),
 

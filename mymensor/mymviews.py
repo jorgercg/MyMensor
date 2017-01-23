@@ -10,13 +10,13 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Media, AmazonS3Message, AmazonSNSNotification
+from mymensor.models import Asset, Vp, Tag, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm, VpForm
+from mymensor.forms import AssetForm, VpForm, TagForm
 
 
 # Amazon SNS Notification Processor View
@@ -186,7 +186,6 @@ def assetSetupFormView(request):
     return render(request, 'assetsetup.html', {'form': form})
 
 
-# Vp Setup View
 @login_required
 def vpSetupFormView(request):
     currentvp = 0
@@ -204,3 +203,24 @@ def vpSetupFormView(request):
         form = VpForm(instance=vp)
     return render(request, 'vpsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp})
 
+
+@login_required
+def tagSetupFormView(request):
+    currentvp = 1
+    currenttag = 1
+    qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
+    qtytags = Tag.objects.filter(tagIsActive=True).filter(asset__assetOwner=request.user).count()
+    if request.method == 'POST':
+        currentvp = int(request.POST.get('currentvp', 1))
+        currenttag = int(request.POST.get('currenttag', 1))
+    if request.method == 'GET':
+        currentvp = int(request.GET.get('currentvp', 1))
+        currenttag = int(request.GET.get('currenttag', 1))
+    tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(tagNumber=currenttag).get()
+    form = TagForm(request.POST, instance=tag)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+    else:
+        form = TagForm(instance=tag)
+    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag})
