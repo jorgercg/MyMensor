@@ -7,13 +7,13 @@ class AssetForm(ModelForm):
 
     FREQ_UNIT_CHOICES = ( 'millis', 'hour', 'day', 'week', 'month')
 
-    assetDescription = forms.CharField(max_length=1024, null=True)
+    assetDescription = forms.CharField(max_length=1024)
     assetNumber = forms.IntegerField(widget=forms.HiddenInput)
     assetIsActive = forms.BooleanField(default=True)
     assetOwner = forms.IntegerField(widget=forms.HiddenInput)  ###### FK
-    assetOwnerDescription = forms.CharField(max_length=1024, null=True)
-    assetOwnerKey = forms.CharField(max_length=1024, null=True)
-    assetRegistryCode = forms.CharField(max_length=255, null=True)
+    assetOwnerDescription = forms.CharField(max_length=1024)
+    assetOwnerKey = forms.CharField(max_length=1024)
+    assetRegistryCode = forms.CharField(max_length=255)
     assetDciFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES), default="millis")
     assetDciFrequencyValue = forms.IntegerField(default=20000)
     assetDciQtyVps = forms.IntegerField(widget=forms.HiddenInput)
