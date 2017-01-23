@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from mymensor.models import Asset
 from django import forms
 
-class AssetForm(ModelForm):
+class AssetForm(forms.Form):
 
     FREQ_UNIT_CHOICES = ( 'millis', 'hour', 'day', 'week', 'month')
 
@@ -20,6 +20,3 @@ class AssetForm(ModelForm):
     assetDciTolerancePosition = forms.IntegerField()
     assetDciToleranceRotation = forms.IntegerField()
 
-    class Meta:
-        model = Asset
-        fields = '__all__'
