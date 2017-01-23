@@ -9,7 +9,7 @@
         {% for form in formset %}
             {% counter start=0 silent=True assign='vpinform' %}
             <h5>VP#{{ vpinform }}</h5>
-            {{ form }}
+            {{ form.as_p }}
             <hr>
         {% endfor %}
     </form>
