@@ -180,7 +180,7 @@ def assetSetupFormView(request):
     assetFormset = modelformset_factory(Asset, AssetForm, BaseAssetFormSet)
     if request.method == 'POST':
         data = request.POST.copy()
-        formset = assetFormset(data, assetOwner=request.user)
+        formset = assetFormset(data, user=request.user)
         if formset.is_valid():
             formset.save()
     else:
