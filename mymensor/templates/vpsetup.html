@@ -11,27 +11,29 @@
         </div>
     </div>
     <hr>
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="{% trans 'Submit' %}" />
-    </form>
+    <div id="vpedition">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="{% trans 'Submit' %}" />
+        </form>
+    </div>
 {% endblock %}
 {% block javascript %}
-        <script type="text/javascript">
-        $(function(){
-            console.log({{ qtyvps }});
-            var qtvps = {{ qtyvps }};
-            var $select = $('.1-30');
-            for (i=0; i < qtvps ;i++){
-                $select.append($('<option></option>').val(i).html(i))
-            }
-            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
-            $('#currentvp').change(function(){
-                var vpselected = $(this).find(":selected").val();
-                console.log(vpselected);
-                window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
-            });
+    <script type="text/javascript">
+    $(function(){
+        console.log({{ qtyvps }});
+        var qtvps = {{ qtyvps }};
+        var $select = $('.1-30');
+        for (i=0; i < qtvps ;i++){
+            $select.append($('<option></option>').val(i).html(i))
+        }
+        $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
+        $('#currentvp').change(function(){
+            var vpselected = $(this).find(":selected").val();
+            console.log(vpselected);
+            window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
         });
-        </script>
+    });
+    </script>
 {% endblock %}
