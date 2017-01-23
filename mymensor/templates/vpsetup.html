@@ -5,12 +5,6 @@
 {% endblock %}
 {% block content %}
     <form method="post" action="">
-        {{ formset.management_form }}
-        {% for form in formset %}
-            {% counter start=0 silent=True assign='vpinform' %}
-            <h5>VP#{{ vpinform }}</h5>
-            {{ form }}
-            <hr>
-        {% endfor %}
+        {{ formset }}
     </form>
 {% endblock %}
