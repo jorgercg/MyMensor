@@ -16,6 +16,7 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
+from mymensor.forms import AssetForm
 
 
 # Amazon SNS Notification Processor View
@@ -173,9 +174,26 @@ def android_assetlinks(request):
         return TemplateResponse(request, "android_assetlinks.html", content_type="application/json")
 
 
-# Setup Side View
 @login_required
 def assetSetupFormView(request):
+    assettouse = Asset.objects.get(assetOwner=request.user)
+    form = AssetForm(instance=assettouse)
+    if request.method == 'POST':
+        form = AssetForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AssetForm(instance=assettouse)
+    return render(request, 'assetsetup.html', { 'form': form})
+
+
+
+
+
+
+# Vp Setup View
+@login_required
+def vpSetupFormView(request):
     assetFormset = modelformset_factory(Asset, fields=('assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue', 'assetDciTolerancePosition', 'assetDciToleranceRotation'))
     if request.method == 'POST':
         formset = assetFormset(request.POST, request.FILES, queryset=Asset.objects.filter(assetOwner=request.user), )
