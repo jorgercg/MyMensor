@@ -5,7 +5,7 @@ from django import forms
 
 class AssetForm(ModelForm):
 
-    FREQ_UNIT_CHOICES = ('millis', 'hour', 'day', 'week', 'month')
+    FREQ_UNIT_CHOICES = (('millis','millis'),('hour','hour'), ('day','day'), ('week','week') , ('month','month'),)
 
     assetDescription = forms.CharField(max_length=1024)
     assetNumber = forms.IntegerField(widget=forms.HiddenInput)
@@ -14,7 +14,7 @@ class AssetForm(ModelForm):
     assetOwnerDescription = forms.CharField(max_length=1024)
     assetOwnerKey = forms.CharField(max_length=1024)
     assetRegistryCode = forms.CharField(max_length=255)
-    assetDciFrequencyUnit = forms.CharField() #widget=forms.Select(choices=FREQ_UNIT_CHOICES))
+    assetDciFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES))
     assetDciFrequencyValue = forms.IntegerField()
     assetDciQtyVps = forms.IntegerField(widget=forms.HiddenInput)
     assetDciTolerancePosition = forms.IntegerField()
