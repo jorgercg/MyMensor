@@ -10,7 +10,7 @@ class AssetForm(ModelForm):
     assetDescription = forms.CharField(max_length=1024)
     assetNumber = forms.IntegerField(widget=forms.HiddenInput)
     assetIsActive = forms.BooleanField(widget=forms.HiddenInput)
-    assetOwner = forms.IntegerField(widget=forms.HiddenInput)  ###### FK
+    assetOwner = forms.ModelChoiceField(widget=forms.HiddenInput)  ###### FK
     assetOwnerDescription = forms.CharField(max_length=1024)
     assetOwnerKey = forms.CharField(max_length=1024)
     assetRegistryCode = forms.CharField(max_length=255)
