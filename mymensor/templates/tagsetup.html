@@ -53,14 +53,14 @@
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
-                console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+tagselected);
+                console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+'{{ currenttag }}');
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
             });
 
             $('#inctags').click(function(){
                 console.log("Clicked on inctags!!!!");
                 qttags = qttags + 1;
-                console.log("INCTAGSCLICKED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+qttags);
+                console.log("INCTAGSCLICKED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+qttags);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
             });
 
