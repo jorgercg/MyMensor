@@ -14,7 +14,7 @@ def loaddcicfg(request):
 
     root = ET.fromstring(vpsfilecontents)
 
-    for Parameters in root:
+    for Parameters in root.findall('Parameters'):
         AssetId = Parameters.find('AssetId').text
         FrequencyUnit = Parameters.find('FrequencyUnit').text
         FrequencyValue = Parameters.find('FrequencyValue').text
@@ -44,7 +44,7 @@ def loaddcicfg(request):
     VpFrequencyUnit = []
     VpFrequencyValue = []
 
-    for Vp in root:
+    for Vp in root.findall('Vp'):
         counter += 1
         VpNumber[counter] = Vp.find('VpNumber').text
         VpDescFileSize[counter] = Vp.find('VpDescFileSize').text
