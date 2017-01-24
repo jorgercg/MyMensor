@@ -73,8 +73,8 @@ def loaddcicfg(request):
     loadasset.assetDciFrequencyUnit=FrequencyUnit
     loadasset.assetDciFrequencyValue=int(FrequencyValue)
     loadasset.assetDciQtyVps=int(QtyVps)
-    loadasset.assetDciTolerancePosition=int(TolerancePosition)
-    loadasset.assetDciToleranceRotation=int(ToleranceRotation)
+    loadasset.assetDciTolerancePosition=int(float(TolerancePosition))
+    loadasset.assetDciToleranceRotation=int(float(ToleranceRotation))
     loadasset.save()
 
     i = 0
