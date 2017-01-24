@@ -206,21 +206,15 @@ def vpSetupFormView(request):
 
 @login_required
 def tagSetupFormView(request):
-    currentvp = 1
-    currenttag = 1
+
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
+    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytags = listoftags.count()
+
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag', 1))
         qtytags = int(request.POST.get('qtytags', qtytags))
-    if request.method == 'GET':
-        currentvp = int(request.GET.get('currentvp', 1))
-        currenttag = int(request.GET.get('currenttag', 1))
-        qtytags = int(request.GET.get('qtytags', qtytags))
-
-    if request.method == 'POST':
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
@@ -233,7 +227,11 @@ def tagSetupFormView(request):
             form = TagForm(instance=tag)
         if form.is_valid():
             form.save()
-    else:
+
+    if request.method == 'GET':
+        currentvp = int(request.GET.get('currentvp', 1))
+        currenttag = int(request.GET.get('currenttag', 1))
+        qtytags = int(request.GET.get('qtytags', qtytags))
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
@@ -246,5 +244,4 @@ def tagSetupFormView(request):
             qtytags = qtytags + 1
             form = TagForm(instance=tag)
 
-        #taglist = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag})
