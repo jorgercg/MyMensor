@@ -44,7 +44,7 @@ def loaddcicfg(request):
     VpFrequencyUnit = []
     VpFrequencyValue = []
 
-    counter = 0
+    counter = 1
     for Vp in root.findall('Vp'):
         VpNumber[counter] = Vp.find('VpNumber').text
         VpDescFileSize[counter] = Vp.find('VpDescFileSize').text
@@ -77,9 +77,9 @@ def loaddcicfg(request):
     loadasset.assetDciToleranceRotation=int(ToleranceRotation)
     loadasset.save()
 
-    i = 0
+    i = 1
     while i < counter:
-        loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i)
+        loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=(i-1))
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
