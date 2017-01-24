@@ -206,9 +206,9 @@ def vpSetupFormView(request):
 
 @login_required
 def tagSetupFormView(request):
-
+    currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
+    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values()
     qtytags = listoftags.count()
 
     if request.method == 'POST':
@@ -219,13 +219,10 @@ def tagSetupFormView(request):
             qtytags=1
         tag = Tag()
         try:
-            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
-                tagNumber=currenttag).get()
+            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
-            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-                vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
-                      tagQuestion='Tag question for TAG#' + str(currenttag))
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get())
             form = TagForm(request.POST, instance=tag)
         if form.is_valid():
             form.save()
@@ -236,14 +233,12 @@ def tagSetupFormView(request):
         qtytags = int(request.GET.get('qtytags', qtytags))
         tag = Tag()
         try:
-            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
-                tagNumber=currenttag).get()
+            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
             tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
                 vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                          tagQuestion='Tag question for TAG#' + str(currenttag))
-            qtytags = qtytags + 1
             form = TagForm(instance=tag)
 
-    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag})
+    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag, 'listoftags':listoftags})

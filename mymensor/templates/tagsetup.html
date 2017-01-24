@@ -13,7 +13,11 @@
                 </div>
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
-                    <select id="currenttag" class="1-80"></select>
+                    <select id="currenttag" class="1-80">
+                        {% for tag in listoftags %}
+                        <option value="{{ tag }}">{{ tag }}</option>
+                        {% endfor %}
+                    </select>
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
             </div>
@@ -32,11 +36,7 @@
         $(function(){
 
             var qttags = {{ qtytags }};
-            var $selecttag = $('.1-80');
-            console.log("qttags="+qttags);
-            for (j=1; j <= qttags ;j++){
-                $selecttag.append($('<option></option>').val(j).html(j))
-            }
+
             $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
             $('#currenttag').change(function(){
                 var tagselected = $(this).find(":selected").val();
@@ -60,7 +60,7 @@
             $('#inctags').click(function(){
                 console.log("Clicked on inctags!!!!");
                 qttags = qttags + 1;
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+'{{ currenttag }}';
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
             });
 
         });
