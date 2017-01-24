@@ -221,6 +221,7 @@ def tagSetupFormView(request):
         qtytags = int(request.GET.get('qtytags', qtytags))
 
     if request.method == 'POST':
+        tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
                 tagNumber=currenttag).get()
