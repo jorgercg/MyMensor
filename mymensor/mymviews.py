@@ -12,6 +12,7 @@ from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
 from mymensor.models import Asset, Vp, Tag, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
+from mymensor.importdata import loaddcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from datetime import datetime
@@ -176,6 +177,7 @@ def android_assetlinks(request):
 
 @login_required
 def assetSetupFormView(request):
+    loaddcicfg(request)
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
     if request.method == 'POST':
