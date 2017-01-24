@@ -24,7 +24,7 @@
         </div>
         <hr>
         <div id="tagedition">
-            <form method="post" action="{% url 'tagsetup' %}?currentvp={{ currentvp }}&currenttag={{ currenttag }}">
+            <form method="POST" action="{% url 'tagsetup' %}?currentvp={{ currentvp }}&currenttag={{ currenttag }}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input type="submit" value="{% trans 'Submit' %}" />
