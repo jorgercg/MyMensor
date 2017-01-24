@@ -40,26 +40,27 @@
             $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
             $('#currenttag').change(function(){
                 var tagselected = $(this).find(":selected").val();
-                console.log(tagselected);
+                console.log("qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+tagselected);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+'{{ qtytags }}'+'&currenttag='+tagselected;
             });
 
             var qtvps = {{ qtyvps }};
             var $select = $('.1-30');
-            console.log("qtvps="+qtvps);
+            console.log("qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+tagselected);
             for (i=1; i < qtvps ;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
-                console.log(vpselected);
+                console.log("qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+tagselected);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
             });
 
             $('#inctags').click(function(){
                 console.log("Clicked on inctags!!!!");
                 qttags = qttags + 1;
+                console.log("qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+qttags);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
             });
 
