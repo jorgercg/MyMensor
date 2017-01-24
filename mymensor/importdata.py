@@ -64,8 +64,8 @@ def loaddcicfg(request):
         VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
         VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
         VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
-        VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
-        VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
+        #VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
+        #VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
         counter += 1
 
     loadasset = Asset.objects.get(assetOwner=request.user)
@@ -101,7 +101,7 @@ def loaddcicfg(request):
         loadvp.vpIsSuperSingle = ast.literal_eval(VpIsSuperSingle[i])
         loadvp.vpFlashTorchIsOn = ast.literal_eval(VpFlashTorchIsOn[i])
         loadvp.vpSuperMarkerId = int(VpSuperMarkerId[i])
-        loadvp.vpFrequencyUnit = VpFrequencyUnit[i]
-        loadvp.vpFrequencyValue = int(VpFrequencyValue[i])
+        loadvp.vpFrequencyUnit = 0 #VpFrequencyUnit[i]
+        loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
         i += 1
     loadvp.save()
