@@ -28,7 +28,7 @@
             console.log({{ qtyvps }});
             var qtvps = {{ qtyvps }};
             var $select = $('.1-30');
-            for (i=0; i < qtvps ;i++){
+            for (i=1; i < qtvps ;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');

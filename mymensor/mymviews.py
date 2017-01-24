@@ -188,12 +188,12 @@ def assetSetupFormView(request):
 
 @login_required
 def vpSetupFormView(request):
-    currentvp = 0
+    currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
-        currentvp = int(request.POST.get('currentvp', 0))
+        currentvp = int(request.POST.get('currentvp', 1))
     if request.method == 'GET':
-        currentvp = int(request.GET.get('currentvp', 0))
+        currentvp = int(request.GET.get('currentvp', 1))
     vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
     form = VpForm(request.POST, instance=vp)
     if request.method == 'POST':
@@ -234,6 +234,8 @@ def tagSetupFormView(request):
         if qtytags==0:
             qtytags=1
             listoftags= { 1, }
+        if qtytags>listoftags.count():
+            listoftags.append(currenttag)
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
