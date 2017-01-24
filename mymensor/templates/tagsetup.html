@@ -7,13 +7,16 @@
     {% block content %}
         <div class="d-flex align-content-start flex-wrap">
             <div class="dashhead-toolbar">
-                <div id="qtyselector" class="dashhead-toolbar-item">
+                <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'VP # ' %}</p>
                     <select id="currentvp" class="1-30"></select>
                 </div>
-                <div id="qtyselector" class="dashhead-toolbar-item">
+                <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currenttag" class="1-80"></select>
+                </div>
+                <div id="butttoinctags" class="dashhead-tagstoolbar-item">
+                    <button id="inctags">{% trans 'Increase Tag Quantity' %}</button>
                 </div>
             </div>
         </div>

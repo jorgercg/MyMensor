@@ -184,3 +184,27 @@ h5 {
       .dashhead-toolbar-item.btn-group-fourths .btn {
         width: 25%;
         margin-left: 0; } }
+
+.dashhead-tagstoolbar-item {
+  float: left;
+  width: 10rem;
+  margin-left: 10px;
+  margin-right: 10px;}
+  @media (max-width: 767px) {
+    .dashhead-toolbar-item.btn-group-halves {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-halves .btn {
+        width: 50%;
+        margin-left: 0; }
+    .dashhead-toolbar-item.btn-group-thirds {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-thirds .btn {
+        width: 33%;
+        margin-left: 0; }
+        .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
+          width: 34%; }
+    .dashhead-toolbar-item.btn-group-fourths {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-fourths .btn {
+        width: 25%;
+        margin-left: 0; } }
