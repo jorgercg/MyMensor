@@ -217,7 +217,11 @@ def tagSetupFormView(request):
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag = int(request.GET.get('currenttag', 1))
-    tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(tagNumber=currenttag).get_or_create()
+    tag = Tag()
+    try:
+        tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(tagNumber=currenttag).get()
+    except tag.DoesNotExist:
+        tag = Tag(vp=Vp.objects.get(vpNumber=currentvp),tagDescription='TAG#'+str(currenttag),tagNumber=currenttag,tagQuestion='Tag question for TAG#'+str(currenttag))
     form = TagForm(request.POST, instance=tag)
     if request.method == 'POST':
         if form.is_valid():
