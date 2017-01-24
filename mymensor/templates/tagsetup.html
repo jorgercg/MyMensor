@@ -59,6 +59,8 @@
 
             $('#inctags').click(function(){
                 console.log("Clicked on inctags!!!!");
+                qttags = qttags + 1;
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+'{{ currenttag }}';
             });
 
         });
