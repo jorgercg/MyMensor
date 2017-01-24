@@ -14,9 +14,7 @@
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currenttag" class="1-80"></select>
-                </div>
-                <div id="butttoinctags" class="dashhead-tagstoolbar-item">
-                    <button id="inctags">{% trans 'Increase Tag Quantity' %}</button>
+                    <span id="inctags" class="fa fa-plus-circle butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
             </div>
         </div>
@@ -57,6 +55,10 @@
                 var vpselected = $(this).find(":selected").val();
                 console.log(vpselected);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
+            });
+
+            $('#inctags').click(function(){
+                console.log("Clicked on inctags!!!!");
             });
 
         });
