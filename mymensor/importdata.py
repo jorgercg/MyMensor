@@ -10,7 +10,7 @@ def loaddcicfg(request):
     s3 = session.resource('s3')
     s3_object_key = request.user.username + "/cfg/1/vps/vps.xml"
     object = s3.Object(AWS_S3_BUCKET_NAME, s3_object_key)
-    vpsfilecontents = object.get()['Body'].read().decode('utf-8')
+    vpsfilecontents = object.get()['Body'].read()
 
     root = ET.fromstring(vpsfilecontents)
 
