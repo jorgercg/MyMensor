@@ -83,7 +83,7 @@ def loaddcicfg(request):
     i = 0
     while i < counter:
         loadvp = modelVp()
-        loadvp = loadvp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i)
+        loadvp = loadvp.filter(asset__assetOwner=request.user).filter(vpNumber=i)
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
@@ -107,5 +107,5 @@ def loaddcicfg(request):
         loadvp.vpSuperMarkerId = int(VpSuperMarkerId[i])
         loadvp.vpFrequencyUnit = 0 #VpFrequencyUnit[i]
         loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
-        i += 1
         loadvp.save()
+        i += 1
