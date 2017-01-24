@@ -233,16 +233,16 @@ def tagSetupFormView(request):
         qtytags = int(request.GET.get('qtytags', qtytags))
         if qtytags==0:
             qtytags=1
-            listoftags= { 1, }
-        if qtytags>listoftags.count():
-            listoftags.append(currenttag)
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
+            if qtytags > listoftags.count():
+                currenttag = qtytags
             tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(), tagDescription='TAG#'+str(currenttag), tagNumber=currenttag,
                          tagQuestion='Tag question for TAG#' + str(currenttag))
+            tag.create()
             form = TagForm(instance=tag)
 
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag, 'listoftags':listoftags})
