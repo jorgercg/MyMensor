@@ -11,7 +11,7 @@
                     <p>{% trans 'VP # ' %}</p>
                     <select id="currentvp" class="1-30"></select>
                 </div>
-                div id="qtyselector" class="dashhead-toolbar-item">
+                <div id="qtyselector" class="dashhead-toolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currenttag" class="1-80"></select>
                 </div>
@@ -36,11 +36,11 @@
             for (i=1; i < qtvps ;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
-            for (i=1; i < qttags ;i++){
+            for (i=1; i <= qttags ;i++){
                 $selecttag.append($('<option></option>').val(i).html(i))
             }
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
-            $('.1-30 option[value="{{ currenttag }}"]').attr('selected','selected');
+            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
                 console.log(vpselected);
