@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 import xml.etree.ElementTree as ET
 import boto3, ast
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -83,7 +84,8 @@ def loaddcicfg(request):
     i = 0
     while i < counter:
         loadvp = modelVp()
-        loadvp = loadvp.filter(asset__assetOwner=request.user).filter(vpNumber=i)
+        loadvp_user_id = User.objects.get(user=request.user)
+        loadvp.asset = Asset.objects.get(assetOwner=loadvp_user_id)
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
