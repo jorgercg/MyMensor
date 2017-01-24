@@ -4,6 +4,9 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
 
+def str2bool(v):
+  return v.lower() in ("yes", "true", "t", "1")
+
 def loaddcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -95,11 +98,11 @@ def loaddcicfg(request):
         loadvp.vpZRotation = int(VpZCameraRotation[i])
         loadvp.vpMarkerlessMarkerWidth = int(VpMarkerlessMarkerWidth[i])
         loadvp.vpMarkerlessMarkerHeigth = int(VpMarkerlessMarkerHeigth[i])
-        loadvp.vpArIsConfigured = ast.literal_eval(VpArIsConfigured[i])
-        loadvp.vpIsVideo = ast.literal_eval(VpIsVideo[i])
-        loadvp.vpIsAmbiguos = ast.literal_eval(VpIsAmbiguous[i])
-        loadvp.vpIsSuperSingle = ast.literal_eval(VpIsSuperSingle[i])
-        loadvp.vpFlashTorchIsOn = ast.literal_eval(VpFlashTorchIsOn[i])
+        loadvp.vpArIsConfigured = str2bool(VpArIsConfigured[i])
+        loadvp.vpIsVideo = str2bool(VpIsVideo[i])
+        loadvp.vpIsAmbiguos = str2bool(VpIsAmbiguous[i])
+        loadvp.vpIsSuperSingle = str2bool(VpIsSuperSingle[i])
+        loadvp.vpFlashTorchIsOn = str2bool(VpFlashTorchIsOn[i])
         loadvp.vpSuperMarkerId = int(VpSuperMarkerId[i])
         loadvp.vpFrequencyUnit = 0 #VpFrequencyUnit[i]
         loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
