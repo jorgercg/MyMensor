@@ -44,28 +44,28 @@ def loaddcicfg(request):
     VpFrequencyUnit = []
     VpFrequencyValue = []
 
-    counter = 1
+    counter = 0
     for Vp in root.findall('Vp'):
-        VpNumber[counter] = Vp.find('VpNumber').text
-        VpDescFileSize[counter] = Vp.find('VpDescFileSize').text
-        VpMarkerFileSize[counter] = Vp.find('VpMarkerFileSize').text
-        VpArIsConfigured[counter] = Vp.find('VpArIsConfigured').text
-        VpIsVideo[counter] = Vp.find('VpIsVideo').text
-        VpXCameraDistance[counter] = Vp.find('VpXCameraDistance').text
-        VpYCameraDistance[counter] = Vp.find('VpYCameraDistance').text
-        VpZCameraDistance[counter] = Vp.find('VpZCameraDistance').text
-        VpXCameraRotation[counter] = Vp.find('VpXCameraRotation').text
-        VpYCameraRotation[counter] = Vp.find('VpYCameraRotation').text
-        VpZCameraRotation[counter] = Vp.find('VpZCameraRotation').text
-        VpLocDescription[counter] = Vp.find('VpLocDescription').text
-        VpMarkerlessMarkerWidth[counter] = Vp.find('VpMarkerlessMarkerWidth').text
-        VpMarkerlessMarkerHeigth[counter] = Vp.find('VpMarkerlessMarkerHeigth').text
-        VpIsAmbiguous[counter] = Vp.find('VpIsAmbiguous').text
-        VpFlashTorchIsOn[counter] = Vp.find('VpFlashTorchIsOn').text
-        VpIsSuperSingle[counter] = Vp.find('VpIsSuperSingle').text
-        VpSuperMarkerId[counter] = Vp.find('VpSuperMarkerId').text
-        VpFrequencyUnit[counter] = Vp.find('VpFrequencyUnit').text
-        VpFrequencyValue[counter] = Vp.find('VpFrequencyValue').text
+        VpNumber.append(Vp.find('VpNumber').text)
+        VpDescFileSize.append(Vp.find('VpDescFileSize').text)
+        VpMarkerFileSize.append(Vp.find('VpMarkerFileSize').text)
+        VpArIsConfigured.append(Vp.find('VpArIsConfigured').text)
+        VpIsVideo.append(Vp.find('VpIsVideo').text)
+        VpXCameraDistance.append(Vp.find('VpXCameraDistance').text)
+        VpYCameraDistance.append(Vp.find('VpYCameraDistance').text)
+        VpZCameraDistance.append(Vp.find('VpZCameraDistance').text)
+        VpXCameraRotation.append(Vp.find('VpXCameraRotation').text)
+        VpYCameraRotation.append(Vp.find('VpYCameraRotation').text)
+        VpZCameraRotation.append(Vp.find('VpZCameraRotation').text)
+        VpLocDescription.append(Vp.find('VpLocDescription').text)
+        VpMarkerlessMarkerWidth.append(Vp.find('VpMarkerlessMarkerWidth').text)
+        VpMarkerlessMarkerHeigth.append(Vp.find('VpMarkerlessMarkerHeigth').text)
+        VpIsAmbiguous.append(Vp.find('VpIsAmbiguous').text)
+        VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
+        VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
+        VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
+        VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
+        VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
         counter += 1
 
     loadasset = Asset.objects.get(assetOwner=request.user)
@@ -77,9 +77,9 @@ def loaddcicfg(request):
     loadasset.assetDciToleranceRotation=int(ToleranceRotation)
     loadasset.save()
 
-    i = 1
+    i = 0
     while i < counter:
-        loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=(i-1))
+        loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i)
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
