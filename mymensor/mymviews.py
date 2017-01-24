@@ -233,6 +233,7 @@ def tagSetupFormView(request):
         qtytags = int(request.GET.get('qtytags', qtytags))
         if qtytags==0:
             qtytags=1
+            listoftags= { 1, }
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
