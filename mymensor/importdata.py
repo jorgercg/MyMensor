@@ -15,14 +15,14 @@ def loaddcicfg(request):
     root = ET.fromstring(vpsfilecontents)
 
     for Parameters in root.findall('Parameters'):
-        AssetId = Parameters.get('AssetId')
-        FrequencyUnit = Parameters.get('FrequencyUnit')
-        FrequencyValue = Parameters.get('FrequencyValue')
-        QtyVps = Parameters.get('QtyVps')
-        TolerancePosition = Parameters.get('TolerancePosition')
-        ToleranceRotation = Parameters.get('ToleranceRotation')
+        AssetId = Parameters.find('AssetId').text
+        FrequencyUnit = Parameters.find('FrequencyUnit').text
+        FrequencyValue = Parameters.find('FrequencyValue').text
+        QtyVps = Parameters.find('QtyVps').text
+        TolerancePosition = Parameters.find('TolerancePosition').text
+        ToleranceRotation = Parameters.find('ToleranceRotation').text
 
-    counter = -1
+
     VpNumber = []
     VpDescFileSize = []
     VpMarkerFileSize = []
@@ -44,28 +44,29 @@ def loaddcicfg(request):
     VpFrequencyUnit = []
     VpFrequencyValue = []
 
+    counter = 0
     for Vp in root.findall('Vp'):
+        VpNumber[counter] = Vp.find('VpNumber').text
+        VpDescFileSize[counter] = Vp.find('VpDescFileSize').text
+        VpMarkerFileSize[counter] = Vp.find('VpMarkerFileSize').text
+        VpArIsConfigured[counter] = Vp.find('VpArIsConfigured').text
+        VpIsVideo[counter] = Vp.find('VpIsVideo').text
+        VpXCameraDistance[counter] = Vp.find('VpXCameraDistance').text
+        VpYCameraDistance[counter] = Vp.find('VpYCameraDistance').text
+        VpZCameraDistance[counter] = Vp.find('VpZCameraDistance').text
+        VpXCameraRotation[counter] = Vp.find('VpXCameraRotation').text
+        VpYCameraRotation[counter] = Vp.find('VpYCameraRotation').text
+        VpZCameraRotation[counter] = Vp.find('VpZCameraRotation').text
+        VpLocDescription[counter] = Vp.find('VpLocDescription').text
+        VpMarkerlessMarkerWidth[counter] = Vp.find('VpMarkerlessMarkerWidth').text
+        VpMarkerlessMarkerHeigth[counter] = Vp.find('VpMarkerlessMarkerHeigth').text
+        VpIsAmbiguous[counter] = Vp.find('VpIsAmbiguous').text
+        VpFlashTorchIsOn[counter] = Vp.find('VpFlashTorchIsOn').text
+        VpIsSuperSingle[counter] = Vp.find('VpIsSuperSingle').text
+        VpSuperMarkerId[counter] = Vp.find('VpSuperMarkerId').text
+        VpFrequencyUnit[counter] = Vp.find('VpFrequencyUnit').text
+        VpFrequencyValue[counter] = Vp.find('VpFrequencyValue').text
         counter += 1
-        VpNumber[counter] = Vp.get('VpNumber')
-        VpDescFileSize[counter] = Vp.get('VpDescFileSize')
-        VpMarkerFileSize[counter] = Vp.get('VpMarkerFileSize')
-        VpArIsConfigured[counter] = Vp.get('VpArIsConfigured')
-        VpIsVideo[counter] = Vp.get('VpIsVideo')
-        VpXCameraDistance[counter] = Vp.get('VpXCameraDistance')
-        VpYCameraDistance[counter] = Vp.get('VpYCameraDistance')
-        VpZCameraDistance[counter] = Vp.get('VpZCameraDistance')
-        VpXCameraRotation[counter] = Vp.get('VpXCameraRotation')
-        VpYCameraRotation[counter] = Vp.get('VpYCameraRotation')
-        VpZCameraRotation[counter] = Vp.get('VpZCameraRotation')
-        VpLocDescription[counter] = Vp.get('VpLocDescription')
-        VpMarkerlessMarkerWidth[counter] = Vp.get('VpMarkerlessMarkerWidth')
-        VpMarkerlessMarkerHeigth[counter] = Vp.get('VpMarkerlessMarkerHeigth')
-        VpIsAmbiguous[counter] = Vp.get('VpIsAmbiguous')
-        VpFlashTorchIsOn[counter] = Vp.get('VpFlashTorchIsOn')
-        VpIsSuperSingle[counter] = Vp.get('VpIsSuperSingle')
-        VpSuperMarkerId[counter] = Vp.get('VpSuperMarkerId')
-        VpFrequencyUnit[counter] = Vp.get('VpFrequencyUnit')
-        VpFrequencyValue[counter] = Vp.get('VpFrequencyValue')
 
     loadasset = Asset.objects.get(assetOwner=request.user)
     loadasset.assetNumber=int(AssetId)
@@ -75,8 +76,9 @@ def loaddcicfg(request):
     loadasset.assetDciTolerancePosition=int(TolerancePosition)
     loadasset.assetDciToleranceRotation=int(ToleranceRotation)
     loadasset.save()
+
     i = 0
-    while i <= counter:
+    while i < counter:
         loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i)
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
