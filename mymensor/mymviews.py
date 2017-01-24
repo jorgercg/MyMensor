@@ -221,9 +221,15 @@ def tagSetupFormView(request):
         qtytags = int(request.GET.get('qtytags', qtytags))
 
     if request.method == 'POST':
-        tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
-            tagNumber=currenttag).get()
-        form = TagForm(request.POST, instance=tag)
+        try:
+            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+                tagNumber=currenttag).get()
+            form = TagForm(request.POST, instance=tag)
+        except tag.DoesNotExist:
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
+                      tagQuestion='Tag question for TAG#' + str(currenttag))
+            form = TagForm(instance=tag)
         if form.is_valid():
             form.save()
     else:
@@ -233,11 +239,11 @@ def tagSetupFormView(request):
                 tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
-            newtag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
                 vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             qtytags = qtytags + 1
-            form = TagForm(instance=newtag)
+            form = TagForm(instance=tag)
 
         #taglist = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag})
