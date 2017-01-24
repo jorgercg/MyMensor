@@ -229,4 +229,5 @@ def tagSetupFormView(request):
             form.save()
     else:
         form = TagForm(instance=tag)
+        #taglist = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag})
