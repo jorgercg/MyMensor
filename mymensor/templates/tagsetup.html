@@ -29,28 +29,31 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
-            var qtvps = {{ qtyvps }};
+
             var qttags = {{ qtytags }}
-            var $select = $('.1-30');
             var $selecttag = $('.1-80');
-            for (i=1; i < qtvps ;i++){
-                $select.append($('<option></option>').val(i).html(i))
-            }
             for (j=1; j <= qttags ;j++){
                 $selecttag.append($('<option></option>').val(j).html(j))
             }
-            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
-            $('#currentvp').change(function(){
-                var vpselected = $(this).find(":selected").val();
-                console.log(vpselected);
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
-            });
             $('#currenttag').change(function(){
                 var tagselected = $(this).find(":selected").val();
                 console.log(tagselected);
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+'{{ qtytags }}'+'&currenttag='+tagselected;
             });
+
+            var qtvps = {{ qtyvps }};
+            var $select = $('.1-30');
+            for (i=1; i < qtvps ;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
+            $('#currentvp').change(function(){
+                var vpselected = $(this).find(":selected").val();
+                console.log(vpselected);
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
+            });
+
         });
         </script>
     {% endblock %}
