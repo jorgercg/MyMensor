@@ -36,8 +36,8 @@
             for (i=1; i < qtvps ;i++){
                 $select.append($('<option></option>').val(i).html(i))
             }
-            for (i=1; i <= qttags ;i++){
-                $selecttag.append($('<option></option>').val(i).html(i))
+            for (j=1; j <= qttags ;j++){
+                $selecttag.append($('<option></option>').val(j).html(j))
             }
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
