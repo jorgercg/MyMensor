@@ -212,9 +212,9 @@ def tagSetupFormView(request):
     qtytags = listoftags.count()
 
     if request.method == 'POST':
-        currentvp = request.POST.get('currentvp', 1)
-        currenttag = request.POST.get('currenttag',1)
-        qtytags = request.POST.get('qtytags', qtytags)
+        currentvp = int(request.POST.get('currentvp', 1))
+        currenttag = int(request.POST.get('currenttag',1))
+        qtytags = int(request.POST.get('qtytags', qtytags))
         if qtytags==0:
             qtytags=1
         tag = Tag()
