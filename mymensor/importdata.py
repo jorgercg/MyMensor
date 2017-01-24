@@ -104,4 +104,4 @@ def loaddcicfg(request):
         loadvp.vpFrequencyUnit = 0 #VpFrequencyUnit[i]
         loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
         i += 1
-    loadvp.save()
+        loadvp.save()
