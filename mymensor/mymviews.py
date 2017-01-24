@@ -224,9 +224,9 @@ def tagSetupFormView(request):
         tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(tagNumber=currenttag).get()
         form = TagForm(request.POST, instance=tag)
     except tag.DoesNotExist:
-        tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(),tagDescription='TAG#'+str(currenttag),tagNumber=currenttag,tagQuestion='Tag question for TAG#'+str(currenttag))
+        newtag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(),tagDescription='TAG#'+str(currenttag),tagNumber=currenttag,tagQuestion='Tag question for TAG#'+str(currenttag))
         qtytags= qtytags + 1
-        form = TagForm(request.POST, instance=tag)
+        form = TagForm(request.POST, instance=newtag)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
