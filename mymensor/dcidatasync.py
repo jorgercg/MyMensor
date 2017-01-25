@@ -11,6 +11,21 @@ def str2bool(v):
 def bool2str(v):
   return str(v).lower()
 
+def indent(elem, level=0):
+    i = "\n" + level*"  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = i + "  "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+        for elem in elem:
+            indent(elem, level+1)
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = i
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = i
+
 def loaddcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -164,8 +179,9 @@ def writedcicfg(request):
         i +=1
 
     tempfile = open("tempfile.xml","w")
+    indent(vpsdata)
     tree = ET.ElementTree(vpsdata)
-    tree.write(tempfile)
+    tree.write(tempfile, encoding="UTF-8")
     tempfile.close()
 
     s3.Object(AWS_S3_BUCKET_NAME, s3_object_key).upload_file("tempfile.xml")
