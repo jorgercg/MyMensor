@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/forms.py" afterPath="$PROJECT_DIR$/mymensor/forms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" afterPath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,8 +59,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="234" column="31" lean-forward="true" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
+            <state relative-caret-position="801">
+              <caret line="251" column="104" lean-forward="false" selection-start-line="251" selection-start-column="104" selection-end-line="251" selection-end-column="104" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -137,6 +135,7 @@
       <find>.text</find>
       <find>[counter] =</find>
       <find>ast.literal_eval</find>
+      <find>listoftags</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -219,6 +218,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="1" />
     <option name="y" value="23" />
     <option name="width" value="1920" />
     <option name="height" value="1053" />
@@ -664,13 +664,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-00845" summary="24jan2017 12h11min">
-      <created>1485260715711</created>
-      <option name="number" value="00845" />
-      <option name="presentableId" value="LOCAL-00845" />
-      <option name="project" value="LOCAL" />
-      <updated>1485260715711</updated>
-    </task>
     <task id="LOCAL-00846" summary="24jan2017 12h11min">
       <created>1485261136640</created>
       <option name="number" value="00846" />
@@ -1007,7 +1000,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485348830182</updated>
     </task>
-    <option name="localTasksCounter" value="894" />
+    <task id="LOCAL-00894" summary="25jan2017 14h48min">
+      <created>1485355713490</created>
+      <option name="number" value="00894" />
+      <option name="presentableId" value="LOCAL-00894" />
+      <option name="project" value="LOCAL" />
+      <updated>1485355713490</updated>
+    </task>
+    <option name="localTasksCounter" value="895" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1020,7 +1020,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
+    <frame x="1" y="23" width="1920" height="1053" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1081,7 +1081,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="20jan2017 19h04min" />
     <MESSAGE value="20jan2017 19h24min" />
     <MESSAGE value="20jan2017 20h31min" />
     <MESSAGE value="21jan2017 12h30min" />
@@ -1106,7 +1105,8 @@
     <MESSAGE value="24jan2017 23h08min" />
     <MESSAGE value="25jan2017 09h22min" />
     <MESSAGE value="25jan2017 12h12min" />
-    <option name="LAST_COMMIT_MESSAGE" value="25jan2017 12h12min" />
+    <MESSAGE value="25jan2017 14h48min" />
+    <option name="LAST_COMMIT_MESSAGE" value="25jan2017 14h48min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1476,8 +1476,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="234" column="31" lean-forward="true" selection-start-line="234" selection-start-column="31" selection-end-line="234" selection-end-column="31" />
+        <state relative-caret-position="801">
+          <caret line="251" column="104" lean-forward="false" selection-start-line="251" selection-start-column="104" selection-end-line="251" selection-end-column="104" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
