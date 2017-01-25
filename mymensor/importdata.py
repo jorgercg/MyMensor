@@ -92,6 +92,8 @@ def loaddcicfg(request):
         loadvp.vpStdPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/descvp"+str(VpNumber[i])+".png"
         loadvp.vpStdTagDescPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/tagdescvp"+str(VpNumber[i])+".png"
         loadvp.vpStdMarkerPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/markervp"+str(VpNumber[i])+".png"
+        loadvp.vpStdPhotoFileSize = int(VpDescFileSize[i])
+        loadvp.vpStdMarkerPhotoFileSize = int(VpMarkerFileSize[i])
         loadvp.vpXDistance = int(VpXCameraDistance[i])
         loadvp.vpYDistance = int(VpYCameraDistance[i])
         loadvp.vpZDistance = int(VpZCameraDistance[i])
