@@ -18,6 +18,9 @@
                         <option value="{{ tag }}">{{ tag }}</option>
                         {% endfor %}
                     </select>
+                </div>
+                <div class="dashhead-tagstoolbar-item">
+                    <p>{% trans 'TAG QTY= ' %}{{ qtytags }}</p>
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
             </div>

@@ -213,7 +213,7 @@ def vpSetupFormView(request):
 def tagSetupFormView(request):
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytags = listoftags.count()
 
     if request.method == 'POST':
@@ -249,4 +249,6 @@ def tagSetupFormView(request):
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
 
+    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+        vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytags, 'currenttag':currenttag, 'listoftags':listoftags})

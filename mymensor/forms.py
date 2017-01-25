@@ -8,17 +8,17 @@ class AssetForm(ModelForm):
     FREQ_UNIT_CHOICES = (('millis','millis'),('hour','hour'), ('day','day'), ('week','week') , ('month','month'),)
 
     assetDescription = forms.CharField(max_length=1024)
-    assetNumber = forms.IntegerField(widget=forms.HiddenInput)
-    assetIsActive = forms.BooleanField(widget=forms.HiddenInput)
+    assetNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    assetIsActive = forms.BooleanField(widget=forms.HiddenInput, required=False)
     assetOwner = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)  ###### FK
     assetOwnerDescription = forms.CharField(max_length=1024)
     assetOwnerKey = forms.CharField(max_length=1024)
     assetRegistryCode = forms.CharField(max_length=255)
     assetDciFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES))
     assetDciFrequencyValue = forms.IntegerField()
-    assetDciQtyVps = forms.IntegerField(widget=forms.HiddenInput)
-    assetDciTolerancePosition = forms.IntegerField()
-    assetDciToleranceRotation = forms.IntegerField()
+    assetDciQtyVps = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    assetDciTolerancePosition = forms.IntegerField(widget=forms.HiddenInput, required=False)
+    assetDciToleranceRotation = forms.IntegerField(widget=forms.HiddenInput, required=False)
 
     class Meta:
         model = Asset
@@ -65,7 +65,7 @@ class TagForm(ModelForm):
 
     vp = forms.ModelChoiceField(queryset=Vp.objects.all(), widget=forms.HiddenInput)  ###### FK
     tagDescription = forms.CharField(max_length=1024)
-    tagNumber = forms.IntegerField()
+    tagNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
     tagIsActive = forms.BooleanField(initial=True)
     tagListNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
     tagQuestion = forms.CharField(max_length=1024, required=False)
