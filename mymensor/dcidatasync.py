@@ -136,7 +136,7 @@ def writedcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
-    s3_object_key = request.user.username + "/cfg/1/vps/vpsTST.xml"
+    s3_object_key = request.user.username + "/cfg/1/vps/vps.xml"
 
     vpsdata = ET.Element("VpsData")
     parameters = ET.SubElement(vpsdata, "Parameters")
