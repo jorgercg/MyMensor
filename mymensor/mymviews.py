@@ -214,14 +214,12 @@ def tagSetupFormView(request):
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
-    qtytags = listoftagsglobal.count()
+    qtytagsglobal = listoftagsglobal.count()
 
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag',1))
-        qtytags = int(request.POST.get('qtytags', qtytags))
-        if qtytags==0:
-            qtytags=1
+        qtytagsglobal = int(request.POST.get('qtytags', qtytagsglobal))
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
@@ -235,16 +233,20 @@ def tagSetupFormView(request):
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag = int(request.GET.get('currenttag', 1))
-        qtytags = int(request.GET.get('qtytags', qtytags))
+        qtytagsglobal = int(request.GET.get('qtytags', qtytagsglobal))
+        listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+            vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+        qtytags = listoftags.count()
         if qtytags==0:
             qtytags=1
+            currenttag=qtytagsglobal+1
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
-            if qtytags > listoftagsglobal.count():
-                currenttag = qtytags
+            if qtytagsglobal > listoftagsglobal.count():
+                currenttag = qtytagsglobal
             tag = Tag.objects.create(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(), tagDescription='TAG#'+str(currenttag), tagNumber=currenttag,
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
