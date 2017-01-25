@@ -111,7 +111,7 @@ def loaddcicfg(request):
         loadvp.vpIsSuperSingle = str2bool(VpIsSuperSingle[i])
         loadvp.vpFlashTorchIsOn = str2bool(VpFlashTorchIsOn[i])
         loadvp.vpSuperMarkerId = int(VpSuperMarkerId[i])
-        loadvp.vpFrequencyUnit = 0 #VpFrequencyUnit[i]
+        loadvp.vpFrequencyUnit = "" #VpFrequencyUnit[i]
         loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
         loadvp.save()
         i += 1
