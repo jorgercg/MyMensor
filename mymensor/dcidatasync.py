@@ -85,8 +85,8 @@ def loaddcicfg(request):
         VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
         VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
         VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
-        #VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
-        #VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
+        VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
+        VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
         counter += 1
 
     loadasset = Asset.objects.get(assetOwner=request.user)
@@ -125,8 +125,8 @@ def loaddcicfg(request):
         loadvp.vpIsSuperSingle = str2bool(VpIsSuperSingle[i])
         loadvp.vpFlashTorchIsOn = str2bool(VpFlashTorchIsOn[i])
         loadvp.vpSuperMarkerId = int(VpSuperMarkerId[i])
-        loadvp.vpFrequencyUnit = "" #VpFrequencyUnit[i]
-        loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
+        loadvp.vpFrequencyUnit = VpFrequencyUnit[i]
+        loadvp.vpFrequencyValue = str(VpFrequencyValue[i])
         loadvp.save()
         i += 1
 
@@ -172,6 +172,7 @@ def writedcicfg(request):
         ET.SubElement(vp, "VpIsAmbiguous").text = bool2str(writevp.vpIsAmbiguos)
         ET.SubElement(vp, "VpFlashTorchIsOn").text = bool2str(writevp.vpFlashTorchIsOn)
         ET.SubElement(vp, "VpIsSuperSingle").text = bool2str(writevp.vpIsSuperSingle)
+        ET.SubElement(vp, "VpSuperMarkerId").text = str(writevp.VpSuperMarkerId)
         ET.SubElement(vp, "VpFrequencyUnit").text = writevp.vpFrequencyUnit
         ET.SubElement(vp, "VpFrequencyValue").text = str(writevp.vpFrequencyValue)
 
