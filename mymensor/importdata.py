@@ -83,7 +83,7 @@ def loaddcicfg(request):
 
     i = 0
     while i < counter:
-        loadvp = modelVp()
+        loadvp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i).get()
         loadvp.asset = Asset.objects.get(assetOwner=request.user)
         loadvp.vpDescription = VpLocDescription[i]
         loadvp.vpNumber = int(VpNumber[i])
