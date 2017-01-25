@@ -242,6 +242,8 @@ def tagSetupFormView(request):
             currenttag=qtytagsglobal+1
         elif currenttag_temp in listoftags:
             currenttag = currenttag_temp
+        elif qtytagsglobal > listoftagsglobal.count():
+            currenttag = qtytagsglobal
         else:
             currenttag = listoftags[0]
         tag = Tag()
@@ -249,8 +251,7 @@ def tagSetupFormView(request):
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
-            if qtytagsglobal > listoftagsglobal.count():
-                currenttag = qtytagsglobal
+
             tag = Tag.objects.create(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(), tagDescription='TAG#'+str(currenttag), tagNumber=currenttag,
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
