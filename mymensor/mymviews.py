@@ -21,7 +21,7 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 
 
 def landingView(request):
-    if request.mode == "POST":
+    if request.method == "POST":
         pass
     return render(request, 'landing.html')
 
