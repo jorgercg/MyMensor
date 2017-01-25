@@ -232,7 +232,7 @@ def tagSetupFormView(request):
 
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
-        currenttag = int(request.GET.get('currenttag', 1))
+        currenttag_temp = int(request.GET.get('currenttag', 1))
         qtytagsglobal = int(request.GET.get('qtytags', qtytagsglobal))
         listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
             vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
@@ -240,6 +240,10 @@ def tagSetupFormView(request):
         if qtytags==0:
             qtytags=1
             currenttag=qtytagsglobal+1
+        elif currenttag_temp in listoftags:
+            currenttag = currenttag_temp
+        else:
+            currenttag = listoftags[0]
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
