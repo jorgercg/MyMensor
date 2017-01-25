@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
 
+    url(r'^landing/$', mymviews.landingView, name='landing'),
+
     url(r'^chaining/', include('smart_selects.urls')),
 
     url(r'^accounts/', include('registration.backends.default.urls')),

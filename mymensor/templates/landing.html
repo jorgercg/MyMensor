@@ -1,0 +1,66 @@
+{% load staticfiles is_active %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <!-- Basic Page Needs.
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>
+			{% block title %}
+				MyMensor
+			{% endblock %}
+		</title>
+	    <meta name="MyMensor WebApp" content="">
+	    <meta name="SeaMate" content="">
+
+	    <!-- Mobile Specific Metas
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- FONT
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+	    <!-- CSS
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
+        <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}" >
+        <link rel="stylesheet" href="{% static 'css/mymensorstyle.css' %}" >
+        <!-- Favicon
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon-16x16.png' %}" sizes="16x16">
+        <link rel="manifest" href="{% static 'images/manifest.json' %}">
+        <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#00afef">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        <meta name="msapplication-config" content="images/browserconfig.xml">
+        <meta name="theme-color" content="#00afef">
+		{% block header %}{% endblock %}
+	</head>
+    <body>
+        <nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
+            <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt=""></a>
+        </nav>
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+            {% block footer %}{% endblock %}
+        </div><!-- /.container -->
+        <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+        <script src="{% static "js/tether.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "js/moment.min.js" %}"></script>
+        <script src="{% static "js/daterangepicker.js" %}"></script>
+        <script src="{% static "js/mymensor-jquery.js" %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+        <!-- Page Local Scripts
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        {% block javascript %}{% endblock %}
+    </body>
+</html>

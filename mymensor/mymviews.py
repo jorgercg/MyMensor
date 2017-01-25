@@ -20,6 +20,12 @@ from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 
 
+def landingView(request):
+    if request.mode == "POST":
+        pass
+    return render(request, 'landing.html')
+
+
 # Amazon SNS Notification Processor View
 @csrf_exempt
 def amazon_sns_processor(request):
