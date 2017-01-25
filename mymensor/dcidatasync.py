@@ -140,7 +140,6 @@ def writedcicfg(request):
 
     vpsdata = ET.Element("VpsData")
     parameters = ET.SubElement(vpsdata, "Parameters")
-    vp = ET.SubElement(vpsdata, "Vp")
 
     writeasset = Asset.objects.get(assetOwner=request.user)
 
@@ -156,6 +155,7 @@ def writedcicfg(request):
 
         writevp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i).get()
 
+        vp = ET.SubElement(vpsdata, "Vp")
         ET.SubElement(vp, "VpNumber").text = str(writevp.vpNumber)
         ET.SubElement(vp, "VpDescFileSize").text = str(writevp.vpStdPhotoFileSize)
         ET.SubElement(vp, "VpMarkerFileSize").text = str(writevp.vpStdMarkerPhotoFileSize)
