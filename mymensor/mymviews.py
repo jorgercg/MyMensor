@@ -21,9 +21,30 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 
 
 def landingView(request):
-    if request.method == "POST":
-        pass
-    return render(request, 'landing.html')
+    if request.method == "GET":
+        mediaObjectS3Key = request.GET.get('key', 1)
+        messagetype = request.GET.get('type',1)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                          Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                   'Key': mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3 = session.resource('s3')
+        object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
+        object.load()
+        obj_metadata = object.metadata
+        return render(request, 'landing.html', {'mediaStorageURL': mediaObjectS3Key,
+                                                'mediaContentType': object.content_type,
+                                                'mediaArIsOn': obj_metadata['isarswitchon'],
+                                                'mediaTimeIsCertified': obj_metadata['timecertified'],
+                                                'mediaLocIsCertified': obj_metadata['loccertified'],
+                                                'mediaTimeStamp': obj_metadata['datetime'], })
+    return HttpResponse(status=400)
+
 
 
 # Amazon SNS Notification Processor View
