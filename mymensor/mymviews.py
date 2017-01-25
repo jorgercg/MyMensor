@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.forms import modelformset_factory
+from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -191,6 +191,7 @@ def assetSetupFormView(request):
 
 @login_required
 def vpSetupFormView(request):
+    loaddcicfg(request)
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
@@ -202,6 +203,7 @@ def vpSetupFormView(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            writedcicfg(request)
     else:
         form = VpForm(instance=vp)
     return render(request, 'vpsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp})

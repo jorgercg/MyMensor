@@ -1,6 +1,5 @@
-from django.contrib.auth.models import User
 import xml.etree.ElementTree as ET
-import boto3, ast
+import boto3
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
