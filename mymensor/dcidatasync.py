@@ -168,7 +168,7 @@ def writedcicfg(request):
     tree.write(tempfile)
     tempfile.close()
 
-    s3.Object(AWS_S3_BUCKET_NAME, s3_object_key).upload_file("temfile.xml")
+    s3.Object(AWS_S3_BUCKET_NAME, s3_object_key).upload_file("tempfile.xml")
 
 
 
