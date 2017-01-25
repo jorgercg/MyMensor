@@ -8,6 +8,9 @@ from mymensor.models import Vp as modelVp
 def str2bool(v):
   return v.lower() in ("yes", "true", "t", "1")
 
+def bool2str(v):
+  return str(v).lower()
+
 def loaddcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -112,3 +115,106 @@ def loaddcicfg(request):
         loadvp.vpFrequencyValue = 0 #int(VpFrequencyValue[i])
         loadvp.save()
         i += 1
+
+
+def writedcicfg(request):
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3 = session.resource('s3')
+    s3_object_key = request.user.username + "/cfg/1/vps/vpsTST.xml"
+
+    vpsdata = ET.Element("VpsData")
+    parameters = ET.SubElement(vpsdata, "Parameters")
+    vp = ET.SubElement(vpsdata, "Vp")
+
+    writeasset = Asset.objects.get(assetOwner=request.user)
+
+    ET.SubElement(parameters, "AssetId").text = str(writeasset.assetNumber)
+    ET.SubElement(parameters, "FrequencyUnit").text = writeasset.assetDciFrequencyUnit
+    ET.SubElement(parameters, "FrequencyValue").text = str(writeasset.assetDciFrequencyValue)
+    ET.SubElement(parameters, "QtyVps").text = str(writeasset.assetDciQtyVps)
+    ET.SubElement(parameters, "TolerancePosition").text = str(writeasset.assetDciTolerancePosition)
+    ET.SubElement(parameters, "ToleranceRotation").text = str(writeasset.assetDciToleranceRotation)
+
+    i=0
+    while i < writeasset.assetDciQtyVps:
+
+        writevp = modelVp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=i).get()
+
+        ET.SubElement(vp, "VpNumber").text = str(writevp.vpNumber)
+        ET.SubElement(vp, "VpDescFileSize").text = str(writevp.vpStdPhotoFileSize)
+        ET.SubElement(vp, "VpMarkerFileSize").text = str(writevp.vpStdMarkerPhotoFileSize)
+        ET.SubElement(vp, "VpArIsConfigured").text = bool2str(writevp.vpArIsConfigured)
+        ET.SubElement(vp, "VpIsVideo").text = bool2str(writevp.vpIsVideo)
+        ET.SubElement(vp, "VpXCameraDistance").text = str(writevp.vpXDistance)
+        ET.SubElement(vp, "VpYCameraDistance").text = str(writevp.vpYDistance)
+        ET.SubElement(vp, "VpZCameraDistance").text = str(writevp.vpZDistance)
+        ET.SubElement(vp, "VpXCameraRotation").text = str(writevp.vpXRotation)
+        ET.SubElement(vp, "VpYCameraRotation").text = str(writevp.vpYRotation)
+        ET.SubElement(vp, "VpZCameraRotation").text = str(writevp.vpZRotation)
+        ET.SubElement(vp, "VpLocDescription").text = writevp.vpDescription
+        ET.SubElement(vp, "VpMarkerlessMarkerWidth").text = str(writevp.vpMarkerlessMarkerWidth)
+        ET.SubElement(vp, "VpMarkerlessMarkerHeigth").text = str(writevp.vpMarkerlessMarkerHeigth)
+        ET.SubElement(vp, "VpIsAmbiguous").text = bool2str(writevp.vpIsAmbiguos)
+        ET.SubElement(vp, "VpFlashTorchIsOn").text = bool2str(writevp.vpFlashTorchIsOn)
+        ET.SubElement(vp, "VpIsSuperSingle").text = bool2str(writevp.vpIsSuperSingle)
+        ET.SubElement(vp, "VpFrequencyUnit").text = writevp.vpFrequencyUnit
+        ET.SubElement(vp, "VpFrequencyValue").text = str(writevp.vpFrequencyValue)
+
+        i +=1
+
+    tempfile = open("tempfile.xml","w")
+    tree = ET.ElementTree(vpsdata)
+    tree.write(tempfile)
+    tempfile.close()
+
+    s3.Object(AWS_S3_BUCKET_NAME, s3_object_key).upload_file("temfile.xml")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

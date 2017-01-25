@@ -12,7 +12,7 @@ from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
 from mymensor.models import Asset, Vp, Tag, Media, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
-from mymensor.importdata import loaddcicfg
+from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from datetime import datetime
@@ -183,6 +183,7 @@ def assetSetupFormView(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            writedcicfg(request)
     else:
         form = AssetForm(instance=asset)
     return render(request, 'assetsetup.html', {'form': form})
