@@ -140,6 +140,7 @@ def amazon_sns_processor(request):
 @login_required
 def portfolio(request):
     if request.user.is_authenticated:
+        loaddcicfg(request)
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -162,6 +163,7 @@ def portfolio(request):
 @login_required
 def mediafeed(request):
     if request.user.is_authenticated:
+        loaddcicfg(request)
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -250,6 +252,7 @@ def vpSetupFormView(request):
 
 @login_required
 def tagSetupFormView(request):
+    loaddcicfg(request)
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
