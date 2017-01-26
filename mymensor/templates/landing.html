@@ -61,7 +61,7 @@
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
                                 <p class="card-text">
-                                    <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp|localtime }}
+                                    <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp|localtime:TIME_ZONE }}
                                  {% if mediaArIsOn %}
                                     <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                  {% else %}
