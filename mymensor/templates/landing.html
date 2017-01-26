@@ -42,10 +42,7 @@
 		{% block header %}{% endblock %}
 	</head>
     <body>
-        <nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
-            <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
             <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt=""></a>
         </nav>
         <div class="container-fluid">
@@ -110,6 +107,14 @@
                             </div>
                         </div>
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
+                            <div class="card-block">
+                                <p class="card-text">
+                                    {% trans ' Latitude ' %}{{ loclatitude }}{% trans ' degrees' %}
+                                    {% trans ' Longitude ' %}{{ loclatitude }}{% trans ' degrees' %}
+                                    {% trans ' Precision ' %}{{ loclatitude }}{% trans ' meters' %}
+                                    {% trans ' Altitude ' %}{{ loclatitude }}{% trans ' meters ' %}
+                                </p>
+                            </div>
                             <div id="landingmapid"></div>
 
 
