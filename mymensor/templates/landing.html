@@ -48,10 +48,16 @@
             <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt=""></a>
         </nav>
         <div class="container-fluid">
-
+            <div class="d-flex align-content-start flex-wrap">
+                <div class="dashhead-toolbar">
+                    <div class="dashhead-title">
+                        <h1>{% trans 'Media Check' %}</h1>
+                    </div>
+                </div>
+            </div>
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
-                         <div class="card card-outline-primary m-2" style="width: 60rem;">
+                        <div class="card card-outline-primary m-2" style="width: 60rem;">
                             <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
@@ -79,7 +85,13 @@
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
                                 </p>
                             </div>
-                         </div>
+                        </div>
+                        <div class="card card-outline-primary m-2" style="width: 60rem;">
+
+
+
+
+                        </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
                         <div class="card card-outline-primary m-2" style="width: 60rem;">
