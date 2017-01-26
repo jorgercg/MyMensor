@@ -56,29 +56,48 @@
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
+                            <div class="card-block">
+                                <p class="card-text">
+                                    <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                </p>
+                            </div>
+                            <div class="card-block">
+                                <p class="card-text">
+                                 {% if mediaArIsOn %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                 {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                 {% endif %}
+                                 {% if mediaTimeIsCertified %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                 {% endif %}
+                                 {% if mediaLocIsCertified %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                 {% endif %}
+                                </p>
+                            </div>
                             <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
                             <div class="card-block">
-                                 <p class="card-text">
-                                     {% if mediaArIsOn %}
-                                        <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                     {% else %}
-                                        <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                     {% endif %}
-                                     {% if mediaTimeIsCertified %}
+                                <p class="card-text">
+                                    <span class="arused" >AR ON</span>{% trans '  Augmented reality used to capture' %}
+                                </p>
+                                <p class="card-text">
+                                    <span class="arnotused" >AR OFF</span> {% trans 'Augmented reality not used to capture' %}
+                                </p>
                                         <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                                     {% else %}
                                         <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                                     {% endif %}
-                                     {% if mediaLocIsCertified %}
                                         <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                                     {% else %}
                                         <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                                     {% endif %}
                                 </p>
                             </div>
                             <div class="card-block">
