@@ -60,6 +60,9 @@
                     {% if mediaContentType == "image/jpeg" %}
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
+                                <h5 class="card-title">Notes</h5>
+                            </div>
+                            <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
                                  {% if mediaArIsOn %}
@@ -101,8 +104,6 @@
                                 <p class="card-text">
                                     <span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
                                 </p>
-                            </div>
-                            <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera"></span> {% trans ' shows date and time when media was captured' %}
                                 </p>
@@ -111,11 +112,13 @@
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div id="landingmapid"></div>
                             <div class="card-block">
+                                <h5 class="card-title">Location Details</h5>
+                            </div>
+                            <div class="card-block">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
                                     <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
                                     <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
-                                    <li class="list-group-item">{% trans ' Altitude: ' %}{{ localtitude|floatformat:2 }}{% trans ' meters ' %}</li>
                                 </ul>
                             </div>
                         </div>
@@ -165,6 +168,9 @@
                 </div>
               </div>
             </div>
+            <hr>
+
+        <!-- Footer -->
             {% block footer %}{% endblock %}
         </div><!-- /.container -->
         <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>

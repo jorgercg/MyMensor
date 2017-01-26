@@ -49,7 +49,6 @@ def landingView(request):
                                                     'loclatitude': obj_metadata['loclatitude'],
                                                     'loclongitude': obj_metadata['loclongitude'],
                                                     'locprecisioninm': obj_metadata['locprecisioninm'],
-                                                    'localtitude': obj_metadata['localtitude'],
                                                     })
     return HttpResponse(status=400)
 
