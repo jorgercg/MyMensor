@@ -109,21 +109,15 @@
                             </div>
                         </div>
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
+                            <div id="landingmapid"></div>
                             <div class="card-block">
-                                <p class="card-text">
-                                    {% trans ' Latitude ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}
-                                    {% trans ' Longitude ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}
-                                    {% trans ' Precision ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}
-                                    {% trans ' Altitude ' %}{{ localtitude|floatformat:2 }}{% trans ' meters ' %}
-                                </p>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                    <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                    <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                                    <li class="list-group-item">{% trans ' Altitude: ' %}{{ localtitude|floatformat:2 }}{% trans ' meters ' %}</li>
+                                </ul>
                             </div>
-                            <div class="card-block">
-                                <div id="landingmapid"></div>
-                            </div>
-
-
-
-
                         </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
