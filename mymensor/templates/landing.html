@@ -60,9 +60,6 @@
                     {% if mediaContentType == "image/jpeg" %}
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
-                                <h5 class="card-title">Notes</h5>
-                            </div>
-                            <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
                                  {% if mediaArIsOn %}
@@ -111,9 +108,7 @@
                         </div>
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div id="landingmapid"></div>
-                            <div class="card-block">
-                                <h5 class="card-title">Location Details</h5>
-                            </div>
+                            <h5 class="card-title">Location Details</h5>
                             <div class="card-block">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
