@@ -1,4 +1,6 @@
 {% load staticfiles i18n tz %}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -59,7 +61,7 @@
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
                                 <p class="card-text">
-                                    <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                    <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp|localtime }}
                                  {% if mediaArIsOn %}
                                     <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                  {% else %}
@@ -109,13 +111,16 @@
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
                                 <p class="card-text">
-                                    {% trans ' Latitude ' %}{{ loclatitude }}{% trans ' degrees' %}
-                                    {% trans ' Longitude ' %}{{ loclatitude }}{% trans ' degrees' %}
-                                    {% trans ' Precision ' %}{{ loclatitude }}{% trans ' meters' %}
-                                    {% trans ' Altitude ' %}{{ loclatitude }}{% trans ' meters ' %}
+                                    {% trans ' Latitude ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}
+                                    {% trans ' Longitude ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}
+                                    {% trans ' Precision ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}
+                                    {% trans ' Altitude ' %}{{ localtitude|floatformat:2 }}{% trans ' meters ' %}
                                 </p>
                             </div>
-                            <div id="landingmapid"></div>
+                            <div class="card-block">
+                                <div id="landingmapid"></div>
+                            </div>
+
 
 
 
@@ -200,3 +205,4 @@
         {% block javascript %}{% endblock %}
     </body>
 </html>
+{% endlocaltime %}
