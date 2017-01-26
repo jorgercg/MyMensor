@@ -62,17 +62,17 @@
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
-                                 {% if mediaArIsOn %}
+                                 {% if mediaArIsOn == 1 %}
                                     <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                  {% else %}
                                     <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
                                  {% endif %}
-                                 {% if mediaTimeIsCertified %}
+                                 {% if mediaTimeIsCertified == 1 %}
                                     <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
                                  {% else %}
                                     <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
                                  {% endif %}
-                                 {% if mediaLocIsCertified %}
+                                 {% if mediaLocIsCertified == 1 %}
                                     <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
                                  {% else %}
                                     <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
@@ -83,17 +83,17 @@
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
                             <ul class="list-group list-group-flush">
-                                {% if mediaArIsOn %}
+                                {% if mediaArIsOn == 1 %}
                                 <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}</li>
                                 {% endif %}
-                                {% if mediaTimeIsCertified %}
+                                {% if mediaTimeIsCertified == 1 %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
                                 {% endif %}
-                                {% if mediaLocIsCertified %}
+                                {% if mediaLocIsCertified == 1 %}
                                 <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
@@ -117,17 +117,17 @@
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
-                                 {% if mediaArIsOn %}
+                                 {% if mediaArIsOn == 1 %}
                                     <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                  {% else %}
                                     <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
                                  {% endif %}
-                                 {% if mediaTimeIsCertified %}
+                                 {% if mediaTimeIsCertified == 1 %}
                                     <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
                                  {% else %}
                                     <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
                                  {% endif %}
-                                 {% if mediaLocIsCertified %}
+                                 {% if mediaLocIsCertified == 1 %}
                                     <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
                                  {% else %}
                                     <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
@@ -140,17 +140,17 @@
                                 </video>
                             </div>
                             <ul class="list-group list-group-flush">
-                                {% if mediaArIsOn %}
+                                {% if mediaArIsOn == 1 %}
                                 <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}</li>
                                 {% endif %}
-                                {% if mediaTimeIsCertified %}
+                                {% if mediaTimeIsCertified == 1 %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
                                 {% endif %}
-                                {% if mediaLocIsCertified %}
+                                {% if mediaLocIsCertified == 1 %}
                                 <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
