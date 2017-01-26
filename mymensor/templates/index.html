@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n tz counter assign%}
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
