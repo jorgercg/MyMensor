@@ -128,11 +128,14 @@ def amazon_sns_processor(request):
             # Presently the Mobile App DOES NOT PROCESS the VPs
             media_received.mediaProcessed = False
 
-            media_received.save()
+            listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
 
-            broadcast(message='New media arrived on server', event_class="NewMedia", data={"username":media_received.mediaMymensorAccount})
-
-            return HttpResponse(status=200)
+            if media_received.mediaSha256 in listofmediaindb:
+                return HttpResponse(status=200)
+            else:
+                media_received.save()
+                broadcast(message='New media arrived on server', event_class="NewMedia", data={"username":media_received.mediaMymensorAccount})
+                return HttpResponse(status=200)
     return HttpResponse(status=400)
 
 
