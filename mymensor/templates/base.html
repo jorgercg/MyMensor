@@ -1,4 +1,6 @@
 {% load staticfiles is_active i18n tz counter assign%}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -93,3 +95,4 @@
         {% block javascript %}{% endblock %}
     </body>
 </html>
+{% endlocaltime %}
