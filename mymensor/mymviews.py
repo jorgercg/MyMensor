@@ -45,7 +45,11 @@ def landingView(request):
                                                     'mediaArIsOn': obj_metadata['isarswitchon'],
                                                     'mediaTimeIsCertified': obj_metadata['timecertified'],
                                                     'mediaLocIsCertified': obj_metadata['loccertified'],
-                                                    'mediaTimeStamp': obj_metadata['datetime'], })
+                                                    'mediaTimeStamp': obj_metadata['datetime'],
+                                                    'loclatitude': obj_metadata['loclatitude'],
+                                                    'loclongitude': obj_metadata['loclongitude'],
+                                                    'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                    })
     return HttpResponse(status=400)
 
 

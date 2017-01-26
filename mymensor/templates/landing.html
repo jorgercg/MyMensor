@@ -27,6 +27,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" >
         <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}" >
+        <link rel="stylesheet" href="{% static 'css/leaflet.css' %}" >
         <link rel="stylesheet" href="{% static 'css/mymensorstyle.css' %}" >
         <!-- Favicon
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                         <div class="card card-outline-primary m-2" style="width: 20rem;">
-
+                            <div id="landingmapid"></div>
 
 
 
@@ -145,11 +146,30 @@
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/moment.min.js" %}"></script>
         <script src="{% static "js/daterangepicker.js" %}"></script>
+        <script src="{% static "js/leaflet.js" %}"></script>
         <script src="{% static "js/mymensor-jquery.js" %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
         <!-- Page Local Scripts
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script>
+            var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], 13);
+
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+
+            var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: {{ locprecisioninm }}
+            }).addTo(mymap);
+
+
+        </script>
         {% block javascript %}{% endblock %}
     </body>
 </html>
