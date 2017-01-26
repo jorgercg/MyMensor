@@ -112,13 +112,11 @@
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div id="landingmapid"></div>
                             <h5 class="card-title">Location Details</h5>
-                            <div class="card-block">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                                    <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                                    <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
-                                </ul>
-                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                            </ul>
                         </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
