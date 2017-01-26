@@ -22,35 +22,40 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 
 def landingView(request):
     if request.method == "GET":
-        mediaObjectS3Key = request.GET.get('key', 1)
-        messagetype = request.GET.get('type',1)
-        if mediaObjectS3Key==1 or messagetype==1:
-            return HttpResponse(status=400)
-        else:
+        mediaObjectS3Key = request.GET.get('key', 0)
+        messagetype = request.GET.get('type', 0)
+        requestsignature = request.GET.get('signature', 0)
+        if mediaObjectS3Key!=0 and messagetype!=0 and requestsignature!=0:
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
             mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                       'Key': mediaObjectS3Key},
-                                                                        ExpiresIn=3600)
+                                                                      'Key': mediaObjectS3Key},
+                                                              ExpiresIn=3600)
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3 = session.resource('s3')
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
             object.load()
             obj_metadata = object.metadata
-            return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
-                                                    'mediaContentType': object.content_type,
-                                                    'mediaArIsOn': obj_metadata['isarswitchon'],
-                                                    'mediaTimeIsCertified': obj_metadata['timecertified'],
-                                                    'mediaLocIsCertified': obj_metadata['loccertified'],
-                                                    'mediaTimeStamp': obj_metadata['datetime'],
-                                                    'loclatitude': obj_metadata['loclatitude'],
-                                                    'loclongitude': obj_metadata['loclongitude'],
-                                                    'locprecisioninm': obj_metadata['locprecisioninm'],
-                                                    })
-    return HttpResponse(status=400)
+            if obj_metadata['sha-256']==requestsignature:
+                return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
+                                                        'mediaContentType': object.content_type,
+                                                        'mediaArIsOn': obj_metadata['isarswitchon'],
+                                                        'mediaTimeIsCertified': obj_metadata['timecertified'],
+                                                        'mediaLocIsCertified': obj_metadata['loccertified'],
+                                                        'mediaTimeStamp': obj_metadata['datetime'],
+                                                        'loclatitude': obj_metadata['loclatitude'],
+                                                        'loclongitude': obj_metadata['loclongitude'],
+                                                        'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                        })
+            else:
+                return HttpResponse(status=404)
+        else:
+            return HttpResponse(status=404)
+
+    return HttpResponse(status=404)
 
 
 
