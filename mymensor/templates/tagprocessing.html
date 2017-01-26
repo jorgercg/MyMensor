@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load i18n%}
+{% if user.is_authenticated %}
+    {% block title %}TAG Processing - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="d-flex align-content-start flex-wrap">
+            <div class="dashhead-toolbar">
+                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                    <p>{% trans 'VP # ' %}</p>
+                    <select id="currvp" class="1-30"></select>
+                </div>
+                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                    <p>{% trans 'TAG # ' %}</p>
+                    <select id="currtag" class="1-80">
+                        {% for tag in listoftags %}
+                        <option value="{{ tag }}">{{ tag }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                    <p>{% trans 'TAG QTY= ' %}{{ qtytags }}</p>
+                    <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="tagedition">
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="currentvp" value="{{ currentvp }}">
+                <input type="hidden" name="currenttag" value="{{ currenttag }}">
+                <input type="submit" value="{% trans 'Submit' %}" />
+            </form>
+        </div>
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript">
+        $(function(){
+
+            var qttags = {{ qtytags }};
+            var qtvps = {{ qtyvps }};
+            var $select = $('.1-30');
+
+            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
+            $('#currtag').change(function(){
+                var tagselected = $(this).find(":selected").val();
+                console.log("TAGSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+tagselected);
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+'{{ qtytags }}'+'&currenttag='+tagselected;
+            });
+
+            console.log("INITIAL: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}');
+            for (i=1; i < qtvps ;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
+            $('#currvp').change(function(){
+                var vpselected = $(this).find(":selected").val();
+                console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+'{{ currenttag }}');
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
+            });
+
+            $('#inctags').click(function(){
+                console.log("Clicked on inctags!!!!");
+                qttags = qttags + 1;
+                console.log("INCTAGSCLICKED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+qttags);
+                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
+            });
+
+        });
+        </script>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}
