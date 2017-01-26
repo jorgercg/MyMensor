@@ -63,10 +63,6 @@
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
-                                </p>
-                            </div>
-                            <div class="card-block">
-                                <p class="card-text">
                                  {% if mediaArIsOn %}
                                     <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                  {% else %}
@@ -87,7 +83,7 @@
                             <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
-                            <div class="card-block">
+                            <div id="cardnotes" class="card-block">
                                 <p class="card-text">
                                     <span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}
                                 </p>
