@@ -114,35 +114,59 @@
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
+                            <div class="card-block">
+                                <p class="card-text">
+                                    <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                 {% if mediaArIsOn %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                 {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                 {% endif %}
+                                 {% if mediaTimeIsCertified %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                 {% endif %}
+                                 {% if mediaLocIsCertified %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                 {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                 {% endif %}
+                                </p>
+                            </div>
                             <div class="embed-responsive embed-responsive-16by9">
                                 <video controls>
                                     <source src="{{ mediaStorageURL }}" type="video/mp4">
                                 </video>
                             </div>
+                            <ul class="list-group list-group-flush">
+                                {% if mediaArIsOn %}
+                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
+                                {% else %}
+                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}</li>
+                                {% endif %}
+                                {% if mediaTimeIsCertified %}
+                                <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
+                                {% else %}
+                                <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
+                                {% endif %}
+                                {% if mediaLocIsCertified %}
+                                <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
+                                {% else %}
+                                <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="card-block">
-                                 <p class="card-text">
-                                     {% if mediaArIsOn %}
-                                        <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                     {% else %}
-                                        <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                     {% endif %}
-                                     {% if mediaTimeIsCertified %}
-                                        <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                                     {% else %}
-                                        <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                                     {% endif %}
-                                     {% if mediaLocIsCertified %}
-                                        <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                                     {% else %}
-                                        <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                                     {% endif %}
-                                </p>
+                                <p class="card-text font-weight-bold">Location details</p>
                             </div>
-                            <div class="card-block">
-                                <p class="card-text">
-                                    <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
-                                </p>
-                            </div>
+                            <div id="landingmapid"></div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                            </ul>
                         </div>
                     {% endif %}
 
