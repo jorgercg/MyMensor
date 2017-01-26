@@ -84,22 +84,25 @@
                             </a>
                             <div id="cardnotes" class="card-block">
                                 <p class="card-text">
-                                    <span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}
+                                    {% if mediaArIsOn %}
+                                        <span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}
+                                    {% else %}
+                                        <span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}
+                                    {% endif %}
                                 </p>
                                 <p class="card-text">
-                                    <span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}
+                                    {% if mediaTimeIsCertified %}
+                                        <span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}
+                                    {% else %}
+                                        <span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}
+                                    {% endif %}
                                 </p>
                                 <p class="card-text">
-                                    <span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}
-                                </p>
-                                <p class="card-text">
-                                    <span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}
-                                </p>
-                                <p class="card-text">
-                                    <span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}
-                                </p>
-                                <p class="card-text">
-                                    <span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
+                                    {% if mediaLocIsCertified %}
+                                        <span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}
+                                    {% else %}
+                                        <span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
+                                    {% endif %}
                                 </p>
                                 <p class="card-text">
                                     <span class="fa fa-camera"></span> {% trans ' shows date and time when media was captured' %}
