@@ -83,7 +83,7 @@
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
                             <ul class="list-group list-group-flush">
-                                {% if mediaArIsOn == 1 %}
+                                {% if mediaArIsOn == "1" %}
                                 <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
                                 {% else %}
                                 <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality not used to capture this media' %}</li>
