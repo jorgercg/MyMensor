@@ -57,7 +57,7 @@
             </div>
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
-                        <div class="card card-outline-primary m-2" style="width: 60rem;">
+                        <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
                                 <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
                             </a>
@@ -86,7 +86,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="card card-outline-primary m-2" style="width: 60rem;">
+                        <div class="card card-outline-primary m-2" style="width: 20rem;">
 
 
 
@@ -94,7 +94,7 @@
                         </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
-                        <div class="card card-outline-primary m-2" style="width: 20rem;">
+                        <div class="card card-outline-primary m-2" style="width: 50rem;">
                             <div class="embed-responsive embed-responsive-16by9">
                                 <video controls>
                                     <source src="{{ mediaStorageURL }}" type="video/mp4">
