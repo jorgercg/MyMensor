@@ -223,8 +223,6 @@ def android_assetlinks(request):
 
 @login_required
 def assetSetupFormView(request):
-    if request.user.id == 1:
-        setup_new_user(instance=request.user)
     loaddcicfg(request)
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
