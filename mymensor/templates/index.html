@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n tz counter assign%}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 {% if user.is_authenticated %}
     {% block title %}Portfolio - {{ block.super }}{% endblock %}
     {% block content %}
@@ -60,11 +62,11 @@
                                     </div>
                                     <div class="card-block">
                                         <p class="card-text">
-                                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO" }}
+                                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime }}
                                         </p>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
+                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime}}
                                     </div>
                                  </div>
                             {% endif %}
@@ -105,11 +107,11 @@
                                     </div>
                                     <div class="card-block">
                                         <p class="card-text">
-                                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | date:"Y-b-d H:i:sO"}}
+                                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime}}
                                         </p>
                                     </div>
                                     <div class="card-footer text-muted">
-                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | date:"Y-b-d H:i:sO"}}
+                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime}}
                                     </div>
                                 </div>
                             {% endif %}
@@ -191,3 +193,4 @@
 {% else %}
     <h1>Not Logged In....</h1>
 {% endif %}
+{% endlocaltime %}

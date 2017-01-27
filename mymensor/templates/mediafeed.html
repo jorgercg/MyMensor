@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n tz %}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 {% if user.is_authenticated %}
     {% block title %}Mediafeed - {{ block.super }}{% endblock %}
     {% block content %}
@@ -121,3 +123,4 @@
 {% else %}
     <h1>Not Logged In....</h1>
 {% endif %}
+{% endlocaltime %}
