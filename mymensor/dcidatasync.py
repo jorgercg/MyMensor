@@ -85,8 +85,8 @@ def loaddcicfg(request):
         VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
         VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
         VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
-        VpFrequencyUnit.append(Vp.find('VpFrequencyUnit').text)
-        VpFrequencyValue.append(Vp.find('VpFrequencyValue').text)
+        VpFrequencyUnit.append('millis')
+        VpFrequencyValue.append('0')
         counter += 1
 
     loadasset = Asset.objects.get(assetOwner=request.user)
