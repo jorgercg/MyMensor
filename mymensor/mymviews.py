@@ -18,6 +18,8 @@ import json, boto3
 from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
+from mymensor.mymfunctions import setup_new_user
+
 
 
 def landingView(request):
@@ -221,6 +223,8 @@ def android_assetlinks(request):
 
 @login_required
 def assetSetupFormView(request):
+    if request.user.id == 1:
+        setup_new_user(instance=request.user)
     loaddcicfg(request)
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
