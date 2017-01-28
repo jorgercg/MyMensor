@@ -65,4 +65,6 @@ urlpatterns = [
 
     url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
 
+    url(r'^tz_detect/', include('tz_detect.urls')),
+
 ]

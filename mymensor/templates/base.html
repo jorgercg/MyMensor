@@ -42,6 +42,8 @@
         <meta name="theme-color" content="#00afef">
 		{% block header %}{% endblock %}
 	</head>
+    {% load tz_detect %}
+    {% tz_detect %}
     <body>
         <nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
             <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
