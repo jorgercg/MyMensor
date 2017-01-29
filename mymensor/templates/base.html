@@ -1,4 +1,4 @@
-{% load staticfiles is_active i18n tz counter assign%}
+{% load staticfiles is_active i18n tz counter assign cookielaw_tags%}
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 <!DOCTYPE html>
@@ -45,6 +45,7 @@
     {% load tz_detect %}
     {% tz_detect %}
     <body>
+        {% cookielaw_banner %}
         <nav class="navbar fixed-top navbar-toggleable-md navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
             <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
