@@ -47,9 +47,9 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
-            console.log("medias="+"{{ medias }}");
-            console.log("vps="+"{{ vps }}");
-            console.log("tags="+"{{ tags }}");
+            console.log("medias="+"{{ medias.0 }}");
+            console.log("vps="+"{{ vps.0 }}");
+            console.log("tags="+"{{ tags.1 }}");
             console.log("INITIAL: vpselected="+"{{ currentvp }}"+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
 
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
