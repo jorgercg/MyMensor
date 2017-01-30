@@ -316,7 +316,7 @@ def tagProcessingFormView(request):
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
 
-    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
+    medias = Media.objects.filter(vp__asset__assetOwner=request.user) #.filter(mediaProcessed=False)
 
     for media in medias:
         media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
