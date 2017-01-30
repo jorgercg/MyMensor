@@ -358,4 +358,4 @@ def tagProcessingFormView(request):
 
     return render(request, 'tagprocessing.html', {'form': form, 'medias':medias, 'vps':vps, 'tags':tags,
                                                   'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
-                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag, 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist})
+                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag})

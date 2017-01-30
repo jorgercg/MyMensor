@@ -47,7 +47,9 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
-            console.log("vpsofthemediasnotprocessedlist="+"{{ vpsofthemediasnotprocessedlist }}");
+            console.log("medias="+"{{ medias }}");
+            console.log("vps="+"{{ vps }}");
+            console.log("tags="+"{{ tags }}");
             console.log("INITIAL: vpselected="+"{{ currentvp }}"+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
 
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
