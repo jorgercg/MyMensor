@@ -10,23 +10,23 @@
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'VP # ' %}</p>
                     <select id="currvp" class="1-30"></select>
-                        {% for vp in listofvpsnotprocessed %}
-                        <option value="{{ vp }}">{{ vp }}</option>
+                        {% for vp in vps %}
+                        <option value="{{ vp.vpNumber }}">{{ vp.vpNumber }}</option>
                         {% endfor %}
                 </div>
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currtag" class="1-80">
-                        {% for tag in listoftagsnotprocessed %}
-                        <option value="{{ tag }}">{{ tag }}</option>
+                        {% for tag in tags %}
+                        <option value="{{ tag.tagNumber }}">{{ tag.tagNumber }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'MEDIA: ' %}</p>
                     <select id="currmed" class="1-90">
-                        {% for mediaDate in listofmediasnotprocessed %}
-                        <option value="{{ mediaDate }}">{{ mediaDate }}</option>
+                        {% for media in medias %}
+                        <option value="{{ media.id }}">{{ mediaDate.mediaTimeStamp }}</option>
                         {% endfor %}
                     </select>
                 </div>
