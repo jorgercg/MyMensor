@@ -315,13 +315,9 @@ def tagProcessingFormView(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
-    mediasnotprocessed = Media.objects.all() #.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
-    for media in mediasnotprocessed:
-        media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                                                Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                        'Key': media.mediaObjectS3Key},
-                                                                        ExpiresIn=3600)
-    vpsofthemediasnotprocessedlist = mediasnotprocessed.count()
+    mediasnotprocessed = Media.objects.all().count() #.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
+
+    vpsofthemediasnotprocessedlist = mediasnotprocessed
     vpsnotprocessed = Vp.objects.filter(vp)
     tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
 
