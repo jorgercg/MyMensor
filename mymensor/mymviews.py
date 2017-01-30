@@ -341,6 +341,6 @@ def tagProcessingFormView(request):
     listofvpsnotprocessed = vpsnotprocessed.values_list('vpNumber',flat=True).order_by('vpNumber')
     listoftagsnotprocessed = tagsnotprocessed.values_list('tagNumber', flat=True).order_by('tagNumber')
 
-    return render(request, 'tagprocessing.html', {'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
+    return render(request, 'tagprocessing.html', { 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist, 'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
                                                   'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
-                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag, 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist})
+                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag})
