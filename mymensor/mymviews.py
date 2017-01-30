@@ -10,14 +10,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, AmazonS3Message, AmazonSNSNotification
+from mymensor.models import Asset, Vp, Tag, Media, Value, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm, VpForm, TagForm
+from mymensor.forms import AssetForm, VpForm, TagForm, ValueForm
 from mymensor.mymfunctions import setup_new_user
 
 
@@ -307,3 +307,44 @@ def tagSetupFormView(request):
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'listoftags':listoftags})
+
+
+@login_required
+def tagProcessingFormView(request):
+    loaddcicfg(request)
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3Client = session.client('s3')
+    mediasnotprocessed = Media.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
+    for media in mediasnotprocessed:
+        media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                        'Key': media.mediaObjectS3Key},
+                                                                        ExpiresIn=3600)
+    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp', flat=True)
+    vpsnotprocessed = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
+    tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
+
+    if request.method == 'POST':
+        currentmediaid = int(request.POST.get('currentmediaid', 0))
+        currentvp = int(request.POST.get('currentvp', 0))
+        currenttag = int(request.POST.get('currenttag', 0))
+        media = Media.objects.get(id=currentmediaid)
+        vpofmedia = media.vp
+        tag = Tag.objects.filter(vp=vpofmedia).filter(tagNumber=currenttag)
+        value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
+        form = ValueForm(request.POST, instance=value)
+        if form.is_valid():
+            pass
+
+    if request.method == 'GET':
+        pass
+
+
+    listofmediasnotprocessed = mediasnotprocessed.values_list('mediaTimeStamp', flat=True).order_by('mediaTimeStamp')
+    listofvpsnotprocessed = vpsnotprocessed.values_list('vpNumber',flat=True).order_by('vpNumber')
+    listoftagsnotprocessed = tagsnotprocessed.values_list('tagNumber', flat=True).order_by('tagNumber')
+
+    return render(request, 'tagprocessing.html', {'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
+                                                  'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
+                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag})

@@ -10,18 +10,25 @@
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'VP # ' %}</p>
                     <select id="currvp" class="1-30"></select>
+                        {% for vp in listofvpsnotprocessed %}
+                        <option value="{{ vp }}">{{ vp }}</option>
+                        {% endfor %}
                 </div>
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currtag" class="1-80">
-                        {% for tag in listoftags %}
+                        {% for tag in listoftagsnotprocessed %}
                         <option value="{{ tag }}">{{ tag }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="qtyselector" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'TAG QTY= ' %}{{ qtytags }}</p>
-                    <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
+                    <p>{% trans 'MEDIA: ' %}</p>
+                    <select id="currmed" class="1-90">
+                        {% for mediaDate in listofmediasnotprocessed %}
+                        <option value="{{ mediaDate }}">{{ mediaDate }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
         </div>
@@ -30,6 +37,7 @@
             <form method="POST" action="">
                 {% csrf_token %}
                 {{ form.as_p }}
+                <input type="hidden" name="currentmediaid" value="{{ currentmediaid }}">
                 <input type="hidden" name="currentvp" value="{{ currentvp }}">
                 <input type="hidden" name="currenttag" value="{{ currenttag }}">
                 <input type="submit" value="{% trans 'Submit' %}" />
@@ -44,31 +52,28 @@
             var qtvps = {{ qtyvps }};
             var $select = $('.1-30');
 
-            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
-            $('#currtag').change(function(){
-                var tagselected = $(this).find(":selected").val();
-                console.log("TAGSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+tagselected);
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+'{{ qtytags }}'+'&currenttag='+tagselected;
-            });
+            console.log("INITIAL: vpselected="+"{{ currentvp }}"+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
 
-            console.log("INITIAL: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}');
-            for (i=1; i < qtvps ;i++){
-                $select.append($('<option></option>').val(i).html(i))
-            }
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
-                console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+'{{ currenttag }}');
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
+                console.log("VPSELECTED: vpselected="+vpselected+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
+                window.location={% url 'tagprocessing' %}+'?currentvp='+vpselected+'&currenttag='+'{{ currenttag }}'+'&currentmediaid='+'{{ currentmediaid }}';
             });
 
-            $('#inctags').click(function(){
-                console.log("Clicked on inctags!!!!");
-                qttags = qttags + 1;
-                console.log("INCTAGSCLICKED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+qttags);
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
+            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
+            $('#currtag').change(function(){
+                var tagselected = $(this).find(":selected").val();
+                console.log("TAGSELECTED: vpselected="+"{{ currentvp }}"+" tagselected="+tagselected+" mediaselected="+"{{ currentmediaid }}");
+                window.location={% url 'tagprocessing' %}+'?currentvp='+'{{ currentvp }}'+'&currenttag='+tagselected+'&currentmediaid='+'{{ currentmediaid }}';
             });
 
+            $('.1-90 option[value="{{ currentmediaid }}"]').attr('selected','selected');
+            $('#currmed').change(function(){
+                var mediaselected = $(this).find(":selected").val();
+                console.log("MEDIASELECTED: vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}'+" mediaselected="+mediaselected);
+                window.location={% url 'tagprocessing' %}+'?currentvp='+'{{ currentvp }}'+'&currenttag='+'{{ currenttag }}'+'&currentmediaid='+mediaselected;
+            });
         });
         </script>
     {% endblock %}

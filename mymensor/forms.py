@@ -1,6 +1,6 @@
 from django.db import models
 from django.forms import ModelForm
-from mymensor.models import Asset, User, Vp, Tag
+from mymensor.models import Asset, User, Vp, Tag, Value
 from django import forms
 
 class AssetForm(ModelForm):
@@ -87,3 +87,14 @@ class TagForm(ModelForm):
         model = Tag
         fields = '__all__'
 
+class ValueForm(ModelForm):
+    processedTag = forms.ModelChoiceField(queryset=Tag.objects.all(), widget=forms.HiddenInput)  ###### FK
+    processorUserId = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)  ###### FK
+    valValue = forms.FloatField()
+    valValueEntryDBTimeStamp = forms.DateTimeField(widget=forms.HiddenInput)
+    valEvalStatus = forms.CharField(widget=forms.HiddenInput, required=False)
+    tagStateResultingFromValValueStatus = forms.IntegerField(widget=forms.HiddenInput, required=False)
+
+    class Meta:
+        model = Value
+        fields = '__all__'
