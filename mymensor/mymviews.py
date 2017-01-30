@@ -311,49 +311,51 @@ def tagSetupFormView(request):
 
 @login_required
 def tagProcessingFormView(request):
-    #loaddcicfg(request)
+    loaddcicfg(request)
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
-    mediasnotprocessed = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
-    for media in mediasnotprocessed:
+
+    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
+
+    for media in medias:
         media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                 Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                         'Key': media.mediaObjectS3Key},
                                                                         ExpiresIn=3600)
-    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp__id', flat=True)
-    vpsnotprocessed = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
-    tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
+    vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
+    vps = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
+    tags = Tag.objects.filter(vp=vps)
 
     if request.method == 'POST':
         currentmediaid = int(request.POST.get('currentmediaid', 0))
         currentvp = int(request.POST.get('currentvp', 0))
         currenttag = int(request.POST.get('currenttag', 0))
         media = Media.objects.get(id=currentmediaid)
-        vpofmedia = media.vp
-        tag = Tag.objects.filter(vp=vpofmedia).filter(tagNumber=currenttag)
+        vp = media.vp
+        tag = Tag.objects.filter(vp=vp).filter(tagNumber=currenttag)
         value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
         form = ValueForm(request.POST, instance=value)
         if form.is_valid():
             pass
 
     if request.method == 'GET':
-        currentmediaid = int(request.POST.get('currentmediaid', mediasnotprocessed[0].pk))
+        currentmediaid = int(request.POST.get('currentmediaid', medias[0].pk))
         firstvpnotprocessed = Vp.objects.filter(id=vpsofthemediasnotprocessedlist[0])
         currentvp = int(request.POST.get('currentvp', firstvpnotprocessed.vpNumber))
         firsttagnotprocessed = Tag.objects.filter(vp=firstvpnotprocessed)
         currenttag = int(request.POST.get('currenttag', firsttagnotprocessed.tagNumber))
         mediaselected = Media.objects.get(pk=currentmediaid)
-        vpofmedia = mediaselected.vp
-        tag = Tag.objects.filter(vp=vpofmedia).filter(tagNumber=currenttag)
+        vp = mediaselected.vp
+        tag = Tag.objects.filter(vp=vp).filter(tagNumber=currenttag)
         value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
         form = ValueForm(request.POST, instance=value)
 
 
-    listofmediasnotprocessed = mediasnotprocessed.values_list('mediaTimeStamp', flat=True).order_by('mediaTimeStamp')
-    listofvpsnotprocessed = vpsnotprocessed.values_list('vpNumber',flat=True).order_by('vpNumber')
-    listoftagsnotprocessed = tagsnotprocessed.values_list('tagNumber', flat=True).order_by('tagNumber')
+    listofmediasnotprocessed = medias.values_list('id', flat=True).order_by('mediaTimeStamp')
+    listofvpsnotprocessed = vps.values_list('vpNumber',flat=True).order_by('vpNumber')
+    listoftagsnotprocessed = tags.values_list('tagNumber', flat=True).order_by('tagNumber')
 
-    return render(request, 'tagprocessing.html', {'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
+    return render(request, 'tagprocessing.html', {'form': form, 'medias':medias, 'vps':vps, 'tags':tags,
                                                   'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
                                                   'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag, 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist})
