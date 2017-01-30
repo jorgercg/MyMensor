@@ -311,7 +311,7 @@ def tagSetupFormView(request):
 
 @login_required
 def tagProcessingFormView(request):
-    loaddcicfg(request)
+    #loaddcicfg(request)
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
@@ -321,7 +321,7 @@ def tagProcessingFormView(request):
                                                                 Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                         'Key': media.mediaObjectS3Key},
                                                                         ExpiresIn=3600)
-    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp__vpNumber', flat=True)
+    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp__id', flat=True)
     vpsnotprocessed = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
     tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
 
