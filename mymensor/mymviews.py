@@ -321,7 +321,7 @@ def tagProcessingFormView(request):
                                                                 Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                         'Key': media.mediaObjectS3Key},
                                                                         ExpiresIn=3600)
-    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp', flat=True)
+    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp__vpNumber', flat=True)
     vpsnotprocessed = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
     tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
 
