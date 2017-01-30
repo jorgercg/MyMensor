@@ -315,10 +315,14 @@ def tagProcessingFormView(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
-    mediasnotprocessed = Media.objects.all().count() #.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
-
-    vpsofthemediasnotprocessedlist = mediasnotprocessed
-    vpsnotprocessed = Vp.objects.filter(vp)
+    mediasnotprocessed = Media.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(mediaProcessed=False)
+    for media in mediasnotprocessed:
+        media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                        'Key': media.mediaObjectS3Key},
+                                                                        ExpiresIn=3600)
+    vpsofthemediasnotprocessedlist = mediasnotprocessed.values_list('vp__vpNumber', flat=True)
+    vpsnotprocessed = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
     tagsnotprocessed = Tag.objects.filter(vp=vpsnotprocessed)
 
     if request.method == 'POST':
@@ -334,13 +338,22 @@ def tagProcessingFormView(request):
             pass
 
     if request.method == 'GET':
-        pass
+        currentmediaid = int(request.POST.get('currentmediaid', mediasnotprocessed[0].pk))
+        firstvpnotprocessed = Vp.objects.filter(id=vpsofthemediasnotprocessedlist[0])
+        currentvp = int(request.POST.get('currentvp', firstvpnotprocessed.vpNumber))
+        firsttagnotprocessed = Tag.objects.filter(vp=firstvpnotprocessed)
+        currenttag = int(request.POST.get('currenttag', firsttagnotprocessed.tagNumber))
+        mediaselected = Media.objects.get(pk=currentmediaid)
+        vpofmedia = mediaselected.vp
+        tag = Tag.objects.filter(vp=vpofmedia).filter(tagNumber=currenttag)
+        value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
+        form = ValueForm(request.POST, instance=value)
 
 
     listofmediasnotprocessed = mediasnotprocessed.values_list('mediaTimeStamp', flat=True).order_by('mediaTimeStamp')
     listofvpsnotprocessed = vpsnotprocessed.values_list('vpNumber',flat=True).order_by('vpNumber')
     listoftagsnotprocessed = tagsnotprocessed.values_list('tagNumber', flat=True).order_by('tagNumber')
 
-    return render(request, 'tagprocessing.html', { 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist, 'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
+    return render(request, 'tagprocessing.html', {'form': form, 'mediasnotprocessed':mediasnotprocessed, 'vpsnotprocessed':vpsnotprocessed, 'tagsnotprocessed':tagsnotprocessed,
                                                   'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
-                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag})
+                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag, 'vpsofthemediasnotprocessedlist':vpsofthemediasnotprocessedlist})
