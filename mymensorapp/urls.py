@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^tagstatus/$', TemplateView.as_view(template_name='support.html'), name='tagstatus'),
     url(r'^taganalysis/$', TemplateView.as_view(template_name='support.html'), name='taganalysis'),
-    url(r'^tagprocessing/$', TemplateView.as_view(template_name='tagprocessing.html'), name='tagprocessing'),
+    url(r'^tagprocessing/$', mymviews.tagProcessingFormView(template_name='tagprocessing.html'), name='tagprocessing'),
     url(r'^support/$', TemplateView.as_view(template_name='support.html'), name='support'),
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
