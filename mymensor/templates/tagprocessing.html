@@ -43,6 +43,9 @@
                                     </a>
                                     <div class="card-block">
                                          <p class="card-text">
+                                                <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ vp.vpStdPhotoStorageURL }}">
+                                                    <span class="fa fa-picture-o descvp" data-toggle="tooltip" data-placement="top" title="{% trans 'VP standard photo' %}"></span>
+                                                </a>
                                              {% if media.mediaArIsOn %}
                                                 <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                              {% else %}
