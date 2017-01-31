@@ -69,7 +69,7 @@
                                                 {% if tag.vp == vp %}
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
-                                                        <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="10" placeholder="{% trans 'Answer here...' %}">
+                                                        <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ procvalues.media }}" placeholder="{% trans 'Answer here...' %}">
                                                         <span class="input-group-btn">
                                                             <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
                                                         </span>

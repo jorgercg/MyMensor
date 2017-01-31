@@ -330,11 +330,12 @@ def tagProcessingFormView(request):
         vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).exclude(vpNumber=0).order_by('vpNumber').distinct()
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True)
+        procvalues = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user, tag__tagIsActive=True)
         for vp in vps:
             vp.vpStdPhotoStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': vp.vpStdPhotoStorageURL},
                                     ExpiresIn=3600)
-        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'procvalues': procvalues, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
 
 @login_required
 def saveValue(request):
