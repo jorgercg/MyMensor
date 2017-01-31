@@ -351,7 +351,7 @@ def saveValue(request):
         taginstance = Tag(id=tagid)
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
-            ProcessedTag.objects.update_or_create(id=processedtag.pk, media=mediainstance, tag=taginstance,
+            ProcessedTag.objects.update(id=processedtag.pk, media=mediainstance, tag=taginstance,
                                                   valValueEvaluated=valuefloat, tagStateEvaluated=1)
         except ProcessedTag.DoesNotExist:
             ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
