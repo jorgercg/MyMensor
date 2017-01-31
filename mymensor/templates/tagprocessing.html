@@ -239,7 +239,7 @@
             function saving_value() {
                 console.log("Saving Value is working!") // sanity check
                 $.ajax({
-                    url : "saving_value/", // the endpoint
+                    url : "save_value/", // the endpoint
                     type : "POST", // http method
                     data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
                     // handle a successful response
