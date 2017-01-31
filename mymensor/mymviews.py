@@ -320,12 +320,14 @@ def tagProcessingFormView(request):
         enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
-        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+        vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).order_by('vpNumber')
+        tags = Tag.objects.filter(vp=vps)
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
