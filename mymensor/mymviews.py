@@ -349,8 +349,9 @@ def saveValue(request):
             return HttpResponse(status=400)
         mediainstance = Media(id=mediaid)
         taginstance = Tag(id=tagid)
+        processedtag = ProcessedTag(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat,
+                                    tagStateEvaluated=1)
         ProcessedTag.objects.update_or_create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
-        processedtag = ProcessedTag(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
         value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
         value.save()
         return HttpResponse(
