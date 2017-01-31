@@ -350,8 +350,8 @@ def saveValue(request):
         mediainstance = Media(id=mediaid)
         taginstance = Tag(id=tagid)
         processedtag = ProcessedTag(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
-        value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
         processedtag.save()
+        value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
         value.save()
         return HttpResponse(
             json.dumps({"result": "Value save successful!"}),
