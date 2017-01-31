@@ -65,8 +65,9 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         {% for tag in tags %}
-
+                                            {% if tag.vp == vp.id %}
                                                 <li class="list-group-item">{{ tag.tagNumber }}</li>
+                                            {% endif %}
                                         {% endfor %}
                                     </ul>
                                     <div class="card-block">
