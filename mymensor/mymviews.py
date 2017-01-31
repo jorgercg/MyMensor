@@ -10,14 +10,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, AmazonS3Message, AmazonSNSNotification
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from datetime import datetime
 from datetime import timedelta
-from mymensor.forms import AssetForm, VpForm, TagForm, ValueForm
+from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 
 
@@ -339,9 +339,20 @@ def tagProcessingFormView(request):
 @login_required
 def saveValue(request):
     if request.method == 'POST':
-        pass
+        mediaid = int(request.POST.get('mediaid'))
+        vpid = int(request.POST.get('vpid'))
+        tagid = int(request.POST.get('tagid'))
+        valuetxt = request.POST.get('value')
+        if isfloat(valuetxt):
+            valuefloat = float(valuetxt)
+        else:
+            return HttpResponse(status=400)
+        processedtag = ProcessedTag(media=mediaid, tag=tagid, valValueEvaluated=valuefloat, tagStateEvaluated=1)
+        value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
+        processedtag.save()
+        value.save()
         return HttpResponse(
-            json.dumps(response_data),
+            json.dumps({"result": "Value save successful!"}),
             content_type="application/json"
         )
     else:
