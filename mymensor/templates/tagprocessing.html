@@ -223,7 +223,7 @@
                         for (var j=(i+1); j<value_id.length; j++ ){
                             if (value_id.charAt(j)=="-"){
                                 vpid=parseInt(value_id.slice(i+1,j));
-                                tagid=parseInt(value_id.slice(j));
+                                tagid=parseInt(value_id.slice(j+1));
                                 break;
                             }
                         }
