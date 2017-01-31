@@ -145,6 +145,8 @@
     {% block javascript %}
         <script type="text/javascript">
 
+        console.log({{ tags }});
+
         $(function() {
 
             var start = moment("{{ start }}");
