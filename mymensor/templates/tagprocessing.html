@@ -63,6 +63,11 @@
                                              {% endif %}
                                         </p>
                                     </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">{% trans ' Latitude: ' %}10{% trans ' degrees' %}</li>
+                                        <li class="list-group-item">{% trans ' Longitude: ' %}10{% trans ' degrees' %}</li>
+                                        <li class="list-group-item">{% trans ' Precision: ' %}10{% trans ' meters' %}</li>
+                                    </ul>
                                     <div class="card-block">
                                         <p class="card-text">
                                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
