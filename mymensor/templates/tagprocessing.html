@@ -66,7 +66,13 @@
                                     <ul class="list-group list-group-flush">
                                         {% for tag in tags %}
                                             {% if tag.vp == vp %}
-                                                <li class="list-group-item">{{ tag.tagNumber }}</li>
+                                                <li class="list-group-item">{{ tag.tagQuestion }}</li>
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" placeholder="Value for tag...">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-secondary" type="button">Save</button>
+                                                    </span>
+                                                </div>
                                             {% endif %}
                                         {% endfor %}
                                     </ul>
