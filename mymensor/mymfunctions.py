@@ -1,4 +1,12 @@
 
+def isfloat(value):
+  try:
+    float(value)
+    return True
+  except:
+    return False
+
+
 def setup_new_user(instance, **kwargs):
     from mymensor.models import Asset, Vp
     asset = Asset(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email)

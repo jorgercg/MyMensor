@@ -18,7 +18,7 @@ import json, boto3
 from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm, ValueForm
-from mymensor.mymfunctions import setup_new_user
+from mymensor.mymfunctions import isfloat
 
 
 
@@ -335,3 +335,17 @@ def tagProcessingFormView(request):
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': vp.vpStdPhotoStorageURL},
                                     ExpiresIn=3600)
         return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+
+@login_required
+def saveValue(request):
+    if request.method == 'POST':
+        pass
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json"
+        )

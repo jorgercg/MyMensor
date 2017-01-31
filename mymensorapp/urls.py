@@ -67,4 +67,6 @@ urlpatterns = [
 
     url(r'^tz_detect/', include('tz_detect.urls')),
 
+    url(r'^save_value/', mymviews.saveValue, name='save_value'),
+
 ]
