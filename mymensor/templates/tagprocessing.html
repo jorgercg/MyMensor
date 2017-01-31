@@ -64,9 +64,11 @@
                                         </p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">{% trans ' Latitude: ' %}10{% trans ' degrees' %}</li>
-                                        <li class="list-group-item">{% trans ' Longitude: ' %}10{% trans ' degrees' %}</li>
-                                        <li class="list-group-item">{% trans ' Precision: ' %}10{% trans ' meters' %}</li>
+                                        {% for tag in tags %}
+                                            {% if tag.vp == vp.id %}
+                                                <li class="list-group-item">{{ tag.tagNumber }}</li>
+                                            {% endif %}
+                                        {% endfor %}
                                     </ul>
                                     <div class="card-block">
                                         <p class="card-text">
