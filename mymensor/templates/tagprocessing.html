@@ -1,76 +1,191 @@
 {% extends 'base.html' %}
-{% load i18n%}
+{% load i18n tz counter assign%}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 {% if user.is_authenticated %}
-    {% block title %}TAG Processing - {{ block.super }}{% endblock %}
-    {% block header %}
-    {% endblock %}
+    {% block title %}Tag Processing - {{ block.super }}{% endblock %}
     {% block content %}
         <div class="d-flex align-content-start flex-wrap">
             <div class="dashhead-toolbar">
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'VP # ' %}</p>
-                    <select id="currvp" class="1-30"></select>
-                        {% for vp in vps %}
-                        <option value="{{ vp.vpNumber }}">{{ vp.vpNumber }}</option>
-                        {% endfor %}
+                <div class="dashhead-toolbar-item">
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
                 </div>
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'TAG # ' %}</p>
-                    <select id="currtag" class="1-80">
-                        {% for tag in tags %}
-                        <option value="{{ tag.tagNumber }}">{{ tag.tagNumber }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'MEDIA: ' %}</p>
-                    <select id="currmed" class="1-90">
-                        {% for media in medias %}
-                        <option value="{{ media.id }}">{{ media.mediaTimeStamp }}</option>
-                        {% endfor %}
-                    </select>
+                <div id="qtyselector" class="dashhead-toolbar-item">
+                    <p>{% trans 'Media quantity per VP: ' %}</p>
+                    <select id="qtytodisplaypervp" class="1-100"></select>
                 </div>
             </div>
         </div>
         <hr>
-        <div id="tagedition">
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="hidden" name="currentmediaid" value="{{ currentmediaid }}">
-                <input type="hidden" name="currentvp" value="{{ currentvp }}">
-                <input type="hidden" name="currenttag" value="{{ currenttag }}">
-                <input type="submit" value="{% trans 'Submit' %}" />
-            </form>
+        <div id="vpsview">
+            {% for vp in vps %}
+            <div class="d-flex align-content-start flex-wrap">
+                {% for media in medias %}
+                    {% if vp.vpNumber == media.mediaVpNumber %}
+                        {% counter start=0 silent=True assign='mediaqtyinvp' %}
+                        {% if qtypervp > mediaqtyinvp %}
+                            {% if media.mediaContentType == "image/jpeg" %}
+                                 <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                    <div class="card-header text-primary">
+                                       <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                            {% if media.mediaProcessed %}
+                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                            {% else %}
+                                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
+                                        <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+                                    </a>
+                                    <div class="card-block">
+                                         <p class="card-text">
+                                             {% if media.mediaArIsOn %}
+                                                <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                             {% else %}
+                                                <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                             {% endif %}
+                                             {% if media.mediaTimeIsCertified %}
+                                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                             {% else %}
+                                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                             {% endif %}
+                                             {% if media.mediaLocIsCertified %}
+                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                             {% else %}
+                                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                             {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="card-block">
+                                        <p class="card-text">
+                                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
+                                    </div>
+                                 </div>
+                            {% endif %}
+                            {% if media.mediaContentType == "video/mp4" %}
+                                <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                    <div class="card-header text-primary">
+                                        <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                            {% if media.mediaProcessed %}
+                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                            {% else %}
+                                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                            {% endif %}
+                                        </h5>
+                                    </div>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <video controls>
+                                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
+                                        </video>
+                                    </div>
+                                    <div class="card-block">
+                                         <p class="card-text">
+                                             {% if media.mediaArIsOn %}
+                                                <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                             {% else %}
+                                                <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                             {% endif %}
+                                             {% if media.mediaTimeIsCertified %}
+                                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
+                                             {% else %}
+                                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
+                                             {% endif %}
+                                             {% if media.mediaLocIsCertified %}
+                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                             {% else %}
+                                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
+                                             {% endif %}
+                                        </p>
+                                    </div>
+                                    <div class="card-block">
+                                        <p class="card-text">
+                                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-muted">
+                                        <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <hr>
+            {% endfor %}
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Django Instant client engine
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        {% include "mymclient.html" %}
+        {% include "mymmessages.html" %}
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
+
+        $(function() {
+
+            var start = moment("{{ start }}");
+            var end = moment("{{ end }}");
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: {{ start }},
+                endDate: {{ end }},
+                "alwaysShowCalendars": true,
+                ranges: {
+                   'Today': [moment(), moment()],
+                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                   'This Month': [moment().startOf('month'), moment().endOf('month')],
+                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                var startdate = picker.startDate.format('YYYY-MM-DD');
+                var enddate = picker.endDate.format('YYYY-MM-DD');
+                console.log(startdate);
+                console.log(enddate);
+                console.log({% url 'portfolio' %});
+                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+            });
+
+        });
         $(function(){
-            console.log("currentvp="+"{{ currentvp }}");
-            console.log("currenttag="+"{{ currenttag }}");
-            console.log("currentmediaid="+"{{ currentmediaid }}");
-            console.log("INITIAL: vpselected="+"{{ currentvp }}"+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
-
-            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
-            $('#currvp').change(function(){
-                var vpselected = $(this).find(":selected").val();
-                console.log("VPSELECTED: vpselected="+vpselected+" tagselected="+"{{ currenttag }}"+" mediaselected="+"{{ currentmediaid }}");
-                window.location={% url 'tagprocessing' %}+'?currentvp='+vpselected+'&currenttag='+'{{ currenttag }}'+'&currentmediaid='+'{{ currentmediaid }}';
-            });
-
-            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
-            $('#currtag').change(function(){
-                var tagselected = $(this).find(":selected").val();
-                console.log("TAGSELECTED: vpselected="+"{{ currentvp }}"+" tagselected="+tagselected+" mediaselected="+"{{ currentmediaid }}");
-                window.location={% url 'tagprocessing' %}+'?currentvp='+'{{ currentvp }}'+'&currenttag='+tagselected+'&currentmediaid='+'{{ currentmediaid }}';
-            });
-
-            $('.1-90 option[value="{{ currentmediaid }}"]').attr('selected','selected');
-            $('#currmed').change(function(){
-                var mediaselected = $(this).find(":selected").val();
-                console.log("MEDIASELECTED: vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}'+" mediaselected="+mediaselected);
-                window.location={% url 'tagprocessing' %}+'?currentvp='+'{{ currentvp }}'+'&currenttag='+'{{ currenttag }}'+'&currentmediaid='+mediaselected;
+            console.log({{ qtypervp }});
+            var $select = $('.1-100');
+            for (i=1;i<=20;i++){
+                $select.append($('<option></option>').val(i).html(i))
+            }
+            $('.1-100 option[value="{{ qtypervp }}"]').attr('selected','selected');
+            $('#qtytodisplaypervp').change(function(){
+                var qtyselected = $(this).find(":selected").val();
+                console.log(qtyselected);
+                window.location={% url 'portfolio' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
             });
         });
         </script>
@@ -78,3 +193,4 @@
 {% else %}
     <h1>Not Logged In....</h1>
 {% endif %}
+{% endlocaltime %}

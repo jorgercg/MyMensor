@@ -311,51 +311,21 @@ def tagSetupFormView(request):
 
 @login_required
 def tagProcessingFormView(request):
-    loaddcicfg(request)
-    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    s3Client = session.client('s3')
-
-    medias = Media.objects.filter(vp__asset__assetOwner=request.user) #.filter(mediaProcessed=False)
-
-    for media in medias:
-        media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                                                Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                        'Key': media.mediaObjectS3Key},
-                                                                        ExpiresIn=3600)
-    vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
-    vps = Vp.objects.filter(id__in=vpsofthemediasnotprocessedlist)
-    tags = Tag.objects.filter(vp=vps)
-
-    if request.method == 'POST':
-        currentmediaid = int(request.POST.get('currentmediaid', 0))
-        currentvp = int(request.POST.get('currentvp', 0))
-        currenttag = int(request.POST.get('currenttag', 0))
-        media = Media.objects.get(id=currentmediaid)
-        vp = media.vp
-        tag = Tag.objects.filter(vp=vp).filter(tagNumber=currenttag)
-        value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
-        form = ValueForm(request.POST, instance=value)
-        if form.is_valid():
-            pass
-
-    if request.method == 'GET':
-        currentmediaid = int(request.POST.get('currentmediaid', medias[0].pk))
-        firstvpnotprocessed = Vp.objects.filter(id=vpsofthemediasnotprocessedlist[0])
-        currentvp = int(request.POST.get('currentvp', firstvpnotprocessed.vpNumber))
-        firsttagnotprocessed = Tag.objects.filter(vp=firstvpnotprocessed)
-        currenttag = int(request.POST.get('currenttag', firsttagnotprocessed.tagNumber))
-        mediaselected = Media.objects.get(pk=currentmediaid)
-        vp = mediaselected.vp
-        tag = Tag.objects.filter(vp=vp).filter(tagNumber=currenttag)
-        value = Value.objects.filter(processorUserId=request.user).filter(processedTag=tag)
-        form = ValueForm(request.POST, instance=value)
-
-
-    listofmediasnotprocessed = medias.values_list('id', flat=True).order_by('mediaTimeStamp')
-    listofvpsnotprocessed = vps.values_list('vpNumber',flat=True).order_by('vpNumber')
-    listoftagsnotprocessed = tags.values_list('tagNumber', flat=True).order_by('tagNumber')
-
-    return render(request, 'tagprocessing.html', {'form': form, 'medias':medias, 'vps':vps, 'tags':tags,
-                                                  'listofmediasnotprocessed':listofmediasnotprocessed, 'listofvpsnotprocessed':listofvpsnotprocessed, 'listoftagsnotprocessed':listoftagsnotprocessed,
-                                                  'currentmediaid':currentmediaid, 'currentvp':currentvp, 'currenttag':currenttag})
+    if request.user.is_authenticated:
+        loaddcicfg(request)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        qtypervp = int(request.GET.get('qtypervp', 5))
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaMillisSinceEpoch')
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
+                                    ExpiresIn=3600)
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
