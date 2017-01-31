@@ -69,9 +69,9 @@
                                                 {% if tag.vp == vp %}
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" placeholder="Value for tag...">
+                                                        <input type="text" class="form-control" placeholder="{% trans 'Answer here...' %}">
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-secondary" type="button">Save</button>
+                                                            <button class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
                                                         </span>
                                                     </div>
                                                 {% endif %}
