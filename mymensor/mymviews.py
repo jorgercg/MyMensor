@@ -361,11 +361,12 @@ def saveValue(request):
         value.save()
         qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(vp=vpinstance).count()
         qtyofprocessedtagsinamedia = ProcessedTag.objects.filter(media=mediainstance).count()
+        alltagsinmediaprocessed = 0
         if qtyoftagsinavp == qtyofprocessedtagsinamedia:
-            Media.objects.update(id=mediaid, mediaProcessed=True, mediaStateEvaluated=processedtag.tagStateEvaluated)
+            Media.objects.update(id=mediainstance.pk, mediaProcessed=True, mediaStateEvaluated=processedtag.tagStateEvaluated)
             alltagsinmediaprocessed = 1
         else:
-            Media.objects.update(id=mediaid, mediaProcessed=False, mediaStateEvaluated=processedtag.tagStateEvaluated)
+            Media.objects.update(id=mediainstance.pk, mediaProcessed=False, mediaStateEvaluated=processedtag.tagStateEvaluated)
 
         return HttpResponse(
             json.dumps({"result": alltagsinmediaprocessed}),
