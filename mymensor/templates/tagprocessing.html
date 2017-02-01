@@ -68,7 +68,7 @@
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
 
-                                                            {% if media.id in mediasofthevaluelist and tag.ig in tagsofthevaluelist %}
+                                                            {% if media.id in mediasofthevaluelist and tag.id in tagsofthevaluelist %}
                                                                 {% for value in values %}
                                                                     {% if value.media == media and value.tag == tag %}
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
