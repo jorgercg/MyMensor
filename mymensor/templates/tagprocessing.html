@@ -70,7 +70,7 @@
 
                                                             {% if media.id in values and tag.id in values %}
                                                                 {% for value in values %}
-                                                                    {% if value.0 == media and value.1 == tag %}
+                                                                    {% if value.0 == media.id and value.1 == tag.id %}
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.2 }}">
                                                                     <span class="input-group-btn">
                                                                         <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Save' %}</button>
