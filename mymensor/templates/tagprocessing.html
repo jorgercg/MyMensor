@@ -73,7 +73,7 @@
                                                                     {% if value.media == media and value.tag == tag %}
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
                                                                     <span class="input-group-btn">
-                                                                        <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Save' %}</button>
+                                                                        <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
                                                                     </span>
                                                                     {% endif %}
                                                                 {% endfor %}
@@ -261,10 +261,6 @@
                     success : function(json) {
                         //$('#post-text').val(''); // remove the value from the input
                         $(button_id).removeClass('btn-secondary').addClass('btn-success')
-                        if (json.result==1) {
-                            $(mediastate_id).removeClass().addClass("fa fa-bar-chart vpprocessed")
-                            $(mediastate_id).removeAttr("title").attr("title","{% trans 'Processed' %}")
-                        }
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
