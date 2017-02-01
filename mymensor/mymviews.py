@@ -352,8 +352,8 @@ def saveValue(request):
         vpinstance = Vp(id=vpid)
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
-            ProcessedTag.objects.update(id=processedtag.pk, media=mediainstance, tag=taginstance,
-                                                  valValueEvaluated=valuefloat, tagStateEvaluated=1)
+            processedtag.valValueEvaluated=valuefloat
+            processedtag.tagStateEvaluated=1
         except ProcessedTag.DoesNotExist:
             ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
         processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
