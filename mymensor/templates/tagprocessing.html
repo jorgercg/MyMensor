@@ -32,9 +32,9 @@
                                     <div class="card-header text-primary">
                                        <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
-                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                                <span id="mediastate{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% else %}
-                                                <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                                <span id="mediastate{{ media.id }}" class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% endif %}
                                         </h5>
                                     </div>
@@ -212,6 +212,8 @@
             var vpid = 0;
             var tagid = 0;
             var input_id = "";
+            var button_id = "";
+            var mediastate_id = "";
 
             // Submit post on submit
             $('button').click(function(event){
@@ -219,6 +221,7 @@
                 console.log("Saving Media-VP-Tag:"+$(this).attr('id'));  // sanity check
                 value_id = $(this).attr('id');
                 input_id = "#input"+value_id;
+                button_id = "#"+value_id;
                 for (var i=0; i<value_id.length; i++){
                     if (value_id.charAt(i)=="-") {
                         mediaid=parseInt(value_id.slice(0,i))
@@ -231,6 +234,7 @@
                         }
                     }
                 }
+                mediastate_id = "#mediastate"+mediaid;
                 console.log("Media-VP-Tag:"+mediaid+":"+vpid+":"+tagid) // sanity check
                 saving_value();
             });
@@ -245,6 +249,10 @@
                     // handle a successful response
                     success : function(json) {
                         //$('#post-text').val(''); // remove the value from the input
+                        $(button_id).removeClass('btn-secondary').addClass('btn-success')
+                        if (json.result==1) {
+                            $(mediastate_id).removeClass().addClass("fa fa-bar-chart vpprocessed")
+                        }
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
@@ -253,6 +261,7 @@
                         //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                         //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        $(button_id).removeClass('btn-secondary').addClass('btn-danger')
                     }
                 });
             };

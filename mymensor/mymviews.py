@@ -359,9 +359,16 @@ def saveValue(request):
         processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
         value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
         value.save()
+        qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(vp=vpinstance).count()
+        qtyofprocessedtagsinamedia = ProcessedTag.objects.filter(media=mediainstance).count()
+        if qtyoftagsinavp == qtyofprocessedtagsinamedia:
+            Media.objects.update(id=mediaid, mediaProcessed=True, mediaStateEvaluated=processedtag.tagStateEvaluated)
+            alltagsinmediaprocessed = 1
+        else:
+            Media.objects.update(id=mediaid, mediaProcessed=False, mediaStateEvaluated=processedtag.tagStateEvaluated)
 
         return HttpResponse(
-            json.dumps({"result": "Value save successful!"}),
+            json.dumps({"result": alltagsinmediaprocessed}),
             content_type="application/json"
         )
     else:
