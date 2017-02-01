@@ -335,7 +335,9 @@ def tagProcessingFormView(request):
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': vp.vpStdPhotoStorageURL},
                                     ExpiresIn=3600)
         values = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user).filter(tag__tagIsActive=True).filter(media__mediaProcessed=False).values_list('media','tag','valValueEvaluated')
-        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+        mediasofthevaluelist = values.values_list('media__id', flat=True)
+        tagsofthevaluelist = values.values_list('tag__id', flat=True)
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values, 'mediasofthevaluelist': mediasofthevaluelist, 'tagsofthevaluelist': tagsofthevaluelist, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
 
 @login_required
 def saveValue(request):
