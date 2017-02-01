@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(url='/portfolio/')),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
-    url(r'^tagstatus/$', TemplateView.as_view(template_name='support.html'), name='tagstatus'),
+    url(r'^tagstatus/$', mymviews.tagStatus, name='tagstatus'),
     url(r'^taganalysis/$', TemplateView.as_view(template_name='support.html'), name='taganalysis'),
     url(r'^tagprocessing/$', mymviews.tagProcessingFormView, name='tagprocessing'),
     url(r'^support/$', TemplateView.as_view(template_name='support.html'), name='support'),

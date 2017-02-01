@@ -19,6 +19,8 @@ from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
+from mymensor.tables import TagStatusTable
+from django_tables2 import RequestConfig
 
 
 
@@ -386,3 +388,10 @@ def saveValue(request):
             json.dumps({"nothing": "not happening"}),
             content_type="application/json"
         )
+
+
+@login_required
+def tagStatus(request):
+    table = TagStatusTable(Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).order_by('tagNumber'))
+    RequestConfig(request).configure(table)
+    return render(request, 'tagstatus.html', {'table':table})
