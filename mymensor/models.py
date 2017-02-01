@@ -57,6 +57,7 @@ class Tag(models.Model):
     tagIsActive = models.BooleanField(default=True)
     tagListNumber = models.IntegerField(null=True)
     tagQuestion = models.CharField(max_length=1024)
+    tagUnit = models.CharField(max_length=50, null=True)
     tagLowRedValue = models.FloatField(null=True)
     tagLowYellow = models.FloatField(null=True)
     tagLowGreen = models.FloatField(null=True)
