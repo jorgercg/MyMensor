@@ -130,12 +130,12 @@ def amazon_sns_processor(request):
             # Presently the Mobile App DOES NOT PROCESS the VPs
             media_received.mediaProcessed = False
 
-            #listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
+            listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
 
-            #if media_received.mediaSha256 in listofmediaindb:
-            #    return HttpResponse(status=200)
-            #else:
-            media_received.save()
+            if media_received.mediaSha256 in listofmediaindb:
+                return HttpResponse(status=200)
+            else:
+                media_received.save()
             broadcast(message='New media arrived on server', event_class="NewMedia", data={"username":media_received.mediaMymensorAccount})
             return HttpResponse(status=200)
     return HttpResponse(status=400)
@@ -334,7 +334,8 @@ def tagProcessingFormView(request):
             vp.vpStdPhotoStorageURL = s3Client.generate_presigned_url('get_object',
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': vp.vpStdPhotoStorageURL},
                                     ExpiresIn=3600)
-        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+        values = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user).filter(tag__tagIsActive=True)
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
 
 @login_required
 def saveValue(request):
