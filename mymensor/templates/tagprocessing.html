@@ -252,7 +252,7 @@
                         $(button_id).removeClass('btn-secondary').addClass('btn-success')
                         if (json.result==1) {
                             $(mediastate_id).removeClass().addClass("fa fa-bar-chart vpprocessed")
-                            $(mediastate_id).removeAttribute("title").attr("title","{% trans 'Processed' %}")
+                            $(mediastate_id).removeAttr("title").attr("title","{% trans 'Processed' %}")
                         }
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
