@@ -4,8 +4,10 @@ from mymensor.models import Tag, Vp, Media, ProcessedTag
 class TagStatusTable(tables.Table):
     vpNumber = tables.Column(accessor='vp.vpNumber')
     vpDescription = tables.Column(accessor='vp.vpDescription')
+    latestValue = tables.Column(accessor='processedtag.valValueEvaluated')
+    valueState = tables.Column(accessor='processedtag.tagStateEvaluated')
     class Meta:
         model = Tag
         attrs = {'class': 'paleblue'}
         fields = ('tagNumber','tagDescription','tagUnit')
-        sequence = ('tagNumber','tagDescription','vpNumber','vpDescription','tagUnit')
+        sequence = ('tagNumber','tagDescription','vpNumber','vpDescription','latestValue','tagUnit', 'valueState')
