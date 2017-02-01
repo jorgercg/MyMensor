@@ -32,7 +32,7 @@
                                     <div class="card-header text-primary">
                                        <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
-                                                <span id="mediastate{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                                <span id="mediastate{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed' %}"></span>
                                             {% else %}
                                                 <span id="mediastate{{ media.id }}" class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% endif %}
@@ -93,7 +93,7 @@
                                     <div class="card-header text-primary">
                                         <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
-                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
+                                                <span class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed' %}"></span>
                                             {% else %}
                                                 <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% endif %}
@@ -252,6 +252,7 @@
                         $(button_id).removeClass('btn-secondary').addClass('btn-success')
                         if (json.result==1) {
                             $(mediastate_id).removeClass().addClass("fa fa-bar-chart vpprocessed")
+                            $(mediastate_id).removeAttribute("title").attr("title","{% trans 'Processed' %}")
                         }
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
