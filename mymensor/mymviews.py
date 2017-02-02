@@ -364,6 +364,17 @@ def saveValue(request):
         processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
         value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
         value.save()
+        try:
+            tagstatusinstance = TagStatusTable.objects.get(processedTag=processedtag, statusTagNumber=taginstance.tagNumber, statusTagDescription=taginstance.tagDescription,
+                                                           statusVpNumber=vpinstance.vpNumber, statusVpDescription=vpinstance.vpDescription, statusTagUnit=taginstance.tagUnit,
+                                                           statusMediaTimeStamp=mediainstance.mediaTimeStamp)
+            tagstatusinstance.statusValValueEvaluated = processedtag.valValueEvaluated
+            tagstatusinstance.statusTagStateEvaluated = processedtag.tagStateEvaluated
+            tagstatusinstance.save()
+        except TagStatusTable.DoesNotExist:
+            TagStatusTable.objects.create(processedTag=processedtag, statusTagNumber=taginstance.tagNumber, statusTagDescription=taginstance.tagDescription,
+                                          statusVpNumber=vpinstance.vpNumber, statusVpDescription=vpinstance.vpDescription, statusValValueEvaluated=processedtag.valValueEvaluated,
+                                          statusTagUnit=taginstance.tagUnit, statusMediaTimeStamp=mediainstance.mediaTimeStamp, statusTagStateEvaluated=processedtag.tagStateEvaluated)
         qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(vp=vpinstance).count()
         qtyofprocessedtagsinamedia = ProcessedTag.objects.filter(media=mediainstance).count()
         alltagsinmediaprocessed = 0
