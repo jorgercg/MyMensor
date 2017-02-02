@@ -153,7 +153,7 @@ class Value(models.Model):
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
 
-class TagStatus(pg.View):
+class TagStatusDjango(pg.View):
     sql = """SELECT
 mymensor_tag.tagNumber,
 mymensor_tag.tagDescription,

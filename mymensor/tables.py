@@ -1,7 +1,7 @@
 import django_tables2 as tables
-from mymensor.models import TagStatus
+from mymensor.models import TagStatusDjango
 
 class TagStatusTable(tables.Table):
 
     class Meta:
-        model = TagStatus
+        model = TagStatusDjango
