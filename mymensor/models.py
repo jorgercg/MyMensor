@@ -4,7 +4,6 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
-from django_pgviews import view as pg
 
 
 class Asset(models.Model):
@@ -153,29 +152,14 @@ class Value(models.Model):
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.IntegerField()
 
-class TagStatusDjango(pg.View):
-    sql = """SELECT
-"mymensor_tag"."tagNumber",
-"mymensor_tag"."tagDescription",
-"mymensor_vp"."vpNumber",
-"mymensor_vp"."vpDescription",
-"mymensor_processedtag"."valValueEvaluated",
-"mymensor_tag"."tagUnit",
-"mymensor_media"."mediaTimeStamp",
-"mymensor_processedtag"."tagStateEvaluated",
-"mymensor_asset"."assetOwner_id"
-FROM
-"mymensor_tag",
-"mymensor_vp",
-"mymensor_processedtag",
-"mymensor_media",
-"mymensor_asset"
-WHERE
-((mymensor_tag.id = mymensor_processedtag.tag_id) AND (mymensor_tag.vp_id = mymensor_vp.id) AND (mymensor_processedtag.media_id = mymensor_media.id) AND (mymensor_vp.id = mymensor_media.vp_id) AND (mymensor_vp.asset_id = mymensor_asset.id))
-ORDER BY
-"mymensor_tag"."tagNumber" ASC;"""
 
-    class Meta:
-      app_label = 'mymensor'
-      db_table = 'mymensor_tagstatusdjango'
-      managed = False
+class TagStatusTable(models.Model):
+    statusTagNumber = models.IntegerField()
+    statusTagDescription = models.CharField(max_length=1024)
+    statusVpNumber = models.IntegerField()
+    statusVpDescription = models.CharField(max_length=1024)
+    statusValValueEvaluated = models.FloatField()
+    statusTagUnit = models.CharField(max_length=50, null=True)
+    statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
+    statusTagStateEvaluated = models.IntegerField()
+    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK

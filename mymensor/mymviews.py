@@ -10,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatusDjango
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatusTable
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -391,7 +391,7 @@ def saveValue(request):
 
 class TagStatus(BaseDatatableView):
     # The model we're going to show
-    model = TagStatusDjango
+    model = TagStatusTable
 
     # define the columns that will be returned
     columns = ['tagnumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated', 'assetOwner_id']
