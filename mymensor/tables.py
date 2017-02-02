@@ -7,7 +7,4 @@ class TagStatusTable(tables.Table):
     latestValue = tables.Column(accessor='processedtag.valValueEvaluated')
     valueState = tables.Column(accessor='processedtag.tagStateEvaluated')
     class Meta:
-        model = Tag
-        attrs = {'class': 'paleblue'}
-        fields = ('tagNumber','tagDescription','tagUnit')
         sequence = ('tagNumber','tagDescription','vpNumber','vpDescription','latestValue','tagUnit', 'valueState')
