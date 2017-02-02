@@ -154,6 +154,7 @@ class Value(models.Model):
 
 
 class TagStatusTable(models.Model):
+    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
     statusTagNumber = models.IntegerField()
     statusTagDescription = models.CharField(max_length=1024)
     statusVpNumber = models.IntegerField()
@@ -161,5 +162,5 @@ class TagStatusTable(models.Model):
     statusValValueEvaluated = models.FloatField()
     statusTagUnit = models.CharField(max_length=50, null=True)
     statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
+    statusDBTimeStamp = models.DateTimeField(auto_now_add=True)
     statusTagStateEvaluated = models.IntegerField()
-    processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
