@@ -5,29 +5,9 @@
 {% block extra_head %}
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-    <script>
-        $(document).ready(function() {
-        var dt_table = $('.datatable').dataTable({
-        language: dt_language,  // global variable defined in html
-        order: [[ 0, "desc" ]],
-        lengthMenu: [[25, 50, 100, 200], [25, 50, 100, 200]],
-        columnDefs: [
-            {orderable: true,
-             searchable: true,
-             className: "center",
-             targets: [0, 1]
-            }
-        ],
-        searching: true,
-        processing: true,
-        serverSide: true,
-        stateSave: true,
-        ajax: TAG_STATUS
-    });
-});
-    </script>
+
     <script type="text/javascript">
-        var TAG_STATUS = '{% url "tag_status" %}';
+        var TAG_STATUS = '{% url 'tag_status' %}';
         // translations for datatables
 
         var dt_language = {
@@ -53,6 +33,27 @@
                 "sortDescending": "{% trans ": activate to sort column descending" %}"
             }
         }
+    </script>
+    <script>
+        $(document).ready(function() {
+        var dt_table = $('.datatable').dataTable({
+            language: dt_language,  // global variable defined in html
+            order: [[ 0, "asc" ]],
+            lengthMenu: [[25, 50, 100, 200], [25, 50, 100, 200]],
+            columnDefs: [
+                {orderable: true,
+                 searchable: true,
+                 className: "center",
+                 targets: [0, 1]
+                }
+            ],
+            searching: true,
+            processing: true,
+            serverSide: true,
+            stateSave: true,
+            ajax: TAG_STATUS
+            });
+        });
     </script>
 {% endblock %}
 
