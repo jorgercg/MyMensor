@@ -358,6 +358,7 @@ def saveValue(request):
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
             processedtag.valValueEvaluated=valuefloat
             processedtag.tagStateEvaluated=1
+            processedtag.save()
         except ProcessedTag.DoesNotExist:
             ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
         processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
