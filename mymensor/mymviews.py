@@ -10,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatus
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -392,6 +392,6 @@ def saveValue(request):
 
 @login_required
 def tagStatus(request):
-    table = TagStatusTable(Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).order_by('tagNumber'))
+    table = TagStatusTable(TagStatus.objects.all())
     RequestConfig(request).configure(table)
     return render(request, 'tagstatus.html', {'table':table})
