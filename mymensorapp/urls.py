@@ -21,7 +21,6 @@ from django.contrib.auth.decorators import login_required
 from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
 from instant.views import instant_auth
-
 from mymensor import mymviews
 
 urlpatterns = [
@@ -70,6 +69,6 @@ urlpatterns = [
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
 
-    url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view()), name='tag_status'),
+    url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view), name='tag_status'),
 
 ]

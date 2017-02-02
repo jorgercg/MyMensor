@@ -389,7 +389,6 @@ def saveValue(request):
         )
 
 
-@login_required
 class TagStatus(BaseDatatableView):
     # The model we're going to show
     model = TagStatusDjango
