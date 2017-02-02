@@ -43,7 +43,6 @@
         <meta name="theme-color" content="#00afef">
         {% cookielaw_banner %}
 		{% block header %}{% endblock %}
-        {% block extra_head %}{% endblock %}
 	</head>
     {% load tz_detect %}
     {% tz_detect %}
@@ -100,6 +99,7 @@
         <!-- Page Local Scripts
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% block javascript %}{% endblock %}
+        {% block extra_head %}{% endblock %}
     </body>
 </html>
 {% endlocaltime %}
