@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
+from django.contrib.auth.decorators import login_required
 from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
 from instant.views import instant_auth
@@ -68,5 +69,7 @@ urlpatterns = [
     url(r'^tz_detect/', include('tz_detect.urls')),
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
+
+    url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view()), name='tag_status'),
 
 ]

@@ -19,9 +19,8 @@ from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
-from mymensor.tables import TagStatusTable
-from django_tables2 import RequestConfig
-
+from django.db.models import Q
+from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
 def landingView(request):
@@ -391,7 +390,30 @@ def saveValue(request):
 
 
 @login_required
-def tagStatus(request):
-    table = TagStatusTable(TagStatusDjango.objects.all())
-    RequestConfig(request).configure(table)
-    return render(request, 'tagstatus.html', {'table':table})
+class TagStatus(BaseDatatableView):
+    # The model we're going to show
+    model = TagStatusDjango
+
+    # define the columns that will be returned
+    columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
+
+    # define column names that will be used in sorting
+    # order is important and should be same as order of columns
+    # displayed by datatables. For non sortable columns use empty
+    # value like ''
+    order_columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
+
+    # set max limit of records returned, this is used to protect our site if someone tries to attack our site
+    # and make it return huge amount of data
+    max_display_length = 100
+
+    def filter_queryset(self, qs):
+        # use parameters passed in GET request to filter queryset
+        filteruser = self.request.user
+        qs = qs.filter(assetOwner_id=filteruser)
+        # simple example:
+        sSearch = self.request.GET.get(u'search[value]', None)
+        if sSearch:
+            qs = qs.filter(Q(tagDescription__istartswith=sSearch) | Q(vpDescription__istartswith=sSearch))
+        return qs
+
