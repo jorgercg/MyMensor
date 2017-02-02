@@ -32,3 +32,16 @@ def setup_new_user(instance, **kwargs):
                           vpStdPhotoStorageURL=vpstdphotostorageurl, vpStdTagDescPhotoStorageURL=vpstdtagdescphotostorageurl,
                           vpStdMarkerPhotoStorageURL= vpstdmarkerphotostorageurl, vpStdPhotoFileSize=vpstdphotofilesize,
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
+
+
+def create_tagstatustable_row(sender, instance, **kwargs):
+    pass
+
+
+def update_tagstatustable_row(sender, instance, **kwargs):
+    pass
+
+
+
+
+

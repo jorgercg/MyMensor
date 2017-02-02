@@ -366,7 +366,7 @@ def saveValue(request):
         qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(vp=vpinstance).count()
         qtyofprocessedtagsinamedia = ProcessedTag.objects.filter(media=mediainstance).count()
         alltagsinmediaprocessed = 0
-        if qtyoftagsinavp == qtyofprocessedtagsinamedia:
+        if qtyoftagsinavp <= qtyofprocessedtagsinamedia:
             mediaprocessed = Media.objects.get(id=mediainstance.pk)
             mediaprocessed.mediaProcessed=True
             mediaprocessed.mediaStateEvaluated=processedtag.tagStateEvaluated
