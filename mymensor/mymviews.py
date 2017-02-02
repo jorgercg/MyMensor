@@ -394,13 +394,13 @@ class TagStatus(BaseDatatableView):
     model = TagStatusDjango
 
     # define the columns that will be returned
-    columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
+    #columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
 
     # define column names that will be used in sorting
     # order is important and should be same as order of columns
     # displayed by datatables. For non sortable columns use empty
     # value like ''
-    order_columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
+    #order_columns = ['tagNumber', 'tagDescription', 'vpNumber', 'vpDescription', 'valValueEvaluated', 'tagUnit', 'mediaTimeStamp', 'tagStateEvaluated']
 
     # set max limit of records returned, this is used to protect our site if someone tries to attack our site
     # and make it return huge amount of data
