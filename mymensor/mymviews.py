@@ -351,9 +351,9 @@ def saveValue(request):
             valuefloat = float(valuetxt)
         else:
             return HttpResponse(status=400)
-        mediainstance = Media(id=mediaid)
-        taginstance = Tag(id=tagid)
-        vpinstance = Vp(id=vpid)
+        mediainstance = Media.objects.get(id=mediaid)
+        taginstance = Tag.objects.get(id=tagid)
+        vpinstance = Vp.objects.get(id=vpid)
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
             processedtag.valValueEvaluated=valuefloat
