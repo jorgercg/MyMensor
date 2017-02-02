@@ -155,25 +155,25 @@ class Value(models.Model):
 
 class TagStatus(pg.View):
     sql = """SELECT
-"mymensor_tag"."tagNumber",
-"mymensor_tag"."tagDescription",
-"mymensor_vp"."vpNumber",
-"mymensor_vp"."vpDescription",
-"mymensor_processedtag"."valValueEvaluated",
-"mymensor_tag"."tagUnit",
-"mymensor_media"."mediaTimeStamp",
-"mymensor_processedtag"."tagStateEvaluated",
-"mymensor_asset"."assetOwner_id"
+mymensor_tag.tagNumber,
+mymensor_tag.tagDescription,
+mymensor_vp.vpNumber,
+mymensor_vp.vpDescription,
+mymensor_processedtag.valValueEvaluated,
+mymensor_tag.tagUnit,
+mymensor_media.mediaTimeStamp,
+mymensor_processedtag.tagStateEvaluated,
+mymensor_asset.assetOwner_id
 FROM
-"mymensor_tag",
-"mymensor_vp",
-"mymensor_processedtag",
-"mymensor_media",
-"mymensor_asset"
+mymensor_tag,
+mymensor_vp,
+mymensor_processedtag,
+mymensor_media,
+mymensor_asset
 WHERE
 ((mymensor_tag.id = mymensor_processedtag.tag_id) AND (mymensor_tag.vp_id = mymensor_vp.id) AND (mymensor_processedtag.media_id = mymensor_media.id) AND (mymensor_vp.id = mymensor_media.vp_id) AND (mymensor_vp.asset_id = mymensor_asset.id))
 ORDER BY
-"mymensor_tag"."tagNumber" ASC;"""
+mymensor_tag.tagNumber ASC;"""
 
     class Meta:
       app_label = 'mymensor'
