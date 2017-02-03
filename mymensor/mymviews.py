@@ -416,7 +416,7 @@ class TagStatus(BaseDatatableView):
 
     # set max limit of records returned, this is used to protect our site if someone tries to attack our site
     # and make it return huge amount of data
-    max_display_length = 100
+    max_display_length = 200
 
     def filter_queryset(self, qs):
         # use parameters passed in GET request to filter queryset
