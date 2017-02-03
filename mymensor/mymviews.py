@@ -421,7 +421,7 @@ class TagStatus(BaseDatatableView):
     def filter_queryset(self, qs):
         # use parameters passed in GET request to filter queryset
         filteruser = self.request.user
-        qs = qs.filter(assetOwner_id=filteruser)
+        qs = qs.filter(processedTag_media__vp__asset__assetOwner=filteruser)
         # simple example:
         sSearch = self.request.GET.get(u'search[value]', None)
         if sSearch:
