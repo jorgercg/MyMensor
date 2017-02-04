@@ -85,7 +85,10 @@
     <script type="text/javascript" src="{% static "js/Chart.min.js" %}"></script>
 
     <script type="text/javascript">
-var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        window.randomScalingFactor = function() {
+	        return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+        };
+        var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var config = {
             type: 'line',
             data: {
