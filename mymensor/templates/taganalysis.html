@@ -80,7 +80,8 @@
 
 {% block extra_head %}
     <script type="text/javascript" src="{% static "js/Chart.min.js" %}"></script>
-
+    <script type="text/javascript" src="{% static "js/hammer.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/chartjs-plugin-zoom.js" %}"></script>
     <script type="text/javascript">
 
         var config = {
@@ -127,6 +128,18 @@
                         display: true,
                         position: "left"
                     }]
+                },
+                pan: {
+                    enabled: true,
+                    mode: 'xy'
+                },
+                zoom: {
+                    enabled: true,
+                    mode: 'xy',
+                    limits: {
+                        max: 10,
+                        min: 0.5
+                    }
                 }
             }
         };
