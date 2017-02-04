@@ -428,3 +428,15 @@ class TagStatus(BaseDatatableView):
             qs = qs.filter(Q(statusTagDescription__icontains=sSearch) | Q(statusVpDescription__icontains=sSearch))
         return qs
 
+@login_required
+def tagAnalysisView(request):
+    if request.user.is_authenticated:
+        loaddcicfg(request)
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
+        processedtags = TagStatusTable.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
+        return render(request, 'taganalysis.html', {'processedtags': processedtags,'start': startdateformatted, 'end': enddateformatted})

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles %}
-
+{% load i18n staticfiles tz %}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
 {% block extra_head %}
     <script type="text/javascript" charset="utf8" src="{% static "js/Chart.min.js" %}"></script>
@@ -18,7 +19,7 @@
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: {{ 30_day_registrations }}
+                        data: [ 1, 5 , 10, 15, 20, 25, 30]
                     }
                 ]
             };
@@ -29,5 +30,64 @@
 {% endblock %}
 
 {% block content %}
-    <canvas id="myChart" width="500" height="300"></canvas>
+    <div class="d-flex align-content-start flex-wrap">
+        <div class="card card-outline-primary m-2" style="width: 20rem;">
+            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                <span id="selcdates"></span> <b class="caret"></b>
+            </div>
+            <div class="card-block">
+                <ul class="list-group list-group-flush">
+                    {% for processedtag in processedtags %}
+                        <li class="list-group-item">{{ processedtag.tagNumber }}</li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="card card-outline-primary m-2" style="width: 60rem;">
+            <canvas id="myChart" width="500" height="300"></canvas>
+        </div>
+    </div>
 {% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $(function() {
+
+            var start = moment("{{ start }}");
+            var end = moment("{{ end }}");
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: {{ start }},
+                endDate: {{ end }},
+                "alwaysShowCalendars": true,
+                ranges: {
+                   'Today': [moment(), moment()],
+                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                   'This Month': [moment().startOf('month'), moment().endOf('month')],
+                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                var startdate = picker.startDate.format('YYYY-MM-DD');
+                var enddate = picker.endDate.format('YYYY-MM-DD');
+                console.log(startdate);
+                console.log(enddate);
+                //console.log({% url 'portfolio' %});
+                //window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+            });
+
+        });
+
+    </script>
+{% endblock %}
+{% endlocaltime %}
