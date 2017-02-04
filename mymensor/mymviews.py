@@ -438,5 +438,5 @@ def tagAnalysisView(request):
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        processedtags = TagStatusTable.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
+        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
         return render(request, 'taganalysis.html', {'processedtags': processedtags,'start': startdateformatted, 'end': enddateformatted})
