@@ -3,54 +3,28 @@
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
-{% block extra_head %}
-    <script type="text/javascript" charset="utf8" src="{% static "js/Chart.min.js" %}"></script>
-
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            var data = {
-                labels: ['1', '5', '10', '15', '20', '25', '30'],
-                datasets: [
-                    {
-                        label: "Site Registrations in the Last 30 Days",
-                        fillColor: "rgba(220,220,220,0.2)",
-                        strokeColor: "rgba(220,220,220,1)",
-                        pointColor: "rgba(220,220,220,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [ 1, 5 , 10, 15, 20, 25, 30]
-                    }
-                ]
-            };
-            var ctx = document.getElementById("myChart").getContext("2d");
-            var myLineChart = new Chart(ctx).Line(data);
-            });
-    </script>
-{% endblock %}
 
 {% block content %}
     <div class="d-flex align-content-start flex-wrap">
         <div class="card card-outline-primary m-2" style="width: 20rem;">
-            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                <span id="selcdates"></span> <b class="caret"></b>
-            </div>
             <div class="card-block">
-                <ul class="list-group list-group-flush">
-                    {% for processedtag in processedtags %}
-                        <li class="list-group-item">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" value="">
-                                        Tag #{{ processedtag.tagNumber }}
-                                </label>
-                            </div>
-                            {{ processedtag.tagNumber }}
-                        </li>
-                    {% endfor %}
-                </ul>
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                    <span id="selcdates"></span> <b class="caret"></b>
+                </div>
             </div>
+            <ul class="list-group list-group-flush">
+                {% for processedtag in processedtags %}
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" value="">
+                                    Tag # {{ processedtag.tagNumber }}
+                            </label>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
         <div class="card card-outline-primary m-2" style="width: 60rem;">
             <canvas id="myChart" width="500" height="300"></canvas>
@@ -97,4 +71,31 @@
 
     </script>
 {% endblock %}
+
+{% block extra_head %}
+    <script type="text/javascript" charset="utf8" src="{% static "js/Chart.min.js" %}"></script>
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            var data = {
+                labels: ['1', '5', '10', '15', '20', '25', '30'],
+                datasets: [
+                    {
+                        label: "Site Registrations in the Last 30 Days",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [ 1, 5 , 10, 15, 20, 25, 30]
+                    }
+                ]
+            };
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myLineChart = new Chart(ctx).Line(data);
+            });
+    </script>
+{% endblock %}
+
 {% endlocaltime %}
