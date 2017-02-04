@@ -439,4 +439,5 @@ def tagAnalysisView(request):
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
-        return render(request, 'taganalysis.html', {'processedtags': processedtags,'start': startdateformatted, 'end': enddateformatted})
+        listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber').order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
+        return render(request, 'taganalysis.html', {'listofprocessedtagsnumbers': listofprocessedtagsnumbers,'start': startdateformatted, 'end': enddateformatted})
