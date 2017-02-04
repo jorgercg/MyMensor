@@ -31,7 +31,7 @@
         <div class="card card-outline-primary m-2" style="width: 60rem;">
             <div class="card-block">
                 <div id="canvasparent">
-                    <div style="height: 100%">
+                    <div style="height:100%">
                         <canvas id="canvas"></canvas>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
             var ctx = document.getElementById("canvas").getContext("2d");
             window.myScatter = new Chart(ctx, config);
         };
-
+/*
         document.getElementById('randomizeData').addEventListener('click', function() {
             config.data.datasets.forEach(function(dataset) {
                 dataset.data = dataset.data.map(function() {
@@ -166,7 +166,7 @@
 
             window.myLine.update();
         });
-
+*/
         var colorNames = Object.keys(window.chartColors);
 
         document.getElementById('addDataset').addEventListener('click', function() {
