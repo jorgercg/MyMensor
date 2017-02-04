@@ -236,7 +236,7 @@
                 button_id = "#"+value_id;
                 for (var i=0; i<value_id.length; i++){
                     if (value_id.charAt(i)=="-") {
-                        mediaid=parseInt(value_id.slice(0,i))
+                        mediaid=parseInt(value_id.slice(0,i));
                         for (var j=(i+1); j<value_id.length; j++ ){
                             if (value_id.charAt(j)=="-"){
                                 vpid=parseInt(value_id.slice(i+1,j));
@@ -247,13 +247,13 @@
                     }
                 }
                 mediastate_id = "#mediastate"+mediaid;
-                console.log("Media-VP-Tag:"+mediaid+":"+vpid+":"+tagid) // sanity check
+                console.log("Media-VP-Tag:"+mediaid+":"+vpid+":"+tagid); // sanity check
                 saving_value();
             });
 
             // AJAX for posting
             function saving_value() {
-                console.log("Saving Value is working!") // sanity check
+                console.log("Saving Value is working!"); // sanity check
                 $.ajax({
                     url : "save_value/", // the endpoint
                     type : "POST", // http method
@@ -261,7 +261,7 @@
                     // handle a successful response
                     success : function(json) {
                         //$('#post-text').val(''); // remove the value from the input
-                        $(button_id).removeClass('btn-secondary').addClass('btn-success')
+                        $(button_id).removeClass('btn-secondary').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
