@@ -110,11 +110,13 @@
                 scales: {
                     xAxes: [{
                         type: 'linear',
+                        id: 'x-axis-1',
                         position: 'bottom',
                         display: true
                     }],
                     yAxes: [{
                         display: true,
+                        id: 'y-axis-1',
                         position: "left"
                     }]
                 },
@@ -130,35 +132,19 @@
                         min: 0.5
                     }
                 },
-                xAxes: [{
-                    id: 'x-axis-1',
-                    position: 'bottom',
-                    gridLines: {
-                        zeroLineColor: "rgba(0,255,0,1)"
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'time'
-                    },
-                    ticks: {
-                        maxRotation: 0,
-                        reverse: false
-                    }
-                }],
-                yAxes: [{
-                    id: 'y-axis-1',
-                    position: 'left',
-                    gridLines: {
-                        zeroLineColor: "rgba(0,255,0,1)"
-                    },
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'tag value'
-                    },
-                    ticks: {
-                        reverse: false
-                    }
-                }]
+                annotation: {
+                    drawTime: "afterDraw",
+                    annotations: [{
+                        type: 'box',
+                        xScaleID: 'x-axis-1',
+                        yScaleID: 'y-axis-1',
+                        yMin: 2,
+                        yMax: 4,
+                        backgroundColor: 'rgba(101, 33, 171, 0.2)',
+                        borderColor: 'rgb(101, 33, 171)',
+                        borderWidth: 1
+                    }]
+                }
             }
         };
 
