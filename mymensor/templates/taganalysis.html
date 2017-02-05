@@ -30,9 +30,11 @@
         </div>
         <div class="card card-outline-primary m-2" style="width: 60rem;">
             <div class="card-block">
+                <div id="canvasparent">
                     <div style="height:100%">
                         <canvas id="canvas"></canvas>
                     </div>
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +85,10 @@
     <script type="text/javascript" src="{% static "js/hammer.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-zoom.js" %}"></script>
     <script type="text/javascript">
+        var parent = document.getElementById('canvasparent');
+
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
 
         var config = {
             type: 'line',
@@ -106,7 +112,6 @@
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false,
                 legend: {
                     display: true,
                     position: 'bottom'
@@ -147,9 +152,10 @@
 
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myLine = new Chart(ctx, config);
+            window.myScatter = new Chart(ctx, config);
         };
-/*
+
+        /*
         document.getElementById('randomizeData').addEventListener('click', function() {
             config.data.datasets.forEach(function(dataset) {
                 dataset.data = dataset.data.map(function() {
@@ -160,7 +166,7 @@
 
             window.myLine.update();
         });
-*/
+
         var colorNames = Object.keys(window.chartColors);
 
         document.getElementById('addDataset').addEventListener('click', function() {
@@ -187,6 +193,7 @@
             config.data.datasets.splice(0, 1);
             window.myLine.update();
         });
+        */
 
     </script>
 {% endblock %}
