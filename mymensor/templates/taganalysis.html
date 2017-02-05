@@ -130,6 +130,33 @@
                         min: 0.5
                     }
                 },
+                xAxes: [{
+                            position: 'bottom',
+                            gridLines: {
+                                zeroLineColor: "rgba(0,255,0,1)"
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'time'
+                            },
+                            ticks: {
+                                maxRotation: 0,
+                                reverse: false
+                            }
+                        }],
+                        yAxes: [{
+                            position: 'left',
+                            gridLines: {
+                                zeroLineColor: "rgba(0,255,0,1)"
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'tag value'
+                            },
+                            ticks: {
+                                reverse: false
+                            }
+                        }],
                 annotation: {
                     drawTime: "afterDraw",
                     annotations: [{
