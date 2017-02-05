@@ -12,18 +12,18 @@
             <span id="selcdates"></span> <b class="caret"></b>
         </div>
         {% for tagNumber in listofprocessedtagsnumbers %}
-                <div class="form-check tagcheckboxitem">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="">
-                            Tag #{{ tagNumber }}
-                    </label>
-                </div>
+        <div class="form-check tagcheckboxitem">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="">
+                    Tag #{{ tagNumber }}
+            </label>
+        </div>
         {% endfor %}
     </div>
     <hr>
     <div class="card card-outline-primary m-2" style="width: 100%;">
         <div class="card-block">
-            <div style="width:100%">
+            <div style="width:80%">
                 <canvas id="canvas"></canvas>
             </div>
         </div>
