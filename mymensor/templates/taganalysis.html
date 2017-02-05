@@ -5,14 +5,11 @@
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
 
 {% block content %}
-        <div class="card card-outline-primary m-2" style="width: 100%;">
-            <div class="card-block">
+        <div class="d-inline-flex align-content-start flex-wrap">
                 <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                     <span id="selcdates"></span> <b class="caret"></b>
                 </div>
-            </div>
-            <div class="card-block">
                 <ul class="list-group list-group-flush">
                 {% for tagNumber in listofprocessedtagsnumbers %}
                     <li class="list-group-item">
@@ -25,7 +22,6 @@
                     </li>
                 {% endfor %}
                 </ul>
-            </div>
         </div>
         <hr>
         <div class="card card-outline-primary m-2" style="width: 100%;">
