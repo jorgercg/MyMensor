@@ -5,8 +5,7 @@
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="d-flex align-content-start flex-wrap">
-        <div class="card card-outline-primary m-2" style="width: 20rem;">
+        <div class="card card-outline-primary m-2" style="width: 100%;">
             <div class="card-block">
                 <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
@@ -29,14 +28,13 @@
             </div>
         </div>
         <hr>
-        <div class="card card-outline-primary m-2" style="width: 60rem;">
+        <div class="card card-outline-primary m-2" style="width: 100%;">
             <div class="card-block">
                 <div style="width:100%">
                     <canvas id="canvas"></canvas>
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript">
@@ -84,11 +82,6 @@
     <script type="text/javascript" src="{% static "js/hammer.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-zoom.js" %}"></script>
     <script type="text/javascript">
-        var parent = document.getElementById('canvasparent');
-
-        canvas.width = parent.offsetWidth;
-        canvas.height = parent.offsetHeight;
-
         var config = {
             type: 'line',
             data: {
