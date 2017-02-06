@@ -77,6 +77,8 @@
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-zoom.js" %}"></script>
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-annotation.js" %}"></script>
     <script type="text/javascript">
+        var timeFormat = 'YYYY-MMM-DD';
+
         var config = {
             type: 'line',
             data: {
@@ -100,10 +102,6 @@
                     display: true,
                     position: 'bottom'
                 },
-                tooltips: {
-                    mode: 'index',
-                    intersect: false
-                },
                 hover: {
                     mode: 'nearest',
                     intersect: true
@@ -112,13 +110,9 @@
                     xAxes: [{
                         type: 'time',
                         time: {
-                            displayFormats: {
-                                day: 'YYYY-MM-DD'
-                            },
+                            format: timeFormat,
                             max: {{ end }},
                             min: {{ start }},
-                            parser: 'YYYY-MM-DD',
-                            unit: 'day',
                         },
                         id: 'x-axis-1',
                         position: 'bottom',
