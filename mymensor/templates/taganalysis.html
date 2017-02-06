@@ -87,10 +87,10 @@
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
                     data: [{
-                        x: {{ start }},
+                        x: '{{ start }}',
                         y: 0
                     }, {
-                        x: {{ end }},
+                        x: '{{ end }}',
                         y: 10
                     }],
                     fill: false
@@ -111,8 +111,8 @@
                         type: 'time',
                         time: {
                             format: timeFormat,
-                            max: {{ end }},
-                            min: {{ start }},
+                            max: '{{ end }}',
+                            min: '{{ start }}',
                         },
                         id: 'x-axis-1',
                         position: 'bottom',
