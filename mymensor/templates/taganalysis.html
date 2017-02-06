@@ -84,16 +84,10 @@
             type: 'line',
             data: {
                 datasets: [{
-                    label: "My First dataset",
+                    label: "Placeholder dataset",
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
-                    data: [{
-                        x: '{{ start }}',
-                        y: 0
-                    }, {
-                        x: '{{ end }}',
-                        y: 10
-                    }],
+                    data: [],
                     fill: false
                 }]
             },
@@ -112,6 +106,8 @@
                         type: 'time',
                         time: {
                             format: timeFormat,
+                            unit: 'day',
+                            uniStepSize: 1,
                             max: '{{ end }}',
                             min: '{{ start }}',
                             scaleLabel: {
