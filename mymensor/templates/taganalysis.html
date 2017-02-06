@@ -125,13 +125,40 @@
 							labelString: 'value'
 						}
                     }]
+                },
+                pan: {
+                    enabled: true,
+                    mode: 'xy'
+                },
+                zoom: {
+                    enabled: true,
+                    mode: 'xy',
+                    limits: {
+                        max: 10,
+                        min: 0.5
+                    }
+                },
+                annotation: {
+                    drawTime: "afterDraw",
+                    annotations: [{
+                        type: 'box',
+                        xScaleID: 'x-axis-1',
+                        yScaleID: 'y-axis-1',
+                        xMin: '{{ start }}',
+                        xMax: '{{ end }}',
+                        yMin: 2,
+                        yMax: 4,
+                        backgroundColor: 'rgba(101, 33, 171, 0.2)',
+                        borderColor: 'rgb(101, 33, 171)',
+                        borderWidth: 1
+                    }]
                 }
             }
         };
 
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myLine = new Chart(ctx, config);
+            window.myScatter = new Chart(ctx, config);
         };
 
         {% for processedtagnumber in listofprocessedtagsnumbers %}
@@ -156,7 +183,7 @@
                     {% endif %}
                 {% endfor %}
                 config.data.datasets.push(newDataset);
-                window.myLine.update();
+                window.myScatter.update();
             } else {
                 // if unchecked ...
 
