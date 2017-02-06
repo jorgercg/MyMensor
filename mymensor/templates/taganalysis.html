@@ -172,7 +172,7 @@
             // access properties using this keyword
             if ( this.checked ) {
                 // if checked ...
-                var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber.count }}) % colorNames.length];
+                var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
                 var newColor = window.chartColors[colorName];
                 var newDataset = {
                     label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
