@@ -176,6 +176,7 @@
                 // if checked ...
                 var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
                 var newColor = window.chartColors[colorName];
+                console.log("Color:"+newColor);
                 var newDataset = {
                     label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
                     backgroundColor: newColor,
