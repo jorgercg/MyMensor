@@ -36,10 +36,6 @@
             console.log("{{ start }}");
             console.log("{{ end }}");
 
-            function newDate(date) {
-			    return moment(date).toDate();
-		    }
-
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
@@ -81,6 +77,10 @@
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-zoom.js" %}"></script>
 	<script type="text/javascript" src="{% static "js/chartjs-plugin-annotation.js" %}"></script>
     <script type="text/javascript">
+
+        function newDate(date) {
+			    return moment(date).toDate();
+		    }
 
         var timeFormat = 'YYYY-MMM-DD';
 
