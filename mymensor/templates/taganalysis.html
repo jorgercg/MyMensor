@@ -14,7 +14,7 @@
         {% for tagNumber in listofprocessedtagsnumbers %}
         <div class="form-check tagcheckboxitem">
             <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="{{ tagNumber }}">
+                <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}">
                     Tag #{{ tagNumber }}
             </label>
         </div>
@@ -170,6 +170,20 @@
             var ctx = document.getElementById("canvas").getContext("2d");
             window.myScatter = new Chart(ctx, config);
         };
+
+        {% for tagNumber in listofprocessedtagsnumbers %}
+        document.getElementById("check#{{ tagNumber }}").onclick = function() {
+            // access properties using this keyword
+            if ( this.checked ) {
+                // if checked ...
+                alert( "Checked:"+this.value );
+            } else {
+                // if not checked ...
+                alert( "Unchecked:"+this.value );
+            }
+        {% endfor %}
+};
+
 
         /*
         document.getElementById('randomizeData').addEventListener('click', function() {
