@@ -82,14 +82,11 @@
                     backgroundColor: window.chartColors.red,
                     borderColor: window.chartColors.red,
                     data: [{
-                        x: -10,
+                        x: {{ start }},
                         y: 0
                     }, {
-                        x: 0,
+                        x: {{ end }},
                         y: 10
-                    }, {
-                        x: 10,
-                        y: 5
                     }],
                     fill: false
                 }]
@@ -110,7 +107,12 @@
                 },
                 scales: {
                     xAxes: [{
-                        type: 'linear',
+                        type: 'time',
+                        time: {
+                            displayFormats: {
+                                day: 'YYYY-MM-DD'
+                            }
+                        },
                         id: 'x-axis-1',
                         position: 'bottom',
                         display: true
@@ -139,8 +141,8 @@
                         type: 'box',
                         xScaleID: 'x-axis-1',
                         yScaleID: 'y-axis-1',
-                        xMin: -10,
-                        xMax: 10,
+                        xMin: {{ start }},
+                        xMax: {{ end }},
                         yMin: 2,
                         yMax: 4,
                         backgroundColor: 'rgba(101, 33, 171, 0.2)',
