@@ -15,8 +15,8 @@
             {% for processedtag in processedtags %}
                 {% if processedtag.statusTagNumber == tagNumber %}
                 <div class="form-check tagcheckboxitem">
-                    <label class="form-check-label">
-                        <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}" data-toggle="tooltip" data-placement="top" title="{{ processedtag.statusTagDescription }}">
+                    <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ processedtag.statusTagDescription }}">
+                        <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}">
                             Tag#{{ tagNumber }}
                     </label>
                 </div>
