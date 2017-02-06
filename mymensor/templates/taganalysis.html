@@ -111,7 +111,11 @@
                         time: {
                             displayFormats: {
                                 day: 'YYYY-MM-DD'
-                            }
+                            },
+                            max: {{ end }},
+                            min: {{ start }},
+                            parser: string,
+                            unit: day
                         },
                         id: 'x-axis-1',
                         position: 'bottom',
