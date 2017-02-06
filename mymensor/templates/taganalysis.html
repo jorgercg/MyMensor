@@ -113,6 +113,13 @@
                             format: timeFormat,
                             max: '{{ end }}',
                             min: '{{ start }}',
+                            scaleLabel: {
+							    display: true,
+							    labelString: 'Date'
+						    },
+                            displayFormats: {
+                                day: timeFormat
+                            }
                         },
                         id: 'x-axis-1',
                         position: 'bottom',
@@ -121,7 +128,11 @@
                     yAxes: [{
                         display: true,
                         id: 'y-axis-1',
-                        position: "left"
+                        position: "left",
+                        scaleLabel: {
+							display: true,
+							labelString: 'value'
+						}
                     }]
                 },
                 pan: {
@@ -142,8 +153,8 @@
                         type: 'box',
                         xScaleID: 'x-axis-1',
                         yScaleID: 'y-axis-1',
-                        xMin: {{ start }},
-                        xMax: {{ end }},
+                        xMin: '{{ start }}',
+                        xMax: '{{ end }}',
                         yMin: 2,
                         yMax: 4,
                         backgroundColor: 'rgba(101, 33, 171, 0.2)',
