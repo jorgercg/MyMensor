@@ -12,12 +12,16 @@
             <span id="selcdates"></span> <b class="caret"></b>
         </div>
         {% for tagNumber in listofprocessedtagsnumbers %}
-        <div class="form-check tagcheckboxitem">
-            <label class="form-check-label">
-                <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}">
-                    Tag #{{ tagNumber }}
-            </label>
-        </div>
+            {% for processedtag in processedtags %}
+                {% if processedtag.statusTagNumber == tagNumber %}
+                <div class="form-check tagcheckboxitem">
+                    <label class="form-check-label">
+                        <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}" data-toggle="tooltip" data-placement="top" title="{{ processedtag.statusTagDescription }}">
+                            Tag#{{ tagNumber }}
+                    </label>
+                </div>
+                {% endif %}
+            {% endfor %}
         {% endfor %}
     </div>
     <hr>
@@ -110,17 +114,17 @@
                             uniStepSize: 1,
                             min: '{{ start }}',
                             max: '{{ end }}',
-                            scaleLabel: {
-							    display: true,
-							    labelString: 'Date'
-						    },
                             displayFormats: {
                                 day: timeFormat
                             }
                         },
                         id: 'x-axis-1',
                         position: 'bottom',
-                        display: true
+                        display: true,
+                        scaleLabel: {
+						    display: true,
+						    labelString: 'Date'
+                        }
                     }],
                     yAxes: [{
                         display: true,
