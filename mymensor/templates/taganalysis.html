@@ -184,7 +184,7 @@
                 newDataset.data.push(
                 {% for processedtag in processedtags %}
                     {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    {	x: {{ processedtag.statusMediaTimeStamp }},
+                    {	x: '{{ processedtag.statusMediaTimeStamp }}',
 						y: {{ processedtag.statusValValueEvaluated }}
 					},
                     {% endif %}
