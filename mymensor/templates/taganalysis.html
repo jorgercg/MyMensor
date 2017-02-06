@@ -11,17 +11,13 @@
             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
             <span id="selcdates"></span> <b class="caret"></b>
         </div>
-        {% for tagNumber in listofprocessedtagsnumbers %}
-            {% for processedtag in processedtags %}
-                {% if processedtag.statusTagNumber == tagNumber %}
-                <div class="form-check tagcheckboxitem">
-                    <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ processedtag.statusTagDescription }}">
-                        <input id="check#{{ tagNumber }}"  class="form-check-input" type="checkbox" value="{{ tagNumber }}">
-                            Tag#{{ tagNumber }}
-                    </label>
-                </div>
-                {% endif %}
-            {% endfor %}
+        {% for processedtagnumber in listofprocessedtagsnumbers %}
+            <div class="form-check tagcheckboxitem">
+                <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ processedtagnumber.statusTagDescription }}">
+                    <input id="check#{{ processedtagnumber.statusTagNumber }}"  class="form-check-input" type="checkbox" value="{{ processedtagnumber.statusTagNumber }}">
+                        Tag#{{ processedtagnumber.statusTagNumber }}
+                </label>
+            </div>
         {% endfor %}
     </div>
     <hr>
@@ -171,15 +167,15 @@
             window.myScatter = new Chart(ctx, config);
         };
 
-        {% for tagNumber in listofprocessedtagsnumbers %}
-        document.getElementById("check#{{ tagNumber }}").onclick = function() {
+        {% for processedtagnumber in listofprocessedtagsnumbers %}
+        document.getElementById("check#{{ processedtagnumber.statusTagNumber }}").onclick = function() {
             // access properties using this keyword
             if ( this.checked ) {
                 // if checked ...
-                alert( "Checked:"+this.value );
+
             } else {
-                // if not checked ...
-                alert( "Unchecked:"+this.value );
+                // if unchecked ...
+
             }
         };
         {% endfor %}
