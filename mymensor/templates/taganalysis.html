@@ -181,15 +181,12 @@
                     data: [],
                     fill: false
                 };
-                newDataset.data.push(
+
                 {% for processedtag in processedtags %}
                     {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    {	x: '{{ processedtag.statusMediaTimeStamp }}',
-						y: {{ processedtag.statusValValueEvaluated }}
-					}
+                    newDataset.data.push({x:'{{ processedtag.statusMediaTimeStamp }}', y: {{ processedtag.statusValValueEvaluated }} });
                     {% endif %}
                 {% endfor %}
-                );
                 config.data.datasets.push(newDataset);
                 window.myScatter.update();
             } else {
