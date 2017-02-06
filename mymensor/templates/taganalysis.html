@@ -33,6 +33,9 @@
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
 
+            console.log("{{ start }}");
+            console.log("{{ end }}");
+
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
