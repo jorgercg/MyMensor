@@ -85,13 +85,7 @@
         var config = {
             type: 'line',
             data: {
-                datasets: [{
-                    label: "Placeholder dataset",
-                    backgroundColor: window.chartColors.red,
-                    borderColor: window.chartColors.red,
-                    data: [],
-                    fill: false
-                }]
+                datasets: []
             },
             options: {
                 responsive: true,
@@ -130,33 +124,6 @@
 							display: true,
 							labelString: 'value'
 						}
-                    }]
-                },
-                pan: {
-                    enabled: true,
-                    mode: 'xy'
-                },
-                zoom: {
-                    enabled: true,
-                    mode: 'xy',
-                    limits: {
-                        max: 10,
-                        min: 0.5
-                    }
-                },
-                annotation: {
-                    drawTime: "afterDraw",
-                    annotations: [{
-                        type: 'box',
-                        xScaleID: 'x-axis-1',
-                        yScaleID: 'y-axis-1',
-                        xMin: '{{ start }}',
-                        xMax: '{{ end }}',
-                        yMin: 2,
-                        yMax: 4,
-                        backgroundColor: 'rgba(101, 33, 171, 0.2)',
-                        borderColor: 'rgb(101, 33, 171)',
-                        borderWidth: 1
                     }]
                 }
             }
