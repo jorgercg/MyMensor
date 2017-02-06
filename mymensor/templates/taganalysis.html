@@ -172,7 +172,26 @@
             // access properties using this keyword
             if ( this.checked ) {
                 // if checked ...
-
+                var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber.count }}) % colorNames.length];
+                var newColor = window.chartColors[colorName];
+                var newDataset = {
+                    label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
+                    backgroundColor: newColor,
+                    borderColor: newColor,
+                    data: [],
+                    fill: false
+                };
+                newDataset.data.push(
+                {% for processedtag in processedtags %}
+                    {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
+                    {	x: {{ processedtag.statusMediaTimeStamp }},
+						y: {{ processedtag.statusValValueEvaluated }}
+					},
+                    {% endif %}
+                {% endfor %}
+                );
+                config.data.datasets.push(newDataset);
+                window.myScatter.update();
             } else {
                 // if unchecked ...
 
