@@ -131,7 +131,7 @@
 
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myScatter = new Chart(ctx, config);
+            window.myLine = new Chart(ctx, config);
         };
 
         {% for processedtagnumber in listofprocessedtagsnumbers %}
@@ -156,7 +156,7 @@
                     {% endif %}
                 {% endfor %}
                 config.data.datasets.push(newDataset);
-                window.myScatter.update();
+                window.myLine.update();
             } else {
                 // if unchecked ...
 
