@@ -58,6 +58,7 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
+                window.myScatter.update();
                 //console.log({% url 'portfolio' %});
                 //window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
             });
