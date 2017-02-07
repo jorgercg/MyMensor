@@ -11,14 +11,11 @@
             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
             <span id="selcdates"></span> <b class="caret"></b>
         </div>
-        {% for processedtagnumber in listofprocessedtagsnumbers %}
-            <div class="form-check tagcheckboxitem">
-                <label class="form-check-label" data-toggle="tooltip" data-placement="top" title="{{ processedtagnumber.statusTagDescription }}">
-                    <input id="check#{{ processedtagnumber.statusTagNumber }}"  class="form-check-input" type="checkbox" value="{{ processedtagnumber.statusTagNumber }}">
-                        Tag#{{ processedtagnumber.statusTagNumber }}
-                </label>
-            </div>
-        {% endfor %}
+        <select multiple="multiple" id="my-select" name="my-select[]">
+            {% for processedtagnumber in listofprocessedtagsnumbers %}
+            <option id="optiontag#{{ processedtagnumber.statusTagNumber }}" value='{{ processedtagnumber.statusTagNumber }}' selected>"Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}" </option>
+            {% endfor %}
+        </select>
     </div>
     <hr>
     <div style="width:50%">
@@ -27,7 +24,9 @@
     </div>
 {% endblock %}
 {% block javascript %}
+    <script type="text/javascript" src="{% static "js/jquery.multi-select.js" %}"></script>
     <script type="text/javascript">
+        $('#my-select').multiSelect();
         $(function() {
 
             var start = moment("{{ start }}");
