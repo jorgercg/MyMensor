@@ -444,4 +444,6 @@ def tagAnalysisView(request):
         tagsselected = request.GET.getlist('tagsselected',default=None)
         if not tagsselected:
             tagsselected = tagsselectedfromlist
+        else:
+            tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
         return render(request, 'taganalysis.html', {'processedtags': processedtags,'listofprocessedtagsnumbers': listofprocessedtagsnumbers, 'tagsselected': tagsselected,'start': startdateformatted, 'end': enddateformatted})
