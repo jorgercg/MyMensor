@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div id="tagselector" class="dashhead-tagsmultiselect-item">
-                    <select multiple="multiple" id="my-select" name="my-select[]">
+                    <select multiple="multiple" id="tagsselected" name="my-select[]">
                     {% for processedtagnumber in listofprocessedtagsnumbers %}
                         <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
                                 value='{{ processedtagnumber.statusTagNumber }}'
@@ -38,7 +38,7 @@
 {% block javascript %}
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script type="text/javascript">
-        $('#my-select').chosen();
+        $('#tagsselected').chosen();
         $(function() {
 
             var start = moment("{{ start }}");
@@ -72,13 +72,15 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                console.log('Chosen:'+$('#my-select').val());
-                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
+                var tagssel = $('#tagsselected').serialize()
+                console.log('Chosen:'+tagssel);
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+tagssel;
             });
 
             $('#refreshbtn').click(function(){
-                console.log('Chosen:'+$('#my-select').val());
-                window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+$('#my-select').val();
+                var tagssel = $('#tagsselected').serialize()
+                console.log('Chosen:'+tagssel);
+                window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+tagssel;
             });
 
         });
@@ -110,6 +112,7 @@
             data: {
                 datasets: [
                     {% for processedtagnumber in listofprocessedtagsnumbers %}
+                        {% if processedtagnumber.statusTagNumber in tagsselected %}
                         {
                             label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
                             backgroundColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
@@ -123,6 +126,7 @@
                             ],
                             fill: false
                         },
+                        {% endif %}
                     {% endfor %}
             ]},
             options: {

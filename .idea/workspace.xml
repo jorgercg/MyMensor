@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" afterPath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,30 +44,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="75" column="138" lean-forward="false" selection-start-line="75" selection-start-column="138" selection-end-line="75" selection-end-column="138" />
+            <state relative-caret-position="510">
+              <caret line="80" column="60" lean-forward="true" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#6055#7552#0#HTML" expanded="false" />
-                <element signature="e#6381#6912#0#HTML" expanded="false" />
-                <element signature="e#6943#7183#0#HTML" expanded="false" />
-                <element signature="e#7225#7310#0#HTML" expanded="false" />
-                <element signature="e#7334#7538#0#HTML" expanded="false" />
-                <element signature="e#9481#9487#0#HTML" expanded="true" />
-                <element signature="e#9616#9622#0#HTML" expanded="true" />
-                <element signature="e#9751#9757#0#HTML" expanded="true" />
-                <element signature="e#9886#9892#0#HTML" expanded="true" />
-                <element signature="e#10021#10027#0#HTML" expanded="true" />
-                <element signature="e#10156#10162#0#HTML" expanded="true" />
+                <element signature="e#6247#7744#0#HTML" expanded="false" />
+                <element signature="e#6573#7104#0#HTML" expanded="false" />
+                <element signature="e#7135#7375#0#HTML" expanded="false" />
+                <element signature="e#7417#7502#0#HTML" expanded="false" />
+                <element signature="e#7526#7730#0#HTML" expanded="false" />
+                <element signature="e#9673#9679#0#HTML" expanded="true" />
+                <element signature="e#9808#9814#0#HTML" expanded="true" />
+                <element signature="e#9943#9949#0#HTML" expanded="true" />
+                <element signature="e#10078#10084#0#HTML" expanded="true" />
+                <element signature="e#10213#10219#0#HTML" expanded="true" />
+                <element signature="e#10348#10354#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
@@ -199,8 +199,8 @@
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/chosen.css" />
-        <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
       </list>
     </option>
   </component>
@@ -698,13 +698,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01188" summary="06fev2017 22h22min">
-      <created>1486420442159</created>
-      <option name="number" value="01188" />
-      <option name="presentableId" value="LOCAL-01188" />
-      <option name="project" value="LOCAL" />
-      <updated>1486420442159</updated>
-    </task>
     <task id="LOCAL-01189" summary="06fev2017 22h22min">
       <created>1486420660859</created>
       <option name="number" value="01189" />
@@ -1041,7 +1034,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486484838349</updated>
     </task>
-    <option name="localTasksCounter" value="1237" />
+    <task id="LOCAL-01237" summary="07fev2017 15h34min">
+      <created>1486485449985</created>
+      <option name="number" value="01237" />
+      <option name="presentableId" value="LOCAL-01237" />
+      <option name="project" value="LOCAL" />
+      <updated>1486485449985</updated>
+    </task>
+    <option name="localTasksCounter" value="1238" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1506,32 +1506,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="75" column="138" lean-forward="false" selection-start-line="75" selection-start-column="138" selection-end-line="75" selection-end-column="138" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#6055#7552#0#HTML" expanded="false" />
-            <element signature="e#6381#6912#0#HTML" expanded="false" />
-            <element signature="e#6943#7183#0#HTML" expanded="false" />
-            <element signature="e#7225#7310#0#HTML" expanded="false" />
-            <element signature="e#7334#7538#0#HTML" expanded="false" />
-            <element signature="e#9481#9487#0#HTML" expanded="true" />
-            <element signature="e#9616#9622#0#HTML" expanded="true" />
-            <element signature="e#9751#9757#0#HTML" expanded="true" />
-            <element signature="e#9886#9892#0#HTML" expanded="true" />
-            <element signature="e#10021#10027#0#HTML" expanded="true" />
-            <element signature="e#10156#10162#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="438" column="59" lean-forward="true" selection-start-line="438" selection-start-column="59" selection-end-line="438" selection-end-column="59" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="80" column="60" lean-forward="true" selection-start-line="80" selection-start-column="60" selection-end-line="80" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#6247#7744#0#HTML" expanded="false" />
+            <element signature="e#6573#7104#0#HTML" expanded="false" />
+            <element signature="e#7135#7375#0#HTML" expanded="false" />
+            <element signature="e#7417#7502#0#HTML" expanded="false" />
+            <element signature="e#7526#7730#0#HTML" expanded="false" />
+            <element signature="e#9673#9679#0#HTML" expanded="true" />
+            <element signature="e#9808#9814#0#HTML" expanded="true" />
+            <element signature="e#9943#9949#0#HTML" expanded="true" />
+            <element signature="e#10078#10084#0#HTML" expanded="true" />
+            <element signature="e#10213#10219#0#HTML" expanded="true" />
+            <element signature="e#10348#10354#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
