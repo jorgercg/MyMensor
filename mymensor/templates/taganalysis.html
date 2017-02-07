@@ -98,7 +98,7 @@
                         {
                             label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
                             backgroundColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
-                            borderColor: newColor,
+                            borderColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
                             data: [
                                 {% for processedtag in processedtags %}
                                     {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
