@@ -68,7 +68,6 @@
                                                 {% if tag.vp == vp %}
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
-
                                                             {% if media.id in mediasofthevaluelist and tag.id in tagsofthevaluelist %}
                                                                 {% for value in values %}
                                                                     {% if value.media == media and value.tag == tag %}
@@ -116,6 +115,9 @@
                                     </div>
                                     <div class="card-block">
                                          <p class="card-text">
+                                                <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ vp.vpStdPhotoStorageURL }}">
+                                                    <span class="fa fa-picture-o descvp" data-toggle="tooltip" data-placement="top" title="{% trans 'VP standard photo' %}"></span>
+                                                </a>
                                              {% if media.mediaArIsOn %}
                                                 <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                                              {% else %}
@@ -132,6 +134,33 @@
                                                 <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
                                              {% endif %}
                                         </p>
+                                    </div>
+                                    <div class="card-block">
+                                        <ul class="list-group list-group-flush">
+                                            {% for tag in tags %}
+                                                {% if tag.vp == vp %}
+                                                    <li class="list-group-item">{{ tag.tagQuestion }}</li>
+                                                    <div class="input-group">
+                                                            {% if media.id in mediasofthevaluelist and tag.id in tagsofthevaluelist %}
+                                                                {% for value in values %}
+                                                                    {% if value.media == media and value.tag == tag %}
+                                                                    <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
+                                                                    <span class="input-group-btn">
+                                                                        <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
+                                                                    </span>
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
+                                                                <span class="input-group-btn">
+                                                                    <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
+                                                                </span>
+                                                            {% endif %}
+
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
                                     </div>
                                     <div class="card-block">
                                         <p class="card-text">
