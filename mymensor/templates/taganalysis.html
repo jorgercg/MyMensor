@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div id="tagselector" class="dashhead-tagsmultiselect-item">
-                    <select multiple="multiple" id="tagsselected" name="tagsselected[]">
+                    <select multiple="multiple" id="tagsselected" name="tagsselected">
                     {% for processedtagnumber in listofprocessedtagsnumbers %}
                         <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
                                 value='{{ processedtagnumber.statusTagNumber }}'
@@ -74,13 +74,13 @@
                 console.log(enddate);
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+tagssel;
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
             });
 
             $('#refreshbtn').click(function(){
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+tagssel;
+                window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
             });
 
         });
