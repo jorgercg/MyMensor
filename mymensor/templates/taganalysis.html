@@ -73,8 +73,8 @@
                 console.log(startdate);
                 console.log(enddate);
                 window.myScatter.update();
-                //console.log({% url 'portfolio' %});
-                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate;
+                console.log('Chosen:'+$('#my-select').val());
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
             });
 
         });
