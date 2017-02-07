@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="07fev2017 13h18min">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/css/chosen-sprite.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/css/chosen-sprite@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/css/chosen.min.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/js/chosen.jquery.min.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mymensor/static/css/multi-select.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mymensor/static/js/jquery.multi-select.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/multi-select.css" afterPath="$PROJECT_DIR$/mymensor/static/css/multi-select.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/base.html" afterPath="$PROJECT_DIR$/mymensor/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" afterPath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
     </list>
     <ignored path="mymensorapp.iws" />
@@ -49,32 +54,22 @@
       <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="74" lean-forward="false" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+            <state relative-caret-position="300">
+              <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#5650#7147#0#HTML" expanded="false" />
-                <element signature="e#5976#6507#0#HTML" expanded="false" />
-                <element signature="e#6538#6778#0#HTML" expanded="false" />
-                <element signature="e#6820#6905#0#HTML" expanded="false" />
-                <element signature="e#6929#7133#0#HTML" expanded="false" />
-                <element signature="e#9076#9082#0#HTML" expanded="true" />
-                <element signature="e#9211#9217#0#HTML" expanded="true" />
-                <element signature="e#9346#9352#0#HTML" expanded="true" />
-                <element signature="e#9481#9487#0#HTML" expanded="true" />
-                <element signature="e#9616#9622#0#HTML" expanded="true" />
-                <element signature="e#9751#9757#0#HTML" expanded="true" />
+                <element signature="e#5643#7140#0#HTML" expanded="false" />
+                <element signature="e#5969#6500#0#HTML" expanded="false" />
+                <element signature="e#6531#6771#0#HTML" expanded="false" />
+                <element signature="e#6813#6898#0#HTML" expanded="false" />
+                <element signature="e#6922#7126#0#HTML" expanded="false" />
+                <element signature="e#9069#9075#0#HTML" expanded="true" />
+                <element signature="e#9204#9210#0#HTML" expanded="true" />
+                <element signature="e#9339#9345#0#HTML" expanded="true" />
+                <element signature="e#9474#9480#0#HTML" expanded="true" />
+                <element signature="e#9609#9615#0#HTML" expanded="true" />
+                <element signature="e#9744#9750#0#HTML" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="multi-select.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mymensor/static/css/multi-select.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="10" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -218,9 +213,9 @@
         <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" />
-        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/multi-select.css" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
+        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
       </list>
     </option>
@@ -353,7 +348,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -372,10 +367,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -415,8 +406,8 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mymensor/static/js" />
-      <recent name="$PROJECT_DIR$/mymensor/static/images" />
       <recent name="$PROJECT_DIR$/mymensor/static/css" />
+      <recent name="$PROJECT_DIR$/mymensor/static/images" />
       <recent name="$PROJECT_DIR$/mymensor/templates" />
       <recent name="$PROJECT_DIR$/mymensor/templates/layouts" />
     </key>
@@ -700,13 +691,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-01174" summary="06fev2017 20h14min">
-      <created>1486412100588</created>
-      <option name="number" value="01174" />
-      <option name="presentableId" value="LOCAL-01174" />
-      <option name="project" value="LOCAL" />
-      <updated>1486412100588</updated>
     </task>
     <task id="LOCAL-01175" summary="06fev2017 20h14min">
       <created>1486412249480</created>
@@ -1044,7 +1028,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486473912420</updated>
     </task>
-    <option name="localTasksCounter" value="1223" />
+    <task id="LOCAL-01223" summary="07fev2017 13h18min">
+      <created>1486474110886</created>
+      <option name="number" value="01223" />
+      <option name="presentableId" value="LOCAL-01223" />
+      <option name="project" value="LOCAL" />
+      <updated>1486474110886</updated>
+    </task>
+    <option name="localTasksCounter" value="1224" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1066,6 +1057,7 @@
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32882413" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2752881" sideWeight="0.5200286" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24453694" sideWeight="0.47997138" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.4978701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24852072" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1078,7 +1070,6 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="manage.py@mymensorapp" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882413" sideWeight="0.49361023" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1152,22 +1143,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/assetsetup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/support.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/chainedfk.js" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/django_smart_selects-1.2.7.dist-info/DESCRIPTION.rst">
       <provider selected="true" editor-type-id="text-editor">
@@ -1451,7 +1426,7 @@
         <state relative-caret-position="4065">
           <caret line="376" column="0" lean-forward="false" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding>
-            <element signature="e#0#57#0" expanded="true" />
+            <element signature="e#0#57#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1460,14 +1435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="32" column="68" lean-forward="false" selection-start-line="32" selection-start-column="68" selection-end-line="32" selection-end-column="68" />
           <folding />
         </state>
       </provider>
@@ -1512,23 +1479,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/js/chosen.jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="32" column="66" lean-forward="false" selection-start-line="32" selection-start-column="66" selection-end-line="32" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" column="74" lean-forward="false" selection-start-line="15" selection-start-column="74" selection-end-line="15" selection-end-column="74" />
+        <state relative-caret-position="300">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#5650#7147#0#HTML" expanded="false" />
-            <element signature="e#5976#6507#0#HTML" expanded="false" />
-            <element signature="e#6538#6778#0#HTML" expanded="false" />
-            <element signature="e#6820#6905#0#HTML" expanded="false" />
-            <element signature="e#6929#7133#0#HTML" expanded="false" />
-            <element signature="e#9076#9082#0#HTML" expanded="true" />
-            <element signature="e#9211#9217#0#HTML" expanded="true" />
-            <element signature="e#9346#9352#0#HTML" expanded="true" />
-            <element signature="e#9481#9487#0#HTML" expanded="true" />
-            <element signature="e#9616#9622#0#HTML" expanded="true" />
-            <element signature="e#9751#9757#0#HTML" expanded="true" />
+            <element signature="e#5643#7140#0#HTML" expanded="false" />
+            <element signature="e#5969#6500#0#HTML" expanded="false" />
+            <element signature="e#6531#6771#0#HTML" expanded="false" />
+            <element signature="e#6813#6898#0#HTML" expanded="false" />
+            <element signature="e#6922#7126#0#HTML" expanded="false" />
+            <element signature="e#9069#9075#0#HTML" expanded="true" />
+            <element signature="e#9204#9210#0#HTML" expanded="true" />
+            <element signature="e#9339#9345#0#HTML" expanded="true" />
+            <element signature="e#9474#9480#0#HTML" expanded="true" />
+            <element signature="e#9609#9615#0#HTML" expanded="true" />
+            <element signature="e#9744#9750#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
