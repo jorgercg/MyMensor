@@ -80,11 +80,11 @@
 
         function newDate(date) {
                 console.log("Date:"+date);
-                console.log(moment(date, timeFormat).toString());
-			    return moment(date, timeFormat).toString();
+                console.log(moment(date, timeFormat).format('YYYY-MM-DD'));
+			    return moment(date, timeFormat).format('YYYY-MM-DD');
 		    }
 
-        var timeFormat = 'YYYY-MM-DD';
+        var timeFormat = 'x';
 
         var colorNames = Object.keys(window.chartColors);
 
