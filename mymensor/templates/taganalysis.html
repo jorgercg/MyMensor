@@ -6,14 +6,15 @@
 
 {% block content %}
     <p></p>
-    <div class="d-inline-flex align-content-start flex-wrap">
+    <div class="d-flex align-content-start flex-wrap">
         <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
             <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
             <span id="selcdates"></span> <b class="caret"></b>
         </div>
+        <p></p>
         <select multiple="multiple" id="my-select" name="my-select[]">
             {% for processedtagnumber in listofprocessedtagsnumbers %}
-            <option id="optiontag#{{ processedtagnumber.statusTagNumber }}" value='{{ processedtagnumber.statusTagNumber }}' selected>"Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}" </option>
+            <option id="optiontag#{{ processedtagnumber.statusTagNumber }}" value='{{ processedtagnumber.statusTagNumber }}' selected>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
             {% endfor %}
         </select>
     </div>
