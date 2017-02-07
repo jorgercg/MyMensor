@@ -100,7 +100,7 @@
         function newDate(date) {
                 console.log("Date:"+date);
                 console.log(moment(date, timeFormat).format('YYYY-MM-DD'));
-                console.log(moment(date, timeFormat).format('Y-b-d H:i:sO'));
+                console.log(moment(date).format());
 			    return moment(date, timeFormat).format('YYYY-MM-DD');
 		    }
 
