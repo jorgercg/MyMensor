@@ -100,9 +100,6 @@
         var timeFormat = 'x';
 
         function newDate(date) {
-                console.log("Date:"+date);
-                console.log(moment(date, timeFormat).format('YYYY-MM-DD'));
-                console.log(moment(date, timeFormat).format());
 			    return moment(date, timeFormat).format();
 		    }
 
@@ -189,46 +186,6 @@
             window.myScatter = new Chart(ctx, config);
         };
 
-
-        /*
-        document.getElementById('randomizeData').addEventListener('click', function() {
-            config.data.datasets.forEach(function(dataset) {
-                dataset.data = dataset.data.map(function() {
-                    return randomScalingFactor();
-                });
-
-            });
-
-            window.myLine.update();
-        });
-
-        var colorNames = Object.keys(window.chartColors);
-
-        document.getElementById('addDataset').addEventListener('click', function() {
-            var colorName = colorNames[config.data.datasets.length % colorNames.length];
-            var newColor = window.chartColors[colorName];
-            var newDataset = {
-                label: 'Dataset ' + config.data.datasets.length,
-                backgroundColor: newColor,
-                borderColor: newColor,
-                data: [],
-                fill: false
-            };
-
-            for (var index = 0; index < config.data.labels.length; ++index) {
-                newDataset.data.push(randomScalingFactor());
-            }
-
-            config.data.datasets.push(newDataset);
-            window.myLine.update();
-        });
-
-
-        document.getElementById('removeDataset').addEventListener('click', function() {
-            config.data.datasets.splice(0, 1);
-            window.myLine.update();
-        });
-        */
 
     </script>
 {% endblock %}
