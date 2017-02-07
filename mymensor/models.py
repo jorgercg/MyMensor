@@ -162,5 +162,6 @@ class TagStatusTable(models.Model):
     statusValValueEvaluated = models.FloatField()
     statusTagUnit = models.CharField(max_length=50, null=True)
     statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
+    statusMediaMillisSinceEpoch = models.BigIntegerField(null=True)
     statusDBTimeStamp = models.DateTimeField(auto_now_add=True)
     statusTagStateEvaluated = models.IntegerField()
