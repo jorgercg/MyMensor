@@ -114,6 +114,12 @@
                         scaleLabel: {
 						    display: true,
 						    labelString: 'Date'
+                        },
+                        time: {
+                            unit: 'day',
+                            displayFormats: {
+                                "day": 'YYYY-MMM-DD'
+                            }
                         }
                     }],
                     yAxes: [{
@@ -125,6 +131,18 @@
 							labelString: 'value'
 						}
                     }]
+                },
+                pan: {
+                    enabled: true,
+                    mode: 'xy'
+                },
+                zoom: {
+                    enabled: true,
+                    mode: 'xy',
+                    limits: {
+                        max: 10,
+                        min: 0.5
+                    }
                 }
             }
         };
