@@ -96,7 +96,7 @@
     <script type="text/javascript">
 
         console.log('Initially Chosen:'+'{{ tagsselected }}');
-        console.log('Actually found:'+'{{ tagsselectedfound }}');
+
         var timeFormat = 'x';
 
         function newDate(date) {
@@ -112,7 +112,7 @@
             data: {
                 datasets: [
                     {% for processedtagnumber in listofprocessedtagsnumbers %}
-                        {% if processedtagnumber.statusTagNumber in tagsselectedfound %}
+                        {% if processedtagnumber.statusTagNumber in tagsselected %}
                         {
                             label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
                             backgroundColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
