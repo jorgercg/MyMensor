@@ -441,7 +441,9 @@ def tagAnalysisView(request):
         processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
         listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber')  #.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
         tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
-        tagsselected = request.GET.getlist('tagsselected',tagsselectedfromlist)
-        if not tagsselected.exists():
+        tagsselected = request.GET.getlist('tagsselected',default=None)
+        if tagsselected == None:
+            tagsselected = tagsselectedfromlist
+        else:
             tagsselected = tagsselected.lists()
         return render(request, 'taganalysis.html', {'processedtags': processedtags,'listofprocessedtagsnumbers': listofprocessedtagsnumbers, 'tagsselected': tagsselected,'start': startdateformatted, 'end': enddateformatted})
