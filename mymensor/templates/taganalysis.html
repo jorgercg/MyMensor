@@ -187,7 +187,7 @@
 
                 {% for processedtag in processedtags %}
                     {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    newDataset.data.push({x:newDate("{{ processedtag.statusMediaTimeStamp }}"), y: {{ processedtag.statusValValueEvaluated }} });
+                    newDataset.data.push({x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} });
                     {% endif %}
                 {% endfor %}
                 config.data.datasets.push(newDataset);
