@@ -76,7 +76,7 @@
                 window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
             });
 
-            $('#refreshbtn').onclick(function(){
+            $('#refreshbtn').click(function(){
                 console.log('Chosen:'+$('#my-select').val());
                 window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
             });
