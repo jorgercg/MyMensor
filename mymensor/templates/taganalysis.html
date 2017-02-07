@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles tz %}
+{% load i18n staticfiles tz counter assign %}
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
@@ -153,6 +153,7 @@
         };
 
         {% for processedtagnumber in listofprocessedtagsnumbers %}
+        {% counter start=0 silent=True assign='datasetindex' %}
         document.getElementById("check#{{ processedtagnumber.statusTagNumber }}").onclick = function() {
             // access properties using this keyword
             if ( this.checked ) {
@@ -177,7 +178,8 @@
                 window.myScatter.update();
             } else {
                 // if unchecked ...
-
+                config.data.datasets.splice({{ datasetindex }}, 1);
+                window.myScatter.update();
             }
         };
         {% endfor %}
