@@ -153,35 +153,24 @@
         };
 
         {% for processedtagnumber in listofprocessedtagsnumbers %}
-        {% counter start=0 silent=True assign='datasetindex' %}
-        document.getElementById("check#{{ processedtagnumber.statusTagNumber }}").onclick = function() {
-            // access properties using this keyword
-            if ( this.checked ) {
-                // if checked ...
-                var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
-                var newColor = window.chartColors[colorName];
-                console.log("Color:"+newColor);
-                var newDataset = {
-                    label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
-                    backgroundColor: newColor,
-                    borderColor: newColor,
-                    data: [],
-                    fill: false
-                };
-
-                {% for processedtag in processedtags %}
-                    {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    newDataset.data.push({x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} });
-                    {% endif %}
-                {% endfor %}
-                config.data.datasets.push(newDataset);
-                window.myScatter.update();
-            } else {
-                // if unchecked ...
-                config.data.datasets.splice({{ datasetindex }}, 1);
-                window.myScatter.update();
-            }
+        var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
+        var newColor = window.chartColors[colorName];
+        console.log("Color:"+newColor);
+        var newDataset = {
+            label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
+            backgroundColor: newColor,
+            borderColor: newColor,
+            data: [],
+            fill: false
         };
+
+        {% for processedtag in processedtags %}
+            {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
+            newDataset.data.push({x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} });
+            {% endif %}
+        {% endfor %}
+        config.data.datasets.push(newDataset);
+        window.myScatter.update();
         {% endfor %}
 
 
