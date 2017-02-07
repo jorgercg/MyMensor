@@ -79,7 +79,7 @@
     <script type="text/javascript">
 
         function newDate(date) {
-			    return moment(date).toDate();
+			    return moment(date, timeFormat).toString();
 		    }
 
         var timeFormat = 'YYYY-MMM-DD';
@@ -109,15 +109,7 @@
                             unit: 'day',
                             uniStepSize: 1,
                             displayFormats: {
-                                'millisecond': timeFormat,
-                                'second': timeFormat,
-                                'minute': timeFormat,
-                                'hour': timeFormat,
-                                'day': timeFormat,
-                                'week': timeFormat,
-                                'month': timeFormat,
-                                'quarter': timeFormat,
-                                'year': timeFormat,
+                                'day': timeFormat
                             }
                         },
                         id: 'x-axis-1',
