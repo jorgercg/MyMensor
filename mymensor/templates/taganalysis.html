@@ -93,8 +93,23 @@
         var config = {
             type: 'line',
             data: {
-                datasets: []
-            },
+                datasets: [
+                    {% for processedtagnumber in listofprocessedtagsnumbers %}
+                        {
+                            label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
+                            backgroundColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
+                            borderColor: newColor,
+                            data: [
+                                {% for processedtag in processedtags %}
+                                    {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
+                                        {x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} },
+                                    {% endif %}
+                                {% endfor %}
+                            ],
+                            fill: false
+                        },
+                    {% endfor %}
+            ]},
             options: {
                 responsive: true,
                 legend: {
@@ -152,28 +167,6 @@
             window.myScatter = new Chart(ctx, config);
         };
 
-        {% for processedtagnumber in listofprocessedtagsnumbers %}
-        var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
-        var newColor = window.chartColors[colorName];
-        console.log("Color:"+newColor);
-        var newDataset = {
-            label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},
-            backgroundColor: newColor,
-            borderColor: newColor,
-            data: [],
-            fill: false
-        };
-
-        {% for processedtag in processedtags %}
-            {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-            newDataset.data.push({x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} });
-            {% endif %}
-        {% endfor %}
-        config.data.datasets.push(newDataset);
-        window.myScatter.update();
-        {% endfor %}
-
-
 
         /*
         document.getElementById('randomizeData').addEventListener('click', function() {
@@ -219,3 +212,18 @@
 {% endblock %}
 
 {% endlocaltime %}
+
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-primry dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false"> View Tags Series</button>
+            <ul class="dropdown-menu">
+              <li><a href="#" class="dropdown-item" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
+              <li><a href="#" class="dropdown-item" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+              <li><a href="#" class="dropdown-item" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+              <li><a href="#" class="dropdown-item" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+              <li><a href="#" class="dropdown-item" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+              <li><a href="#" class="dropdown-item" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+            </ul>
+    </div>
+
+
