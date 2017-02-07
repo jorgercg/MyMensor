@@ -270,6 +270,31 @@ h5 {
         width: 25%;
         margin-left: 0; } }
 
+.dashhead-tagsmultiselect-item {
+  float: left;
+  width: 50rem;
+  margin-left: 10px;
+  margin-right: 10px;}
+  @media (max-width: 767px) {
+    .dashhead-toolbar-item.btn-group-halves {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-halves .btn {
+        width: 50%;
+        margin-left: 0; }
+    .dashhead-toolbar-item.btn-group-thirds {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-thirds .btn {
+        width: 33%;
+        margin-left: 0; }
+        .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
+          width: 34%; }
+    .dashhead-toolbar-item.btn-group-fourths {
+      width: 100%; }
+      .dashhead-toolbar-item.btn-group-fourths .btn {
+        width: 25%;
+        margin-left: 0; } }
+
+
 canvas {
     -moz-user-select: none;
 	-webkit-user-select: none;
