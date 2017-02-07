@@ -139,8 +139,8 @@
             // access properties using this keyword
             if ( this.checked ) {
                 // if checked ...
-                var colorName = color(window.chartColors.blue).alpha(0.5).rgbString();  //colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
-                var newColor = window.chartColors.blue; //window.chartColors[colorName];
+                var colorName = colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length];
+                var newColor = window.chartColors[colorName];
                 console.log("Color:"+newColor);
                 var newDataset = {
                     label: 'Tag#' + {{ processedtagnumber.statusTagNumber }},

@@ -17,11 +17,26 @@ $(function () {
 });
 
 window.chartColors = {
-	red: 'rgb(255, 99, 132)',
-	orange: 'rgb(255, 159, 64)',
-	yellow: 'rgb(255, 205, 86)',
-	green: 'rgb(75, 192, 192)',
-	blue: 'rgb(54, 162, 235)',
-	purple: 'rgb(153, 102, 255)',
-	grey: 'rgb(231,233,237)'
+	color01: 'rgb(51,102,204)',
+    color02: 'rgb(220,57,18)',
+    color03: 'rgb(255,153,0)',
+    color04: 'rgb(16,150,24)',
+    color05: 'rgb(153,0,153)',
+    color06: 'rgb(59,62,172)',
+    color07: 'rgb(0,153,198)',
+    color08: 'rgb(221,68,119)',
+    color09: 'rgb(102,170,0)',
+    color10: 'rgb(184,46,46)',
+    color11: 'rgb(49,99,149)',
+    color12: 'rgb(153,68,153)',
+    color13: 'rgb(34,170,153)',
+    color14: 'rgb(170,170,17)',
+    color15: 'rgb(102,51,204)',
+    color16: 'rgb(230,115,0)',
+    color17: 'rgb(139,7,7)',
+    color18: 'rgb(50,146,98)',
+    color19: 'rgb(85,116,166)',
+    color20: 'rgb(59,62,172)'
 };
+
+
