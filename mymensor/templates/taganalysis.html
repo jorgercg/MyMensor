@@ -5,18 +5,22 @@
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <p></p>
     <div class="d-flex align-content-start flex-wrap">
-        <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-            <span id="selcdates"></span> <b class="caret"></b>
-        </div>
-        <p></p>
-        <select multiple="multiple" id="my-select" name="my-select[]">
-            {% for processedtagnumber in listofprocessedtagsnumbers %}
-            <option id="optiontag#{{ processedtagnumber.statusTagNumber }}" value='{{ processedtagnumber.statusTagNumber }}' selected>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
-            {% endfor %}
-        </select>
+            <div class="dashhead-toolbar">
+                <div class="dashhead-toolbar-item">
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
+                </div>
+                <div id="tagselector" class="dashhead-toolbar-item">
+                    <select multiple="multiple" id="my-select" name="my-select[]">
+                    {% for processedtagnumber in listofprocessedtagsnumbers %}
+                        <option id="optiontag#{{ processedtagnumber.statusTagNumber }}" value='{{ processedtagnumber.statusTagNumber }}' selected>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
     </div>
     <hr>
     <div style="width:50%">
