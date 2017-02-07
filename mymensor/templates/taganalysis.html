@@ -22,8 +22,8 @@
                     {% endfor %}
                     </select>
                 </div>
-                <div id="refreshbtn" class="dashhead-toolbar-item">
-                    <button type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
+                <div class="dashhead-toolbar-item">
+                    <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
                         <span class="fa fa-refresh"></span>
                     </button>
                 </div>
@@ -72,7 +72,11 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                window.myScatter.update();
+                console.log('Chosen:'+$('#my-select').val());
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
+            });
+
+            $('#refreshbtn').onclick(function(){
                 console.log('Chosen:'+$('#my-select').val());
                 window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&tagsselected='+$('#my-select').val();
             });
