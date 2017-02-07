@@ -440,10 +440,11 @@ def tagAnalysisView(request):
         enddateformatted = enddate.strftime('%Y-%m-%d')
         processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
         listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber')  #.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
-        tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
+        tagsselectedfoundinlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
         tagsselected = request.GET.getlist('tagsselected',default=None)
         if not tagsselected:
-            tagsselected = tagsselectedfromlist
+            tagsselectedfound = tagsselectedfoundinlist
         else:
-            tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
-        return render(request, 'taganalysis.html', {'processedtags': processedtags,'listofprocessedtagsnumbers': listofprocessedtagsnumbers, 'tagsselected': tagsselected,'start': startdateformatted, 'end': enddateformatted})
+            tagsselectedfound = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
+        return render(request, 'taganalysis.html', {'processedtags': processedtags,'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
+                                                    'tagsselected': tagsselected,'tagsselectedfound': tagsselectedfound,'start': startdateformatted, 'end': enddateformatted})
