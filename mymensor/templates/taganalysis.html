@@ -63,7 +63,7 @@
                 console.log(enddate);
                 window.myScatter.update();
                 //console.log({% url 'portfolio' %});
-                //window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate;
             });
 
         });
