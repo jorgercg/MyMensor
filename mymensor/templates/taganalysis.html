@@ -181,10 +181,11 @@
         canvas.onclick = function(evt){
             var activePoint = myScatter.getElementAtEvent(evt);
             console.log(activePoint[0]);
-            console.log(activePoint[0].label);
-            console.log(activePoint[0].x);
-            console.log(activePoint[0].y);
-            console.log(activePoint[0].value);
+            //console.log(activePoint[0].label);
+            //console.log(activePoint[0].x);
+            //console.log(activePoint[0].y);
+            //console.log(activePoint[0].value);
+            config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index];
         };
 
     </script>
