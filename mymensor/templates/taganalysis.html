@@ -34,13 +34,21 @@
         <br>
         <canvas id="canvas"></canvas>
     </div>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1486457640Tag#2">
+        Launch demo modal
+    </button>
+
+
     <!-- Modals for all points being shown on chart -->
     {% for processedtagnumber in listofprocessedtagsnumbers %}
         {% if processedtagnumber.statusTagNumber in tagsselected %}
             {% for processedtag in processedtags %}
                 {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    <div href="#" class="modal" style="display:none;" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
-
+                    <div href="#" class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                          <div class="modal-body">
                               {% for media in medias %}
                                   {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
                                       {% if media.mediaContentType == "image/jpeg" %}
@@ -55,7 +63,9 @@
                                       {% endif %}
                                   {% endif %}
                               {% endfor %}
-
+                          </div>
+                        </div>
+                      </div>
                     </div>
                 {% endif %}
             {% endfor %}
@@ -67,8 +77,6 @@
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
-    <script src="{% static "js/jquery.modal.min.js" %}" type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" href="{% static "css/jquery.modal.css" %}" type="text/css" media="screen" />
     <script type="text/javascript">
         $('#tagsselected').chosen();
         $(function() {
@@ -208,8 +216,10 @@
             var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
             var modalname = "Modal"+restoredseconds+taglabel;
             console.log('#'+modalname);
-            jQuery.noConflict();
-            jQuery('#Modal1486457640Tag#2').modal();
+            jq=jQuery.noConflict();
+            jq('#Modal1486457640Tag#2').modal({
+                show: true
+            });
         };
 
     </script>
