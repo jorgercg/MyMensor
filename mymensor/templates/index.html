@@ -39,7 +39,7 @@
                                             {% endif %}
                                         </h5>
                                     </div>
-                                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
+                                    <a data-toggle="modal" data-target="#media#Modal" data-whatever="{{ media.mediaStorageURL }}">
                                         <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                                     </a>
                                     <div class="card-block">
@@ -124,7 +124,7 @@
             {% endfor %}
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+        <div class="modal fade" id="media#Modal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div class="modal-body">
