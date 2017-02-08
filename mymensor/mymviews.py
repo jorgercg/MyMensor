@@ -321,7 +321,7 @@ def tagProcessingFormView(request):
         enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(vp__tag__isnull=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(vp__tag__isnull=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).distinct().order_by('mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
