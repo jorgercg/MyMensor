@@ -30,10 +30,20 @@
             </div>
     </div>
     <hr>
-    <div style="width:80%">
+    <div class="canvasstyle" style="width:80%">
         <br>
         <canvas id="canvas"></canvas>
     </div>
+    <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
@@ -169,10 +179,6 @@
         canvas.onclick = function(evt){
             var activePoint = myScatter.getElementAtEvent(evt);
             console.log(activePoint[0]);
-            //console.log(activePoint[0].label);
-            //console.log(activePoint[0].x);
-            //console.log(activePoint[0].y);
-            //console.log(activePoint[0].value);
             console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index]);
             console.log(config.data.datasets[activePoint[0]._datasetIndex].label);
             console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x);
