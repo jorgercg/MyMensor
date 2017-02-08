@@ -35,22 +35,9 @@
         <canvas id="canvas"></canvas>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1486457640Tag#2">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1486457640Tag#2" data-whatever="https://mymstoragebr.s3.amazonaws.com/cap/cap_jorge_2_p_1486457640730.jpg?Expires=1486572076&amp;Signature=JH%2BWvj2NQ0yap259TCNY6vWdiPI%3D&amp;AWSAccessKeyId=AKIAI4HUWKFMXTSLG5JA" alt="">
         Launch demo modal
     </button>
-
-
-    <div href="#" class="modal fade" id="Modal1486457640Tag#2" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <img id="mediaContent" class="img-fluid" src="https://mymstoragebr.s3.amazonaws.com/cap/cap_jorge_2_p_1486457640730.jpg?Expires=1486570324&amp;Signature=qv7oX323u9C4fN7xct%2F3qmTVYFc%3D&amp;AWSAccessKeyId=AKIAI4HUWKFMXTSLG5JA" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
 
 
@@ -67,7 +54,7 @@
                               {% for media in medias %}
                                   {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
                                       {% if media.mediaContentType == "image/jpeg" %}
-                                        <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+                                        <img id="mediaContent" class="img-fluid" src="" alt="">
                                       {% endif %}
                                       {% if media.mediaContentType == "video/mp4" %}
                                         <div class="embed-responsive embed-responsive-16by9">
