@@ -130,7 +130,7 @@
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div class="modal-body">
-                  <img id="mediaContent" class="img-fluid" src="" alt="">
+                  <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
               </div>
             </div>
           </div>
@@ -142,7 +142,7 @@
               <div class="modal-body">
                   <div class="embed-responsive embed-responsive-16by9">
                         <video controls>
-                            <source src="" type="video/mp4">
+                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
                         </video>
                   </div>
               </div>
