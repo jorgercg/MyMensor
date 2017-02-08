@@ -39,10 +39,8 @@
         {% if processedtagnumber.statusTagNumber in tagsselected %}
             {% for processedtag in processedtags %}
                 {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    <div href="#" class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                          <div class="modal-body">
+                    <div href="#" class="modal" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+
                               {% for media in medias %}
                                   {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
                                       {% if media.mediaContentType == "image/jpeg" %}
@@ -57,9 +55,7 @@
                                       {% endif %}
                                   {% endif %}
                               {% endfor %}
-                          </div>
-                        </div>
-                      </div>
+
                     </div>
                 {% endif %}
             {% endfor %}
@@ -71,6 +67,8 @@
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
+    <script src="{% static "js/jquery.modal.min.js" %}" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static "jquery.modal.css" %}" type="text/css" media="screen" />
     <script type="text/javascript">
         $('#tagsselected').chosen();
         $(function() {
@@ -211,9 +209,7 @@
             var modalname = "Modal"+restoredseconds+taglabel;
             console.log('#'+modalname);
             jq=jQuery.noConflict();
-            jq('#Modal1486457640Tag#2').modal({
-                show: true
-            });
+            jq('#Modal1486457640Tag#2').modal();
         };
 
     </script>
