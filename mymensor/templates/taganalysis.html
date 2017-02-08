@@ -54,7 +54,7 @@
                               {% for media in medias %}
                                   {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
                                       {% if media.mediaContentType == "image/jpeg" %}
-                                        <img id="mediaContent" class="img-fluid" src="" alt="">
+                                        <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                                       {% endif %}
                                       {% if media.mediaContentType == "video/mp4" %}
                                         <div class="embed-responsive embed-responsive-16by9">
