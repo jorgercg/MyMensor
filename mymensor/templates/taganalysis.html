@@ -39,7 +39,7 @@
         {% if processedtagnumber.statusTagNumber in tagsselected %}
             {% for processedtag in processedtags %}
                 {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    <div class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+                    <div href="#" class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                           <div class="modal-body">
