@@ -157,10 +157,6 @@
                         id: 'y-axis-1',
                         position: "left"
                     }]
-                },
-                pan: {
-                    enabled: true,
-                    mode: 'xy'
                 }
             }
         };
@@ -178,6 +174,8 @@
             //console.log(activePoint[0].y);
             //console.log(activePoint[0].value);
             console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index]);
+            console.log(config.data.datasets[activePoint[0]._datasetIndex].label);
+
         };
 
     </script>
