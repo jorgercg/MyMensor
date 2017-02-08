@@ -71,10 +71,15 @@
                                                             {% if media.id in mediasofthevaluelist and tag.id in tagsofthevaluelist %}
                                                                 {% for value in values %}
                                                                     {% if value.media == media and value.tag == tag %}
-                                                                    <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
-                                                                    <span class="input-group-btn">
-                                                                        <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
-                                                                    </span>
+                                                                        <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
+                                                                        <span class="input-group-btn">
+                                                                            <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
+                                                                        </span>
+                                                                    {% else %}
+                                                                        <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
+                                                                        <span class="input-group-btn">
+                                                                            <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
+                                                                        </span>
                                                                     {% endif %}
                                                                 {% endfor %}
                                                             {% else %}
