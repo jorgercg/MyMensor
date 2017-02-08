@@ -208,8 +208,8 @@
             var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
             var modalname = "Modal"+restoredseconds+taglabel;
             console.log('#'+modalname);
-            jq=jQuery.noConflict();
-            jq('#Modal1486457640Tag#2').modal();
+            jQuery.noConflict();
+            jQuery('#Modal1486457640Tag#2').modal();
         };
 
     </script>
