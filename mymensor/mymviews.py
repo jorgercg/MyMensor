@@ -321,7 +321,7 @@ def tagProcessingFormView(request):
         enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
@@ -432,12 +432,23 @@ class TagStatus(BaseDatatableView):
 def tagAnalysisView(request):
     if request.user.is_authenticated:
         loaddcicfg(request)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
         startdate = datetime.strptime(
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
+            mediaProcessed=True).filter(mediaTimeStamp__range=[startdate, new_enddate])
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': media.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
+
         processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
         listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber')  #.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
         tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
@@ -446,4 +457,28 @@ def tagAnalysisView(request):
             tagsselected = tagsselectedfromlist
         else:
             tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
-        return render(request, 'taganalysis.html', {'processedtags': processedtags,'listofprocessedtagsnumbers': listofprocessedtagsnumbers, 'tagsselected': tagsselected,'start': startdateformatted, 'end': enddateformatted})
+            return render(request, 'taganalysis.html',
+                          {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
+                           'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
+                           'medias': medias})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
