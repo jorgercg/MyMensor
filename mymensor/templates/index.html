@@ -70,6 +70,16 @@
                                         <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
                                     </div>
                                  </div>
+                                <!-- Modal to Images -->
+                                <div class="modal fade" id="mediaImageModal" tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                      <div class="modal-body">
+                                          <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                             {% endif %}
                             {% if media.mediaContentType == "video/mp4" %}
                                 <div class="card card-outline-primary m-2" style="width: 20rem;">
@@ -117,6 +127,20 @@
                                         <span class="fa fa-cloud-upload" data-toggle="tooltip" data-placement="top" title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
                                     </div>
                                 </div>
+                                <!-- Modal to Videos -->
+                                <div class="modal fade" id="mediaVideoModal" tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                      <div class="modal-body">
+                                          <div class="embed-responsive embed-responsive-16by9">
+                                                <video controls>
+                                                    <source src="{{ media.mediaStorageURL }}" type="video/mp4">
+                                                </video>
+                                          </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                             {% endif %}
                         {% endif %}
                     {% endif %}
@@ -124,30 +148,6 @@
             </div>
             <hr>
             {% endfor %}
-        </div>
-        <!-- Modal to Images -->
-        <div class="modal fade" id="mediaImageModal" tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-body">
-                  <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Modal to Videos -->
-        <div class="modal fade" id="mediaVideoModal" tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div class="modal-body">
-                  <div class="embed-responsive embed-responsive-16by9">
-                        <video controls>
-                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
-                        </video>
-                  </div>
-              </div>
-            </div>
-          </div>
         </div>
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
