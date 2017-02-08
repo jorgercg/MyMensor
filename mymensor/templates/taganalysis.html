@@ -30,11 +30,11 @@
             </div>
     </div>
     <hr>
-    <div class="canvasstyle" style="width:80%">
+    <div class="canvasstyle" style="width:70%">
         <br>
         <canvas id="canvas"></canvas>
     </div>
-    <!-- Modals for all pints being shown on chart -->
+    <!-- Modals for all points being shown on chart -->
     {% for processedtagnumber in listofprocessedtagsnumbers %}
         {% if processedtagnumber.statusTagNumber in tagsselected %}
             {% for processedtag in processedtags %}
@@ -212,6 +212,7 @@
             var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
             var modalname = "Modal"+restoredseconds+taglabel;
             console.log('#'+modalname);
+            jQuery.noConflict();
             $('#'+modalname).modal({
                 show: true
             });
@@ -221,6 +222,3 @@
 {% endblock %}
 
 {% endlocaltime %}
-
-
-id="Modal{{ processedtag.statusMediaMillisSinceEpoch }}Tag#{{ processedtagnumber.statusTagNumber }}"
