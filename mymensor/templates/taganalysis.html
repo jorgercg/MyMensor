@@ -178,6 +178,10 @@
             window.myScatter = new Chart(ctx, config);
         };
 
+        canvas.onclick = function(evt){
+            var activePoint = myScatter.getElementAtEvent(evt);
+            console.log(activePoint);
+        };
 
     </script>
 {% endblock %}
