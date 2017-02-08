@@ -39,7 +39,7 @@
                                             {% endif %}
                                         </h5>
                                     </div>
-                                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ media.mediaStorageURL }}">
+                                    <a data-toggle="modal" data-target="#mediaImageModal" data-whatever="{{ media.mediaStorageURL }}">
                                         <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}" alt="">
                                     </a>
                                     <div class="card-block">
@@ -83,9 +83,11 @@
                                         </h5>
                                     </div>
                                     <div class="embed-responsive embed-responsive-16by9">
-                                        <video controls>
-                                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
-                                        </video>
+                                        <a data-toggle="modal" data-target="#mediaVideoModal" data-whatever="{{ media.mediaStorageURL }}">
+                                            <video controls>
+                                                <source src="{{ media.mediaStorageURL }}" type="video/mp4">
+                                            </video>
+                                        </a>
                                     </div>
                                     <div class="card-block">
                                          <p class="card-text">
@@ -123,12 +125,26 @@
             <hr>
             {% endfor %}
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+        <!-- Modal to Images -->
+        <div class="modal fade" id="mediaImageModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div class="modal-body">
                   <img id="mediaContent" class="img-fluid" src="" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal to Videos -->
+        <div class="modal fade" id="mediaVideoModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <div class="embed-responsive embed-responsive-16by9">
+                        <video controls>
+                            <source src="" type="video/mp4">
+                        </video>
+                  </div>
               </div>
             </div>
           </div>
