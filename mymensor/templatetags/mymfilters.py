@@ -8,3 +8,8 @@ def lookupvpnumber(value, key):
         return value.key
     except:
         return key
+
+
+@register.filter(name="frommillistoseconds")
+def frommillistoseconds(value):
+    return int(value/1000)

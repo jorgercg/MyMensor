@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" afterPath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" afterPath="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +48,21 @@
       <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="136" column="79" lean-forward="false" selection-start-line="136" selection-start-column="79" selection-end-line="136" selection-end-column="79" />
+            <state relative-caret-position="449">
+              <caret line="214" column="10" lean-forward="true" selection-start-line="214" selection-start-column="10" selection-end-line="214" selection-end-column="10" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mymfilters.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templatetags/mymfilters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -155,7 +166,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/mymmessages.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/mymclient.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/js/mymclient.js" />
-        <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpstemplate.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/daterangepicker.css" />
@@ -201,6 +211,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
       </list>
     </option>
@@ -334,7 +345,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="templatetags" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -677,13 +688,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01232" summary="07fev2017 15h34min">
-      <created>1486483867311</created>
-      <option name="number" value="01232" />
-      <option name="presentableId" value="LOCAL-01232" />
-      <option name="project" value="LOCAL" />
-      <updated>1486483867311</updated>
-    </task>
     <task id="LOCAL-01233" summary="07fev2017 15h34min">
       <created>1486484017471</created>
       <option name="number" value="01233" />
@@ -1020,7 +1024,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486554622661</updated>
     </task>
-    <option name="localTasksCounter" value="1281" />
+    <task id="LOCAL-01281" summary="08fev2017 12h11min">
+      <created>1486555914646</created>
+      <option name="number" value="01281" />
+      <option name="presentableId" value="LOCAL-01281" />
+      <option name="project" value="LOCAL" />
+      <updated>1486555914646</updated>
+    </task>
+    <option name="localTasksCounter" value="1282" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1094,7 +1105,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="06fev2017 22h01min" />
     <MESSAGE value="06fev2017 22h22min" />
     <MESSAGE value="06fev2017 23h08min" />
     <MESSAGE value="07fev2017 09h05min" />
@@ -1119,7 +1129,8 @@
     <MESSAGE value="08fev2017 10h16min" />
     <MESSAGE value="08fev2017 11h00min" />
     <MESSAGE value="08fev2017 11h38min" />
-    <option name="LAST_COMMIT_MESSAGE" value="08fev2017 11h38min" />
+    <MESSAGE value="08fev2017 12h11min" />
+    <option name="LAST_COMMIT_MESSAGE" value="08fev2017 12h11min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1128,13 +1139,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/django_smart_selects-1.2.7.dist-info/DESCRIPTION.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/django_smart_selects-1.2.7.dist-info/top_level.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1480,10 +1484,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/mymfilters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="136" column="79" lean-forward="false" selection-start-line="136" selection-start-column="79" selection-end-line="136" selection-end-column="79" />
+        <state relative-caret-position="449">
+          <caret line="214" column="10" lean-forward="true" selection-start-line="214" selection-start-column="10" selection-end-line="214" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
           </folding>

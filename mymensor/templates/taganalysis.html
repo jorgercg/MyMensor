@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles tz counter assign %}
+{% load i18n staticfiles tz counter assign mymfilters%}
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
@@ -39,7 +39,7 @@
         {% if processedtagnumber.statusTagNumber in tagsselected %}
             {% for processedtag in processedtags %}
                 {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    <div class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag#{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-xl">
                         <div class="modal-content">
                           <div class="modal-body">
@@ -210,7 +210,7 @@
             console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].y);
             var taglabel = config.data.datasets[activePoint[0]._datasetIndex].label;
             var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
-            var modalname = "Modal"+restoredmillis+taglabel;
+            var modalname = "Modal"+restoredseconds+taglabel;
             $('#'+modalname).modal('show');
         };
 
