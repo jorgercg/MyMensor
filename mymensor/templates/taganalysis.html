@@ -100,7 +100,7 @@
         var timeFormat = 'x';
 
         function newDate(date) {
-			    return moment(date, timeFormat).format();
+			    return moment(date, timeFormat).toISOString();
 		    }
 
         var colorNames = Object.keys(window.chartColors);
