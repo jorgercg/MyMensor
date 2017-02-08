@@ -123,7 +123,16 @@
             <hr>
             {% endfor %}
         </div>
-
+        <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <img id="mediaContent" class="img-fluid" src="" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "mymclient.html" %}
