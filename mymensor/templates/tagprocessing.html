@@ -196,8 +196,11 @@
 
         $(function() {
 
-            console.log("{{ medias }}");
-
+            console.log("{{ mediasofthevaluelist }}");
+            console.log("{{ tagsofthevaluelist }}");
+            {% for media in medias %}
+                console.log("{{ media.id }} - {{ media.mediaMillisSinceEpoch }}");
+            {% endfor %}
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
 
