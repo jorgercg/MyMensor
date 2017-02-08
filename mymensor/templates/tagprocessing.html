@@ -198,8 +198,8 @@
                 console.log("{{ media.id }} - {{ media.mediaMillisSinceEpoch }}");
             {% endfor %}
 
-            {% for value in values %})
-                console.log("{{ value.media }} - {{ value.tag }} - {{ value.valValueEvaluated }}");
+            {% for value in values %}
+                console.log("{{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
             {% endfor %}
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
