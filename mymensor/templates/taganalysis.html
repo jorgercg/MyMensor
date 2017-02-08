@@ -35,13 +35,6 @@
         <canvas id="canvas"></canvas>
     </div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1486457640Tag2" data-whatever="https://mymstoragebr.s3.amazonaws.com/cap/cap_jorge_2_p_1486457640730.jpg?Expires=1486572076&amp;Signature=JH%2BWvj2NQ0yap259TCNY6vWdiPI%3D&amp;AWSAccessKeyId=AKIAI4HUWKFMXTSLG5JA" alt="">
-        Launch demo modal
-    </button>
-
-
-
-
     <!-- Modals for all points being shown on chart -->
     {% for processedtagnumber in listofprocessedtagsnumbers %}
         {% if processedtagnumber.statusTagNumber in tagsselected %}
@@ -219,8 +212,7 @@
             var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
             var modalname = "Modal"+restoredseconds+taglabel;
             console.log('#'+modalname);
-            jq=jQuery.noConflict();
-            jq('#'+modalname).modal({
+            jQuery('#'+modalname).modal({
                 show: true
             });
         };
