@@ -24,6 +24,7 @@
         <div id="vpsview">
             {% for vp in vps %}
             <div class="d-flex align-content-start flex-wrap">
+                {% with qtyoftags=vp.qtyoftags %}
                 {% for media in medias %}
                     {% if vp.vpNumber == media.mediaVpNumber %}
                         {% counter start=0 silent=True assign='mediaqtyinvp' %}
@@ -74,16 +75,16 @@
                                                                     <span class="input-group-btn">
                                                                          <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
                                                                     </span>
-                                                        {% else %}
+                                                                </div>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
                                                                     <span class="input-group-btn">
                                                                         <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
                                                                     </span>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                            </div>
+                                                                </div>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
@@ -176,6 +177,7 @@
                 {% endfor %}
             </div>
             <hr>
+                {% endwith %}
             {% endfor %}
         </div>
         <!-- Modal -->
