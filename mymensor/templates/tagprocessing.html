@@ -230,7 +230,12 @@
 
 
             {% for tag in vp.tag_set.all %}
-                {{ tag }}
+                {{ tag.id }}
+            {% endfor %}
+
+
+            {% for vp in tag.vp_set.all %}
+                {{ vp.id }}
             {% endfor %}
 
             var start = moment("{{ start }}");
