@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz counter assign%}
+{% load i18n tz counter assign mymfilters%}
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 {% if user.is_authenticated %}
@@ -66,6 +66,7 @@
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
                                                 {% if tag.vp.id == vp.id %}
+                                                    {% setglobal flag 0 %}
                                                     {{ flag }}
                                                     {% for value in values %}
                                                         {% if value.media.id == media.id and value.tag.id == tag.id %}
@@ -76,12 +77,14 @@
                                                                     <span class="input-group-btn">
                                                                          <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
                                                                     </span>
+                                                                    {% setglobal flag 1 %}
                                                                 </div>
                                                             {{ flag }}
                                                         {% endif %}
                                                     {% endfor %}
                                                         {{ flag }}
-                                                        {% if flag == "notset" %}
+
+                                                        {% if flag == 0 %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
