@@ -218,10 +218,19 @@
 
             {% for vp in vps %}
                 {%  for tag in tags %}
-                    console.log("tag.vp==vp {% tag.vp == vp %}");
-                    console.log("Count: tag.vp.count={{ tag__vp.count }}");
+                    {% if tag.vp == vp %}
+                        console.log("tag.vp==vp TRUE");
+                    {%  else %}
+                        console.log("tag.vp==vp FALSE");
+                    {%  endif %}
+                    console.log("Count: tag.vp.count={{ tag.vp.count }}");
 
                 {% endfor %}
+            {% endfor %}
+
+
+            {% for tag in vp.tag_set.all %}
+                {{ tag }}
             {% endfor %}
 
             var start = moment("{{ start }}");
