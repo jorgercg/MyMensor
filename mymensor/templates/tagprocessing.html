@@ -215,6 +215,14 @@
                 {% endfor %}
             {% endfor %}
 
+
+            {% for vp in vps %}
+                {%  for tag in tags %}
+                    console.log("Count: tag.vp.count={{ tag.vp.count }}");
+
+                {% endfor %}
+            {% endfor %}
+
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
 
