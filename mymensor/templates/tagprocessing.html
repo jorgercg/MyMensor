@@ -84,7 +84,7 @@
                                                     {% endfor %}
                                                         {{ flag }}
 
-                                                        {% if flag == 0 %}
+                                                        {% if flag == "0" %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
