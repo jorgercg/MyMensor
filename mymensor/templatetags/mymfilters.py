@@ -53,3 +53,27 @@ class GlobalVariableGetNode( template.Node ):
       return context[self.varname].value()
     except AttributeError:
       return ''
+def getglobal( parser, token ):
+  try:
+    tag_name, varname = token.contents.split(None, 1)
+  except ValueError:
+    raise template.TemplateSyntaxError("%r tag requires arguments" % token.contents.split()[0])
+  return GlobalVariableGetNode( varname )
+register.tag( 'getglobal', getglobal )
+
+class GlobalVariableIncrementNode( template.Node ):
+  def __init__( self, varname ):
+    self.varname = varname
+  def render( self, context ):
+    gv = context.get( self.varname, None )
+    if gv is None:
+      return ''
+    gv.set( int(gv.value()) + 1 )
+    return ''
+def incrementglobal( parser, token ):
+  try:
+    tag_name, varname = token.contents.split(None, 1)
+  except ValueError:
+    raise template.TemplateSyntaxError("%r tag requires arguments" % token.contents.split()[0])
+  return GlobalVariableIncrementNode(varname)
+register.tag( 'incrementglobal', incrementglobal )
