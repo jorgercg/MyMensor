@@ -67,7 +67,7 @@
                                             {% for tag in tags %}
                                                 {% if tag.vp.id == vp.id %}
                                                     {% for value in values %}
-                                                        {% if value.media == media and value.tag == tag %}
+                                                        {% if value.media.id == media.id and value.tag.id == tag.id %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
