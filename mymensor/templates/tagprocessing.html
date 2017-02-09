@@ -65,7 +65,7 @@
                                     <div class="card-block">
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
-                                                {% if tag.vp == vp %}
+                                                {% if tag.vp.id == vp.id %}
                                                     {% for value in values %}
                                                         {% if value.media == media and value.tag == tag %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
@@ -219,24 +219,16 @@
             {% for vp in vps %}
                 {%  for tag in tags %}
                     {% if tag.vp.id == vp.id %}
-                        console.log("tag.vp==vp TRUE");
+                        console.log("tag.vp.id == vp.id TRUE - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
                     {%  else %}
-                        console.log("tag.vp==vp FALSE");
+                        console.log("tag.vp.id == vp FALSE  - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
                     {%  endif %}
-                    console.log("Count: tag.vp.count={{ tag.vp.count }}");
 
                 {% endfor %}
             {% endfor %}
 
 
-            {% for tag in vp.tag_set.all %}
-                console.log("tag.id={{ tag.id }}");
-            {% endfor %}
 
-
-            {% for vp in tag.vp_set.all %}
-                console.log("vp.id={{ vp.id }}");
-            {% endfor %}
 
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
