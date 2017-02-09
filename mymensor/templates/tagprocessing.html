@@ -218,7 +218,7 @@
 
             {% for vp in vps %}
                 {%  for tag in tags %}
-                    {% if tag.vp == vp %}
+                    {% if tag.vp.id == vp.id %}
                         console.log("tag.vp==vp TRUE");
                     {%  else %}
                         console.log("tag.vp==vp FALSE");
@@ -230,12 +230,12 @@
 
 
             {% for tag in vp.tag_set.all %}
-                {{ tag.id }}
+                console.log("tag.id={{ tag.id }}");
             {% endfor %}
 
 
             {% for vp in tag.vp_set.all %}
-                {{ vp.id }}
+                console.log("vp.id={{ vp.id }}");
             {% endfor %}
 
             var start = moment("{{ start }}");
