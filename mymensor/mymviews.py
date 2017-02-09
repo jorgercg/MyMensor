@@ -19,7 +19,7 @@ from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
-from django.db.models import Q
+from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
 
@@ -329,7 +329,7 @@ def tagProcessingFormView(request):
                                     Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
                                     ExpiresIn=3600)
         vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).exclude(vpNumber=0).order_by('vpNumber').distinct()
+        vps = Vp.objects.annotate(qtyoftags=Count('Tag')).filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).exclude(vpNumber=0).order_by('vpNumber').distinct()
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).distinct()
         for vp in vps:
             vp.vpStdPhotoStorageURL = s3Client.generate_presigned_url('get_object',
