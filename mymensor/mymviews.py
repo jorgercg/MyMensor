@@ -15,6 +15,7 @@ from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
+from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
@@ -146,7 +147,10 @@ def amazon_sns_processor(request):
 @login_required
 def portfolio(request):
     if request.user.is_authenticated:
-        loaddcicfg(request)
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = int(e.response['Error']['Code'])
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -169,7 +173,10 @@ def portfolio(request):
 @login_required
 def mediafeed(request):
     if request.user.is_authenticated:
-        loaddcicfg(request)
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = int(e.response['Error']['Code'])
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -224,7 +231,10 @@ def android_assetlinks(request):
 
 @login_required
 def assetSetupFormView(request):
-    loaddcicfg(request)
+    try:
+        loaddcicfg(request)
+    except ClientError as e:
+        error_code = int(e.response['Error']['Code'])
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
     if request.method == 'POST':
@@ -238,7 +248,10 @@ def assetSetupFormView(request):
 
 @login_required
 def vpSetupFormView(request):
-    loaddcicfg(request)
+    try:
+        loaddcicfg(request)
+    except ClientError as e:
+        error_code = int(e.response['Error']['Code'])
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
@@ -258,7 +271,10 @@ def vpSetupFormView(request):
 
 @login_required
 def tagSetupFormView(request):
-    loaddcicfg(request)
+    try:
+        loaddcicfg(request)
+    except ClientError as e:
+        error_code = int(e.response['Error']['Code'])
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
@@ -313,7 +329,10 @@ def tagSetupFormView(request):
 @login_required
 def tagProcessingFormView(request):
     if request.user.is_authenticated:
-        loaddcicfg(request)
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = int(e.response['Error']['Code'])
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -431,7 +450,10 @@ class TagStatus(BaseDatatableView):
 @login_required
 def tagAnalysisView(request):
     if request.user.is_authenticated:
-        loaddcicfg(request)
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = int(e.response['Error']['Code'])
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
