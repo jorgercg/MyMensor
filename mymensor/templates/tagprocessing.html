@@ -218,6 +218,7 @@
 
             {% for vp in vps %}
                 {%  for tag in tags %}
+                    console.log("tag.vp==vp {% tag.vp == vp %}");
                     console.log("Count: tag.vp.count={{ tag__vp.count }}");
 
                 {% endfor %}
