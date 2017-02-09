@@ -150,7 +150,7 @@ def portfolio(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = int(e.response['Error']['Code'])
+            error_code = e.response['Error']['Code']
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -176,7 +176,7 @@ def mediafeed(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = int(e.response['Error']['Code'])
+            error_code = e.response['Error']['Code']
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -251,7 +251,7 @@ def vpSetupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = int(e.response['Error']['Code'])
+        error_code = e.response['Error']['Code']
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
@@ -274,7 +274,7 @@ def tagSetupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = int(e.response['Error']['Code'])
+        error_code = e.response['Error']['Code']
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
@@ -332,7 +332,7 @@ def tagProcessingFormView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = int(e.response['Error']['Code'])
+            error_code = e.response['Error']['Code']
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -453,7 +453,7 @@ def tagAnalysisView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = int(e.response['Error']['Code'])
+            error_code = e.response['Error']['Code']
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
