@@ -65,10 +65,10 @@
                                     <div class="card-block">
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
-                                                {% if tag.vp == vp %}
+
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
-                                                                    {% if value.media == media and value.tag == tag %}
+                                                                    {% if tag.vp__media.id == media.id and value.tag.id == tag.id %}
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
                                                                     <span class="input-group-btn">
                                                                         <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
@@ -81,7 +81,7 @@
                                                             {% endif %}
 
                                                     </div>
-                                                {% endif %}
+
                                             {% endfor %}
                                         </ul>
                                     </div>
