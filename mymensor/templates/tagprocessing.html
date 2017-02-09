@@ -68,8 +68,10 @@
                                             {% for tag in tags %}
                                                 {% if tag.vp.id == vp.id %}
                                                     {% assign name="flag" %}notset{% endassign %}
+                                                    {{ flag }}
                                                     {% for value in values %}
                                                         {% if value.media.id == media.id and value.tag.id == tag.id %}
+                                                            {{ flag }}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" value="{{ value.valValueEvaluated }}">
@@ -78,8 +80,10 @@
                                                                     </span>
                                                                     {% assign name="flag" %}set{% endassign %}
                                                                 </div>
+                                                            {{ flag }}
                                                         {% endif %}
                                                     {% endfor %}
+                                                        {{ flag }}
                                                         {% if flag == "notset" %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
