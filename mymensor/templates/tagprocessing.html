@@ -218,6 +218,7 @@
 
             {% for vp in vps %}
                 {%  for tag in tags %}
+                    console.log("tag.vp.count= {{ tag.vp.count }}");
                     {% if tag.vp.id == vp.id %}
                         console.log("tag.vp.id == vp.id TRUE - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
                     {%  else %}
