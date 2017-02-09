@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" afterPath="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" afterPath="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tagprocessing.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tagprocessing.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/tagprocessing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="94" column="62" lean-forward="false" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
+            <state relative-caret-position="284">
+              <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
               <folding>
                 <element signature="n#if#5;n#!!top" expanded="false" />
                 <element signature="n#if#6;n#!!top" expanded="false" />
@@ -69,6 +70,16 @@
                 <element signature="n#if#14;n#!!top" expanded="false" />
                 <element signature="n#if#15;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mymfilters.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/templatetags/mymfilters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="54" column="15" lean-forward="false" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,8 +202,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/mediafeed.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
-        <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
+        <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
       </list>
     </option>
   </component>
@@ -687,13 +698,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01312" summary="08fev2017 16h08min">
-      <created>1486570810737</created>
-      <option name="number" value="01312" />
-      <option name="presentableId" value="LOCAL-01312" />
-      <option name="project" value="LOCAL" />
-      <updated>1486570810737</updated>
-    </task>
     <task id="LOCAL-01313" summary="08fev2017 16h08min">
       <created>1486571017203</created>
       <option name="number" value="01313" />
@@ -1030,7 +1034,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486641246435</updated>
     </task>
-    <option name="localTasksCounter" value="1361" />
+    <task id="LOCAL-01361" summary="09fev2017 11h33min">
+      <created>1486641787026</created>
+      <option name="number" value="01361" />
+      <option name="presentableId" value="LOCAL-01361" />
+      <option name="project" value="LOCAL" />
+      <updated>1486641787026</updated>
+    </task>
+    <option name="localTasksCounter" value="1362" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1462,18 +1473,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/mymfilters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/tagprocessing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="94" column="62" lean-forward="false" selection-start-line="94" selection-start-column="62" selection-end-line="94" selection-end-column="62" />
+        <state relative-caret-position="284">
+          <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
             <element signature="n#if#5;n#!!top" expanded="false" />
             <element signature="n#if#6;n#!!top" expanded="false" />
@@ -1482,6 +1485,14 @@
             <element signature="n#if#14;n#!!top" expanded="false" />
             <element signature="n#if#15;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/mymfilters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="54" column="15" lean-forward="false" selection-start-line="54" selection-start-column="15" selection-end-line="54" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>

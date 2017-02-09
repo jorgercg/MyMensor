@@ -66,7 +66,6 @@
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
                                                 {% if tag.vp.id == vp.id %}
-                                                    {% with flag="notset" %}
                                                     {{ flag }}
                                                     {% for value in values %}
                                                         {% if value.media.id == media.id and value.tag.id == tag.id %}
@@ -77,7 +76,6 @@
                                                                     <span class="input-group-btn">
                                                                          <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
                                                                     </span>
-                                                                    {% with flag="set" %}
                                                                 </div>
                                                             {{ flag }}
                                                         {% endif %}
@@ -92,7 +90,6 @@
                                                                     </span>
                                                                 </div>
                                                         {% endif %}
-                                                    {% endwith %}
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
