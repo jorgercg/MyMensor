@@ -66,6 +66,7 @@
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
                                                 {% if tag.vp == vp %}
+
                                                     {% if value.media == media and value.tag == tag %}
                                                         <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                             <div class="input-group">
@@ -195,6 +196,7 @@
 
             console.log("{{ mediasofthevaluelist }}");
             console.log("{{ tagsofthevaluelist }}");
+
             {% for media in medias %}
                 console.log("{{ media.id }} - {{ media.mediaMillisSinceEpoch }}");
             {% endfor %}
@@ -202,6 +204,16 @@
             {% for value in values %}
                 console.log("{{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
             {% endfor %}
+
+            {%  for tag in tags %}
+                console.log("Tag: {{ tag }}")
+                {% for value in values.tag %}
+                    console.log("Exists: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
+                {% empty %}
+                    console.log("Empty: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
+                {% endfor %}
+            {% endfor %}
+
             var start = moment("{{ start }}");
             var end = moment("{{ end }}");
 
