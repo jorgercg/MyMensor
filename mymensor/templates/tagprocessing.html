@@ -67,6 +67,7 @@
                                         <ul class="list-group list-group-flush">
                                             {% for tag in tags %}
                                                 {% if tag.vp.id == vp.id %}
+                                                    {% assign name="flag" %}0{% endassign %}
                                                     {% for value in values %}
                                                         {% if value.media.id == media.id and value.tag.id == tag.id %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
@@ -75,9 +76,11 @@
                                                                     <span class="input-group-btn">
                                                                          <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-success" type="button">{% trans 'Saved' %}</button>
                                                                     </span>
+                                                                    {% assign name="flag" %}1{% endassign %}
                                                                 </div>
                                                         {% endif %}
                                                     {% endfor %}
+                                                        {% if flag == 0 %}
                                                             <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                                 <div class="input-group">
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
@@ -85,6 +88,7 @@
                                                                         <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
                                                                     </span>
                                                                 </div>
+                                                        {% endif %}
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
@@ -141,7 +145,7 @@
                                                 {% if tag.vp == vp %}
                                                     <li class="list-group-item">{{ tag.tagQuestion }}</li>
                                                     <div class="input-group">
-                                                            {% assign name="flag" %}0{% endassign %}
+
                                                             {% if media.id in mediasofthevaluelist and tag.id in tagsofthevaluelist %}
                                                                 {% for value in values %}
                                                                     {% if value.media.id == media.id and value.tag.id == tag.id %}
@@ -153,13 +157,13 @@
                                                                     {% endif %}
                                                                 {% endfor %}
                                                             {% else %}
-                                                                {% if flag == 0 %}
+
                                                                     <input id="input{{ media.id }}-{{ vp.id }}-{{ tag.id }}" type="number" class="form-control" placeholder="{% trans 'Answer here...' %}">
                                                                     <span class="input-group-btn">
                                                                         <button id="{{ media.id }}-{{ vp.id }}-{{ tag.id }}" class="btn btn-secondary" type="button">{% trans 'Save' %}</button>
                                                                     </span>
-                                                                {% endif %}
                                                             {% endif %}
+
                                                     </div>
                                                 {% endif %}
                                             {% endfor %}
