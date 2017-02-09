@@ -207,7 +207,7 @@
 
             {%  for tag in tags %}
                 console.log("Tag: {{ tag }}")
-                {% for value in values.tag %}
+                {% for value in values %}
                     console.log("Exists: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
                 {% empty %}
                     console.log("Empty: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
