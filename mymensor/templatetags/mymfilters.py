@@ -15,65 +15,29 @@ def frommillistoseconds(value):
     return int(value/1000)
 
 
-class GlobalVariable( object ):
-  def __init__( self, varname, varval ):
-    self.varname = varname
-    self.varval  = varval
-  def name( self ):
-    return self.varname
-  def value( self ):
-    return self.varval
-  def set( self, newval ):
-    self.varval = newval
+class SetVarNode(template.Node):
 
-class GlobalVariableSetNode( template.Node ):
-  def __init__( self, varname, varval ):
-    self.varname = varname
-    self.varval  = varval
-  def render( self, context ):
-    gv = context.get( self.varname, None )
-    if gv:
-      gv.set( self.varval )
-    else:
-      gv = context[self.varname] = GlobalVariable( self.varname, self.varval )
-    return ''
-def setglobal( parser, token ):
-  try:
-    tag_name, varname, varval = token.contents.split(None, 2)
-  except ValueError:
-    raise template.TemplateSyntaxError("%r tag requires 2 arguments" % token.contents.split()[0])
-  return GlobalVariableSetNode( varname, varval )
-register.tag( 'setglobal', setglobal )
+    def __init__(self, var_name, var_value):
+        self.var_name = var_name
+        self.var_value = var_value
 
-class GlobalVariableGetNode( template.Node ):
-  def __init__( self, varname ):
-    self.varname = varname
-  def render( self, context ):
-    try:
-      return context[self.varname].value()
-    except AttributeError:
-      return ''
-def getglobal( parser, token ):
-  try:
-    tag_name, varname = token.contents.split(None, 1)
-  except ValueError:
-    raise template.TemplateSyntaxError("%r tag requires arguments" % token.contents.split()[0])
-  return GlobalVariableGetNode( varname )
-register.tag( 'getglobal', getglobal )
+    def render(self, context):
+        try:
+            value = template.Variable(self.var_value).resolve(context)
+        except template.VariableDoesNotExist:
+            value = ""
+        context[self.var_name] = value
 
-class GlobalVariableIncrementNode( template.Node ):
-  def __init__( self, varname ):
-    self.varname = varname
-  def render( self, context ):
-    gv = context.get( self.varname, None )
-    if gv is None:
-      return ''
-    gv.set( int(gv.value()) + 1 )
-    return ''
-def incrementglobal( parser, token ):
-  try:
-    tag_name, varname = token.contents.split(None, 1)
-  except ValueError:
-    raise template.TemplateSyntaxError("%r tag requires arguments" % token.contents.split()[0])
-  return GlobalVariableIncrementNode(varname)
-register.tag( 'incrementglobal', incrementglobal )
+        return u""
+
+
+@register.tag(name='set')
+def set_var(parser, token):
+    """
+    {% set some_var = '123' %}
+    """
+    parts = token.split_contents()
+    if len(parts) < 4:
+        raise template.TemplateSyntaxError("'set' tag must be of the form: {% set <var_name> = <var_value> %}")
+
+    return SetVarNode(parts[1], parts[3])
