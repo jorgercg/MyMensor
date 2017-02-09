@@ -281,6 +281,26 @@
             var button_id = "";
             var mediastate_id = "";
 
+            {% for vp in vps %}
+                {% for media in medias %}
+                    {% for tag in tags %}
+                        {% for value in values %}
+                            {% if value.media.id == media.id and value.tag.id == tag.id %}
+                                $(function(){
+                                    var input = $("#"+"input{{ media.id }}-{{ vp.id }}-{{ tag.id }}");
+                                    input.removeAttr("placeholder");
+                                    input.attr("value", {{ value.valValueEvaluated }});
+                                    var btn = $("#"+"{{ media.id }}-{{ vp.id }}-{{ tag.id }}");
+                                    $(btn).removeClass('btn-secondary').addClass('btn-success');
+                                    $(btn).removeClass('btn-danger').addClass('btn-success');
+                                });
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            {% endfor %}
+
+
             // Submit post on submit
             $('button').click(function(event){
                 event.preventDefault();
