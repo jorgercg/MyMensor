@@ -23,24 +23,23 @@
 $(function() {
 <script>
             var value_id = "";
-            var mediaid = 0;
-            var vpid = 0;
-            var tagid = 0;
-            var input_id = "";
             var button_id = "";
-            var mediastate_id = "";
 
-
-            // Submit post on submit
+            // Submit post on button click
             $('button').click(function(event){
                 event.preventDefault();
                 console.log("Button pressed:"+$(this).attr('id'));  // sanity check
                 value_id = $(this).attr('id');
                 button_id = "#"+value_id;
 
+                if (button_id=="#createbackup") {
+                    create_backup();
+                };
+                if (button_id=="#restorebackup") {
+                    restore_backup();
+                };
 
 
-                saving_value();
             });
 
             // AJAX for posting
@@ -49,21 +48,40 @@ $(function() {
                 $.ajax({
                     url : "create_backup/", // the endpoint
                     type : "POST", // http method
-                    data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
+                    //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
-                        //$('#post-text').val(''); // remove the value from the input
-                        $(button_id).removeClass('btn-secondary').addClass('btn-success');
+                        $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
                         $(button_id).removeClass('btn-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
-                        //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                        //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-secondary').addClass('btn-danger')
+                        $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                    }
+                });
+            };
+
+
+            function restore_backup() {
+                console.log("Restore backup was called!"); // sanity check
+                $.ajax({
+                    url : "restore_backup/", // the endpoint
+                    type : "POST", // http method
+                    //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
+                    // handle a successful response
+                    success : function(json) {
+                        $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
+                        $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+                    },
+                    // handle a non-successful response
+                    error : function(xhr,errmsg,err) {
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
                     }
                 });
             };

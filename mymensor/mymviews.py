@@ -536,20 +536,36 @@ def createdcicfgbackup(request):
 
 @login_required
 def restoredcicfgbackup(request):
-    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    s3Client = session.client('s3')
-    keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username+"_backup")
-    s3 = session.resource('s3')
-    bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
-    for key_to_backup in keys_to_backup['Contents']:
-        replace = request.user.username+"_backup"
-        withstring = request.user.username
-        newprefix,found,endpart = key_to_backup['Key'].partition(replace)
-        newprefix+=withstring+endpart
-        obj = bucket.Object(newprefix)
-        obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
-
+    if request.method == 'POST':
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username+"_backup")
+        s3 = session.resource('s3')
+        bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
+        try:
+            for key_to_backup in keys_to_backup['Contents']:
+                replace = request.user.username+"_backup"
+                withstring = request.user.username
+                newprefix,found,endpart = key_to_backup['Key'].partition(replace)
+                newprefix+=withstring+endpart
+                obj = bucket.Object(newprefix)
+                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+                return HttpResponse(
+                    json.dumps({"result": "backup_restored"}),
+                    content_type="application/json"
+                )
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+            return HttpResponse(
+                json.dumps({"error_code": error_code}),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+        json.dumps({"nothing": "nothing happened"}),
+        content_type="application/json"
+        )
 
 
 
