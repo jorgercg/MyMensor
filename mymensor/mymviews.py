@@ -19,7 +19,7 @@ from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
-from mymensor.mymfunctions import isfloat, strip_end
+from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
