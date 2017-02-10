@@ -34,32 +34,20 @@ $(function() {
             // Submit post on submit
             $('button').click(function(event){
                 event.preventDefault();
-                console.log("Saving Media-VP-Tag:"+$(this).attr('id'));  // sanity check
+                console.log("Button pressed:"+$(this).attr('id'));  // sanity check
                 value_id = $(this).attr('id');
-                input_id = "#input"+value_id;
                 button_id = "#"+value_id;
-                for (var i=0; i<value_id.length; i++){
-                    if (value_id.charAt(i)=="-") {
-                        mediaid=parseInt(value_id.slice(0,i));
-                        for (var j=(i+1); j<value_id.length; j++ ){
-                            if (value_id.charAt(j)=="-"){
-                                vpid=parseInt(value_id.slice(i+1,j));
-                                tagid=parseInt(value_id.slice(j+1));
-                                break;
-                            }
-                        }
-                    }
-                }
-                mediastate_id = "#mediastate"+mediaid;
-                console.log("Media-VP-Tag:"+mediaid+":"+vpid+":"+tagid); // sanity check
+
+
+
                 saving_value();
             });
 
             // AJAX for posting
-            function saving_value() {
-                console.log("Saving Value is working!"); // sanity check
+            function create_backup() {
+                console.log("Create backup was called!"); // sanity check
                 $.ajax({
-                    url : "save_value/", // the endpoint
+                    url : "create_backup/", // the endpoint
                     type : "POST", // http method
                     data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
                     // handle a successful response

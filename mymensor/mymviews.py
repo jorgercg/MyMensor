@@ -517,8 +517,21 @@ def createdcicfgbackup(request):
             backupinstance.backupDescription = "Manual user-requested backup"
             backupinstance.backupName = request.user.username + "_backup"
             backupinstance.save()
+            return HttpResponse(
+                json.dumps({"result": "backup_saved"}),
+                content_type="application/json"
+            )
         except ClientError as e:
             error_code = e.response['Error']['Code']
+            return HttpResponse(
+                json.dumps({"error_code": error_code}),
+                content_type="application/json"
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "nothing happened"}),
+            content_type="application/json"
+        )
 
 
 @login_required
