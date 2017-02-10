@@ -201,7 +201,7 @@ def createdcicfgbackup(request):
         newprefix,found,endpart = key_to_backup['Key'].partition(replace)
         newprefix+=withstring+endpart
         obj = bucket.Object(newprefix)
-        obj.copy_from(AWS_S3_BUCKET_NAME+key_to_backup['Key'])
+        obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+key_to_backup['Key'])
 
 
 
