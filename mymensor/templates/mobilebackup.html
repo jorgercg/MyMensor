@@ -46,6 +46,7 @@ $(function() {
             // AJAX for posting
             function create_backup() {
                 console.log("Create backup was called!"); // sanity check
+                $(button_id).text({% trans "Waiting..." %});
                 $.ajax({
                     url : "create_backup/", // the endpoint
                     type : "POST", // http method
@@ -68,6 +69,7 @@ $(function() {
 
             function restore_backup() {
                 console.log("Restore backup was called!"); // sanity check
+                $(button_id).text({% trans "Waiting..." %});
                 $.ajax({
                     url : "restore_backup/", // the endpoint
                     type : "POST", // http method

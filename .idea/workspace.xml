@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" afterPath="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,10 +44,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
+            <state relative-caret-position="338">
               <caret line="518" column="37" lean-forward="false" selection-start-line="518" selection-start-column="37" selection-end-line="518" selection-end-column="37" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
@@ -83,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mobilebackup.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mobilebackup.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/mobilebackup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="-91">
+              <caret line="71" column="60" lean-forward="false" selection-start-line="71" selection-start-column="60" selection-end-line="71" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -231,9 +231,9 @@
         <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
       </list>
     </option>
   </component>
@@ -727,13 +727,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01358" summary="09fev2017 11h33min">
-      <created>1486640762894</created>
-      <option name="number" value="01358" />
-      <option name="presentableId" value="LOCAL-01358" />
-      <option name="project" value="LOCAL" />
-      <updated>1486640762894</updated>
-    </task>
     <task id="LOCAL-01359" summary="09fev2017 11h33min">
       <created>1486640971672</created>
       <option name="number" value="01359" />
@@ -1070,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486760910602</updated>
     </task>
-    <option name="localTasksCounter" value="1407" />
+    <task id="LOCAL-01407" summary="10fev2017 21h28min">
+      <created>1486762107011</created>
+      <option name="number" value="01407" />
+      <option name="presentableId" value="LOCAL-01407" />
+      <option name="project" value="LOCAL" />
+      <updated>1486762107012</updated>
+    </task>
+    <option name="localTasksCounter" value="1408" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1144,7 +1144,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="08fev2017 17h58min" />
     <MESSAGE value="08fev2017 22h09min" />
     <MESSAGE value="08fev2017 22h41min" />
     <MESSAGE value="08fev2017 23h14min" />
@@ -1169,7 +1168,8 @@
     <MESSAGE value="10fev2017 20h21min" />
     <MESSAGE value="10fev2017 20h47min" />
     <MESSAGE value="10fev2017 21h02min" />
-    <option name="LAST_COMMIT_MESSAGE" value="10fev2017 21h02min" />
+    <MESSAGE value="10fev2017 21h28min" />
+    <option name="LAST_COMMIT_MESSAGE" value="10fev2017 21h28min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1499,14 +1499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/mobilebackup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="7" lean-forward="false" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -1517,11 +1509,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
+        <state relative-caret-position="338">
           <caret line="518" column="37" lean-forward="false" selection-start-line="518" selection-start-column="37" selection-end-line="518" selection-end-column="37" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/mobilebackup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-91">
+          <caret line="71" column="60" lean-forward="false" selection-start-line="71" selection-start-column="60" selection-end-line="71" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
