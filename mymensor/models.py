@@ -20,6 +20,11 @@ class Asset(models.Model):
     assetDciTolerancePosition = models.IntegerField(default=50)
     assetDciToleranceRotation = models.IntegerField(default=10)
 
+class MobileSetupBackup(models.Model):
+    backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    backupDescription = models.CharField(max_length=1024, null=True)
+    backupName = models.CharField(max_length=255, null=True)
+    backupDBTimeStamp = models.DateTimeField(auto_now_add=True)
 
 class Vp(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
