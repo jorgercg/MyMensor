@@ -14,7 +14,7 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
-import json, boto3
+import json, boto3, string
 from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
@@ -507,13 +507,10 @@ def createdcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                replace = "_backup"
-                withstring = ""
-                newprefix, found, endpart = key_to_backup['Key'].partition(replace)
-                newprefix += withstring + endpart
+                newkey = string.replace(key_to_backup['Key'],"_backup","")
                 replace = request.user.username
                 withstring = request.user.username+"_backup"
-                newprefix,found,endpart = key_to_backup['Key'].partition(replace)
+                newprefix,found,endpart = newkey.partition(replace)
                 newprefix+=withstring+endpart
                 obj = bucket.Object(newprefix)
                 obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
@@ -549,10 +546,10 @@ def restoredcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                newkey = key_to_backup['Key'].replace("_backup","")
-                replac = request.user.username+"_backup"
+                key_to_backup['Key'].replace("_backup","")
+                replace = request.user.username+"_backup"
                 withstring = request.user.username
-                newprefix,found,endpart = newkey.partition(replac)
+                newprefix,found,endpart = key_to_backup['Key'].partition(replace)
                 newprefix+=withstring+endpart
                 obj = bucket.Object(newprefix)
                 obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
