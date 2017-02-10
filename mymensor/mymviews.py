@@ -485,7 +485,7 @@ def tagAnalysisView(request):
                            'medias': medias})
 
 @login_required
-def mobukeBackupFormView(request):
+def mobileBackupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
