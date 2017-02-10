@@ -551,10 +551,10 @@ def restoredcicfgbackup(request):
                 newprefix+=withstring+endpart
                 obj = bucket.Object(newprefix)
                 obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
-                return HttpResponse(
-                    json.dumps({"result": "backup_restored"}),
-                    content_type="application/json"
-                )
+            return HttpResponse(
+                json.dumps({"result": "backup_restored"}),
+                content_type="application/json"
+            )
         except ClientError as e:
             error_code = e.response['Error']['Code']
             return HttpResponse(
