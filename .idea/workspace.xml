@@ -4,8 +4,6 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/dcidatasync.py" afterPath="$PROJECT_DIR$/mymensor/dcidatasync.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +56,28 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="tagprocessing.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/tagprocessing.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-60">
+              <caret line="143" column="44" lean-forward="false" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
+              <folding>
+                <element signature="n#if#5;n#!!top" expanded="false" />
+                <element signature="n#if#6;n#!!top" expanded="false" />
+                <element signature="n#if#7;n#!!top" expanded="false" />
+                <element signature="n#if#11;n#!!top" expanded="false" />
+                <element signature="n#if#12;n#!!top" expanded="false" />
+                <element signature="n#if#13;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="dcidatasync.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/dcidatasync.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="199" column="42" lean-forward="true" selection-start-line="199" selection-start-column="42" selection-end-line="199" selection-end-column="42" />
+            <state relative-caret-position="210">
+              <caret line="197" column="12" lean-forward="false" selection-start-line="197" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -209,8 +224,8 @@
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
-        <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
       </list>
     </option>
   </component>
@@ -704,13 +719,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01331" summary="08fev2017 22h41min">
-      <created>1486593698156</created>
-      <option name="number" value="01331" />
-      <option name="presentableId" value="LOCAL-01331" />
-      <option name="project" value="LOCAL" />
-      <updated>1486593698156</updated>
-    </task>
     <task id="LOCAL-01332" summary="08fev2017 22h41min">
       <created>1486594215983</created>
       <option name="number" value="01332" />
@@ -1047,7 +1055,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486722359086</updated>
     </task>
-    <option name="localTasksCounter" value="1380" />
+    <task id="LOCAL-01380" summary="10fev2017 10h21min">
+      <created>1486724568755</created>
+      <option name="number" value="01380" />
+      <option name="presentableId" value="LOCAL-01380" />
+      <option name="project" value="LOCAL" />
+      <updated>1486724568755</updated>
+    </task>
+    <option name="localTasksCounter" value="1381" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1441,21 +1456,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/tagprocessing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="143" column="44" lean-forward="false" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
-          <folding>
-            <element signature="n#if#5;n#!!top" expanded="false" />
-            <element signature="n#if#6;n#!!top" expanded="false" />
-            <element signature="n#if#7;n#!!top" expanded="false" />
-            <element signature="n#if#11;n#!!top" expanded="false" />
-            <element signature="n#if#12;n#!!top" expanded="false" />
-            <element signature="n#if#13;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1490,10 +1490,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/tagprocessing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="143" column="44" lean-forward="false" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
+          <folding>
+            <element signature="n#if#5;n#!!top" expanded="false" />
+            <element signature="n#if#6;n#!!top" expanded="false" />
+            <element signature="n#if#7;n#!!top" expanded="false" />
+            <element signature="n#if#11;n#!!top" expanded="false" />
+            <element signature="n#if#12;n#!!top" expanded="false" />
+            <element signature="n#if#13;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/dcidatasync.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="199" column="42" lean-forward="true" selection-start-line="199" selection-start-column="42" selection-end-line="199" selection-end-column="42" />
+        <state relative-caret-position="210">
+          <caret line="197" column="12" lean-forward="false" selection-start-line="197" selection-start-column="12" selection-end-line="197" selection-end-column="12" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>

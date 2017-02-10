@@ -193,9 +193,9 @@ def createdcicfgbackup(request):
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3Client = session.client('s3')
     paginator = s3Client.get_paginator('list_objects')
-    result = paginator.paginate(Bucket=AWS_S3_BUCKET_NAME, Delimiter='/')
-    for prefix in result.search('CommonPrefixes'):
-        keys_to_backup = prefix.get(request.user.username)
+    for result in paginator.paginate(Bucket=AWS_S3_BUCKET_NAME, Delimiter='/'):
+        for prefix in result.get('CommonPrefixes'):
+            keys_to_backup = prefix.get(request.user.username)
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
     for key_to_backup in keys_to_backup:
