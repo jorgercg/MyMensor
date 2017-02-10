@@ -198,7 +198,7 @@ def createdcicfgbackup(request):
     for key_to_backup in keys_to_backup['Contents']:
         replace = request.user.username
         withstring = request.user.username+"_backup"
-        newprefix,found,endpart = key_to_backup[1].partition(replace)
+        newprefix,found,endpart = key_to_backup['Key'].partition(replace)
         newprefix+=withstring+endpart
         obj = bucket.Object(newprefix)
         obj.copy_from(AWS_S3_BUCKET_NAME+key_to_backup)
