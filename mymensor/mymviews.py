@@ -507,6 +507,10 @@ def createdcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
+                replace = "_backup"
+                withstring = ""
+                newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                newprefix += withstring + endpart
                 replace = request.user.username
                 withstring = request.user.username+"_backup"
                 newprefix,found,endpart = key_to_backup['Key'].partition(replace)
