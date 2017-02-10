@@ -10,9 +10,9 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatusTable
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatusTable, MobileSetupBackup
 from mymensor.serializer import AmazonSNSNotificationSerializer
-from mymensor.dcidatasync import loaddcicfg, writedcicfg, createdcicfgbackup
+from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 import json, boto3
 from botocore.exceptions import ClientError
@@ -491,9 +491,52 @@ def mobileBackupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
 
-    createdcicfgbackup(request)
+    backupinstance = MobileSetupBackup.objects.filter(backupOwner=request.user).filter(backupName=request.user.username + "_backup").order_by('backupDBTimeStamp').last()
 
-    return render(request, 'mobilebackup.html')
+    return render(request, 'mobilebackup.html', { 'backupinstance':backupinstance })
+
+
+@login_required
+def createdcicfgbackup(request):
+    if request.method == 'POST':
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username)
+        s3 = session.resource('s3')
+        bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
+        try:
+            for key_to_backup in keys_to_backup['Contents']:
+                replace = request.user.username
+                withstring = request.user.username+"_backup"
+                newprefix,found,endpart = key_to_backup['Key'].partition(replace)
+                newprefix+=withstring+endpart
+                obj = bucket.Object(newprefix)
+                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+            backupinstance = MobileSetupBackup(backupOwner=request.user)
+            backupinstance.backupDescription = "Manual user-requested backup"
+            backupinstance.backupName = request.user.username + "_backup"
+            backupinstance.save()
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+
+
+@login_required
+def restoredcicfgbackup(request):
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3Client = session.client('s3')
+    keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username+"_backup")
+    s3 = session.resource('s3')
+    bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
+    for key_to_backup in keys_to_backup['Contents']:
+        replace = request.user.username+"_backup"
+        withstring = request.user.username
+        newprefix,found,endpart = key_to_backup['Key'].partition(replace)
+        newprefix+=withstring+endpart
+        obj = bucket.Object(newprefix)
+        obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+
 
 
 

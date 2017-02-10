@@ -70,6 +70,10 @@ urlpatterns = [
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
 
+    url(r'^mobilebackup/create_backup/', mymviews.createdcicfgbackup, name='create_backup'),
+
+    url(r'^mobilebackup/restore_backup/', mymviews.restoredcicfgbackup, name='restore_backup'),
+
     url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view()), name='tag_status'),
 
 ]

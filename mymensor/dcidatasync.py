@@ -188,22 +188,6 @@ def writedcicfg(request):
 
 
 
-def createdcicfgbackup(request):
-    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    s3Client = session.client('s3')
-    keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username)
-    s3 = session.resource('s3')
-    bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
-    for key_to_backup in keys_to_backup['Contents']:
-        replace = request.user.username
-        withstring = request.user.username+"_backup"
-        newprefix,found,endpart = key_to_backup['Key'].partition(replace)
-        newprefix+=withstring+endpart
-        obj = bucket.Object(newprefix)
-        obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
-
-
 
 
 
