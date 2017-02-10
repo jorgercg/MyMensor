@@ -520,18 +520,21 @@ def createdcicfgbackup(request):
             backupinstance.save()
             return HttpResponse(
                 json.dumps({"result": "backup_saved"}),
-                content_type="application/json"
+                content_type="application/json",
+                status=200
             )
         except ClientError as e:
             error_code = e.response['Error']['Code']
             return HttpResponse(
                 json.dumps({"error_code": error_code}),
-                content_type="application/json"
+                content_type="application/json",
+                status=400
             )
     else:
         return HttpResponse(
             json.dumps({"nothing": "nothing happened"}),
-            content_type="application/json"
+            content_type="application/json",
+            status=400
         )
 
 
@@ -555,18 +558,21 @@ def restoredcicfgbackup(request):
                 obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
             return HttpResponse(
                 json.dumps({"result": "backup_restored"}),
-                content_type="application/json"
+                content_type="application/json",
+                status=200
             )
         except ClientError as e:
             error_code = e.response['Error']['Code']
             return HttpResponse(
                 json.dumps({"error_code": error_code}),
-                content_type="application/json"
+                content_type="application/json",
+                status=400
             )
     else:
         return HttpResponse(
         json.dumps({"nothing": "nothing happened"}),
-        content_type="application/json"
+        content_type="application/json",
+        status=400
         )
 
 
