@@ -12,7 +12,7 @@
     <br>
     <button id="createbackup" type="button" class="btn btn-outline-primary">"{% trans "Create Backup" %}"</button>
     {% else %}
-    <p>"{% trans "Current backup of the mobile configuration setup for this account was made on" %}"</p>
+    <p>"{% trans "Current backup of the mobile configuration setup for this account was made on " %}"{{ backupinstance.backupDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</p>
     <br>
     <button id="createbackup" type="button" class="btn btn-outline-primary">"{% trans "Create Backup" %}"</button>
     <br>
@@ -20,8 +20,8 @@
     {% endif %}
 {% endblock %}
 {% block javascript %}
-$(function() {
 <script>
+$(function() {
             var value_id = "";
             var button_id = "";
 
