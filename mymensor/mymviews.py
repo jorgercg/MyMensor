@@ -507,17 +507,17 @@ def createdcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                newkey = string.replace(key_to_backup['Key'],"_backup","")
-                replace = request.user.username
-                withstring = request.user.username+"_backup"
-                newprefix,found,endpart = newkey.partition(replace)
-                newprefix+=withstring+endpart
-                obj = bucket.Object(newprefix)
-                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
-            backupinstance = MobileSetupBackup(backupOwner=request.user)
-            backupinstance.backupDescription = "Manual user-requested backup"
-            backupinstance.backupName = request.user.username + "_backup"
-            backupinstance.save()
+                if "_backup" not in key_to_backup['Key']:
+                    replace = request.user.username
+                    withstring = request.user.username+"_backup"
+                    newprefix,found,endpart = key_to_backup['Key'].partition(replace)
+                    newprefix+=withstring+endpart
+                    obj = bucket.Object(newprefix)
+                    obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+                backupinstance = MobileSetupBackup(backupOwner=request.user)
+                backupinstance.backupDescription = "Manual user-requested backup"
+                backupinstance.backupName = request.user.username + "_backup"
+                backupinstance.save()
             return HttpResponse(
                 json.dumps({"result": "backup_saved"}),
                 content_type="application/json",
@@ -549,7 +549,6 @@ def restoredcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                key_to_backup['Key'].replace("_backup","")
                 replace = request.user.username+"_backup"
                 withstring = request.user.username
                 newprefix,found,endpart = key_to_backup['Key'].partition(replace)
