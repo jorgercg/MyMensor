@@ -19,7 +19,7 @@ from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
-from mymensor.mymfunctions import isfloat
+from mymensor.mymfunctions import isfloat, strip_end
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 
@@ -549,6 +549,7 @@ def restoredcicfgbackup(request):
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
+                key_to_backup['Key'].replace("_backup","")
                 replace = request.user.username+"_backup"
                 withstring = request.user.username
                 newprefix,found,endpart = key_to_backup['Key'].partition(replace)

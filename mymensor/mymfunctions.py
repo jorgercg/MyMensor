@@ -43,5 +43,3 @@ def update_tagstatustable_row(sender, instance, **kwargs):
 
 
 
-
-
