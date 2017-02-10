@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
+    url(r'^mobilebackup/$', mymviews.mobileBackupFormView, name='mobilebackup'),
 
     url(r'^landing/$', mymviews.landingView, name='landing'),
 

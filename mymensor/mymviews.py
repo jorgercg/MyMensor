@@ -484,7 +484,12 @@ def tagAnalysisView(request):
                            'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
                            'medias': medias})
 
-
+@login_required
+def mobukeBackupFormView(request):
+    try:
+        loaddcicfg(request)
+    except ClientError as e:
+        error_code = e.response['Error']['Code']
 
 
 
