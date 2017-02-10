@@ -195,10 +195,10 @@ def createdcicfgbackup(request):
     keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username)
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
-    for key_to_backup in keys_to_backup[1]:
+    for key_to_backup in keys_to_backup['Contents']:
         replace = request.user.username
         withstring = request.user.username+"_backup"
-        newprefix,found,endpart = key_to_backup['Contents']['Key'].partition(replace)
+        newprefix,found,endpart = key_to_backup[1].partition(replace)
         newprefix+=withstring+endpart
         obj = bucket.Object(newprefix)
         obj.copy_from(AWS_S3_BUCKET_NAME+key_to_backup)
