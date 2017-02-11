@@ -574,8 +574,15 @@ def restoredcicfgbackup(request):
         status=400
         )
 
-
-
+@login_required
+def tagsprocessedinthismedia(request):
+    if request.method == 'POST':
+        pass
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json"
+        )
 
 
 
