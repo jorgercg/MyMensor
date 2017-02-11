@@ -221,7 +221,8 @@
             $('span').click(function(event){
                 event.preventDefault();
                 console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                span_id = $(this).attr('id');
+                span_id = $(this).attr('id').replace('processed','');
+                console.log("Clicked on:"+span_id);  // sanity check
                 /*
                 for (var i=0; i<value_id.length; i++){
                     if (value_id.charAt(i)=="-") {
