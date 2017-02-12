@@ -33,7 +33,7 @@
                                     <div class="card-header text-primary">
                                        <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
-                                                <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed' %}"></span>
+                                                <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
                                                 <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% endif %}
@@ -86,7 +86,7 @@
                                     <div class="card-header text-primary">
                                         <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
-                                                <span id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed' %}"></span>
+                                                <span id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
                                                 <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                             {% endif %}
@@ -208,14 +208,8 @@
 
         $(function() {
 
-            var value_id = "";
             var mediaid = 0;
-            var vpid = 0;
-            var tagid = 0;
-            var input_id = "";
             var button_id = "";
-            var mediastate_id = "";
-
 
             // Submit post on submit
             $('span').click(function(event){
@@ -230,7 +224,7 @@
             function mediaid_sendvalue() {
                 console.log("mediaid_sendvalue was called!"); // sanity check
                 $.ajax({
-                    url : "mediaid_sendvalue/", // the endpoint
+                    url : "pf_mediaid_sendvalue/", // the endpoint
                     type : "POST", // http method
                     data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
