@@ -76,8 +76,8 @@ urlpatterns = [
 
     url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view()), name='tag_status'),
 
-    url(r'^portfolio/mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
+    url(r'^portfolio/pf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
 
-    url(r'^mediafeed/mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
+    url(r'^mediafeed/mf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
 
 ]
