@@ -213,6 +213,8 @@
             // Submit post on submit
             $('span').click(function(event){
                 event.preventDefault();
+                var spanclicked = $(this).attr('id');
+                console.log("Teste:"+spanclicked.lastIndexOf('processed', 0));
                 console.log("Clicked on:"+$(this).attr('id'));  // sanity check
                 mediaid = $(this).attr('id').replace('processed','');
                 console.log("Clicked on:"+mediaid);  // sanity check
@@ -301,7 +303,22 @@
 
         });
 
+        $(function(){
+            var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], 13);
 
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+
+            var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: {{ locprecisioninm }}
+            }).addTo(mymap);
+        });
 
 
 
