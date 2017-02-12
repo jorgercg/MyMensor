@@ -581,7 +581,7 @@ def tagsprocessedinthismedia(request):
         mediainstance = Media.objects.get(pk=mediaid)
         listoftags = ProcessedTag.objects.filter(media=mediainstance).values('tag')
         return HttpResponse(
-            json.dumps({"result": list(listoftags)}),
+            {"result": list(listoftags)},
             content_type="application/json",
             status=200
         )
