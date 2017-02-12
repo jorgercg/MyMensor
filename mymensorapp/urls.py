@@ -80,4 +80,8 @@ urlpatterns = [
 
     url(r'^mediafeed/mf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
 
+    url(r'^portfolio/pf_mediaid_sendvalue_loc/', mymviews.locofthismedia, name='pf_mediaid_sendvalue_loc'),
+
+    url(r'^mediafeed/mf_mediaid_sendvalue_loc/', mymviews.locofthismedia, name='mf_mediaid_sendvalue_loc'),
+
 ]

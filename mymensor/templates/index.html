@@ -149,6 +149,16 @@
             <hr>
             {% endfor %}
         </div>
+        <!-- Modal to Mapss -->
+        <div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-body">
+                  <div id="modalmapid"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- Django Instant client engine
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         {% include "mymclient.html" %}
@@ -192,6 +202,7 @@
             });
 
         });
+
         $(function(){
             console.log({{ qtypervp }});
             var $select = $('.1-100');
@@ -250,7 +261,6 @@
                 });
             };
 
-
             // This function gets cookie with a given name
             function getCookie(name) {
                 var cookieValue = null;
@@ -305,7 +315,6 @@
         });
 
 
-
         $(function(){
 
             var mediaid = 0;
@@ -318,28 +327,29 @@
                     console.log("Clicked on:"+spanclicked);  // sanity check
                     mediaid = spanclicked.replace('location','');
                     console.log("Clicked on:"+mediaid);  // sanity check
-                    mediaid_sendvalue();
+                    mediaid_sendvalue_loc();
                 }
             });
 
             // AJAX for posting
-            function mediaid_sendvalue() {
-                console.log("mediaid_sendvalue was called!"); // sanity check
+            function mediaid_sendvalue_loc() {
+                console.log("mediaid_sendvalue_loc was called!"); // sanity check
                 $.ajax({
-                    url : "pf_mediaid_sendvalue/", // the endpoint
+                    url : "pf_mediaid_sendvalue_loc/", // the endpoint
                     type : "POST", // http method
                     data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
-                        var output = {% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}';
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-                        for (i=0; i < json.result.length; i++) {
-                            var tag_i = json.result[i].statusTagNumber;
-                            output += "&tagsselected=" + tag_i;
-                        }
-                        console.log("call:"+output);
-                        window.location=output;
+
+                        /*
+                        $('#mapModal').modal();
+                        $('#mapModal').modal('show');
+                        $('#mapModal').on('shown.bs.modal', function () {
+                            draw_map(loclatitude, loclongitude, locprecisioninm);
+                        });
+                        */
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
@@ -404,7 +414,7 @@
 
 
             function draw_map(loclatitude, loclongitude, locprecisioninm) {
-                var mymap = L.map('landingmapid').setView([ loclatitude, loclongitude], 13);
+                var mymap = L.map('modalmapid').setView([ loclatitude, loclongitude], 13);
 
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -421,7 +431,6 @@
             }
 
         });
-
 
         </script>
     {% endblock %}

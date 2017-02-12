@@ -589,7 +589,22 @@ def tagsprocessedinthismedia(request):
             status=400
         )
 
-
+@login_required
+def locofthismedia(request):
+    if request.method == 'POST':
+        mediaid = int(request.POST.get('mediaid'))
+        mediainstance = Media.objects.get(pk=mediaid)
+        return HttpResponse(
+            json.dumps({'mediaLatitude': mediainstance.mediaLatitude, 'mediaLongitude': mediainstance.mediaLongitude, 'mediaLocPrecisionInMeters': mediainstance.mediaLocPrecisionInMeters}),
+            content_type="application/json",
+            status=200
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
 
 
 
