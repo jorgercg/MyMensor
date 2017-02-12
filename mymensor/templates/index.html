@@ -318,6 +318,9 @@
         $(function(){
 
             var mediaid = 0;
+            var loclatitude = 0;
+            var loclongitude = 0;
+            var locprecisioninm = 0;
 
             // Submit post on submit
             $('span').click(function(event){
@@ -342,14 +345,14 @@
                     success : function(json) {
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-
-                        /*
+                        loclatitude = json.mediaLatitude;
+                        loclongitude = json.mediaLongitude;
+                        locprecisioninm = json.mediaLocPrecisionInMeters;
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
                         $('#mapModal').on('shown.bs.modal', function () {
                             draw_map(loclatitude, loclongitude, locprecisioninm);
                         });
-                        */
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
