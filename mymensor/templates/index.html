@@ -209,7 +209,6 @@
         $(function() {
 
             var mediaid = 0;
-            var button_id = "";
 
             // Submit post on submit
             $('span').click(function(event){
@@ -244,7 +243,6 @@
                         //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                         //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-secondary').addClass('btn-danger')
                     }
                 });
             };

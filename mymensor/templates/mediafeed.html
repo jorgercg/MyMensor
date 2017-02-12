@@ -16,7 +16,7 @@
                         {% endif %}
                         {% endfor %}
                                 {% if media.mediaProcessed %}
-                                    <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                    <span role="button"  id="processed{{ media.id }}@{{ media.mediaTimeStamp | date:"Y-b-d" }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                 {% else %}
                                     <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% endif %}
@@ -142,15 +142,25 @@
         $(function() {
 
             var mediaid = 0;
+            var mediatime = "";
             var button_id = "";
 
             // Submit post on submit
             $('span').click(function(event){
                 event.preventDefault();
                 console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                mediaid = $(this).attr('id').replace('processed','');
-                console.log("Clicked on:"+mediaid);  // sanity check
-                mediaid_sendvalue();
+                button_id = $(this).attr('id').replace('processed','');
+                for (var i=0; i<button_id.length; i++){
+                    if (button_id.charAt(i)=="@") {
+                        mediaid=parseInt(button_id.slice(0,i));
+                        mediatime=button_id.slice(i+1);
+                        break;
+                    }
+                }
+
+
+                console.log("Clicked on:"+mediaid+" mediatime="+mediatime);  // sanity check
+                //mediaid_sendvalue();
             });
 
             // AJAX for posting
@@ -177,7 +187,6 @@
                         //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                         //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-secondary').addClass('btn-danger')
                     }
                 });
             };
