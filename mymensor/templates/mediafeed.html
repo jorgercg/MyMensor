@@ -144,6 +144,7 @@
             var mediaid = 0;
             var mediatime = "";
             var button_id = "";
+            var starttime ="";
 
             // Submit post on submit
             $('span').click(function(event){
@@ -157,9 +158,8 @@
                         break;
                     }
                 }
-
-
-                console.log("Clicked on:"+mediaid+" mediatime="+mediatime);  // sanity check
+                starttime = moment(mediatime).subtract(29, 'days').format('YYYY-MM-DD')
+                console.log("Clicked on:"+mediaid+" mediatime="+mediatime+" starttime="+starttime);  // sanity check
                 //mediaid_sendvalue();
             });
 
