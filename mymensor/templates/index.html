@@ -221,41 +221,24 @@
             $('span').click(function(event){
                 event.preventDefault();
                 console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                span_id = $(this).attr('id').replace('processed','');
+                mediaid = $(this).attr('id').replace('processed','');
                 console.log("Clicked on:"+span_id);  // sanity check
-                /*
-                for (var i=0; i<value_id.length; i++){
-                    if (value_id.charAt(i)=="-") {
-                        mediaid=parseInt(value_id.slice(0,i));
-                        for (var j=(i+1); j<value_id.length; j++ ){
-                            if (value_id.charAt(j)=="-"){
-                                vpid=parseInt(value_id.slice(i+1,j));
-                                tagid=parseInt(value_id.slice(j+1));
-                                break;
-                            }
-                        }
-                    }
-                }
-                mediastate_id = "#mediastate"+mediaid;
-                console.log("Media-VP-Tag:"+mediaid+":"+vpid+":"+tagid); // sanity check
-                saving_value();
-                */
+                mediaid_sendvalue();
             });
 
             // AJAX for posting
-            function saving_value() {
-                console.log("Saving Value is working!"); // sanity check
+            function mediaid_sendvalue() {
+                console.log("mediaid_sendvalue was called!"); // sanity check
                 $.ajax({
-                    url : "save_value/", // the endpoint
+                    url : "mediaid_sendvalue/", // the endpoint
                     type : "POST", // http method
-                    data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
+                    data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
                         //$('#post-text').val(''); // remove the value from the input
-                        $(button_id).removeClass('btn-secondary').addClass('btn-success');
-                        $(button_id).removeClass('btn-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
+                        
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
