@@ -580,7 +580,7 @@ def tagsprocessedinthismedia(request):
         mediaid = int(request.POST.get('mediaid'))
         mediainstance = Media.objects.get(pk=mediaid)
         listoftagsinaprocessedtag = ProcessedTag.objects.filter(media=mediainstance)
-        listoftags = Tag.objects.filter(pk=listoftagsinaprocessedtag)
+        listoftags = Tag.objects.filter(pk__in=listoftagsinaprocessedtag)
         listoftagsnumbers = listoftags.values('tagNumber')
         return JsonResponse({'result': list(listoftagsnumbers)})
     else:
