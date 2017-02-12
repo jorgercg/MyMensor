@@ -235,7 +235,7 @@
                     data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
-                        var output = "startend";
+                        var output = {% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}';
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                         for (i=0; i < json.result.length; i++) {
@@ -243,6 +243,7 @@
                             output += "&tagselected=" + tag_i;
                         }
                         console.log("call:"+output);
+                        window.location=output;
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
