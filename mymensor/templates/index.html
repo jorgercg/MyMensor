@@ -236,7 +236,7 @@
                     // handle a successful response
                     success : function(json) {
                         //$('#post-text').val(''); // remove the value from the input
-                        respobj = JSON.parse(json);
+                        var respobj = JSON.parse(json);
                         console.log(respobj); // log the returned json to the console
                         console.log("success"); // another sanity check
                         
