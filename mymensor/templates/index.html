@@ -235,10 +235,14 @@
                     data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
-                        //$('#post-text').val(''); // remove the value from the input
+                        var output = "startend";
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-                        
+                        for (i=0; i < json.result.length; i++) {
+                            var tag_i = json.result[i];
+                            output += "&tagselected=" + tag_i;
+                        }
+                        console.log("call:"+output);
                     },
                     // handle a non-successful response
                     error : function(xhr,errmsg,err) {
