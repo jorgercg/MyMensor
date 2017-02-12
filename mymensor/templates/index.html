@@ -215,8 +215,8 @@
                 event.preventDefault();
                 var spanclicked = $(this).attr('id');
                 if (spanclicked.lastIndexOf('processed', 0) === 0) {
-                    console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                    mediaid = $(this).attr('id').replace('processed','');
+                    console.log("Clicked on:"+spanclicked);  // sanity check
+                    mediaid = spanclicked.replace('processed','');
                     console.log("Clicked on:"+mediaid);  // sanity check
                     mediaid_sendvalue();
                 }
@@ -315,8 +315,8 @@
                 event.preventDefault();
                 var spanclicked = $(this).attr('id');
                 if (spanclicked.lastIndexOf('location', 0) === 0) {
-                    console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                    mediaid = $(this).attr('id').replace('location','');
+                    console.log("Clicked on:"+spanclicked);  // sanity check
+                    mediaid = spanclicked.replace('location','');
                     console.log("Clicked on:"+mediaid);  // sanity check
                     mediaid_sendvalue();
                 }
