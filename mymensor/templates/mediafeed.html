@@ -16,7 +16,7 @@
                         {% endif %}
                         {% endfor %}
                                 {% if media.mediaProcessed %}
-                                    <span role="button"  id="processed{{ media.id }}@{{ media.mediaTimeStamp | date:"Y-b-d" }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                    <span role="button"  id="processed{{ media.id }}@{{ media.mediaTimeStamp | date:"Y-m-d" }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                 {% else %}
                                     <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
                                 {% endif %}
