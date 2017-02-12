@@ -579,7 +579,7 @@ def tagsprocessedinthismedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
         mediainstance = Media.objects.get(pk=mediaid)
-        listoftags = ProcessedTag.objects.filter(media__vp_asset__assetOwner=request.user, media=mediainstance).values('tag')
+        listoftags = ProcessedTag.objects.filter(media=mediainstance).values('tag')
         return HttpResponse(
             json.dumps(listoftags),
             content_type="application/json",
