@@ -160,7 +160,7 @@
                 }
                 starttime = moment(mediatime).subtract(29, 'days').format('YYYY-MM-DD')
                 console.log("Clicked on:"+mediaid+" mediatime="+mediatime+" starttime="+starttime);  // sanity check
-                //mediaid_sendvalue();
+                mediaid_sendvalue();
             });
 
             // AJAX for posting
@@ -172,7 +172,7 @@
                     data : { mediaid:mediaid }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
-                        var output = {% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}';
+                        var output = {% url 'taganalysis' %}+'?startdate='+starttime+'&enddate='+mediatime;
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                         for (i=0; i < json.result.length; i++) {
