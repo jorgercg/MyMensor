@@ -149,18 +149,21 @@
             // Submit post on submit
             $('span').click(function(event){
                 event.preventDefault();
-                console.log("Clicked on:"+$(this).attr('id'));  // sanity check
-                button_id = $(this).attr('id').replace('processed','');
-                for (var i=0; i<button_id.length; i++){
-                    if (button_id.charAt(i)=="@") {
-                        mediaid=parseInt(button_id.slice(0,i));
-                        mediatime=button_id.slice(i+1);
-                        break;
+                var spanclicked = $(this).attr('id');
+                if (spanclicked.lastIndexOf('processed', 0) === 0) {
+                    console.log("Clicked on:"+$(this).attr('id'));  // sanity check
+                    button_id = $(this).attr('id').replace('processed','');
+                    for (var i=0; i<button_id.length; i++){
+                        if (button_id.charAt(i)=="@") {
+                            mediaid=parseInt(button_id.slice(0,i));
+                            mediatime=button_id.slice(i+1);
+                            break;
+                        }
                     }
+                    starttime = moment(mediatime).subtract(29, 'days').format('YYYY-MM-DD')
+                    console.log("Clicked on:"+mediaid+" mediatime="+mediatime+" starttime="+starttime);  // sanity check
+                    mediaid_sendvalue();
                 }
-                starttime = moment(mediatime).subtract(29, 'days').format('YYYY-MM-DD')
-                console.log("Clicked on:"+mediaid+" mediatime="+mediatime+" starttime="+starttime);  // sanity check
-                mediaid_sendvalue();
             });
 
             // AJAX for posting
