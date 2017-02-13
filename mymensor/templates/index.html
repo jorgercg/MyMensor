@@ -353,9 +353,7 @@
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
                         $('#mapModal').on('shown.bs.modal', function(){
-                            setTimeout(function() {
-                                map.invalidateSize();
-                            }, 1);
+                            map.invalidateSize(true);
                         });
                     },
                     // handle a non-successful response
