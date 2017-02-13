@@ -631,9 +631,7 @@ def vpDetailView(request):
             recalcstart = recalcend - timedelta(days=29)
             startdateformatted = recalcstart.strftime('%Y-%m-%d')
             enddateformatted = recalcend.strftime('%Y-%m-%d')
-            mediaspks = medias.values_list('id', flat=True)
-            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
-                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by(
                 'vpNumber').distinct()
         else:
             mediaspks = medias.values_list('id', flat=True)
