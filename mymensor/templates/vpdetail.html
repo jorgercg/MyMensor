@@ -14,8 +14,7 @@
                     </div>
                 </div>
                 <div id="vpselector" class="dashhead-toolbar-item">
-                    <p>{% trans 'VP# ' %}</p>
-                    <select id="vpselected" name="vpselected">
+                    <select id="vpselected" data-placeholder="{% trans 'Choose VP... ' %}" name="vpselected">
                     {% for vpnumber in listofmediavpsnumbers %}
                         <option id="optionvp{{ vpnumber }}"
                                 value='{{ vpnumber }}'
@@ -24,8 +23,7 @@
                     </select>
                 </div>
                 <div id="mediaselector" class="dashhead-toolbar-item">
-                    <p>{% trans 'Show media from ' %}</p>
-                    <select id="mediaselected" name="mediaselected">
+                    <select id="mediaselected" data-placeholder="{% trans 'Show media from... ' %}" name="mediaselected">
                     {% for media in medias %}
                         <option id="optionmedia{{ media.id }}"
                                 value='{{ media.id }}'
