@@ -352,10 +352,10 @@
                         draw_map(loclatitude, loclongitude, locprecisioninm);
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
-                        $('#mapModal').on('show.bs.modal', function(){
+                        $('#mapModal').on('shown.bs.modal', function(){
                             setTimeout(function() {
                                 map.invalidateSize();
-                            }, 10);
+                            }, 1);
                         });
                     },
                     // handle a non-successful response
