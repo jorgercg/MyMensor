@@ -349,11 +349,12 @@
                         loclatitude = json.mediaLatitude;
                         loclongitude = json.mediaLongitude;
                         locprecisioninm = json.mediaLocPrecisionInMeters;
-                        draw_map(loclatitude, loclongitude, locprecisioninm);
+
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
                         $('#mapModal').on('show.bs.modal', function(){
                             setTimeout(function() {
+                                draw_map(loclatitude, loclongitude, locprecisioninm);
                                 map.invalidateSize();
                             }, 20);
                         });
