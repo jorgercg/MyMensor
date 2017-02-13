@@ -15,10 +15,10 @@
                 </div>
                 <div id="vpselector" class="dashhead-toolbar-item">
                     <select id="vpselected" data-placeholder="{% trans 'Choose VP... ' %}" name="vpselected">
-                    {% for vpnumber in listofmediavpsnumbers %}
-                        <option id="optionvp{{ vpnumber }}"
-                                value='{{ vpnumber }}'
-                                {% if vpnumber == vpselected %}selected{% endif %}>VP#{{ vpnumber }}</option>
+                    {% for vp in vps %}
+                        <option id="optionvp{{ vp.vpNumber }}"
+                                value='{{ vp.vpNumber }}'
+                                {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                     {% endfor %}
                     </select>
                 </div>

@@ -632,13 +632,13 @@ def vpDetailView(request):
             startdateformatted = recalcstart.strftime('%Y-%m-%d')
             enddateformatted = recalcend.strftime('%Y-%m-%d')
             mediaspks = medias.values_list('id', flat=True)
-            listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(
                 asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
-                vpIsActive=True).order_by('vpNumber').distinct().values_list('vpNumber', flat=True)
+                vpIsActive=True).order_by('vpNumber').distinct()
             mediaselected = medias.first().pk
         else:
             mediaspks = medias.values_list('id', flat=True)
-            listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by('vpNumber').distinct().values_list('vpNumber', flat=True)
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by('vpNumber').distinct()
             if mediaselected == 0:
                 mediaselected = medias.first().pk
             if mediaselected not in mediaspks:
@@ -650,7 +650,7 @@ def vpDetailView(request):
                                                                     ExpiresIn=3600)
 
         return render(request, 'vpdetail.html',{'vpselected': vpselected,
-                                                'listofmediavpsnumbers': listofmediavpsnumbers,
+                                                'vps': vps,
                                                 'mediaselected': mediaselected,
                                                 'start': startdateformatted,
                                                 'end': enddateformatted,
