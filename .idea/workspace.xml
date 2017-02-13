@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/vpdetail.html" afterPath="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +44,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="431">
@@ -56,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2407">
-              <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+            <state relative-caret-position="374">
+              <caret line="175" column="25" lean-forward="false" selection-start-line="175" selection-start-column="25" selection-end-line="175" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -188,9 +188,9 @@
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
       </list>
     </option>
   </component>
@@ -706,13 +706,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01422" summary="12fev2017 18h38min">
-      <created>1486924949319</created>
-      <option name="number" value="01422" />
-      <option name="presentableId" value="LOCAL-01422" />
-      <option name="project" value="LOCAL" />
-      <updated>1486924949319</updated>
-    </task>
     <task id="LOCAL-01423" summary="12fev2017 18h38min">
       <created>1486925825487</created>
       <option name="number" value="01423" />
@@ -1049,7 +1042,14 @@
       <option name="project" value="LOCAL" />
       <updated>1486985361034</updated>
     </task>
-    <option name="localTasksCounter" value="1471" />
+    <task id="LOCAL-01471" summary="13fev2017 11h31min">
+      <created>1486985473486</created>
+      <option name="number" value="01471" />
+      <option name="presentableId" value="LOCAL-01471" />
+      <option name="project" value="LOCAL" />
+      <updated>1486985473486</updated>
+    </task>
+    <option name="localTasksCounter" value="1472" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1123,7 +1123,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="10fev2017 21h28min" />
     <MESSAGE value="10fev2017 21h46min" />
     <MESSAGE value="10fev2017 21h54min" />
     <MESSAGE value="11fev2017 21h12min" />
@@ -1148,7 +1147,8 @@
     <MESSAGE value="13fev2017 10h47min" />
     <MESSAGE value="13fev2017 11h24min" />
     <MESSAGE value="13fev2017 11h29min" />
-    <option name="LAST_COMMIT_MESSAGE" value="13fev2017 11h29min" />
+    <MESSAGE value="13fev2017 11h31min" />
+    <option name="LAST_COMMIT_MESSAGE" value="13fev2017 11h31min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1479,16 +1479,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2407">
-          <caret line="23" column="29" lean-forward="false" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
@@ -1503,6 +1493,16 @@
           <caret line="640" column="72" lean-forward="true" selection-start-line="640" selection-start-column="72" selection-end-line="640" selection-end-column="72" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="175" column="25" lean-forward="false" selection-start-line="175" selection-start-column="25" selection-end-line="175" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
