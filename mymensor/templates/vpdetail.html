@@ -16,18 +16,14 @@
                 <div id="vpselector" class="dashhead-tagsmultiselect-item">
                     <select id="vpselected" data-placeholder="{% trans 'Choose VP... ' %}" name="vpselected">
                     {% for vp in vps %}
-                        <option id="optionvp{{ vp.vpNumber }}"
-                                value='{{ vp.vpNumber }}'
-                                {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                        <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                     {% endfor %}
                     </select>
                 </div>
                 <div id="mediaselector" class="dashhead-toolbar-item">
                     <select id="mediaselected" data-placeholder="{% trans 'Show media from... ' %}" name="mediaselected">
                     {% for media in medias %}
-                        <option id="optionmedia{{ media.id }}"
-                                value='{{ media.id }}'
-                                {% if media.id == mediaselected %}selected{% endif %}>{{ media.mediaTimeStamp }}</option>
+                        <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
                     {% endfor %}
                     </select>
                 </div>
@@ -40,7 +36,7 @@
             <div class="card card-outline-primary m-2" style="width: 50rem;">
                 <div class="card-block">
                     <p class="card-text">
-                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp  | localtime | date:"Y-b-d H:i:sO" }}
                      {% if mediaArIsOn == "1" %}
                         <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                      {% else %}
@@ -95,7 +91,7 @@
             <div class="card card-outline-primary m-2" style="width: 50rem;">
                 <div class="card-block">
                     <p class="card-text">
-                        <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                        <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
                      {% if mediaArIsOn == "1" %}
                         <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
                      {% else %}
