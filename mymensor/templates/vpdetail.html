@@ -170,9 +170,9 @@
     <script type="text/javascript">
 
         {% for vp in vps %}
-        console.log("VP:"+vp.vpNumber);
+        console.log("VP:"+{{ vp.vpNumber }});
             {% if vp.vpNumber == vpselected %}
-                        console.log("VP selected:"+vp.vpNumber);
+                        console.log("VP selected:"+ {{ vp.vpNumber }});
             {% endif %}
         {% endfor %}
 
