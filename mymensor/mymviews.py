@@ -634,7 +634,7 @@ def vpDetailView(request):
             mediaspks = medias.values_list('id', flat=True)
             vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(
                 asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
-                vpIsActive=True).order_by('vpNumber').distinct()
+                vpIsActive=True).order_by('vpNumber')
             mediaselected = medias.first().pk
         else:
             mediaspks = medias.values_list('id', flat=True)
