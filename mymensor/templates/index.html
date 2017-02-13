@@ -335,6 +335,12 @@
                 }
             });
 
+
+            function draw_map(loclatitude, loclongitude, locprecisioninm) {
+
+            }
+
+
             // AJAX for posting
             function mediaid_sendvalue_loc() {
                 console.log("mediaid_sendvalue_loc was called!"); // sanity check
@@ -349,11 +355,25 @@
                         loclatitude = json.mediaLatitude;
                         loclongitude = json.mediaLongitude;
                         locprecisioninm = json.mediaLocPrecisionInMeters;
-                        draw_map(loclatitude, loclongitude, locprecisioninm);
+                        var mymap = L.map('modalmapid').setView([ loclatitude, loclongitude], 13);
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(mymap);
+                        var marker = L.marker([ loclatitude, loclongitude]).addTo(mymap);
+                        var circle = L.circle([ loclatitude, loclongitude], {
+                            color: 'red',
+                            fillColor: '#f03',
+                            fillOpacity: 0.5,
+                            radius: locprecisioninm
+                        }).addTo(mymap);
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
                         $('#mapModal').on('shown.bs.modal', function(){
-                            map.invalidateSize(true);
+                            mymap.invalidateSize();
+                        });
+                        $('#mapModal').on('hidden.bs.modal', function(){
+                            mymap.off();
+                            mymap.remove();
                         });
                     },
                     // handle a non-successful response
@@ -416,24 +436,6 @@
                     }
                 }
             });
-
-
-            function draw_map(loclatitude, loclongitude, locprecisioninm) {
-                var mymap = L.map('modalmapid').setView([ loclatitude, loclongitude], 13);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(mymap);
-
-                var marker = L.marker([ loclatitude, loclongitude]).addTo(mymap);
-
-                var circle = L.circle([ loclatitude, loclongitude], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: locprecisioninm
-                }).addTo(mymap);
-            }
 
         });
 
