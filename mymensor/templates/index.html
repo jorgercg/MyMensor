@@ -31,7 +31,7 @@
                             {% if media.mediaContentType == "image/jpeg" %}
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
-                                       <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}"><span role="button" id="{{ media.mediaVpNumber }}-{{ media.id }}" VP#{{ media.mediaVpNumber }}>
+                                       <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
                                             {% if media.mediaProcessed %}
                                                 <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
@@ -55,7 +55,7 @@
                                                 <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
                                              {% endif %}
                                              {% if media.mediaLocIsCertified %}
-                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                                <span role="button" id="location{{ media.id }}-{{ media.mediaVpNumber }}" class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                              {% else %}
                                                 <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
                                              {% endif %}
@@ -112,7 +112,7 @@
                                                 <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
                                              {% endif %}
                                              {% if media.mediaLocIsCertified %}
-                                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
+                                                <span role="button" id="location{{ media.id }}-{{ media.mediaVpNumber }}" class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                              {% else %}
                                                 <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
                                              {% endif %}
@@ -192,6 +192,34 @@
             });
 
         });
+
+
+        $(function(){
+
+            var spanid = "";
+            var mediaid = 0;
+            var vpnumber = 0;
+
+            $('span').click(function(event){
+                event.preventDefault();
+                var spanclicked = $(this).attr('id');
+                if (spanclicked.lastIndexOf('location', 0) === 0) {
+                    console.log("Clicked on:"+spanclicked);  // sanity check
+                    spanid = spanclicked.replace('location','');
+                    for (var i=0; i<spanid.length; i++){
+                        if (spanid.charAt(i)=="-") {
+                            mediaid=parseInt(spanid.slice(0,i));
+                            vpnumber=parseInt(spanid.slice(i+1));
+                            break;
+                        }
+                    }
+                    console.log("Clicked on: mediaid="+mediaid+" vpnumber="+vpnumber);  // sanity check
+                }
+            });
+        });
+
+
+
 
         $(function(){
             console.log({{ qtypervp }});
