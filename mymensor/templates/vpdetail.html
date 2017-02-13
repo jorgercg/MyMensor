@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load i18n staticfiles tz counter assign mymfilters%}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
+{% block title %}VP Detail - {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="d-flex align-content-start flex-wrap">
+            <div class="dashhead-toolbar">
+                <div class="dashhead-toolbar-item">
+                    <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
+                </div>
+                <div id="vpselector" class="dashhead-toolbar-item">
+                    <p>{% trans 'VP# ' %}</p>
+                    <select id="vpselected" name="vpselected">
+                    {% for vpnumber in listofmediavpsnumbers %}
+                        <option id="optionvp{{ vpnumber }}"
+                                value='{{ vpnumber }}'
+                                {% if vpnumber == vpselected %}selected{% endif %}>VP#{{ vpnumber }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div id="mediaselector" class="dashhead-toolbar-item">
+                    <p>{% trans 'Show media from ' %}</p>
+                    <select id="mediaselected" name="mediaselected">
+                    {% for media in medias %}
+                        <option id="optionmedia{{ media.mediaMillisSinceEpoch }}"
+                                value='{{ media.mediaMillisSinceEpoch }}'
+                                {% if media.mediaMillisSinceEpoch == mediaselected %}selected{% endif %}>{{ media.mediaTimeStamp }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+            </div>
+    </div>
+    <hr>
+
+
+
+
+
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
+    <script type="text/javascript">
+        $('#vpselector').chosen();
+        $('#mediaselector').chosen();
+        $(function() {
+
+            var start = moment("{{ start }}");
+            var end = moment("{{ end }}");
+
+            console.log("{{ start }}");
+            console.log("{{ end }}");
+            console.log("{{ tagsselected }}")
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: {{ start }},
+                endDate: {{ end }},
+                "alwaysShowCalendars": true,
+                ranges: {
+                   'Today': [moment(), moment()],
+                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                   'This Month': [moment().startOf('month'), moment().endOf('month')],
+                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+                var startdate = picker.startDate.format('YYYY-MM-DD');
+                var enddate = picker.endDate.format('YYYY-MM-DD');
+                console.log(startdate);
+                console.log(enddate);
+                var tagssel = $('#tagsselected').serialize();
+                console.log('Chosen:'+tagssel);
+                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
+            });
+
+
+        });
+
+    </script>
+{% endblock %}
+
+{% endlocaltime %}
