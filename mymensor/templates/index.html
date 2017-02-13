@@ -214,6 +214,7 @@
                         }
                     }
                     console.log("Clicked on: mediaid="+mediaid+" vpnumber="+vpnumber);  // sanity check
+                    window.location={% url 'vpdetail' %}+'?startdate='+"{{ start }}"+'&enddate='+"{{ end }}"+'&vpselected='+vpnumber+'&mediaselected='+mediaid;
                 }
             });
         });
