@@ -626,19 +626,20 @@ def vpDetailView(request):
         mediaselected = request.GET.get('mediaselected',0)
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
         if not medias:
-            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).order_by('-mediaMillisSinceEpoch')[:2]
-            recalcstart = medias.last().mediaTimeStamp
-            recalcend = recalcstart + timedelta(days=1)
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by('mediaMillisSinceEpoch')
+            recalcend = medias.last().mediaTimeStamp
+            recalcstart = recalcend - timedelta(days=29)
             startdateformatted = recalcstart.strftime('%Y-%m-%d')
             enddateformatted = recalcend.strftime('%Y-%m-%d')
             mediaspks = medias.values_list('id', flat=True)
-            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(
-                asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
-                vpIsActive=True).order_by('vpNumber')
-            mediaselected = medias.first().pk
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+                'vpNumber').distinct()
         else:
             mediaspks = medias.values_list('id', flat=True)
-            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by('vpNumber').distinct()
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+                'vpNumber').distinct()
             if mediaselected == 0:
                 mediaselected = medias.first().pk
             if mediaselected not in mediaspks:
