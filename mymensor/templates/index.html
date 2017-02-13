@@ -368,10 +368,10 @@
                         }).addTo(mymap);
                         $('#mapModal').modal();
                         $('#mapModal').modal('show');
-                        $('#mapModal').on('shown.bs.modal', function(){
+                        $('#mapModal').on('show.bs.modal', function(){
                             mymap.invalidateSize();
                         });
-                        $('#mapModal').on('hidden.bs.modal', function(){
+                        $('#mapModal').on('hide.bs.modal', function(){
                             mymap.off();
                             mymap.remove();
                         });
