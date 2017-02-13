@@ -169,9 +169,13 @@
     <script src="{% static "js/leaflet.js" %}"></script>
     <script type="text/javascript">
 
-        $('#vpselected').chosen();
+        $('#vpselected').chosen({
+            selected: {{ vpselected }}
+        });
 
-        $('#mediaselected').chosen();
+        $('#mediaselected').chosen({
+            selected: {{ mediaselected }}
+        });
 
         $(function() {
 
@@ -180,7 +184,6 @@
 
             console.log("{{ start }}");
             console.log("{{ end }}");
-            console.log("{{ tagsselected }}")
 
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
@@ -248,3 +251,6 @@
 {% endblock %}
 
 {% endlocaltime %}
+
+
+
