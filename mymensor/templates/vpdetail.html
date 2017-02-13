@@ -211,9 +211,20 @@
                 console.log(enddate);
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
+                window.location={% url 'vpdetail' %}+'?startdate='+startdate+'&enddate='+enddate+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}';
             });
 
+            $('#vpselected').change(function(){
+                var vpselected = $(this).find(":selected").val();
+                console.log("vpselected:"+vpselected);
+                window.location={% url 'vpdetail' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+vpselected+'&mediaselected='+'{{mediaselected}}';
+            });
+
+            $('#mediaselected').change(function(){
+                var mediaselected = $(this).find(":selected").val();
+                console.log("mediaselected:"+mediaselected);
+                window.location={% url 'vpdetail' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected;
+            });
 
         });
 
