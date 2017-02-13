@@ -14,14 +14,16 @@
                     </div>
                 </div>
                 <div id="vpselector" class="dashhead-tagsmultiselect-item">
-                    <select id="vpselected" data-placeholder="{% trans 'Choose VP... ' %}" name="vpselected">
+                    <p>{% trans 'Select VP' %}</p>
+                    <select id="vpselected" name="vpselected">
                     {% for vp in vps %}
                         <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                     {% endfor %}
                     </select>
                 </div>
                 <div id="mediaselector" class="dashhead-toolbar-item">
-                    <select id="mediaselected" data-placeholder="{% trans 'Show media from... ' %}" name="mediaselected">
+                    <p>{% trans 'Select Media' %}</p>
+                    <select id="mediaselected" name="mediaselected">
                     {% for media in medias %}
                         <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
                     {% endfor %}
@@ -164,13 +166,6 @@
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script src="{% static "js/leaflet.js" %}"></script>
     <script type="text/javascript">
-
-        {% for vp in vps %}
-        console.log("VP:"+{{ vp.vpNumber }});
-            {% if vp.vpNumber == vpselected %}
-                        console.log("VP selected:"+ {{ vp.vpNumber }});
-            {% endif %}
-        {% endfor %}
 
         console.log('?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}');
 
