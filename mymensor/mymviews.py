@@ -606,16 +606,49 @@ def locofthismedia(request):
             status=400
         )
 
+@login_required
+def vpDetailView(request):
+    if request.user.is_authenticated:
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
+        vpselected = request.GET.get('vpselected',0)
+        mediaselected = request.GET.get('mediaselected',0)
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
+        listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber').values_list('vpNumber', flat=True)
+        if mediaselected == 0:
+            mediaselected = medias.first().pk
+        mediainstance = medias(pk=mediaselected)
+        mediainstance.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': mediainstance.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
 
-
-
-
-
-
-
-
-
-
-
-
-
+        return render(request, 'vpdetail.html',{'vpselected': vpselected,
+                                                'listofmediavpsnumbers': listofmediavpsnumbers,
+                                                'mediaselected': mediaselected,
+                                                'start': startdateformatted,
+                                                'end': enddateformatted,
+                                                'medias': medias,
+                                                'mediaStorageURL': mediainstance.mediaStorageURL,
+                                                'mediaContentType': mediainstance.content_type,
+                                                'mediaArIsOn': mediainstance.mediaArIsOn,
+                                                'mediaTimeIsCertified': mediainstance.mediaTimeIsCertified,
+                                                'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
+                                                'mediaTimeStamp': mediainstance.mediaTimeStamp,
+                                                'loclatitude': mediainstance.mediaLatitude,
+                                                'loclongitude': mediainstance.mediaLongitude,
+                                                'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
+                                                })
+    else:
+        return HttpResponse(status=404)
