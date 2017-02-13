@@ -13,7 +13,7 @@
                         <span id="selcdates"></span> <b class="caret"></b>
                     </div>
                 </div>
-                <div id="vpselector" class="dashhead-toolbar-item">
+                <div id="vpselector" class="dashhead-tagsmultiselect-item">
                     <select id="vpselected" data-placeholder="{% trans 'Choose VP... ' %}" name="vpselected">
                     {% for vp in vps %}
                         <option id="optionvp{{ vp.vpNumber }}"
@@ -168,6 +168,13 @@
     <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script src="{% static "js/leaflet.js" %}"></script>
     <script type="text/javascript">
+
+        {% for vp in vps %}
+        console.log("VP:"+vp.vpNumber);
+            {% if vp.vpNumber == vpselected %}
+                        console.log("VP selected:"+vp.vpNumber);
+            {% endif %}
+        {% endfor %}
 
         console.log('?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}');
 
