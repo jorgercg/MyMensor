@@ -31,7 +31,7 @@
                             {% if media.mediaContentType == "image/jpeg" %}
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
-                                       <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}"><a id="{{ media.mediaVpNumber }}-{{ media.mediaMillisSinceEpoch }}" VP#{{ media.mediaVpNumber }}></a>
+                                       <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}"><span role="button" id="{{ media.mediaVpNumber }}-{{ media.id }}" VP#{{ media.mediaVpNumber }}>
                                             {% if media.mediaProcessed %}
                                                 <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
