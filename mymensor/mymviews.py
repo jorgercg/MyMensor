@@ -625,7 +625,7 @@ def vpDetailView(request):
         vpselected = request.GET.get('vpselected',0)
         mediaselected = request.GET.get('mediaselected',0)
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
-        listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber').distinct().values_list('vpNumber', flat=True)
+        listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by('vpNumber').distinct().values_list('vpNumber', flat=True)
         if mediaselected == 0:
             mediaselected = medias.first().pk
         mediainstance = Media.objects.get(pk=mediaselected)
