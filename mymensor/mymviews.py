@@ -628,7 +628,7 @@ def vpDetailView(request):
         listofmediavpsnumbers = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber').values_list('vpNumber', flat=True)
         if mediaselected == 0:
             mediaselected = medias.first().pk
-        mediainstance = medias(pk=mediaselected)
+        mediainstance = Media.objects.get(pk=mediaselected)
         mediainstance.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                     Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                             'Key': mediainstance.mediaObjectS3Key},
