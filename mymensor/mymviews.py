@@ -641,7 +641,7 @@ def vpDetailView(request):
                                                 'end': enddateformatted,
                                                 'medias': medias,
                                                 'mediaStorageURL': mediainstance.mediaStorageURL,
-                                                'mediaContentType': mediainstance.content_type,
+                                                'mediaContentType': mediainstance.mediaContentType,
                                                 'mediaArIsOn': mediainstance.mediaArIsOn,
                                                 'mediaTimeIsCertified': mediainstance.mediaTimeIsCertified,
                                                 'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
