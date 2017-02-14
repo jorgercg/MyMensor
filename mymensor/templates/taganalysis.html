@@ -218,7 +218,7 @@
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
             var myScatter = new Chart(ctx, config);
-            var axisy = myScatter.scales.y-axis-1;
+            var axisy = myScatter.scales['y-axis-1'];
             var max = axisy.max;
             var min = axisy.min;
             console.log('max:'+max);
