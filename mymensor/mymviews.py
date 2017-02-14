@@ -480,10 +480,11 @@ def tagAnalysisView(request):
             tagsselected = tagsselectedfromlist
         else:
             tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
+        qtyoftagsselected = tagsselected.count()
         return render(request, 'taganalysis.html',
                           {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
                            'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
-                           'medias': medias, 'tags': tags})
+                           'medias': medias, 'tags': tags, 'qtyoftagsselected':qtyoftagsselected})
 
 @login_required
 def mobileBackupFormView(request):

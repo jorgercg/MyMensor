@@ -192,7 +192,26 @@
                         id: 'y-axis-1',
                         position: "left"
                     }]
+                },
+        {% if qtyoftagsselected == 1 %}
+                annotation: {
+                        drawTime: "afterDraw",
+                        events: ['dblclick'],
+                        annotations: [{
+                            type: 'box',
+                            xScaleID: 'x-axis-1',
+                            yScaleID: 'y-axis-1',
+                            yMin: 10,
+                            yMax: 20,
+                            backgroundColor: 'rgba(101, 33, 171, 0.2)',
+                            borderColor: 'rgb(101, 33, 171)',
+                            borderWidth: 1,
+                            onDblclick: function(e) {
+                                console.log('Box', e.type, this);
+                            }
+                        }]
                 }
+        {% endif %}
             }
         };
 
