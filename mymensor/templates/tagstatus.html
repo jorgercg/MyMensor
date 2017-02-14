@@ -16,7 +16,7 @@
             "emptyTable":     "{% trans "No data available in table" %}",
             "info":           "{% trans "Showing _START_ to _END_ of _TOTAL_ entries" %}",
             "infoEmpty":      "{% trans "Showing 0 to 0 of 0 entries" %}",
-            "infoFiltered":   "{% trans "(filtered from _MAX_ total entries)" %}",
+            "infoFiltered":   "",
             "infoPostFix":    "",
             "thousands":      ",",
             "lengthMenu":     "{% trans "Show _MENU_ entries" %}",
@@ -37,36 +37,31 @@
         }
 
         $(document).ready(function() {
-
-            console.log("AAAAAHHHHHHHHHH!!!!!!!!");
-
-        var table = $('#statustable').DataTable({
-            language: dt_language,  // global variable defined in html
-            order: [[ 0, "asc" ]],
-            lengthMenu: [[15, 25, 50, 100, 200], [15, 25, 50, 100, 200]],
-            columnDefs: [
-                {orderable: true,
-                 searchable: true,
-                 className: "center",
-                 targets: [0, 1]
+            var table = $('#statustable').DataTable({
+                language: dt_language,  // global variable defined in html
+                order: [[ 0, "asc" ]],
+                lengthMenu: [[15, 25, 50, 100, 200], [15, 25, 50, 100, 200]],
+                columnDefs: [
+                    {orderable: true,
+                     searchable: true,
+                     className: "center",
+                     targets: [0, 1]
+                    }
+                ],
+                searching: true,
+                processing: true,
+                serverSide: true,
+                stateSave: true,
+                responsive: true,
+                ajax: TAG_STATUS,
+                "rowCallback": function( row, data, index ) {
+                    console.log("data[7]"+data[7]);
+                    if ( data[7] == 1 ) {
+                        $('td:eq(7)', row).html( "{% trans 'PROCESSED' %}" );
+                        $('td:eq(7)', row).addClass('statusprocessed');
+                    }
                 }
-            ],
-            searching: true,
-            processing: true,
-            serverSide: true,
-            stateSave: true,
-            responsive: true,
-            ajax: TAG_STATUS,
-            "rowCallback": function( row, data, index ) {
-                console.log("data[7]"+data[7]);
-                if ( data[7] == 1 ) {
-                    $('td:eq(7)', row).html( "{% trans 'PROCESSED' %}" );
-                    $('td:eq(7)', row).addClass('statusprocessed');
-                }
-            }
-            });
-
-
+                });
         });
 
 
