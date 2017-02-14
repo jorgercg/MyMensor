@@ -40,7 +40,7 @@
 
             console.log("AAAAAHHHHHHHHHH!!!!!!!!");
 
-        var dt_table = $('#statustable').DataTable({
+        var table = $('#statustable').DataTable({
             language: dt_language,  // global variable defined in html
             order: [[ 0, "asc" ]],
             lengthMenu: [[25, 50, 100, 200], [25, 50, 100, 200]],
@@ -59,7 +59,7 @@
             ajax: TAG_STATUS
             });
 
-        dt_table.row.every( function ( rowIdx, tableLoop, rowLoop ) {
+        table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 
             var data = this.data();
 
