@@ -60,8 +60,13 @@
             ajax: TAG_STATUS
             });
 
+        });
 
-        dt_table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+        $(document).ready(function() {
+
+            var p = $('#statustable').DataTable();
+
+        p.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 
             var data = this.data();
 
