@@ -58,7 +58,7 @@
             responsive: true,
             ajax: TAG_STATUS,
             "rowCallback": function( row, data, index ) {
-                console.log("AAAAAHHHHHHHHHH!!!!!!!!3"+index);
+                console.log("data[7]"+data[7]);
                 if ( data[7] == 1 ) {
                     data[7] = "{% trans 'PROCESSED' %}";
 
