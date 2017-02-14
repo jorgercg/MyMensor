@@ -217,15 +217,17 @@
 
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myScatter = new Chart(ctx, config);
+            var myScatter = new Chart(ctx, config);
+            var axisy = myScatter.scales.yAxes;
+            var max = axisy.max;
+            var min = axisy.min;
+            console.log('max:'+max);
+            console.log('min:'+min);
         };
 
-        var axisy = myScatter.scales.yAxes;
-        var max = axisy.max;
-        var min = axisy.min;
 
-        console.log('max:'+max);
-        console.log('min:'+min);
+
+
 
         canvas.onclick = function(evt){
             var activePoint = myScatter.getElementAtEvent(evt);
