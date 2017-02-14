@@ -3,9 +3,11 @@
 
 {% block title %}Tag Status - {{ block.super }}{% endblock %}
 {% block extra_head %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.dataTables.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.dataTables.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/dataTables.bootstrap4.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/responsive.dataTables.min.css" %}">
-    <script type="text/javascript" charset="utf8" src="{% static "js/jquery.dataTables.min.js" %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static "js/jquery.dataTables.js" %}"></script>
+    <script type="text/javascript" charset="utf8" src="{% static "js/dataTables.bootstrap4.js" %}"></script>
     <script type="text/javascript" charset="utf8" src="{% static "js/dataTables.responsive.min.js" %}"></script>
 
     <script type="text/javascript">
@@ -35,8 +37,7 @@
                 "sortDescending": "{% trans ": activate to sort column descending" %}"
             }
         }
-    </script>
-    <script>
+
         $(document).ready(function() {
 
             console.log("AAAAAHHHHHHHHHH!!!!!!!!");
@@ -60,13 +61,7 @@
             ajax: TAG_STATUS
             });
 
-        });
-
-        $(document).ready(function() {
-
-            var p = $('#statustable').DataTable();
-
-        p.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+        dt_table.row.every( function ( rowIdx, tableLoop, rowLoop ) {
 
             var data = this.data();
 
@@ -86,11 +81,9 @@
 
             });
 
+
+
         });
-
-
-
-
 
 
     </script>
