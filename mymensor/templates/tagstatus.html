@@ -57,6 +57,28 @@
             ajax: TAG_STATUS
             });
         });
+
+        $(document).ready(function (){
+            var table = $('#example').DataTable();
+
+            table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+    		var data = this.data();
+
+            //data[3] = 2*data[3];
+
+            //this.data(data);
+            if (data[7]==1){
+                data[7] = {% trans 'PROCESSED' %};
+                this.data(data);
+        	    var cell = table.cell({ row: rowIdx, column: 7 }).node();
+	            $(cell).addClass('statusprocessed');
+        }
+
+    });
+});
+
+
+
     </script>
 {% endblock %}
 
