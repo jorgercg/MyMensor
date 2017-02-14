@@ -141,6 +141,12 @@
 
         var color = Chart.helpers.color;
 
+        var axisy = chartInstance.scales.<y-axis-1>;
+
+        var maxaxisy = axisy.max;
+
+        var minaxisy = axisy.min;
+
         var config = {
             type: 'line',
             data: {
@@ -202,7 +208,7 @@
                             xScaleID: 'x-axis-1',
                             yScaleID: 'y-axis-1',
                             yMin: 10,
-                            yMax: 20,
+                            yMax: maxaxisy,
                             backgroundColor: 'rgba(101, 33, 171, 0.2)',
                             borderColor: 'rgb(101, 33, 171)',
                             borderWidth: 1,
