@@ -38,6 +38,9 @@
     </script>
     <script>
         $(document).ready(function() {
+
+            console.log("AAAAAHHHHHHHHHH!!!!!!!!");
+
         var dt_table = $('#statustable').DataTable({
             language: dt_language,  // global variable defined in html
             order: [[ 0, "asc" ]],
@@ -57,15 +60,20 @@
             ajax: TAG_STATUS
             });
 
-        dt_table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-    		var data = this.data();
 
-            //data[3] = 2*data[3];
+        dt_table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+
+            var data = this.data();
+
+            console.log("AAAAAHHHHHHHHHH!!!!!!!!2222222");
+
             console.log("data:"+data);
+
             console.log("data[7]:"+data[7]);
-            //this.data(data);
+
             if (data[7]==1) {
                 data[7] = "{% trans 'PROCESSED' %}";
+                console.log("AAAAAHHHHHHHHHH!!!!!!!!33333333");
                 this.data(data);
         	    var cell = table.cell({ row: rowIdx, column: 7 }).node();
 	            $(cell).addClass('statusprocessed');
