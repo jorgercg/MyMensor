@@ -59,7 +59,7 @@
             ajax: TAG_STATUS,
             "rowCallback": function( row, data, index ) {
                 console.log("data[7]"+data[7]);
-                if ( data[7] == 1 ) {
+                if ( data[7] == "1" ) {
                     data[7] = "{% trans 'PROCESSED' %}";
 
                 }
@@ -79,7 +79,7 @@
 
             console.log("data[7]:"+data[7]);
 
-            if (data[7]==1) {
+            if (data[7]=="1") {
                 data[7] = "{% trans 'PROCESSED' %}";
                 console.log("AAAAAHHHHHHHHHH!!!!!!!!33333333");
                 this.data(data);
