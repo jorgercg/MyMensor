@@ -56,12 +56,8 @@
             responsive: true,
             ajax: TAG_STATUS
             });
-        });
 
-        $(document).ready(function (){
-            var table = $('.datatable').DataTable();
-
-            table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+        dt_table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
     		var data = this.data();
 
             //data[3] = 2*data[3];
@@ -76,7 +72,11 @@
             }
 
             });
+
         });
+
+
+
 
 
 
