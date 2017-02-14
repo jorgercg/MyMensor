@@ -141,12 +141,6 @@
 
         var color = Chart.helpers.color;
 
-        var axisy = myScatter.scales.yAxisID;
-
-        var maxaxisy = axisy.max;
-
-        var minaxisy = axisy.min;
-
         var config = {
             type: 'line',
             data: {
@@ -225,6 +219,12 @@
             var ctx = document.getElementById("canvas").getContext("2d");
             window.myScatter = new Chart(ctx, config);
         };
+
+        var axisy = myScatter.scales.yAxisID;
+
+        var maxaxisy = axisy.max;
+
+        var minaxisy = axisy.min;
 
         canvas.onclick = function(evt){
             var activePoint = myScatter.getElementAtEvent(evt);
