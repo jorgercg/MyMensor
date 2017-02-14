@@ -58,7 +58,10 @@
             serverSide: true,
             stateSave: true,
             responsive: true,
-            ajax: TAG_STATUS
+            ajax: TAG_STATUS,
+            "initComplete": function(settings, json) {
+                alert( 'DataTables has finished its initialisation.' );
+            }
             });
 
 
