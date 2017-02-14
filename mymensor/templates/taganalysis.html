@@ -215,9 +215,11 @@
             }
         };
 
+        var myScatter = ""
+
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myScatter = new Chart(ctx, config);
+            myScatter = new Chart(ctx, config);
         };
 
         var axisy = myScatter.scales.yAxisID;
