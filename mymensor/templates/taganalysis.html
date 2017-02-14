@@ -201,7 +201,7 @@
                             type: 'box',
                             xScaleID: 'x-axis-1',
                             yScaleID: 'y-axis-1',
-                            yMin: 10,
+                            yMin: 20,
                             yMax: 20,
                             backgroundColor: 'rgba(101, 33, 171, 0.2)',
                             borderColor: 'rgb(101, 33, 171)',
@@ -223,6 +223,8 @@
             var min = axisy.min;
             console.log('max:'+max);
             console.log('min:'+min);
+            config.options.annotation.annotations[0].yMax=max
+			myScatter.update();
         };
 
 
