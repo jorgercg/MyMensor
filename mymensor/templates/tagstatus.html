@@ -59,7 +59,10 @@
             ajax: TAG_STATUS
             });
 
-        table.rows().every( function ( rowIdx, tableLoop, rowLoop ) {
+
+
+
+        $('#statustable').DataTable().rows().every( function ( rowIdx, tableLoop, rowLoop ) {
 
             var data = this.data();
 
