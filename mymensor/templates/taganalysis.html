@@ -220,6 +220,13 @@
             window.myScatter = new Chart(ctx, config);
         };
 
+        var axisy = window.myScatter.scales.yAxes;
+        var max = axisy.max;
+        var min = axisy.min;
+
+        console.log('max:'+max);
+        console.log('min:'+min);
+
         canvas.onclick = function(evt){
             var activePoint = myScatter.getElementAtEvent(evt);
             console.log(activePoint[0]);
