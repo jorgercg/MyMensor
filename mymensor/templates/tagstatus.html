@@ -59,36 +59,15 @@
             ajax: TAG_STATUS,
             "rowCallback": function( row, data, index ) {
                 console.log("data[7]"+data[7]);
-                if ( data[7] == "1" ) {
+                if ( data[7] == 1 ) {
                     data[7] = "{% trans 'PROCESSED' %}";
-
+                    console.log("AAAAAHHHHHHHHHH!!!!!!!!33333333");
+                    this.data(data);
+        	        var cell = table.cell({ row: row, column: 7 }).node();
+	                $(cell).addClass('statusprocessed');
                 }
             }
             });
-
-
-
-
-        $('#statustable').DataTable().rows().every( function ( rowIdx, tableLoop, rowLoop ) {
-
-            var data = this.data();
-
-            console.log("AAAAAHHHHHHHHHH!!!!!!!!2222222");
-
-            console.log("data:"+data);
-
-            console.log("data[7]:"+data[7]);
-
-            if (data[7]=="1") {
-                data[7] = "{% trans 'PROCESSED' %}";
-                console.log("AAAAAHHHHHHHHHH!!!!!!!!33333333");
-                this.data(data);
-        	    var cell = table.cell({ row: rowIdx, column: 7 }).node();
-	            $(cell).addClass('statusprocessed');
-            }
-
-            });
-
 
 
         });
