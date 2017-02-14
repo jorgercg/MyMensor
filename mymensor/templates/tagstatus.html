@@ -60,11 +60,8 @@
             "rowCallback": function( row, data, index ) {
                 console.log("data[7]"+data[7]);
                 if ( data[7] == 1 ) {
-                    data[7] = "{% trans 'PROCESSED' %}";
-                    console.log("AAAAAHHHHHHHHHH!!!!!!!!33333333");
-                    this.data(data);
-        	        var cell = table.cell({ row: row, column: 7 }).node();
-	                $(cell).addClass('statusprocessed');
+                    $('td:eq(7)', row).html( "{% trans 'PROCESSED' %}" );
+                    $('td:eq(7)', row).addClass('statusprocessed');
                 }
             }
             });
