@@ -471,10 +471,8 @@ def tagAnalysisView(request):
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
 
-        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate])
-        listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber')
-        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-            statusMediaTimeStamp__range=[startdate, new_enddate]).order_by('statusMediaMillisSinceEpoch')
+        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate]).order_by('statusMediaMillisSinceEpoch')
+        listofprocessedtagsnumbers = processedtags.distinct('statusTagNumber').order_by('statusMediaMillisSinceEpoch')
         tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
         tagsselected = request.GET.getlist('tagsselected',default=None)
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user)
