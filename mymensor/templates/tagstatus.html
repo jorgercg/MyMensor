@@ -57,8 +57,12 @@
             stateSave: true,
             responsive: true,
             ajax: TAG_STATUS,
-            "initComplete": function(settings, json) {
-                alert( 'DataTables has finished its initialisation.' );
+            "rowCallback": function( row, data, index ) {
+                console.log("AAAAAHHHHHHHHHH!!!!!!!!3"+index);
+                if ( data[7] == 1 ) {
+                    data[7] = "{% trans 'PROCESSED' %}";
+
+                }
             }
             });
 
