@@ -194,13 +194,15 @@
                     }]
                 },
         {% if qtyoftagsselected == 1 %}
+            {% for tag in tags %}
+                {% if tag.tagNumber == tagsselected.0 %}
                 annotation: {
                         drawTime: "afterDraw",
                         annotations: [{
                             type: 'box',
                             xScaleID: 'x-axis-1',
                             yScaleID: 'y-axis-1',
-                            yMin: min,
+                            yMin: tag.lowRed,
                             yMax: 20,
                             backgroundColor: 'rgba(101, 33, 171, 0.2)',
                             borderColor: 'rgb(101, 33, 171)',
@@ -253,6 +255,8 @@
 
                         ]
                 }
+                {% endif %}
+            {% endfor %}
         {% endif %}
             }
         };

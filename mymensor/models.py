@@ -63,7 +63,7 @@ class Tag(models.Model):
     tagListNumber = models.IntegerField(null=True)
     tagQuestion = models.CharField(max_length=1024)
     tagUnit = models.CharField(max_length=50, null=True)
-    tagLowRedValue = models.FloatField(null=True)
+    tagLowRed = models.FloatField(null=True)
     tagLowYellow = models.FloatField(null=True)
     tagExpValue = models.FloatField(null=True)
     tagHighYellow = models.FloatField(null=True)
