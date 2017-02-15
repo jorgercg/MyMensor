@@ -196,6 +196,7 @@
         {% if qtyoftagsselected == 1 %}
             {% for tag in tags %}
                 {% if tag.tagNumber == tagsselected.0 %}
+                    {% if tag.tagLowRed != None and tag.tagLowYellow != None and tag.tagExpValue != None and tag.tagHighYellow != None and tag.tagHighRed != None %}
                 annotation: {
                         drawTime: "afterDraw",
                         annotations: [{
@@ -255,6 +256,7 @@
 
                         ]
                 }
+                        {% endif %}
                 {% endif %}
             {% endfor %}
         {% endif %}
