@@ -195,7 +195,7 @@
                 },
         {% if qtyoftagsselected == 1 %}
             {% for tag in tags %}
-                {% if tag.tagNumber == tagsselected.0 and tag.tagLowRed != None and tag.tagLowYellow != None and tag.tagExpValue != None and tag.tagHighYellow != None and tag.tagHighRed != None %}
+                {% if tag.tagNumber == tagsselected.0 and tag.tagLowRed is not None and tag.tagLowYellow is not None and tag.tagExpValue is not None and tag.tagHighYellow is not None and tag.tagHighRed is not None %}
                 annotation: {
                         drawTime: "afterDraw",
                         annotations: [{
