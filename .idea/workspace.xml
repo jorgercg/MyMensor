@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="14fev2017 20h22min">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/migrations/0031_auto_20170215_0930.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8/_metadata_/metadata" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8/_metadata_/metadata.values.at" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" afterPath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
     </list>
     <ignored path="mymensorapp.iws" />
@@ -47,7 +52,7 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="551">
+            <state relative-caret-position="6945">
               <caret line="486" column="77" lean-forward="false" selection-start-line="486" selection-start-column="60" selection-end-line="486" selection-end-column="77" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
@@ -66,22 +71,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="203" column="36" lean-forward="false" selection-start-line="203" selection-start-column="36" selection-end-line="203" selection-end-column="36" />
+            <state relative-caret-position="189">
+              <caret line="248" column="34" lean-forward="false" selection-start-line="248" selection-start-column="34" selection-end-line="248" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1682">
-              <caret line="130" column="64" lean-forward="true" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
-              <folding />
+            <state relative-caret-position="480">
+              <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,7 +96,7 @@
       <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
+            <state relative-caret-position="5250">
               <caret line="350" column="14" lean-forward="false" selection-start-line="350" selection-start-column="1" selection-end-line="350" selection-end-column="14" />
               <folding />
             </state>
@@ -197,7 +204,6 @@
         <option value="$PROJECT_DIR$/mymensor/static/css/multi-select.css" />
         <option value="$PROJECT_DIR$/mymensor/static/css/chosen.css" />
         <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
-        <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
@@ -211,6 +217,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/tagstatus.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
+        <option value="$PROJECT_DIR$/mymensor/models.py" />
       </list>
     </option>
   </component>
@@ -223,7 +230,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="1052" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -262,32 +269,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Changed Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="mymensorapp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="mymensorapp">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -362,6 +343,32 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Changed Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="mymensorapp">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="mymensorapp">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -685,13 +692,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-01492" summary="13fev2017 15h24min">
-      <created>1487002358388</created>
-      <option name="number" value="01492" />
-      <option name="presentableId" value="LOCAL-01492" />
-      <option name="project" value="LOCAL" />
-      <updated>1487002358388</updated>
     </task>
     <task id="LOCAL-01493" summary="13fev2017 15h24min">
       <created>1487002694309</created>
@@ -1029,7 +1029,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487106140402</updated>
     </task>
-    <option name="localTasksCounter" value="1541" />
+    <task id="LOCAL-01541" summary="14fev2017 20h22min">
+      <created>1487106594100</created>
+      <option name="number" value="01541" />
+      <option name="presentableId" value="LOCAL-01541" />
+      <option name="project" value="LOCAL" />
+      <updated>1487106594100</updated>
+    </task>
+    <option name="localTasksCounter" value="1542" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1042,19 +1049,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1052" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14962727" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1512247" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.49574015" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32882413" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24453694" sideWeight="0.52183175" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.196875" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19667013" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.4978701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24852072" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28297055" sideWeight="0.48935038" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28199792" sideWeight="0.48935038" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1148,13 +1155,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
@@ -1327,7 +1327,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1081">
           <caret line="159" column="26" lean-forward="true" selection-start-line="159" selection-start-column="26" selection-end-line="159" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1335,7 +1334,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1406,9 +1404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1416,7 +1411,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1424,7 +1418,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1432,7 +1425,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1448,17 +1440,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24298">
           <caret line="7406" column="31" lean-forward="true" selection-start-line="7406" selection-start-column="31" selection-end-line="7406" selection-end-column="31" />
-          <folding>
-            <marker date="1482784973000" expanded="true" signature="157165:157190" ph="..." />
-            <marker date="1482784973000" expanded="true" signature="157412:157437" ph="..." />
-            <marker date="1482784973000" expanded="true" signature="425712:425720" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
+        <state relative-caret-position="5250">
           <caret line="350" column="14" lean-forward="false" selection-start-line="350" selection-start-column="1" selection-end-line="350" selection-end-column="14" />
           <folding />
         </state>
@@ -1472,17 +1459,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1682">
-          <caret line="130" column="64" lean-forward="true" selection-start-line="130" selection-start-column="64" selection-end-line="130" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
+        <state relative-caret-position="6945">
           <caret line="486" column="77" lean-forward="false" selection-start-line="486" selection-start-column="60" selection-end-line="486" selection-end-column="77" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
@@ -1490,11 +1469,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="203" column="36" lean-forward="false" selection-start-line="203" selection-start-column="36" selection-end-line="203" selection-end-column="36" />
+        <state relative-caret-position="189">
+          <caret line="248" column="34" lean-forward="false" selection-start-line="248" selection-start-column="34" selection-end-line="248" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="67" column="46" lean-forward="false" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
