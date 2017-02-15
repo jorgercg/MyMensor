@@ -70,7 +70,7 @@ class TagForm(ModelForm):
     tagListNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
     tagQuestion = forms.CharField(max_length=1024, required=False)
     tagUnit = forms.CharField(max_length=50, required=False)
-    tagLowRedValue = forms.FloatField(required=False)
+    tagLowRed = forms.FloatField(required=False)
     tagLowYellow = forms.FloatField(required=False)
     tagExpValue = forms.FloatField(required=False)
     tagHighYellow = forms.FloatField(required=False)
