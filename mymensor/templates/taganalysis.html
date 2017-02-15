@@ -269,8 +269,11 @@
             var min = axisy.min;
             console.log('max:'+max);
             console.log('min:'+min);
-            config.options.annotation.annotations[0].yMax=max
+            {% if qtyoftagsselected == 1 %}
+            config.options.annotation.annotations[0].yMin=min;
+            config.options.annotation.annotations[5].yMax=max;
 			myScatter.update();
+            {% endif %}
         };
 
 
