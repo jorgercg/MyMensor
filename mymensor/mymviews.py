@@ -341,7 +341,7 @@ def tagSetupFormView(request):
     listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
-    vp = Vp(vpNumber=currentvp)
+    vp = Vp.objects.filter(vpNumber=currentvp)[:1]
     descvpStorageURL = s3Client.generate_presigned_url('get_object',
                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                'Key': vp.vpStdPhotoStorageURL},
