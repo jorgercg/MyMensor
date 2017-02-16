@@ -30,7 +30,13 @@
         <div id="tagedition">
             <form method="POST" action="">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {%  for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field }}
+                {% endfor %}
                 <input type="hidden" name="currentvp" value="{{ currentvp }}">
                 <input type="hidden" name="currenttag" value="{{ currenttag }}">
                 <input type="submit" value="{% trans 'Submit' %}" />
