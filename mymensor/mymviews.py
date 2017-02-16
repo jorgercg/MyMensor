@@ -265,7 +265,7 @@ def vpSetupFormView(request):
             writedcicfg(request)
     else:
         form = VpForm(instance=vp)
-    vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user)
+    vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).order_by('vpNumber')
     return render(request, 'vpsetup.html', {'form': form, 'vps':vps, 'currentvp':currentvp})
 
 
