@@ -5,7 +5,6 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="dashhead-toolbar">
             <div class="d-flex flex-row justify-content-start align-content-start">
                 <div id="vpselector" class=class="dashhead-tagsmultiselect-item">
                     <p>{% trans 'Select VP' %}</p>
@@ -28,7 +27,6 @@
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
             </div>
-        </div>
         <hr>
         <div id="tagedition">
             <form method="POST" action="">
