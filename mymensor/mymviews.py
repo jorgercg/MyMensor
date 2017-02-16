@@ -323,7 +323,7 @@ def tagSetupFormView(request):
     tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
     listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
-    vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+    vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps})
 
 
