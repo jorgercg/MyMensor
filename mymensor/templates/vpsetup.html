@@ -60,6 +60,7 @@
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
+        $('#currentvp').chosen();
         $(function(){
             console.log('descvpTimeStamp='+'{{ descvpTimeStamp | localtime | date:"Y:m:d H:i:sO" }}');
 
