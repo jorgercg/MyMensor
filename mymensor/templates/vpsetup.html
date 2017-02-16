@@ -5,11 +5,14 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="d-flex align-content-start flex-wrap">
-            <div class="dashhead-toolbar">
-                <div id="qtyselector" class="dashhead-toolbar-item">
-                    <p>{% trans 'VP # ' %}</p>
-                    <select id="currentvp" class="1-30"></select>
+        <div class="mym-dash">
+            <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+                <div id="qtyselector" class="mym-dash-item">
+                    <select id="currentvp">
+                        {% for vp in vps %}
+                            <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
         </div>
@@ -26,17 +29,10 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
-            console.log({{ qtyvps }});
-            var qtvps = {{ qtyvps }};
-            var $select = $('.1-30');
-            for (i=1; i < qtvps ;i++){
-                $select.append($('<option></option>').val(i).html(i))
-            }
-            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
                 console.log(vpselected);
-                window.location={% url 'vpsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected;
+                window.location={% url 'vpsetup' %}+'&currentvp='+vpselected;
             });
         });
         </script>

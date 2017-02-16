@@ -253,7 +253,6 @@ def vpSetupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
     currentvp = 1
-    qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
     if request.method == 'GET':
@@ -266,7 +265,8 @@ def vpSetupFormView(request):
             writedcicfg(request)
     else:
         form = VpForm(instance=vp)
-    return render(request, 'vpsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp})
+    vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user)
+    return render(request, 'vpsetup.html', {'form': form, 'vps':vps, 'currentvp':currentvp})
 
 
 @login_required

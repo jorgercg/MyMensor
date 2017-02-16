@@ -5,26 +5,28 @@
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-        <div class="mym-dash-item">
-            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                <span id="selcdates"></span> <b class="caret"></b>
+    <div class="mym-dash">
+        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+            <div class="mym-dash-item">
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                    <span id="selcdates"></span> <b class="caret"></b>
+                </div>
             </div>
-        </div>
-        <div id="tagselector" class="mym-dash-item">
-            <select multiple="multiple" id="tagsselected" name="tagsselected">
-            {% for processedtagnumber in listofprocessedtagsnumbers %}
-                <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
-                        value='{{ processedtagnumber.statusTagNumber }}'
-                        {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
-            {% endfor %}
-            </select>
-        </div>
-        <div class="mym-dash-item">
-            <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
-                <span class="fa fa-refresh"></span>
-            </button>
+            <div id="tagselector" class="mym-dash-item">
+                <select multiple="multiple" id="tagsselected" name="tagsselected">
+                {% for processedtagnumber in listofprocessedtagsnumbers %}
+                    <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
+                            value='{{ processedtagnumber.statusTagNumber }}'
+                            {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="mym-dash-item">
+                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
+                    <span class="fa fa-refresh"></span>
+                </button>
+            </div>
         </div>
     </div>
     <hr>

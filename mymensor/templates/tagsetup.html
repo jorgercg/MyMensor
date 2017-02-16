@@ -5,6 +5,7 @@
     {% block header %}
     {% endblock %}
     {% block content %}
+        <div class="mym-dash">
             <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
                 <div id="vpselector" class="mym-dash-item">
                     <select id="currvp">
@@ -24,6 +25,7 @@
                     <button id="inctags" type="button" class="btn btn-outline-primary">{% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
             </div>
+        </div>
         <hr>
         <div id="tagedition">
             <form method="POST" action="">
@@ -36,7 +38,6 @@
         </div>
     {% endblock %}
     {% block javascript %}
-        <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
         <script type="text/javascript">
         $('#currvp').chosen();
         $('#currtag').chosen();

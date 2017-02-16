@@ -5,30 +5,31 @@
 {% block title %}VP Detail - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-        <div class="mym-dash-item">
-            <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                <span id="selcdates"></span> <b class="caret"></b>
+    <div class="mym-dash">
+        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+            <div class="mym-dash-item">
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                    <span id="selcdates"></span> <b class="caret"></b>
+                </div>
             </div>
-        </div>
-        <div id="vpselector" class="mym-dash-item">
-            <select id="vpselected" name="vpselected">
-            {% for vp in vps %}
-                <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
-            {% endfor %}
-            </select>
-        </div>
-        <div id="mediaselector" class="mym-dash-item">
-            <select id="mediaselected" name="mediaselected">
-            {% for media in medias %}
-                <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
-            {% endfor %}
-            </select>
+            <div id="vpselector" class="mym-dash-item">
+                <select id="vpselected" name="vpselected">
+                {% for vp in vps %}
+                    <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div id="mediaselector" class="mym-dash-item">
+                <select id="mediaselected" name="mediaselected">
+                {% for media in medias %}
+                    <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
+                {% endfor %}
+                </select>
+            </div>
         </div>
     </div>
     <hr>
-
     <div class="d-flex align-content-start flex-wrap">
         {% if mediaContentType == "image/jpeg" %}
             <div class="card card-outline-primary m-2" style="width: 50rem;">
