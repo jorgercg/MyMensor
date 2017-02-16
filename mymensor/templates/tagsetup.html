@@ -11,7 +11,7 @@
                     <p>{% trans 'Select VP' %}</p>
                     <select id="currvp" class="1-30">
                         {% for vp in vps %}
-                        <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                        <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
