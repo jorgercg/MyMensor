@@ -61,6 +61,7 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
+            console.log('descvpTimeStamp='+{{ descvpTimeStamp }});
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
                 console.log(vpselected);
