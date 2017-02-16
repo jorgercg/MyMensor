@@ -24,7 +24,7 @@
                 <div class="card card-outline-primary m-2 mw-100">
                 <div class="card-block">
                     <p class="card-text">
-                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp  | localtime | date:"Y:b:d H:i:sO" }}
+                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp  | localtime | date:"Y:m:d H:i:sO" }}
                     </p>
                 </div>
                 <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
