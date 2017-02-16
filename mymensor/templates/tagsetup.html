@@ -6,21 +6,21 @@
     {% endblock %}
     {% block content %}
             <div class="d-flex flex-row justify-content-start align-content-start">
-                <div id="vpselector" class=class="dashhead-tagstoolbar-item">
+                <div id="vpselector">
                     <select id="currvp">
                         {% for vp in vps %}
                             <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
+                <div id="tagselectorforeachvp">
                     <select id="currtag">
                         {% for tag in tags %}
                             <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div id="tagstotalqtyselector" class="dashhead-tagstoolbar-item">
+                <div id="tagstotalqtyselector">
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}">{% trans 'Total TAG qty= ' %}{{ qtytags }}</span>
                 </div>
             </div>
