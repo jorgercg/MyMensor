@@ -9,7 +9,7 @@
             <div class="dashhead-toolbar">
                 <div id="vpselector" class=class="dashhead-tagsmultiselect-item">
                     <p>{% trans 'Select VP' %}</p>
-                    <select id="currvp" class="1-30">
+                    <select id="currvp">
                         {% for vp in vps %}
                         <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
@@ -17,9 +17,9 @@
                 </div>
                 <div id="tagselectorforeachvp" class="dashhead-tagsmultiselect-item">
                     <p>{% trans 'TAGs in the selected VP' %}</p>
-                    <select id="currtag" class="1-80">
+                    <select id="currtag">
                         {% for tag in tags %}
-                        <option value="{{ tag.tagNumber }}">TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
+                        <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -49,9 +49,7 @@
 
             var qttags = {{ qtytags }};
             var qtvps = {{ qtyvps }};
-            var $select = $('.1-30');
 
-            $('.1-80 option[value="{{ currenttag }}"]').attr('selected','selected');
             $('#currtag').change(function(){
                 var tagselected = $(this).find(":selected").val();
                 console.log("TAGSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+tagselected);
@@ -60,7 +58,6 @@
 
             console.log("INITIAL: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}');
 
-            $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
                 console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+'{{ currenttag }}');

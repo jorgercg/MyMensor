@@ -320,7 +320,7 @@ def tagSetupFormView(request):
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
 
-    tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+    tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
     listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
