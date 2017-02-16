@@ -1,3 +1,5 @@
+import re
+from django.utils.safestring import mark_safe
 from django import template
 
 register = template.Library()
@@ -15,29 +17,22 @@ def frommillistoseconds(value):
     return int(value/1000)
 
 
-class SetVarNode(template.Node):
+class_re = re.compile(r'(?<=class=["\'])(.*)(?=["\'])')
 
-    def __init__(self, var_name, var_value):
-        self.var_name = var_name
-        self.var_value = var_value
+@register.filter
+def add_class(value, css_class):
+    string = unicode(value)
+    match = class_re.search(string)
+    if match:
+        m = re.search(r'^%s$|^%s\s|\s%s\s|\s%s$' % (css_class, css_class,
+                                                    css_class, css_class), match.group(1))
+        print match.group(1)
+        if not m:
+            return mark_safe(class_re.sub(match.group(1) + " " + css_class,
+                                          string))
+    else:
+        return mark_safe(string.replace('>', ' class="%s">' % css_class))
+    return value
 
-    def render(self, context):
-        try:
-            value = template.Variable(self.var_value).resolve(context)
-        except template.VariableDoesNotExist:
-            value = ""
-        context[self.var_name] = value
-
-        return u""
 
 
-@register.tag(name='set')
-def set_var(parser, token):
-    """
-    {% set some_var = '123' %}
-    """
-    parts = token.split_contents()
-    if len(parts) < 4:
-        raise template.TemplateSyntaxError("'set' tag must be of the form: {% set <var_name> = <var_value> %}")
-
-    return SetVarNode(parts[1], parts[3])

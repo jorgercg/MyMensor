@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles i18n%}
+{% load staticfiles i18n mymfilters%}
 {% if user.is_authenticated %}
     {% block title %}TAGs Setup - {{ block.super }}{% endblock %}
     {% block header %}
@@ -28,18 +28,26 @@
         </div>
         <hr>
         <div id="tagedition">
-            <form method="POST" action="">
-                {% csrf_token %}
-                {% for hidden in form.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
-                {%  for field in form.visible_fields %}
-                    {{ field.errors }}
-                    {{ field }}
+            <form role="form" action="." method="post"> {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                    {{ field.label_tag|add_class:"control-label" }}
+                    {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                    {% endif %}
+                    {% if field.errors %}
+                    <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                    {% endif %}
+                    {{ field|add_class:"form-control" }}
+                </div>
                 {% endfor %}
                 <input type="hidden" name="currentvp" value="{{ currentvp }}">
                 <input type="hidden" name="currenttag" value="{{ currenttag }}">
-                <input type="submit" value="{% trans 'Submit' %}" />
+                <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
             </form>
         </div>
     {% endblock %}
