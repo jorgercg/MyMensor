@@ -15,7 +15,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div id="tagselectorforeachvp" class="dashhead-toolbar-item">
+                <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAGs in the selected VP' %}</p>
                     <select id="currtag">
                         {% for tag in tags %}
@@ -23,7 +23,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div id="tagstotalqtyselector" class="dashhead-toolbar-item">
+                <div id="tagstotalqtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG QTY= ' %}{{ qtytags }}</p>
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
