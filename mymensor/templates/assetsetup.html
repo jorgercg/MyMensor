@@ -5,11 +5,29 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <form method="post" action="">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value="{% trans 'Submit' %}" />
-        </form>
+        <div id="assetsetup">
+            <form role="form" action="." method="post"> {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                {% endif %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                    {{ field.label_tag|add_class:"control-label" }}
+                    {% if field.help_text %}
+                    <span class="help-block">{{ field.help_text }}</span>
+                    {% endif %}
+                    {% if field.errors %}
+                    <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                    {% endif %}
+                    {{ field|add_class:"form-control" }}
+                </div>
+                {% endfor %}
+                <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
+            </form>
+        </div>
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>
