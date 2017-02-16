@@ -32,8 +32,10 @@
                 {% if form.non_field_errors %}
                 <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
                 {% endif %}
-
-                {% for field in form %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
                 <div class="form-group {% if field.errors %}has-error{% endif %}">
                     {{ field.label_tag|add_class:"control-label" }}
                     {% if field.help_text %}
