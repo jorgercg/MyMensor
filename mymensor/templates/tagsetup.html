@@ -29,6 +29,9 @@
         <hr>
         <div class="row">
             <div class="col">
+                <p></p>
+            </div>
+            <div class="col-4">
                 <div id="tagedition">
                     <form role="form" action="." method="post"> {% csrf_token %}
                         {% if form.non_field_errors %}
@@ -54,9 +57,6 @@
                         <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
                     </form>
                 </div>
-            </div>
-            <div class="col">
-                <p></p>
             </div>
         </div>
     {% endblock %}
