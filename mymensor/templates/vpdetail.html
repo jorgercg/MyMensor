@@ -20,7 +20,6 @@
             </select>
         </div>
         <div id="mediaselector" class="mym-dash-item">
-            <p>{% trans 'Select Media' %}</p>
             <select id="mediaselected" name="mediaselected">
             {% for media in medias %}
                 <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
