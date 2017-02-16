@@ -13,7 +13,7 @@
                     <span id="selcdates"></span> <b class="caret"></b>
                 </div>
             </div>
-            <div id="tagselector" class="mym-dash-item">
+            <div id="tagselector" class="mym-dash-item" style="width:30rem">
                 <select multiple="multiple" id="tagsselected" name="tagsselected">
                 {% for processedtagnumber in listofprocessedtagsnumbers %}
                     <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
@@ -21,9 +21,6 @@
                             {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
                 {% endfor %}
                 </select>
-            </div>
-            <div class="mym-dash-item">
-                <p></p>
             </div>
             <div class="mym-dash-item">
                 <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
