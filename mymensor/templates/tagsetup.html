@@ -8,18 +8,18 @@
         <div class="d-flex align-content-start flex-wrap">
             <div class="dashhead-toolbar">
                 <div id="vpselector" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'VP # ' %}</p>
+                    <p>{% trans 'Select VP' %}</p>
                     <select id="currvp" class="1-30">
-                        {% for vp in listofvps %}
-                        <option value="{{ vp }}">{{ vp }}</option>
+                        {% for vp in vps %}
+                        <option value="{{ vp.vpNumber }}">VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
-                    <p>{% trans 'TAG # ' %}</p>
+                    <p>{% trans 'TAGs in the selected VP' %}</p>
                     <select multiple="multiple" id="currtag" class="1-80">
-                        {% for tag in listoftags %}
-                        <option value="{{ tag }}">{{ tag }}</option>
+                        {% for tag in tags %}
+                        <option value="{{ tag.tagNumber }}">TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
