@@ -7,17 +7,17 @@
     {% block content %}
         <div class="d-flex align-content-start flex-wrap">
             <div class="dashhead-toolbar">
-                <div id="vpselector" class="dashhead-tagstoolbar-item">
+                <div id="vpselector" class=class="dashhead-tagsmultiselect-item">
                     <p>{% trans 'Select VP' %}</p>
                     <select id="currvp" class="1-30">
                         {% for vp in vps %}
-                        <option value="{{ vp.vpNumber }}">VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                        <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
+                <div id="tagselectorforeachvp" class="dashhead-tagsmultiselect-item">
                     <p>{% trans 'TAGs in the selected VP' %}</p>
-                    <select multiple="multiple" id="currtag" class="1-80">
+                    <select id="currtag" class="1-80">
                         {% for tag in tags %}
                         <option value="{{ tag.tagNumber }}">TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
                         {% endfor %}
