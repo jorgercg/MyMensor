@@ -290,6 +290,9 @@ def tagSetupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
     currentvp = 1
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3Client = session.client('s3')
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
@@ -338,7 +341,19 @@ def tagSetupFormView(request):
     listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
-    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps})
+    vp = Vp(vpNumber=currentvp)
+    descvpStorageURL = s3Client.generate_presigned_url('get_object',
+                                                       Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                               'Key': vp.vpStdPhotoStorageURL},
+                                                       ExpiresIn=3600)
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3 = session.resource('s3')
+    object = s3.Object(AWS_S3_BUCKET_NAME, vp.vpStdPhotoStorageURL)
+    object.load()
+    obj_metadata = object.metadata
+    descvpTimeStamp = obj_metadata['datetime']
+    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp})
 
 
 @login_required

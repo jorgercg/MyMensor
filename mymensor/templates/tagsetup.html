@@ -29,8 +29,14 @@
         <hr>
         <div class="row">
             <div class="col">
-                <p></p>
-            </div>
+                <div class="card card-outline-primary m-2 mw-100">
+                    <div class="card-block">
+                        <p class="card-text">
+                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
+                        </p>
+                    </div>
+                    <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
+                </div>
             <div class="col-sm-5">
                 <div id="tagedition">
                     <form role="form" action="." method="post"> {% csrf_token %}
