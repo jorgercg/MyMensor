@@ -9,10 +9,11 @@
             <div class="dashhead-toolbar">
                 <div id="vpselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'VP # ' %}</p>
-                    <select id="currvp" class="1-30"></select>
+                    <select id="currvp" class="1-30">
                         {% for vp in listofvps %}
                         <option value="{{ vp }}">{{ vp }}</option>
                         {% endfor %}
+                    </select>
                 </div>
                 <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
