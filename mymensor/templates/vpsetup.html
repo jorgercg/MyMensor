@@ -24,7 +24,7 @@
                 <div class="card card-outline-primary m-2 mw-100">
                 <div class="card-block">
                     <p class="card-text">
-                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}">{{ descvpTimeStamp  | localtime | date:"Y:m:d H:i:sO" }}</span>
+                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}">{{ descvpTimeStamp | localtime | date:"Y:m:d H:i:sO" }}</span>
                     </p>
                 </div>
                 <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
@@ -61,7 +61,7 @@
     {% block javascript %}
         <script type="text/javascript">
         $(function(){
-            console.log('descvpTimeStamp='+'{{ descvpTimeStamp  | localtime | date:"Y:m:d H:i:sO" }}');
+            console.log('descvpTimeStamp='+'{{ descvpTimeStamp | localtime | date:"Y:m:d H:i:sO" }}');
 
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
