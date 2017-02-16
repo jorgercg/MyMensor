@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" afterPath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
     </list>
     <ignored path="mymensorapp.iws" />
@@ -45,7 +44,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="581">
@@ -67,16 +66,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="142" lean-forward="false" selection-start-line="19" selection-start-column="89" selection-end-line="19" selection-end-column="142" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,11 +76,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tagsetup.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tagsetup.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
+            <state relative-caret-position="255">
+              <caret line="17" column="77" lean-forward="true" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -210,8 +209,8 @@
         <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
         <option value="$PROJECT_DIR$/mymensor/forms.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
       </list>
     </option>
   </component>
@@ -687,13 +686,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01513" summary="14fev2017 16h50min">
-      <created>1487091304042</created>
-      <option name="number" value="01513" />
-      <option name="presentableId" value="LOCAL-01513" />
-      <option name="project" value="LOCAL" />
-      <updated>1487091304043</updated>
-    </task>
     <task id="LOCAL-01514" summary="14fev2017 16h50min">
       <created>1487091377880</created>
       <option name="number" value="01514" />
@@ -1030,7 +1022,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487247609296</updated>
     </task>
-    <option name="localTasksCounter" value="1562" />
+    <task id="LOCAL-01562" summary="16fev2017 12h24min">
+      <created>1487247902135</created>
+      <option name="number" value="01562" />
+      <option name="presentableId" value="LOCAL-01562" />
+      <option name="project" value="LOCAL" />
+      <updated>1487247902135</updated>
+    </task>
+    <option name="localTasksCounter" value="1563" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1104,7 +1103,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="13fev2017 15h06min" />
     <MESSAGE value="13fev2017 15h24min" />
     <MESSAGE value="13fev2017 16h47min" />
     <MESSAGE value="14fev2017 13h46min" />
@@ -1129,7 +1127,8 @@
     <MESSAGE value="16fev2017 11h55min" />
     <MESSAGE value="16fev2017 12h02min" />
     <MESSAGE value="16fev2017 12h09min" />
-    <option name="LAST_COMMIT_MESSAGE" value="16fev2017 12h09min" />
+    <MESSAGE value="16fev2017 12h24min" />
+    <option name="LAST_COMMIT_MESSAGE" value="16fev2017 12h24min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1446,26 +1445,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="142" lean-forward="false" selection-start-line="19" selection-start-column="89" selection-end-line="19" selection-end-column="142" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="50" column="56" lean-forward="false" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="93" lean-forward="false" selection-start-line="21" selection-start-column="93" selection-end-line="21" selection-end-column="93" />
           <folding />
         </state>
       </provider>
@@ -1477,6 +1460,22 @@
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="49" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="77" lean-forward="true" selection-start-line="17" selection-start-column="77" selection-end-line="17" selection-end-column="77" />
+          <folding />
         </state>
       </provider>
     </entry>
