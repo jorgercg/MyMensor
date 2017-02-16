@@ -298,7 +298,7 @@ def tagSetupFormView(request):
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag_temp = int(request.GET.get('currenttag', 1))
         qtytagsglobal = int(request.GET.get('qtytags', qtytagsglobal))
-        listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+        listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
             vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
         qtytags = listoftags.count()
         if qtytags==0:
@@ -312,7 +312,7 @@ def tagSetupFormView(request):
             currenttag = listoftags[0]
         tag = Tag()
         try:
-            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+            tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
 
@@ -320,10 +320,11 @@ def tagSetupFormView(request):
                          tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
 
-    listoftags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
-    listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
+    listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+    listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
-    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'listoftags':listoftags})
+    listofvps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).values_list('vpNumber', flat=True).order_by('vpNumber')
+    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'listoftags':listoftags, 'listofvps':listofvps})
 
 
 @login_required

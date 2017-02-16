@@ -7,11 +7,14 @@
     {% block content %}
         <div class="d-flex align-content-start flex-wrap">
             <div class="dashhead-toolbar">
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                <div id="vpselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'VP # ' %}</p>
                     <select id="currvp" class="1-30"></select>
+                        {% for vp in listofvps %}
+                        <option value="{{ vp }}">{{ vp }}</option>
+                        {% endfor %}
                 </div>
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                <div id="tagselectorforeachvp" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG # ' %}</p>
                     <select id="currtag" class="1-80">
                         {% for tag in listoftags %}
@@ -19,7 +22,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div id="qtyselector" class="dashhead-tagstoolbar-item">
+                <div id="tagstotalqtyselector" class="dashhead-tagstoolbar-item">
                     <p>{% trans 'TAG QTY= ' %}{{ qtytags }}</p>
                     <span id="inctags" class="fa fa-plus-circle fa-lg butinctags" data-toggle="tooltip" data-placement="top" title="{% trans 'Increase Tag Quantity' %}"></span>
                 </div>
@@ -37,7 +40,10 @@
         </div>
     {% endblock %}
     {% block javascript %}
+        <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
         <script type="text/javascript">
+        $('#currvp').chosen();
+        $('#currtag').chosen();
         $(function(){
 
             var qttags = {{ qtytags }};
@@ -52,9 +58,7 @@
             });
 
             console.log("INITIAL: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}');
-            for (i=1; i < qtvps ;i++){
-                $select.append($('<option></option>').val(i).html(i))
-            }
+
             $('.1-30 option[value="{{ currentvp }}"]').attr('selected','selected');
             $('#currvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
