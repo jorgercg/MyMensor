@@ -62,7 +62,7 @@
         <script type="text/javascript">
         $('#currentvp').chosen();
         $(function(){
-            console.log('descvpTimeStamp='+'{{ descvpTimeStamp | localtime }}');
+            console.log('descvpTimeStamp='+'{{ descvpTimeStamp }}');
 
             $('#currentvp').change(function(){
                 var vpselected = $(this).find(":selected").val();
