@@ -253,6 +253,9 @@ def vpSetupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
     currentvp = 1
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3Client = session.client('s3')
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
     if request.method == 'GET':
@@ -266,7 +269,18 @@ def vpSetupFormView(request):
     else:
         form = VpForm(instance=vp)
     vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).order_by('vpNumber')
-    return render(request, 'vpsetup.html', {'form': form, 'vps':vps, 'currentvp':currentvp})
+    descvpStorageURL = s3Client.generate_presigned_url('get_object',
+                                                            Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                    'Key': vp.vpStdPhotoStorageURL},
+                                                            ExpiresIn=3600)
+    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+    s3 = session.resource('s3')
+    object = s3.Object(AWS_S3_BUCKET_NAME, vp.vpStdPhotoStorageURL)
+    object.load()
+    obj_metadata = object.metadata
+    descvpTimeStamp = obj_metadata['datetime']
+    return render(request, 'vpsetup.html', {'form': form, 'vps':vps, 'currentvp':currentvp, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp})
 
 
 @login_required

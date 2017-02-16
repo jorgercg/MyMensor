@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters%}
+{% load i18n tz mymfilters%}
+{% localtime on %}
+{% get_current_timezone as TIME_ZONE %}
 {% if user.is_authenticated %}
     {% block title %}VPs Setup - {{ block.super }}{% endblock %}
     {% block header %}
@@ -19,7 +21,14 @@
         <hr>
         <div class="row">
             <div class="col">
-                <p></p>
+                <div class="card card-outline-primary m-2 mw-100">
+                <div class="card-block">
+                    <p class="card-text">
+                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp  | localtime | date:"Y-b-d H:i:sO" }}
+                    </p>
+                </div>
+                <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
+            </div>
             </div>
             <div class="col-sm-5">
                 <div id="vpedition">
@@ -60,6 +69,8 @@
         });
         </script>
     {% endblock %}
+
 {% else %}
     <h1>Not Logged In....</h1>
 {% endif %}
+{% endlocaltime %}
