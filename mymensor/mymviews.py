@@ -26,7 +26,7 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 
 def landingView(request):
     if request.method == "GET":
-        mediaObjectS3Key = request.GET.get('key', 0)
+        mediaObjectS3Key = urllib.unquote(request.GET.get('key', 0))
         messagetype = request.GET.get('type', 0)
         requestsignature = request.GET.get('signature', 0)
         if mediaObjectS3Key!=0 and messagetype!=0 and requestsignature!=0:
