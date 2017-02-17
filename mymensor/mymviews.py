@@ -14,7 +14,7 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
-import json, boto3, string
+import json, boto3, string, urllib
 from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
@@ -108,7 +108,7 @@ def amazon_sns_processor(request):
             media_received.amazonS3Message = amzs3msg
             media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
             media_received.mediaVpNumber = obj_metadata['vp']
-            media_received.mediaMymensorAccount = obj_metadata['mymensoraccount']
+            media_received.mediaMymensorAccount = urllib.unquote(obj_metadata['mymensoraccount'])
 
             # Fetching the info necessary to fill the vp_id i.e. pk information
             media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
