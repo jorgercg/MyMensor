@@ -348,8 +348,8 @@
                         console.log('paperx:' + paperx);
                         console.log('papery:' + papery);
 
-                        containerwidth = $("#paper").getWidth();
-                        containerheight = $("#paper").getHeight();
+                        containerwidth = document.getElementById('paper').style.width;
+                        containerheight = document.getElementById('paper').style.height;
 
                         var painter = {};
                         var shapes = [];
