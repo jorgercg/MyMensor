@@ -504,9 +504,7 @@
                 var shapes = [];
                 painter.brush = function(){};
 
-                $('.rect').bind('click', function(e){
-                    $controls.removeClass('active');
-                    $(this).addClass('active');
+                $('#startmarktagbtn').bind('click', function(e){
 
                     painter.brush = function(e) {
                         var startx = e.clientX;
@@ -531,7 +529,7 @@
                     };
                 });
 
-                $('.clear').bind('click', function(e){
+                $('#clearmarktagbtn').bind('click', function(e){
                     while(shapes.length > 0)
                     {
                         var shape = shapes.pop();
@@ -544,16 +542,15 @@
                     painter.brush.call(this, e);
                 });
 
-                $('.export-json').bind('click', function(e) {
+                $('#savemarktagbtn').bind('click', function(e) {
                     var json = RaphaelSerializeProportional.json(paper);
-                    $("#json_output").val(json)
+                    console.log("JSON"+json);
                 });
-                $('.export-svg').bind('click', function(e) {
-                    $("#svg_output").val(paper.toSVG());
-                });
+                /*
                 $(".import").bind('click', function(e) {
                     RaphaelSerialize.load_json(paper, $("#json_output").val());
                 });
+                */
             });
         });
         </script>
