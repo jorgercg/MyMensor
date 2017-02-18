@@ -39,7 +39,9 @@
       	                <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
                     </div>
                     <div class="card-block">
-                        <a id="marktagbtn" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
+                        <a id="startmarktagbtn" role="button" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
+                        <a id="savemarktagbtn" role="button" class="btn btn-success">{% trans 'Save marking of TAG#' %}{{ curenttag }}</a>
+                        <a id="clearmarktagbtn" role="button" class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
                     </div>
                 </div>
             </div>
@@ -73,7 +75,9 @@
         </div>
     {% endblock %}
     {% block javascript %}
+        <script src="{% static "js/raphael.min.js" %}"></script>
         <script type="text/javascript">
+
         $('#currvp').chosen();
         $('#currtag').chosen();
         $(function(){
@@ -102,6 +106,455 @@
                 window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
             });
 
+        });
+        // Function to take care of the tag marking
+        $(function(){
+            var containerwidth = 0;
+	        var containerheight = 0;
+
+	        /**
+            * A Simple Vector Shape Drawing App with RaphaelJS and jQuery
+            * copyright 2010 Kayla Rose Martin - Licensed under the MIT license
+            * Inspired by http://stackoverflow.com/questions/3582344/draw-a-connection-line-in-raphaeljs
+            **/
+
+            /* Then edited by Cary FitzHugh to add an example of exporting the SVG and adding polygons
+
+            */
+
+
+
+
+            /**
+            * Raphael.Export https://github.com/ElbertF/Raphael.Export
+            *
+            * Licensed under the MIT license:
+            * http://www.opensource.org/licenses/mit-license.php
+            *
+            */
+
+           (function(R) {
+            /**
+            * Escapes string for XML interpolation
+            * @param value string or number value to escape
+            * @returns string escaped
+            */
+            function escapeXML(s) {
+                if ( typeof s === 'number' ) return s.toString();
+
+                var replace = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', '\'': 'apos' };
+
+                for ( var entity in replace ) {
+                    s = s.replace(new RegExp(entity, 'g'), '&' + replace[entity] + ';');
+                }
+
+                return s;
+            }
+
+            /**
+            * Generic map function
+            * @param iterable the array or object to be mapped
+            * @param callback the callback function(element, key)
+            * @returns array
+            */
+            function map(iterable, callback) {
+                var mapped = new Array;
+
+                for ( var i in iterable ) {
+                    if ( iterable.hasOwnProperty(i) ) {
+                        var value = callback.call(this, iterable[i], i);
+
+                        if ( value !== null ) mapped.push(value);
+                    }
+                }
+
+                return mapped;
+            }
+
+            /**
+            * Generic reduce function
+            * @param iterable array or object to be reduced
+            * @param callback the callback function(initial, element, i)
+            * @param initial the initial value
+            * @return the reduced value
+            */
+            function reduce(iterable, callback, initial) {
+                for ( var i in iterable ) {
+                    if ( iterable.hasOwnProperty(i) ) {
+                        initial = callback.call(this, initial, iterable[i], i);
+                    }
+                }
+
+                return initial;
+            }
+
+            /**
+            * Utility method for creating a tag
+            * @param name the tag name, e.g., 'text'
+            * @param attrs the attribute string, e.g., name1="val1" name2="val2"
+            * or attribute map, e.g., { name1 : 'val1', name2 : 'val2' }
+            * @param content the content string inside the tag
+            * @returns string of the tag
+            */
+            function tag(name, attrs, matrix, content) {
+                if ( typeof content === 'undefined' || content === null ) {
+                    content = '';
+                }
+
+                if ( typeof attrs === 'object' ) {
+                    attrs = map(attrs, function(element, name) {
+                        return name + '="' + escapeXML(element) + '"';
+                    }).join(' ');
+                }
+
+                return '<' + name + ( matrix ? ' transform="matrix(' + matrix.toString().replace(/^matrix\(|\)$/g, '') + ')" ' : ' ' ) + attrs + '>' +  content + '</' + name + '>';
+            }
+
+            /**
+            * @return object the style object
+            */
+            function extractStyle(node) {
+                return {
+                    font: {
+                        family: node.attrs.font.replace(/^.*?"(\w+)".*$/, '$1'),
+                        size:   typeof node.attrs['font-size'] === 'undefined' ? null : node.attrs['font-size']
+                        }
+                    };
+            }
+
+            /**
+            * @param style object from style()
+            * @return string
+            */
+            function styleToString(style) {
+                // TODO figure out what is 'normal'
+                return 'font: normal normal normal 10px/normal ' + style.font.family + ( style.font.size === null ? '' : '; font-size: ' + style.font.size + 'px' );
+            }
+
+            /**
+            * Computes tspan dy using font size. This formula was empircally determined
+            * using a best-fit line. Works well in both VML and SVG browsers.
+            * @param fontSize number
+            * @return number
+            */
+            function computeTSpanDy(fontSize, line, lines) {
+                if ( fontSize === null ) fontSize = 10;
+
+                //return fontSize * 4.5 / 13
+                return fontSize * 4.5 / 13 * ( line - .2 - lines / 2 ) * 3.5;
+            }
+
+            var serializer = {
+                'text': function(node) {
+                    style = extractStyle(node);
+
+                    var tags = new Array;
+
+                    node.attrs['text'].split('\n').map(function(text, line) {
+                        tags.push(tag(
+                            'text',
+                            reduce(
+                                node.attrs,
+                                function(initial, value, name) {
+                                    if ( name !== 'text' && name !== 'w' && name !== 'h' ) {
+                                        if ( name === 'font-size') value = value + 'px';
+
+                                        initial[name] = escapeXML(value.toString());
+                                    }
+
+                                    return initial;
+                                },
+                                { style: 'text-anchor: middle; ' + styleToString(style) + ';' }
+                                ),
+                            node.matrix,
+                            tag('tspan', { dy: computeTSpanDy(style.font.size, line + 1, node.attrs['text'].split('\n').length) }, null, text)
+                        ));
+                    });
+
+                    return tags;
+                },
+                'path' : function(node) {
+                    var initial = ( node.matrix.a === 1 && node.matrix.d === 1 ) ? {} : { 'transform' : node.matrix.toString() };
+
+                    return tag(
+                        'path',
+                        reduce(
+                            node.attrs,
+                            function(initial, value, name) {
+                                if ( name === 'path' ) name = 'd';
+
+                                initial[name] = value.toString();
+
+                                return initial;
+                            },
+                            {}
+                        ),
+                        node.matrix
+                        );
+                }
+                // Other serializers should go here
+            };
+
+            R.fn.toSVG = function() {
+                var
+                    paper   = this,
+                    restore = { svg: R.svg, vml: R.vml },
+                    svg     = '<svg style="overflow: hidden; position: relative;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + paper.width + '" version="1.1" height="' + paper.height + '">'
+                    ;
+
+                R.svg = true;
+                R.vml = false;
+
+                for ( var node = paper.bottom; node != null; node = node.next ) {
+                    var attrs = '';
+
+                    // Use serializer
+                    if ( typeof serializer[node.type] === 'function' ) {
+                        svg += serializer[node.type](node);
+
+                        continue;
+                    }
+
+                    switch ( node.type ) {
+                        case 'image':
+                            attrs += ' preserveAspectRatio="none"';
+                            break;
+                    }
+
+                    for ( i in node.attrs ) {
+                        var name = i;
+
+                        switch ( i ) {
+                            case 'src':
+                                name = 'xlink:href';
+
+                                break;
+                            case 'transform':
+                                name = '';
+
+                                break;
+                        }
+
+                        if ( name ) {
+                            attrs += ' ' + name + '="' + escapeXML(node.attrs[i].toString()) + '"';
+                        }
+                    }
+
+                    svg += '<' + node.type + ' transform="matrix(' + node.matrix.toString().replace(/^matrix\(|\)$/g, '') + ')"' + attrs + '></' + node.type + '>';
+                }
+
+                svg += '</svg>';
+
+                R.svg = restore.svg;
+                R.vml = restore.vml;
+
+                return svg;
+            };
+           })(window.Raphael);
+
+
+           /*!
+            * raphaeljs.serialize
+            *
+            * Copyright (c) 2010 Jonathan Spies
+            * Licensed under the MIT license:
+            * (http://www.opensource.org/licenses/mit-license.php)
+            *
+            * Modified to return proportional values to conatiner size by Jorge Goncalves in 2017
+            *
+            */
+
+            var RaphaelSerializeProportional = {
+                json: function(paper) {
+                    var svgdata = [];
+
+                    paper.forEach(function(node) {
+                        if (node && node.type) {
+                            switch(node.type) {
+                                case "rect":
+                                    var object = {
+                                        type: node.type,
+                                        x: node.attrs['x']/containerwidth,
+                                        y: node.attrs['y']/containerheight,
+                                        width: node.attrs['width']/containerwidth,
+                                        height: node.attrs['height']/containerheight,
+                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
+                                        'stroke-width': node.attrs['stroke-width'],
+                                        fill: node.attrs['fill']
+                                    };
+                                    console.log('containerwidth'+containerwidth);
+                                    console.log('containerheight'+containerheight);
+                                    console.log('node.attrs[x]'+node.attrs['x']);
+                                    console.log('node.attrs[y]'+node.attrs['y']);
+                                    console.log('node.attrs[width]'+node.attrs['width']);
+                                    console.log('node.attrs[width]'+node.attrs['height']);
+                                    break;
+                                case "text":
+                                    var object = {
+                                        type: node.type,
+                                        font: node.attrs['font'],
+                                        'font-family': node.attrs['font-family'],
+                                        'font-size': node.attrs['font-size'],
+                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
+                                        fill: node.attrs['fill'] === 0 ? 'none' : node.attrs['fill'],
+                                        'stroke-width': node.attrs['stroke-width'],
+                                        x: node.attrs['x'],
+                                        y: node.attrs['y'],
+                                        text: node.attrs['text'],
+                                        'text-anchor': node.attrs['text-anchor']
+                                    };
+                                    break;
+
+                                    var object = {
+                                        type: node.type,
+                                        fill: node.attrs['fill'],
+                                        opacity: node.attrs['opacity'],
+                                        translation: node.attrs['translation'],
+                                        scale: node.attrs['scale'],
+                                        path: path,
+                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
+                                        'stroke-width': node.attrs['stroke-width'],
+                                        transform: node.transformations ? node.transformations.join(' ') : ''
+                                    }
+                            }
+
+                            if (object) {
+                                svgdata.push(object);
+                            }
+                        }
+                    });
+
+                    return(JSON.stringify(svgdata));
+                },
+
+                load_json : function(paper, json) {
+                    if (typeof(json) == "string") { json = JSON.parse(json); } // allow stringified or object input
+
+                    var set = paper.set();
+                    $.each(json, function(index, node) {
+                        try {
+                            var el = paper[node.type]().attr(node);
+                            set.push(el);
+                        } catch(e) {}
+                    });
+                    return set;
+                }
+            };
+
+
+            function Rect(startX, startY, width, height, raphael) {
+                var start = {
+                    x: startX,
+                    y: startY,
+                    w: width,
+                    h: height
+                };
+                var end = {
+                    w: width,
+                    h: height
+                };
+                var getWidth = function() {
+                    return end.w;
+                };
+                var getHeight = function() {
+                    return end.h;
+                };
+                var redraw = function() {
+                    node.attr({width: getWidth(), height: getHeight()});
+                };
+
+                var node = raphael.rect(start.x, start.y, getWidth(), getHeight());
+
+                node.attr({'fill': 'red', 'fill-opacity':0.3});
+
+                return {
+                    updateStart: function(x, y) {
+                        start.x = x;
+                        start.y = y;
+                        redraw();
+                        return this;
+                    },
+                    updateEnd: function(x, y) {
+                        var v = {
+                            x: Math.abs(x - start.x),
+                            y: Math.abs(y - start.y)
+                        };
+                        //Width
+                        var width = Math.sqrt((Math.pow(v.x, 2) + Math.pow(v.y, 2)));
+                        end.h = width;
+                        end.w = width;
+                        redraw();
+                        return this;
+                    },
+                    clear: function() {
+                        node.remove();
+                    }
+                };
+            }
+
+
+            $(function() {
+                var $paper = $("#paper");
+                var $controls = $('.control');
+                containerwidth = $("#paper").width();
+                containerheight = $("#paper").height();
+                console.log('containerwidth:'+containerwidth+' containerheight:'+containerheight);
+                var paper = Raphael("paper", containerwidth, containerheight);
+                var painter = {};
+                var shapes = [];
+                painter.brush = function(){};
+
+                $('.rect').bind('click', function(e){
+                    $controls.removeClass('active');
+                    $(this).addClass('active');
+
+                    painter.brush = function(e) {
+                        var startx = e.clientX;
+                        var starty = e.clientY;
+
+                        var shape = paper.rect(startx, starty, 1, 1);
+                        shapes.push(shape);
+                        shape.attr('stroke-width', 2);
+                        $paper.bind('mouseup', function(e) {
+                            $paper.unbind('mousemove');
+                            $paper.unbind('mouseup');
+                        });
+                        $paper.bind('mousemove', function(e) {
+                            var x = [startx, e.clientX].sort(function(a, b) { return a - b; });
+                            var y = [starty, e.clientY].sort(function(a, b) { return a - b; });
+
+                            shape.attr('x', x[0]);
+                            shape.attr('y', y[0]);
+                            shape.attr('width', x[1] - x[0]);
+                            shape.attr('height', y[1] - y[0]);
+                        });
+                    };
+                });
+
+                $('.clear').bind('click', function(e){
+                    while(shapes.length > 0)
+                    {
+                        var shape = shapes.pop();
+                        shape.remove();
+                    }
+                });
+
+                $paper.bind('mousedown', function(e){
+                    console.log('mousedown');
+                    painter.brush.call(this, e);
+                });
+
+                $('.export-json').bind('click', function(e) {
+                    var json = RaphaelSerializeProportional.json(paper);
+                    $("#json_output").val(json)
+                });
+                $('.export-svg').bind('click', function(e) {
+                    $("#svg_output").val(paper.toSVG());
+                });
+                $(".import").bind('click', function(e) {
+                    RaphaelSerialize.load_json(paper, $("#json_output").val());
+                });
+            });
         });
         </script>
     {% endblock %}
