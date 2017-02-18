@@ -28,8 +28,8 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col">
-                <div class="card card-outline-primary m-2 mw-100">
+            <div class="col-sm-7">
+                <div class="card card-outline-primary m-2">
                     <div class="card-block">
                         <p class="card-text">
                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
@@ -39,7 +39,7 @@
       	                <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
                     </div>
                     <div class="card-block">
-                        <a href="#" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
+                        <a id="marktagbtn" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
                     </div>
                 </div>
             </div>
