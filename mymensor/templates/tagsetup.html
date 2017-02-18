@@ -347,9 +347,13 @@
                         console.log('done');
                         var paperx = getOffset(document.getElementById('paper')).left;
                         var papery = getOffset(document.getElementById('paper')).top;
+                        var paperwidth = getOffset(document.getElementById('paper')).clientWidth;
+                        var paperheight = getOffset(document.getElementById('paper')).clientHeight;
 
                         console.log('paperx:' + paperx);
                         console.log('papery:' + papery);
+                        console.log('paperwidth:' + paperwidth);
+                        console.log('paperheight:' + paperheight);
 
                         var painter = {};
                         var shapes = [];
