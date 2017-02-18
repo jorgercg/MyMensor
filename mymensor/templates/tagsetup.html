@@ -347,6 +347,10 @@
 
                         console.log('paperx:' + paperx);
                         console.log('papery:' + papery);
+
+                        containerwidth = $("#paper").getWidth();
+                        containerheight = $("#paper").getHeight();
+
                         var painter = {};
                         var shapes = [];
 
@@ -367,10 +371,10 @@
                                     $paper.unbind('mouseup');
                                 });
                                 $paper.bind('mousemove', function (e) {
-                                    var x = [startx, e.clientX].sort(function (a, b) {
+                                    var x = [startx, e.clientX-paperx].sort(function (a, b) {
                                         return a - b;
                                     });
-                                    var y = [starty, e.clientY].sort(function (a, b) {
+                                    var y = [starty, e.clientY-papery].sort(function (a, b) {
                                         return a - b;
                                     });
 
