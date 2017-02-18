@@ -193,8 +193,8 @@
                     json: function (paper) {
                         var svgdata = [];
 
-                        containerwidth = paper.getWidth();
-                        containerheight = paper.getHeight();
+                        containerwidth = document.getElementById('paper').style.width;
+                        containerheight = document.getElementById('paper').style.height;
 
                         console.log('containerwidth:' + containerwidth);
                         console.log('containerheight:' + containerheight);
