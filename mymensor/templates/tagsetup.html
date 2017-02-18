@@ -85,7 +85,7 @@
     {% block javascript %}
         <script src="{% static "js/raphael.min.js" %}"></script>
         <script type="text/javascript">
-            console.log('{{ descvpStorageURL }}');
+            console.log("{{ descvpStorageURL }}");
             $('#currvp').chosen();
             $('#currtag').chosen();
             $(function () {
@@ -345,7 +345,7 @@
 
                     var paper = new Raphael('paper', '100%', '100%');
 
-                    var dfd = paper.imageAsync('{{ descvpStorageURL }}', 0, 0, false, false);
+                    var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, false, false);
                     dfd.done(function (result) {  //result is a Raphael element
                         console.log('done');
                         var paperx = getOffset(document.getElementById('paper')).left;
