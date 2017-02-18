@@ -399,7 +399,7 @@
 
                         $paper.bind('mousedown', function (e) {
                             console.log('mousedown');
-                            console.log('Width:'+$('#wrapper').width);
+                            console.log('Width:'+$('#wrapper').width.val());
                             painter.brush.call(this, e);
                         });
 
