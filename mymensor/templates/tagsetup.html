@@ -193,12 +193,6 @@
                     json: function (paper) {
                         var svgdata = [];
 
-                        containerwidth = $(this).parent().width;
-                        containerheight = $(this).parent().height;
-
-                        console.log('containerwidth:' + containerwidth);
-                        console.log('containerheight:' + containerheight);
-
                         paper.forEach(function (node) {
                             if (node && node.type) {
                                 switch (node.type) {
