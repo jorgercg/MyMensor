@@ -35,8 +35,10 @@
                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
                         </p>
                     </div>
-                    <div id="paper" class="container">
-      	                <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
+                    <div id="wrapper">
+                        <div id="paper" class="container">
+      	                    <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
+                        </div>
                     </div>
                     <div class="card-block">
                         <a id="startmarktagbtn" role="button" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
@@ -494,12 +496,13 @@
 
 
             $(function() {
+
                 var $paper = $("#paper");
                 var $controls = $('.control');
                 containerwidth = $("#paper").width();
                 containerheight = $("#paper").height();
                 console.log('containerwidth:'+containerwidth+' containerheight:'+containerheight);
-                var paper = Raphael("paper", containerwidth, containerheight);
+                var paper = Raphael(document.getElementById("paper"), containerwidth, containerheight);
                 var painter = {};
                 var shapes = [];
                 painter.brush = function(){};

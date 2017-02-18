@@ -371,17 +371,28 @@ hr {
     margin-bottom: 0.5rem;
 }
 
-.container {
-		width:100%;
-		overflow:hidden;
+#wrapper {
+    position: relative;
 }
 
-.container img {
+#wrapper .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width:100%;
+    overflow:hidden;
+}
+
+#wrapper .container img {
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: -1;
 }
 
 svg {
-        border:solid 1px #000;
+    border:solid 1px #000;
 }
 
 
