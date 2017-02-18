@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles i18n mymfilters%}
+{% load staticfiles i18n mymfilters %}
 {% if user.is_authenticated %}
     {% block title %}TAGs Setup - {{ block.super }}{% endblock %}
     {% block header %}
@@ -10,19 +10,22 @@
                 <div id="vpselector" class="mym-dash-item">
                     <select id="currvp">
                         {% for vp in vps %}
-                            <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                            <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>
+                                VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="tagselectorforeachvp" class="mym-dash-item">
                     <select id="currtag">
                         {% for tag in tags %}
-                            <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
+                            <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>
+                                TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="tagstotalqtyselector" class="mym-dash-item">
-                    <button id="inctags" type="button" class="btn btn-outline-primary">{% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
+                    <button id="inctags" type="button" class="btn btn-outline-primary">
+                        {% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
             </div>
         </div>
@@ -32,18 +35,21 @@
                 <div class="card card-outline-primary m-2">
                     <div class="card-block">
                         <p class="card-text">
-                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
+                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
+                                  title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
                         </p>
                     </div>
                     <div id="wrapper">
                         <div id="paper" class="container">
-      	                    <img class="card-img-top img-fluid" src="{{ descvpStorageURL }}" alt="">
                         </div>
                     </div>
                     <div class="card-block">
-                        <a id="startmarktagbtn" role="button" class="btn btn-primary">{% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
-                        <a id="savemarktagbtn" role="button" class="btn btn-success">{% trans 'Save marking of TAG#' %}{{ curenttag }}</a>
-                        <a id="clearmarktagbtn" role="button" class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
+                        <a id="startmarktagbtn" role="button" class="btn btn-primary">
+                            {% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
+                        <a id="savemarktagbtn" role="button" class="btn btn-success">
+                            {% trans 'Save marking of TAG#' %}{{ curenttag }}</a>
+                        <a id="clearmarktagbtn" role="button"
+                           class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
                     </div>
                 </div>
             </div>
@@ -51,22 +57,22 @@
                 <div id="tagedition">
                     <form role="form" action="." method="post"> {% csrf_token %}
                         {% if form.non_field_errors %}
-                        <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                            <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
                         {% endif %}
                         {% for hidden in form.hidden_fields %}
                             {{ hidden }}
                         {% endfor %}
                         {% for field in form.visible_fields %}
-                        <div class="form-group {% if field.errors %}has-error{% endif %}">
-                            {{ field.label_tag|add_class:"control-label" }}
-                            {% if field.help_text %}
-                            <span class="help-block">{{ field.help_text }}</span>
-                            {% endif %}
-                            {% if field.errors %}
-                            <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
-                            {% endif %}
-                            {{ field|add_class:"form-control" }}
-                        </div>
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                {{ field.label_tag|add_class:"control-label" }}
+                                {% if field.help_text %}
+                                    <span class="help-block">{{ field.help_text }}</span>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                                {% endif %}
+                                {{ field|add_class:"form-control" }}
+                            </div>
                         {% endfor %}
                         <input type="hidden" name="currentvp" value="{{ currentvp }}">
                         <input type="hidden" name="currenttag" value="{{ currenttag }}">
@@ -80,483 +86,309 @@
         <script src="{% static "js/raphael.min.js" %}"></script>
         <script type="text/javascript">
 
-        $('#currvp').chosen();
-        $('#currtag').chosen();
-        $(function(){
+            $('#currvp').chosen();
+            $('#currtag').chosen();
+            $(function () {
 
-            var qttags = {{ qtytags }};
-            var qtvps = {{ qtyvps }};
+                var qttags = {{ qtytags }};
+                var qtvps = {{ qtyvps }};
 
-            $('#currtag').change(function(){
-                var tagselected = $(this).find(":selected").val();
-                console.log("TAGSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+tagselected);
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+'{{ qtytags }}'+'&currenttag='+tagselected;
+                $('#currtag').change(function () {
+                    var tagselected = $(this).find(":selected").val();
+                    console.log("TAGSELECTED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + tagselected);
+                    window.location = {% url 'tagsetup' %}+'?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + '{{ qtytags }}' + '&currenttag=' + tagselected;
+                });
+
+                console.log("INITIAL: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}');
+
+                $('#currvp').change(function () {
+                    var vpselected = $(this).find(":selected").val();
+                    console.log("VPSELECTED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
+                    window.location = {% url 'tagsetup' %}+'?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytags }}' + '&currenttag=' + '{{ currenttag }}';
+                });
+
+                $('#inctags').click(function () {
+                    console.log("Clicked on inctags!!!!");
+                    qttags = qttags + 1;
+                    console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
+                    window.location = {% url 'tagsetup' %}+'?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + qttags;
+                });
+
             });
+            // Function to take care of the tag marking
+            $(function () {
 
-            console.log("INITIAL: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+'{{ currenttag }}');
+                var containerwidth = 0;
+                var containerheight = 0;
 
-            $('#currvp').change(function(){
-                var vpselected = $(this).find(":selected").val();
-                console.log("VPSELECTED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+vpselected+" tagselected="+'{{ currenttag }}');
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+vpselected+'&qtytags='+'{{ qtytags }}'+'&currenttag='+'{{ currenttag }}';
-            });
+                /**
+                 * A Simple Vector Shape Drawing App with RaphaelJS and jQuery
+                 * copyright 2010 Kayla Rose Martin - Licensed under the MIT license
+                 * Inspired by http://stackoverflow.com/questions/3582344/draw-a-connection-line-in-raphaeljs
+                 **/
 
-            $('#inctags').click(function(){
-                console.log("Clicked on inctags!!!!");
-                qttags = qttags + 1;
-                console.log("INCTAGSCLICKED: qtvps="+qtvps+" qttags="+qttags+" vpselected="+'{{ currentvp }}'+" tagselected="+qttags);
-                window.location={% url 'tagsetup' %}+'?qtyvps='+'{{ qtyvps }}'+'&currentvp='+'{{ currentvp }}'+'&qtytags='+qttags+'&currenttag='+qttags;
-            });
+                /* Then edited by Cary FitzHugh to add an example of exporting the SVG and adding polygons
 
-        });
-        // Function to take care of the tag marking
-        $(function(){
-            var containerwidth = 0;
-	        var containerheight = 0;
-
-	        /**
-            * A Simple Vector Shape Drawing App with RaphaelJS and jQuery
-            * copyright 2010 Kayla Rose Martin - Licensed under the MIT license
-            * Inspired by http://stackoverflow.com/questions/3582344/draw-a-connection-line-in-raphaeljs
-            **/
-
-            /* Then edited by Cary FitzHugh to add an example of exporting the SVG and adding polygons
-
-            */
+                 */
 
 
+                (function (Raphael) {
+                    /// Plugin - replaces original RaphaelJS .image constructor
+                    /// with one that respects original dimensions.
+                    /// Optional overrides for each dimension.
+                    /// @drzaus @zaus
+                    /// based on http://stackoverflow.com/questions/10802702/raphael-js-image-with-its-original-width-and-height-size
+                    /// modified 13/08/2013 by @Huniku to support asynchronous loads
+
+                    var originalRaphaelImageFn = Raphael.fn.image;
+
+                    Raphael.fn.imageAsync = function (url, x, y, w, h) {
+                        var dfd = new jQuery.Deferred();
+                        var done = false;
+                        var paper = this;
+                        // fix the image dimensions to match original scale unless otherwise provided
+                        if (!w || !h) {
+                            //Create the new image and set the onload event to call
+                            //the original paper.image function with the desired dimensions
+                            var img = new Image();
+                            img.onload = function () {
+                                if (done)
+                                    return;
+                                if (!w) w = img.width;
+                                if (!h) h = img.height;
+                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                            };
+                            //Begin loading of the image
+                            img.src = url;
+
+                            //If the images is already loaded (i.e. it was in the local cache)
+                            //img.onload will not fire, so call paper.image here.
+                            //Set done to ensure img.onload does not fire.
+                            if (img.width != 0) {
+                                if (!w) w = img.width;
+                                if (!h) h = img.height;
+                                done = true;
+                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                            }
+                        }
+                        else
+                            dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                        return dfd.promise();
+                    };
+                })(Raphael);
 
 
-            /**
-            * Raphael.Export https://github.com/ElbertF/Raphael.Export
-            *
-            * Licensed under the MIT license:
-            * http://www.opensource.org/licenses/mit-license.php
-            *
-            */
+                /*!
+                 * raphaeljs.serialize
+                 *
+                 * Copyright (c) 2010 Jonathan Spies
+                 * Licensed under the MIT license:
+                 * (http://www.opensource.org/licenses/mit-license.php)
+                 *
+                 * Modified to return proportional values to container size by Jorge Goncalves in 2017
+                 *
+                 */
 
-           (function(R) {
-            /**
-            * Escapes string for XML interpolation
-            * @param value string or number value to escape
-            * @returns string escaped
-            */
-            function escapeXML(s) {
-                if ( typeof s === 'number' ) return s.toString();
+                var RaphaelSerializeProportional = {
+                    json: function (paper) {
+                        var svgdata = [];
 
-                var replace = { '&': 'amp', '<': 'lt', '>': 'gt', '"': 'quot', '\'': 'apos' };
+                        paper.forEach(function (node) {
+                            if (node && node.type) {
+                                switch (node.type) {
+                                    case "rect":
+                                        var object = {
+                                            type: node.type,
+                                            x: node.attrs['x'] / containerwidth,
+                                            y: node.attrs['y'] / containerheight,
+                                            width: node.attrs['width'] / containerwidth,
+                                            height: node.attrs['height'] / containerheight,
+                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                            'stroke-width': node.attrs['stroke-width'],
+                                            fill: node.attrs['fill']
+                                        };
+                                        console.log('containerwidth' + containerwidth);
+                                        console.log('containerheight' + containerheight);
+                                        console.log('node.attrs[x]' + node.attrs['x']);
+                                        console.log('node.attrs[y]' + node.attrs['y']);
+                                        console.log('node.attrs[width]' + node.attrs['width']);
+                                        console.log('node.attrs[width]' + node.attrs['height']);
+                                        break;
+                                    case "text":
+                                        var object = {
+                                            type: node.type,
+                                            font: node.attrs['font'],
+                                            'font-family': node.attrs['font-family'],
+                                            'font-size': node.attrs['font-size'],
+                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                            fill: node.attrs['fill'] === 0 ? 'none' : node.attrs['fill'],
+                                            'stroke-width': node.attrs['stroke-width'],
+                                            x: node.attrs['x'],
+                                            y: node.attrs['y'],
+                                            text: node.attrs['text'],
+                                            'text-anchor': node.attrs['text-anchor']
+                                        };
+                                        break;
 
-                for ( var entity in replace ) {
-                    s = s.replace(new RegExp(entity, 'g'), '&' + replace[entity] + ';');
-                }
+                                        var object = {
+                                            type: node.type,
+                                            fill: node.attrs['fill'],
+                                            opacity: node.attrs['opacity'],
+                                            translation: node.attrs['translation'],
+                                            scale: node.attrs['scale'],
+                                            path: path,
+                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                            'stroke-width': node.attrs['stroke-width'],
+                                            transform: node.transformations ? node.transformations.join(' ') : ''
+                                        }
+                                }
 
-                return s;
-            }
+                                if (object) {
+                                    svgdata.push(object);
+                                }
+                            }
+                        });
 
-            /**
-            * Generic map function
-            * @param iterable the array or object to be mapped
-            * @param callback the callback function(element, key)
-            * @returns array
-            */
-            function map(iterable, callback) {
-                var mapped = new Array;
+                        return (JSON.stringify(svgdata));
+                    },
 
-                for ( var i in iterable ) {
-                    if ( iterable.hasOwnProperty(i) ) {
-                        var value = callback.call(this, iterable[i], i);
+                    load_json: function (paper, json) {
+                        if (typeof(json) == "string") {
+                            json = JSON.parse(json);
+                        } // allow stringified or object input
 
-                        if ( value !== null ) mapped.push(value);
+                        var set = paper.set();
+                        $.each(json, function (index, node) {
+                            try {
+                                var el = paper[node.type]().attr(node);
+                                set.push(el);
+                            } catch (e) {
+                            }
+                        });
+                        return set;
                     }
-                }
+                };
 
-                return mapped;
-            }
 
-            /**
-            * Generic reduce function
-            * @param iterable array or object to be reduced
-            * @param callback the callback function(initial, element, i)
-            * @param initial the initial value
-            * @return the reduced value
-            */
-            function reduce(iterable, callback, initial) {
-                for ( var i in iterable ) {
-                    if ( iterable.hasOwnProperty(i) ) {
-                        initial = callback.call(this, initial, iterable[i], i);
-                    }
-                }
+                function Rect(startX, startY, width, height, raphael) {
+                    var start = {
+                        x: startX,
+                        y: startY,
+                        w: width,
+                        h: height
+                    };
+                    var end = {
+                        w: width,
+                        h: height
+                    };
+                    var getWidth = function () {
+                        return end.w;
+                    };
+                    var getHeight = function () {
+                        return end.h;
+                    };
+                    var redraw = function () {
+                        node.attr({width: getWidth(), height: getHeight()});
+                    };
 
-                return initial;
-            }
+                    var node = raphael.rect(start.x, start.y, getWidth(), getHeight());
 
-            /**
-            * Utility method for creating a tag
-            * @param name the tag name, e.g., 'text'
-            * @param attrs the attribute string, e.g., name1="val1" name2="val2"
-            * or attribute map, e.g., { name1 : 'val1', name2 : 'val2' }
-            * @param content the content string inside the tag
-            * @returns string of the tag
-            */
-            function tag(name, attrs, matrix, content) {
-                if ( typeof content === 'undefined' || content === null ) {
-                    content = '';
-                }
+                    node.attr({'fill': 'red', 'fill-opacity': 0.3});
 
-                if ( typeof attrs === 'object' ) {
-                    attrs = map(attrs, function(element, name) {
-                        return name + '="' + escapeXML(element) + '"';
-                    }).join(' ');
-                }
-
-                return '<' + name + ( matrix ? ' transform="matrix(' + matrix.toString().replace(/^matrix\(|\)$/g, '') + ')" ' : ' ' ) + attrs + '>' +  content + '</' + name + '>';
-            }
-
-            /**
-            * @return object the style object
-            */
-            function extractStyle(node) {
-                return {
-                    font: {
-                        family: node.attrs.font.replace(/^.*?"(\w+)".*$/, '$1'),
-                        size:   typeof node.attrs['font-size'] === 'undefined' ? null : node.attrs['font-size']
+                    return {
+                        updateStart: function (x, y) {
+                            start.x = x;
+                            start.y = y;
+                            redraw();
+                            return this;
+                        },
+                        updateEnd: function (x, y) {
+                            var v = {
+                                x: Math.abs(x - start.x),
+                                y: Math.abs(y - start.y)
+                            };
+                            //Width
+                            var width = Math.sqrt((Math.pow(v.x, 2) + Math.pow(v.y, 2)));
+                            end.h = width;
+                            end.w = width;
+                            redraw();
+                            return this;
+                        },
+                        clear: function () {
+                            node.remove();
                         }
                     };
-            }
-
-            /**
-            * @param style object from style()
-            * @return string
-            */
-            function styleToString(style) {
-                // TODO figure out what is 'normal'
-                return 'font: normal normal normal 10px/normal ' + style.font.family + ( style.font.size === null ? '' : '; font-size: ' + style.font.size + 'px' );
-            }
-
-            /**
-            * Computes tspan dy using font size. This formula was empircally determined
-            * using a best-fit line. Works well in both VML and SVG browsers.
-            * @param fontSize number
-            * @return number
-            */
-            function computeTSpanDy(fontSize, line, lines) {
-                if ( fontSize === null ) fontSize = 10;
-
-                //return fontSize * 4.5 / 13
-                return fontSize * 4.5 / 13 * ( line - .2 - lines / 2 ) * 3.5;
-            }
-
-            var serializer = {
-                'text': function(node) {
-                    style = extractStyle(node);
-
-                    var tags = new Array;
-
-                    node.attrs['text'].split('\n').map(function(text, line) {
-                        tags.push(tag(
-                            'text',
-                            reduce(
-                                node.attrs,
-                                function(initial, value, name) {
-                                    if ( name !== 'text' && name !== 'w' && name !== 'h' ) {
-                                        if ( name === 'font-size') value = value + 'px';
-
-                                        initial[name] = escapeXML(value.toString());
-                                    }
-
-                                    return initial;
-                                },
-                                { style: 'text-anchor: middle; ' + styleToString(style) + ';' }
-                                ),
-                            node.matrix,
-                            tag('tspan', { dy: computeTSpanDy(style.font.size, line + 1, node.attrs['text'].split('\n').length) }, null, text)
-                        ));
-                    });
-
-                    return tags;
-                },
-                'path' : function(node) {
-                    var initial = ( node.matrix.a === 1 && node.matrix.d === 1 ) ? {} : { 'transform' : node.matrix.toString() };
-
-                    return tag(
-                        'path',
-                        reduce(
-                            node.attrs,
-                            function(initial, value, name) {
-                                if ( name === 'path' ) name = 'd';
-
-                                initial[name] = value.toString();
-
-                                return initial;
-                            },
-                            {}
-                        ),
-                        node.matrix
-                        );
-                }
-                // Other serializers should go here
-            };
-
-            R.fn.toSVG = function() {
-                var
-                    paper   = this,
-                    restore = { svg: R.svg, vml: R.vml },
-                    svg     = '<svg style="overflow: hidden; position: relative;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="' + paper.width + '" version="1.1" height="' + paper.height + '">'
-                    ;
-
-                R.svg = true;
-                R.vml = false;
-
-                for ( var node = paper.bottom; node != null; node = node.next ) {
-                    var attrs = '';
-
-                    // Use serializer
-                    if ( typeof serializer[node.type] === 'function' ) {
-                        svg += serializer[node.type](node);
-
-                        continue;
-                    }
-
-                    switch ( node.type ) {
-                        case 'image':
-                            attrs += ' preserveAspectRatio="none"';
-                            break;
-                    }
-
-                    for ( i in node.attrs ) {
-                        var name = i;
-
-                        switch ( i ) {
-                            case 'src':
-                                name = 'xlink:href';
-
-                                break;
-                            case 'transform':
-                                name = '';
-
-                                break;
-                        }
-
-                        if ( name ) {
-                            attrs += ' ' + name + '="' + escapeXML(node.attrs[i].toString()) + '"';
-                        }
-                    }
-
-                    svg += '<' + node.type + ' transform="matrix(' + node.matrix.toString().replace(/^matrix\(|\)$/g, '') + ')"' + attrs + '></' + node.type + '>';
                 }
 
-                svg += '</svg>';
 
-                R.svg = restore.svg;
-                R.vml = restore.vml;
+                $(function () {
 
-                return svg;
-            };
-           })(window.Raphael);
+                    var $paper = $("#paper");
 
+                    var paper = new Raphael('paper', '100%', '100%');
 
-           /*!
-            * raphaeljs.serialize
-            *
-            * Copyright (c) 2010 Jonathan Spies
-            * Licensed under the MIT license:
-            * (http://www.opensource.org/licenses/mit-license.php)
-            *
-            * Modified to return proportional values to conatiner size by Jorge Goncalves in 2017
-            *
-            */
+                    var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, false, false);
+                    dfd.done(function (result) {  //result is a Raphael element
+                        console.log('done');
+                        var painter = {};
+                        var shapes = [];
 
-            var RaphaelSerializeProportional = {
-                json: function(paper) {
-                    var svgdata = [];
-
-                    paper.forEach(function(node) {
-                        if (node && node.type) {
-                            switch(node.type) {
-                                case "rect":
-                                    var object = {
-                                        type: node.type,
-                                        x: node.attrs['x']/containerwidth,
-                                        y: node.attrs['y']/containerheight,
-                                        width: node.attrs['width']/containerwidth,
-                                        height: node.attrs['height']/containerheight,
-                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
-                                        'stroke-width': node.attrs['stroke-width'],
-                                        fill: node.attrs['fill']
-                                    };
-                                    console.log('containerwidth'+containerwidth);
-                                    console.log('containerheight'+containerheight);
-                                    console.log('node.attrs[x]'+node.attrs['x']);
-                                    console.log('node.attrs[y]'+node.attrs['y']);
-                                    console.log('node.attrs[width]'+node.attrs['width']);
-                                    console.log('node.attrs[width]'+node.attrs['height']);
-                                    break;
-                                case "text":
-                                    var object = {
-                                        type: node.type,
-                                        font: node.attrs['font'],
-                                        'font-family': node.attrs['font-family'],
-                                        'font-size': node.attrs['font-size'],
-                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
-                                        fill: node.attrs['fill'] === 0 ? 'none' : node.attrs['fill'],
-                                        'stroke-width': node.attrs['stroke-width'],
-                                        x: node.attrs['x'],
-                                        y: node.attrs['y'],
-                                        text: node.attrs['text'],
-                                        'text-anchor': node.attrs['text-anchor']
-                                    };
-                                    break;
-
-                                    var object = {
-                                        type: node.type,
-                                        fill: node.attrs['fill'],
-                                        opacity: node.attrs['opacity'],
-                                        translation: node.attrs['translation'],
-                                        scale: node.attrs['scale'],
-                                        path: path,
-                                        stroke: node.attrs['stroke'] === 0 ? 'none': node.attrs['stroke'],
-                                        'stroke-width': node.attrs['stroke-width'],
-                                        transform: node.transformations ? node.transformations.join(' ') : ''
-                                    }
-                            }
-
-                            if (object) {
-                                svgdata.push(object);
-                            }
-                        }
-                    });
-
-                    return(JSON.stringify(svgdata));
-                },
-
-                load_json : function(paper, json) {
-                    if (typeof(json) == "string") { json = JSON.parse(json); } // allow stringified or object input
-
-                    var set = paper.set();
-                    $.each(json, function(index, node) {
-                        try {
-                            var el = paper[node.type]().attr(node);
-                            set.push(el);
-                        } catch(e) {}
-                    });
-                    return set;
-                }
-            };
-
-
-            function Rect(startX, startY, width, height, raphael) {
-                var start = {
-                    x: startX,
-                    y: startY,
-                    w: width,
-                    h: height
-                };
-                var end = {
-                    w: width,
-                    h: height
-                };
-                var getWidth = function() {
-                    return end.w;
-                };
-                var getHeight = function() {
-                    return end.h;
-                };
-                var redraw = function() {
-                    node.attr({width: getWidth(), height: getHeight()});
-                };
-
-                var node = raphael.rect(start.x, start.y, getWidth(), getHeight());
-
-                node.attr({'fill': 'red', 'fill-opacity':0.3});
-
-                return {
-                    updateStart: function(x, y) {
-                        start.x = x;
-                        start.y = y;
-                        redraw();
-                        return this;
-                    },
-                    updateEnd: function(x, y) {
-                        var v = {
-                            x: Math.abs(x - start.x),
-                            y: Math.abs(y - start.y)
+                        painter.brush = function () {
                         };
-                        //Width
-                        var width = Math.sqrt((Math.pow(v.x, 2) + Math.pow(v.y, 2)));
-                        end.h = width;
-                        end.w = width;
-                        redraw();
-                        return this;
-                    },
-                    clear: function() {
-                        node.remove();
-                    }
-                };
-            }
 
+                        $('#startmarktagbtn').bind('click', function (e) {
 
-            $(function() {
+                            painter.brush = function (e) {
+                                var startx = e.clientX;
+                                var starty = e.clientY;
 
-                var $paper = $("#paper");
-                var $controls = $('.control');
-                containerwidth = $("#paper").width();
-                containerheight = $("#paper").height();
-                console.log('containerwidth:'+containerwidth+' containerheight:'+containerheight);
-                console.log('wrapperwidth:'+$("#wrapper").width+' wrapperheight:'+$("#wrapper").height);
-                var paper = Raphael(document.getElementById("paper"), containerwidth, containerheight);
-                var painter = {};
-                var shapes = [];
-                painter.brush = function(){};
+                                var shape = paper.rect(startx, starty, 1, 1);
+                                shapes.push(shape);
+                                shape.attr('stroke-width', 2);
+                                $paper.bind('mouseup', function (e) {
+                                    $paper.unbind('mousemove');
+                                    $paper.unbind('mouseup');
+                                });
+                                $paper.bind('mousemove', function (e) {
+                                    var x = [startx, e.clientX].sort(function (a, b) {
+                                        return a - b;
+                                    });
+                                    var y = [starty, e.clientY].sort(function (a, b) {
+                                        return a - b;
+                                    });
 
-                $('#startmarktagbtn').bind('click', function(e){
-
-                    painter.brush = function(e) {
-                        var startx = e.clientX;
-                        var starty = e.clientY;
-
-                        var shape = paper.rect(startx, starty, 1, 1);
-                        shapes.push(shape);
-                        shape.attr('stroke-width', 2);
-                        $paper.bind('mouseup', function(e) {
-                            $paper.unbind('mousemove');
-                            $paper.unbind('mouseup');
+                                    shape.attr('x', x[0]);
+                                    shape.attr('y', y[0]);
+                                    shape.attr('width', x[1] - x[0]);
+                                    shape.attr('height', y[1] - y[0]);
+                                });
+                            };
                         });
-                        $paper.bind('mousemove', function(e) {
-                            var x = [startx, e.clientX].sort(function(a, b) { return a - b; });
-                            var y = [starty, e.clientY].sort(function(a, b) { return a - b; });
 
-                            shape.attr('x', x[0]);
-                            shape.attr('y', y[0]);
-                            shape.attr('width', x[1] - x[0]);
-                            shape.attr('height', y[1] - y[0]);
+                        $('#clearmarktagbtn').bind('click', function (e) {
+                            while (shapes.length > 0) {
+                                var shape = shapes.pop();
+                                shape.remove();
+                            }
                         });
-                    };
-                });
 
-                $('#clearmarktagbtn').bind('click', function(e){
-                    while(shapes.length > 0)
-                    {
-                        var shape = shapes.pop();
-                        shape.remove();
-                    }
-                });
+                        $paper.bind('mousedown', function (e) {
+                            console.log('mousedown');
+                            painter.brush.call(this, e);
+                        });
 
-                $paper.bind('mousedown', function(e){
-                    console.log('mousedown');
-                    painter.brush.call(this, e);
+                        $('#savemarktagbtn').bind('click', function (e) {
+                            var json = RaphaelSerializeProportional.json(paper);
+                            console.log("JSON" + json);
+                        });
+                        /*
+                         $(".import").bind('click', function(e) {
+                         RaphaelSerialize.load_json(paper, $("#json_output").val());
+                         });
+                         */
+                    });
                 });
-
-                $('#savemarktagbtn').bind('click', function(e) {
-                    var json = RaphaelSerializeProportional.json(paper);
-                    console.log("JSON"+json);
-                });
-                /*
-                $(".import").bind('click', function(e) {
-                    RaphaelSerialize.load_json(paper, $("#json_output").val());
-                });
-                */
             });
-        });
         </script>
     {% endblock %}
 {% else %}
