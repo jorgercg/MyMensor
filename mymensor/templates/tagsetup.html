@@ -345,7 +345,6 @@
                     var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, false, false);
                     dfd.done(function (result) {  //result is a Raphael element
                         console.log('done');
-
                         var paperx = getOffset(document.getElementById('paper')).left;
                         var papery = getOffset(document.getElementById('paper')).top;
                         var paperwidth = paper.width;
