@@ -344,12 +344,11 @@
                     var mediapaperheight = 0;
 
                     if (window.matchMedia("(min-width: 1200px)").matches) {
-                        mediapaperwidth = 760;
-                        mediapaperheight = 428;
+                        mediapaperwidth = 760-32;
+                        mediapaperheight = (mediapaperwidth)/1280*720;
                     }
 
                     var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
-
 
                     var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, false, false);
                     dfd.done(function (result) {  //result is a Raphael element
