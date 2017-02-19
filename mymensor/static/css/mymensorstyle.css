@@ -377,6 +377,34 @@ hr {
     height: 428px;
 }
 
+@media (min-width: 576px) {
+  #wrapper {
+    width: 360px;
+    height: 202px;
+  }
+}
+
+@media (min-width: 768px) {
+  #wrapper {
+    width: 480px;
+    height: 270px;
+  }
+}
+
+@media (min-width: 992px) {
+  #wrapper {
+    width: 620px;
+    height: 348px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #wrapper {
+    width: 760px;
+    height: 428px;
+  }
+}
+
 #wrapper .papercontainer {
     position: absolute;
     top: 0;
