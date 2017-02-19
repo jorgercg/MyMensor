@@ -193,8 +193,8 @@
                     json: function (paper) {
                         var svgdata = [];
 
-                        containerwidth=$('#paper').width();
-                        containerheight=$('#paper').height();
+                        containerwidth = $('#paper').width();
+                        containerheight = $('#paper').height();
 
                         paper.forEach(function (node) {
                             if (node && node.type) {
@@ -340,7 +340,15 @@
 
                     var $paper = $("#paper");
 
-                    var paper = new Raphael('paper', '100%', '100%');
+                    var mediapaperwidth = 0;
+                    var mediapaperheight = 0;
+
+                    if (window.matchMedia("(min-width: 1200px)").matches) {
+                        mediapaperwidth = 760;
+                        mediapaperheight = 428;
+                    }
+
+                    var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
 
                     var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, false, false);
                     dfd.done(function (result) {  //result is a Raphael element
@@ -371,10 +379,10 @@
                                     $paper.unbind('mouseup');
                                 });
                                 $paper.bind('mousemove', function (e) {
-                                    var x = [startx, e.clientX-paperx].sort(function (a, b) {
+                                    var x = [startx, e.clientX - paperx].sort(function (a, b) {
                                         return a - b;
                                     });
-                                    var y = [starty, e.clientY-papery].sort(function (a, b) {
+                                    var y = [starty, e.clientY - papery].sort(function (a, b) {
                                         return a - b;
                                     });
 
