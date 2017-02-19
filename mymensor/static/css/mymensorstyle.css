@@ -417,6 +417,15 @@ hr {
     padding-right: 1rem;
 }
 
+#wrapper .papercontainer img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 760px;
+    height: 428px;
+    z-index: -1;
+}
+
 svg {
     border:solid 1px #000;
 }
