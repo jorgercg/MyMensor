@@ -343,6 +343,11 @@
                     var mediapaperwidth = 0;
                     var mediapaperheight = 0;
 
+                    if (window.matchMedia("(min-width: 1440px)").matches) {
+                        mediapaperwidth = 912-32;
+                        mediapaperheight = (mediapaperwidth)/1280*720;
+                    }
+
                     if (window.matchMedia("(min-width: 1200px)").matches) {
                         mediapaperwidth = 760-32;
                         mediapaperheight = (mediapaperwidth)/1280*720;
