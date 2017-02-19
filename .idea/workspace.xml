@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" afterPath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +60,8 @@
       <file leaf-file-name="tagsetup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="347" column="90" lean-forward="false" selection-start-line="347" selection-start-column="90" selection-end-line="347" selection-end-column="90" />
+            <state relative-caret-position="234">
+              <caret line="42" column="63" lean-forward="true" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -79,8 +80,8 @@
       <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="380" column="23" lean-forward="false" selection-start-line="380" selection-start-column="23" selection-end-line="380" selection-end-column="23" />
+            <state relative-caret-position="294">
+              <caret line="375" column="1" lean-forward="true" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -99,7 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>currentvp</find>
       <find>find</find>
       <find>.text</find>
       <find>[counter] =</find>
@@ -129,6 +129,7 @@
       <find>wrapper</find>
       <find>clientX</find>
       <find>containerwidth</find>
+      <find>container</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -694,13 +695,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01628" summary="18fev2017 11h03min">
-      <created>1487416315554</created>
-      <option name="number" value="01628" />
-      <option name="presentableId" value="LOCAL-01628" />
-      <option name="project" value="LOCAL" />
-      <updated>1487416315554</updated>
-    </task>
     <task id="LOCAL-01629" summary="18fev2017 11h03min">
       <created>1487416646089</created>
       <option name="number" value="01629" />
@@ -1037,7 +1031,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487509537904</updated>
     </task>
-    <option name="localTasksCounter" value="1677" />
+    <task id="LOCAL-01677" summary="19fev2017 13h12min">
+      <created>1487509930653</created>
+      <option name="number" value="01677" />
+      <option name="presentableId" value="LOCAL-01677" />
+      <option name="project" value="LOCAL" />
+      <updated>1487509930653</updated>
+    </task>
+    <option name="localTasksCounter" value="1678" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1111,7 +1112,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="16fev2017 19h17min" />
     <MESSAGE value="16fev2017 19h42min" />
     <MESSAGE value="16fev2017 20h40min" />
     <MESSAGE value="16fev2017 20h59min" />
@@ -1136,7 +1136,8 @@
     <MESSAGE value="18fev2017 17h38min" />
     <MESSAGE value="18fev2017 18h00min" />
     <MESSAGE value="19fev2017 12h53min" />
-    <option name="LAST_COMMIT_MESSAGE" value="19fev2017 12h53min" />
+    <MESSAGE value="19fev2017 13h12min" />
+    <option name="LAST_COMMIT_MESSAGE" value="19fev2017 13h12min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1386,6 +1387,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1479,16 +1481,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="347" column="90" lean-forward="false" selection-start-line="347" selection-start-column="90" selection-end-line="347" selection-end-column="90" />
+        <state relative-caret-position="234">
+          <caret line="42" column="63" lean-forward="true" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="380" column="23" lean-forward="false" selection-start-line="380" selection-start-column="23" selection-end-line="380" selection-end-column="23" />
+        <state relative-caret-position="294">
+          <caret line="375" column="1" lean-forward="true" selection-start-line="375" selection-start-column="1" selection-end-line="375" selection-end-column="1" />
           <folding />
         </state>
       </provider>
