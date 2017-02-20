@@ -399,7 +399,12 @@ def save_tagboundingbox(request):
         height = float(received_json_data[0]['height'])
         tagnumber = int(received_json_data[0]['tagnumber'])
         taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagNumber=tagnumber).get()
-        tagbboxinstancepk = Tagbbox.objects.get_or_create(tag=taginstance).pk
+        try:
+            tagbboxinstancepk = Tagbbox.objects.get(tag=taginstance).pk
+        except Tagbbox.DoesNotExist:
+            tagbboxinstancetmp = Tagbbox(tag=taginstance)
+            tagbboxinstancetmp.save()
+            tagbboxinstancepk = tagbboxinstancetmp.pk
         tagbboxinstance = Tagbbox(pk=tagbboxinstancepk)
         tagbboxinstance.tagbboxX = posx
         tagbboxinstance.tagbboxY = posy
