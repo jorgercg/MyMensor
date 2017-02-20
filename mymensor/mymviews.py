@@ -304,9 +304,6 @@ def tagSetupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
     currentvp = 1
-    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-    s3Client = session.client('s3')
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
@@ -367,6 +364,9 @@ def tagSetupFormView(request):
     except:
         tagbbox = None
     try:
+        firstsession = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = firstsession.client('s3')
         descvpStorageURL = s3Client.generate_presigned_url('get_object',
                                                            Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                    'Key': vp.vpStdPhotoStorageURL},
