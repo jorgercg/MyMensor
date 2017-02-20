@@ -210,12 +210,12 @@ def cognitoauth(request):
 
         token = (Token.objects.get(user_id=request.user.id)).key
 
-        email = request.user.email
+        username = request.user.username
 
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
             Logins={
-                'cogdevserv.mymensor.com': email
+                'cogdevserv.mymensor.com': username
             },
             TokenDuration=600
         )
