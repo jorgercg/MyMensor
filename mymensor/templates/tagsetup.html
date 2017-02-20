@@ -331,6 +331,11 @@
                             shapes.push(bbox);
                             bbox.attr('stroke-width', 2);
 
+                            var tagnumber = paper.text(propx+20, propy+20, "Tag#{{ currenttag }}");
+                            tagnumber.attr('stroke-width', 2);
+                            tagnumber.attr('font-family', "Verdana");
+                            tagnumber.attr('font-size', 20);
+
                         {% endif %}
 
                         painter.brush = function () {
