@@ -383,7 +383,7 @@ def save_tagboundingbox(request):
         tagnumber = int(received_json_data[0]['tagnumber'])
         try:
             taginstance = Tag.objects.get(vp__asset__assetOwner=request.user, tagNumber=tagnumber)
-            tagbboxinstance = Tagbbox(tag=taginstance)
+            tagbboxinstance = Tagbbox.objects.get_or_create(tag=taginstance)
             tagbboxinstance.tagbboxX = posx
             tagbboxinstance.tagbboxY = posy
             tagbboxinstance.tagbboxWidth = width
@@ -395,11 +395,7 @@ def save_tagboundingbox(request):
                 status=200
             )
         except:
-            return HttpResponse(
-                json.dumps({"result": "error"}),
-                content_type="application/json",
-                status=400
-            )
+            return HttpResponse(status=400)
     else:
         return HttpResponse(
             json.dumps({"nothing": "not happening"}),
