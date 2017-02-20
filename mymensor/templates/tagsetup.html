@@ -320,6 +320,8 @@
                         var painter = {};
                         var shapes = [];
 
+                        {% if tagbbox is not None %}
+
                         var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
                         var propy = {{ tagbbox.tagbboxX }} * mediapaperheight;
                         var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
@@ -328,6 +330,8 @@
                         var bbox = paper.rect(propx, propy, propwidth, propheight);
                         shapes.push(bbox);
                         bbox.attr('stroke-width', 2);
+
+                        {% endif %}
 
                         painter.brush = function () {
                         };
