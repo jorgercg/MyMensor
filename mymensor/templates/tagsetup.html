@@ -85,7 +85,7 @@
         <script type="text/javascript">
             var dynwidth = 0;
             var dynheight = 0;
-            console.log("{{ descvpStorageURL }}");
+            console.log("{{ descvpStorageURL | urlencode }}");
             $('#currvp').chosen();
             $('#currtag').chosen();
             $(window).resize(function () {
