@@ -89,7 +89,7 @@
             $('#currvp').chosen();
             $('#currtag').chosen();
             $(function(){
-               var dynwidth = document.getElementById('cardblock');
+               var dynwidth = document.getElementById('cardblock').offsetWidth;
                var dynheight = (dynwidth/1280)*720;
                console.log('dynwidth:'+dynwidth);
                console.log('dynheight:'+dynheight);
