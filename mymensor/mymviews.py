@@ -376,11 +376,11 @@ def tagSetupFormView(request):
 def save_tagboundingbox(request):
     if request.method == 'POST':
         received_json_data = json.loads(request.body)
-        posx = float(received_json_data[0]('x'))
-        posy = float(received_json_data[0]('y'))
-        width = float(received_json_data[0]('width'))
-        height = float(received_json_data[0]('height'))
-        tagnumber = int(received_json_data[0]('tagnumber'))
+        posx = float(received_json_data[0]['x'])
+        posy = float(received_json_data[0]['y'])
+        width = float(received_json_data[0]['width'])
+        height = float(received_json_data[0]['height'])
+        tagnumber = int(received_json_data[0]['tagnumber'])
         try:
             taginstance = Tag.objects.get(vp__asset__assetOwner=request.user, tagNumber=tagnumber)
             tagbboxinstance = Tagbbox(tag=taginstance)
