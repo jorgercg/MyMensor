@@ -93,7 +93,10 @@
                var dynheight = (dynwidth/1280)*720;
                console.log('dynwidth:'+dynwidth);
                console.log('dynheight:'+dynheight);
-
+               document.getElementById("wrapper").style.width = round(dynwidth)+"px";
+               document.getElementById("wrapper").style.height = round(dynheight)+"px";
+               document.getElementById("paper").style.width = round(dynwidth)+"px";
+               document.getElementById("paper").style.height = round(dynheight)+"px";
             });
             $(function () {
 
