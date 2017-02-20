@@ -323,7 +323,7 @@
                         {% if tagbbox is not None %}
 
                             var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
-                            var propy = {{ tagbbox.tagbboxX }} * mediapaperheight;
+                            var propy = {{ tagbbox.tagbboxY }} * mediapaperheight;
                             var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
                             var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
 
