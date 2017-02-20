@@ -395,7 +395,10 @@ def save_tagboundingbox(request):
                 status=200
             )
         except:
-            return HttpResponse(status=400)
+            return HttpResponse(
+                json.dumps(tagbboxinstance),
+                content_type="application/json"
+            )
     else:
         return HttpResponse(
             json.dumps({"nothing": "not happening"}),
