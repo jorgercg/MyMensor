@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-sm-7">
                 <div class="card card-outline-primary m-2">
-                    <div class="card-block">
+                    <div id="cardblock" class="card-block">
                         <p class="card-text">
                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
                                   title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
@@ -88,6 +88,13 @@
             console.log("{{ descvpStorageURL }}");
             $('#currvp').chosen();
             $('#currtag').chosen();
+            $(function(){
+               var dynwidth = document.getElementById('cardblock');
+               var dynheight = (dynwidth/1280)*720;
+               console.log('dynwidth:'+dynwidth);
+               console.log('dynheight:'+dynheight);
+
+            });
             $(function () {
 
                 var qttags = {{ qtytags }};
