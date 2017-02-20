@@ -308,7 +308,13 @@
 
                     var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
 
-                    var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, mediapaperwidth, mediapaperheight);
+                    var descurltmp = "{{ descvpStorageURL }}";
+
+                    var descurl = descurltmp.replace(/&amp;/g,"&");
+
+                    console.log("descurl:"+descurl);
+
+                    var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
                     dfd.done(function (result) {  //result is a Raphael element
                         console.log('done');
                         var paperx = getOffset(document.getElementById('paper')).left + 16;
