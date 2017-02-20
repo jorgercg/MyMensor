@@ -221,7 +221,8 @@
                                             height: node.attrs['height'] / containerheight,
                                             stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
                                             'stroke-width': node.attrs['stroke-width'],
-                                            fill: node.attrs['fill']
+                                            fill: node.attrs['fill'],
+                                            tagnumber: {{ currenttag }}
                                         };
                                         console.log('containerwidth' + containerwidth);
                                         console.log('containerheight' + containerheight);
@@ -356,7 +357,7 @@
                                     $paper.unbind('mouseup');
                                     // save selection on mouseup
                                     var json = RaphaelSerializeProportional.json(paper);
-                                    console.log("JSON" + json);
+                                    saving_tagbboxvalues(json);
                                 });
                             };
                         });
@@ -375,6 +376,31 @@
 
                     });
                 });
+
+                // AJAX for posting
+                function saving_tagbboxvalues(jsondata) {
+                    console.log("Saving tagbboxvaliues is working!"); // sanity check
+                    $.ajax({
+                        url: "save_tagbboxvalues/", // the endpoint
+                        type: "POST", // http method
+                        data: jsondata, // data sent with the post request
+                        // handle a successful response
+                        success: function (json) {
+                            $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-success');
+                            $('#startmarktagbtn').removeClass('btn-danger').addClass('btn-success');
+                            console.log(json); // log the returned json to the console
+                            console.log("success"); // another sanity check
+                        },
+                        // handle a non-successful response
+                        error: function (xhr, errmsg, err) {
+                            //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                            //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-danger')
+                        }
+                    });
+                };
+
             });
         </script>
     {% endblock %}

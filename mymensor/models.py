@@ -75,6 +75,16 @@ class Tag(models.Model):
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
 
+class Tagbbox(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
+    tagbboxType = models.CharField(max_length=50, default="rect")
+    tagbboxX = models.FloatField(null=True)
+    tagbboxY = models.FloatField(null=True)
+    tagbboxWidth = models.FloatField(null=True)
+    tagbboxHeight = models.FloatField(null=True)
+    tagbboxStroke = models.CharField(max_length=50, default="#000")
+    tagbboxStrokeWidth = models.IntegerField(default=2)
+    tagbboxFill = models.CharField(max_length=50, defaul="none")
 
 class AmazonSNSNotification(models.Model):
     Message = models.CharField(max_length=4096, null=True)

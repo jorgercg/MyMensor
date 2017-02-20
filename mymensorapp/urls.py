@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
+
     url(r'^mobilebackup/$', mymviews.mobileBackupFormView, name='mobilebackup'),
 
     url(r'^landing/$', mymviews.landingView, name='landing'),
@@ -70,6 +71,8 @@ urlpatterns = [
     url(r'^tz_detect/', include('tz_detect.urls')),
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
+
+    url(r'^tagsetup/save_tagbboxvalues/', mymviews.save_tagboundingbox, name='save_tagbboxvalues'),
 
     url(r'^mobilebackup/create_backup/', mymviews.createdcicfgbackup, name='create_backup'),
 

@@ -10,7 +10,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, AmazonS3Message, AmazonSNSNotification, TagStatusTable, MobileSetupBackup
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, TagStatusTable, MobileSetupBackup
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -366,6 +366,41 @@ def tagSetupFormView(request):
     except:
         descvpTimeStamp = " "
     return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp})
+
+
+@login_required
+def save_tagboundingbox(request):
+    if request.method == 'POST':
+        posx = float(request.POST.get('x'))
+        posy = float(request.POST.get('y'))
+        width = float(request.POST.get('width'))
+        height = float(request.POST.get('height'))
+        tagnumber = int(request.POST.get('height'))
+        try:
+            taginstance = Tag.objects.get(vp__asset__assetOwner=request.user, tagNumber=tagnumber)
+            tagbboxinstance = Tagbbox(tag=taginstance)
+            tagbboxinstance.tagbboxX = posx
+            tagbboxinstance.tagbboxY = posy
+            tagbboxinstance.tagbboxWidth = width
+            tagbboxinstance.tagbboxHeight = height
+            tagbboxinstance.save()
+            return HttpResponse(
+                json.dumps({"result": "success"}),
+                content_type="application/json",
+                status=200
+            )
+        except:
+            return HttpResponse(
+                json.dumps({"result": "error"}),
+                content_type="application/json",
+                status=400
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
 
 
 @login_required
