@@ -85,7 +85,7 @@
         <script type="text/javascript">
             var dynwidth = 0;
             var dynheight = 0;
-            console.log("{{ descvpStorageURL }}");
+            console.log("{{ descvpStorageURL | cut:"amp;" }}");
             $('#currvp').chosen();
             $('#currtag').chosen();
             $(window).resize(function () {
@@ -169,10 +169,10 @@
                                     return;
                                 if (!w) w = img.width;
                                 if (!h) h = img.height;
-                                dfd.resolve(originalRaphaelImageFn.call(paper, "{{ descvpStorageURL }}", x, y, w, h));
+                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
                             };
                             //Begin loading of the image
-                            img.src = "{{ descvpStorageURL }}";
+                            img.src = url;
 
                             //If the images is already loaded (i.e. it was in the local cache)
                             //img.onload will not fire, so call paper.image here.
@@ -181,11 +181,11 @@
                                 if (!w) w = img.width;
                                 if (!h) h = img.height;
                                 done = true;
-                                dfd.resolve(originalRaphaelImageFn.call(paper, "{{ descvpStorageURL }}", x, y, w, h));
+                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
                             }
                         }
                         else
-                            dfd.resolve(originalRaphaelImageFn.call(paper, "{{ descvpStorageURL }}", x, y, w, h));
+                            dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
                         return dfd.promise();
                     };
                 })(Raphael);
@@ -308,7 +308,7 @@
 
                     var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
 
-                    var dfd = paper.imageAsync("{{ descvpStorageURL }}", 0, 0, mediapaperwidth, mediapaperheight);
+                    var dfd = paper.imageAsync("{{ descvpStorageURL | cut:"amp;" }}", 0, 0, mediapaperwidth, mediapaperheight);
                     dfd.done(function (result) {  //result is a Raphael element
                         console.log('done');
                         var paperx = getOffset(document.getElementById('paper')).left + 16;
