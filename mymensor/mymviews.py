@@ -406,6 +406,7 @@ def save_tagboundingbox(request):
             tagbboxinstancetmp.save()
             tagbboxinstancepk = tagbboxinstancetmp.pk
         tagbboxinstance = Tagbbox(pk=tagbboxinstancepk)
+        tagbboxinstance.tag_id=taginstance.pk
         tagbboxinstance.tagbboxX = posx
         tagbboxinstance.tagbboxY = posy
         tagbboxinstance.tagbboxWidth = width
