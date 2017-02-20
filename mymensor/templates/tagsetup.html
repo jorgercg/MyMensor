@@ -338,13 +338,6 @@
                                 var shape = paper.rect(startx, starty, 1, 1);
                                 shapes.push(shape);
                                 shape.attr('stroke-width', 2);
-                                $paper.bind('mouseup', function (e) {
-                                    $paper.unbind('mousemove');
-                                    $paper.unbind('mouseup');
-                                    // save selection on mouseup
-                                    var json = RaphaelSerializeProportional.json(paper);
-                                    console.log("JSON" + json);
-                                });
                                 $paper.bind('mousemove', function (e) {
                                     var x = [startx, e.clientX - paperx].sort(function (a, b) {
                                         return a - b;
@@ -357,6 +350,13 @@
                                     shape.attr('y', y[0]);
                                     shape.attr('width', x[1] - x[0]);
                                     shape.attr('height', y[1] - y[0]);
+                                });
+                                $paper.bind('mouseup', function (e) {
+                                    $paper.unbind('mousemove');
+                                    $paper.unbind('mouseup');
+                                    // save selection on mouseup
+                                    var json = RaphaelSerializeProportional.json(paper);
+                                    console.log("JSON" + json);
                                 });
                             };
                         });
