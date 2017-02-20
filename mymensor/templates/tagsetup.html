@@ -46,8 +46,6 @@
                     <div class="card-block">
                         <a id="startmarktagbtn" role="button" class="btn btn-primary">
                             {% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
-                        <a id="savemarktagbtn" role="button" class="btn btn-success">
-                            {% trans 'Save marking of TAG#' %}{{ curenttag }}</a>
                         <a id="clearmarktagbtn" role="button"
                            class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
                     </div>
@@ -288,57 +286,6 @@
                 };
 
 
-                function Rect(startX, startY, width, height, raphael) {
-                    var start = {
-                        x: startX,
-                        y: startY,
-                        w: width,
-                        h: height
-                    };
-                    var end = {
-                        w: width,
-                        h: height
-                    };
-                    var getWidth = function () {
-                        return end.w;
-                    };
-                    var getHeight = function () {
-                        return end.h;
-                    };
-                    var redraw = function () {
-                        node.attr({width: getWidth(), height: getHeight()});
-                    };
-
-                    var node = raphael.rect(start.x, start.y, getWidth(), getHeight());
-
-                    node.attr({'fill': 'red', 'fill-opacity': 0.3});
-
-                    return {
-                        updateStart: function (x, y) {
-                            start.x = x;
-                            start.y = y;
-                            redraw();
-                            return this;
-                        },
-                        updateEnd: function (x, y) {
-                            var v = {
-                                x: Math.abs(x - start.x),
-                                y: Math.abs(y - start.y)
-                            };
-                            //Width
-                            var width = Math.sqrt((Math.pow(v.x, 2) + Math.pow(v.y, 2)));
-                            end.h = width;
-                            end.w = width;
-                            redraw();
-                            return this;
-                        },
-                        clear: function () {
-                            node.remove();
-                        }
-                    };
-                }
-
-
                 $(function () {
 
 
@@ -387,6 +334,9 @@
                                 $paper.bind('mouseup', function (e) {
                                     $paper.unbind('mousemove');
                                     $paper.unbind('mouseup');
+                                    // save selection on mouseup
+                                    var json = RaphaelSerializeProportional.json(paper);
+                                    console.log("JSON" + json);
                                 });
                                 $paper.bind('mousemove', function (e) {
                                     var x = [startx, e.clientX - paperx].sort(function (a, b) {
@@ -414,11 +364,6 @@
                         $paper.bind('mousedown', function (e) {
                             console.log('mousedown');
                             painter.brush.call(this, e);
-                        });
-
-                        $('#savemarktagbtn').bind('click', function (e) {
-                            var json = RaphaelSerializeProportional.json(paper);
-                            console.log("JSON" + json);
                         });
 
                     });
