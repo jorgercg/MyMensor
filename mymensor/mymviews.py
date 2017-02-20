@@ -348,6 +348,7 @@ def tagSetupFormView(request):
     qtytagsglobal = listoftagsglobal.count()
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
     vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
+    tagbbox = Tagbbox.objects.get(tag=tag)
     try:
         descvpStorageURL = s3Client.generate_presigned_url('get_object',
                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
@@ -365,7 +366,7 @@ def tagSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp})
+    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp, 'tagbbox':tagbbox})
 
 
 @login_required

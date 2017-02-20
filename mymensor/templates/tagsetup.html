@@ -320,6 +320,15 @@
                         var painter = {};
                         var shapes = [];
 
+                        var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
+                        var propy = {{ tagbbox.tagbboxX }} * mediapaperheight;
+                        var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
+                        var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
+
+                        var bbox = paper.rect(propx, propy, propwidth, propheight);
+                        shapes.push(bbox);
+                        bbox.attr('stroke-width', 2);
+
                         painter.brush = function () {
                         };
 
@@ -390,6 +399,7 @@
                             $('#startmarktagbtn').removeClass('btn-danger').addClass('btn-success');
                             console.log(json); // log the returned json to the console
                             console.log("success"); // another sanity check
+                            location.reload();
                         },
                         // handle a non-successful response
                         error: function (xhr, errmsg, err) {
