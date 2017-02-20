@@ -84,7 +84,7 @@ class Tagbbox(models.Model):
     tagbboxHeight = models.FloatField(null=True)
     tagbboxStroke = models.CharField(max_length=50, default="#000")
     tagbboxStrokeWidth = models.IntegerField(default=2)
-    tagbboxFill = models.CharField(max_length=50, defaul="none")
+    tagbboxFill = models.CharField(max_length=50, default="none")
 
 class AmazonSNSNotification(models.Model):
     Message = models.CharField(max_length=4096, null=True)
