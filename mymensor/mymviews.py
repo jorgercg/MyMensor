@@ -10,7 +10,8 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
-from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, TagStatusTable, MobileSetupBackup
+from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
+    TagStatusTable, MobileSetupBackup
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
@@ -29,7 +30,7 @@ def landingView(request):
         mediaObjectS3Key = urllib.unquote(request.GET.get('key', 0))
         messagetype = request.GET.get('type', 0)
         requestsignature = request.GET.get('signature', 0)
-        if mediaObjectS3Key!=0 and messagetype!=0 and requestsignature!=0:
+        if mediaObjectS3Key != 0 and messagetype != 0 and requestsignature != 0:
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
@@ -43,7 +44,7 @@ def landingView(request):
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
             object.load()
             obj_metadata = object.metadata
-            if obj_metadata['sha-256']==requestsignature:
+            if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
@@ -60,7 +61,6 @@ def landingView(request):
             return HttpResponse(status=404)
 
     return HttpResponse(status=404)
-
 
 
 # Amazon SNS Notification Processor View
@@ -101,7 +101,7 @@ def amazon_sns_processor(request):
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3 = session.resource('s3')
-            object = s3.Object(amzs3msg.s3_bucket_name,amzs3msg.s3_object_key)
+            object = s3.Object(amzs3msg.s3_bucket_name, amzs3msg.s3_object_key)
             object.load()
             obj_metadata = object.metadata
             media_received = Media()
@@ -138,7 +138,8 @@ def amazon_sns_processor(request):
                 return HttpResponse(status=200)
             else:
                 media_received.save()
-            broadcast(message='New media arrived on server', event_class="NewMedia", data={"username":media_received.mediaMymensorAccount})
+            broadcast(message='New media arrived on server', event_class="NewMedia",
+                      data={"username": media_received.mediaMymensorAccount})
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
@@ -154,19 +155,24 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('-mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=3600)
-        return render(request, 'index.html', {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': media.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
+        return render(request, 'index.html',
+                      {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
+                       'qtypervp': qtypervp})
 
 
 # Media Feed View
@@ -184,8 +190,9 @@ def mediafeed(request):
         vps = Vp.objects.filter(asset__assetOwner=request.user).order_by('vpNumber')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=3600)
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': media.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
         return render(request, 'mediafeed.html', {'medias': medias, 'vps': vps})
 
 
@@ -194,15 +201,14 @@ def mediafeed(request):
 @permission_classes((IsAuthenticated,))
 def cognitoauth(request):
     if request.method == "GET":
-
         client = boto3.client(
             'cognito-identity',
             'eu-west-1',
-            aws_access_key_id = AWS_ACCESS_KEY_ID,
-            aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-            )
+            aws_access_key_id=AWS_ACCESS_KEY_ID,
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+        )
 
-        token = (Token.objects.get(user_id = request.user.id)).key
+        token = (Token.objects.get(user_id=request.user.id)).key
 
         email = request.user.email
 
@@ -213,7 +219,7 @@ def cognitoauth(request):
             },
             TokenDuration=600
         )
-        response.update({'identityPoolId':'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
+        response.update({'identityPoolId': 'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'key': token})
         return JsonResponse(response)
     return HttpResponse(status=400)
@@ -271,9 +277,9 @@ def vpSetupFormView(request):
     vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).order_by('vpNumber')
     try:
         descvpStorageURL = s3Client.generate_presigned_url('get_object',
-                                                       Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                               'Key': vp.vpStdPhotoStorageURL},
-                                                       ExpiresIn=3600)
+                                                           Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                   'Key': vp.vpStdPhotoStorageURL},
+                                                           ExpiresIn=3600)
     except:
         descvpStorageURL = " "
     try:
@@ -286,7 +292,9 @@ def vpSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-    return render(request, 'vpsetup.html', {'form': form, 'vps':vps, 'currentvp':currentvp, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp})
+    return render(request, 'vpsetup.html',
+                  {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
+                   'descvpTimeStamp': descvpTimeStamp})
 
 
 @login_required
@@ -305,14 +313,16 @@ def tagSetupFormView(request):
 
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
-        currenttag = int(request.POST.get('currenttag',1))
+        currenttag = int(request.POST.get('currenttag', 1))
         qtytagsglobal = int(request.POST.get('qtytags', qtytagsglobal))
         tag = Tag()
         try:
-            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+                vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
-            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get())
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                vpNumber=currentvp).get())
             form = TagForm(request.POST, instance=tag)
         if form.is_valid():
             form.save()
@@ -324,9 +334,9 @@ def tagSetupFormView(request):
         listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
             vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
         qtytags = listoftags.count()
-        if qtytags==0:
-            qtytags=1
-            currenttag=qtytagsglobal+1
+        if qtytags == 0:
+            qtytags = 1
+            currenttag = qtytagsglobal + 1
         elif currenttag_temp in listoftags:
             currenttag = currenttag_temp
         elif qtytagsglobal > listoftagsglobal.count():
@@ -335,18 +345,22 @@ def tagSetupFormView(request):
             currenttag = listoftags[0]
         tag = Tag()
         try:
-            tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+            tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
+                tagNumber=currenttag).get()
             form = TagForm(instance=tag)
         except tag.DoesNotExist:
 
-            tag = Tag.objects.create(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get(), tagDescription='TAG#'+str(currenttag), tagNumber=currenttag,
-                         tagQuestion='Tag question for TAG#' + str(currenttag))
+            tag = Tag.objects.create(
+                vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                    vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
+                tagQuestion='Tag question for TAG#' + str(currenttag))
             form = TagForm(instance=tag)
 
     tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
     listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
-    vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by('vpNumber')
+    vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by(
+        'vpNumber')
     vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
     try:
         tagbbox = Tagbbox.objects.get(tag=tag)
@@ -354,9 +368,9 @@ def tagSetupFormView(request):
         tagbbox = None
     try:
         descvpStorageURL = s3Client.generate_presigned_url('get_object',
-                                                       Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                               'Key': vp.vpStdPhotoStorageURL},
-                                                       ExpiresIn=3600)
+                                                           Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                   'Key': vp.vpStdPhotoStorageURL},
+                                                           ExpiresIn=3600)
     except:
         descvpStorageURL = " "
     try:
@@ -369,7 +383,10 @@ def tagSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-    return render(request, 'tagsetup.html', {'form': form, 'qtyvps':qtyvps, 'currentvp':currentvp, 'qtytags':qtytagsglobal, 'currenttag':currenttag, 'tags':tags, 'vps':vps, 'descvpStorageURL':descvpStorageURL, 'descvpTimeStamp':descvpTimeStamp, 'tagbbox':tagbbox})
+    return render(request, 'tagsetup.html',
+                  {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytags': qtytagsglobal,
+                   'currenttag': currenttag, 'tags': tags, 'vps': vps, 'descvpStorageURL': descvpStorageURL,
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox})
 
 
 @login_required
@@ -381,25 +398,17 @@ def save_tagboundingbox(request):
         width = float(received_json_data[0]['width'])
         height = float(received_json_data[0]['height'])
         tagnumber = int(received_json_data[0]['tagnumber'])
-        try:
-            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagNumber=tagnumber).get()
-            tagbboxinstance = Tagbbox.objects.get_or_create(tag=taginstance)
-            tagbboxinstance.tagbboxX = posx
-            tagbboxinstance.tagbboxY = posy
-            tagbboxinstance.tagbboxWidth = width
-            tagbboxinstance.tagbboxHeight = height
-            tagbboxinstance.save()
-            return HttpResponse(
-                json.dumps({"result": "success"}),
-                content_type="application/json",
-                status=200
-            )
-        except:
-            return HttpResponse(
-                json.dumps({"error": "error"}),
-                content_type="application/json",
-                status=400
-            )
+        taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagNumber=tagnumber).get()
+        tagbboxinstance = Tagbbox.objects.get_or_create(tag=taginstance)
+        tagbboxinstance.tagbboxX = posx
+        tagbboxinstance.tagbboxY = posy
+        tagbboxinstance.tagbboxWidth = width
+        tagbboxinstance.tagbboxHeight = height
+        tagbboxinstance.save()
+        return HttpResponse(
+            json.dumps({"result": "success"}),
+            content_type="application/json",
+            status=200)
     else:
         return HttpResponse(
             json.dumps({"nothing": "not happening"}),
@@ -418,28 +427,42 @@ def tagProcessingFormView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate',(datetime.today()-timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate',datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(mediaProcessed=False).filter(vp__tag__isnull=False).filter(mediaTimeStamp__range=[startdate,new_enddate]).order_by('mediaMillisSinceEpoch').distinct()
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
+            mediaProcessed=False).filter(vp__tag__isnull=False).filter(
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch').distinct()
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': media.mediaObjectS3Key},
-                                    ExpiresIn=3600)
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': media.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
         vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
-        vps = Vp.objects.annotate(qtyoftags=Count('tag')).filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).exclude(vpNumber=0).order_by('vpNumber').distinct()
+        vps = Vp.objects.annotate(qtyoftags=Count('tag')).filter(asset__assetOwner=request.user).filter(
+            vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).exclude(vpNumber=0).order_by(
+            'vpNumber').distinct()
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).distinct()
         for vp in vps:
             vp.vpStdPhotoStorageURL = s3Client.generate_presigned_url('get_object',
-                                    Params={'Bucket': AWS_S3_BUCKET_NAME,'Key': vp.vpStdPhotoStorageURL},
-                                    ExpiresIn=3600)
-        values = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user).filter(tag__tagIsActive=True).filter(media__mediaProcessed=False).distinct() #.values_list('media','tag','valValueEvaluated')
+                                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                              'Key': vp.vpStdPhotoStorageURL},
+                                                                      ExpiresIn=3600)
+        values = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user).filter(
+            tag__tagIsActive=True).filter(
+            media__mediaProcessed=False).distinct()  # .values_list('media','tag','valValueEvaluated')
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
-        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values, 'mediasofthevaluelist': mediasofthevaluelist, 'tagsofthevaluelist': tagsofthevaluelist, 'start': startdateformatted, 'end': enddateformatted, 'qtypervp': qtypervp})
+        return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
+                                                      'mediasofthevaluelist': mediasofthevaluelist,
+                                                      'tagsofthevaluelist': tagsofthevaluelist,
+                                                      'start': startdateformatted, 'end': enddateformatted,
+                                                      'qtypervp': qtypervp})
+
 
 @login_required
 def saveValue(request):
@@ -457,32 +480,47 @@ def saveValue(request):
         vpinstance = Vp.objects.get(id=vpid)
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
-            processedtag.valValueEvaluated=valuefloat
-            processedtag.tagStateEvaluated=1
+            processedtag.valValueEvaluated = valuefloat
+            processedtag.tagStateEvaluated = 1
             processedtag.save()
         except ProcessedTag.DoesNotExist:
-            ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
-        processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat, tagStateEvaluated=1)
-        value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat, tagStateResultingFromValValueStatus=1)
+            ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat,
+                                        tagStateEvaluated=1)
+        processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat,
+                                                tagStateEvaluated=1)
+        value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat,
+                      tagStateResultingFromValValueStatus=1)
         value.save()
         try:
-            tagstatusinstance = TagStatusTable.objects.get(processedTag=processedtag, statusTagNumber=taginstance.tagNumber, statusTagDescription=taginstance.tagDescription,
-                                                           statusVpNumber=vpinstance.vpNumber, statusVpDescription=vpinstance.vpDescription, statusTagUnit=taginstance.tagUnit,
-                                                           statusMediaTimeStamp=mediainstance.mediaTimeStamp, statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
+            tagstatusinstance = TagStatusTable.objects.get(processedTag=processedtag,
+                                                           statusTagNumber=taginstance.tagNumber,
+                                                           statusTagDescription=taginstance.tagDescription,
+                                                           statusVpNumber=vpinstance.vpNumber,
+                                                           statusVpDescription=vpinstance.vpDescription,
+                                                           statusTagUnit=taginstance.tagUnit,
+                                                           statusMediaTimeStamp=mediainstance.mediaTimeStamp,
+                                                           statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
             tagstatusinstance.statusValValueEvaluated = processedtag.valValueEvaluated
             tagstatusinstance.statusTagStateEvaluated = processedtag.tagStateEvaluated
             tagstatusinstance.save()
         except TagStatusTable.DoesNotExist:
-            TagStatusTable.objects.create(processedTag=processedtag, statusTagNumber=taginstance.tagNumber, statusTagDescription=taginstance.tagDescription,
-                                          statusVpNumber=vpinstance.vpNumber, statusVpDescription=vpinstance.vpDescription, statusValValueEvaluated=processedtag.valValueEvaluated,
-                                          statusTagUnit=taginstance.tagUnit, statusMediaTimeStamp=mediainstance.mediaTimeStamp, statusTagStateEvaluated=processedtag.tagStateEvaluated, statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
-        qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(vp=vpinstance).count()
+            TagStatusTable.objects.create(processedTag=processedtag, statusTagNumber=taginstance.tagNumber,
+                                          statusTagDescription=taginstance.tagDescription,
+                                          statusVpNumber=vpinstance.vpNumber,
+                                          statusVpDescription=vpinstance.vpDescription,
+                                          statusValValueEvaluated=processedtag.valValueEvaluated,
+                                          statusTagUnit=taginstance.tagUnit,
+                                          statusMediaTimeStamp=mediainstance.mediaTimeStamp,
+                                          statusTagStateEvaluated=processedtag.tagStateEvaluated,
+                                          statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
+        qtyoftagsinavp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).filter(
+            vp=vpinstance).count()
         qtyofprocessedtagsinamedia = ProcessedTag.objects.filter(media=mediainstance).count()
         alltagsinmediaprocessed = 0
         if qtyoftagsinavp == qtyofprocessedtagsinamedia:
             mediaprocessed = Media.objects.get(id=mediainstance.pk)
-            mediaprocessed.mediaProcessed=True
-            mediaprocessed.mediaStateEvaluated=processedtag.tagStateEvaluated
+            mediaprocessed.mediaProcessed = True
+            mediaprocessed.mediaStateEvaluated = processedtag.tagStateEvaluated
             mediaprocessed.save()
             alltagsinmediaprocessed = 1
         else:
@@ -507,13 +545,17 @@ class TagStatus(BaseDatatableView):
     model = TagStatusTable
 
     # define the columns that will be returned
-    columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription', 'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated', 'statusDBTimeStamp']
+    columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription',
+               'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated',
+               'statusDBTimeStamp']
 
     # define column names that will be used in sorting
     # order is important and should be same as order of columns
     # displayed by datatables. For non sortable columns use empty
     # value like ''
-    order_columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription', 'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated', 'statusDBTimeStamp']
+    order_columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription',
+                     'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated',
+                     'statusDBTimeStamp']
 
     # set max limit of records returned, this is used to protect our site if someone tries to attack our site
     # and make it return huge amount of data
@@ -528,6 +570,7 @@ class TagStatus(BaseDatatableView):
         if sSearch:
             qs = qs.filter(Q(statusTagDescription__icontains=sSearch) | Q(statusVpDescription__icontains=sSearch))
         return qs
+
 
 @login_required
 def tagAnalysisView(request):
@@ -553,20 +596,25 @@ def tagAnalysisView(request):
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
 
-        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(statusMediaTimeStamp__range=[startdate,new_enddate]).order_by('statusMediaMillisSinceEpoch')
-        listofprocessedtagsnumbers = processedtags.order_by('statusTagNumber', 'statusMediaMillisSinceEpoch').distinct('statusTagNumber')
-        tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
-        tagsselected = request.GET.getlist('tagsselected',default=None)
+        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
+            statusMediaTimeStamp__range=[startdate, new_enddate]).order_by('statusMediaMillisSinceEpoch')
+        listofprocessedtagsnumbers = processedtags.order_by('statusTagNumber', 'statusMediaMillisSinceEpoch').distinct(
+            'statusTagNumber')
+        tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',
+                                                                                                  flat=True)
+        tagsselected = request.GET.getlist('tagsselected', default=None)
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user)
         if not tagsselected:
             tagsselected = tagsselectedfromlist
         else:
-            tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber',flat=True)
+            tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by(
+                'statusTagNumber').values_list('statusTagNumber', flat=True)
         qtyoftagsselected = tagsselected.count()
         return render(request, 'taganalysis.html',
-                          {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
-                           'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
-                           'medias': medias, 'tags': tags, 'qtyoftagsselected':qtyoftagsselected})
+                      {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
+                       'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
+                       'medias': medias, 'tags': tags, 'qtyoftagsselected': qtyoftagsselected})
+
 
 @login_required
 def mobileBackupFormView(request):
@@ -575,9 +623,10 @@ def mobileBackupFormView(request):
     except ClientError as e:
         error_code = e.response['Error']['Code']
 
-    backupinstance = MobileSetupBackup.objects.filter(backupOwner=request.user).filter(backupName=request.user.username + "_backup").order_by('backupDBTimeStamp').last()
+    backupinstance = MobileSetupBackup.objects.filter(backupOwner=request.user).filter(
+        backupName=request.user.username + "_backup").order_by('backupDBTimeStamp').last()
 
-    return render(request, 'mobilebackup.html', { 'backupinstance':backupinstance })
+    return render(request, 'mobilebackup.html', {'backupinstance': backupinstance})
 
 
 @login_required
@@ -593,11 +642,11 @@ def createdcicfgbackup(request):
             for key_to_backup in keys_to_backup['Contents']:
                 if "_backup" not in key_to_backup['Key']:
                     replace = request.user.username
-                    withstring = request.user.username+"_backup"
-                    newprefix,found,endpart = key_to_backup['Key'].partition(replace)
-                    newprefix+=withstring+endpart
+                    withstring = request.user.username + "_backup"
+                    newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                    newprefix += withstring + endpart
                     obj = bucket.Object(newprefix)
-                    obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+                    obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
                 backupinstance = MobileSetupBackup(backupOwner=request.user)
                 backupinstance.backupDescription = "Manual user-requested backup"
                 backupinstance.backupName = request.user.username + "_backup"
@@ -628,17 +677,17 @@ def restoredcicfgbackup(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username+"_backup")
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username + "_backup")
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                replace = request.user.username+"_backup"
+                replace = request.user.username + "_backup"
                 withstring = request.user.username
-                newprefix,found,endpart = key_to_backup['Key'].partition(replace)
-                newprefix+=withstring+endpart
+                newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                newprefix += withstring + endpart
                 obj = bucket.Object(newprefix)
-                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME+'/'+key_to_backup['Key'])
+                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
             return HttpResponse(
                 json.dumps({"result": "backup_restored"}),
                 content_type="application/json",
@@ -653,10 +702,11 @@ def restoredcicfgbackup(request):
             )
     else:
         return HttpResponse(
-        json.dumps({"nothing": "nothing happened"}),
-        content_type="application/json",
-        status=400
+            json.dumps({"nothing": "nothing happened"}),
+            content_type="application/json",
+            status=400
         )
+
 
 @login_required
 def tagsprocessedinthismedia(request):
@@ -664,7 +714,8 @@ def tagsprocessedinthismedia(request):
         mediaid = int(request.POST.get('mediaid'))
         mediainstance = Media.objects.get(pk=mediaid)
         listofprocessedtags = ProcessedTag.objects.filter(media=mediainstance).values('id')
-        listoftagsnumbers = TagStatusTable.objects.filter(processedTag__in=listofprocessedtags).values('statusTagNumber')
+        listoftagsnumbers = TagStatusTable.objects.filter(processedTag__in=listofprocessedtags).values(
+            'statusTagNumber')
         return JsonResponse({'result': list(listoftagsnumbers)})
     else:
         return HttpResponse(
@@ -673,13 +724,15 @@ def tagsprocessedinthismedia(request):
             status=400
         )
 
+
 @login_required
 def locofthismedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
         mediainstance = Media.objects.get(pk=mediaid)
         return HttpResponse(
-            json.dumps({'mediaLatitude': mediainstance.mediaLatitude, 'mediaLongitude': mediainstance.mediaLongitude, 'mediaLocPrecisionInMeters': mediainstance.mediaLocPrecisionInMeters}),
+            json.dumps({'mediaLatitude': mediainstance.mediaLatitude, 'mediaLongitude': mediainstance.mediaLongitude,
+                        'mediaLocPrecisionInMeters': mediainstance.mediaLocPrecisionInMeters}),
             content_type="application/json",
             status=200
         )
@@ -689,6 +742,7 @@ def locofthismedia(request):
             content_type="application/json",
             status=400
         )
+
 
 @login_required
 def vpDetailView(request):
@@ -700,21 +754,25 @@ def vpDetailView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        vpselected = int(request.GET.get('vpselected',0))
-        mediaselected = int(request.GET.get('mediaselected',0))
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
+        vpselected = int(request.GET.get('vpselected', 0))
+        mediaselected = int(request.GET.get('mediaselected', 0))
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
         if not medias:
-            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by('mediaMillisSinceEpoch')
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by(
+                'mediaMillisSinceEpoch')
             recalcend = medias.last().mediaTimeStamp
             recalcstart = recalcend - timedelta(days=29)
             startdateformatted = recalcstart.strftime('%Y-%m-%d')
             enddateformatted = recalcend.strftime('%Y-%m-%d')
-            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by(
+            vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
+                vpIsActive=True).order_by(
                 'vpNumber').distinct()
         else:
             mediaspks = medias.values_list('id', flat=True)
@@ -727,25 +785,25 @@ def vpDetailView(request):
                 mediaselected = medias.first().pk
         mediainstance = Media.objects.get(pk=mediaselected)
         mediainstance.mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                            'Key': mediainstance.mediaObjectS3Key},
-                                                                    ExpiresIn=3600)
+                                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                                'Key': mediainstance.mediaObjectS3Key},
+                                                                        ExpiresIn=3600)
 
-        return render(request, 'vpdetail.html',{'vpselected': vpselected,
-                                                'vps': vps,
-                                                'mediaselected': mediaselected,
-                                                'start': startdateformatted,
-                                                'end': enddateformatted,
-                                                'medias': medias,
-                                                'mediaStorageURL': mediainstance.mediaStorageURL,
-                                                'mediaContentType': mediainstance.mediaContentType,
-                                                'mediaArIsOn': mediainstance.mediaArIsOn,
-                                                'mediaTimeIsCertified': mediainstance.mediaTimeIsCertified,
-                                                'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
-                                                'mediaTimeStamp': mediainstance.mediaTimeStamp,
-                                                'loclatitude': mediainstance.mediaLatitude,
-                                                'loclongitude': mediainstance.mediaLongitude,
-                                                'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
-                                                })
+        return render(request, 'vpdetail.html', {'vpselected': vpselected,
+                                                 'vps': vps,
+                                                 'mediaselected': mediaselected,
+                                                 'start': startdateformatted,
+                                                 'end': enddateformatted,
+                                                 'medias': medias,
+                                                 'mediaStorageURL': mediainstance.mediaStorageURL,
+                                                 'mediaContentType': mediainstance.mediaContentType,
+                                                 'mediaArIsOn': mediainstance.mediaArIsOn,
+                                                 'mediaTimeIsCertified': mediainstance.mediaTimeIsCertified,
+                                                 'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
+                                                 'mediaTimeStamp': mediainstance.mediaTimeStamp,
+                                                 'loclatitude': mediainstance.mediaLatitude,
+                                                 'loclongitude': mediainstance.mediaLongitude,
+                                                 'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
+                                                 })
     else:
         return HttpResponse(status=404)
