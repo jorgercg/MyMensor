@@ -1,4 +1,6 @@
 from mymensorapp.settings import *
+import subprocess
+import sys
 
 import dj_database_url
 
@@ -22,6 +24,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Ensure virtualenv path is part of PATH env var
 os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable)
+
 WKHTMLTOPDF_CMD = subprocess.Popen(
     ['which', os.environ.get('WKHTMLTOPDF_BINARY', 'wkhtmltopdf')], # Note we default to 'wkhtmltopdf' as the binary name
     stdout=subprocess.PIPE).communicate()[0].strip()
