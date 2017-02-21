@@ -37,9 +37,11 @@
                           title="{% trans 'Generate PDF of this page contents' %}"></span>
                 </div>
                 <div id="delmedia" class="mym-dash-item">
-                    <span href="/delete" id="delmediabtn" class="fa fa-trash-o delete" data-toggle="tooltip"
-                          data-placement="top" data-confirm="{% trans "Please confirm that you want to delete this media from MyMensor server." %}"
-                          title="{% trans 'Delete media from server' %}"></span>
+                    <button id="delmediabtn" type="button" class="btn btn-outline-danger btn-lg delete"
+                            data-toggle="tooltip" data-placement="top" title="{% trans 'Delete media from server' %}"
+                            data-confirm="{% trans "Please confirm that you want to delete this media from MyMensor server." %}">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -328,7 +330,7 @@
                 $.ajax({
                     url: "delete_media/", // the endpoint
                     type: "POST", // http method
-                    data: { mediaid:mediaid }, // data sent with the post request
+                    data: {mediaid: mediaid}, // data sent with the post request
                     // handle a successful response
                     success: function (json) {
                         console.log(json); // log the returned json to the console
