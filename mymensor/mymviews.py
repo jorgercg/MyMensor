@@ -826,7 +826,7 @@ def generatePDF(request):
         url = request.GET.get('url')
         client = requests.session()
         csrf = client.get(url).cookies['csrftoken']
-        sessionid = client.get(url).cookies['sessionid']
+        sessionid = request.COOKIES[settings.SESSION_COOKIE_NAME]
         pdfkit_config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
         wk_options = {
             'page-size': 'A4',
