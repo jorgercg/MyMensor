@@ -424,6 +424,42 @@ hr {
     padding-right: 1rem;
 }
 
+@media (min-width: 576px) {
+  #wrapper .papercontainer {
+    width: 360px;
+    height: 202px;
+  }
+}
+
+@media (min-width: 768px) {
+  #wrapper .papercontainer {
+    width: 480px;
+    height: 270px;
+  }
+}
+
+@media (min-width: 992px) {
+  #wrapper .papercontainer {
+    width: 620px;
+    height: 348px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #wrapper .papercontainer {
+    width: 760px;
+    height: 428px;
+  }
+}
+
+@media (min-width: 1440px) {
+  #wrapper .papercontainer {
+    width: 912px;
+    height: 513px;
+  }
+}
+
+
 #wrapper .papercontainer img {
     position: absolute;
     top: 0;
