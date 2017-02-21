@@ -181,20 +181,22 @@
                         var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
                         dfd.done(function (result) {  //result is a Raphael element
 
-                            {% if tagbbox is not None %}
+                            {% if tagbboxes is not None %}
 
-                                var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
-                                var propy = {{ tagbbox.tagbboxY }} * mediapaperheight;
-                                var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
-                                var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
+                                {% for tagbox in tagboxes %}
 
-                                var bbox = paper.rect(propx, propy, propwidth, propheight);
-                                bbox.attr('stroke-width', 2);
-
-                                var tagnumber = paper.text(propx + (propwidth / 2), propy + 20, "Tag#{{ currenttag }}");
-                                tagnumber.attr('stroke-width', 2);
-                                tagnumber.attr('font-family', "Verdana");
-                                tagnumber.attr('font-size', 20);
+                                    var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} * mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
+                                    {{ tagbbox.tagbboxHeight }} * mediapaperheight);
+                                    bbox.attr('stroke-width', 2);
+                                    {% for tag in tags %}
+                                        {% if tagbox.tag == tag.id %}
+                                        var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2), {{ tagbbox.tagbboxY }} * mediapaperheight + 20, "Tag#{{ tag.tagNumber }}");
+                                        tagnumber.attr('stroke-width', 2);
+                                        tagnumber.attr('font-family', "Verdana");
+                                        tagnumber.attr('font-size', 20);
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
 
                             {% endif %}
 
