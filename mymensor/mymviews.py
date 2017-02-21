@@ -222,6 +222,9 @@ def cognitoauth(request):
         )
         response.update({'identityPoolId': 'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'key': token})
+        assetinstance = Asset.objects.get(assetOwner=request.user)
+        assetinstance.assetOwnerIdentityId = response['IdentityId']
+        assetinstance.save()
         return JsonResponse(response)
     return HttpResponse(status=400)
 

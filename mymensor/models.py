@@ -5,7 +5,6 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
-
 class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True)
     assetNumber = models.IntegerField()
@@ -13,6 +12,7 @@ class Asset(models.Model):
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True)
     assetOwnerKey = models.CharField(max_length=1024, null=True)
+    assetOwnerIdentityId = models.CharField(max_length=1024, null=True)
     assetRegistryCode = models.CharField(max_length=255, null=True)
     assetDciFrequencyUnit = models.CharField(max_length=50, default="millis")
     assetDciFrequencyValue = models.IntegerField(default=20000)
