@@ -475,7 +475,7 @@ def procTagEditView(request):
                                                                       ExpiresIn=3600)
         values = ProcessedTag.objects.filter(media__vp__asset__assetOwner=request.user).filter(
             tag__tagIsActive=True).filter(
-            media__mediaProcessed=False).distinct()  # .values_list('media','tag','valValueEvaluated')
+            media__mediaProcessed=True).distinct()  # .values_list('media','tag','valValueEvaluated')
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
         return render(request, 'proctagedit.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
