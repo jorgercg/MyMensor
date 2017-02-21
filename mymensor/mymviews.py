@@ -23,7 +23,7 @@ from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.conf import settings
-import os, pdfkit
+import pdfkit, requests
 
 
 def landingView(request):
@@ -824,6 +824,8 @@ def vpDetailView(request):
 def generatePDF(request):
     if request.user.is_authenticated:
         url = request.GET.get('url')
+        client = requests.session()
+        csrf = client.get(url).cookies['csrftoken']
         pdfkit_config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
         wk_options = {
             'page-size': 'A4',
@@ -838,6 +840,9 @@ def generatePDF(request):
             'margin-right': '0.1cm',
             'margin-top': '0.1cm',
             'margin-bottom': '0.1cm',
+            'cookie': [
+                ('csrftoken', csrf),
+            ],
             'lowquality': None,
         }
         # We can generate the pdf from a url, file or, as shown here, a string
