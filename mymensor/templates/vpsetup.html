@@ -189,7 +189,7 @@
                                     {{ tagbbox.tagbboxHeight }} * mediapaperheight);
                                     bbox.attr('stroke-width', 2);
                                     {% for tag in tags %}
-                                        {% if tagbox.tag == tag.id %}
+                                        {% if tagbbox.tag == tag.id %}
                                         var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2), {{ tagbbox.tagbboxY }} * mediapaperheight + 20, "Tag#{{ tag.tagNumber }}");
                                         tagnumber.attr('stroke-width', 2);
                                         tagnumber.attr('font-family', "Verdana");
