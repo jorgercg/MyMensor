@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz mymfilters %}
+{% load staticfiles i18n tz mymfilters %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     {% if user.is_authenticated %}
@@ -180,16 +180,6 @@
 
                         var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
                         dfd.done(function (result) {  //result is a Raphael element
-                            console.log('done');
-                            var paperx = getOffset(document.getElementById('paper')).left + 16;
-                            var papery = getOffset(document.getElementById('paper')).top;
-
-                            console.log('paperx:' + paperx);
-                            console.log('papery:' + papery);
-
-                            var painter = {};
-                            var shapes = [];
-                            var tagnumbers = [];
 
                             {% if tagbbox is not None %}
 
@@ -199,11 +189,9 @@
                                 var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
 
                                 var bbox = paper.rect(propx, propy, propwidth, propheight);
-                                shapes.push(bbox);
                                 bbox.attr('stroke-width', 2);
 
                                 var tagnumber = paper.text(propx + (propwidth / 2), propy + 20, "Tag#{{ currenttag }}");
-                                tagnumbers.push(tagnumber);
                                 tagnumber.attr('stroke-width', 2);
                                 tagnumber.attr('font-family', "Verdana");
                                 tagnumber.attr('font-size', 20);
