@@ -820,6 +820,7 @@ def vpDetailView(request):
     else:
         return HttpResponse(status=404)
 
+
 @login_required
 def generatePDF(request):
     if request.user.is_authenticated:
@@ -864,3 +865,35 @@ def generatePDF(request):
         return response
     else:
         return HttpResponse(status=404)
+
+
+@login_required
+def deletemedia(request):
+    if request.method == 'POST':
+        mediaid = int(request.POST.get('mediaid'))
+        mediainstance = Media.objects.get(pk=mediaid)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        try:
+            responseS3 = s3Client.delete_object(Bucket=AWS_S3_BUCKET_NAME,
+                                          Key=mediainstance.mediaObjectS3Key)
+            responseDJ = mediainstance.delete()
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+            return HttpResponse(
+                json.dumps({"error": error_code, "responseS3": responseS3, "responseDJ": responseDJ}),
+                content_type="application/json",
+                status=400
+            )
+        return HttpResponse(
+            json.dumps({"responseS3": responseS3, "responseDJ": responseDJ}),
+            content_type="application/json",
+            status=200
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )

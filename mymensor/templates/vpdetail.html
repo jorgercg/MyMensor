@@ -1,236 +1,293 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles tz counter assign mymfilters%}
+{% load i18n staticfiles tz counter assign mymfilters %}
 {% localtime on %}
-{% get_current_timezone as TIME_ZONE %}
-{% block title %}VP Detail - {{ block.super }}{% endblock %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% block title %}VP Detail - {{ block.super }}{% endblock %}
 
-{% block content %}
-    <div class="mym-dash">
-        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-            <div class="mym-dash-item">
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                    <span id="selcdates"></span> <b class="caret"></b>
+    {% block content %}
+        <div class="mym-dash">
+            <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+                <div class="mym-dash-item">
+                    <div id="reportrange"
+                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
                 </div>
-            </div>
-            <div id="vpselector" class="mym-dash-item">
-                <select id="vpselected" name="vpselected">
-                {% for vp in vps %}
-                    <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}" {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
-                {% endfor %}
-                </select>
-            </div>
-            <div id="mediaselector" class="mym-dash-item">
-                <select id="mediaselected" name="mediaselected">
-                {% for media in medias %}
-                    <option id="optionmedia{{ media.id }}" value="{{ media.id }}" {% if media.id == mediaselected %}selected{% endif %}>{% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
-                {% endfor %}
-                </select>
-            </div>
-            <div id="genpdf" class="mym-dash-item">
-                <span id="genpdfbtn" class="fa fa-file-pdf-o" data-toggle="tooltip" data-placement="top" title="{% trans 'Generate PDF of this page contents' %}"></span>
+                <div id="vpselector" class="mym-dash-item">
+                    <select id="vpselected" name="vpselected">
+                        {% for vp in vps %}
+                            <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}"
+                                    {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }}
+                                - {{ vp.vpDescription }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="mediaselector" class="mym-dash-item">
+                    <select id="mediaselected" name="mediaselected">
+                        {% for media in medias %}
+                            <option id="optionmedia{{ media.id }}" value="{{ media.id }}"
+                                    {% if media.id == mediaselected %}selected{% endif %}>
+                                {% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div id="genpdf" class="mym-dash-item">
+                    <span id="genpdfbtn" class="fa fa-file-pdf-o" data-toggle="tooltip" data-placement="top"
+                          title="{% trans 'Generate PDF of this page contents' %}"></span>
+                </div>
+                <div id="delmedia" class="mym-dash-item">
+                    <span href="/delete" id="delmediabtn" class="fa fa-trash-o delete" data-toggle="tooltip"
+                          data-placement="top" data-confirm="{% trans "Are you sure to delete this item?" %}"
+                          title="{% trans 'Delete media from server' %}"></span>
+                </div>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="d-flex align-content-start flex-wrap">
-        {% if mediaContentType == "image/jpeg" %}
-            <div class="card card-outline-primary m-2" style="width: 50rem;">
-                <div class="card-block">
-                    <p class="card-text">
-                        <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp  | localtime | date:"Y-b-d H:i:sO" }}
-                     {% if mediaArIsOn %}
-                        <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                     {% else %}
-                        <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                     {% endif %}
-                     {% if mediaTimeIsCertified %}
-                        <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                     {% else %}
-                        <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                     {% endif %}
-                     {% if mediaLocIsCertified %}
-                        <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                     {% else %}
-                        <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                     {% endif %}
-                    </p>
+        <hr>
+        <div class="d-flex align-content-start flex-wrap">
+            {% if mediaContentType == "image/jpeg" %}
+                <div class="card card-outline-primary m-2" style="width: 50rem;">
+                    <div class="card-block">
+                        <p class="card-text">
+                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
+                                  title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp  | localtime | date:"Y-b-d H:i:sO" }}
+                            {% if mediaArIsOn %}
+                                <span class="arused" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                            {% else %}
+                                <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                            {% endif %}
+                            {% if mediaTimeIsCertified %}
+                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture time certified' %}"></span>
+                            {% else %}
+                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture time not certified' %}"></span>
+                            {% endif %}
+                            {% if mediaLocIsCertified %}
+                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture location certified' %}"></span>
+                            {% else %}
+                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture location not certified' %}"></span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
+                        <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
+                    </a>
+                    <ul class="list-group list-group-flush">
+                        {% if mediaArIsOn %}
+                            <li class="list-group-item"><span
+                                    class="arusedinnotes">AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="arnotusedinnotes">AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}
+                            </li>
+                        {% endif %}
+                        {% if mediaTimeIsCertified %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}
+                            </li>
+                        {% endif %}
+                        {% if mediaLocIsCertified %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
-                <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
-                    <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
-                </a>
-                <ul class="list-group list-group-flush">
-                    {% if mediaArIsOn %}
-                    <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}</li>
-                    {% endif %}
-                    {% if mediaTimeIsCertified %}
-                    <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
-                    {% endif %}
-                    {% if mediaLocIsCertified %}
-                    <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="card card-outline-primary m-2" style="width: 50rem;">
-                <div class="card-block">
-                    <p class="card-text font-weight-bold">Location details</p>
+                <div class="card card-outline-primary m-2" style="width: 50rem;">
+                    <div class="card-block">
+                        <p class="card-text font-weight-bold">Location details</p>
+                    </div>
+                    <div id="landingmapid"></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                        <li class="list-group-item">
+                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                        <li class="list-group-item">
+                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                    </ul>
                 </div>
-                <div id="landingmapid"></div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                    <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                    <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
-                </ul>
-            </div>
-        {% endif %}
-        {% if mediaContentType == "video/mp4" %}
-            <div class="card card-outline-primary m-2" style="width: 50rem;">
-                <div class="card-block">
-                    <p class="card-text">
-                        <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp | localtime | date:"Y-b-d H:i:sO"}}
-                     {% if mediaArIsOn %}
-                        <span class="arused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                     {% else %}
-                        <span class="arnotused" data-toggle="tooltip" data-placement="top" title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                     {% endif %}
-                     {% if mediaTimeIsCertified %}
-                        <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time certified' %}"></span>
-                     {% else %}
-                        <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture time not certified' %}"></span>
-                     {% endif %}
-                     {% if mediaLocIsCertified %}
-                        <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location certified' %}"></span>
-                     {% else %}
-                        <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top" title="{% trans 'Capture location not certified' %}"></span>
-                     {% endif %}
-                    </p>
+            {% endif %}
+            {% if mediaContentType == "video/mp4" %}
+                <div class="card card-outline-primary m-2" style="width: 50rem;">
+                    <div class="card-block">
+                        <p class="card-text">
+                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top"
+                                  title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                            {% if mediaArIsOn %}
+                                <span class="arused" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                            {% else %}
+                                <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                            {% endif %}
+                            {% if mediaTimeIsCertified %}
+                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture time certified' %}"></span>
+                            {% else %}
+                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture time not certified' %}"></span>
+                            {% endif %}
+                            {% if mediaLocIsCertified %}
+                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture location certified' %}"></span>
+                            {% else %}
+                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Capture location not certified' %}"></span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video controls>
+                            <source src="{{ mediaStorageURL }}" type="video/mp4">
+                        </video>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        {% if mediaArIsOn %}
+                            <li class="list-group-item"><span
+                                    class="arusedinnotes">AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="arnotusedinnotes">AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}
+                            </li>
+                        {% endif %}
+                        {% if mediaTimeIsCertified %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}
+                            </li>
+                        {% endif %}
+                        {% if mediaLocIsCertified %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
+                            </li>
+                        {% endif %}
+                    </ul>
                 </div>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <video controls>
-                        <source src="{{ mediaStorageURL }}" type="video/mp4">
-                    </video>
+                <div class="card card-outline-primary m-2" style="width: 50rem;">
+                    <div class="card-block">
+                        <p class="card-text font-weight-bold">Location details</p>
+                    </div>
+                    <div id="landingmapid"></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                        <li class="list-group-item">
+                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                        <li class="list-group-item">
+                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                    </ul>
                 </div>
-                <ul class="list-group list-group-flush">
-                    {% if mediaArIsOn %}
-                    <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}</li>
-                    {% endif %}
-                    {% if mediaTimeIsCertified %}
-                    <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
-                    {% endif %}
-                    {% if mediaLocIsCertified %}
-                    <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
-                    {% else %}
-                    <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
-                    {% endif %}
-                </ul>
-            </div>
-            <div class="card card-outline-primary m-2" style="width: 50rem;">
-                <div class="card-block">
-                    <p class="card-text font-weight-bold">Location details</p>
-                </div>
-                <div id="landingmapid"></div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                    <li class="list-group-item">{% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
-                    <li class="list-group-item">{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
-                </ul>
-            </div>
-        {% endif %}
+            {% endif %}
 
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-xl">
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
-                  <div class="modal-body">
-                      <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
-                  </div>
+                    <div class="modal-body">
+                        <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
+                    </div>
                 </div>
-              </div>
             </div>
-            <hr>
+        </div>
+        <hr>
 
 
-{% endblock %}
-{% block javascript %}
-    <script src="{% static "js/leaflet.js" %}"></script>
-    <script type="text/javascript">
+    {% endblock %}
+    {% block javascript %}
+        <script src="{% static "js/leaflet.js" %}"></script>
+        <script type="text/javascript">
 
-        console.log('?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}');
+            console.log('?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}');
 
-        $('#vpselected').chosen();
+            $('#vpselected').chosen();
 
-        $('#mediaselected').chosen();
+            $('#mediaselected').chosen();
 
-        $(function() {
+            $(function () {
 
-            var start = moment("{{ start }}");
-            var end = moment("{{ end }}");
+                var start = moment("{{ start }}");
+                var end = moment("{{ end }}");
 
-            console.log("{{ start }}");
-            console.log("{{ end }}");
+                console.log("{{ start }}");
+                console.log("{{ end }}");
 
-            function cb(start, end) {
-                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
-            }
-
-            $('#reportrange').daterangepicker({
-                startDate: {{ start }},
-                endDate: {{ end }},
-                "alwaysShowCalendars": true,
-                ranges: {
-                   'Today': [moment(), moment()],
-                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                   'This Month': [moment().startOf('month'), moment().endOf('month')],
-                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                function cb(start, end) {
+                    $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                 }
-            }, cb);
 
-            cb(start, end);
+                $('#reportrange').daterangepicker({
+                    startDate: {{ start }},
+                    endDate: {{ end }},
+                    "alwaysShowCalendars": true,
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    }
+                }, cb);
 
-            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-                var startdate = picker.startDate.format('YYYY-MM-DD');
-                var enddate = picker.endDate.format('YYYY-MM-DD');
-                console.log(startdate);
-                console.log(enddate);
-                var tagssel = $('#tagsselected').serialize();
-                console.log('Chosen:'+tagssel);
-                window.location={% url 'vpdetail' %}+'?startdate='+startdate+'&enddate='+enddate+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}';
+                cb(start, end);
+
+                $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                    var startdate = picker.startDate.format('YYYY-MM-DD');
+                    var enddate = picker.endDate.format('YYYY-MM-DD');
+                    console.log(startdate);
+                    console.log(enddate);
+                    var tagssel = $('#tagsselected').serialize();
+                    console.log('Chosen:' + tagssel);
+                    window.location = {% url 'vpdetail' %}+'?startdate=' + startdate + '&enddate=' + enddate + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}';
+                });
+
+                $('#vpselected').change(function () {
+                    var vpselected = $(this).find(":selected").val();
+                    console.log("vpselected:" + vpselected);
+                    window.location = {% url 'vpdetail' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + vpselected + '&mediaselected=' + '{{mediaselected}}';
+                });
+
+                $('#mediaselected').change(function () {
+                    var mediaselected = $(this).find(":selected").val();
+                    console.log("mediaselected:" + mediaselected);
+                    window.location = {% url 'vpdetail' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + mediaselected;
+                });
+
+                $('#genpdfbtn').click(function () {
+                    console.log({% url 'pdfgen' %}+'?url=' + '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + mediaselected);
+                    window.location = {% url 'pdfgen' %}+'?url=https://app.mymensor.com' + '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}';
+                });
+
+
             });
 
-            $('#vpselected').change(function(){
-                var vpselected = $(this).find(":selected").val();
-                console.log("vpselected:"+vpselected);
-                window.location={% url 'vpdetail' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+vpselected+'&mediaselected='+'{{mediaselected}}';
-            });
-
-            $('#mediaselected').change(function(){
-                var mediaselected = $(this).find(":selected").val();
-                console.log("mediaselected:"+mediaselected);
-                window.location={% url 'vpdetail' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected;
-            });
-
-            $('#genpdfbtn').click(function(){
-                console.log({% url 'pdfgen' %}+'?url='+'{% url 'vpdetail' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected);
-                window.location={% url 'pdfgen' %}+'?url=https://app.mymensor.com'+'{% url 'vpdetail' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+'{{mediaselected}}';
-            });
-
-        });
-
-    </script>
-    <script>
+        </script>
+        <script>
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -248,6 +305,103 @@
 
 
         </script>
-{% endblock %}
+        <script>
+            var deleteLinks = document.querySelectorAll('.delete');
+
+            for (var i = 0; i < deleteLinks.length; i++) {
+                deleteLinks[i].addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    var choice = confirm(this.getAttribute('data-confirm'));
+
+                    if (choice) {
+                        window.location.href = this.getAttribute('href');
+                        delete_media({{ mediaselected }});
+                    }
+                });
+            }
+
+
+            // AJAX for posting
+            function delete_media(mediaid) {
+                console.log("Delete media is working!"); // sanity check
+                $.ajax({
+                    url: "delete_media/", // the endpoint
+                    type: "POST", // http method
+                    data: { mediaid:mediaid }, // data sent with the post request
+                    // handle a successful response
+                    success: function (json) {
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+                        location.reload();
+                    },
+                    // handle a non-successful response
+                    error: function (xhr, errmsg, err) {
+                        //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                        //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        alert('{% trans "Error: file not deleted." %}')
+                    }
+                });
+            }
+            ;
+
+
+            // This function gets cookie with a given name
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            /*
+             The functions below will create a header with csrftoken
+             */
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            function sameOrigin(url) {
+                // test that a given url is a same-origin URL
+                // url could be relative or scheme relative or absolute
+                var host = document.location.host; // host + port
+                var protocol = document.location.protocol;
+                var sr_origin = '//' + host;
+                var origin = protocol + sr_origin;
+                // Allow absolute or scheme relative URLs to same origin
+                return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                    (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                    // or any other URL that isn't scheme relative or absolute i.e relative.
+                    !(/^(\/\/|http:|https:).*/.test(url));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                        // Send the token to same-origin, relative URLs only.
+                        // Send the token only if the method warrants CSRF protection
+                        // Using the CSRFToken value acquired earlier
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+
+        </script>
+    {% endblock %}
 
 {% endlocaltime %}
