@@ -64,6 +64,7 @@
                         <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">Tag Status</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'taganalysis' %}" href="{% url 'taganalysis' %}">Tag Analysis</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'tagprocessing' %}" href="{% url 'tagprocessing' %}">Tag Processing</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'proctagedit' %}" href="{% url 'proctagedit' %}">Processed Tag Edit</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}" href="{% url 'auth_login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
