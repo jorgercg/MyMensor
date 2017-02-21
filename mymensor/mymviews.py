@@ -332,6 +332,12 @@ def tagSetupFormView(request):
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag_temp = int(request.GET.get('currenttag', 1))
+        tagdeleted = int(request.GET.get('tagdeleted', 0))
+        if tagdeleted>0:
+            taginstance = Tag()
+            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
+                tagNumber=tagdeleted).get()
+            taginstance.delete()
         qtytagsglobal = int(request.GET.get('qtytags', qtytagsglobal))
         listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
             vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
