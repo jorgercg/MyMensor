@@ -1,9 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, QueryDict
+from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
@@ -14,8 +13,8 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
     TagStatusTable, MobileSetupBackup
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
-from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
-import json, boto3, string, urllib
+from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
+import json, boto3, urllib
 from botocore.exceptions import ClientError
 from datetime import datetime
 from datetime import timedelta
@@ -23,6 +22,8 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
+from django.conf import settings
+import os, pdfkit
 
 
 def landingView(request):
@@ -293,11 +294,12 @@ def vpSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-    tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
+    tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+        vp__vpNumber=currentvp)
     tagbboxes = Tagbbox.objects.filter(tag__in=tags)
     return render(request, 'vpsetup.html',
                   {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbboxes':tagbboxes, 'tags':tags})
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbboxes': tagbboxes, 'tags': tags})
 
 
 @login_required
@@ -368,7 +370,7 @@ def tagSetupFormView(request):
         tagbbox = None
     try:
         firstsession = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = firstsession.client('s3')
         descvpStorageURL = s3Client.generate_presigned_url('get_object',
                                                            Params={'Bucket': AWS_S3_BUCKET_NAME,
@@ -409,7 +411,7 @@ def save_tagboundingbox(request):
             tagbboxinstancetmp.save()
             tagbboxinstancepk = tagbboxinstancetmp.pk
         tagbboxinstance = Tagbbox(pk=tagbboxinstancepk)
-        tagbboxinstance.tag_id=taginstance.pk
+        tagbboxinstance.tag_id = taginstance.pk
         tagbboxinstance.tagbboxX = posx
         tagbboxinstance.tagbboxY = posy
         tagbboxinstance.tagbboxWidth = width
@@ -815,5 +817,43 @@ def vpDetailView(request):
                                                  'loclongitude': mediainstance.mediaLongitude,
                                                  'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
                                                  })
+    else:
+        return HttpResponse(status=404)
+
+
+@login_required
+def generatePDF(request):
+    if request.user.is_authenticated:
+        url = request.GET.get('url')
+        pdfkit_config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
+        wk_options = {
+            'page-size': 'A4',
+            'orientation': 'landscape',
+            'title': 'pdftesting',
+            # In order to specify command-line options that are simple toggles
+            # using this dict format, we give the option the value None
+            'no-outline': None,
+            'disable-javascript': None,
+            'encoding': 'UTF-8',
+            'margin-left': '0.1cm',
+            'margin-right': '0.1cm',
+            'margin-top': '0.1cm',
+            'margin-bottom': '0.1cm',
+            'lowquality': None,
+        }
+        # We can generate the pdf from a url, file or, as shown here, a string
+        pdf = pdfkit.from_url(
+            # This example uses Django's render_to_string function to return the result of
+            # rendering an HTML template as a string, which we can then pass to pdfkit and on
+            # into wkhtmltopdf
+            url=url,
+            # We can output to a variable or a file - in this case, we're outputting to a file
+            output_path=False,
+            options=wk_options,
+            configuration=pdfkit_config
+        )
+        response = HttpResponse(pdf, content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="mymensor.pdf"'
+        return response
     else:
         return HttpResponse(status=404)
