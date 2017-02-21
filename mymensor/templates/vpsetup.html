@@ -181,9 +181,9 @@
                         var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
                         dfd.done(function (result) {  //result is a Raphael element
 
+                            {% if tagbboxes is not None %}
 
-
-                                {% for tagbox in tagboxes %}
+                                {% for tagbbox in tagbboxes %}
 
                                     var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} * mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
                                     {{ tagbbox.tagbboxHeight }} * mediapaperheight);
@@ -198,7 +198,7 @@
                                     {% endfor %}
                                 {% endfor %}
 
-
+                            {% endif %}
 
                         });
                     });
