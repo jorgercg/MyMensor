@@ -821,7 +821,6 @@ def vpDetailView(request):
         return HttpResponse(status=404)
 
 
-@login_required
 def generatePDF(request):
     if request.user.is_authenticated:
         url = request.GET.get('url')
