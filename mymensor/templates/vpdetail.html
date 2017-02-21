@@ -224,7 +224,7 @@
 
             $('#genpdfbtn').click(function(){
                 console.log({% url 'pdfgen' %}+'?url='+'{% url 'vpdetail' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected);
-                window.location={% url 'pdfgen' %}+'?url='+'{% url 'vpdetail' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected;
+                window.location={% url 'pdfgen' %}+'?url=https://app.mymensor.com'+'{% url 'vpdetail' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&vpselected='+'{{vpselected}}'+'&mediaselected='+mediaselected;
             });
 
         });
