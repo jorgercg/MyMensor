@@ -325,6 +325,7 @@
 
                         var painter = {};
                         var shapes = [];
+                        var tagnumbers = [];
 
                         {% if tagbbox is not None %}
 
@@ -338,6 +339,7 @@
                             bbox.attr('stroke-width', 2);
 
                             var tagnumber = paper.text(propx+(propwidth/2), propy+20, "Tag#{{ currenttag }}");
+                            texts.push(tagnumber);
                             tagnumber.attr('stroke-width', 2);
                             tagnumber.attr('font-family', "Verdana");
                             tagnumber.attr('font-size', 20);
@@ -353,6 +355,12 @@
                                 while (shapes.length > 0) {
                                     var shape = shapes.pop();
                                     shape.remove();
+                                }
+                            }
+                            if (tagnumbers.length > 0) {
+                                while (tagnumbers.length > 0) {
+                                    var tagnumber = tagnumbers.pop();
+                                    tagnumber.remove();
                                 }
                             }
 
@@ -391,8 +399,10 @@
                                 var shape = shapes.pop();
                                 shape.remove();
                             }
-                            paper.clear();
-
+                            while (tagnumbers.length > 0) {
+                                var tagnumber = tagnumbers.pop();
+                                tagnumber.remove();
+                            }
                         });
 
                         $paper.bind('mousedown', function (e) {
