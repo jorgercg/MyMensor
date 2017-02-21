@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^tagstatus/$', TemplateView.as_view(template_name='tagstatus.html'), name='tagstatus'),
     url(r'^taganalysis/$', mymviews.tagAnalysisView, name='taganalysis'),
     url(r'^tagprocessing/$', mymviews.tagProcessingFormView, name='tagprocessing'),
+    url(r'^proctagedit/$', mymviews.procTagEditView, name='proctagedit'),
     url(r'^support/$', TemplateView.as_view(template_name='support.html'), name='support'),
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
