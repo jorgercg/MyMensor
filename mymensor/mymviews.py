@@ -842,7 +842,7 @@ def generatePDF(request):
             'margin-top': '0.1cm',
             'margin-bottom': '0.1cm',
             'cookie': [
-                ('cookielaw_accepted', 1),
+                ('cookielaw_accepted', '1'),
                 ('csrftoken', csrf),
                 ('sessionid', sessionid),
             ],
