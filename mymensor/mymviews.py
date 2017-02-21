@@ -293,8 +293,6 @@ def vpSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-
-
     tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
     tagbboxes = Tagbbox.objects.filter(tag__in=tags)
     return render(request, 'vpsetup.html',
