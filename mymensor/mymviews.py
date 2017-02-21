@@ -293,12 +293,9 @@ def vpSetupFormView(request):
     except:
         descvpTimeStamp = " "
 
-    tagbboxes = Tagbbox.objects.filter(tag__vp=vp)
+    tagbboxes = Tagbbox.objects.filter(tag__vp__vpNumber=currentvp)
+    tags = Tag.object.filter(vp__vpNumber=currentvp)
 
-    try:
-        tags = Tag.object.filter(vp=vp)
-    except:
-        tags = None
     return render(request, 'vpsetup.html',
                   {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
                    'descvpTimeStamp': descvpTimeStamp, 'tagbboxes':tagbboxes, 'tags':tags})
