@@ -29,7 +29,7 @@
                 </div>
                 <div id="tagstotalqtydecuder" class="mym-dash-item">
                     <button id="deltag" type="button" class="btn btn-outline-danger">
-                        {% trans 'Delete TAG#' %}{{ currentag }}</button>
+                        {% trans 'Delete TAG#' %}{{ currenttag }}</button>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                     console.log("Clicked on deltag!!!!");
                     qttags = qttags - 1;
                     console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
-                    window.location = {% url 'tagsetup' %}+'?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}'+ '&tagdeleted=' + '{{ tagdeleted }}';
+                    window.location = {% url 'tagsetup' %}+'?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}'+ '&tagdeleted=' + '{{ currenttag }}';
                 });
 
             });
