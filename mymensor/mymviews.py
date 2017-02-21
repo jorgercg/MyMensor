@@ -292,10 +292,9 @@ def vpSetupFormView(request):
         descvpTimeStamp = obj_metadata['datetime']
     except:
         descvpTimeStamp = " "
-    try:
-        tagbboxes = Tagbbox.objects.filter(tag__vp=vp)
-    except:
-        tagbboxes = None
+
+    tagbboxes = Tagbbox.objects.filter(tag__vp=vp)
+
     try:
         tags = Tag.object.filter(vp=vp)
     except:
