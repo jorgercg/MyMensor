@@ -294,7 +294,7 @@ def vpSetupFormView(request):
         descvpTimeStamp = " "
 
     tagbboxes = Tagbbox.objects.filter(tag__vp__asset__assetOwner=request.user).filter(tag__vp__vpNumber=currentvp)
-    tags = Tag.object.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
+    tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
 
     return render(request, 'vpsetup.html',
                   {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
