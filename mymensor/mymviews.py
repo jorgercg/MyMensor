@@ -267,6 +267,7 @@ def vpSetupFormView(request):
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
     vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
+
     form = VpForm(request.POST, instance=vp)
     if request.method == 'POST':
         if form.is_valid():
@@ -293,9 +294,9 @@ def vpSetupFormView(request):
     except:
         descvpTimeStamp = " "
 
-    tagbboxes = Tagbbox.objects.filter(tag__vp__asset__assetOwner=request.user).filter(tag__vp__vpNumber=currentvp)
-    tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
 
+    tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp)
+    tagbboxes = Tagbbox.objects.filter(tag__in=tags)
     return render(request, 'vpsetup.html',
                   {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
                    'descvpTimeStamp': descvpTimeStamp, 'tagbboxes':tagbboxes, 'tags':tags})
