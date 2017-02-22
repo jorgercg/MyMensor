@@ -336,7 +336,7 @@ def tagSetupFormView(request):
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag_temp = int(request.GET.get('currenttag', 1))
         tagdeleted = int(request.GET.get('tagdeleted', 0))
-        if tagdeleted>0:
+        if tagdeleted > 0:
             taginstance = Tag()
             taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                 tagNumber=tagdeleted).get()
@@ -453,9 +453,9 @@ def procTagEditView(request):
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
-            mediaProcessed=True).filter(vp__vpIsActive=True).filter(vp__tag__isnull=False).filter(
-            mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')[:qtypervp]
+        medias = Media.objects.exclude(vp__vpIsActive=False).exclude(vp__vpNumber=0).exclude(
+            vp__tag__isnull=True).filter(vp__asset__assetOwner=request.user).filter(
+            mediaProcessed=True).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')[:qtypervp]
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
@@ -479,10 +479,10 @@ def procTagEditView(request):
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
         return render(request, 'proctagedit.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
-                                                      'mediasofthevaluelist': mediasofthevaluelist,
-                                                      'tagsofthevaluelist': tagsofthevaluelist,
-                                                      'start': startdateformatted, 'end': enddateformatted,
-                                                      'qtypervp': qtypervp})
+                                                    'mediasofthevaluelist': mediasofthevaluelist,
+                                                    'tagsofthevaluelist': tagsofthevaluelist,
+                                                    'start': startdateformatted, 'end': enddateformatted,
+                                                    'qtypervp': qtypervp})
 
 
 @login_required
@@ -863,14 +863,14 @@ def vpDetailView(request):
                                                  'start': startdateformatted,
                                                  'end': enddateformatted,
                                                  'medias': medias,
-                                                 'mediaObjectS3Key':mediainstance.mediaObjectS3Key,
+                                                 'mediaObjectS3Key': mediainstance.mediaObjectS3Key,
                                                  'mediaStorageURL': mediainstance.mediaStorageURL,
                                                  'mediaContentType': mediainstance.mediaContentType,
                                                  'mediaArIsOn': mediainstance.mediaArIsOn,
                                                  'mediaTimeIsCertified': mediainstance.mediaTimeIsCertified,
                                                  'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
                                                  'mediaTimeStamp': mediainstance.mediaTimeStamp,
-                                                 'mediaSha256':mediainstance.mediaSha256,
+                                                 'mediaSha256': mediainstance.mediaSha256,
                                                  'loclatitude': mediainstance.mediaLatitude,
                                                  'loclongitude': mediainstance.mediaLongitude,
                                                  'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
@@ -935,7 +935,7 @@ def deletemedia(request):
         s3Client = session.client('s3')
         try:
             responseS3 = s3Client.delete_object(Bucket=AWS_S3_BUCKET_NAME,
-                                          Key=mediainstance.mediaObjectS3Key)
+                                                Key=mediainstance.mediaObjectS3Key)
             responseDJ = mediainstance.delete()
         except ClientError as e:
             error_code = e.response['Error']['Code']
