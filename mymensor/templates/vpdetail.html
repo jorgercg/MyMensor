@@ -43,6 +43,17 @@
                         <span class="fa fa-trash-o"></span>
                     </button>
                 </div>
+                <div id="sharebtns" class="mym-dash-item">
+                    <div class="ssk-group">
+                        <a href="" class="ssk ssk-email"></a>
+                        <a href="" class="ssk ssk-facebook"></a>
+                        <a href="" class="ssk ssk-twitter"></a>
+                        <a href="" class="ssk ssk-google-plus"></a>
+                        <a href="" class="ssk ssk-pinterest"></a>
+                        <a href="" class="ssk ssk-tumblr"></a>
+                        <a href="" class="ssk ssk-whatsapp"></a>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>
@@ -223,6 +234,11 @@
     {% block javascript %}
         <script src="{% static "js/leaflet.js" %}"></script>
         <script type="text/javascript">
+            SocialShareKit.init({
+                selector: '.ssk',
+                url: 'https://app.mymensor.com/landing/?type=1&key=' + '{{ mediaObjectS3Key }}' + '&signature=' + '{{ mediaSha256 }}',
+                text: '{% Check this media at MyMensor %}'
+            });
 
             console.log('?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}');
 
