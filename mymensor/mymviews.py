@@ -455,7 +455,7 @@ def procTagEditView(request):
         qtypervp = int(request.GET.get('qtypervp', 5))
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
             mediaProcessed=True).filter(vp__vpIsActive=True).filter(vp__tag__isnull=False).filter(
-            mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')[:qtypervp]
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
