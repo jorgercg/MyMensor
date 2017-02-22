@@ -32,9 +32,11 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div id="genpdf" class="mym-dash-item">
-                    <span id="genpdfbtn" class="fa fa-file-pdf-o" data-toggle="tooltip" data-placement="top"
-                          title="{% trans 'Generate PDF of this page contents' %}"></span>
+                <div id="movemedia" class="mym-dash-item">
+                    <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm"
+                            data-toggle="tooltip" data-placement="top" title="{% trans 'Move this media to another VP# folder' %}"
+                            data-confirm="{% trans "Please confirm that you want to move this media." %}">{% trans 'Move media to another VP# folder' %}
+                    </button>
                 </div>
                 <div id="delmedia" class="mym-dash-item">
                     <button id="delmediabtn" type="button" class="btn btn-outline-danger btn-sm delete"
