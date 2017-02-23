@@ -23,6 +23,8 @@ from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.conf import settings
+from django_tables2 import RequestConfig
+from .tables import TagSatatusTableClass
 import pdfkit, requests
 
 
@@ -607,7 +609,9 @@ def saveValue(request):
         )
 
 def TagStatusView(request):
-    return render(request, 'tagstatus.html', {'tagstatus':TagStatusTable.objects.all()})
+    tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user))
+    RequestConfig(request).configure(tagstatustable)
+    return render(request, 'tagstatus.html', {'tagstatustable':tagstatustable})
 
 class TagStatus(BaseDatatableView):
     # The model we're going to show
