@@ -23,10 +23,8 @@ from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.conf import settings
-import django_tables2
 from django_tables2 import RequestConfig
 from .tables import TagSatatusTableClass
-from .filters import TagStatusTableFilter
 import pdfkit, requests
 
 
@@ -611,24 +609,10 @@ def saveValue(request):
         )
 
 
-class FilteredSingleTableView(django_tables2.SingleTableView):
-    filter_class = None
-
-    def get_table_data(self):
-        data = super(FilteredSingleTableView, self).get_table_data()
-        self.filter = self.filter_class(self.request.GET, queryset=data)
-        return self.filter.qs
-
-    def get_context_data(self, **kwargs):
-        context = super(FilteredSingleTableView, self).get_context_data(**kwargs)
-        context['filter'] = self.filter
-        return context
-
-
-class TagStatusView(FilteredSingleTableView):
-    model = TagStatusTable
-    table_class = TagSatatusTableClass
-    filter_class = TagStatusTableFilter
+def TagStatusView(request):
+    tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).order_by('statusTagNumber'))
+    RequestConfig(request, paginate={'per_page':15}).configure(tagstatustable)
+    return render(request, 'tagstatus.html', {'tagstatustable':tagstatustable})
 
 
 class TagStatus(BaseDatatableView):

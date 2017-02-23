@@ -5,16 +5,6 @@
 
 {% block content %}
     <body>
-    <form method='GET'>
-        {{ filter.form }}
-        <input type='submit' value='Filter'/>
-        |
-        Displaying {{ filter.qs.count }} of {{ filter.queryset.count }} items.
-        |
-        <a href='{{ request.path }}'>Clear</a>
-    </form>
-    {% if table %}
         {% render_table tagstatustable %}
-    {% endif %}
     </body>
 {% endblock %}
