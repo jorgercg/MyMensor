@@ -41,9 +41,9 @@ urlpatterns = [
 
     url(r'^landing/$', mymviews.landingView, name='landing'),
 
-    url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^chaining/$', include('smart_selects.urls')),
 
-    url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^accounts/$', include('registration.backends.default.urls')),
 
     # password reset urls
     url(r'^accounts/password/reset/$', password_reset, {'template_name': 'registration/password_reset_form.html'}, name="password_reset"),
@@ -53,46 +53,46 @@ urlpatterns = [
     url(r'^accounts/password/done/$', password_reset_complete, {'template_name': 'registration/password_reset_complete.html'}, name="password_reset_complete"),
     url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
 
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-auth/$', include('rest_framework.urls', namespace='rest_framework')),
 
-    url(r'^sns-notifications/', mymviews.amazon_sns_processor),
+    url(r'^sns-notifications/$', mymviews.amazon_sns_processor),
 
-    url(r'^cognito-auth/', mymviews.cognitoauth),
+    url(r'^cognito-auth/$', mymviews.cognitoauth),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/$', include(admin.site.urls)),
 
     url(r'^.well-known/acme-challenge/6tkddfaSb9H4On2KEHI9q8sKzO3eIW225xNkH-4PMnU/$', mymviews.zerossl),
 
-    url(r'^api-token-auth/', views.obtain_auth_token),
+    url(r'^api-token-auth/$', views.obtain_auth_token),
 
-    url(r'^instant/', include('instant.urls')),
+    url(r'^instant/$', include('instant.urls')),
 
     url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
 
-    url(r'^tz_detect/', include('tz_detect.urls')),
+    url(r'^tz_detect/$', include('tz_detect.urls')),
 
-    url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
+    url(r'^tagprocessing/save_value/$', mymviews.saveValue, name='save_value'),
 
-    url(r'^proctagedit/save_value/', mymviews.saveValue, name='save_value'),
+    url(r'^proctagedit/save_value/$', mymviews.saveValue, name='save_value'),
 
-    url(r'^tagsetup/save_tagbboxvalues/', mymviews.save_tagboundingbox, name='save_tagbboxvalues'),
+    url(r'^tagsetup/save_tagbboxvalues/$', mymviews.save_tagboundingbox, name='save_tagbboxvalues'),
 
-    url(r'^mobilebackup/create_backup/', mymviews.createdcicfgbackup, name='create_backup'),
+    url(r'^mobilebackup/create_backup/$', mymviews.createdcicfgbackup, name='create_backup'),
 
-    url(r'^mobilebackup/restore_backup/', mymviews.restoredcicfgbackup, name='restore_backup'),
+    url(r'^mobilebackup/restore_backup/$', mymviews.restoredcicfgbackup, name='restore_backup'),
 
     url(r'^my/datatable/data/$', login_required(mymviews.TagStatus.as_view()), name='tag_status'),
 
-    url(r'^portfolio/pf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
+    url(r'^portfolio/pf_mediaid_sendvalue/$', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
 
-    url(r'^mediafeed/mf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
+    url(r'^mediafeed/mf_mediaid_sendvalue/$', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
 
-    url(r'^portfolio/pf_mediaid_sendvalue_loc/', mymviews.locofthismedia, name='pf_mediaid_sendvalue_loc'),
+    url(r'^portfolio/pf_mediaid_sendvalue_loc/$', mymviews.locofthismedia, name='pf_mediaid_sendvalue_loc'),
 
-    url(r'^mediafeed/mf_mediaid_sendvalue_loc/', mymviews.locofthismedia, name='mf_mediaid_sendvalue_loc'),
+    url(r'^mediafeed/mf_mediaid_sendvalue_loc/$', mymviews.locofthismedia, name='mf_mediaid_sendvalue_loc'),
 
-    url(r'^vpdetail/delete_media/', mymviews.deletemedia, name='delete_media'),
+    url(r'^vpdetail/delete_media/$', mymviews.deletemedia, name='delete_media'),
 
-    url(r'^pdfgen/', mymviews.generatePDF, name='pdfgen'),
+    url(r'^pdfgen/$', mymviews.generatePDF, name='pdfgen'),
 
 ]
