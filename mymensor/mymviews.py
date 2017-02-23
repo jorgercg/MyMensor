@@ -640,11 +640,11 @@ class TagStatus(BaseDatatableView):
         filter_statusTagDescription = self.request.GET.get(u'statusTagDescription', None)
         if filter_statusTagDescription:
             customer_parts = filter_statusTagDescription.split(' ')
-        qs_params = None
-        for part in customer_parts:
-            q = Q(customer_firstname__istartswith=part) | Q(customer_lastname__istartswith=part)
-        qs_params = qs_params | q if qs_params else q
-        qs = qs.filter(qs_params)
+            qs_params = None
+            for part in customer_parts:
+                q = Q(customer_firstname__istartswith=part) | Q(customer_lastname__istartswith=part)
+            qs_params = qs_params | q if qs_params else q
+            qs = qs.filter(qs_params)
         return qs
 
     def prepare_results(self, qs):
