@@ -6,3 +6,4 @@ class TagSatatusTableClass(tables.Table):
         model = TagStatusTable
         # add class="paleblue" to <table> tag
         attrs = {'class': 'paleblue'}
+        exclude = ('id','processedTag','statusMediaMillisSinceEpoch')
