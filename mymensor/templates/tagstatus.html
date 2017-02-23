@@ -39,6 +39,7 @@
         $(document).ready(function () {
             var table = $('#statustable').DataTable({
                 "initComplete": function (settings, json) {
+                    console.log("initComplete fired!!!")
                     this.api().columns().every(function () {
                         var column = this;
                         var select = $('<select><option value=""></option></select>')
