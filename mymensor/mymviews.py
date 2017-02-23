@@ -609,7 +609,7 @@ def saveValue(request):
         )
 
 def TagStatusView(request):
-    tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user))
+    tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).order_by('statusTagNumber'))
     RequestConfig(request, paginate={'per_page':15}).configure(tagstatustable)
     return render(request, 'tagstatus.html', {'tagstatustable':tagstatustable})
 
