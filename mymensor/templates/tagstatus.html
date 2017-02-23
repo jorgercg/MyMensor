@@ -95,11 +95,7 @@
                                 column.search(val ? '^' + val + '$' : '', true, false).draw();
                             });
                         column.data().unique().sort().each(function (d, j) {
-                            if (column.search() === '^' + d + '$') {
-                                select.append('<option value="' + d + '" selected="selected">' + d + '</option>')
-                            } else {
-                                select.append('<option value="' + d + '">' + d + '</option>')
-                            }
+                            select.append( '<option value="'+d+'">'+d+'</option>' )
                         });
                     })
                 }
