@@ -610,7 +610,7 @@ def saveValue(request):
 
 def TagStatusView(request):
     tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user))
-    RequestConfig(request).configure(tagstatustable)
+    RequestConfig(request, paginate={'per_page':15}).configure(tagstatustable)
     return render(request, 'tagstatus.html', {'tagstatustable':tagstatustable})
 
 class TagStatus(BaseDatatableView):

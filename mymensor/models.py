@@ -167,14 +167,17 @@ class Value(models.Model):
 
 
 class TagStatusTable(models.Model):
+
+    TAG_STATUS_CHOICES = (('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'), ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+
     processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
-    statusTagNumber = models.IntegerField()
-    statusTagDescription = models.CharField(max_length=1024)
-    statusVpNumber = models.IntegerField()
-    statusVpDescription = models.CharField(max_length=1024)
-    statusValValueEvaluated = models.FloatField()
-    statusTagUnit = models.CharField(max_length=50, null=True)
-    statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
+    statusTagNumber = models.IntegerField(verbose_name="Tag#")
+    statusTagDescription = models.CharField(max_length=1024,verbose_name="Tag Description")
+    statusVpNumber = models.IntegerField(verbose_name="VP#")
+    statusVpDescription = models.CharField(max_length=1024, verbose_name="VP Description")
+    statusValValueEvaluated = models.FloatField(verbose_name="Value")
+    statusTagUnit = models.CharField(max_length=50, null=True, verbose_name="Unit")
+    statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True, verbose_name="Media Time")
     statusMediaMillisSinceEpoch = models.BigIntegerField(null=True)
-    statusDBTimeStamp = models.DateTimeField(auto_now_add=True)
-    statusTagStateEvaluated = models.IntegerField()
+    statusDBTimeStamp = models.DateTimeField(auto_now_add=True, verbose_name="Processing Time")
+    statusTagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, verbose_name="Status")
