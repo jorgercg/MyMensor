@@ -647,7 +647,7 @@ class TagStatus(BaseDatatableView):
         # more advanced example
         filter_statusVpDescription = self.request.GET.get(u'columns[3][search][value]', None)
         if filter_statusVpDescription:
-            qs = qs.filter(Q(statusVpDescription=filter_statusVpDescription))
+            qs = qs.filter(Q(statusVpDescription__icontains=filter_statusVpDescription))
         return qs
 
 
