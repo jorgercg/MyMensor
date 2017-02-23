@@ -1,38 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n staticfiles %}
-
+{% load render_table from django_tables2 %}
 {% block title %}Tag Status - {{ block.super }}{% endblock %}
 
 {% block content %}
-    <p></p>
-    <table id="statustable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th>{% trans "Tag#" %}</th>
-            <th>{% trans "Tag Description" %}</th>
-            <th>{% trans "VP#" %}</th>
-            <th>{% trans "VP Description" %}</th>
-            <th>{% trans "Value" %}</th>
-            <th>{% trans "Unit" %}</th>
-            <th>{% trans "Value Date" %}</th>
-            <th>{% trans "Value State" %}</th>
-            <th>{% trans "Processed Date" %}</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <th>{% trans "Tag#" %}</th>
-            <th>{% trans "Tag Description" %}</th>
-            <th>{% trans "VP#" %}</th>
-            <th>{% trans "VP Description" %}</th>
-            <th>{% trans "Value" %}</th>
-            <th>{% trans "Unit" %}</th>
-            <th>{% trans "Value Date" %}</th>
-            <th>{% trans "Value State" %}</th>
-            <th>{% trans "Processed Date" %}</th>
-        </tr>
-        </tfoot>
-        <tbody>
-        </tbody>
-    </table>
+    <body>
+        {% render_table tagstatus %}
+    </body>
 {% endblock %}

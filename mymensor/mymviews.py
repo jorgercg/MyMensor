@@ -606,6 +606,8 @@ def saveValue(request):
             content_type="application/json"
         )
 
+def TagStatusView(request):
+    return render(request, 'tagstatus.html', {'tagstatus':TagStatusTable.objects.all()})
 
 class TagStatus(BaseDatatableView):
     # The model we're going to show
