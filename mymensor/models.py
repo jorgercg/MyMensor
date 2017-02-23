@@ -150,11 +150,15 @@ class Media(models.Model):
 
 
 class ProcessedTag(models.Model):
+    TAG_STATUS_CHOICES = (
+    ('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
+    ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+
     media = models.ForeignKey(Media, on_delete=models.CASCADE)  ###### FK
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
     valValueEvaluated = models.FloatField()
     valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
-    tagStateEvaluated = models.IntegerField()
+    tagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, verbose_name="Status")
 
 
 class Value(models.Model):
