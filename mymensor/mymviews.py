@@ -639,27 +639,8 @@ class TagStatus(BaseDatatableView):
         # more advanced example
         filter_statusTagDescription = self.request.GET.get(u'statusTagDescription', None)
         if filter_statusTagDescription:
-            customer_parts = filter_statusTagDescription.split(' ')
-            qs_params = None
-            for part in customer_parts:
-                q = Q(customer_firstname__istartswith=part) | Q(customer_lastname__istartswith=part)
-            qs_params = qs_params | q if qs_params else q
-            qs = qs.filter(qs_params)
+            qs = qs.filter(Q(statusTagDescription__istartswith=filter_statusTagDescription))
         return qs
-
-    def prepare_results(self, qs):
-        # prepare list with output column data
-        # queryset is already paginated here
-        json_data = []
-        for item in qs:
-            json_data.append([
-                item.number,
-                "{0} {1}".format(item.customer_firstname, item.customer_lastname),
-                item.get_state_display(),
-                item.created.strftime("%Y-%m-%d %H:%M:%S"),
-                item.modified.strftime("%Y-%m-%d %H:%M:%S")
-            ])
-        return json_data
 
 
 @login_required
