@@ -641,11 +641,11 @@ class TagStatus(BaseDatatableView):
     def filter_queryset(self, qs):
         # use parameters passed in GET request to filter queryset
         # simple example:
-        sSearch = self.request.GET.get(u'search[value]', None)
+        sSearch = self.request.GET.get('search[value]', None)
         if sSearch:
             qs = qs.filter(Q(statusTagDescription__icontains=sSearch) | Q(statusVpDescription__icontains=sSearch))
         # more advanced example
-        filter_statusVpDescription = self.request.GET.get(u'columns[3][search][value]', None)
+        filter_statusVpDescription = self.request.GET.get('columns[3][search][value]', None)
         if filter_statusVpDescription:
             qs = qs.filter(Q(statusVpDescription__icontains=filter_statusVpDescription))
         return qs
