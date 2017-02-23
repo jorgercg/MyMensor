@@ -628,6 +628,13 @@ class TagStatus(BaseDatatableView):
     # and make it return huge amount of data
     max_display_length = 200
 
+    def render_column(self, row, column):
+        # We want to render user as a custom column
+        if column == 'user':
+            return '{0} {1}'.format(row.customer_firstname, row.customer_lastname)
+        else:
+            return super(TagStatus, self).render_column(row, column)
+
     def filter_queryset(self, qs):
         # use parameters passed in GET request to filter queryset
         filteruser = self.request.user
