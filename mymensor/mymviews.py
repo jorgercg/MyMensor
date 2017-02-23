@@ -628,6 +628,9 @@ class TagStatus(BaseDatatableView):
     # and make it return huge amount of data
     max_display_length = 200
 
+    def get_initial_queryset(self):
+        return TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=self.request.user)
+
     def render_column(self, row, column):
         # We want to render user as a custom column
         if column == 'user':
@@ -637,8 +640,6 @@ class TagStatus(BaseDatatableView):
 
     def filter_queryset(self, qs):
         # use parameters passed in GET request to filter queryset
-        filteruser = self.request.user
-        qs = qs.filter(processedTag__media__vp__asset__assetOwner=filteruser)
         # simple example:
         sSearch = self.request.GET.get(u'search[value]', None)
         if sSearch:
@@ -646,7 +647,7 @@ class TagStatus(BaseDatatableView):
         # more advanced example
         filter_statusVpDescription = self.request.GET.get(u'columns[3][search][value]', None)
         if filter_statusVpDescription:
-            qs = qs.filter(statusVpDescription=filter_statusVpDescription)
+            qs = qs.filter(Q(statusVpDescription=filter_statusVpDescription))
         return qs
 
 
