@@ -645,6 +645,7 @@ class TagStatus(BaseDatatableView):
         if sSearch:
             qs = qs.filter(Q(statusTagDescription__icontains=sSearch) | Q(statusVpDescription__icontains=sSearch))
         # more advanced example
+        filter_statusVpDescription = " "
         filter_statusVpDescription = self.request.GET.get('columns[3][search][value]', None)
         if filter_statusVpDescription:
             filter_statusVpDescription[len(filter_statusVpDescription)-1]=""
