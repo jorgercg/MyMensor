@@ -14,12 +14,20 @@
                 </div>
             </div>
             <div id="qtyselector" class="mym-dash-item">
-                    <p>{% trans 'Show ' %}</p>
-                    <select id="qtytodisplayperpage" class="1-100"></select>
-                    <p>{% trans ' lines per page' %}</p>
-                </div>
+                <p>{% trans 'Show ' %}</p>
+                <select id="linesperpage">
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <p>{% trans ' lines per page' %}</p>
+            </div>
             <div id="vpselector" class="mym-dash-item">
-                <select id="vpselected" name="vpselected">
+                <select id="vpsselected" name="vpsselected">
                     {% for vp in vps %}
                         <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}"
                                 {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }}
@@ -27,8 +35,8 @@
                     {% endfor %}
                 </select>
             </div>
-            <div id="mediaselector" class="mym-dash-item">
-                <select id="mediaselected" name="mediaselected">
+            <div id="tagsselector" class="mym-dash-item">
+                <select id="tagsselected" name="mediaselected">
                     {% for media in medias %}
                         <option id="optionmedia{{ media.id }}" value="{{ media.id }}"
                                 {% if media.id == mediaselected %}selected{% endif %}>
@@ -44,4 +52,71 @@
             {% render_table tagstatustable %}
         </div>
     </div>
+{% endblock %}
+{% block javascript %}
+    <script>
+        $('#vpselected').chosen();
+
+        $('#tagsselected').chosen();
+
+        $('#linesperpage option[value="{{ linesperpage }}"]').attr('selected','selected');
+
+        $(function () {
+
+            var start = moment("{{ start }}");
+            var end = moment("{{ end }}");
+
+            console.log("{{ start }}");
+            console.log("{{ end }}");
+
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+            }
+
+            $('#reportrange').daterangepicker({
+                startDate: {{ start }},
+                endDate: {{ end }},
+                "alwaysShowCalendars": true,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                }
+            }, cb);
+
+            cb(start, end);
+
+            $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                var startdate = picker.startDate.format('YYYY-MM-DD');
+                var enddate = picker.endDate.format('YYYY-MM-DD');
+                console.log(startdate);
+                console.log(enddate);
+                var tagssel = $('#tagsselected').serialize();
+                console.log('Chosen:' + tagssel);
+                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + '{{ linesperpage }}' + '&vpsselected=' +'{{ vpsselected }}'+ '&tagsselected='+'{{ tagsselected }}';
+            });
+
+            $('#linesperpage').change(function () {
+                var linesperpage = $(this).find(":selected").val();
+                console.log("linesperpage:" + linesperpage);
+                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&vpsselected='+'{{ vpsselected }}'+'&tagsselected=' + '{{ tagsselected }}';
+            });
+
+            $('#vpsselected').change(function () {
+                var vpselected = $(this).find(":selected").val();
+                console.log("vpselected:" + vpselected);
+                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + '{{ linesperpage }}'+'&vpsselected='+vpsselected+'&tagsselected=' + '{{ tagsselected }}';
+            });
+
+            $('#tagsselected').change(function () {
+                var mediaselected = $(this).find(":selected").val();
+                console.log("mediaselected:" + mediaselected);
+                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+ '&linesperpage=' + '{{ linesperpage }}'+'&vpsselected='+'{{ vpsselected }}' + '&tagsselected=' + tagsselected;
+            });
+
+        });
+    </script>
 {% endblock %}
