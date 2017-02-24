@@ -456,7 +456,9 @@ def procTagEditView(request):
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
 
-        medias = Media.objects.filter(vp__vpIsActive=True).filter(mediaProcessed=True).filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__vpIsActive=True).filter(mediaProcessed=True).filter(
+            vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by(
+            'mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
@@ -610,10 +612,14 @@ def saveValue(request):
 
 
 def TagStatusView(request):
-    tagstatustable = TagSatatusTableClass(TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).order_by('statusTagNumber'))
-    tagstatustable.paginate(page=request.GET.get('page',1), per_page=15)
-    return render(request, 'tagstatus.html', {'tagstatustable':tagstatustable})
-
+    if request.user.is_authenticated:
+        sort=request.GET.get('sort','statusTagNumber')
+        tagstatustable = TagSatatusTableClass(
+            TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).order_by(sort))
+        tagstatustable.paginate(page=request.GET.get('page', 1), per_page=15)
+        return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable})
+    else:
+        return HttpResponse(status=404)
 
 class TagStatus(BaseDatatableView):
     # The model we're going to show
@@ -701,6 +707,8 @@ def tagAnalysisView(request):
                       {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
                        'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
                        'medias': medias, 'tags': tags, 'qtyoftagsselected': qtyoftagsselected})
+    else:
+        return HttpResponse(status=404)
 
 
 @login_required
