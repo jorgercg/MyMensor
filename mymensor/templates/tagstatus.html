@@ -26,23 +26,28 @@
                 </select>
                 <p>{% trans ' lines per page' %}</p>
             </div>
-            <div id="vpselector" class="mym-dash-item">
-                <select id="vpsselected" name="vpsselected">
-                    {% for vp in vps %}
-                        <option id="optionvp{{ vp.vpNumber }}" value="{{ vp.vpNumber }}"
-                                {% if vp.vpNumber == vpselected %}selected{% endif %}>VP#{{ vp.vpNumber }}
-                            - {{ vp.vpDescription }}</option>
-                    {% endfor %}
+            <div id="vpsselector" class="mym-dash-item" style="width:30rem">
+                <select multiple="multiple" id="vpsselected" name="vpsselected">
+                {% for vp in vps %}
+                    <option id="optionvp#{{ vp.vpNumber }}"
+                            value='{{ vp.vpNumber }}'
+                            {% if vp.vpNumber in vpsselected %}selected{% endif %}>Tag#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                {% endfor %}
                 </select>
             </div>
-            <div id="tagsselector" class="mym-dash-item">
-                <select id="tagsselected" name="mediaselected">
-                    {% for media in medias %}
-                        <option id="optionmedia{{ media.id }}" value="{{ media.id }}"
-                                {% if media.id == mediaselected %}selected{% endif %}>
-                            {% trans 'Media captured on ' %}{{ media.mediaTimeStamp }}</option>
-                    {% endfor %}
+            <div id="tagsselector" class="mym-dash-item" style="width:30rem">
+                <select multiple="multiple" id="tagsselected" name="tagsselected">
+                {% for processedtag in processedtags %}
+                    <option id="optiontag#{{ processedtag.statusTagNumber }}"
+                            value='{{ processedtag.statusTagNumber }}'
+                            {% if processedtag.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtag.statusTagNumber }} - {{ processedtag.statusTagDescription }}</option>
+                {% endfor %}
                 </select>
+            </div>
+            <div class="mym-dash-item">
+                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
+                    <span class="fa fa-refresh"></span>
+                </button>
             </div>
         </div>
     </div>

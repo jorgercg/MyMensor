@@ -613,13 +613,39 @@ def saveValue(request):
 
 def TagStatusView(request):
     if request.user.is_authenticated:
-        sort=request.GET.get('sort','statusTagNumber')
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = e.response['Error']['Code']
+
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
+        vpsselected = request.GET.get('vpsselected', 1)
+        tagsselected = request.GET.get('tagsselected', 1)
+        processedtags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+            vp__tag__processedtag__isnull=False).distinct().order_by('tagNumber')
+        vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+            tag__in=processedtags).distinct().order_by('vpNumber')
+        sort = request.GET.get('sort', 'statusTagNumber')
         tagstatustable = TagSatatusTableClass(
-            TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).order_by(sort))
+            TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
+                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusVpNumber__in=vpsselected).filter(statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=15)
-        return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable})
+        return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
+                                                  'start': startdateformatted,
+                                                  'end': enddateformatted,
+                                                  'vpsselected': vpsselected,
+                                                  'vps': vps,
+                                                  'tagsselected': tagsselected,
+                                                  'processedtags': processedtags,
+                                                  })
     else:
         return HttpResponse(status=404)
+
 
 class TagStatus(BaseDatatableView):
     # The model we're going to show
