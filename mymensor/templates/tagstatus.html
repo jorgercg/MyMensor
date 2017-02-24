@@ -13,6 +13,11 @@
                     <span id="selcdates"></span> <b class="caret"></b>
                 </div>
             </div>
+            <div id="qtyselector" class="mym-dash-item">
+                    <p>{% trans 'Show ' %}</p>
+                    <select id="qtytodisplayperpage" class="1-100"></select>
+                    <p>{% trans ' lines per page' %}</p>
+                </div>
             <div id="vpselector" class="mym-dash-item">
                 <select id="vpselected" name="vpselected">
                     {% for vp in vps %}
@@ -30,33 +35,6 @@
                             {% trans 'Media captured on ' %}{{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</option>
                     {% endfor %}
                 </select>
-            </div>
-            <div id="movemedia" class="mym-dash-item">
-                <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm"
-                        data-toggle="tooltip" data-placement="top"
-                        title="{% trans 'Move this media to another VP# folder' %}"
-                        data-confirm="{% trans "Please confirm that you want to move this media." %}">
-                    <span class="fa fa-arrows"></span>
-                </button>
-            </div>
-            <div id="sharebtns" class="mym-dash-item">
-                <div class="ssk-xs ssk-group">
-                    <a href="" class="ssk ssk-email"></a>
-                    <a href="" class="ssk ssk-facebook"></a>
-                    <a href="" class="ssk ssk-twitter"></a>
-                    <a href="" class="ssk ssk-google-plus"></a>
-                    <a href="" class="ssk ssk-pinterest"></a>
-                    <a href="" class="ssk ssk-tumblr"></a>
-                    <a href='whatsapp://send?text=https://app.mymensor.com/landing/?type=1&key={{ mediaObjectS3Key }}&signature={{ mediaSha256 }}'
-                       class="ssk ssk-whatsapp"></a>
-                </div>
-            </div>
-            <div id="delmedia" class="mym-dash-item">
-                <button id="delmediabtn" type="button" class="btn btn-outline-danger btn-sm delete"
-                        data-toggle="tooltip" data-placement="top" title="{% trans 'Delete media from server' %}"
-                        data-confirm="{% trans "Please confirm that you want to delete this media from MyMensor server." %}">
-                    <span class="fa fa-trash-o"></span>
-                </button>
             </div>
         </div>
     </div>
