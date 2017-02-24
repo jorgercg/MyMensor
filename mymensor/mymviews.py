@@ -624,12 +624,23 @@ def TagStatusView(request):
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        vpsselected = request.GET.get('vpsselected', 1)
-        tagsselected = request.GET.get('tagsselected', 1)
         processedtags = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
             vp__tag__processedtag__isnull=False).distinct().order_by('tagNumber')
+        tagsselectedfromlist = processedtags.order_by('tagNumber').values_list('tagNumber', flat=True)
+        tagsselected = request.GET.getlist('tagsselected', default=None)
+        if not tagsselected:
+            tagsselected = tagsselectedfromlist
+        else:
+            tagsselected = processedtags.filter(tagNumber__in=tagsselected).order_by(
+                'tagNumber').values_list('tagNumber', flat=True)
         vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
             tag__in=processedtags).distinct().order_by('vpNumber')
+        vpsselectedfromlist = vps.order_by('vpNumber').values_list('vpNumber', flat=True)
+        vpsselected = request.GET.get('vpsselected', default=None)
+        if not vpsselected:
+            vpsselected = vpsselectedfromlist
+        else:
+            vpsselected = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber').values_list('vpNumber', flat=True)
         sort = request.GET.get('sort', 'statusTagNumber')
         tagstatustable = TagSatatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
