@@ -651,6 +651,8 @@ def TagStatusView(request):
                                                   'tagsselected': tagsselected,
                                                   'qtyoftagsselected': qtyoftagsselected,
                                                   'linesperpage':linesperpage,
+                                                  'processedtags': processedtags,
+                                                  'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
                                                   })
     else:
         return HttpResponse(status=404)
