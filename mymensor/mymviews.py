@@ -627,7 +627,7 @@ def TagStatusView(request):
         itemsintablequery = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
                 statusMediaTimeStamp__range=[startdate, new_enddate])
 
-        tagsselected = request.GET.getlist('tagsselected', default=None)
+        tagsselected = request.GET.get('tagsselected', default=None)
         if not tagsselected:
             tagsselectedchosen = itemsintablequery.order_by('statusTagNumber').values_list('statusTagNumber', flat=True).distinct()
         else:
