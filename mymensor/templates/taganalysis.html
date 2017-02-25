@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles tz counter assign mymfilters%}
+{% load i18n staticfiles tz mymfilters%}
 {% localtime on %}
 {% get_current_timezone as TIME_ZONE %}
 {% block title %}Tag Analysis - {{ block.super }}{% endblock %}
@@ -71,7 +71,6 @@
 
 {% endblock %}
 {% block javascript %}
-    <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script type="text/javascript">
         $('#tagsselected').chosen();
         $(function() {
