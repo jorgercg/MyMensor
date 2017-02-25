@@ -642,8 +642,7 @@ def TagStatusView(request):
         linesperpage = request.GET.get('linesperpage', 15)
         tagstatustable = TagSatatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(
-                statusTagNumber__in=tagsselected).order_by(sort))
+                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
                                                   'start': startdateformatted,
@@ -653,54 +652,8 @@ def TagStatusView(request):
                                                   'qtyoftagsselected': qtyoftagsselected,
                                                   'linesperpage':linesperpage,
                                                   })
-
-
     else:
         return HttpResponse(status=404)
-
-
-class TagStatus(BaseDatatableView):
-    # The model we're going to show
-    model = TagStatusTable
-
-    # define the columns that will be returned
-    columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription',
-               'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated',
-               'statusDBTimeStamp']
-
-    # define column names that will be used in sorting
-    # order is important and should be same as order of columns
-    # displayed by datatables. For non sortable columns use empty
-    # value like ''
-    order_columns = ['statusTagNumber', 'statusTagDescription', 'statusVpNumber', 'statusVpDescription',
-                     'statusValValueEvaluated', 'statusTagUnit', 'statusMediaTimeStamp', 'statusTagStateEvaluated',
-                     'statusDBTimeStamp']
-
-    # set max limit of records returned, this is used to protect our site if someone tries to attack our site
-    # and make it return huge amount of data
-    max_display_length = 200
-
-    def get_initial_queryset(self):
-        return TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=self.request.user)
-
-    def render_column(self, row, column):
-        # We want to render user as a custom column
-        if column == 'user':
-            return '{0} {1}'.format(row.customer_firstname, row.customer_lastname)
-        else:
-            return super(TagStatus, self).render_column(row, column)
-
-    def filter_queryset(self, qs):
-        # use parameters passed in GET request to filter queryset
-        # simple example:
-        sSearch = self.request.GET.get('search[value]', None)
-        if sSearch:
-            qs = qs.filter(Q(statusTagDescription__icontains=sSearch) | Q(statusVpDescription__icontains=sSearch))
-        # more advanced example
-        filter_statusVpDescription = self.request.GET.get('columns[3][search][value]', None)
-        if filter_statusVpDescription:
-            qs = qs.filter(Q(statusVpDescription__regex=filter_statusVpDescription))
-        return qs
 
 
 @login_required
