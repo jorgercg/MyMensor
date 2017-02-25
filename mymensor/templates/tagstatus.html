@@ -62,6 +62,14 @@
             console.log("{{ end }}");
             console.log("{{ tagsselected }}");
 
+            {% for processedtagnumber in listofprocessedtagsnumbers %}
+                console.log("optiontag#"+"{{ processedtagnumber.statusTagNumber }}"+" value="+"{{ processedtagnumber.statusTagNumber }}");
+                {% if processedtagnumber.statusTagNumber in tagsselected %}
+                    console.log("selected")
+                {% endif %}
+                console.log("Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}");
+            {% endfor %}
+
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
