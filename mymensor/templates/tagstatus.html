@@ -28,19 +28,19 @@
             </div>
             <div id="vpsselector" class="mym-dash-item" style="width:30rem">
                 <select multiple="multiple" id="vpsselected" name="vpsselected">
-                {% for vp in vps %}
-                    <option id="optionvp#{{ vp.vpNumber }}"
-                            value='{{ vp.vpNumber }}'
-                            {% if vp.vpNumber in vpsselected %}selected{% endif %}>Tag#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                {% for vpnumber in vpnumbers %}
+                    <option id="optionvp#{{ vpnumber }}"
+                            value='{{ vpnumber }}'
+                            {% if vpnumber in vpsselected %}selected{% endif %}>VP#{{ vpnumber }}</option>
                 {% endfor %}
                 </select>
             </div>
             <div id="tagsselector" class="mym-dash-item" style="width:30rem">
                 <select multiple="multiple" id="tagsselected" name="tagsselected">
-                {% for processedtag in processedtags %}
-                    <option id="optiontag#{{ processedtag.statusTagNumber }}"
-                            value='{{ processedtag.statusTagNumber }}'
-                            {% if processedtag.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtag.statusTagNumber }} - {{ processedtag.statusTagDescription }}</option>
+                {% for tagnumber in tagnumbers %}
+                    <option id="optiontag#{{ tagnumber }}"
+                            value='{{ tagnumber }}'
+                            {% if tagnumber in tagsselected %}selected{% endif %}>Tag#{{ tagnumber }}</option>
                 {% endfor %}
                 </select>
             </div>
