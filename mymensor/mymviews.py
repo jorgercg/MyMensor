@@ -21,10 +21,9 @@ from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
-from django_datatables_view.base_datatable_view import BaseDatatableView
 from django.conf import settings
 from django_tables2 import RequestConfig
-from .tables import TagSatatusTableClass
+from .tables import TagStatusTableClass
 import pdfkit, requests
 
 
@@ -640,7 +639,7 @@ def TagStatusView(request):
 
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
         linesperpage = request.GET.get('linesperpage', 15)
-        tagstatustable = TagSatatusTableClass(
+        tagstatustable = TagStatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
                 statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
