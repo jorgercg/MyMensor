@@ -639,17 +639,19 @@ def TagStatusView(request):
         qtyoftagsselected = tagsselected.count()
 
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
+        linesperpage = request.GET.get('linesperpage', 15)
         tagstatustable = TagSatatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
                 statusMediaTimeStamp__range=[startdate, new_enddate]).filter(
                 statusTagNumber__in=tagsselected).order_by(sort))
-        tagstatustable.paginate(page=request.GET.get('page', 1), per_page=15)
+        tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
                                                   'start': startdateformatted,
                                                   'end': enddateformatted,
                                                   'tags': tags,
                                                   'tagsselected': tagsselected,
                                                   'qtyoftagsselected': qtyoftagsselected,
+                                                  'linesperpage':linesperpage,
                                                   })
 
 

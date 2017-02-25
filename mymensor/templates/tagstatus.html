@@ -50,6 +50,7 @@
     </div>
 {% endblock %}
 {% block javascript %}
+    <script type="text/javascript" src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script>
 
         $('#tagsselected').chosen();
@@ -89,21 +90,27 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
+                var linesperpage = $(this).find(":selected").val();
                 var tagssel = $('#tagsselected').serialize();
+                console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + '{{ linesperpage }}' + '&tagsselected='+'{{ tagsselected }}';
+                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + linesperpage + '&'+tagssel;
             });
 
             $('#linesperpage').change(function () {
                 var linesperpage = $(this).find(":selected").val();
+                var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
-                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&tagsselected=' + '{{ tagsselected }}';
+                console.log('Chosen:'+tagssel);
+                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&' + tagssel;
             });
 
             $('#refreshbtn').click(function(){
+                var linesperpage = $(this).find(":selected").val();
                 var tagssel = $('#tagsselected').serialize();
+                console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
+                window.location={% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage+'&'+tagssel;
             });
 
         });
