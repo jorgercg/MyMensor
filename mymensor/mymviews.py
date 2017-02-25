@@ -617,45 +617,42 @@ def TagStatusView(request):
             loaddcicfg(request)
         except ClientError as e:
             error_code = e.response['Error']['Code']
-
         startdate = datetime.strptime(
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        itemsintablequery = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-                statusMediaTimeStamp__range=[startdate, new_enddate])
-
-        tagsselected = request.GET.get('tagsselected', default=None)
+        processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
+            statusMediaTimeStamp__range=[startdate, new_enddate]).order_by('statusMediaMillisSinceEpoch')
+        listofprocessedtagsnumbers = processedtags.order_by('statusTagNumber', 'statusMediaMillisSinceEpoch').distinct(
+            'statusTagNumber')
+        tagsselectedfromlist = listofprocessedtagsnumbers.order_by('statusTagNumber').values_list('statusTagNumber',
+                                                                                                  flat=True)
+        tagsselected = request.GET.getlist('tagsselected', default=None)
+        tags = Tag.objects.filter(vp__asset__assetOwner=request.user)
         if not tagsselected:
-            tagsselectedchosen = itemsintablequery.order_by('statusTagNumber').distinct().values_list('statusTagNumber', flat=True)
+            tagsselected = tagsselectedfromlist
         else:
-            tagsselectedchosen = itemsintablequery.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber', flat=True)
-        tagsselected = tagsselectedchosen
-        tagnumbersintablequery = itemsintablequery.order_by('statusTagNumber').distinct().values_list('statusTagNumber', flat=True)
-
-        vpsselected = request.GET.get('vpsselected', default=None)
-        if not vpsselected:
-            vpsselectedchosen = itemsintablequery.order_by('statusVpNumber').distict().values_list('statusVpNumber', flat=True)
-        else:
-            vpsselectedchosen = itemsintablequery.filter(statusVpNumber__in=vpsselected).order_by('statusVpNumber').values_list('statusVpNumber', flat=True)
-        vpsselected = vpsselectedchosen
-        vpnumbersintablequery = itemsintablequery.order_by('statusVpNumber').distict().values_list('statusVpNumber', flat=True)
+            tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by(
+                'statusTagNumber').values_list('statusTagNumber', flat=True)
+        qtyoftagsselected = tagsselected.count()
 
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
         tagstatustable = TagSatatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusVpNumber__in=vpsselected).filter(statusTagNumber__in=tagsselected).order_by(sort))
+                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(
+                statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=15)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
                                                   'start': startdateformatted,
                                                   'end': enddateformatted,
-                                                  'vpsselected': vpsselected,
+                                                  'tags': tags,
                                                   'tagsselected': tagsselected,
-                                                  'tagnumbers': tagnumbersintablequery,
-                                                  'vpnumbers': vpnumbersintablequery,
+                                                  'qtyoftagsselected': qtyoftagsselected,
                                                   })
+
+
     else:
         return HttpResponse(status=404)
 

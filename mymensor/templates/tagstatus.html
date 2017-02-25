@@ -26,21 +26,12 @@
                 </select>
                 <p>{% trans ' lines per page' %}</p>
             </div>
-            <div id="vpsselector" class="mym-dash-item" style="width:30rem">
-                <select multiple="multiple" id="vpsselected" name="vpsselected">
-                {% for vpnumber in vpnumbers %}
-                    <option id="optionvp#{{ vpnumber }}"
-                            value='{{ vpnumber }}'
-                            {% if vpnumber in vpsselected %}selected{% endif %}>VP#{{ vpnumber }}</option>
-                {% endfor %}
-                </select>
-            </div>
-            <div id="tagsselector" class="mym-dash-item" style="width:30rem">
+            <div id="tagselector" class="mym-dash-item" style="width:30rem">
                 <select multiple="multiple" id="tagsselected" name="tagsselected">
-                {% for tagnumber in tagnumbers %}
-                    <option id="optiontag#{{ tagnumber }}"
-                            value='{{ tagnumber }}'
-                            {% if tagnumber in tagsselected %}selected{% endif %}>Tag#{{ tagnumber }}</option>
+                {% for processedtagnumber in listofprocessedtagsnumbers %}
+                    <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
+                            value='{{ processedtagnumber.statusTagNumber }}'
+                            {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
                 {% endfor %}
                 </select>
             </div>
@@ -60,7 +51,6 @@
 {% endblock %}
 {% block javascript %}
     <script>
-        $('#vpselected').chosen();
 
         $('#tagsselected').chosen();
 
@@ -101,25 +91,13 @@
                 console.log(enddate);
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + '{{ linesperpage }}' + '&vpsselected=' +'{{ vpsselected }}'+ '&tagsselected='+'{{ tagsselected }}';
+                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + '{{ linesperpage }}' + '&tagsselected='+'{{ tagsselected }}';
             });
 
             $('#linesperpage').change(function () {
                 var linesperpage = $(this).find(":selected").val();
                 console.log("linesperpage:" + linesperpage);
-                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&vpsselected='+'{{ vpsselected }}'+'&tagsselected=' + '{{ tagsselected }}';
-            });
-
-            $('#vpsselected').change(function () {
-                var vpselected = $(this).find(":selected").val();
-                console.log("vpselected:" + vpselected);
-                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + '{{ linesperpage }}'+'&vpsselected='+vpsselected+'&tagsselected=' + '{{ tagsselected }}';
-            });
-
-            $('#tagsselected').change(function () {
-                var mediaselected = $(this).find(":selected").val();
-                console.log("mediaselected:" + mediaselected);
-                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+ '&linesperpage=' + '{{ linesperpage }}'+'&vpsselected='+'{{ vpsselected }}' + '&tagsselected=' + tagsselected;
+                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&tagsselected=' + '{{ tagsselected }}';
             });
 
             $('#refreshbtn').click(function(){
