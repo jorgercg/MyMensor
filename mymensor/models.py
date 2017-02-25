@@ -158,16 +158,20 @@ class ProcessedTag(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
     valValueEvaluated = models.FloatField()
     valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
-    tagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, verbose_name="Status")
+    tagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES)
 
 
 class Value(models.Model):
+    TAG_STATUS_CHOICES = (
+        ('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
+        ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+
     processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
     processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  ###### FK
     valValue = models.FloatField()
     valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
-    tagStateResultingFromValValueStatus = models.IntegerField()
+    tagStateResultingFromValValueStatus = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES)
 
 
 class TagStatusTable(models.Model):
