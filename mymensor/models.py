@@ -124,6 +124,10 @@ class AmazonS3Message(models.Model):
 
 
 class Media(models.Model):
+    TAG_STATUS_CHOICES = (
+        ('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
+        ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE, null=True)  ###### FK
     amazonS3Message = models.ForeignKey(AmazonS3Message, on_delete=None, null=True)  ###### FK
     mediaMillisSinceEpoch = models.BigIntegerField(null=True)
@@ -146,7 +150,7 @@ class Media(models.Model):
     mediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
     mediaMymensorAccount = models.CharField(max_length=255, null=True)
     mediaProcessed = models.NullBooleanField(null=True)
-    mediaStateEvaluated = models.IntegerField(null=True)
+    mediaStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, default="NP")
 
 
 class ProcessedTag(models.Model):
