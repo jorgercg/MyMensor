@@ -95,7 +95,7 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                var linesperpage = $(this).find(":selected").val();
+                var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
@@ -103,7 +103,7 @@
             });
 
             $('#linesperpage').change(function () {
-                var linesperpage = $(this).find(":selected").val();
+                var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:'+tagssel);
@@ -111,7 +111,7 @@
             });
 
             $('#refreshbtn').click(function(){
-                var linesperpage = $(this).find(":selected").val();
+                var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:'+tagssel);
