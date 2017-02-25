@@ -24,7 +24,6 @@ from django.db.models import Q, Count
 from django.conf import settings
 from django_tables2 import RequestConfig
 from .tables import TagStatusTableClass
-import pdfkit, requests
 
 
 def landingView(request):
@@ -894,52 +893,6 @@ def vpDetailView(request):
                                                  'loclongitude': mediainstance.mediaLongitude,
                                                  'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
                                                  })
-    else:
-        return HttpResponse(status=404)
-
-
-@login_required
-def generatePDF(request):
-    if request.user.is_authenticated:
-        url = request.GET.get('url')
-        client = requests.session()
-        csrf = client.get(url).cookies['csrftoken']
-        sessionid = request.COOKIES[settings.SESSION_COOKIE_NAME]
-        pdfkit_config = pdfkit.configuration(wkhtmltopdf=settings.WKHTMLTOPDF_CMD)
-        wk_options = {
-            'page-size': 'A4',
-            'orientation': 'landscape',
-            'title': 'pdftesting',
-            # In order to specify command-line options that are simple toggles
-            # using this dict format, we give the option the value None
-            'no-outline': None,
-            'disable-javascript': None,
-            'encoding': 'UTF-8',
-            'margin-left': '0.1cm',
-            'margin-right': '0.1cm',
-            'margin-top': '0.1cm',
-            'margin-bottom': '0.1cm',
-            'cookie': [
-                ('cookielaw_accepted', '1'),
-                ('csrftoken', csrf),
-                ('sessionid', sessionid),
-            ],
-            'lowquality': None,
-        }
-        # We can generate the pdf from a url, file or, as shown here, a string
-        pdf = pdfkit.from_url(
-            # This example uses Django's render_to_string function to return the result of
-            # rendering an HTML template as a string, which we can then pass to pdfkit and on
-            # into wkhtmltopdf
-            url=url,
-            # We can output to a variable or a file - in this case, we're outputting to a file
-            output_path=False,
-            options=wk_options,
-            configuration=pdfkit_config
-        )
-        response = HttpResponse(pdf, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="mymensor.pdf"'
-        return response
     else:
         return HttpResponse(status=404)
 
