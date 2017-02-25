@@ -629,16 +629,18 @@ def TagStatusView(request):
 
         tagsselected = request.GET.getlist('tagsselected', default=None)
         if not tagsselected:
-            tagsselected = itemsintablequery.order_by('statusTagNumber').values_list('statusTagNumber', flat=True).distinct()
+            tagsselectedchosen = itemsintablequery.order_by('statusTagNumber').values_list('statusTagNumber', flat=True).distinct()
         else:
-            tagsselected = itemsintablequery.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber', flat=True)
+            tagsselectedchosen = itemsintablequery.filter(statusTagNumber__in=tagsselected).order_by('statusTagNumber').values_list('statusTagNumber', flat=True)
+        tagsselected = tagsselectedchosen
         tagnumbersintablequery = itemsintablequery.order_by('statusTagNumber').values_list('statusTagNumber', flat=True).distinct()
 
         vpsselected = request.GET.get('vpsselected', default=None)
         if not vpsselected:
-            vpsselected = itemsintablequery.order_by('statusVpNumber').values_list('statusVpNumber', flat=True).distict()
+            vpsselectedchosen = itemsintablequery.order_by('statusVpNumber').values_list('statusVpNumber', flat=True).distict()
         else:
-            vpsselected = itemsintablequery.filter(statusVpNumber__in=vpsselected).order_by('statusVpNumber').values_list('statusVpNumber', flat=True)
+            vpsselectedchosen = itemsintablequery.filter(statusVpNumber__in=vpsselected).order_by('statusVpNumber').values_list('statusVpNumber', flat=True)
+        vpsselected = vpsselectedchosen
         vpnumbersintablequery = itemsintablequery.order_by('statusVpNumber').values_list('statusVpNumber', flat=True).distict()
 
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
