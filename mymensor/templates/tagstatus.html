@@ -122,6 +122,12 @@
                 window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+ '&linesperpage=' + '{{ linesperpage }}'+'&vpsselected='+'{{ vpsselected }}' + '&tagsselected=' + tagsselected;
             });
 
+            $('#refreshbtn').click(function(){
+                var tagssel = $('#tagsselected').serialize();
+                console.log('Chosen:'+tagssel);
+                window.location={% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
+            });
+
         });
     </script>
 {% endblock %}

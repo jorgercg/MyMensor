@@ -633,8 +633,7 @@ def TagStatusView(request):
         else:
             tagsselected = processedtags.filter(tagNumber__in=tagsselected).order_by(
                 'tagNumber').values_list('tagNumber', flat=True)
-        vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-            tag__in=processedtags).distinct().order_by('vpNumber')
+        vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vp__tag__processedtag__isnull=False).distinct().order_by('vpNumber')
         vpsselectedfromlist = vps.order_by('vpNumber').values_list('vpNumber', flat=True)
         vpsselected = request.GET.get('vpsselected', default=None)
         if not vpsselected:
