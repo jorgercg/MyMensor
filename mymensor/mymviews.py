@@ -547,18 +547,32 @@ def saveValue(request):
         mediainstance = Media.objects.get(id=mediaid)
         taginstance = Tag.objects.get(id=tagid)
         vpinstance = Vp.objects.get(id=vpid)
+        proctagstate = "NP"
+        if taginstance.tagLowRed==None or taginstance.tagLowYellow==None or taginstance.tagHighYellow==None or taginstance.tagHighRed==None:
+            proctagstate = "PR"
+        else:
+            if valuefloat<taginstance.tagLowRed:
+                proctagstate = "LR"
+            if valuefloat>=taginstance.tagLowRed and valuefloat<taginstance.tagLowYellow:
+                proctagstate = "LY"
+            if valuefloat>=taginstance.tagLowYellow and valuefloat<=taginstance.tagHighYellow:
+                proctagstate = "GR"
+            if valuefloat>taginstance.tagHighYellow and valuefloat<=taginstance.tagHighRed:
+                proctagstate = "HY"
+            if valuefloat>taginstance.tagHighRed:
+                proctagstate = "HR"
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
             processedtag.valValueEvaluated = valuefloat
-            processedtag.tagStateEvaluated = 1
+            processedtag.tagStateEvaluated = proctagstate
             processedtag.save()
         except ProcessedTag.DoesNotExist:
             ProcessedTag.objects.create(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat,
-                                        tagStateEvaluated=1)
+                                        tagStateEvaluated=proctagstate)
         processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance, valValueEvaluated=valuefloat,
-                                                tagStateEvaluated=1)
+                                                tagStateEvaluated=proctagstate)
         value = Value(processedTag=processedtag, processorUserId=request.user, valValue=valuefloat,
-                      tagStateResultingFromValValueStatus=1)
+                      tagStateResultingFromValValueStatus=proctagstate)
         value.save()
         try:
             tagstatusinstance = TagStatusTable.objects.get(processedTag=processedtag,
