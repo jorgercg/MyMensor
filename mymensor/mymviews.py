@@ -865,14 +865,14 @@ def vpDetailView(request):
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
         if not medias:
-            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by(
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(vp__vpNumber=vpselected).order_by(
                 'mediaMillisSinceEpoch')
             recalcend = medias.last().mediaTimeStamp
             recalcstart = recalcend - timedelta(days=29)
             startdateformatted = recalcstart.strftime('%Y-%m-%d')
             enddateformatted = recalcend.strftime('%Y-%m-%d')
             vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
-                vpIsActive=True).order_by(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
                 'vpNumber').distinct()
             mediaspks = medias.values_list('id', flat=True)
             if mediaselected == 0:
