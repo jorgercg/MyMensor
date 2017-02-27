@@ -893,9 +893,10 @@ def vpDetailView(request):
                                                                         Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                                 'Key': mediainstance.mediaObjectS3Key},
                                                                         ExpiresIn=3600)
-
+        assetvps = Vp.object.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         return render(request, 'vpdetail.html', {'vpselected': vpselected,
                                                  'vps': vps,
+                                                 'assetvps':assetvps,
                                                  'mediaselected': mediaselected,
                                                  'start': startdateformatted,
                                                  'end': enddateformatted,

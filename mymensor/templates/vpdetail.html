@@ -32,9 +32,17 @@
                         {% endfor %}
                     </select>
                 </div>
+                <div id="vpselectormovemedia" class="mym-dash-item">
+                    <select id="vpselectedmovemedia" name="vpselectedmovemedia" data-placeholder={% trans "Choose a VP to move the media to:" %}>
+                        {% for assetvp in assetvps %}
+                            <option id="movemediatovp{{ assetvp.vpNumber }}" value="{{ assetvp.vpNumber }}"
+                                    {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %} }VP#{{ assetvp.vpNumber }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
                 <div id="movemedia" class="mym-dash-item">
                     <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm"
-                            data-toggle="tooltip" data-placement="top" title="{% trans 'Move this media to another VP# folder' %}"
+                            data-toggle="tooltip" data-placement="top" title="{% trans 'Click to move media to the selected VP# folder' %}"
                             data-confirm="{% trans "Please confirm that you want to move this media." %}">
                         <span class="fa fa-arrows"></span>
                     </button>
@@ -246,6 +254,8 @@
             $('#vpselected').chosen();
 
             $('#mediaselected').chosen();
+
+            $('#vpselectedmovemedia').chosen();
 
             $(function () {
 
