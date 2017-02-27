@@ -12,38 +12,9 @@ class AssetForm(ModelForm):
 
 class VpForm(ModelForm):
 
-    FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
-
-    asset = forms.ModelChoiceField(queryset=Asset.objects.all(), widget=forms.HiddenInput)  ###### FK
-    vpDescription = forms.CharField(max_length=1024)
-    vpNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpIsActive = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpListNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpStdPhotoStorageURL = forms.CharField(max_length=255, widget=forms.HiddenInput, required=False)
-    vpStdTagDescPhotoStorageURL = forms.CharField(max_length=255, widget=forms.HiddenInput, required=False)
-    vpStdMarkerPhotoStorageURL = forms.CharField(max_length=255, widget=forms.HiddenInput, required=False)
-    vpStdPhotoFileSize = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpStdMarkerPhotoFileSize = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpXDistance = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpYDistance = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpZDistance = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpXRotation = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpYRotation = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpZRotation = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpMarkerlessMarkerWidth = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpMarkerlessMarkerHeigth = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpArIsConfigured = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpIsVideo = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpIsAmbiguos = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpIsSuperSingle = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpFlashTorchIsOn = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    vpSuperMarkerId = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    vpFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES))
-    vpFrequencyValue = forms.IntegerField()
-
     class Meta:
         model = Vp
-        fields = '__all__'
+        fields = [ 'vpDescription', 'vpFrequencyUnit', 'vpFrequencyValue']
 
 
 class TagForm(ModelForm):

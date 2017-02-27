@@ -29,8 +29,10 @@ class MobileSetupBackup(models.Model):
     backupDBTimeStamp = models.DateTimeField(auto_now_add=True)
 
 class Vp(models.Model):
+    FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
+
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
-    vpDescription = models.CharField(max_length=1024)
+    vpDescription = models.CharField(max_length=1024, verbose_name="vp description")
     vpNumber = models.IntegerField()
     vpIsActive = models.BooleanField(default=True)
     vpListNumber = models.IntegerField(null=True)
@@ -53,8 +55,8 @@ class Vp(models.Model):
     vpIsSuperSingle = models.BooleanField(default=False)
     vpFlashTorchIsOn = models.BooleanField(default=False)
     vpSuperMarkerId = models.IntegerField(default=0)
-    vpFrequencyUnit = models.CharField(max_length=50, null=True)
-    vpFrequencyValue = models.IntegerField(null=True)
+    vpFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, null=True, verbose_name="unit for the vp capture frequency")
+    vpFrequencyValue = models.IntegerField(null=True, verbose_name="vp capture frequency")
 
 
 class Tag(models.Model):
