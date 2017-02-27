@@ -90,4 +90,6 @@ urlpatterns = [
     url(r'^mediafeed/mf_mediaid_sendvalue_loc/', mymviews.locofthismedia, name='mf_mediaid_sendvalue_loc'),
 
     url(r'^vpdetail/delete_media/', mymviews.deletemedia, name='delete_media'),
+
+    url(r'^vpdetail/move_media/', mymviews.movemedia, name='move_media'),
 ]

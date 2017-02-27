@@ -36,12 +36,12 @@
                     <select id="vpselectedmovemedia" name="vpselectedmovemedia" data-placeholder={% trans "Choose a VP to move the media to:" %}>
                         {% for assetvp in assetvps %}
                             <option id="movemediatovp{{ assetvp.vpNumber }}" value="{{ assetvp.vpNumber }}"
-                                    {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %} }VP#{{ assetvp.vpNumber }}</option>
+                                    {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %}VP#{{ assetvp.vpNumber }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div id="movemedia" class="mym-dash-item">
-                    <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm"
+                    <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm move"
                             data-toggle="tooltip" data-placement="top" title="{% trans 'Click to move media to the selected VP# folder' %}"
                             data-confirm="{% trans "Please confirm that you want to move this media." %}">
                         <span class="fa fa-arrows"></span>
@@ -331,6 +331,7 @@
         </script>
         <script>
             var deleteLinks = document.querySelectorAll('.delete');
+            var movelinks = document.querySelectorAll('.move');
 
             for (var i = 0; i < deleteLinks.length; i++) {
                 deleteLinks[i].addEventListener('click', function (event) {
@@ -344,6 +345,29 @@
                     }
                 });
             }
+
+            if ((!{{ mediaProcessed }})&&(!{{ mediaArIsOn }})){
+                $('#vpselectedmovemedia').removeClass('btn-outline-secondary')
+                $('#vpselectedmovemedia').addClass('btn-outline-info')
+                for (var j = 0; j < deleteLinks.length; j++) {
+                deleteLinks[j].addEventListener('click', function (event) {
+                    event.preventDefault();
+
+                    var choice = confirm(this.getAttribute('data-confirm'));
+
+                    if (choice) {
+                        //window.location.href = this.getAttribute('href');
+                        var movetovpselected = $('#vpselectedmovemedia').find(":selected").val();
+                        console.log("movetovpselected:" + movetovpselected);
+                        move_media({{ mediaselected }},movetovpselected);
+                    }
+                });
+                }
+            } else {
+                $('#vpselectedmovemedia').removeClass('btn-outline-info');
+                $('#vpselectedmovemedia').addClass('btn-outline-secondary');
+            }
+
 
 
             // AJAX for posting
@@ -369,8 +393,30 @@
                     }
                 });
             }
-            ;
 
+            // AJAX for posting
+            function move_media(mediaid,movetovpnumber) {
+                console.log("Move media is working!"); // sanity check
+                $.ajax({
+                    url: "move_media/", // the endpoint
+                    type: "POST", // http method
+                    data: {mediaid: mediaid, movetovpnumber: movetovpnumber}, // data sent with the post request
+                    // handle a successful response
+                    success: function (json) {
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+                        alert('{% trans "Media moved." %}');
+                        location.reload();
+                    },
+                    // handle a non-successful response
+                    error: function (xhr, errmsg, err) {
+                        //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                        //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        alert('{% trans "Error: media not moved." %}');
+                    }
+                });
+            }
 
             // This function gets cookie with a given name
             function getCookie(name) {

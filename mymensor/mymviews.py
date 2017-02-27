@@ -909,6 +909,7 @@ def vpDetailView(request):
                                                  'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
                                                  'mediaTimeStamp': mediainstance.mediaTimeStamp,
                                                  'mediaSha256': mediainstance.mediaSha256,
+                                                 'mediaProcessed' : mediainstance.mediaProcessed,
                                                  'loclatitude': mediainstance.mediaLatitude,
                                                  'loclongitude': mediainstance.mediaLongitude,
                                                  'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
@@ -938,6 +939,35 @@ def deletemedia(request):
             )
         return HttpResponse(
             json.dumps({"responseS3": responseS3, "responseDJ": responseDJ}),
+            content_type="application/json",
+            status=200
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
+
+@login_required
+def movemedia(request):
+    if request.method == 'POST':
+        mediaid = int(request.POST.get('mediaid'))
+        movetovpnumber = int(request.POST.get('movetovpnumber'))
+        mediainstance = Media.objects.get(pk=mediaid)
+        vpinstance = Vp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=movetovpnumber).get()
+        mediainstance.vp = vpinstance.pk
+        try:
+            mediainstance.save()
+        except:
+            return HttpResponse(
+                json.dumps({"error": "not saved"}),
+                content_type="application/json",
+                status=400
+            )
+
+        return HttpResponse(
+            json.dumps({"success": "seccess"}),
             content_type="application/json",
             status=200
         )
