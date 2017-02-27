@@ -17,7 +17,7 @@
                         {% endfor %}
                         {% for field in form.visible_fields %}
                         <div class="form-group {% if field.errors %}has-error{% endif %}">
-                            {{ field.label_tag|add_class:"control-label" }}
+                            {{ field.label|add_class:"control-label" }}
                             {% if field.help_text %}
                             <span class="help-block">{{ field.help_text }}</span>
                             {% endif %}

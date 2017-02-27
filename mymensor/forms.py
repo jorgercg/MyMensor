@@ -24,7 +24,9 @@ class AssetForm(ModelForm):
     class Meta:
         model = Asset
         fields = '__all__'
-
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-input'}),
+        }
 
 class VpForm(ModelForm):
 
