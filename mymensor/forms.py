@@ -5,25 +5,9 @@ from django import forms
 
 class AssetForm(ModelForm):
 
-    FREQ_UNIT_CHOICES = (('millis','millis'),('hour','hour'), ('day','day'), ('week','week') , ('month','month'),)
-
-    assetDescription = forms.CharField(max_length=1024)
-    assetNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    assetIsActive = forms.BooleanField(widget=forms.HiddenInput, required=False)
-    assetOwner = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)  ###### FK
-    assetOwnerDescription = forms.CharField(max_length=1024)
-    assetOwnerKey = forms.CharField(max_length=1024)
-    assetOwnerIdentityId = forms.CharField(widget=forms.HiddenInput, required=False)
-    assetRegistryCode = forms.CharField(max_length=255)
-    assetDciFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES))
-    assetDciFrequencyValue = forms.IntegerField()
-    assetDciQtyVps = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    assetDciTolerancePosition = forms.IntegerField(widget=forms.HiddenInput, required=False)
-    assetDciToleranceRotation = forms.IntegerField(widget=forms.HiddenInput, required=False)
-
     class Meta:
         model = Asset
-        fields = '__all__'
+        fields = ['assetDescription', 'assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue']
 
 
 class VpForm(ModelForm):

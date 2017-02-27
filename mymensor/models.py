@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
 class Asset(models.Model):
+    FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
+
     assetDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Description")
     assetNumber = models.IntegerField(verbose_name="Asset Number")
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
@@ -14,7 +16,7 @@ class Asset(models.Model):
     assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, verbose_name="Asset Registry code")
-    assetDciFrequencyUnit = models.CharField(max_length=50, default="millis", verbose_name="Capture frequency unit")
+    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis", verbose_name="Capture frequency unit")
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name="Capture frequency value")
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
