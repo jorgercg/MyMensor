@@ -7,7 +7,7 @@ class AssetForm(ModelForm):
 
     FREQ_UNIT_CHOICES = (('millis','millis'),('hour','hour'), ('day','day'), ('week','week') , ('month','month'),)
 
-    assetDescription = forms.CharField(max_length=1024)
+    assetDescription = forms.CharField(max_length=1024, label="Asset Description")
     assetNumber = forms.IntegerField(widget=forms.HiddenInput, required=False)
     assetIsActive = forms.BooleanField(widget=forms.HiddenInput, required=False)
     assetOwner = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)  ###### FK
