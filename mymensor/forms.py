@@ -13,6 +13,7 @@ class AssetForm(ModelForm):
     assetOwner = forms.ModelChoiceField(queryset=User.objects.all(), widget=forms.HiddenInput)  ###### FK
     assetOwnerDescription = forms.CharField(max_length=1024)
     assetOwnerKey = forms.CharField(max_length=1024)
+    assetOwnerIdentityId = forms.CharField(widget=forms.HiddenInput, required=False)
     assetRegistryCode = forms.CharField(max_length=255)
     assetDciFrequencyUnit = forms.CharField(widget=forms.Select(choices=FREQ_UNIT_CHOICES))
     assetDciFrequencyValue = forms.IntegerField()

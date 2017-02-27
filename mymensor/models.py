@@ -6,16 +6,16 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 
 class Asset(models.Model):
-    assetDescription = models.CharField(max_length=1024, null=True)
+    assetDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Description")
     assetNumber = models.IntegerField()
     assetIsActive = models.BooleanField(default=True)
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
-    assetOwnerDescription = models.CharField(max_length=1024, null=True)
-    assetOwnerKey = models.CharField(max_length=1024, null=True)
+    assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Description")
+    assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True)
-    assetRegistryCode = models.CharField(max_length=255, null=True)
-    assetDciFrequencyUnit = models.CharField(max_length=50, default="millis")
-    assetDciFrequencyValue = models.IntegerField(default=20000)
+    assetRegistryCode = models.CharField(max_length=255, null=True, verbose_name="Asset Registry code")
+    assetDciFrequencyUnit = models.CharField(max_length=50, default="millis", verbose_name="Capture frequency unit")
+    assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name="Capture frequency value")
     assetDciQtyVps = models.IntegerField(default=31)
     assetDciTolerancePosition = models.IntegerField(default=50)
     assetDciToleranceRotation = models.IntegerField(default=10)
