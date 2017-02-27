@@ -874,6 +874,11 @@ def vpDetailView(request):
             vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
                 vpIsActive=True).order_by(
                 'vpNumber').distinct()
+            mediaspks = medias.values_list('id', flat=True)
+            if mediaselected == 0:
+                mediaselected = medias.first().pk
+            if mediaselected not in mediaspks:
+                mediaselected = medias.first().pk
         else:
             mediaspks = medias.values_list('id', flat=True)
             vps = Vp.objects.filter(asset__vp__media__isnull=False).filter(asset__assetOwner=request.user).filter(
