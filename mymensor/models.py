@@ -7,18 +7,18 @@ from rest_framework.authtoken.models import Token
 
 class Asset(models.Model):
     assetDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Description")
-    assetNumber = models.IntegerField()
-    assetIsActive = models.BooleanField(default=True)
-    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    assetNumber = models.IntegerField(verbose_name="Asset Number")
+    assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
+    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Asset Owner")  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Description")
     assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
-    assetOwnerIdentityId = models.CharField(max_length=1024, null=True)
+    assetOwnerIdentityId = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, verbose_name="Asset Registry code")
     assetDciFrequencyUnit = models.CharField(max_length=50, default="millis", verbose_name="Capture frequency unit")
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name="Capture frequency value")
-    assetDciQtyVps = models.IntegerField(default=31)
-    assetDciTolerancePosition = models.IntegerField(default=50)
-    assetDciToleranceRotation = models.IntegerField(default=10)
+    assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
+    assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
+    assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
 
 class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
