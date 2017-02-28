@@ -7,7 +7,8 @@
     <div class="mym-dash">
         <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
             <div class="mym-dash-item">
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                <div id="reportrange"
+                     style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
                     <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
                     <span id="selcdates"></span> <b class="caret"></b>
                 </div>
@@ -27,15 +28,18 @@
             </div>
             <div id="tagselector" class="mym-dash-item" style="width:30rem">
                 <select multiple="multiple" id="tagsselected" name="tagsselected">
-                {% for processedtagnumber in listofprocessedtagsnumbers %}
-                    <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
-                            value='{{ processedtagnumber.statusTagNumber }}'
-                            {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
-                {% endfor %}
+                    {% for processedtagnumber in listofprocessedtagsnumbers %}
+                        <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
+                                value='{{ processedtagnumber.statusTagNumber }}'
+                                {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>
+                            Tag#{{ processedtagnumber.statusTagNumber }}
+                            - {{ processedtagnumber.statusTagDescription }}</option>
+                    {% endfor %}
                 </select>
             </div>
             <div class="mym-dash-item">
-                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
+                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip"
+                        data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
                     <span class="fa fa-refresh"></span>
                 </button>
             </div>
@@ -51,7 +55,7 @@
 {% block javascript %}
     <script type="text/javascript">
         $('#tagsselected').chosen();
-        $('#linesperpage option[value="{{ linesperpage }}"]').attr('selected','selected');
+        $('#linesperpage option[value="{{ linesperpage }}"]').attr('selected', 'selected');
 
         $(function () {
 
@@ -91,35 +95,35 @@
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate='+startdate+'&enddate='+enddate + '&linesperpage=' + linesperpage + '&'+tagssel;
+                window.location = {% url 'tagstatus' %}+'?startdate=' + startdate + '&enddate=' + enddate + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#linesperpage').change(function () {
                 var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
-                console.log('Chosen:'+tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage +'&' + tagssel;
+                console.log('Chosen:' + tagssel);
+                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
-            $('#refreshbtn').click(function(){
+            $('#refreshbtn').click(function () {
                 var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
-                console.log('Chosen:'+tagssel);
-                window.location={% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage+'&'+tagssel;
+                console.log('Chosen:' + tagssel);
+                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
+        });
+        $(document).ready(function () {
+            console.log("ready!");
             var tagstate = $('.statusTagStateEvaluated').val();
-            switch (tagstate){
+            switch (tagstate) {
                 case "GREEN":
                     $(this).addClass('statusgreen');
                     break;
             }
-
-
-
-
         });
+
     </script>
 {% endblock %}
