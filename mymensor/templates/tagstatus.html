@@ -110,6 +110,16 @@
                 window.location={% url 'tagstatus' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+ '&linesperpage=' + linesperpage+'&'+tagssel;
             });
 
+            var tagstate = $('.statusTagStateEvaluated').val();
+            switch (tagstate){
+                case "GREEN":
+                    $(this).addClass('statusgreen');
+                    break;
+            }
+
+
+
+
         });
     </script>
 {% endblock %}
