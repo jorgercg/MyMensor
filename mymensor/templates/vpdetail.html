@@ -346,7 +346,7 @@
                 });
             }
 
-            if ((!{{ mediaProcessed | lower }})&&(!{{ mediaArIsOn | lower}})){
+            if ((!({{ mediaProcessed | lower }}))&&(!({{ mediaArIsOn | lower}}))){
                 $('#vpselectedmovemedia').removeClass('btn-outline-secondary')
                 $('#vpselectedmovemedia').addClass('btn-outline-info')
                 for (var j = 0; j < deleteLinks.length; j++) {
