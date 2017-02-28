@@ -346,9 +346,12 @@
                 });
             }
 
-            if ((!({{ mediaProcessed | lower }}))&&(!({{ mediaArIsOn | lower}}))){
-                $('#vpselectedmovemedia').removeClass('btn-outline-secondary')
-                $('#vpselectedmovemedia').addClass('btn-outline-info')
+            {% if mediaProcessed and mediaArIsOn %}
+                $('#vpselectedmovemedia').removeClass('btn-outline-info');
+                $('#vpselectedmovemedia').addClass('btn-outline-secondary');
+            {% else %}
+                $('#vpselectedmovemedia').removeClass('btn-outline-secondary');
+                $('#vpselectedmovemedia').addClass('btn-outline-info');
                 for (var j = 0; j < deleteLinks.length; j++) {
                 deleteLinks[j].addEventListener('click', function (event) {
                     event.preventDefault();
@@ -363,11 +366,7 @@
                     }
                 });
                 }
-            } else {
-                $('#vpselectedmovemedia').removeClass('btn-outline-info');
-                $('#vpselectedmovemedia').addClass('btn-outline-secondary');
-            }
-
+            {% endif %}
 
 
             // AJAX for posting
