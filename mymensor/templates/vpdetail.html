@@ -33,7 +33,8 @@
                     </select>
                 </div>
                 <div id="vpselectormovemedia" class="mym-dash-item">
-                    <select id="vpselectedmovemedia" name="vpselectedmovemedia" data-placeholder={% trans "Choose a VP to move the media to:" %}>
+                    <select id="vpselectedmovemedia" name="vpselectedmovemedia"
+                            data-placeholder={% trans "Choose a VP to move the media to:" %}>
                         {% for assetvp in assetvps %}
                             <option id="movemediatovp{{ assetvp.vpNumber }}" value="{{ assetvp.vpNumber }}"
                                     {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %}VP#{{ assetvp.vpNumber }}</option>
@@ -42,7 +43,8 @@
                 </div>
                 <div id="movemedia" class="mym-dash-item">
                     <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm move"
-                            data-toggle="tooltip" data-placement="top" title="{% trans 'Click to move media to the selected VP# folder' %}"
+                            data-toggle="tooltip" data-placement="top"
+                            title="{% trans 'Click to move media to the selected VP# folder' %}"
                             data-confirm="{% trans "Please confirm that you want to move this media." %}">
                         <span class="fa fa-arrows"></span>
                     </button>
@@ -53,7 +55,8 @@
                         <a href="" class="ssk ssk-facebook"></a>
                         <a href="" class="ssk ssk-twitter"></a>
                         <a href="" class="ssk ssk-google-plus"></a>
-                        <a href="whatsapp://send?text=https%3A%2F%2Fapp.mymensor.com%2Flanding%2F%3Ftype%3D1%26key%3D{{ mediaObjectS3Key}}%26signature%3D{{ mediaSha256 }}" class="ssk ssk-whatsapp"></a>
+                        <a href="whatsapp://send?text=https%3A%2F%2Fapp.mymensor.com%2Flanding%2F%3Ftype%3D1%26key%3D{{ mediaObjectS3Key }}%26signature%3D{{ mediaSha256 }}"
+                           class="ssk ssk-whatsapp"></a>
                     </div>
                 </div>
                 <div id="delmedia" class="mym-dash-item">
@@ -257,6 +260,12 @@
 
             $('#vpselectedmovemedia').chosen();
 
+            {% if mediaProcessed and mediaArIsOn %}
+                console.log("Media not movable!!!")
+                $('#movemediabtn').removeClass('btn-outline-info');
+                $('#movemediabtn').addClass('btn-outline-secondary');
+            {% endif %}
+
             $(function () {
 
                 var start = moment("{{ start }}");
@@ -331,7 +340,6 @@
         </script>
         <script>
             var deleteLinks = document.querySelectorAll('.delete');
-            var movelinks = document.querySelectorAll('.move');
 
             for (var i = 0; i < deleteLinks.length; i++) {
                 deleteLinks[i].addEventListener('click', function (event) {
@@ -347,24 +355,24 @@
             }
 
             {% if mediaProcessed and mediaArIsOn %}
-                $('#vpselectedmovemedia').removeClass('btn-outline-info');
-                $('#vpselectedmovemedia').addClass('btn-outline-secondary');
+                console.log("Media not movable!!!")
             {% else %}
-                $('#vpselectedmovemedia').removeClass('btn-outline-secondary');
-                $('#vpselectedmovemedia').addClass('btn-outline-info');
+                $('#movemediabtn').removeClass('btn-outline-secondary');
+                $('#movemediabtn').addClass('btn-outline-info');
+                var movelinks = document.querySelectorAll('.move');
                 for (var j = 0; j < deleteLinks.length; j++) {
-                deleteLinks[j].addEventListener('click', function (event) {
-                    event.preventDefault();
+                    movelinks[j].addEventListener('click', function (event) {
+                        event.preventDefault();
 
-                    var choice = confirm(this.getAttribute('data-confirm'));
+                        var choice = confirm(this.getAttribute('data-confirm'));
 
-                    if (choice) {
-                        //window.location.href = this.getAttribute('href');
-                        var movetovpselected = $('#vpselectedmovemedia').find(":selected").val();
-                        console.log("movetovpselected:" + movetovpselected);
-                        move_media({{ mediaselected }},movetovpselected);
-                    }
-                });
+                        if (choice) {
+                            //window.location.href = this.getAttribute('href');
+                            var movetovpselected = $('#vpselectedmovemedia').find(":selected").val();
+                            console.log("movetovpselected:" + movetovpselected);
+                            move_media({{ mediaselected }}, movetovpselected);
+                        }
+                    });
                 }
             {% endif %}
 
@@ -394,7 +402,7 @@
             }
 
             // AJAX for posting
-            function move_media(mediaid,movetovpnumber) {
+            function move_media(mediaid, movetovpnumber) {
                 console.log("Move media is working!"); // sanity check
                 $.ajax({
                     url: "move_media/", // the endpoint
