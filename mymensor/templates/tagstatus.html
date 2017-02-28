@@ -117,11 +117,8 @@
         });
         $(document).ready(function () {
             console.log("ready!");
-            var tagstate = $('.statusTagStateEvaluated').val();
-            switch (tagstate) {
-                case "GREEN":
+            if ($('.statusTagStateEvaluated').val()=="GREEN") {
                     $(this).addClass('statusgreen');
-                    break;
             }
         });
 
