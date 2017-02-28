@@ -32,7 +32,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                {% if mediaProcessed is False and mediaArIsOn is False %}
+                {% if mediaProcessed is not True and mediaArIsOn is not True %}
                 <div id="vpselectormovemedia" class="mym-dash-item">
                     <select id="vpselectedmovemedia" name="vpselectedmovemedia"
                             data-placeholder={% trans "Choose a VP to move the media to:" %}>
