@@ -32,7 +32,8 @@
                         {% endfor %}
                     </select>
                 </div>
-                {% if mediaProcessed == False and mediaArIsOn == False %}
+                {% if mediaProcessed and mediaArIsOn %}
+                {% else %}
                 <div id="vpselectormovemedia" class="mym-dash-item">
                     <select id="vpselectedmovemedia" name="vpselectedmovemedia"
                             data-placeholder={% trans "Choose a VP to move the media to:" %}>
@@ -260,7 +261,7 @@
 
             $('#mediaselected').chosen();
 
-            {% if mediaProcessed == True and mediaArIsOn == True %}
+            {% if mediaProcessed and mediaArIsOn %}
                 console.log("Media not movable!!!");
                 $('#movemediabtn').removeClass('btn-outline-info');
                 $('#movemediabtn').addClass('btn-outline-secondary');
@@ -356,8 +357,8 @@
                 });
             }
 
-            {% if mediaProcessed == True and mediaArIsOn == True %}
-                console.log("Media not movable!!!")
+            {% if mediaProcessed and mediaArIsOn %}
+                console.log("Media not movable!!!");
             {% else %}
                 $('#movemediabtn').removeClass('btn-outline-secondary');
                 $('#movemediabtn').addClass('btn-outline-info');
