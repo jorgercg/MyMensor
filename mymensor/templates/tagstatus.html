@@ -117,9 +117,8 @@
         });
         $(document).ready(function () {
             console.log("ready!");
-            if ($('.statusTagStateEvaluated').val()=="GREEN") {
-                    $(this).addClass('statusgreen');
-            }
+            var tds = $("td");
+            $("tr").find(tds).find(":contains('GREEN')").css({"class":"statusgreen"});
         });
 
     </script>
