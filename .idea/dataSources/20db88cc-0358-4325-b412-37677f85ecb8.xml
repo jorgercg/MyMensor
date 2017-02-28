@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-02-27.09:40:05.229</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1752</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-02-28.11:43:29.698</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1760</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -152,7 +152,7 @@
     </table>
     <table id="38" parent="3" name="auth_user">
       <ObjectId>16445</ObjectId>
-      <StateNumber>1731</StateNumber>
+      <StateNumber>1760</StateNumber>
     </table>
     <table id="39" parent="3" name="auth_user_groups">
       <ObjectId>16455</ObjectId>
@@ -192,11 +192,11 @@
     </table>
     <table id="48" parent="3" name="mymensor_asset">
       <ObjectId>18971</ObjectId>
-      <StateNumber>1744</StateNumber>
+      <StateNumber>1760</StateNumber>
     </table>
     <table id="49" parent="3" name="mymensor_media">
       <ObjectId>19420</ObjectId>
-      <StateNumber>1717</StateNumber>
+      <StateNumber>1756</StateNumber>
     </table>
     <table id="50" parent="3" name="mymensor_mobilesetupbackup">
       <ObjectId>19550</ObjectId>
@@ -1129,7 +1129,7 @@ model</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="229" parent="48" name="mymensor_asset_assetOwner_id_8734afda_fk_auth_user_id">
-      <ObjectId>19507</ObjectId>
+      <ObjectId>19610</ObjectId>
       <ColNames>assetOwner_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefKeyName>auth_user_pkey</RefKeyName>
@@ -1255,8 +1255,8 @@ model</ColNames>
     </column>
     <column id="253" parent="49" name="mediaStateEvaluated">
       <Position>24</Position>
-      <DataType>integer|0</DataType>
-      <StateNumber>1717</StateNumber>
+      <DataType>varchar(50)|0</DataType>
+      <StateNumber>1756</StateNumber>
     </column>
     <index id="254" parent="49" name="mymensor_media_pkey">
       <ObjectId>19427</ObjectId>
