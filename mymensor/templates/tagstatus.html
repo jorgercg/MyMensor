@@ -119,11 +119,25 @@
         $(document).ready(function () {
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function() {
-                console.log($.trim($(this).text()));
-                    if (($.trim($(this).text()))=="GREEN"){
-                        $(this).addClass("statusgreen");
-                    }
-                });
+                if (($.trim($(this).text()))=="PROCESSED"){
+                    $(this).addClass("statusprocessed");
+                }
+                if (($.trim($(this).text()))=="LOW RED"){
+                    $(this).addClass("statuslowred");
+                }
+                if (($.trim($(this).text()))=="LOW YELLOW"){
+                    $(this).addClass("statuslowyellow");
+                }
+                if (($.trim($(this).text()))=="GREEN"){
+                    $(this).addClass("statusgreen");
+                }
+                if (($.trim($(this).text()))=="HIGH YELLOW"){
+                    $(this).addClass("statushighyellow");
+                }
+                if (($.trim($(this).text()))=="HIGH RED"){
+                    $(this).addClass("statushighred");
+                }
+            });
         });
 
     </script>
