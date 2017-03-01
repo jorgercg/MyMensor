@@ -115,9 +115,12 @@
             });
 
         });
+
         $(document).ready(function () {
             console.log("ready!");
-            $(".statusTagStateEvaluated").filter($(this).val() == "GREEN").addClass("statusgreen");
+            $(".statusTagStateEvaluated").filter(function() {
+                return $.trim((this).text()) == "GREEN";
+                }).css("class", "statusgreen");
         });
 
     </script>
