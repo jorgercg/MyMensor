@@ -62,10 +62,30 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">{% trans "Portfolio" %}</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'vpdetail' %}" href="{% url 'vpdetail' %}">{% trans "Media" %}</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">{% trans "Data" %}</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'taganalysis' %}" href="{% url 'taganalysis' %}">Tag Analysis</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'tagprocessing' %}" href="{% url 'tagprocessing' %}">Tag Processing</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'proctagedit' %}" href="{% url 'proctagedit' %}">Processed Tag Edit</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans "Data" %}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'tagstatus' %}">{% trans "Status" %}</a>
+                                <a class="dropdown-item" href="{% url 'taganalysis' %}">{% trans "Analusis" %}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'tagprocessing' %}">{% trans "Processing" %}</a>
+                                <a class="dropdown-item" href="{% url 'proctagedit' %}">{% trans "Edit" %}</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% trans "Setup" %}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{% url 'assetsetup' %}">{% trans "Asset" %}</a>
+                                <a class="dropdown-item" href="{% url 'vpsetup' %}">{% trans "VPs" %}</a>
+                                <a class="dropdown-item" href="{% url 'tagsetup' %}">{% trans "TAGs" %}</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'mobilebackup' %}">{% trans "Mobile Backup" %}</a>
+                            </div>
+                        </li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}" href="{% url 'auth_login' %}">Login</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}" id="regnewuser" href="{% url 'registration_register' %}">Register</a></li>
@@ -80,12 +100,6 @@
                                 <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'support' %}">Support</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'assetsetup' %}">Asset Setup</a>
-                                <a class="dropdown-item" href="{% url 'vpsetup' %}">VPs Setup</a>
-                                <a class="dropdown-item" href="{% url 'tagsetup' %}">TAGs Setup</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{% url 'mobilebackup' %}">Mobile Setup Backup</a>
                             </div>
                         </li>
                     {% endif %}
