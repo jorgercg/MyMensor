@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,8 +68,8 @@
       <file leaf-file-name="registration_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="28" lean-forward="true" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+            <state relative-caret-position="15">
+              <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -78,8 +78,8 @@
       <file leaf-file-name="password_reset_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="20" column="75" lean-forward="false" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+            <state relative-caret-position="165">
+              <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -164,7 +164,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/500.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/activate.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/logout.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js" />
@@ -200,6 +199,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
       </list>
     </option>
   </component>
@@ -719,13 +719,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01916" summary="27fev2017 15h46min">
-      <created>1488210897612</created>
-      <option name="number" value="01916" />
-      <option name="presentableId" value="LOCAL-01916" />
-      <option name="project" value="LOCAL" />
-      <updated>1488210897612</updated>
-    </task>
     <task id="LOCAL-01917" summary="27fev2017 16h26min">
       <created>1488212824185</created>
       <option name="number" value="01917" />
@@ -1062,7 +1055,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488384406416</updated>
     </task>
-    <option name="localTasksCounter" value="1965" />
+    <task id="LOCAL-01965" summary="01mar2017 16h10min">
+      <created>1488384658812</created>
+      <option name="number" value="01965" />
+      <option name="presentableId" value="LOCAL-01965" />
+      <option name="project" value="LOCAL" />
+      <updated>1488384658812</updated>
+    </task>
+    <option name="localTasksCounter" value="1966" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1136,7 +1136,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="01mar2017 09h47min" />
     <MESSAGE value="01mar2017 09h57min" />
     <MESSAGE value="01mar2017 09h59min" />
     <MESSAGE value="01mar2017 10h04min" />
@@ -1161,7 +1160,8 @@
     <MESSAGE value="01mar2017 15h38min" />
     <MESSAGE value="01mar2017 15h57min" />
     <MESSAGE value="01mar2017 16h06min" />
-    <option name="LAST_COMMIT_MESSAGE" value="01mar2017 16h06min" />
+    <MESSAGE value="01mar2017 16h10min" />
+    <option name="LAST_COMMIT_MESSAGE" value="01mar2017 16h10min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1490,14 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1516,16 +1508,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="28" lean-forward="true" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+        <state relative-caret-position="15">
+          <caret line="1" column="23" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="20" column="75" lean-forward="false" selection-start-line="20" selection-start-column="75" selection-end-line="20" selection-end-column="75" />
+        <state relative-caret-position="165">
+          <caret line="11" column="40" lean-forward="true" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
           <folding />
         </state>
       </provider>
