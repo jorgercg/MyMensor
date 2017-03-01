@@ -26,7 +26,7 @@ class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     backupDescription = models.CharField(max_length=1024, null=True)
     backupName = models.CharField(max_length=255, null=True)
-    backupDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    backupDBTimeStamp = models.DateTimeField(auto_now=True)
 
 class Vp(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
@@ -150,7 +150,7 @@ class Media(models.Model):
     mediaLocIsCertified = models.NullBooleanField(null=True)
     mediaTimeIsCertified = models.NullBooleanField(null=True)
     mediaArIsOn = models.NullBooleanField(null=True)
-    mediaDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    mediaDBTimeStamp = models.DateTimeField(auto_now=True)
     mediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
     mediaMymensorAccount = models.CharField(max_length=255, null=True)
     mediaProcessed = models.NullBooleanField(null=True)
@@ -165,7 +165,7 @@ class ProcessedTag(models.Model):
     media = models.ForeignKey(Media, on_delete=models.CASCADE)  ###### FK
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
     valValueEvaluated = models.FloatField()
-    valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    valValueEvaluatedEntryDBTimeStamp = models.DateTimeField(auto_now=True)
     tagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES)
 
 
@@ -177,7 +177,7 @@ class Value(models.Model):
     processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
     processorUserId = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  ###### FK
     valValue = models.FloatField()
-    valValueEntryDBTimeStamp = models.DateTimeField(auto_now_add=True)
+    valValueEntryDBTimeStamp = models.DateTimeField(auto_now=True)
     valEvalStatus = models.CharField(max_length=50, null=True)
     tagStateResultingFromValValueStatus = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES)
 
@@ -195,5 +195,5 @@ class TagStatusTable(models.Model):
     statusTagUnit = models.CharField(max_length=50, null=True, verbose_name="Unit")
     statusMediaTimeStamp = models.DateTimeField(auto_now=False, null=True, verbose_name="Media Time")
     statusMediaMillisSinceEpoch = models.BigIntegerField(null=True)
-    statusDBTimeStamp = models.DateTimeField(auto_now_add=True, verbose_name="Processing Time")
+    statusDBTimeStamp = models.DateTimeField(auto_now=True, verbose_name="Processing Time")
     statusTagStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, verbose_name="Status")

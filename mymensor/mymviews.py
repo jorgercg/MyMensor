@@ -582,7 +582,6 @@ def saveValue(request):
                                                            statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
             tagstatusinstance.statusValValueEvaluated = processedtag.valValueEvaluated
             tagstatusinstance.statusTagStateEvaluated = processedtag.tagStateEvaluated
-            tagstatusinstance.statusDBTimeStamp = processedtag.valValueEvaluatedEntryDBTimeStamp
             tagstatusinstance.save()
         except TagStatusTable.DoesNotExist:
             TagStatusTable.objects.create(processedTag=processedtag, statusTagNumber=taginstance.tagNumber,
