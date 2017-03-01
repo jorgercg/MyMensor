@@ -121,8 +121,7 @@
             });
 
             $('#exprtcsvbtn').click(function () {
-                var queryset = "{{ tagsstatustablequeryset }}";
-                callexportcsvfunction(queryset);
+                callexportcsvfunction({{ tagsstatustablequeryset | safe }});
             });
 
         });
