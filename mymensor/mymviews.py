@@ -577,14 +577,12 @@ def saveValue(request):
         try:
             tagstatusinstance = TagStatusTable.objects.get(processedTag=processedtag,
                                                            statusTagNumber=taginstance.tagNumber,
-                                                           statusTagDescription=taginstance.tagDescription,
                                                            statusVpNumber=vpinstance.vpNumber,
-                                                           statusVpDescription=vpinstance.vpDescription,
-                                                           statusTagUnit=taginstance.tagUnit,
                                                            statusMediaTimeStamp=mediainstance.mediaTimeStamp,
                                                            statusMediaMillisSinceEpoch=mediainstance.mediaMillisSinceEpoch)
             tagstatusinstance.statusValValueEvaluated = processedtag.valValueEvaluated
             tagstatusinstance.statusTagStateEvaluated = processedtag.tagStateEvaluated
+            tagstatusinstance.statusDBTimeStamp = processedtag.valValueEvaluatedEntryDBTimeStamp
             tagstatusinstance.save()
         except TagStatusTable.DoesNotExist:
             TagStatusTable.objects.create(processedTag=processedtag, statusTagNumber=taginstance.tagNumber,
