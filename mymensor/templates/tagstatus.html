@@ -120,8 +120,10 @@
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function() {
                 console.log($.trim($(this).text()));
-                return $.trim($(this).text()) == "GREEN";
-                }).css("class", "statusgreen");
+                    if (($.trim($(this).text()))=="GREEN"){
+                        $(this).addClass("statusgreen");
+                    }
+                });
         });
 
     </script>
