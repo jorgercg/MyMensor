@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div id="qtyselector" class="mym-dash-item">
-                    <p>{% trans 'Show ' %}</p>
+                    <p>{% trans 'Show last ' %}</p>
                     <select id="qtytodisplaypervp" class="1-100"></select>
                     <p>{% trans ' entries per VP' %}</p>
                 </div>
@@ -32,7 +32,8 @@
                                  <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
                                        <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
-                                            {% if media.mediaProcessed %}
+                                            {% if vp.vpNumber == 0 %}
+                                            {% elif media.mediaProcessed %}
                                                 <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
                                                 <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
@@ -85,7 +86,8 @@
                                 <div class="card card-outline-primary m-2" style="width: 20rem;">
                                     <div class="card-header text-primary">
                                         <h5 data-toggle="tooltip" data-placement="top" title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
-                                            {% if media.mediaProcessed %}
+                                            {% if vp.vpNumber == 0 %}
+                                            {% elif media.mediaProcessed %}
                                                 <span role="button"  id="processed{{ media.id }}" class="fa fa-bar-chart vpprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
                                             {% else %}
                                                 <span class="fa fa-bar-chart vpnotprocessed" data-toggle="tooltip" data-placement="top" title="{% trans 'Not processed' %}"></span>
