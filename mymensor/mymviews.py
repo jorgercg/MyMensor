@@ -162,8 +162,7 @@ def portfolio(request):
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
         vpsselected = request.GET.getlist('vpsselected', default=None)
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(
-            media__mediaTimeStamp__range=[startdate, new_enddate]).distinct().order_by('vpNumber')
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpsselectedfromlist = vps.values_list('vpNumber',flat=True)
         if not vpsselected:
             vpsselected = vpsselectedfromlist

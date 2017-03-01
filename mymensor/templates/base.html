@@ -60,9 +60,9 @@
             <div id="navbarNavDropdown" class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'vpdetail' %}" href="{% url 'vpdetail' %}">VP Detail</a></li>
-                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">Tag Status</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}" href="{% url 'portfolio' %}">{% trans "Portfolio" %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'vpdetail' %}" href="{% url 'vpdetail' %}">{% trans "Media" %}</a></li>
+                        <li class="nav-item"><a class="nav-link {% is_active request 'tagstatus' %}" href="{% url 'tagstatus' %}">{% trans "Data" %}</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'taganalysis' %}" href="{% url 'taganalysis' %}">Tag Analysis</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'tagprocessing' %}" href="{% url 'tagprocessing' %}">Tag Processing</a></li>
                         <li class="nav-item"><a class="nav-link {% is_active request 'proctagedit' %}" href="{% url 'proctagedit' %}">Processed Tag Edit</a></li>
