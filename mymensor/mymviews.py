@@ -163,6 +163,7 @@ def portfolio(request):
         qtypervp = int(request.GET.get('qtypervp', 5))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+        vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber',flat=True)
         if not vpsselected:
             vpsselected = vpsselectedfromlist
@@ -180,7 +181,7 @@ def portfolio(request):
                                                                     ExpiresIn=3600)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp, 'vpsselected':vpsselected})
+                       'qtypervp': qtypervp, 'vpsselected':vpsselected, 'vpslist':vpslist})
 
 
 # Media Feed View
