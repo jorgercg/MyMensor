@@ -18,6 +18,19 @@
                     <select id="qtytodisplaypervp" class="1-100"></select>
                     <p>{% trans ' entries per VP' %}</p>
                 </div>
+                <div id="vpselector" class="mym-dash-item" style="width:30rem">
+                <select multiple="multiple" id="vpsselected" name="vpsselected">
+                    {% for vpnumber in vps %}
+                        <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}' {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                    {% endfor %}
+                </select>
+                <div class="mym-dash-item">
+                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip"
+                        data-placement="top" title="{% trans 'Refresh with current selection' %}">
+                    <span class="fa fa-refresh"></span>
+                </button>
+            </div>
+            </div>
             </div>
         </div>
         <hr>
@@ -158,6 +171,7 @@
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
+        $('#vpsselected').chosen();
 
         $(function() {
 
@@ -190,7 +204,15 @@
                 console.log(startdate);
                 console.log(enddate);
                 console.log({% url 'portfolio' %});
-                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+                var vpssel = $('#vpsselected').serialize();
+                console.log('Chosen:' + vpssel);
+                window.location={% url 'portfolio' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+'{{ qtypervp }}'+ '&' + vpssel;
+            });
+
+            $('#refreshbtn').click(function () {
+                var vpssel = $('#vpsselected').serialize();
+                console.log('Chosen:' + vpssel);
+                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' +'&qtypervp='+'{{ qtypervp }}'+ '&' + vpssel;
             });
 
         });
@@ -234,7 +256,9 @@
             $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
-                window.location={% url 'portfolio' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
+                var vpssel = $('#vpsselected').serialize();
+                console.log('Chosen:' + vpssel);
+                window.location={% url 'portfolio' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected+ '&' + vpssel;
             });
         });
 

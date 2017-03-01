@@ -179,7 +179,7 @@ def portfolio(request):
                                                                     ExpiresIn=3600)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp})
+                       'qtypervp': qtypervp, 'vpsselected':vpsselected})
 
 
 # Media Feed View
