@@ -119,8 +119,8 @@
         $(document).ready(function () {
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function() {
-                console.log($.trim((this).text()));
-                return $.trim((this).text()) == "GREEN";
+                console.log($.trim($(this).text()));
+                return $.trim($(this).text()) == "GREEN";
                 }).css("class", "statusgreen");
         });
 
