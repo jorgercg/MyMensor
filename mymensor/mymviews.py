@@ -682,7 +682,7 @@ def export_tagstatus_csv(queryset):
     import csv
     from django.http import HttpResponse
     from django.utils.encoding import smart_str
-    response = HttpResponse(mimetype='text/csv')
+    response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename=mymodel.csv'
     writer = csv.writer(response, csv.excel)
     response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
