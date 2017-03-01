@@ -661,7 +661,10 @@ def TagStatusView(request):
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
                 statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
+        tagsstatustablequeryset = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
+                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
+                                                  'tagsstatustablequeryset': tagsstatustablequeryset,
                                                   'start': startdateformatted,
                                                   'end': enddateformatted,
                                                   'tags': tags,
@@ -673,6 +676,40 @@ def TagStatusView(request):
                                                   })
     else:
         return HttpResponse(status=404)
+
+
+def export_tagstatus_csv(queryset):
+    import csv
+    from django.http import HttpResponse
+    from django.utils.encoding import smart_str
+    response = HttpResponse(mimetype='text/csv')
+    response['Content-Disposition'] = 'attachment; filename=mymodel.csv'
+    writer = csv.writer(response, csv.excel)
+    response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
+    writer.writerow([
+        smart_str(u"TAG"),
+        smart_str(u"TAG Description"),
+        smart_str(u"VP"),
+        smart_str(u"VP Description"),
+        smart_str(u"Value"),
+        smart_str(u"Unit"),
+        smart_str(u"Media Time"),
+        smart_str(u"Processing Time"),
+        smart_str(u"Status"),
+    ])
+    for obj in queryset:
+        writer.writerow([
+            smart_str(obj.statusTagNumber),
+            smart_str(obj.statusTagDescription),
+            smart_str(obj.statusVpNumber),
+            smart_str(obj.statusVpDescription),
+            smart_str(obj.statusValValueEvaluated),
+            smart_str(obj.statusTagUnit),
+            smart_str(obj.statusMediaTimeStamp),
+            smart_str(obj.statusDBTimeStamp),
+            smart_str(obj.statusTagStateEvaluated),
+        ])
+    return response
 
 
 @login_required

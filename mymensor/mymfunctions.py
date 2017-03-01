@@ -32,6 +32,3 @@ def setup_new_user(instance, **kwargs):
                           vpStdPhotoStorageURL=vpstdphotostorageurl, vpStdTagDescPhotoStorageURL=vpstdtagdescphotostorageurl,
                           vpStdMarkerPhotoStorageURL= vpstdmarkerphotostorageurl, vpStdPhotoFileSize=vpstdphotofilesize,
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
-
-
-

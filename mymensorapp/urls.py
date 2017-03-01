@@ -92,4 +92,6 @@ urlpatterns = [
     url(r'^vpdetail/delete_media/', mymviews.deletemedia, name='delete_media'),
 
     url(r'^vpdetail/move_media/', mymviews.movemedia, name='move_media'),
+
+    url(r'^tagstatus/export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
 ]
