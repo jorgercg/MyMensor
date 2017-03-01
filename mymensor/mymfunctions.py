@@ -34,12 +34,4 @@ def setup_new_user(instance, **kwargs):
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
 
 
-def create_tagstatustable_row(sender, instance, **kwargs):
-    pass
-
-
-def update_tagstatustable_row(sender, instance, **kwargs):
-    pass
-
-
 
