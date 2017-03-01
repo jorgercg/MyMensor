@@ -117,7 +117,7 @@
         });
         $(document).ready(function () {
             console.log("ready!");
-            $(".statusTagStateEvaluated").filter(function(){ return $(this).val() == "GREEN" }).addClass("statusgreen");
+            $(".statusTagStateEvaluated").filter($(this).val() == "GREEN").addClass("statusgreen");
         });
 
     </script>
