@@ -121,7 +121,7 @@
             });
 
             $('#exprtcsvbtn').click(function () {
-                callexportcsvfunction({{ tagsstatustablequeryset | safe }});
+                callexportcsvfunction();
             });
 
         });
@@ -151,12 +151,13 @@
         });
 
         // AJAX for posting
-        function callexportcsvfunction(queryset) {
+        function callexportcsvfunction() {
             console.log("Called export CVS!"); // sanity check
+            var tagssel = $('#tagsselected').serialize();
             $.ajax({
                 url: "export_tagstatus_csv/", // the endpoint
                 type: "POST", // http method
-                data: queryset, // data sent with the post request
+                data: { startdate:{{ start }}, enddate:{{ end }}, tagsselected:tagssel , sort:{{ tablesort }} }, // data sent with the post request
                 // handle a successful response
                 success: function (json) {
                     console.log(json); // log the returned json to the console

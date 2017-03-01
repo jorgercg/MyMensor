@@ -24,6 +24,8 @@ from django.db.models import Q, Count
 from django.conf import settings
 from django_tables2 import RequestConfig
 from .tables import TagStatusTableClass
+import csv
+from django.utils.encoding import smart_str
 
 
 def landingView(request):
@@ -661,10 +663,7 @@ def TagStatusView(request):
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
                 statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
-        tagsstatustablequeryset = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
-                                                  'tagsstatustablequeryset': tagsstatustablequeryset,
                                                   'start': startdateformatted,
                                                   'end': enddateformatted,
                                                   'tags': tags,
@@ -673,44 +672,53 @@ def TagStatusView(request):
                                                   'linesperpage':linesperpage,
                                                   'processedtags': processedtags,
                                                   'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
+                                                  'tablesort':sort,
                                                   })
     else:
         return HttpResponse(status=404)
 
 
-def export_tagstatus_csv(queryset):
-    import csv
-    from django.http import HttpResponse
-    from django.utils.encoding import smart_str
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=mymodel.csv'
-    writer = csv.writer(response, csv.excel)
-    response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
-    writer.writerow([
-        smart_str(u"TAG"),
-        smart_str(u"TAG Description"),
-        smart_str(u"VP"),
-        smart_str(u"VP Description"),
-        smart_str(u"Value"),
-        smart_str(u"Unit"),
-        smart_str(u"Media Time"),
-        smart_str(u"Processing Time"),
-        smart_str(u"Status"),
-    ])
-    for obj in queryset:
+def export_tagstatus_csv(request):
+    if request.method == 'POST':
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        tagsselected = request.GET.getlist('tagsselected', default=None)
+        sort = request.GET.get('sort', '-statusMediaTimeStamp')
+        tagsstatustablequeryset = TagStatusTable.objects.filter(
+            processedTag__media__vp__asset__assetOwner=request.user).filter(
+            statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort)
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=mymodel.csv'
+        writer = csv.writer(response, csv.excel)
+        response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
         writer.writerow([
-            smart_str(obj.statusTagNumber),
-            smart_str(obj.statusTagDescription),
-            smart_str(obj.statusVpNumber),
-            smart_str(obj.statusVpDescription),
-            smart_str(obj.statusValValueEvaluated),
-            smart_str(obj.statusTagUnit),
-            smart_str(obj.statusMediaTimeStamp),
-            smart_str(obj.statusDBTimeStamp),
-            smart_str(obj.statusTagStateEvaluated),
+            smart_str(u"TAG"),
+            smart_str(u"TAG Description"),
+            smart_str(u"VP"),
+            smart_str(u"VP Description"),
+            smart_str(u"Value"),
+            smart_str(u"Unit"),
+            smart_str(u"Media Time"),
+            smart_str(u"Processing Time"),
+            smart_str(u"Status"),
         ])
-    return response
-
+        for obj in tagsstatustablequeryset:
+            writer.writerow([
+                smart_str(obj.statusTagNumber),
+                smart_str(obj.statusTagDescription),
+                smart_str(obj.statusVpNumber),
+                smart_str(obj.statusVpDescription),
+                smart_str(obj.statusValValueEvaluated),
+                smart_str(obj.statusTagUnit),
+                smart_str(obj.statusMediaTimeStamp),
+                smart_str(obj.statusDBTimeStamp),
+                smart_str(obj.statusTagStateEvaluated),
+            ])
+        return response
+    else:
+        return HttpResponse(status=404)
 
 @login_required
 def tagAnalysisView(request):
