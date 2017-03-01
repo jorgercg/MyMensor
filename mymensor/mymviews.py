@@ -167,9 +167,10 @@ def portfolio(request):
         if not vpsselected:
             vpsselected = vpsselectedfromlist
         else:
-            vpsselected = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber').values_list('vpNumber', flat=True)
+            vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
+            vpsselected = vps.values_list('vpNumber', flat=True)
 
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
