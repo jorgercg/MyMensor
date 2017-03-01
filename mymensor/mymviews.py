@@ -679,7 +679,7 @@ def TagStatusView(request):
 
 
 def export_tagstatus_csv(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         startdate = datetime.strptime(
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')

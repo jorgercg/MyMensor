@@ -121,7 +121,9 @@
             });
 
             $('#exprtcsvbtn').click(function () {
-                callexportcsvfunction();
+                var tagssel = $('#tagsselected').serialize();
+                window.location = {% url 'export_tagstatus_csv' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&sort=' + {{ tablesort }} + '&' + tagssel;
+                //callexportcsvfunction();
             });
 
         });
