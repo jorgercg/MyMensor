@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/login.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,11 +54,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+            <state relative-caret-position="705">
+              <caret line="47" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration_form.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="39" column="14" lean-forward="true" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -140,7 +150,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_reset_done.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_reset_form.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_complete.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/404.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/500.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" />
@@ -179,6 +188,7 @@
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
       </list>
     </option>
   </component>
@@ -698,13 +708,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01914" summary="27fev2017 15h46min">
-      <created>1488210397510</created>
-      <option name="number" value="01914" />
-      <option name="presentableId" value="LOCAL-01914" />
-      <option name="project" value="LOCAL" />
-      <updated>1488210397510</updated>
-    </task>
     <task id="LOCAL-01915" summary="27fev2017 15h46min">
       <created>1488210569905</created>
       <option name="number" value="01915" />
@@ -1041,7 +1044,14 @@
       <option name="project" value="LOCAL" />
       <updated>1488384114073</updated>
     </task>
-    <option name="localTasksCounter" value="1963" />
+    <task id="LOCAL-01963" summary="01mar2017 15h57min">
+      <created>1488384183000</created>
+      <option name="number" value="01963" />
+      <option name="presentableId" value="LOCAL-01963" />
+      <option name="project" value="LOCAL" />
+      <updated>1488384183000</updated>
+    </task>
+    <option name="localTasksCounter" value="1964" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1152,13 +1162,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/js/mymclient.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="36" lean-forward="true" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/jquery.multi-select.js" />
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/mymensor-jquery.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1487,8 +1490,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+        <state relative-caret-position="705">
+          <caret line="47" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="14" lean-forward="true" selection-start-line="39" selection-start-column="14" selection-end-line="39" selection-end-column="14" />
           <folding />
         </state>
       </provider>
