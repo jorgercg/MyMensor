@@ -1,22 +1,71 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n mymfilters%}
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
 {% block content %}
-<p></p>
-<h1>{% trans "Log in" %}</h1>
-
-<form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="{% trans 'Log in' %}" />
-    <input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-<p>{% trans "Forgot your password?" %} <a href="{% url 'password_reset' %}">{% trans "Reset it" %}</a>.</p>
-<p>{% trans "Not a member?" %} <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>.</p>
+    <div class="row">
+        <div class="col">
+            <p></p>
+        </div>
+        <div class="col-sm-3">
+            <div id="loginform">
+                <p></p>
+                <h2>{% trans "Log in" %}</h2>
+                <form role="form" action="." method="post"> {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                    {% endif %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                        <div class="form-group {% if field.errors %}has-error{% endif %}">
+                            {{ field.label|add_class:"control-label" }}
+                            {% if field.help_text %}
+                                <span class="help-block">{{ field.help_text }}</span>
+                            {% endif %}
+                            {% if field.errors %}
+                                <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                            {% endif %}
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                    {% endfor %}
+                    <input class="btn btn-success" type="submit" value="{% trans 'Log in' %}">
+                    <input type="hidden" name="next" value="{{ next }}"/>
+                </form>
+                <p>{% trans "Forgot your password?" %} <a href="{% url 'password_reset' %}">{% trans "Reset it" %}</a>.
+                </p>
+                <p>{% trans "Not a member?" %} <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>.
+                </p>
+            </div>
+        </div>
+        <div class="col">
+            <p></p>
+        </div>
+    </div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% comment %}
