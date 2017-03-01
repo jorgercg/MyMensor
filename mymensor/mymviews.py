@@ -690,7 +690,7 @@ def export_tagstatus_csv(request):
             processedTag__media__vp__asset__assetOwner=request.user).filter(
             statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort)
         response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="mymodel.csv"'
+        response['Content-Disposition'] = 'attachment; filename="MyMensorTagStatusTable.csv"'
         writer = csv.writer(response, csv.excel)
         response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
         writer.writerow([
