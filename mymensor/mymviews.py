@@ -152,7 +152,7 @@ def portfolio(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -183,7 +183,7 @@ def mediafeed(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -244,7 +244,7 @@ def assetSetupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = int(e.response['Error']['Code'])
+        error_code = e
     asset = Asset.objects.get(assetOwner=request.user)
     form = AssetForm(request.POST, instance=asset)
     if request.method == 'POST':
@@ -261,7 +261,7 @@ def vpSetupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = e.response['Error']['Code']
+        error_code = e
     currentvp = 1
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -310,7 +310,7 @@ def tagSetupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = e.response['Error']['Code']
+        error_code = e
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
@@ -444,7 +444,7 @@ def procTagEditView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -492,7 +492,7 @@ def tagProcessingFormView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -625,7 +625,7 @@ def TagStatusView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         startdate = datetime.strptime(
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
@@ -673,7 +673,7 @@ def tagAnalysisView(request):
         try:
             loaddcicfg(request)
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -718,7 +718,7 @@ def mobileBackupFormView(request):
     try:
         loaddcicfg(request)
     except ClientError as e:
-        error_code = e.response['Error']['Code']
+        error_code = e
 
     backupinstance = MobileSetupBackup.objects.filter(backupOwner=request.user).filter(
         backupName=request.user.username + "_backup").order_by('backupDBTimeStamp').last()
@@ -754,7 +754,7 @@ def createdcicfgbackup(request):
                 status=200
             )
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
             return HttpResponse(
                 json.dumps({"error_code": error_code}),
                 content_type="application/json",
@@ -791,7 +791,7 @@ def restoredcicfgbackup(request):
                 status=200
             )
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
             return HttpResponse(
                 json.dumps({"error_code": error_code}),
                 content_type="application/json",
@@ -849,7 +849,7 @@ def vpDetailView(request):
             try:
                 loaddcicfg(request)
             except ClientError as e:
-                error_code = e.response['Error']['Code']
+                error_code = e
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
@@ -932,7 +932,7 @@ def deletemedia(request):
                                                 Key=mediainstance.mediaObjectS3Key)
             responseDJ = mediainstance.delete()
         except ClientError as e:
-            error_code = e.response['Error']['Code']
+            error_code = e
             return HttpResponse(
                 json.dumps({"error": error_code, "responseS3": responseS3, "responseDJ": responseDJ}),
                 content_type="application/json",
