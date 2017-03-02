@@ -125,6 +125,12 @@
                 window.location = {% url 'export_tagstatus_csv' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&sort=' + '{{ tablesort }}' + '&' + tagssel;
             });
 
+            $('.mym-table').on('click', 'tr', function() {
+                var td = this.cells[0];  // the first <td>
+                alert( $(td).text() );
+            });
+
+
         });
 
         $(document).ready(function () {
