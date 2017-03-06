@@ -474,9 +474,9 @@ def procTagEditView(request):
                                                                     Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
-        vpsofthemediasnotprocessedlist = medias.values_list('vp__id', flat=True)
+        vpsofthemediasprocessedlist = medias.values_list('vp__id', flat=True)
         vps = Vp.objects.annotate(qtyoftags=Count('tag')).filter(asset__assetOwner=request.user).filter(
-            vpIsActive=True).filter(id__in=vpsofthemediasnotprocessedlist).order_by('vpNumber').distinct()
+            vpIsActive=True).filter(id__in=vpsofthemediasprocessedlist).order_by('vpNumber').distinct()
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagIsActive=True).distinct()
         for vp in vps:
             vp.vpStdPhotoStorageURL = s3Client.generate_presigned_url('get_object',
@@ -918,6 +918,14 @@ def vpDetailView(request):
             if not medias:
                 medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(vp__vpNumber=vpselected).order_by(
                     'mediaMillisSinceEpoch')
+                if not medias:
+                    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by('mediaMillisSinceEpoch')
+                    lastmediainstance = medias.last()
+                    vpoflastmediainstance = lastmediainstance.vp
+                    vpselected = vpoflastmediainstance.vpNumber
+                    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                        vp__vpIsActive=True).filter(vp__vpNumber=vpselected).order_by(
+                        'mediaMillisSinceEpoch')
                 recalcend = medias.last().mediaTimeStamp
                 recalcstart = recalcend - timedelta(days=29)
                 startdateformatted = recalcstart.strftime('%Y-%m-%d')
