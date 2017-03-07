@@ -127,7 +127,8 @@
 
             $('.mym-table').on('click', 'tr', function() {
                 var td = this.cells[0];  // the first <td>
-                //alert( $(td).text() );
+                console.log(td);
+                console.log(isNaN(td));
                 if (!isNaN(td)) {
                     window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+$(td).text();
                 }
