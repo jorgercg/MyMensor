@@ -128,7 +128,7 @@
             $('.mym-table').on('click', 'tr', function() {
                 var td = this.cells[0];  // the first <td>
                 //alert( $(td).text() );
-                if (typeof td==='number' && (td%1)===0) {
+                if (!isNaN(td)) {
                     window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+$(td).text();
                 }
             });
