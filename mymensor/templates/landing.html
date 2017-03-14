@@ -46,17 +46,9 @@
 	</head>
     <body>
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
-            <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt=""></a>
+            <a class="navbar-brand" href="{% url 'landing' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" alt="">{% trans 'MyMensor Media Check' %}</a>
         </nav>
         <div class="container-fluid">
-            <div class="d-flex align-content-start flex-wrap">
-                <div class="dashhead-toolbar">
-                    <div class="dashhead-title">
-                        <h1>{% trans 'Media Check' %}</h1>
-                    </div>
-                </div>
-            </div>
-            <hr>
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
                         <div class="card card-outline-primary m-2" style="width: 50rem;">
