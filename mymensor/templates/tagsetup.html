@@ -352,11 +352,12 @@
 
                             var bbox = paper.rect(propx, propy, propwidth, propheight);
                             shapes.push(bbox);
-                            bbox.attr('stroke', "blue");
+                            bbox.attr('stroke', "rgb(0,175,239)");
                             bbox.attr('stroke-width', 2);
 
                             var tagnumber = paper.text(propx+(propwidth/2), propy+20, "Tag#{{ currenttag }}");
                             tagnumbers.push(tagnumber);
+                            tagnumber.attr('stroke', "rgb(0,175,239)");
                             tagnumber.attr('stroke-width', 2);
                             tagnumber.attr('font-family', "Verdana");
                             tagnumber.attr('font-size', 20);
@@ -387,6 +388,7 @@
 
                                 var shape = paper.rect(startx, starty, 1, 1);
                                 shapes.push(shape);
+                                shape.attr('stroke', "rgb(0,175,239)");
                                 shape.attr('stroke-width', 2);
                                 $paper.bind('mousemove', function (e) {
                                     var x = [startx, e.clientX - paperx].sort(function (a, b) {
