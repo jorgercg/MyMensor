@@ -57,6 +57,7 @@ def landingView(request):
                                                         'loclatitude': obj_metadata['loclatitude'],
                                                         'loclongitude': obj_metadata['loclongitude'],
                                                         'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                        'mediasignature': obj_metadata['sha-256'],
                                                         })
             else:
                 return HttpResponse(status=404)
