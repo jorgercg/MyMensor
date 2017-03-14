@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" afterPath="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/vpsetup.html" afterPath="$PROJECT_DIR$/mymensor/templates/vpsetup.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,11 +98,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tagsetup.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tagsetup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="309">
-              <caret line="390" column="71" lean-forward="true" selection-start-line="390" selection-start-column="71" selection-end-line="390" selection-end-column="71" />
+              <caret line="390" column="71" lean-forward="false" selection-start-line="390" selection-start-column="32" selection-end-line="390" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vpsetup.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/vpsetup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="202" column="39" lean-forward="true" selection-start-line="202" selection-start-column="39" selection-end-line="202" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -121,7 +131,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>button_id</find>
       <find>landingmapid</find>
       <find>vpselected</find>
       <find>row</find>
@@ -151,6 +160,7 @@
       <find>Count</find>
       <find>vp</find>
       <find>staticfiles</find>
+      <find>stroke</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -184,7 +194,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/mediafeed.html" />
         <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/vpsetup.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
         <option value="$PROJECT_DIR$/mymensor/filters.py" />
@@ -223,6 +232,7 @@
         <option value="$PROJECT_DIR$/mymensor/static/css/chosen.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagstatus.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/vpsetup.html" />
       </list>
     </option>
   </component>
@@ -666,13 +676,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-01955" summary="01mar2017 14h41min">
-      <created>1488379683255</created>
-      <option name="number" value="01955" />
-      <option name="presentableId" value="LOCAL-01955" />
-      <option name="project" value="LOCAL" />
-      <updated>1488379683255</updated>
-    </task>
     <task id="LOCAL-01956" summary="01mar2017 14h53min">
       <created>1488380016935</created>
       <option name="number" value="01956" />
@@ -1009,7 +1012,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489508284886</updated>
     </task>
-    <option name="localTasksCounter" value="2004" />
+    <task id="LOCAL-02004" summary="14mar2017 16h25min">
+      <created>1489508740681</created>
+      <option name="number" value="02004" />
+      <option name="presentableId" value="LOCAL-02004" />
+      <option name="project" value="LOCAL" />
+      <updated>1489508740681</updated>
+    </task>
+    <option name="localTasksCounter" value="2005" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1083,7 +1093,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="01mar2017 17h22min" />
     <MESSAGE value="01mar2017 17h32min" />
     <MESSAGE value="01mar2017 20h12min" />
     <MESSAGE value="01mar2017 20h17min" />
@@ -1108,7 +1117,8 @@
     <MESSAGE value="07mar2017 21h18min" />
     <MESSAGE value="14mar2017 16h15min" />
     <MESSAGE value="14mar2017 16h17min" />
-    <option name="LAST_COMMIT_MESSAGE" value="14mar2017 16h17min" />
+    <MESSAGE value="14mar2017 16h25min" />
+    <option name="LAST_COMMIT_MESSAGE" value="14mar2017 16h25min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1120,13 +1130,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/assetsetup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="8" lean-forward="false" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/registration/templates/registration/activation_email.html" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/registration/templates/registration/activation_email.txt" />
     <entry file="file://$PROJECT_DIR$/venv/lib/python2.7/site-packages/registration/templates/registration/password_change_done.html" />
@@ -1404,7 +1407,15 @@
     <entry file="file://$PROJECT_DIR$/mymensor/templates/tagsetup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
-          <caret line="390" column="71" lean-forward="true" selection-start-line="390" selection-start-column="71" selection-end-line="390" selection-end-column="71" />
+          <caret line="390" column="71" lean-forward="false" selection-start-line="390" selection-start-column="32" selection-end-line="390" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpsetup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="202" column="39" lean-forward="true" selection-start-line="202" selection-start-column="39" selection-end-line="202" selection-end-column="39" />
           <folding />
         </state>
       </provider>
