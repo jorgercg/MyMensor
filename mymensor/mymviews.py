@@ -1019,6 +1019,7 @@ def movemedia(request):
         mediainstance = Media.objects.get(pk=mediaid)
         vpinstance = Vp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=movetovpnumber).get()
         mediainstance.vp = vpinstance
+        mediainstance.mediaVpNumber = vpinstance.vpNumber
         try:
             mediainstance.save()
         except:
