@@ -277,7 +277,9 @@ p {
     margin-left: 1rem;
 }
 
-.list-group-item {
+@media print {
+    .list-group-item {
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
+    }
 }
