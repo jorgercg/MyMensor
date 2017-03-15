@@ -174,8 +174,14 @@
               </div>
             </div>
             <hr>
-            <div class="landingfooter">
-                {{ my_string|qrcode:"my alt" }}
+            <div class="d-flex justify-content-center flex-wrap">
+                <div class="mym-dash-item">
+                    {{ my_string|qrcode:"my alt" }}
+                </div>
+                <div class="mym-dash-item">
+                    <span class="landingfootertext">{% trans "Certification Text." %}</span>
+                </div>
+
             </div>
 
         <!-- Footer -->
