@@ -277,9 +277,17 @@ p {
     margin-left: 1rem;
 }
 
+.landingcard {
+    width: 50rem;
+}
+
 @media print {
     .list-group-item {
-    padding-top: 0.1rem;
-    padding-bottom: 0.1rem;
+        padding-top: 0.1rem;
+        padding-bottom: 0.1rem;
+    }
+
+    .landingcard {
+        width: 30rem;
     }
 }

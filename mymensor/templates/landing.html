@@ -50,7 +50,7 @@
         <div class="container">
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
-                        <div class="card card-outline-primary m-2" style="width: 30rem;">
+                        <div class="card card-outline-primary m-2 landingcard">
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
@@ -76,9 +76,9 @@
                             </a>
                             <ul class="list-group list-group-flush">
                                 {% if mediaArIsOn == "1" %}
-                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality was used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality used to capture' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality was not used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality not used to capture' %}</li>
                                 {% endif %}
                                 {% if mediaTimeIsCertified == "1" %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}</li>
@@ -92,7 +92,7 @@
                                 {% endif %}
                             </ul>
                         </div>
-                        <div class="card card-outline-primary m-2" style="width: 30rem;">
+                        <div class="card card-outline-primary m-2 landingcard">
                             <div class="card-block">
                                 <p class="card-text font-weight-bold">Location details</p>
                             </div>
@@ -105,7 +105,7 @@
                         </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
-                        <div class="card card-outline-primary m-2" style="width: 30rem;">
+                        <div class="card card-outline-primary m-2 landingcard">
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
@@ -133,9 +133,9 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 {% if mediaArIsOn == "1" %}
-                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality was used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality used to capture' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality was not used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality not used to capture' %}</li>
                                 {% endif %}
                                 {% if mediaTimeIsCertified == "1" %}
                                 <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}</li>
@@ -149,7 +149,7 @@
                                 {% endif %}
                             </ul>
                         </div>
-                        <div class="card card-outline-primary m-2" style="width: 30rem;">
+                        <div class="card card-outline-primary m-2 landingcard">
                             <div class="card-block">
                                 <p class="card-text font-weight-bold">Location details</p>
                             </div>
