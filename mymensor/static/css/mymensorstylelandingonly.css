@@ -278,10 +278,15 @@ p {
 }
 
 .landingcard {
-    width: 45rem;
+    width: 40rem;
 }
 
 @media print {
+
+    #landingmapid {
+        height: 358px;
+    }
+
     .list-group-item {
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
