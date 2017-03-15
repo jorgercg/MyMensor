@@ -47,10 +47,10 @@
         <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
             <a class="navbar-brand" href="#"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46" class="d-inline-block align-center" alt=""><span class="landingtitle">{% trans 'MyMensor Media Check' %}</span></a>
         </nav>
-        <div class="container-fluid">
+        <div class="container">
             <div class="d-flex align-content-start flex-wrap">
                     {% if mediaContentType == "image/jpeg" %}
-                        <div class="card card-outline-primary m-2" style="width: 35rem;">
+                        <div class="card card-outline-primary m-2" style="width: 30rem;">
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
@@ -92,7 +92,7 @@
                                 {% endif %}
                             </ul>
                         </div>
-                        <div class="card card-outline-primary m-2" style="width: 35rem;">
+                        <div class="card card-outline-primary m-2" style="width: 30rem;">
                             <div class="card-block">
                                 <p class="card-text font-weight-bold">Location details</p>
                             </div>
@@ -105,7 +105,7 @@
                         </div>
                     {% endif %}
                     {% if mediaContentType == "video/mp4" %}
-                        <div class="card card-outline-primary m-2" style="width: 35rem;">
+                        <div class="card card-outline-primary m-2" style="width: 30rem;">
                             <div class="card-block">
                                 <p class="card-text">
                                     <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top" title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
@@ -133,23 +133,23 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 {% if mediaArIsOn == "1" %}
-                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality was used to capture this media' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality was not used to capture this media' %}</li>
                                 {% endif %}
                                 {% if mediaTimeIsCertified == "1" %}
-                                <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}</li>
                                 {% endif %}
                                 {% if mediaLocIsCertified == "1" %}
-                                <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}</li>
                                 {% endif %}
                             </ul>
                         </div>
-                        <div class="card card-outline-primary m-2" style="width: 35rem;">
+                        <div class="card card-outline-primary m-2" style="width: 30rem;">
                             <div class="card-block">
                                 <p class="card-text font-weight-bold">Location details</p>
                             </div>
