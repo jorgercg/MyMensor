@@ -76,19 +76,19 @@
                             </a>
                             <ul class="list-group list-group-flush">
                                 {% if mediaArIsOn == "1" %}
-                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' means that augmented reality was used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arusedinnotes" >AR ON</span>{% trans ' augmented reality was used to capture this media' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' means that augmented reality was not used to capture this media' %}</li>
+                                <li class="list-group-item"><span class="arnotusedinnotes" >AR OFF</span> {% trans ' augmented reality was not used to capture this media' %}</li>
                                 {% endif %}
                                 {% if mediaTimeIsCertified == "1" %}
-                                <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' means that the capture time was certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' means that the capture time was not certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}</li>
                                 {% endif %}
                                 {% if mediaLocIsCertified == "1" %}
-                                <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' means that the capture location was certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}</li>
                                 {% else %}
-                                <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}</li>
+                                <li class="list-group-item"><span class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}</li>
                                 {% endif %}
                             </ul>
                         </div>
