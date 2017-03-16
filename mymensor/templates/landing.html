@@ -121,11 +121,11 @@
                     <div id="landingmapid"></div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
                         <li class="list-group-item">
-                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:2 }}{% trans ' degrees' %}</li>
+                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
                         <li class="list-group-item">
-                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:2 }}{% trans ' meters' %}</li>
+                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                     </ul>
                 </div>
             {% endif %}
