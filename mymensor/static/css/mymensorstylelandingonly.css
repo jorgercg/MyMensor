@@ -1,24 +1,24 @@
 /* Show it is fixed to the top */
 body {
-  min-height: 75rem;
+    min-height: 75rem;
 }
 
 @media (min-width: 992px) {
-  .modal-lg {
-    max-width: 800px;
-  }
+    .modal-lg {
+        max-width: 800px;
+    }
 }
 
 @media (min-width: 1440px) {
-  .modal-xl {
-    max-width: 1300px;
-  }
+    .modal-xl {
+        max-width: 1300px;
+    }
 }
 
 #streambox {
-	position:fixed;
-	top:1em;
-	right:1em;
+    position: fixed;
+    top: 1em;
+    right: 1em;
     z-index: 1080;
     line-height: inherit;
 }
@@ -49,84 +49,84 @@ body {
 
 .loccert {
     color: green;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .locnotcert {
     color: red;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .loccertinnotes {
     color: green;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
 
 .locnotcertinnotes {
     color: red;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
 
 .timecert {
     color: green;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .timenotcert {
     color: red;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .timecertinnotes {
     color: green;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
 
 .timenotcertinnotes {
     color: red;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
 
 .arused {
     color: green;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .arusedinnotes {
     color: green;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
 
 .arnotused {
     color: blue;
-    float:right;
+    float: right;
     margin-left: 1rem;
     line-height: inherit;
 }
 
 .arnotusedinnotes {
     color: blue;
-    float:left;
+    float: left;
     margin-right: 1rem;
     line-height: inherit;
 }
@@ -169,7 +169,7 @@ h5 {
 }
 
 p {
-  margin: 0;
+    margin: 0;
 }
 
 .card-title {
@@ -177,97 +177,142 @@ p {
 }
 
 .dashhead::after {
-  display: block;
-  content: "";
-  clear: both; }
+    display: block;
+    content: "";
+    clear: both;
+}
 
 @media (min-width: 768px) {
-  .dashhead-titles {
-    float: left; } }
+    .dashhead-titles {
+        float: left;
+    }
+}
 
 .dashhead-title {
-  margin-top: 0;
-  margin-left: 0.5rem
+    margin-top: 0;
+    margin-left: 0.5rem
 }
 
 .dashhead-subtitle {
-  margin-top: 0;
-  margin-bottom: 5px;
-  font-weight: normal;
-  font-size: 85%;
-  color: #aeaeae;
-  letter-spacing: 1px;
-  text-transform: uppercase; }
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: normal;
+    font-size: 85%;
+    color: #aeaeae;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
 
 .dashhead-toolbar {
-  margin-left: 0; }
-  .dashhead-toolbar .input-with-icon {
+    margin-left: 0;
+}
+
+.dashhead-toolbar .input-with-icon {
     width: 100%;
     margin-bottom: 10px;
-    margin-left: 0; }
-  @media (min-width: 768px) {
+    margin-left: 0;
+}
+
+@media (min-width: 768px) {
     .dashhead-toolbar {
-      float: right;
-      margin-top: 12px; }
-      .dashhead-toolbar .input-with-icon {
+        float: right;
+        margin-top: 12px;
+    }
+
+    .dashhead-toolbar .input-with-icon {
         width: 180px;
-        margin-bottom: 0; } }
+        margin-bottom: 0;
+    }
+}
 
 .dashhead-toolbar-divider {
-  float: left;
-  width: 1px;
-  height: 34px;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: #eee; }
+    float: left;
+    width: 1px;
+    height: 34px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #eee;
+}
 
 .dashhead-toolbar-item {
-  float: left;
-  width: 20rem;
-  margin-left: 10px;
-  margin-right: 10px;}
-  @media (max-width: 767px) {
+    float: left;
+    width: 20rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
     .dashhead-toolbar-item.btn-group-halves {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-halves .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-halves .btn {
         width: 50%;
-        margin-left: 0; }
+        margin-left: 0;
+    }
+
     .dashhead-toolbar-item.btn-group-thirds {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-thirds .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-thirds .btn {
         width: 33%;
-        margin-left: 0; }
-        .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
-          width: 34%; }
+        margin-left: 0;
+    }
+
+    .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
+        width: 34%;
+    }
+
     .dashhead-toolbar-item.btn-group-fourths {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-fourths .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-fourths .btn {
         width: 25%;
-        margin-left: 0; } }
+        margin-left: 0;
+    }
+}
 
 .dashhead-tagstoolbar-item {
-  float: left;
-  width: 10rem;
-  margin-left: 10px;
-  margin-right: 10px;}
-  @media (max-width: 767px) {
+    float: left;
+    width: 10rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+@media (max-width: 767px) {
     .dashhead-toolbar-item.btn-group-halves {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-halves .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-halves .btn {
         width: 50%;
-        margin-left: 0; }
+        margin-left: 0;
+    }
+
     .dashhead-toolbar-item.btn-group-thirds {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-thirds .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-thirds .btn {
         width: 33%;
-        margin-left: 0; }
-        .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
-          width: 34%; }
+        margin-left: 0;
+    }
+
+    .dashhead-toolbar-item.btn-group-thirds .btn:last-child {
+        width: 34%;
+    }
+
     .dashhead-toolbar-item.btn-group-fourths {
-      width: 100%; }
-      .dashhead-toolbar-item.btn-group-fourths .btn {
+        width: 100%;
+    }
+
+    .dashhead-toolbar-item.btn-group-fourths .btn {
         width: 25%;
-        margin-left: 0; } }
+        margin-left: 0;
+    }
+}
 
 #landingmapid {
     height: 350px;
@@ -283,34 +328,45 @@ p {
 
 .landingfootertext {
     padding: 0.5rem;
-    font-size: 0.5rem;
-    line-height: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 
 @media print {
     #landingmapid {
         height: 300px;
     }
+
     .list-group-item {
         font-size: 0.5rem;
         line-height: 0.75rem;
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
     }
+
     .landingcard {
         width: 30rem;
     }
+
     .leaflet-control {
         visibility: hidden;
     }
+
     .card-text {
         font-size: 0.75rem;
         line-height: 1rem;
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
     }
+
     .navbar {
         padding-top: 0rem;
         padding-bottom: 0rem;
+    }
+
+    .landingfootertext {
+        padding: 0.5rem;
+        font-size: 0.5rem;
+        line-height: 0.75rem;
     }
 }
