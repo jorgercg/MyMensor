@@ -47,6 +47,7 @@ def landingView(request):
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
             object.load()
             obj_metadata = object.metadata
+            mediaCheckURL = ''.join(['https://app.mymensor.com/landing/?type='])+str(messagetype)
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
@@ -58,6 +59,7 @@ def landingView(request):
                                                         'loclongitude': obj_metadata['loclongitude'],
                                                         'locprecisioninm': obj_metadata['locprecisioninm'],
                                                         'mediasignature': obj_metadata['sha-256'],
+                                                        'mediaCheckURL': mediaCheckURL,
                                                         })
             else:
                 return HttpResponse(status=404)

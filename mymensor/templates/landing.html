@@ -225,13 +225,13 @@
         <div class="mym-dash">
             <div class="d-flex justify-content-sm-start flex-nowrap">
                 <div class="mym-dash-item">
-                    {{ mediaStorageURL|qrcode:"my alt" }}
+                    {{ mediaCheckURL|qrcode:"my alt" }}
                 </div>
                 <div class="mym-dash-item">
                     <p class="landingfootertext">{% trans "This media was produced using the MyMensor mobile app on the date, time and location above stated."%}
                         {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
-                        {% trans "Please use the code to the left or the address below to validate this media online." %}
-                        {{ mediaStorageURL }}
+                        {% trans "Please use the code to the left or the following address to validate this media online." %}
+                        {{ mediaCheckURL }}
                     </p>
                 </div>
             </div>
