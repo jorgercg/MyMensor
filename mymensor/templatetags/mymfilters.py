@@ -52,7 +52,7 @@ def qrcode(value, alt=None):
     <img src="http://chart.apis.google.com/chart?chs=150x150&amp;cht=qr&amp;chl=my_string&amp;choe=UTF-8" alt="my alt" />
     """
 
-    url = conditional_escape("http://chart.apis.google.com/chart?%s" % \
+    url = conditional_escape("https://chart.apis.google.com/chart?%s" % \
                              urllib.urlencode({'chs': '150x150', 'cht': 'qr', 'chl': value, 'choe': 'UTF-8'}))
     alt = conditional_escape(alt or value)
 
