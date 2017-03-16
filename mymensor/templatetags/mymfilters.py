@@ -43,10 +43,10 @@ def add_class(value, css_class):
 def qrcode(value, alt=None):
 
     url = conditional_escape("https://api.qrserver.com/v1/create-qr-code/?%s" % \
-                             urllib.urlencode({'size': '100x100', 'data': value, 'charset-source': 'UTF-8'}))
+                             urllib.urlencode({'data': value, 'size': '100x100', 'charset-source': 'UTF-8'}))
     alt = conditional_escape(alt or value)
 
-    return mark_safe(u"""<img class="qrcode" src="%s" width="150" height="150" alt="%s" />""" % (url, alt))
+    return mark_safe(u"""<img class="qrcode" src="%s" width="100" height="100" alt="%s" />""" % (url, alt))
 
 
 
