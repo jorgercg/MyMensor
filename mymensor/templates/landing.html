@@ -55,6 +55,7 @@
                 <div class="card card-outline-primary m-2 landingcard">
                     <div class="card-block">
                         <p class="card-text">
+                            <span>{% trans "Photo of " %}</span>
                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
                                   title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
                             {% if mediaArIsOn == "1" %}
@@ -132,6 +133,7 @@
                 <div class="card card-outline-primary m-2 landingcard">
                     <div class="card-block">
                         <p class="card-text">
+                            <span>{% trans "Video of " %}</span>
                             <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top"
                                   title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
                             {% if mediaArIsOn == "1" %}
