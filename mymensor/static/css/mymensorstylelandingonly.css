@@ -282,17 +282,19 @@ p {
 }
 
 @media print {
-
     #landingmapid {
         height: 300px;
     }
-
     .list-group-item {
+        font-size: 0.5rem;
+        line-height: 0.75rem;
         padding-top: 0.1rem;
         padding-bottom: 0.1rem;
     }
-
     .landingcard {
         width: 30rem;
+    }
+    .leaflet-control {
+        visibility: hidden;
     }
 }
