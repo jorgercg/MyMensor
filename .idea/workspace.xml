@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/20db88cc-0358-4325-b412-37677f85ecb8.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2235">
-              <caret line="149" column="20" lean-forward="false" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
+            <state relative-caret-position="390">
+              <caret line="147" column="77" lean-forward="false" selection-start-line="147" selection-start-column="77" selection-end-line="147" selection-end-column="77" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -57,7 +56,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensorapp/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="555">
@@ -180,8 +179,8 @@
         <option value="$PROJECT_DIR$/mymensor/templatetags/mymfilters.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
-        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
+        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
       </list>
     </option>
   </component>
@@ -683,13 +682,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02024" summary="15mar2017 15h49min">
-      <created>1489593219173</created>
-      <option name="number" value="02024" />
-      <option name="presentableId" value="LOCAL-02024" />
-      <option name="project" value="LOCAL" />
-      <updated>1489593219173</updated>
-    </task>
     <task id="LOCAL-02025" summary="15mar2017 15h55min">
       <created>1489593346585</created>
       <option name="number" value="02025" />
@@ -1026,7 +1018,14 @@
       <option name="project" value="LOCAL" />
       <updated>1489744495507</updated>
     </task>
-    <option name="localTasksCounter" value="2073" />
+    <task id="LOCAL-02073" summary="17mar2017 09h57min">
+      <created>1489744633366</created>
+      <option name="number" value="02073" />
+      <option name="presentableId" value="LOCAL-02073" />
+      <option name="project" value="LOCAL" />
+      <updated>1489744633366</updated>
+    </task>
+    <option name="localTasksCounter" value="2074" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1100,7 +1099,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="16mar2017 09h12min" />
     <MESSAGE value="16mar2017 09h28min" />
     <MESSAGE value="16mar2017 09h32min" />
     <MESSAGE value="16mar2017 09h34min" />
@@ -1125,7 +1123,8 @@
     <MESSAGE value="16mar2017 16h33min" />
     <MESSAGE value="17mar2017 09h49min" />
     <MESSAGE value="17mar2017 09h54min" />
-    <option name="LAST_COMMIT_MESSAGE" value="17mar2017 09h54min" />
+    <MESSAGE value="17mar2017 09h57min" />
+    <option name="LAST_COMMIT_MESSAGE" value="17mar2017 09h57min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1457,21 +1456,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2235">
-          <caret line="149" column="20" lean-forward="false" selection-start-line="149" selection-start-column="20" selection-end-line="149" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensorapp/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="147" column="77" lean-forward="false" selection-start-line="147" selection-start-column="77" selection-end-line="147" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
