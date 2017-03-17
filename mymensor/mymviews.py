@@ -21,10 +21,9 @@ from datetime import timedelta
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
-from django.conf import settings
-from django_tables2 import RequestConfig
 from .tables import TagStatusTableClass
 import csv
+import twitter
 from django.utils.encoding import smart_str
 
 
@@ -147,6 +146,13 @@ def amazon_sns_processor(request):
                 media_received.save()
             broadcast(message='New media arrived on server', event_class="NewMedia",
                       data={"username": media_received.mediaMymensorAccount})
+            api = twitter.Api(consumer_key="D5PSJxLoeSgcUSBp64BPDBsaG", consumer_secret="D5PSJxLoeSgcUSBp64BPDBsaG",
+                              access_token_key="54587455-EYTJwGZCyiELiXQSgJZNDgrx6liWpM4pzmsEkLopr", access_token_secret="taZ6WKcuXHsSt6ozEoNr1Okk3dK2edYCMe7CI9ky6ffJ8",
+                              input_encoding=None)
+            try:
+                status = api.PostUpdate("Testing Twitter posting from Django App")
+            except:
+                pass
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
