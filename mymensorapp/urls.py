@@ -94,4 +94,10 @@ urlpatterns = [
     url(r'^vpdetail/move_media/', mymviews.movemedia, name='move_media'),
 
     url(r'^export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
+
+    url(r'^twtmain/$', mymviews.twtmain, name='twtmain'),
+    url(r'^twtoauthcallback/$', mymviews.twtcallback, name='twtauth_return'),
+    url(r'^twtlogout/$', mymviews.twtunauth, name='twtoauth_unauth'),
+    url(r'^twtauth/$', mymviews.twtauth, name='twtoauth_auth'),
+    url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
 ]

@@ -1,8 +1,9 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, render_to_response
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
@@ -13,7 +14,8 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
     TagStatusTable, MobileSetupBackup
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
-from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
+from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWT_API_KEY, \
+    TWT_API_SECRET
 import json, boto3, urllib
 from botocore.exceptions import ClientError
 from datetime import datetime
@@ -22,8 +24,7 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from .tables import TagStatusTableClass
-import csv
-import twitter
+import csv, tweepy
 from django.utils.encoding import smart_str
 
 
@@ -46,8 +47,8 @@ def landingView(request):
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
             object.load()
             obj_metadata = object.metadata
-            mediaCheckURL = u''.join(['https://app.mymensor.com/landing/?type='])+str(messagetype)
-            mediaCheckURL = mediaCheckURL + '&key='+mediaObjectS3Key+'&signature='+requestsignature
+            mediaCheckURL = u''.join(['https://app.mymensor.com/landing/?type=']) + str(messagetype)
+            mediaCheckURL = mediaCheckURL + '&key=' + mediaObjectS3Key + '&signature=' + requestsignature
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
@@ -169,14 +170,15 @@ def portfolio(request):
         vpsselected = request.GET.getlist('vpsselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
-        vpsselectedfromlist = vps.values_list('vpNumber',flat=True)
+        vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
             vpsselected = vpsselectedfromlist
         else:
             vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
             vpsselected = vps.values_list('vpNumber', flat=True)
 
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         for media in medias:
@@ -186,7 +188,7 @@ def portfolio(request):
                                                                     ExpiresIn=3600)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp, 'vpsselected':vpsselected, 'vpslist':vpslist})
+                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist})
 
 
 # Media Feed View
@@ -560,18 +562,18 @@ def saveValue(request):
         taginstance = Tag.objects.get(id=tagid)
         vpinstance = Vp.objects.get(id=vpid)
         proctagstate = "NP"
-        if taginstance.tagLowRed==None or taginstance.tagLowYellow==None or taginstance.tagHighYellow==None or taginstance.tagHighRed==None:
+        if taginstance.tagLowRed == None or taginstance.tagLowYellow == None or taginstance.tagHighYellow == None or taginstance.tagHighRed == None:
             proctagstate = "PR"
         else:
-            if valuefloat<taginstance.tagLowRed:
+            if valuefloat < taginstance.tagLowRed:
                 proctagstate = "LR"
-            if valuefloat>=taginstance.tagLowRed and valuefloat<taginstance.tagLowYellow:
+            if valuefloat >= taginstance.tagLowRed and valuefloat < taginstance.tagLowYellow:
                 proctagstate = "LY"
-            if valuefloat>=taginstance.tagLowYellow and valuefloat<=taginstance.tagHighYellow:
+            if valuefloat >= taginstance.tagLowYellow and valuefloat <= taginstance.tagHighYellow:
                 proctagstate = "GR"
-            if valuefloat>taginstance.tagHighYellow and valuefloat<=taginstance.tagHighRed:
+            if valuefloat > taginstance.tagHighYellow and valuefloat <= taginstance.tagHighRed:
                 proctagstate = "HY"
-            if valuefloat>taginstance.tagHighRed:
+            if valuefloat > taginstance.tagHighRed:
                 proctagstate = "HR"
         try:
             processedtag = ProcessedTag.objects.get(media=mediainstance, tag=taginstance)
@@ -663,7 +665,8 @@ def TagStatusView(request):
         linesperpage = request.GET.get('linesperpage', 15)
         tagstatustable = TagStatusTableClass(
             TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
-                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort))
+                statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(
+                sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
                                                   'start': startdateformatted,
@@ -671,10 +674,10 @@ def TagStatusView(request):
                                                   'tags': tags,
                                                   'tagsselected': tagsselected,
                                                   'qtyoftagsselected': qtyoftagsselected,
-                                                  'linesperpage':linesperpage,
+                                                  'linesperpage': linesperpage,
                                                   'processedtags': processedtags,
                                                   'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
-                                                  'tablesort':sort,
+                                                  'tablesort': sort,
                                                   })
     else:
         return HttpResponse(status=404)
@@ -690,11 +693,12 @@ def export_tagstatus_csv(request):
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
         tagsstatustablequeryset = TagStatusTable.objects.filter(
             processedTag__media__vp__asset__assetOwner=request.user).filter(
-            statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(sort)
+            statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(
+            sort)
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="MyMensorTagStatusTable.csv"'
         writer = csv.writer(response, csv.excel)
-        response.write(u'\ufeff'.encode('utf8')) # BOM (optional...Excel needs it to open UTF-8 file properly)
+        response.write(u'\ufeff'.encode('utf8'))  # BOM (optional...Excel needs it to open UTF-8 file properly)
         writer.writerow([
             smart_str(u"TAG"),
             smart_str(u"TAG Description"),
@@ -721,6 +725,7 @@ def export_tagstatus_csv(request):
         return response
     else:
         return HttpResponse(status=404)
+
 
 @login_required
 def tagAnalysisView(request):
@@ -900,7 +905,7 @@ def locofthismedia(request):
 def vpDetailView(request):
     if request.user.is_authenticated:
         mediascount = Media.objects.filter(vp__asset__assetOwner=request.user).count()
-        if mediascount>0:
+        if mediascount > 0:
             try:
                 loaddcicfg(request)
             except ClientError as e:
@@ -919,10 +924,12 @@ def vpDetailView(request):
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch')
             if not medias:
-                medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(vp__vpNumber=vpselected).order_by(
+                medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
+                    vp__vpNumber=vpselected).order_by(
                     'mediaMillisSinceEpoch')
                 if not medias:
-                    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).order_by('mediaMillisSinceEpoch')
+                    medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                        vp__vpIsActive=True).order_by('mediaMillisSinceEpoch')
                     lastmediainstance = medias.last()
                     vpoflastmediainstance = lastmediainstance.vp
                     vpselected = vpoflastmediainstance.vpNumber
@@ -958,7 +965,7 @@ def vpDetailView(request):
             assetvps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
             return render(request, 'vpdetail.html', {'vpselected': vpselected,
                                                      'vps': vps,
-                                                     'assetvps':assetvps,
+                                                     'assetvps': assetvps,
                                                      'mediaselected': mediaselected,
                                                      'start': startdateformatted,
                                                      'end': enddateformatted,
@@ -971,7 +978,7 @@ def vpDetailView(request):
                                                      'mediaLocIsCertified': mediainstance.mediaLocIsCertified,
                                                      'mediaTimeStamp': mediainstance.mediaTimeStamp,
                                                      'mediaSha256': mediainstance.mediaSha256,
-                                                     'mediaProcessed' : mediainstance.mediaProcessed,
+                                                     'mediaProcessed': mediainstance.mediaProcessed,
                                                      'loclatitude': mediainstance.mediaLatitude,
                                                      'loclongitude': mediainstance.mediaLongitude,
                                                      'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
@@ -1013,6 +1020,7 @@ def deletemedia(request):
             status=400
         )
 
+
 @login_required
 def movemedia(request):
     if request.method == 'POST':
@@ -1042,3 +1050,93 @@ def movemedia(request):
             content_type="application/json",
             status=400
         )
+
+
+def twtmain(request):
+    """
+    main view of app, either login page or info page
+    """
+    # if we haven't authorised yet, direct to login page
+    if twtcheck_key(request):
+        return HttpResponseRedirect(reverse('twtinfo'))
+    else:
+        return render_to_response('twtlogin.html')
+
+
+def twtunauth(request):
+    """
+    logout and remove all session data
+    """
+    if twtcheck_key(request):
+        api = twtget_api(request)
+        request.session.clear()
+    return HttpResponseRedirect(reverse('twtmain'))
+
+
+def twtinfo(request):
+    """
+    display some user info to show we have authenticated successfully
+    """
+    print(twtcheck_key)
+    if twtcheck_key(request):
+        api = twtget_api(request)
+        user = api.me()
+        return render_to_response('twtinfo.html', {'user': user})
+    else:
+        return HttpResponseRedirect(reverse('main'))
+
+
+def twtauth(request):
+    # start the OAuth process, set up a handler with our details
+    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+    # direct the user to the authentication url
+    # if user is logged-in and authorized then transparently goto the callback URL
+    auth_url = oauth.get_authorization_url(True)
+    response = HttpResponseRedirect(auth_url)
+    # store the request token
+    request.session['request_token'] = oauth.request_token
+    return response
+
+
+def twtcallback(request):
+    verifier = request.GET.get('oauth_verifier')
+    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+    token = request.session.get('request_token')
+    # remove the request token now we don't need it
+    request.session.delete('request_token')
+    oauth.request_token = token
+    # get the access token and store
+    try:
+        oauth.get_access_token(verifier)
+    except tweepy.TweepError:
+        print('Error, failed to get access token')
+
+    request.session['access_key_tw'] = oauth.access_token
+    request.session['access_secret_tw'] = oauth.access_token_secret
+    print(request.session['access_key_tw'])
+    print(request.session['access_secret_tw'])
+    response = HttpResponseRedirect(reverse('info'))
+    return response
+
+
+def twtcheck_key(request):
+    """
+    Check to see if we already have an access_key stored, if we do then we have already gone through
+    OAuth. If not then we haven't and we probably need to.
+    """
+    try:
+        access_key = request.session.get('access_key_tw', None)
+        if not access_key:
+            return False
+    except KeyError:
+        return False
+    return True
+
+def twtget_api(request):
+	# set up and return a twitter api object
+	oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+	access_key = request.session['access_key_tw']
+	access_secret = request.session['access_secret_tw']
+	oauth.set_access_token(access_key, access_secret)
+	api = tweepy.API(oauth)
+	return api
