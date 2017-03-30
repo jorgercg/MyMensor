@@ -1081,7 +1081,7 @@ def twtinfo(request):
     if twtcheck_key(request):
         api = twtget_api(request)
         user = api.me()
-        return render_to_response('twtinfo.html', {'user': user})
+        return render(request, 'twtinfo.html', {'user': user})
     else:
         return HttpResponseRedirect(reverse('main'))
 
