@@ -1115,7 +1115,7 @@ def twtcallback(request):
     request.session['access_secret_tw'] = oauth.access_token_secret
     print(request.session['access_key_tw'])
     print(request.session['access_secret_tw'])
-    response = HttpResponseRedirect(reverse('info'))
+    response = HttpResponseRedirect(reverse('twtinfo'))
     return response
 
 
