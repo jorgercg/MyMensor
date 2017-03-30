@@ -1051,7 +1051,7 @@ def movemedia(request):
             status=400
         )
 
-
+@login_required
 def twtmain(request):
     """
     main view of app, either login page or info page
