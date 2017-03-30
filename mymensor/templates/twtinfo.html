@@ -4,7 +4,7 @@
 		<div id="container">
 			<img src="{{user.profile_image_url}}" />
 			<h3>{{user.name}}</h3>
-			<p>{{user.screen_name}}<p/>
-			<a href="/twtlogout/" title="logout">logout</a>
+			<p>{{user.screen_name}}</p>
+			<a href="{% url 'twtlogout' %}" title="logout">logout</a>
 		</div>
 {% endblock %}
