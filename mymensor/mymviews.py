@@ -1060,7 +1060,7 @@ def twtmain(request):
     if twtcheck_key(request):
         return HttpResponseRedirect(reverse('twtinfo'))
     else:
-        return render_to_response('twtmain.html')
+        return render(request, 'twtmain.html')
 
 
 def twtunauth(request):
