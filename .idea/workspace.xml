@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/mymensor/templates/twtlogin.html" afterPath="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymfunctions.py" afterPath="$PROJECT_DIR$/mymensor/mymfunctions.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
     </list>
     <ignored path="mymensorapp.iws" />
@@ -48,8 +48,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="1052" column="0" lean-forward="true" selection-start-line="1052" selection-start-column="0" selection-end-line="1052" selection-end-column="0" />
+            <state relative-caret-position="189">
+              <caret line="1056" column="52" lean-forward="true" selection-start-line="1056" selection-start-column="52" selection-end-line="1056" selection-end-column="52" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -82,8 +82,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="787">
-              <caret line="99" column="66" lean-forward="false" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="66" />
+            <state relative-caret-position="714">
+              <caret line="95" column="80" lean-forward="true" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -119,8 +119,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="twtlogin.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mymensor/templates/twtlogin.html">
+      <file leaf-file-name="twtmain.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
@@ -252,8 +252,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtlogin.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtinfo.html" />
-        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
+        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
       </list>
     </option>
   </component>
@@ -725,13 +725,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02029" summary="15mar2017 16h07min">
-      <created>1489594063114</created>
-      <option name="number" value="02029" />
-      <option name="presentableId" value="LOCAL-02029" />
-      <option name="project" value="LOCAL" />
-      <updated>1489594063114</updated>
-    </task>
     <task id="LOCAL-02030" summary="15mar2017 16h07min">
       <created>1489594265716</created>
       <option name="number" value="02030" />
@@ -1068,7 +1061,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490898688427</updated>
     </task>
-    <option name="localTasksCounter" value="2078" />
+    <task id="LOCAL-02078" summary="30mar2017 19h44min">
+      <created>1490899487965</created>
+      <option name="number" value="02078" />
+      <option name="presentableId" value="LOCAL-02078" />
+      <option name="project" value="LOCAL" />
+      <updated>1490899487965</updated>
+    </task>
+    <option name="localTasksCounter" value="2079" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1143,7 +1143,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="16mar2017 09h55min" />
     <MESSAGE value="16mar2017 10h00min" />
     <MESSAGE value="16mar2017 10h09min" />
     <MESSAGE value="16mar2017 10h11min" />
@@ -1168,7 +1167,8 @@
     <MESSAGE value="30mar2017 19h17min" />
     <MESSAGE value="30mar2017 19h27min" />
     <MESSAGE value="30mar2017 19h31min" />
-    <option name="LAST_COMMIT_MESSAGE" value="30mar2017 19h31min" />
+    <MESSAGE value="30mar2017 19h44min" />
+    <option name="LAST_COMMIT_MESSAGE" value="30mar2017 19h44min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1488,18 +1488,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtlogin.html">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="41" lean-forward="false" selection-start-line="5" selection-start-column="41" selection-end-line="5" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="787">
-          <caret line="99" column="66" lean-forward="false" selection-start-line="99" selection-start-column="51" selection-end-line="99" selection-end-column="66" />
           <folding />
         </state>
       </provider>
@@ -1530,10 +1522,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="95" column="80" lean-forward="true" selection-start-line="95" selection-start-column="80" selection-end-line="95" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="1052" column="0" lean-forward="true" selection-start-line="1052" selection-start-column="0" selection-end-line="1052" selection-end-column="0" />
+        <state relative-caret-position="189">
+          <caret line="1056" column="52" lean-forward="true" selection-start-line="1056" selection-start-column="52" selection-end-line="1056" selection-end-column="52" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
