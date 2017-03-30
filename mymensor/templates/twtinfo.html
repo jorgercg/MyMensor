@@ -5,6 +5,6 @@
 			<img src="{{user.profile_image_url}}" />
 			<h3>{{user.name}}</h3>
 			<p>{{user.screen_name}}</p>
-			<a href="{% url 'twtlogout' %}" title="logout">logout</a>
+			<a href="{% url 'twtoauth_unauth' %}" title="logout">logout</a>
 		</div>
 {% endblock %}
