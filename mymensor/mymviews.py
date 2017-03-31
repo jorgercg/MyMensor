@@ -1067,6 +1067,8 @@ def twtmain(request):
     """
     # if we haven't authorised yet, direct to login page
     if twtcheck_key(request):
+        api = twtget_api(request)
+        user = api.me()
         return render(request, 'twtinfo.html')
     else:
         return render(request, 'twtmain.html')
