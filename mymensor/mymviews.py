@@ -1140,7 +1140,7 @@ def twtcallback(request):
     request.session['access_secret_tw'] = oauth.access_token_secret
     TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
                                             twtAccessTokenSecret=oauth.access_token_secret)
-    return render(request, 'index.html')
+    return HttpResponseRedirect( reverse('portfolio'))
 
 
 @login_required
