@@ -1141,7 +1141,12 @@ def twtcallback(request):
     TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
                                             twtAccessTokenSecret=oauth.access_token_secret)
     response = HttpResponseRedirect(reverse('twtinfo'))
-    return render(request, 'twtinfo.html')
+    twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
+    auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+    auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+    api = tweepy.API(auth)
+    user = api.me()
+    return render(request, 'twtinfo.html', {'user': user})
 
 
 @login_required
