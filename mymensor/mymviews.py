@@ -640,7 +640,7 @@ def saveValue(request):
             content_type="application/json"
         )
 
-
+@login_required
 def TagStatusView(request):
     if request.user.is_authenticated:
         try:
@@ -1069,7 +1069,7 @@ def twtmain(request):
     else:
         return render(request, 'twtmain.html')
 
-
+@login_required
 def twtunauth(request):
     """
     logout and remove all session data
@@ -1079,7 +1079,7 @@ def twtunauth(request):
         request.session.clear()
     return HttpResponseRedirect(reverse('twtmain'))
 
-
+@login_required
 def twtinfo(request):
     """
     display some user info to show we have authenticated successfully
@@ -1091,7 +1091,7 @@ def twtinfo(request):
     else:
         return HttpResponseRedirect(reverse('main'))
 
-
+@login_required
 def twtauth(request):
     # start the OAuth process, set up a handler with our details
     oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
@@ -1123,7 +1123,7 @@ def twtcallback(request):
     response = HttpResponseRedirect(reverse('twtinfo'))
     return response
 
-
+@login_required
 def twtcheck_key(request):
     """
     Check to see if we already have an access_key stored, if we do then we have already gone through
@@ -1137,6 +1137,7 @@ def twtcheck_key(request):
         return False
     return True
 
+@login_required
 def twtget_api(request):
 	# set up and return a twitter api object
 	oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
