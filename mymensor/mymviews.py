@@ -1100,6 +1100,7 @@ def twtinfo(request):
     else:
         return HttpResponseRedirect(reverse('twtmain'))
 
+
 @login_required
 def twtauth(request):
     # start the OAuth process, set up a handler with our details
@@ -1111,6 +1112,7 @@ def twtauth(request):
     # store the request token
     request.session['request_token'] = oauth.request_token
     return response
+
 
 @login_required
 def twtcallback(request):
@@ -1131,7 +1133,7 @@ def twtcallback(request):
     TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
                                             twtAccessTokenSecret=oauth.access_token_secret)
     response = HttpResponseRedirect(reverse('twtinfo'))
-    return response
+    return render(request, 'twtinfo.html')
 
 
 @login_required
