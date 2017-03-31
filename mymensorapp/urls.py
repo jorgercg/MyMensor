@@ -17,7 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
-from django.contrib.auth.decorators import login_required
 from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
 from instant.views import instant_auth
