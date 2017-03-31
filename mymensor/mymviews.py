@@ -147,11 +147,13 @@ def amazon_sns_processor(request):
                 media_received.save()
             broadcast(message='New media arrived on server', event_class="NewMedia",
                       data={"username": media_received.mediaMymensorAccount})
-            twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
-            auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-            auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-            api = tweepy.API(auth)
-            api.update_status(status=media_received.mediaObjectS3Key)
+            vp_received = media_received.vp
+            if vp_received.vpIsSharedToTwitter:
+                twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
+                auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+                auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+                api = tweepy.API(auth)
+                api.update_status(status=media_received.mediaObjectS3Key)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 

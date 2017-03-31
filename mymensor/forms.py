@@ -14,7 +14,7 @@ class VpForm(ModelForm):
 
     class Meta:
         model = Vp
-        fields = [ 'vpDescription', 'vpFrequencyUnit', 'vpFrequencyValue']
+        fields = [ 'vpDescription', 'vpFrequencyUnit', 'vpFrequencyValue', 'vpIsSharedToTwitter']
 
 
 class TagForm(ModelForm):
