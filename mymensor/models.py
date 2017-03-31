@@ -28,6 +28,11 @@ class MobileSetupBackup(models.Model):
     backupName = models.CharField(max_length=255, null=True)
     backupDBTimeStamp = models.DateTimeField(auto_now=True)
 
+class TwitterAccount(models.Model):
+    twtOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Twitter Owner")  ###### FK
+    twtAccessTokenKey = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Key")
+    twtAccessTokenSecret = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Secret")
+
 class Vp(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 

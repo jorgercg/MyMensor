@@ -11,7 +11,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import broadcast
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
-    TagStatusTable, MobileSetupBackup
+    TagStatusTable, MobileSetupBackup, TwitterAccount
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWT_API_KEY, \
@@ -147,6 +147,11 @@ def amazon_sns_processor(request):
                 media_received.save()
             broadcast(message='New media arrived on server', event_class="NewMedia",
                       data={"username": media_received.mediaMymensorAccount})
+            twitterAccount = TwitterAccount(twtOwner_id=media_user_id)
+            auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+            auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+            api = tweepy.API(auth)
+            api.update_status(status=media_received.mediaObjectS3Key)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
@@ -1080,7 +1085,6 @@ def twtinfo(request):
     if twtcheck_key(request):
         api = twtget_api(request)
         user = api.me()
-        api.update_status(status="Testing one....")
         return render(request, 'twtinfo.html', {'user': user})
     else:
         return HttpResponseRedirect(reverse('main'))
