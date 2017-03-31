@@ -4,7 +4,6 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/twtinfo.html" afterPath="$PROJECT_DIR$/mymensor/templates/twtinfo.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +47,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="1126" column="40" lean-forward="true" selection-start-line="1126" selection-start-column="40" selection-end-line="1126" selection-end-column="40" />
+            <state relative-caret-position="201">
+              <caret line="1069" column="44" lean-forward="false" selection-start-line="1069" selection-start-column="44" selection-end-line="1069" selection-end-column="44" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -62,6 +61,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="456">
+              <caret line="103" column="34" lean-forward="false" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -653,13 +662,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02053" summary="16mar2017 10h30min">
-      <created>1489661684796</created>
-      <option name="number" value="02053" />
-      <option name="presentableId" value="LOCAL-02053" />
-      <option name="project" value="LOCAL" />
-      <updated>1489661684796</updated>
-    </task>
     <task id="LOCAL-02054" summary="16mar2017 10h59min">
       <created>1489661991021</created>
       <option name="number" value="02054" />
@@ -996,7 +998,14 @@
       <option name="project" value="LOCAL" />
       <updated>1490986581467</updated>
     </task>
-    <option name="localTasksCounter" value="2102" />
+    <task id="LOCAL-02102" summary="31mar2017 20h05min">
+      <created>1490987156017</created>
+      <option name="number" value="02102" />
+      <option name="presentableId" value="LOCAL-02102" />
+      <option name="project" value="LOCAL" />
+      <updated>1490987156017</updated>
+    </task>
+    <option name="localTasksCounter" value="2103" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1071,7 +1080,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="17mar2017 09h57min" />
     <MESSAGE value="17mar2017 10h11min" />
     <MESSAGE value="30mar2017 19h17min" />
     <MESSAGE value="30mar2017 19h27min" />
@@ -1096,7 +1104,8 @@
     <MESSAGE value="31mar2017 19h36min" />
     <MESSAGE value="31mar2017 19h47min" />
     <MESSAGE value="31mar2017 19h50min" />
-    <option name="LAST_COMMIT_MESSAGE" value="31mar2017 19h50min" />
+    <MESSAGE value="31mar2017 20h05min" />
+    <option name="LAST_COMMIT_MESSAGE" value="31mar2017 20h05min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1386,14 +1395,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="103" column="34" lean-forward="false" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1460,10 +1461,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="103" column="34" lean-forward="false" selection-start-line="103" selection-start-column="34" selection-end-line="103" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="1126" column="40" lean-forward="true" selection-start-line="1126" selection-start-column="40" selection-end-line="1126" selection-end-column="40" />
+        <state relative-caret-position="201">
+          <caret line="1069" column="44" lean-forward="false" selection-start-line="1069" selection-start-column="44" selection-end-line="1069" selection-end-column="44" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>
