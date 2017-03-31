@@ -1078,9 +1078,11 @@ def twtunauth(request):
     logout and remove all session data
     """
     if twtcheck_key(request):
-        if request.session['access_key_tw'] and request.session['access_secret_tw']:
+        try:
             request.session['access_key_tw'].clear()
             request.session['access_secret_tw'].clear()
+        except KeyError:
+            pass
         twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
         twtAcc.delete()
     return HttpResponseRedirect(reverse('twtmain'))
