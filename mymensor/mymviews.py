@@ -1113,7 +1113,7 @@ def twtauth(request):
     request.session['request_token'] = oauth.request_token
     return response
 
-
+@login_required
 def twtcallback(request):
     verifier = request.GET.get('oauth_verifier')
     oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
