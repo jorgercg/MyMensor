@@ -1102,18 +1102,6 @@ def twtinfo(request):
 
 
 @login_required
-def twtauth(request):
-    # start the OAuth process, set up a handler with our details
-    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-    # direct the user to the authentication url
-    # if user is logged-in and authorized then transparently goto the callback URL
-    auth_url = oauth.get_authorization_url(True)
-    response = HttpResponseRedirect(auth_url)
-    # store the request token
-    request.session['request_token'] = oauth.request_token
-    return response
-
-@login_required
 def twtcallback(request):
     verifier = request.GET.get('oauth_verifier')
     oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)

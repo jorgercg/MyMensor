@@ -98,6 +98,5 @@ urlpatterns = [
     url(r'^twtmain/$', mymviews.twtmain, name='twtmain'),
     url(r'^twtoauthcallback/$', mymviews.twtcallback, name='twtauth_return'),
     url(r'^twtlogout/$', mymviews.twtunauth, name='twtoauth_unauth'),
-    url(r'^twtauth/$', mymviews.twtauth, name='twtoauth_auth'),
     url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
 ]
