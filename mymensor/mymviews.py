@@ -1077,10 +1077,10 @@ def twtinfo(request):
     """
     display some user info to show we have authenticated successfully
     """
-    print(twtcheck_key)
     if twtcheck_key(request):
         api = twtget_api(request)
         user = api.me()
+        api.update_status(status="Testing one....")
         return render(request, 'twtinfo.html', {'user': user})
     else:
         return HttpResponseRedirect(reverse('main'))
@@ -1113,8 +1113,6 @@ def twtcallback(request):
 
     request.session['access_key_tw'] = oauth.access_token
     request.session['access_secret_tw'] = oauth.access_token_secret
-    print(request.session['access_key_tw'])
-    print(request.session['access_secret_tw'])
     response = HttpResponseRedirect(reverse('twtinfo'))
     return response
 
