@@ -1078,7 +1078,6 @@ def twtunauth(request):
     logout and remove all session data
     """
     if twtcheck_key(request):
-        api = twtget_api(request)
         if request.session['access_key_tw'] and request.session['access_secret_tw']:
             request.session['access_key_tw'].clear()
             request.session['access_secret_tw'].clear()
@@ -1157,10 +1156,10 @@ def twtcheck_key(request):
 @login_required
 def twtget_api(request):
     oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-    if request.session['access_key_tw'] and request.session['access_secret_tw']:
+    try:
         access_key = request.session['access_key_tw']
         access_secret = request.session['access_secret_tw']
-    else:
+    except KeyError:
         twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
         access_key = twtAcc.twtAccessTokenKey
         access_secret = twtAcc.twtAccessTokenSecret
