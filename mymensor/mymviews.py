@@ -1096,7 +1096,10 @@ def twtinfo(request):
     display some user info to show we have authenticated successfully
     """
     if twtcheck_key(request):
-        api = twtget_api(request)
+        twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
+        auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+        auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+        api = tweepy.API(auth)
         user = api.me()
         return render(request, 'twtinfo.html', {'user': user})
     else:
