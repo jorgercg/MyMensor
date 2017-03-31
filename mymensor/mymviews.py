@@ -640,6 +640,7 @@ def saveValue(request):
             content_type="application/json"
         )
 
+
 @login_required
 def TagStatusView(request):
     if request.user.is_authenticated:
@@ -1058,6 +1059,7 @@ def movemedia(request):
             status=400
         )
 
+
 @login_required
 def twtmain(request):
     """
@@ -1069,6 +1071,7 @@ def twtmain(request):
     else:
         return render(request, 'twtmain.html')
 
+
 @login_required
 def twtunauth(request):
     """
@@ -1076,8 +1079,13 @@ def twtunauth(request):
     """
     if twtcheck_key(request):
         api = twtget_api(request)
-        request.session.clear()
+        if request.session['access_key_tw'] and request.session['access_secret_tw']:
+            request.session['access_key_tw'].clear()
+            request.session['access_secret_tw'].clear()
+        twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
+        twtAcc.delete()
     return HttpResponseRedirect(reverse('twtmain'))
+
 
 @login_required
 def twtinfo(request):
@@ -1090,6 +1098,7 @@ def twtinfo(request):
         return render(request, 'twtinfo.html', {'user': user})
     else:
         return HttpResponseRedirect(reverse('main'))
+
 
 @login_required
 def twtauth(request):
@@ -1119,9 +1128,11 @@ def twtcallback(request):
 
     request.session['access_key_tw'] = oauth.access_token
     request.session['access_secret_tw'] = oauth.access_token_secret
-    TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token, twtAccessTokenSecret=oauth.access_token_secret)
+    TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
+                                            twtAccessTokenSecret=oauth.access_token_secret)
     response = HttpResponseRedirect(reverse('twtinfo'))
     return response
+
 
 @login_required
 def twtcheck_key(request):
@@ -1131,18 +1142,28 @@ def twtcheck_key(request):
     """
     try:
         access_key = request.session.get('access_key_tw', None)
-        if not access_key:
-            return False
     except KeyError:
+        access_key = None
+    try:
+        twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
+        access_key = twtAcc.twtAccessTokenKey
+    except:
+        access_key = None
+    if not access_key:
         return False
     return True
 
+
 @login_required
 def twtget_api(request):
-	# set up and return a twitter api object
-	oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-	access_key = request.session['access_key_tw']
-	access_secret = request.session['access_secret_tw']
-	oauth.set_access_token(access_key, access_secret)
-	api = tweepy.API(oauth)
-	return api
+    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
+    if request.session['access_key_tw'] and request.session['access_secret_tw']:
+        access_key = request.session['access_key_tw']
+        access_secret = request.session['access_secret_tw']
+    else:
+        twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
+        access_key = twtAcc.twtAccessTokenKey
+        access_secret = twtAcc.twtAccessTokenSecret
+    oauth.set_access_token(access_key, access_secret)
+    api = tweepy.API(oauth)
+    return api

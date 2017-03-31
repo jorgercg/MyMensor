@@ -34,25 +34,3 @@ def setup_new_user(instance, **kwargs):
                           vpStdPhotoStorageURL=vpstdphotostorageurl, vpStdTagDescPhotoStorageURL=vpstdtagdescphotostorageurl,
                           vpStdMarkerPhotoStorageURL= vpstdmarkerphotostorageurl, vpStdPhotoFileSize=vpstdphotofilesize,
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
-
-def twtcheck_key(request):
-    """
-    Check to see if we already have an access_key stored, if we do then we have already gone through
-    OAuth. If not then we haven't and we probably need to.
-    """
-    try:
-        access_key = request.session.get('access_key_tw', None)
-        if not access_key:
-            return False
-    except KeyError:
-        return False
-    return True
-
-def twtget_api(request):
-	# set up and return a twitter api object
-	oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-	access_key = request.session['access_key_tw']
-	access_secret = request.session['access_secret_tw']
-	oauth.set_access_token(access_key, access_secret)
-	api = tweepy.API(oauth)
-	return api

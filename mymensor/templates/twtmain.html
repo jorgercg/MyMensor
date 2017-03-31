@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Twitter LogIn - {{ block.super }}{% endblock %}
 {% block content %}
-		<h1>Twitter LogIn</h1>
-		<p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
-		<p><a href="{% url 'twtoauth_auth' %}"><img src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png" alt="sign in with twitter" /></a></p>
+    <h1>Twitter Login</h1>
+    <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
+    <p><a href="{% url 'twtoauth_auth' %}"><img
+            src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"
+            alt="sign in with twitter"/></a></p>
 {% endblock %}

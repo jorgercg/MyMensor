@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block title %}Twitter Info - {{ block.super }}{% endblock %}
 {% block content %}
-		<div id="container">
-			<img src="{{user.profile_image_url}}" />
-			<h3>{{user.name}}</h3>
-			<p>{{user.screen_name}}</p>
-			<a href="{% url 'twtoauth_unauth' %}" title="logout">logout</a>
-		</div>
+    <div id="container">
+        <img src="{{ user.profile_image_url }}"/>
+        <h3>{{ user.name }}</h3>
+        <p>{{ user.screen_name }}</p>
+        <a href="{% url 'twtoauth_unauth' %}" title="logout">logout from Twitter</a>
+    </div>
 {% endblock %}
