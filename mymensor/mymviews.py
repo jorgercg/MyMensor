@@ -1079,8 +1079,8 @@ def twtunauth(request):
     """
     if twtcheck_key(request):
         try:
-            request.session['access_key_tw'].clear()
-            request.session['access_secret_tw'].clear()
+            request.session.delete('access_key_tw')
+            request.session.delete('access_secret_tw')
         except KeyError:
             pass
         twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
