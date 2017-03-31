@@ -1098,7 +1098,7 @@ def twtinfo(request):
         user = api.me()
         return render(request, 'twtinfo.html', {'user': user})
     else:
-        return HttpResponseRedirect(reverse('main'))
+        return HttpResponseRedirect(reverse('twtmain'))
 
 
 @login_required
