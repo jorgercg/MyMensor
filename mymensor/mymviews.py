@@ -1072,7 +1072,7 @@ def twtmain(request):
         auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
         api = tweepy.API(auth)
         user = api.me()
-        return render(request, 'twtinfo.html')
+        return render(request, 'twtinfo.html', {'user': user})
     else:
         return render(request, 'twtmain.html')
 
