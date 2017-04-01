@@ -161,6 +161,8 @@ def amazon_sns_processor(request):
                                                               'Key': media_received.mediaObjectS3Key},
                                                       ExpiresIn=3600)
                 filename = 'temp.jpg'
+                if media_received.mediaContentType == "video/mp4":
+                    filename = 'temp.mp4'
                 requesturl = requests.get(url, stream=True)
                 if requesturl.status_code == 200:
                     with open(filename, 'wb') as image:
@@ -169,7 +171,7 @@ def amazon_sns_processor(request):
                     api.update_with_media(filename, status=media_received.mediaObjectS3Key)
                     os.remove(filename)
                 else:
-                    print("Unable to download image")
+                    print("Unable to download media")
 
             return HttpResponse(status=200)
     return HttpResponse(status=400)
