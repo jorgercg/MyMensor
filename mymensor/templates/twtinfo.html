@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
-{% block title %}Twitter Account in Use Info - {{ block.super }}{% endblock %}
-{% block content %}
-    <div id="container">
-        <img src="{{ user.profile_image_url_https }}"/>
-        <h3>{{ user.name }}</h3>
-        <p>{{ user.screen_name }}</p>
-        <a href="{% url 'twtoauth_unauth' %}" title="logout">logout from Twitter</a>
-    </div>
-{% endblock %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}Twitter Acc - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="row">
+            <div class="col-sm-5">
+                <div id="twitterinfo">
+                    <img src="{{ user.profile_image_url_https }}"/>
+                    <h3>{{ user.name }}</h3>
+                    <p>{{ user.screen_name }}</p>
+                    <a href="{% url 'twtoauth_unauth' %}" class="btn btn-success">{% trans 'Logout from Twitter' %}</a>
+                </div>
+            </div>
+            <div class="col">
+                <p></p>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}
