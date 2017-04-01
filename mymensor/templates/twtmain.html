@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}Twitter LogIn - {{ block.super }}{% endblock %}
-{% block content %}
-    <h1>Twitter Login</h1>
-    <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
-    <p><a href="{% url 'twtoauth_auth' %}"><img
-            src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"
-            alt="sign in with twitter"/></a></p>
-{% endblock %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}Twitter SignIn - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="row">
+            <div class="col-sm-5">
+                <div id="twittersignin">
+                    <h2>Twitter Login</h2>
+                    <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
+                    <p><a href="{% url 'twtoauth_auth' %}"><img
+                            src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"
+                            alt="sign in with twitter"/></a></p>
+                </div>
+            </div>
+            <div class="col">
+                <p></p>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

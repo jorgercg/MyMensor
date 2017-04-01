@@ -1072,7 +1072,7 @@ def twtmain(request):
         auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
         api = tweepy.API(auth)
         user = api.me()
-        return render(request, 'twtinfo.html', {'user': user})
+        return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return render(request, 'twtmain.html')
 
@@ -1104,7 +1104,7 @@ def twtinfo(request):
         auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
         api = tweepy.API(auth)
         user = api.me()
-        return render(request, 'twtinfo.html', {'user': user})
+        return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return HttpResponseRedirect(reverse('twtmain'))
 
@@ -1140,7 +1140,7 @@ def twtcallback(request):
     request.session['access_secret_tw'] = oauth.access_token_secret
     TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
                                             twtAccessTokenSecret=oauth.access_token_secret)
-    return HttpResponseRedirect( reverse('portfolio'))
+    return HttpResponseRedirect( reverse('twtmain'))
 
 
 @login_required
