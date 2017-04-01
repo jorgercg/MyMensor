@@ -24,7 +24,7 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from .tables import TagStatusTableClass
-import csv, tweepy
+import csv, tweepy, os, requests
 from django.utils.encoding import smart_str
 
 
@@ -153,7 +153,24 @@ def amazon_sns_processor(request):
                 auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
                 auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
                 api = tweepy.API(auth)
-                api.update_status(status=media_received.mediaObjectS3Key)
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                url = s3Client.generate_presigned_url('get_object',
+                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                              'Key': media_received.mediaObjectS3Key},
+                                                      ExpiresIn=3600)
+                filename = 'temp.jpg'
+                requesturl = requests.get(url, stream=True)
+                if requesturl.status_code == 200:
+                    with open(filename, 'wb') as image:
+                        for chunk in requesturl:
+                            image.write(chunk)
+                    api.update_with_media(filename, status=media_received.mediaObjectS3Key)
+                    os.remove(filename)
+                else:
+                    print("Unable to download image")
+
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
@@ -1140,7 +1157,7 @@ def twtcallback(request):
     request.session['access_secret_tw'] = oauth.access_token_secret
     TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
                                             twtAccessTokenSecret=oauth.access_token_secret)
-    return HttpResponseRedirect( reverse('twtmain'))
+    return HttpResponseRedirect(reverse('twtmain'))
 
 
 @login_required
