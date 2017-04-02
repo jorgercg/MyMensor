@@ -2,9 +2,9 @@
 
 <script src="{% static 'instant/js/sockjs.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'instant/js/centrifuge.js' %}" type="text/javascript"></script>
-{% include "instant/client.html" %}
+<link rel="stylesheet" href="{% static 'instant/instant.css' %}" />
 <script type="text/javascript">
-	var debug = true;
-	{% include "instant/js/ui_handlers.js" %}
-	{% include "js/mymclient.js" %}
+    var debug = true;
+	{% include "js/handler.js" %}
+	{% include "instant/js/client.js" %}
 </script>
