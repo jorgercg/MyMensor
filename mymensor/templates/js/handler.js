@@ -1,4 +1,4 @@
-{% loadbinstant_tags %}
+{% load instant_tags %}
 
 function handlers_for_event(event_class, channel, message, data, site, uid) {
     if (( event_class == 'NewMedia' ) && ("{{user.get_username}}" == JSON.stringify(data.username).replace(/\"/g, ""))) {
