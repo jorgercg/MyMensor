@@ -145,8 +145,7 @@ def amazon_sns_processor(request):
                 return HttpResponse(status=200)
             else:
                 media_received.save()
-            publish(message='New media arrived on server', event_class="NewMedia",
-                      data={"username": media_received.mediaMymensorAccount})
+            publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public", data={"username": media_received.mediaMymensorAccount})
             vp_received = media_received.vp
             if vp_received.vpIsSharedToTwitter:
                 twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
