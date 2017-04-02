@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
-from instant.producers import broadcast
+from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount
 from mymensor.serializer import AmazonSNSNotificationSerializer
@@ -145,7 +145,7 @@ def amazon_sns_processor(request):
                 return HttpResponse(status=200)
             else:
                 media_received.save()
-            broadcast(message='New media arrived on server', event_class="NewMedia",
+            publish(message='New media arrived on server', event_class="NewMedia",
                       data={"username": media_received.mediaMymensorAccount})
             vp_received = media_received.vp
             if vp_received.vpIsSharedToTwitter:
