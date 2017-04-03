@@ -14,8 +14,8 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
     TagStatusTable, MobileSetupBackup, TwitterAccount
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
-from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWT_API_KEY, \
-    TWT_API_SECRET
+from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
+    TWITTER_SECRET
 import json, boto3, urllib
 from botocore.exceptions import ClientError
 from datetime import datetime
@@ -24,7 +24,8 @@ from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
 from .tables import TagStatusTableClass
-import csv, tweepy, os, requests
+import csv, os, requests
+from twython import Twython
 from django.utils.encoding import smart_str
 
 
@@ -149,9 +150,7 @@ def amazon_sns_processor(request):
             vp_received = media_received.vp
             if vp_received.vpIsSharedToTwitter:
                 twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
-                auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-                auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-                api = tweepy.API(auth)
+                twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
                 session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
                 s3Client = session.client('s3')
@@ -167,7 +166,8 @@ def amazon_sns_processor(request):
                     with open(filename, 'wb') as image:
                         for chunk in requesturl:
                             image.write(chunk)
-                    api.update_with_media(filename, status=media_received.mediaObjectS3Key)
+                    response = twitter_api.upload_media(media=image)
+                    twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
                     os.remove(filename)
                 else:
                     print("Unable to download media")
@@ -1118,10 +1118,8 @@ def twtinfo(request):
     """
     if twtcheck_key(request):
         twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
-        auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-        auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-        api = tweepy.API(auth)
-        user = api.me()
+        twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+        user = twitter_api.show_user()
         return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return HttpResponseRedirect(reverse('twtmain'))
@@ -1129,35 +1127,25 @@ def twtinfo(request):
 
 @login_required
 def twtauth(request):
-    # start the OAuth process, set up a handler with our details
-    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-    # direct the user to the authentication url
-    # if user is logged-in and authorized then transparently goto the callback URL
-    auth_url = oauth.get_authorization_url(True)
-    response = HttpResponseRedirect(auth_url)
-    # store the request token
-    request.session['request_token'] = oauth.request_token
+    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET)
+    auth = twitter_api.get_authentication_tokens(callback_url='https://app.mymensor.com/twtoauthcallback')
+    response = HttpResponseRedirect(auth['auth_url'])
+    request.session['oauth_token'] = auth['oauth_token']
+    request.session['oauth_token_secret'] = auth['oauth_token_secret']
     return response
 
 
 @login_required
 def twtcallback(request):
-    verifier = request.GET.get('oauth_verifier')
-    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-    token = request.session.get('request_token')
-    # remove the request token now we don't need it
-    request.session.delete('request_token')
-    oauth.request_token = token
-    # get the access token and store
-    try:
-        oauth.get_access_token(verifier)
-    except tweepy.TweepError:
-        print('Error, failed to get access token')
-
-    request.session['access_key_tw'] = oauth.access_token
-    request.session['access_secret_tw'] = oauth.access_token_secret
-    TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=oauth.access_token,
-                                            twtAccessTokenSecret=oauth.access_token_secret)
+    oauth_verifier = request.GET.get('oauth_verifier')
+    oauth_token = request.session['oauth_token']
+    oauth_token_secret = request.session['oauth_token_secret']
+    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, oauth_token, oauth_token_secret)
+    final_step = twitter_api.get_authorized_tokens(oauth_verifier)
+    request.session['access_key_tw'] = final_step['oauth_token']
+    request.session['access_secret_tw'] = final_step['oauth_token_secret']
+    TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=final_step['oauth_token'],
+                                            twtAccessTokenSecret=final_step['oauth_token_secret'])
     return HttpResponseRedirect(reverse('twtmain'))
 
 
@@ -1183,7 +1171,6 @@ def twtcheck_key(request):
 
 @login_required
 def twtget_api(request):
-    oauth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
     try:
         access_key = request.session['access_key_tw']
         access_secret = request.session['access_secret_tw']
@@ -1191,6 +1178,5 @@ def twtget_api(request):
         twtAcc = TwitterAccount.objects.get(twtOwner=request.user)
         access_key = twtAcc.twtAccessTokenKey
         access_secret = twtAcc.twtAccessTokenSecret
-    oauth.set_access_token(access_key, access_secret)
-    api = tweepy.API(oauth)
-    return api
+    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, access_key, access_secret)
+    return twitter_api
