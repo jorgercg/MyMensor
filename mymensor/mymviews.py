@@ -1099,7 +1099,7 @@ def twtmain(request):
         twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
         twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
                               twitterAccount.twtAccessTokenSecret)
-        user = twitter_api.show_user()
+        user = twitter_api.verify_credentials()
         return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return render(request, 'twtmain.html')
@@ -1129,7 +1129,7 @@ def twtinfo(request):
     if twtcheck_key(request):
         twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
         twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-        user = twitter_api.show_user()
+        user = twitter_api.verify_credentials()
         return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return HttpResponseRedirect(reverse('twtmain'))
