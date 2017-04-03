@@ -1097,10 +1097,9 @@ def twtmain(request):
     # if we haven't authorised yet, direct to login page
     if twtcheck_key(request):
         twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
-        auth = tweepy.OAuthHandler(TWT_API_KEY, TWT_API_SECRET)
-        auth.set_access_token(twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-        api = tweepy.API(auth)
-        user = api.me()
+        twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
+                              twitterAccount.twtAccessTokenSecret)
+        user = twitter_api.show_user()
         return render(request, 'twtinfo.html', {'twtuser': user})
     else:
         return render(request, 'twtmain.html')

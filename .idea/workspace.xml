@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymfunctions.py" afterPath="$PROJECT_DIR$/mymensor/mymfunctions.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,11 +47,11 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2691">
-              <caret line="180" column="44" lean-forward="false" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="44" />
+            <state relative-caret-position="164">
+              <caret line="1101" column="38" lean-forward="false" selection-start-line="1101" selection-start-column="38" selection-end-line="1101" selection-end-column="38" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
-                <marker date="1491233321000" expanded="true" signature="9048:11622" ph="..." />
+                <marker date="1491234639000" expanded="true" signature="9048:11622" ph="..." />
               </folding>
             </state>
           </provider>
@@ -212,8 +212,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/mediafeed.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/js/handler.js" />
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
-        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
+        <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
       </list>
     </option>
   </component>
@@ -721,13 +721,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02092" summary="31mar2017 14h09min">
-      <created>1490965779729</created>
-      <option name="number" value="02092" />
-      <option name="presentableId" value="LOCAL-02092" />
-      <option name="project" value="LOCAL" />
-      <updated>1490965779729</updated>
-    </task>
     <task id="LOCAL-02093" summary="31mar2017 17h50min">
       <created>1490979056383</created>
       <option name="number" value="02093" />
@@ -1064,7 +1057,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491234203213</updated>
     </task>
-    <option name="localTasksCounter" value="2141" />
+    <task id="LOCAL-02141" summary="03abr2017 16h44min">
+      <created>1491234280552</created>
+      <option name="number" value="02141" />
+      <option name="presentableId" value="LOCAL-02141" />
+      <option name="project" value="LOCAL" />
+      <updated>1491234280552</updated>
+    </task>
+    <option name="localTasksCounter" value="2142" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1083,7 +1083,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.49574015" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32882413" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24453694" sideWeight="0.52183175" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328125" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328125" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32778355" sideWeight="0.4978701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61041665" sideWeight="0.48935038" order="12" side_tool="false" content_ui="tabs" />
@@ -1140,7 +1140,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="01abr2017 17h05min" />
     <MESSAGE value="01abr2017 19h17min" />
     <MESSAGE value="01abr2017 19h30min" />
     <MESSAGE value="01abr2017 20h15min" />
@@ -1165,7 +1164,8 @@
     <MESSAGE value="03abr2017 16h18min" />
     <MESSAGE value="03abr2017 16h28min" />
     <MESSAGE value="03abr2017 16h43min" />
-    <option name="LAST_COMMIT_MESSAGE" value="03abr2017 16h43min" />
+    <MESSAGE value="03abr2017 16h44min" />
+    <option name="LAST_COMMIT_MESSAGE" value="03abr2017 16h44min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1503,7 +1503,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
+    <entry file="file://$PROJECT_DIR$/mymensor/mymfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1511,7 +1511,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/mymfunctions.py">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1521,11 +1521,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2691">
-          <caret line="180" column="44" lean-forward="false" selection-start-line="180" selection-start-column="44" selection-end-line="180" selection-end-column="44" />
+        <state relative-caret-position="164">
+          <caret line="1101" column="38" lean-forward="false" selection-start-line="1101" selection-start-column="38" selection-end-line="1101" selection-end-column="38" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
-            <marker date="1491233321000" expanded="true" signature="9048:11622" ph="..." />
+            <marker date="1491234639000" expanded="true" signature="9048:11622" ph="..." />
           </folding>
         </state>
       </provider>
