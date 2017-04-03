@@ -1,6 +1,3 @@
-from mymensorapp.settings import TWT_API_KEY, TWT_API_SECRET
-import tweepy
-
 def isfloat(value):
   try:
     float(value)
