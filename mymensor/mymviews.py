@@ -158,20 +158,31 @@ def amazon_sns_processor(request):
                                                       Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                               'Key': media_received.mediaObjectS3Key},
                                                       ExpiresIn=3600)
-                filename = 'temp.jpg'
+                if media_received.mediaContentType == "image/jpeg":
+                    filename = 'temp.jpg'
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as image:
+                            for chunk in requesturl:
+                                image.write(chunk)
+                        response = twitter_api.upload_media(media=image)
+                        twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
                 if media_received.mediaContentType == "video/mp4":
                     filename = 'temp.mp4'
-                requesturl = requests.get(url, stream=True)
-                if requesturl.status_code == 200:
-                    with open(filename, 'wb') as image:
-                        for chunk in requesturl:
-                            image.write(chunk)
-                    response = twitter_api.upload_media(media=image)
-                    twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
-                    os.remove(filename)
-                else:
-                    print("Unable to download media")
-
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as video:
+                            for chunk in requesturl:
+                                video.write(chunk)
+                        response = twitter_api.upload_video(media=video, media_type='video/mp4')
+                        twitter_api.update_status(status=media_received.mediaObjectS3Key,
+                                                  media_ids=[response['media_id']])
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
