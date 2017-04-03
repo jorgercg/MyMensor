@@ -165,6 +165,7 @@ def amazon_sns_processor(request):
                         with open(filename, 'wb') as image:
                             for chunk in requesturl:
                                 image.write(chunk)
+                        image = open(filename, 'rb')
                         response = twitter_api.upload_media(media=image)
                         twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
                         os.remove(filename)
@@ -177,6 +178,7 @@ def amazon_sns_processor(request):
                         with open(filename, 'wb') as video:
                             for chunk in requesturl:
                                 video.write(chunk)
+                        video = open(filename, 'rb')
                         response = twitter_api.upload_video(media=video, media_type='video/mp4')
                         twitter_api.update_status(status=media_received.mediaObjectS3Key,
                                                   media_ids=[response['media_id']])
