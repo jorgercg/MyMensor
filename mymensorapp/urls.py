@@ -99,4 +99,6 @@ urlpatterns = [
     url(r'^twtlogout/$', mymviews.twtunauth, name='twtoauth_unauth'),
     url(r'^twtauth/$', mymviews.twtauth, name='twtoauth_auth'),
     url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
+
+    url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
 ]

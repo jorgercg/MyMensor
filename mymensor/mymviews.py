@@ -1192,3 +1192,8 @@ def twtget_api(request):
         access_secret = twtAcc.twtAccessTokenSecret
     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, access_key, access_secret)
     return twitter_api
+
+
+@login_required
+def fbmain(request):
+    return render(request, 'fbmain.html')
