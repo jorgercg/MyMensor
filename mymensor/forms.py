@@ -7,7 +7,7 @@ class AssetForm(ModelForm):
 
     class Meta:
         model = Asset
-        fields = ['assetDescription', 'assetOwnerDescription', 'assetOwnerKey', 'assetRegistryCode', 'assetDciFrequencyUnit', 'assetDciFrequencyValue']
+        fields = ['assetDescription', 'assetOwnerDescription', 'assetDciFrequencyUnit', 'assetDciFrequencyValue']
 
 
 class VpForm(ModelForm):
