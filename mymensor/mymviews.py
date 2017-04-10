@@ -1210,7 +1210,7 @@ def fbsecstageauth(request):
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
             return HttpResponse(
-                json.dumps({"longlivetokenresponse": longlivetokenresponse.headers}),
+                longlivetokenresponse,
                 content_type="application/json",
                 status=200
             )
