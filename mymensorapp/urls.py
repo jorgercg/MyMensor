@@ -101,4 +101,6 @@ urlpatterns = [
     url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
 
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
+    url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
+    url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
 ]

@@ -15,7 +15,7 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
-    TWITTER_SECRET
+    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID
 import json, boto3, urllib
 from botocore.exceptions import ClientError
 from datetime import datetime
@@ -1197,3 +1197,63 @@ def twtget_api(request):
 @login_required
 def fbmain(request):
     return render(request, 'fbmain.html')
+
+@login_required
+def fbsecstageauth(request):
+    if request.method == 'POST':
+        userid = request.POST.get('userID')
+        username = request.POST.get('userName')
+        shrtAccessToken = request.POST.get('accessToken')
+        shrtAccessTokenIssuedAt = request.POST.get('issuedAt')
+        shrtAccessTokenSignRqst = request.POST.get('signedRequest')
+        data = json.dumps({'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken})
+        longlivetokenresponse = requests.get('https://graph.facebook.com/v2.8/oauth/access_token', data)
+        if longlivetokenresponse.status_code == 200:
+            return HttpResponse(
+                json.dumps({"longlivetokenresponse": longlivetokenresponse}),
+                content_type="application/json",
+                status=200
+            )
+        else:
+            return HttpResponse(
+                json.dumps({"Error": "error when retrieving long lived token"}),
+                content_type="application/json",
+                status=400
+            )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
+
+@login_required
+def fbsecstagelogout(request):
+    if request.method == 'POST':
+        mediaid = int(request.POST.get('mediaid'))
+        mediainstance = Media.objects.get(pk=mediaid)
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        try:
+            responseS3 = s3Client.delete_object(Bucket=AWS_S3_BUCKET_NAME,
+                                                Key=mediainstance.mediaObjectS3Key)
+            responseDJ = mediainstance.delete()
+        except ClientError as e:
+            error_code = e
+            return HttpResponse(
+                json.dumps({"error": error_code, "responseS3": responseS3, "responseDJ": responseDJ}),
+                content_type="application/json",
+                status=400
+            )
+        return HttpResponse(
+            json.dumps({"responseS3": responseS3, "responseDJ": responseDJ}),
+            content_type="application/json",
+            status=200
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
