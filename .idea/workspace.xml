@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/fbmain.html" afterPath="$PROJECT_DIR$/mymensor/templates/fbmain.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/twtmain.html" afterPath="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,9 +81,14 @@
       <file leaf-file-name="fbmain.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/fbmain.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="63" column="81" lean-forward="false" selection-start-line="63" selection-start-column="81" selection-end-line="63" selection-end-column="81" />
-              <folding />
+            <state relative-caret-position="699">
+              <caret line="124" column="143" lean-forward="false" selection-start-line="124" selection-start-column="143" selection-end-line="124" selection-end-column="143" />
+              <folding>
+                <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -197,7 +203,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/twtlogin.html" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtinfo.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
         <option value="$PROJECT_DIR$/../mymensorapp/venv/lib/python2.7/site-packages/instant/templates/instant/js/handlers.js" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/mymensor/templates/mymmessages.html" />
@@ -213,6 +218,7 @@
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/forms.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/fbmain.html" />
       </list>
     </option>
@@ -721,13 +727,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02101" summary="31mar2017 19h50min">
-      <created>1490986581467</created>
-      <option name="number" value="02101" />
-      <option name="presentableId" value="LOCAL-02101" />
-      <option name="project" value="LOCAL" />
-      <updated>1490986581467</updated>
-    </task>
     <task id="LOCAL-02102" summary="31mar2017 20h05min">
       <created>1490987156017</created>
       <option name="number" value="02102" />
@@ -1064,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491839856092</updated>
     </task>
-    <option name="localTasksCounter" value="2150" />
+    <task id="LOCAL-02150" summary="10abr2017 17h01min">
+      <created>1491840100461</created>
+      <option name="number" value="02150" />
+      <option name="presentableId" value="LOCAL-02150" />
+      <option name="project" value="LOCAL" />
+      <updated>1491840100461</updated>
+    </task>
+    <option name="localTasksCounter" value="2151" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1140,7 +1146,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="01abr2017 21h14min" />
     <MESSAGE value="02abr2017 10h22min" />
     <MESSAGE value="02abr2017 10h29min" />
     <MESSAGE value="02abr2017 10h39min" />
@@ -1165,7 +1170,8 @@
     <MESSAGE value="10abr2017 16h26min" />
     <MESSAGE value="10abr2017 16h54min" />
     <MESSAGE value="10abr2017 16h57min" />
-    <option name="LAST_COMMIT_MESSAGE" value="10abr2017 16h57min" />
+    <MESSAGE value="10abr2017 17h01min" />
+    <option name="LAST_COMMIT_MESSAGE" value="10abr2017 17h01min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1437,14 +1443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -1513,11 +1511,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/twtmain.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/fbmain.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="63" column="81" lean-forward="false" selection-start-line="63" selection-start-column="81" selection-end-line="63" selection-end-column="81" />
-          <folding />
+        <state relative-caret-position="699">
+          <caret line="124" column="143" lean-forward="false" selection-start-line="124" selection-start-column="143" selection-end-line="124" selection-end-column="143" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

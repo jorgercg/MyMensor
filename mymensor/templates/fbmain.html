@@ -9,14 +9,16 @@
             <div class="col-sm-5">
                 <div id="fbaccount">
                     <h2>Facebook Account</h2>
-                    <div id="fbloginbutton">
-                        <input id="loginButton" type="button" value="Login" onclick="authUser();" />
-                    </div>
-                    <div id="fblogoutbutton">
-                        <input id="logoutButton" type="button" value="Logout" onclick="logoutUser();" />
-                    </div>
                     <div id="status">
                     </div>
+                    <div id="fbloginbutton" class="btn-group">
+		                <a class='btn btn-primary disabled'><i class="fa fa-facebook" style="width:16px; height:20px"></i></a>
+		                <a class='btn btn-primary ' href='' style="width:12em">{% trans "Connect to Facebook" %}</a>
+	                </div>
+                    <div id="fblogoutbutton" class="btn-group">
+		                <a class='btn btn-primary disabled'><i class="fa fa-facebook" style="width:16px; height:20px"></i></a>
+		                <a class='btn btn-primary ' href='' style="width:12em">{% trans "Disconnect from Facebook" %}</a>
+	                </div>
                 </div>
             </div>
             <div class="col">
@@ -63,8 +65,7 @@
                     document.getElementById('loginButton').style.display = 'block';
                     document.getElementById('logoutButton').style.display = 'none';
                     // The person is not logged into your app or we are unable to tell.
-                    document.getElementById('status').innerHTML = 'Please log ' +
-                        'into this app.';
+                    document.getElementById('status').innerHTML = {% trans 'Please log in to distribute MyMensor captures to Facebook.' %};
                 }
             }
 
@@ -121,8 +122,7 @@
                 FB.api('/me', function (response) {
                     console.log('Successful login for: ' + response.name);
                     console.log(response);
-                    document.getElementById('status').innerHTML =
-                        'You are logged in to the Facebbok accout of ' + response.name;
+                    document.getElementById('status').innerHTML = {% trans 'You are distributing MyMensor captures to the Facebbok accout of ' %} + response.name;
                 });
             }
         </script>
