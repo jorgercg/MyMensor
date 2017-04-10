@@ -33,6 +33,16 @@ class TwitterAccount(models.Model):
     twtAccessTokenKey = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Key")
     twtAccessTokenSecret = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Secret")
 
+class FacebookAccount(models.Model):
+    fbOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Facebook Owner")  ###### FK
+    fbUserId = models.CharField(max_length=1024, null=True, verbose_name="Facebook User ID")
+    fbUserName = models.CharField(max_length=1024, null=True, verbose_name="Facebook User Name")
+    fbShortTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
+    fbShortTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True, verbose_name="Facebook Short Term Access Token Issue Time")
+    fbShortTermAccesTokenSignedRequest = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token Signed Request")
+    fbLongTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
+    fbLongTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True, verbose_name="Facebook Short Term Access Token Issue Time")
+
 class Vp(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
