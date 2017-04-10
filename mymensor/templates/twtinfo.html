@@ -8,10 +8,11 @@
         <div class="row">
             <div class="col-sm-5">
                 <div id="twitterinfo">
+                    <br/>
                     <img src="{{ twtuser.profile_image_url_https }}"/>
                     <h3>{{ twtuser.name }}</h3>
                     <p>{{ twtuser.screen_name }}</p>
-                    <a href="{% url 'twtoauth_unauth' %}" class="btn btn-seconday">&#xf099; {% trans ' Disconnect from Twitter' %}</a>
+                    <a href="{% url 'twtoauth_unauth' %}" class="fainsideinput btn btn-seconday">&#xf099; {% trans ' Disconnect from Twitter' %}</a>
                 </div>
             </div>
             <div class="col">
