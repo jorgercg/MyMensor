@@ -13,8 +13,8 @@
                     <br/>
                     <div id="status"></div>
                     <br/>
-                    <input id="loginButton" type="reset" value="&#xf230; {% trans " Connect to Facebook" %}" class="fainsideinput btn btn-primary" onclick="authUser();" />
-                    <input id="logoutButton" type="reset" value="&#xf230; {% trans " Disconnect from Facebook" %}" class="fainsideinput btn btn-secondary" onclick="logoutUser();" />
+                    <input id="loginButton" type="reset" value="&#xf230; {% trans "  Connect to Facebook" %}" class="fainsideinput btn btn-primary" onclick="authUser();" />
+                    <input id="logoutButton" type="reset" value="&#xf230; {% trans "  Disconnect from Facebook" %}" class="fainsideinput btn btn-secondary" onclick="logoutUser();" />
                 </div>
             </div>
             <div class="col">
@@ -25,6 +25,7 @@
     {% block javascript %}
         <script>
             var userID;
+            var userName;
             var accessToken;
             var expiresIn;
             var signedRequest;
@@ -35,6 +36,7 @@
             }
 
             function logoutUser() {
+                secondLevelLogout();
                 FB.logout(checkLoginState);
             }
 
@@ -55,7 +57,7 @@
                     // Hide the login button
                     document.getElementById('loginButton').style.display = 'none';
                     document.getElementById('logoutButton').style.display = 'block';
-                    testAPI();
+                    secondLevelAuth();
                 } else {
                     // Display the login button
                     document.getElementById('loginButton').style.display = 'block';
@@ -111,14 +113,18 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
 
-            // Here we run a very simple test of the Graph API after login is
-            // successful.  See statusChangeCallback() for when this call is made.
-            function testAPI() {
+            function secondLevelLogout() {
+
+            }
+
+            function secondLevelAuth() {
                 console.log('Welcome!  Fetching your information.... ');
                 FB.api('/me', function (response) {
                     console.log('Successful login for: ' + response.name);
+                    userName = response.name;
                     console.log(response);
                     document.getElementById('status').innerHTML = "{% trans 'You are distributing MyMensor captures to the Facebbok accout of ' %}" + response.name;
+
                 });
             }
         </script>
