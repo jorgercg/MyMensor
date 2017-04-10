@@ -10,7 +10,10 @@
                 <div id="fbaccount">
                     <h2>Facebook Account</h2>
                     <div id="fbloginbutton">
-                        <input id="loginButton" type="button" value="Login!" onclick="authUser();" />
+                        <input id="loginButton" type="button" value="Login" onclick="authUser();" />
+                    </div>
+                    <div id="fblogoutbutton">
+                        <input id="logoutButton" type="button" value="Logout" onclick="logoutUser();" />
                     </div>
                     <div id="status">
                     </div>
@@ -33,6 +36,10 @@
                 FB.login(checkLoginState, {scope: 'publish_actions'});
             }
 
+            function logoutUser() {
+                FB.logout(checkLoginState);
+            }
+
             // This is called with the results from from FB.getLoginStatus().
             function statusChangeCallback(response) {
                 console.log('statusChangeCallback');
@@ -49,10 +56,12 @@
                     signedRequest = response.authResponse.signedRequest;
                     // Hide the login button
                     document.getElementById('loginButton').style.display = 'none';
+                    document.getElementById('logoutButton').style.display = 'block';
                     testAPI();
                 } else {
                     // Display the login button
                     document.getElementById('loginButton').style.display = 'block';
+                    document.getElementById('logoutButton').style.display = 'none';
                     // The person is not logged into your app or we are unable to tell.
                     document.getElementById('status').innerHTML = 'Please log ' +
                         'into this app.';
