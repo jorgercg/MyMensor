@@ -1209,9 +1209,8 @@ def fbsecstageauth(request):
         params = {'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken}
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
-            print(longlivetokenresponse)
             return HttpResponse(
-                json.dumps({"longlivetokenresponse": longlivetokenresponse}),
+                json.dumps({"longlivetokenresponse": longlivetokenresponse.headers}),
                 content_type="application/json",
                 status=200
             )
