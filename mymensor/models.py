@@ -72,7 +72,8 @@ class Vp(models.Model):
     vpSuperMarkerId = models.IntegerField(default=0)
     vpFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, null=True, verbose_name="unit for the vp capture frequency")
     vpFrequencyValue = models.IntegerField(null=True, verbose_name="vp capture frequency")
-    vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name="share vp to Twitter")
+    vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name="share all of this vp captures to the Twitter Account set.")
+    vpIsSharedToFacebook = models.BooleanField(default=False, verbose_name="share all of this vp captures to the Facebook Account set.")
 
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
