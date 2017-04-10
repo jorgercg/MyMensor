@@ -116,7 +116,7 @@
                 FB.api('/me', function (response) {
                     console.log('Successful login for: ' + response.name);
                     console.log(response);
-                    document.getElementById('status').innerHTML = {% trans 'You are distributing MyMensor captures to the Facebbok accout of ' %}" + response.name;
+                    document.getElementById('status').innerHTML = "{% trans 'You are distributing MyMensor captures to the Facebbok accout of ' %}" + response.name;
                 });
             }
         </script>
