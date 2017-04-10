@@ -1206,8 +1206,8 @@ def fbsecstageauth(request):
         shrtAccessToken = request.POST.get('accessToken')
         shrtAccessTokenIssuedAt = request.POST.get('issuedAt')
         shrtAccessTokenSignRqst = request.POST.get('signedRequest')
-        data = json.dumps({'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken})
-        longlivetokenresponse = requests.get('https://graph.facebook.com/v2.8/oauth/access_token', data)
+        params = {'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken}
+        longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
             return HttpResponse(
                 json.dumps({"longlivetokenresponse": longlivetokenresponse}),
