@@ -1240,24 +1240,13 @@ def fbsecstageauth(request):
 @login_required
 def fbsecstagelogout(request):
     if request.method == 'POST':
-        mediaid = int(request.POST.get('mediaid'))
-        mediainstance = Media.objects.get(pk=mediaid)
-        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-        s3Client = session.client('s3')
-        try:
-            responseS3 = s3Client.delete_object(Bucket=AWS_S3_BUCKET_NAME,
-                                                Key=mediainstance.mediaObjectS3Key)
-            responseDJ = mediainstance.delete()
-        except ClientError as e:
-            error_code = e
-            return HttpResponse(
-                json.dumps({"error": error_code, "responseS3": responseS3, "responseDJ": responseDJ}),
-                content_type="application/json",
-                status=400
-            )
+        fbUserID = request.POST.get('fbUserID')
+        fbUserName = request.POST.get('fbUserName')
+        mymensorUserID = request.POST.get('mymensorUserID')
+        facebookaccount = FacebookAccount.objects.get(fbOwner_id=mymensorUserID, fbUserID=fbUserID, fbUserName=fbUserName)
+        facebookaccount.delete()
         return HttpResponse(
-            json.dumps({"responseS3": responseS3, "responseDJ": responseDJ}),
+            json.dumps({"Sucess": "facebook account deleted"}),
             content_type="application/json",
             status=200
         )
