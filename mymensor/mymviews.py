@@ -184,6 +184,18 @@ def amazon_sns_processor(request):
                         os.remove(filename)
                     else:
                         print("Unable to download media")
+            if vp_received.vpIsSharedToFacebook:
+                facebookAccount = FacebookAccount.objects.get(fbOwner_id=media_user_id)
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                url = s3Client.generate_presigned_url('get_object',
+                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                              'Key': media_received.mediaObjectS3Key},
+                                                      ExpiresIn=3600)
+                data = {'url':url, 'caption':'MyMensor Link', 'access_token':facebookAccount.fbLongTermAccesToken}
+                if media_received.mediaContentType == "image/jpeg":
+                    imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
