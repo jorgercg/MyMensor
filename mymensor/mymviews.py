@@ -1211,14 +1211,15 @@ def fbsecstageauth(request):
         if longlivetokenresponse.status_code == 200:
             timenow = datetime.utcnow()
             data = longlivetokenresponse.json()
-            FacebookAccount.objects.update_or_create(fbOwner_id=mymensorUserID,
-                                                     fbUserId=fbUserID,
-                                                     fbUserName=fbUserName,
-                                                     fbShortTermAccesToken=shrtAccessToken,
-                                                     fbShortTermAccesTokenSignedRequest=shrtAccessTokenSignRqst,
-                                                     fbLongTermAccesToken=data['access_token'],
-                                                     fbLongTermAccesTokenIssuedAt=timenow,
-                                                     fbLongTermAccesTokenExpiresIn=data['expires_in'])
+            facebookaccount = FacebookAccount.objects.get_or_create(fbOwner_id=mymensorUserID,
+                                                    fbUserId=fbUserID,
+                                                    fbUserName=fbUserName)
+            facebookaccount.fbShortTermAccesToken = shrtAccessToken
+            facebookaccount.fbShortTermAccesTokenSignedRequest = shrtAccessTokenSignRqst
+            facebookaccount.fbLongTermAccesToken = data['access_token']
+            facebookaccount.fbLongTermAccesTokenIssuedAt = timenow
+            facebookaccount.fbLongTermAccesTokenExpiresIn = data['expires_in']
+            facebookaccount.save()
             return HttpResponse(
                 longlivetokenresponse,
                 content_type="application/json",
@@ -1243,7 +1244,7 @@ def fbsecstagelogout(request):
         fbUserID = request.POST.get('fbUserID')
         fbUserName = request.POST.get('fbUserName')
         mymensorUserID = request.POST.get('mymensorUserID')
-        facebookaccount = FacebookAccount.objects.get(fbOwner_id=mymensorUserID, fbUserID=fbUserID, fbUserName=fbUserName)
+        facebookaccount = FacebookAccount.objects.get(fbOwner_id=mymensorUserID, fbUserId=fbUserID, fbUserName=fbUserName)
         facebookaccount.delete()
         return HttpResponse(
             json.dumps({"Sucess": "facebook account deleted"}),
