@@ -1211,7 +1211,7 @@ def fbsecstageauth(request):
         if longlivetokenresponse.status_code == 200:
             timenow = datetime.utcnow()
             data = longlivetokenresponse.json()
-            facebookaccount = FacebookAccount.objects.get_or_create(fbOwner_id=mymensorUserID,
+            facebookaccount, created = FacebookAccount.objects.get_or_create(fbOwner_id=mymensorUserID,
                                                     fbUserId=fbUserID,
                                                     fbUserName=fbUserName)
             facebookaccount.fbShortTermAccesToken = shrtAccessToken
