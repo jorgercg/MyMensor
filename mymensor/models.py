@@ -38,10 +38,10 @@ class FacebookAccount(models.Model):
     fbUserId = models.CharField(max_length=1024, null=True, verbose_name="Facebook User ID")
     fbUserName = models.CharField(max_length=1024, null=True, verbose_name="Facebook User Name")
     fbShortTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
-    fbShortTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True, verbose_name="Facebook Short Term Access Token Issue Time")
     fbShortTermAccesTokenSignedRequest = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token Signed Request")
     fbLongTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
     fbLongTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True, verbose_name="Facebook Short Term Access Token Issue Time")
+    fbLongTermAccesTokenExpiresIn = models.CharField(max_length=255, null=True, verbose_name="Facebook Long Term Access Token Expires In Seconds")
 
 class Vp(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)

@@ -11,15 +11,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
-    TagStatusTable, MobileSetupBackup, TwitterAccount
+    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
     TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID
 import json, boto3, urllib
 from botocore.exceptions import ClientError
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta, date
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat
 from django.db.models import Q, Count
@@ -1196,19 +1195,29 @@ def twtget_api(request):
 
 @login_required
 def fbmain(request):
-    return render(request, 'fbmain.html')
+    mymensoruserID = request.user.id
+    return render(request, 'fbmain.html', {'mymensoruserID':mymensoruserID})
 
 @login_required
 def fbsecstageauth(request):
     if request.method == 'POST':
-        userid = request.POST.get('userID')
-        username = request.POST.get('userName')
-        shrtAccessToken = request.POST.get('accessToken')
-        shrtAccessTokenIssuedAt = request.POST.get('issuedAt')
-        shrtAccessTokenSignRqst = request.POST.get('signedRequest')
+        fbUserID = request.POST.get('fbUserID')
+        fbUserName = request.POST.get('fbUserName')
+        shrtAccessToken = request.POST.get('fbAccessToken')
+        shrtAccessTokenSignRqst = request.POST.get('fbAccTknSignedRequest')
+        mymensorUserID = request.POST.get('mymensorUserID')
         params = {'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken}
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
+            timenow = datetime.utcnow()
+            FacebookAccount.objects.update_or_create(fbOwner_id=mymensorUserID,
+                                                     fbUserId=fbUserID,
+                                                     fbUserName=fbUserName,
+                                                     fbShortTermAccesToken=shrtAccessToken,
+                                                     fbShortTermAccesTokenSignedRequest=shrtAccessTokenSignRqst,
+                                                     fbLongTermAccesToken=longlivetokenresponse['access_token'],
+                                                     fbLongTermAccesTokenIssuedAt=timenow,
+                                                     fbLongTermAccesTokenExpiresIn=longlivetokenresponse['expires_in'])
             return HttpResponse(
                 longlivetokenresponse,
                 content_type="application/json",
@@ -1216,7 +1225,7 @@ def fbsecstageauth(request):
             )
         else:
             return HttpResponse(
-                json.dumps({"Error": "error when retrieving long lived token", "longlivetokenresponse": longlivetokenresponse}),
+                json.dumps({"Error": "error when retrieving long lived token"}),
                 content_type="application/json",
                 status=400
             )

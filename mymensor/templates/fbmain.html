@@ -24,12 +24,15 @@
     {% endblock %}
     {% block javascript %}
         <script>
-            var userID;
-            var userName;
-            var accessToken;
-            var expiresIn;
-            var issuedAt;
-            var signedRequest;
+            var fbUserID;
+            var fbUserName;
+            var fbAccessToken;
+            var fbAccTknExpiresIn;
+            var fbAccTknIssuedAt;
+            var fbAccTknSignedRequest;
+            var mymensorUserID;
+
+            mymensorUserID = {{ mymensoruserID }}
 
             // Login in the current user via Facebook and ask for email permission
             function authUser() {
@@ -135,7 +138,7 @@
                 $.ajax({
                     url : "secstgauth/", // the endpoint
                     type : "POST", // http method
-                    data : { userID:userID, userName:userName, accessToken:accessToken, issuedAt:issuedAt, signedRequest:signedRequest }, // data sent with the post request
+                    data : { fbUserID:fbUserID, fbUserName:fbUserName, fbAccessToken:fbAccessToken, fbAccTknSignedRequest:fbAccTknSignedRequest, mymensorUserID:mymensorUserID }, // data sent with the post request
                     // handle a successful response
                     success : function(json) {
                         console.log(json); // log the returned json to the console
