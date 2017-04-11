@@ -1210,15 +1210,14 @@ def fbsecstageauth(request):
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
             timenow = datetime.utcnow()
-            body = json.loads(longlivetokenresponse)
             FacebookAccount.objects.update_or_create(fbOwner_id=mymensorUserID,
                                                      fbUserId=fbUserID,
                                                      fbUserName=fbUserName,
                                                      fbShortTermAccesToken=shrtAccessToken,
                                                      fbShortTermAccesTokenSignedRequest=shrtAccessTokenSignRqst,
-                                                     fbLongTermAccesToken=body['access_token'],
+                                                     fbLongTermAccesToken=longlivetokenresponse['access_token'],
                                                      fbLongTermAccesTokenIssuedAt=timenow,
-                                                     fbLongTermAccesTokenExpiresIn=body['expires_in'])
+                                                     fbLongTermAccesTokenExpiresIn=longlivetokenresponse['expires_in'])
             return HttpResponse(
                 longlivetokenresponse,
                 content_type="application/json",
