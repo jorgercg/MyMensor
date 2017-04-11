@@ -1228,7 +1228,7 @@ def fbsecstageauth(request):
             return HttpResponse(
                 json.dumps({"Error": "error when retrieving long lived token"}),
                 content_type="application/json",
-                status=400
+                status=longlivetokenresponse.status_code
             )
     else:
         return HttpResponse(

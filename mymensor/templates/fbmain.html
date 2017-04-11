@@ -52,10 +52,9 @@
                 // for FB.getLoginStatus().
                 if (response.status === 'connected') {
                     // Logged into your app and Facebook.
-                    userID = response.authResponse.userID;
-                    accessToken = response.authResponse.accessToken;
-                    expiresIn = response.authResponse.expiresIn;
-                    signedRequest = response.authResponse.signedRequest;
+                    fbUserID = response.authResponse.userID;
+                    fbAccessToken = response.authResponse.accessToken;
+                    fbAccTknSignedRequest = response.authResponse.signedRequest;
                     // Hide the login button
                     document.getElementById('loginButton').style.display = 'none';
                     document.getElementById('logoutButton').style.display = 'block';
@@ -84,7 +83,7 @@
                     cookie: true,  // enable cookies to allow the server to access
                                    // the session
                     xfbml: true,  // parse social plugins on this page
-                    version: 'v2.7' // use graph api version 2.8
+                    version: 'v2.8' // use graph api version 2.8
                 });
 
                 // Now that we've initialized the JavaScript SDK, we call
@@ -123,7 +122,7 @@
                 console.log('Welcome!  Second level user auth. ');
                 FB.api('/me', function (response) {
                     console.log('Successful login for: ' + response.name);
-                    userName = response.name;
+                    fbUserName = response.name;
                     console.log(response);
                     document.getElementById('status').innerHTML = "{% trans 'You are distributing MyMensor captures to the Facebbok accout of ' %}" + response.name;
                     secondLevelAuthAjax();
