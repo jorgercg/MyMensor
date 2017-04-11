@@ -1155,8 +1155,10 @@ def twtcallback(request):
     final_step = twitter_api.get_authorized_tokens(oauth_verifier)
     request.session['access_key_tw'] = final_step['oauth_token']
     request.session['access_secret_tw'] = final_step['oauth_token_secret']
-    TwitterAccount.objects.update_or_create(twtOwner=request.user, twtAccessTokenKey=final_step['oauth_token'],
-                                            twtAccessTokenSecret=final_step['oauth_token_secret'])
+    twitteraccount, created = TwitterAccount.objects.get_or_create(twtOwner=request.user)
+    twitteraccount.twtAccessTokenKey=final_step['oauth_token']
+    twitteraccount.twtAccessTokenSecret=final_step['oauth_token_secret']
+    twitteraccount.save()
     return HttpResponseRedirect(reverse('twtmain'))
 
 
