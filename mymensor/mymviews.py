@@ -149,60 +149,58 @@ def amazon_sns_processor(request):
             vp_received = media_received.vp
             if vp_received.vpIsSharedToTwitter:
                 twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
-                if twitterAccount:
-                    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-                    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-                    s3Client = session.client('s3')
-                    url = s3Client.generate_presigned_url('get_object',
-                                                          Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                  'Key': media_received.mediaObjectS3Key},
-                                                          ExpiresIn=3600)
-                    if media_received.mediaContentType == "image/jpeg":
-                        filename = 'temp.jpg'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as image:
-                                for chunk in requesturl:
-                                    image.write(chunk)
-                            image = open(filename, 'rb')
-                            response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
-                            os.remove(filename)
-                        else:
-                            print("Unable to download media")
-                    if media_received.mediaContentType == "video/mp4":
-                        filename = 'temp.mp4'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as video:
-                                for chunk in requesturl:
-                                    video.write(chunk)
-                            video = open(filename, 'rb')
-                            response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=media_received.mediaObjectS3Key,
-                                                      media_ids=[response['media_id']])
-                            os.remove(filename)
-                        else:
-                            print("Unable to download media")
+                twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                url = s3Client.generate_presigned_url('get_object',
+                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                              'Key': media_received.mediaObjectS3Key},
+                                                      ExpiresIn=3600)
+                if media_received.mediaContentType == "image/jpeg":
+                    filename = 'temp.jpg'
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as image:
+                            for chunk in requesturl:
+                                image.write(chunk)
+                        image = open(filename, 'rb')
+                        response = twitter_api.upload_media(media=image)
+                        twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
+                if media_received.mediaContentType == "video/mp4":
+                    filename = 'temp.mp4'
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as video:
+                            for chunk in requesturl:
+                                video.write(chunk)
+                        video = open(filename, 'rb')
+                        response = twitter_api.upload_video(media=video, media_type='video/mp4')
+                        twitter_api.update_status(status=media_received.mediaObjectS3Key,
+                                                  media_ids=[response['media_id']])
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
             if vp_received.vpIsSharedToFacebook:
                 facebookAccount = FacebookAccount.objects.get(fbOwner_id=media_user_id)
-                if facebookAccount:
-                    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-                    s3Client = session.client('s3')
-                    url = s3Client.generate_presigned_url('get_object',
-                                                          Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                  'Key': media_received.mediaObjectS3Key},
-                                                          ExpiresIn=3600)
-                    if media_received.mediaContentType == "image/jpeg":
-                        data = {'url': url, 'caption': 'MyMensor Link https://app.mymensor.com',
-                                'access_token': facebookAccount.fbLongTermAccesToken}
-                        imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
-                    if media_received.mediaContentType == "video/mp4":
-                        data = {'file_url': url, 'description': 'MyMensor Link https://app.mymensor.com',
-                                'access_token': facebookAccount.fbLongTermAccesToken}
-                        vidpostresponse = requests.post('https://graph.facebook.com/v2.8/me/videos', data=data)
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                url = s3Client.generate_presigned_url('get_object',
+                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                              'Key': media_received.mediaObjectS3Key},
+                                                      ExpiresIn=3600)
+                if media_received.mediaContentType == "image/jpeg":
+                    data = {'url': url, 'caption': 'MyMensor Link https://app.mymensor.com',
+                            'access_token': facebookAccount.fbLongTermAccesToken}
+                    imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
+                if media_received.mediaContentType == "video/mp4":
+                    data = {'file_url': url, 'description': 'MyMensor Link https://app.mymensor.com',
+                            'access_token': facebookAccount.fbLongTermAccesToken}
+                    vidpostresponse = requests.post('https://graph.facebook.com/v2.8/me/videos', data=data)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
