@@ -151,7 +151,7 @@ def amazon_sns_processor(request):
             if vp_received.vpIsSharedToTwitter:
                 try:
                     twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
-                except twitterAccount.DoesNotExist:
+                except:
                     twitterAccount = None
                 if twitterAccount is not None:
                     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
@@ -193,7 +193,7 @@ def amazon_sns_processor(request):
             if vp_received.vpIsSharedToFacebook:
                 try:
                     facebookAccount = FacebookAccount.objects.get(fbOwner_id=media_user_id)
-                except facebookAccount.DoesNotExist:
+                except:
                     facebookAccount = None
                 if facebookAccount is not None:
                     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
