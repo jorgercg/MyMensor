@@ -172,7 +172,7 @@ def amazon_sns_processor(request):
                         reply_to = [from_email]
                         email = EmailMessage(subject=subject, body=message, from_email=from_email, to=recipient_list,
                                              reply_to=reply_to)
-                        email.attach(filename, image, 'image/jpeg')
+                        email.attach(image.name, image.read(), 'image/jpeg')
                         email.send(fail_silently=False)
                         os.remove(filename)
                     else:
@@ -190,7 +190,7 @@ def amazon_sns_processor(request):
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         email = EmailMessage(subject=subject, body=message, from_email=from_email, to=recipient_list, reply_to=reply_to)
-                        email.attach(filename, video, 'video/mp4')
+                        email.attach(video.name, video.read(), 'video/mp4')
                         email.send(fail_silently=False)
                         os.remove(filename)
                     else:
