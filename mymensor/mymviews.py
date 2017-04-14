@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, render_to_response
@@ -147,6 +148,51 @@ def amazon_sns_processor(request):
                 media_received.save()
             publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public", data={"username": media_received.mediaMymensorAccount})
             vp_received = media_received.vp
+            if vp_received.vpShareEmail is not None:
+                emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                url = s3Client.generate_presigned_url('get_object',
+                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                              'Key': media_received.mediaObjectS3Key},
+                                                      ExpiresIn=3600)
+                if media_received.mediaContentType == "image/jpeg":
+                    filename = 'temp.jpg'
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as image:
+                            for chunk in requesturl:
+                                image.write(chunk)
+                        image = open(filename, 'rb')
+                        subject = "Testing auto email - Image"
+                        message = media_received.mediaObjectS3Key
+                        from_email = emailsender.email
+                        recipient_list = [vp_received.vpShareEmail]
+                        email = EmailMessage(subject, message, from_email, recipient_list, from_email)
+                        email.attach_file(image, 'image/jpeg')
+                        email.send(fail_silently=False)
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
+                if media_received.mediaContentType == "video/mp4":
+                    filename = 'temp.mp4'
+                    requesturl = requests.get(url, stream=True)
+                    if requesturl.status_code == 200:
+                        with open(filename, 'wb') as video:
+                            for chunk in requesturl:
+                                video.write(chunk)
+                        video = open(filename, 'rb')
+                        subject = "Testing auto email - Video"
+                        message = media_received.mediaObjectS3Key
+                        from_email = emailsender.email
+                        recipient_list = [vp_received.vpShareEmail]
+                        email = EmailMessage(subject, message, from_email, recipient_list, from_email)
+                        email.attach_file(video, 'video/mp4')
+                        email.send(fail_silently=False)
+                        os.remove(filename)
+                    else:
+                        print("Unable to download media")
             twitterAccount = None
             if vp_received.vpIsSharedToTwitter:
                 try:
