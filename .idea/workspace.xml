@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/migrations/0050_auto_20170414_1143.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/forms.py" afterPath="$PROJECT_DIR$/mymensor/forms.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/mymensor/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="524">
-              <caret line="76" column="66" lean-forward="false" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+              <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -209,12 +208,12 @@
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtinfo.html" />
-        <option value="$PROJECT_DIR$/mymensor/forms.py" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/fbmain.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
+        <option value="$PROJECT_DIR$/mymensor/forms.py" />
       </list>
     </option>
   </component>
@@ -762,13 +761,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02142" summary="03abr2017 16h50min">
-      <created>1491234646839</created>
-      <option name="number" value="02142" />
-      <option name="presentableId" value="LOCAL-02142" />
-      <option name="project" value="LOCAL" />
-      <updated>1491234646839</updated>
-    </task>
     <task id="LOCAL-02143" summary="03abr2017 17h01min">
       <created>1491235315098</created>
       <option name="number" value="02143" />
@@ -1105,7 +1097,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492041909492</updated>
     </task>
-    <option name="localTasksCounter" value="2191" />
+    <task id="LOCAL-02191" summary="14abr2017 12h43min">
+      <created>1492170209399</created>
+      <option name="number" value="02191" />
+      <option name="presentableId" value="LOCAL-02191" />
+      <option name="project" value="LOCAL" />
+      <updated>1492170209400</updated>
+    </task>
+    <option name="localTasksCounter" value="2192" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1119,11 +1118,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.49574015" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32882413" sideWeight="0.4978701" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24453694" sideWeight="0.52183175" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32778355" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32778355" sideWeight="0.47816828" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32778355" sideWeight="0.4978701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6097815" sideWeight="0.48935038" order="12" side_tool="false" content_ui="tabs" />
@@ -1180,7 +1180,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="10abr2017 19h32min" />
     <MESSAGE value="10abr2017 19h44min" />
     <MESSAGE value="10abr2017 19h47min" />
     <MESSAGE value="10abr2017 19h52min" />
@@ -1205,7 +1204,8 @@
     <MESSAGE value="12abr2017 21h38min" />
     <MESSAGE value="13abr2017 01h00min" />
     <MESSAGE value="13abr2017 01h05min" />
-    <option name="LAST_COMMIT_MESSAGE" value="13abr2017 01h05min" />
+    <MESSAGE value="14abr2017 12h43min" />
+    <option name="LAST_COMMIT_MESSAGE" value="14abr2017 12h43min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1489,14 +1489,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/twtinfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1548,10 +1540,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" column="25" lean-forward="true" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="524">
-          <caret line="76" column="66" lean-forward="false" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="16" />
           <folding />
         </state>
       </provider>
