@@ -74,7 +74,7 @@ class Vp(models.Model):
     vpFrequencyValue = models.IntegerField(null=True, verbose_name="vp capture frequency")
     vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name="share all of this vp captures to the Twitter Account configured.")
     vpIsSharedToFacebook = models.BooleanField(default=False, verbose_name="share all of this vp captures to the Facebook Account configured.")
-    vpShareEmail = models.EmailField(null=True, verbose_name="send all of this vp captures to the following email.")
+    vpShareEmail = models.EmailField(null=True, blank=True, verbose_name="send all of this vp captures to the following email.")
 
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
