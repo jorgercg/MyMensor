@@ -151,15 +151,19 @@ def amazon_sns_processor(request):
                 media_received.save()
             publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public", data={"username": media_received.mediaMymensorAccount})
             vp_received = media_received.vp
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+            s3Client = session.client('s3')
+            url = s3Client.generate_presigned_url('get_object',
+                                                  Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                          'Key': media_received.mediaObjectS3Key},
+                                                  ExpiresIn=3600)
+            if media_received.mediaRemark is None:
+                mediaRemarkToBeShared = 'link to media'
+            else:
+                mediaRemarkToBeShared = media_received.mediaRemark + ' + link to media'
             if vp_received.vpShareEmail is not None:
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
-                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-                s3Client = session.client('s3')
-                url = s3Client.generate_presigned_url('get_object',
-                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                              'Key': media_received.mediaObjectS3Key},
-                                                      ExpiresIn=3600)
                 if media_received.mediaContentType == "image/jpeg":
                     filename = 'temp.jpg'
                     requesturl = requests.get(url, stream=True)
@@ -169,7 +173,7 @@ def amazon_sns_processor(request):
                                 image.write(chunk)
                         image = open(filename, 'rb')
                         subject = "Testing auto email - Image"
-                        message = media_received.mediaRemark
+                        message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         reply_to = [from_email]
@@ -189,7 +193,7 @@ def amazon_sns_processor(request):
                                 video.write(chunk)
                         video = open(filename, 'rb')
                         subject = "Testing auto email - Video"
-                        message = media_received.mediaRemark
+                        message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         reply_to = [from_email]
@@ -207,13 +211,6 @@ def amazon_sns_processor(request):
                     twitterAccount = None
                 if twitterAccount is not None:
                     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
-                    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-                    s3Client = session.client('s3')
-                    url = s3Client.generate_presigned_url('get_object',
-                                                          Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                  'Key': media_received.mediaObjectS3Key},
-                                                          ExpiresIn=3600)
                     if media_received.mediaContentType == "image/jpeg":
                         filename = 'temp.jpg'
                         requesturl = requests.get(url, stream=True)
@@ -223,7 +220,7 @@ def amazon_sns_processor(request):
                                     image.write(chunk)
                             image = open(filename, 'rb')
                             response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=media_received.mediaRemark, media_ids=[response['media_id']])
+                            twitter_api.update_status(status=mediaRemarkToBeShared, media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
                             print("Unable to download media")
@@ -236,7 +233,7 @@ def amazon_sns_processor(request):
                                     video.write(chunk)
                             video = open(filename, 'rb')
                             response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=media_received.mediaRemark,
+                            twitter_api.update_status(status=mediaRemarkToBeShared,
                                                       media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
@@ -248,19 +245,12 @@ def amazon_sns_processor(request):
                 except:
                     facebookAccount = None
                 if facebookAccount is not None:
-                    session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                                    aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-                    s3Client = session.client('s3')
-                    url = s3Client.generate_presigned_url('get_object',
-                                                          Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                  'Key': media_received.mediaObjectS3Key},
-                                                          ExpiresIn=3600)
                     if media_received.mediaContentType == "image/jpeg":
-                        data = {'url': url, 'caption': media_received.mediaRemark,
+                        data = {'url': url, 'caption': mediaRemarkToBeShared,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
                     if media_received.mediaContentType == "video/mp4":
-                        data = {'file_url': url, 'description': media_received.mediaRemark,
+                        data = {'file_url': url, 'description': mediaRemarkToBeShared,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         vidpostresponse = requests.post('https://graph.facebook.com/v2.8/me/videos', data=data)
             return HttpResponse(status=200)
