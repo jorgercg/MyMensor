@@ -99,6 +99,16 @@
                                                               data-placement="top"
                                                               title="{% trans 'Capture location not certified' %}"></span>
                                                     {% endif %}
+                                                    {% if media.mediaRemark is not None %}
+                                                        <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                                              data-placement="top"
+                                                              title="{{ media.mediaRemark }}"></span>
+                                                    {% else %}
+                                                        <span class="fa fa-clock-o timenotcert" data-toggle="tooltip"
+                                                              data-placement="top"
+                                                              title="{% trans 'No remark for this media' %}"></span>
+                                                    {% endif %}
+
                                                 </p>
                                             </div>
                                             <div class="card-block">
