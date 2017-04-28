@@ -133,6 +133,15 @@
                                     class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' means that the capture location was not certified by MyMensor' %}
                             </li>
                         {% endif %}
+                        {% if mediaRemark is not None %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-edit remarkpresent"></span>{{ mediaRemark }}
+                            </li>
+                        {% else %}
+                            <li class="list-group-item"><span
+                                    class="fa fa-edit remarknotpresent"></span>{% trans ' No remark for this media' %}
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="card card-outline-primary m-2" style="width: 50rem;">

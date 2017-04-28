@@ -1097,6 +1097,7 @@ def vpDetailView(request):
                                                      'loclatitude': mediainstance.mediaLatitude,
                                                      'loclongitude': mediainstance.mediaLongitude,
                                                      'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
+                                                     'mediaRemark':mediainstance.mediaRemark,
                                                      })
         else:
             return render(request, 'index.html')
