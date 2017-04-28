@@ -136,6 +136,7 @@ def amazon_sns_processor(request):
             media_received.mediaTimeIsCertified = obj_metadata['timecertified']
             media_received.mediaArIsOn = obj_metadata['isarswitchon']
             media_received.mediaTimeStamp = obj_metadata['datetime']
+            media_received.mediaRemark = obj_metadata['remark']
 
             # Presently the Mobile App DOES NOT PROCESS the VPs
             media_received.mediaProcessed = False
@@ -166,7 +167,7 @@ def amazon_sns_processor(request):
                                 image.write(chunk)
                         image = open(filename, 'rb')
                         subject = "Testing auto email - Image"
-                        message = media_received.mediaObjectS3Key
+                        message = media_received.mediaRemark
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         reply_to = [from_email]
@@ -186,7 +187,7 @@ def amazon_sns_processor(request):
                                 video.write(chunk)
                         video = open(filename, 'rb')
                         subject = "Testing auto email - Video"
-                        message = media_received.mediaObjectS3Key
+                        message = media_received.mediaRemark
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         reply_to = [from_email]
@@ -220,7 +221,7 @@ def amazon_sns_processor(request):
                                     image.write(chunk)
                             image = open(filename, 'rb')
                             response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=media_received.mediaObjectS3Key, media_ids=[response['media_id']])
+                            twitter_api.update_status(status=media_received.mediaRemark, media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
                             print("Unable to download media")
@@ -233,7 +234,7 @@ def amazon_sns_processor(request):
                                     video.write(chunk)
                             video = open(filename, 'rb')
                             response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=media_received.mediaObjectS3Key,
+                            twitter_api.update_status(status=media_received.mediaRemark,
                                                       media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
@@ -253,11 +254,11 @@ def amazon_sns_processor(request):
                                                                   'Key': media_received.mediaObjectS3Key},
                                                           ExpiresIn=3600)
                     if media_received.mediaContentType == "image/jpeg":
-                        data = {'url': url, 'caption': 'MyMensor Link https://app.mymensor.com',
+                        data = {'url': url, 'caption': media_received.mediaRemark,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
                     if media_received.mediaContentType == "video/mp4":
-                        data = {'file_url': url, 'description': 'MyMensor Link https://app.mymensor.com',
+                        data = {'file_url': url, 'description': media_received.mediaRemark,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         vidpostresponse = requests.post('https://graph.facebook.com/v2.8/me/videos', data=data)
             return HttpResponse(status=200)

@@ -170,6 +170,7 @@ class Media(models.Model):
     mediaDBTimeStamp = models.DateTimeField(auto_now=True)
     mediaTimeStamp = models.DateTimeField(auto_now=False, null=True)
     mediaMymensorAccount = models.CharField(max_length=255, null=True)
+    mediaRemark = models.CharField(max_length=1000, null=True)
     mediaProcessed = models.NullBooleanField(null=True)
     mediaStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, null=True)
 
