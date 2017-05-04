@@ -46,11 +46,11 @@ def landingView(request):
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3 = session.resource('s3')
             mediaObjectS3KeyEncoded = urllib.quote(mediaObjectS3Key)
-            object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3Key)
+            object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
             object.load()
             obj_metadata = object.metadata
             mediaCheckURL = u''.join(['https://app.mymensor.com/landing/?type=']) + str(messagetype)
-            mediaCheckURL = mediaCheckURL + '&key=' + mediaObjectS3Key + '&signature=' + requestsignature
+            mediaCheckURL = mediaCheckURL + '&key=' + mediaObjectS3KeyEncoded + '&signature=' + requestsignature
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
