@@ -31,7 +31,7 @@ from django.utils.encoding import smart_str
 
 def landingView(request):
     if request.method == "GET":
-        mediaObjectS3Key = urllib.unquote(request.GET.get('key', 0))
+        mediaObjectS3Key = request.GET.get('key', 0)
         messagetype = request.GET.get('type', 0)
         requestsignature = request.GET.get('signature', 0)
         if mediaObjectS3Key != 0 and messagetype != 0 and requestsignature != 0:
@@ -100,7 +100,6 @@ def amazon_sns_processor(request):
             amzs3msg.s3_bucket_arn = message_items['s3']['bucket']['arn']
             amzs3msg.s3_bucket_ownerIdentity_principalId = message_items['s3']['bucket']['ownerIdentity']['principalId']
             amzs3msg.s3_object_key = urllib.unquote(message_items['s3']['object']['key'])
-            amzs3msg.s3_object_key = urllib.unquote(amzs3msg.s3_object_key)
             amzs3msg.s3_object_size = message_items['s3']['object']['size']
             amzs3msg.s3_object_eTag = message_items['s3']['object']['eTag']
             amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
