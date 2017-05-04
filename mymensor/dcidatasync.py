@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-import boto3
+import boto3, urllib
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
@@ -29,7 +29,8 @@ def loaddcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
-    s3_object_key = request.user.username + "/cfg/1/vps/vps.xml"
+    usernameEncoded = urllib.quote(request.user.username)
+    s3_object_key = usernameEncoded + "/cfg/1/vps/vps.xml"
     object = s3.Object(AWS_S3_BUCKET_NAME, s3_object_key)
     vpsfilecontents = object.get()['Body'].read()
 
@@ -106,9 +107,9 @@ def loaddcicfg(request):
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
         loadvp.vpListNumber = int(VpNumber[i])
-        loadvp.vpStdPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/descvp"+str(VpNumber[i])+".png"
-        loadvp.vpStdTagDescPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/tagdescvp"+str(VpNumber[i])+".png"
-        loadvp.vpStdMarkerPhotoStorageURL = request.user.username + "/cfg/1/vps/dsc/markervp"+str(VpNumber[i])+".png"
+        loadvp.vpStdPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/descvp"+str(VpNumber[i])+".png"
+        loadvp.vpStdTagDescPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/tagdescvp"+str(VpNumber[i])+".png"
+        loadvp.vpStdMarkerPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/markervp"+str(VpNumber[i])+".png"
         loadvp.vpStdPhotoFileSize = int(VpDescFileSize[i])
         loadvp.vpStdMarkerPhotoFileSize = int(VpMarkerFileSize[i])
         loadvp.vpXDistance = int(VpXCameraDistance[i])
@@ -135,7 +136,8 @@ def writedcicfg(request):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
-    s3_object_key = request.user.username + "/cfg/1/vps/vps.xml"
+    usernameEncoded = urllib.quote(request.user.username)
+    s3_object_key = usernameEncoded + "/cfg/1/vps/vps.xml"
 
     vpsdata = ET.Element("VpsData")
     parameters = ET.SubElement(vpsdata, "Parameters")

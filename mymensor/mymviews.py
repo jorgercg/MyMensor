@@ -900,22 +900,23 @@ def createdcicfgbackup(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username)
+        usernameEncoded = urllib.quote(request.user.username)
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncoded)
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
                 if "_backup" not in key_to_backup['Key']:
-                    replace = request.user.username
-                    withstring = request.user.username + "_backup"
+                    replace = usernameEncoded
+                    withstring = usernameEncoded + "_backup"
                     newprefix, found, endpart = key_to_backup['Key'].partition(replace)
                     newprefix += withstring + endpart
                     obj = bucket.Object(newprefix)
                     obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
-                backupinstance = MobileSetupBackup(backupOwner=request.user)
-                backupinstance.backupDescription = "Manual user-requested backup"
-                backupinstance.backupName = request.user.username + "_backup"
-                backupinstance.save()
+            backupinstance = MobileSetupBackup(backupOwner=request.user)
+            backupinstance.backupDescription = "Manual user-requested backup"
+            backupinstance.backupName = usernameEncoded + "_backup"
+            backupinstance.save()
             return HttpResponse(
                 json.dumps({"result": "backup_saved"}),
                 content_type="application/json",
@@ -942,13 +943,14 @@ def restoredcicfgbackup(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=request.user.username + "_backup")
+        usernameEncoded = urllib.quote(request.user.username)
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncoded + "_backup")
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
-                replace = request.user.username + "_backup"
-                withstring = request.user.username
+                replace = usernameEncoded + "_backup"
+                withstring = usernameEncoded
                 newprefix, found, endpart = key_to_backup['Key'].partition(replace)
                 newprefix += withstring + endpart
                 obj = bucket.Object(newprefix)
