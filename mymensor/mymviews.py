@@ -99,7 +99,8 @@ def amazon_sns_processor(request):
             amzs3msg.s3_bucket_name = message_items['s3']['bucket']['name']
             amzs3msg.s3_bucket_arn = message_items['s3']['bucket']['arn']
             amzs3msg.s3_bucket_ownerIdentity_principalId = message_items['s3']['bucket']['ownerIdentity']['principalId']
-            amzs3msg.s3_object_key = urllib.unquote(message_items['s3']['object']['key']).decode()
+            amzs3msg.s3_object_key = urllib.unquote(message_items['s3']['object']['key'])
+            amzs3msg.s3_object_key = urllib.unquote(amzs3msg.s3_object_key)
             amzs3msg.s3_object_size = message_items['s3']['object']['size']
             amzs3msg.s3_object_eTag = message_items['s3']['object']['eTag']
             amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
