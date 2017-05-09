@@ -34,23 +34,23 @@
                 </div>
                 {% if mediaProcessed and mediaArIsOn %}
                 {% else %}
-                <div id="vpselectormovemedia" class="mym-dash-item">
-                    <select id="vpselectedmovemedia" name="vpselectedmovemedia"
-                            data-placeholder={% trans "Choose a VP to move the media to:" %}>
-                        {% for assetvp in assetvps %}
-                            <option id="movemediatovp{{ assetvp.vpNumber }}" value="{{ assetvp.vpNumber }}"
-                                    {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %}VP#{{ assetvp.vpNumber }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div id="movemedia" class="mym-dash-item">
-                    <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm move"
-                            data-toggle="tooltip" data-placement="top"
-                            title="{% trans 'Click to move media to the selected VP# folder' %}"
-                            data-confirm="{% trans "Please confirm that you want to move this media." %}">
-                        <span class="fa fa-arrows"></span>
-                    </button>
-                </div>
+                    <div id="vpselectormovemedia" class="mym-dash-item">
+                        <select id="vpselectedmovemedia" name="vpselectedmovemedia"
+                                data-placeholder={% trans "Choose a VP to move the media to:" %}>
+                            {% for assetvp in assetvps %}
+                                <option id="movemediatovp{{ assetvp.vpNumber }}" value="{{ assetvp.vpNumber }}"
+                                        {% if assetvp.vpNumber == vpselected %}selected{% endif %}>{% trans "Move to " %}VP#{{ assetvp.vpNumber }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="movemedia" class="mym-dash-item">
+                        <button id="movemediabtn" type="button" class="btn btn-outline-info btn-sm move"
+                                data-toggle="tooltip" data-placement="top"
+                                title="{% trans 'Click to move media to the selected VP# folder' %}"
+                                data-confirm="{% trans "Please confirm that you want to move this media." %}">
+                            <span class="fa fa-arrows"></span>
+                        </button>
+                    </div>
                 {% endif %}
                 <div id="sharebtns" class="mym-dash-item">
                     <div class="ssk-xs ssk-group">
@@ -72,7 +72,8 @@
             </div>
         </div>
         <hr>
-        <div class="d-flex align-content-start flex-wrap">
+        <div class="row">
+        <div class="col-sm-6">
             {% if mediaContentType == "image/jpeg" %}
                 <div class="card card-outline-primary m-2" style="width: 50rem;">
                     <div class="card-block">
@@ -144,6 +145,8 @@
                         {% endif %}
                     </ul>
                 </div>
+                </div>
+                <div class="col-sm-6">
                 <div class="card card-outline-primary m-2" style="width: 50rem;">
                     <div class="card-block">
                         <p class="card-text font-weight-bold">Location details</p>
@@ -232,6 +235,8 @@
                         {% endif %}
                     </ul>
                 </div>
+                </div>
+                <div class="col-sm-6">
                 <div class="card card-outline-primary m-2" style="width: 50rem;">
                     <div class="card-block">
                         <p class="card-text font-weight-bold">Location details</p>
@@ -248,7 +253,7 @@
                 </div>
             {% endif %}
 
-        </div>
+            </div>
         <!-- Modal -->
         <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
              aria-hidden="true">
