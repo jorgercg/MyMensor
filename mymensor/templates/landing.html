@@ -50,7 +50,8 @@
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span></a>
     </nav>
     <div class="container-fluid">
-        <div class="d-flex justify-content-center flex-wrap">
+        <div class="row">
+        <div class="col-sm-6">
             {% if mediaContentType == "image/jpeg" %}
                 <div class="card card-outline-primary m-2 landingcard">
                     <div class="card-block">
@@ -114,6 +115,8 @@
                         {% endif %}
                     </ul>
                 </div>
+                </div>
+                <div class="col-sm-6">
                 <div class="card card-outline-primary m-2 landingcard">
                     <div class="card-block">
                         <p class="card-text font-weight-bold">Location details</p>
