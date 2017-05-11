@@ -339,34 +339,37 @@ p {
     padding-left: 1rem;
 }
 
-
 @media (min-width: 576px) {
-  body {
-    overflow: visible;
-  }
+    body {
+        overflow: visible;
+    }
 }
 
 @media (min-width: 768px) {
-  body {
-    overflow: visible;
-  }
+    body {
+        overflow: visible;
+    }
 }
 
 @media (min-width: 992px) {
-  body {
-    overflow: visible;
-  }
+    body {
+        overflow: visible;
+    }
 }
 
 @media (min-width: 1345px) {
-  body {
-    overflow: hidden;
-  }
+    body {
+        overflow: hidden;
+    }
+
+    #landingmapid {
+        height: 520px;
+    }
 }
 
 @media print {
     #landingmapid {
-        height: 320px;
+        height: 530px;
     }
 
     .list-group-item {
