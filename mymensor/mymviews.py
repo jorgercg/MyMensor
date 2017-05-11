@@ -288,14 +288,16 @@ def portfolio(request):
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
+        media_vpnumbers = []
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                     Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
+            media_vpnumbers.append(media.mediaVpNumber)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist})
+                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist, 'media_vpnumbers':media_vpnumbers})
 
 
 # Media Feed View
