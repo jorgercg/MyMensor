@@ -343,17 +343,26 @@ p {
     body {
         overflow: visible;
     }
+    #landingmapid {
+        height: 165px;
+    }
 }
 
 @media (min-width: 768px) {
     body {
         overflow: visible;
     }
+    #landingmapid {
+        height: 220px;
+    }
 }
 
 @media (min-width: 992px) {
     body {
         overflow: visible;
+    }
+    #landingmapid {
+        height: 284px;
     }
 }
 
@@ -363,9 +372,20 @@ p {
     }
 
     #landingmapid {
+        height: 386px;
+    }
+}
+
+@media (min-width: 1800px) {
+    body {
+        overflow: hidden;
+    }
+
+    #landingmapid {
         height: 520px;
     }
 }
+
 
 @media print {
     #landingmapid {
