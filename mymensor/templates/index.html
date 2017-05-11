@@ -239,6 +239,10 @@
                                     {% endif %}
                                 {% endif %}
                             {% endif %}
+                        {% empty %}
+                            <p>{% trans 'No media for VP#' %}</p>
+                            <span>{{ vp.vpNumber }}</span>
+                            <p>{% trans ' in this timeframe' %}</p>
                         {% endfor %}
                     </div>
                     <hr>
