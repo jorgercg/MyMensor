@@ -255,9 +255,7 @@
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <p>{% trans 'No media for VP#' %}</p>
-                            <span>{{ vp.vpNumber }}</span>
-                            <p>{% trans '  in the selected timeframe.' %}</p>
+                            <p>{% trans 'No media for VP#' %}{{ vp.vpNumber }}{% trans ' in the selected timeframe.' %}</p>
                         {% endif %}
                     </div>
                     <hr>
