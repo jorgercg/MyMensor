@@ -14,31 +14,33 @@
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
                 <form role="form" action="." method="post">
                     {% csrf_token %}
-                    <p class="required"><label class="required" for="id_username">Username:</label> <input autofocus=""
-                                                                                                           id="id_username"
-                                                                                                           maxlength="150"
-                                                                                                           name="username"
-                                                                                                           type="text"
-                                                                                                           required/>
-                        <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
-                    </p>
-                    <p class="required"><label class="required" for="id_email">E-mail:</label> <input id="id_email"
-                                                                                                      name="email"
-                                                                                                      type="email"
-                                                                                                      required/></p>
+                    <div class="form-group">
+                        <label class="required" for="id_username">Username</label>
+                        <input autofocus="" id="id_username" maxlength="150" type="text" class="form-control" aria-describedby="usernameHelp"
+                               placeholder="Enter username">
+                        <small id="usernamelHelp" class="form-text text-muted">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="id_email">Your Email Address</label>
+                        <input id="id_email" type="email" class="form-control" placeholder="Password">
+                    </div>
+
+
+
                     <p class="required"><label class="required" for="id_password1">Password:</label> <input
                             id="id_password1" name="password1" type="password" required/></p>
                     <p class="required"><label class="required" for="id_password2">Password confirmation:</label> <input
                             id="id_password2" name="password2" type="password" required/> <span class="helptext">Enter the same password as before, for verification.</span>
                     </p>
-                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}">
+                    <input class="btn btn-success btn-block" type="submit"
+                           value="{% trans 'Agree and Create Account' %}">
                 </form>
             </div>
+            <p></p>
+            <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a>.</p>
         </div>
         <div class="col-sm">
-            <p></p>
-            <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a>.
-                </p>
+
         </div>
     </div>
 {% endblock %}
