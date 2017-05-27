@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters%}
+{% load i18n mymfilters %}
 
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
@@ -11,11 +11,27 @@
         <div class="col-sm">
             <div id="signinform">
                 <p></p>
-                <h2>{% trans "Sign in" %}</h2>
+                <h2>{% trans "Create your MyMensor Account." %}</h2>
                 <form role="form" action="." method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <input class="btn btn-success" type="submit" value="{% trans 'Sign in' %}">
+                    <p class="required"><label class="required" for="id_username">Username:</label> <input autofocus=""
+                                                                                                           id="id_username"
+                                                                                                           maxlength="150"
+                                                                                                           name="username"
+                                                                                                           type="text"
+                                                                                                           required/>
+                        <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+                    </p>
+                    <p class="required"><label class="required" for="id_email">E-mail:</label> <input id="id_email"
+                                                                                                      name="email"
+                                                                                                      type="email"
+                                                                                                      required/></p>
+                    <p class="required"><label class="required" for="id_password1">Password:</label> <input
+                            id="id_password1" name="password1" type="password" required/></p>
+                    <p class="required"><label class="required" for="id_password2">Password confirmation:</label> <input
+                            id="id_password2" name="password2" type="password" required/> <span class="helptext">Enter the same password as before, for verification.</span>
+                    </p>
+                    <input class="btn btn-success" type="submit" value="{% trans 'Agree and Create Account' %}">
                 </form>
             </div>
         </div>
