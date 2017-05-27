@@ -32,16 +32,17 @@
                         <input name="password1" type="password" class="form-control" id="id_password1" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label class="required" for="id_password2">Password Confirmation:</label>
+                        <label class="required" for="id_password2">Password Confirmation</label>
                         <input name="password2" type="password" class="form-control" id="id_password2" aria-describedby="passwordHelp" placeholder="Password" required>
                         <small id="passwordHelp" class="form-text text-muted">Enter the same password as before, for verification.</small>
                     </div>
+                    <p class="text-justify">By creating and Account you agree with our <a href="https://mymensor.com/terms">Terms of Service</a> and <a href="https://mymensor.com/privacy">Privacy Policy.</a></p>
                     <input class="btn btn-success btn-block" type="submit"
                            value="{% trans 'Agree and Create Account' %}">
                 </form>
             </div>
             <p></p>
-            <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a>.</p>
+            <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a></p>
         </div>
         <div class="col-sm">
 
