@@ -92,11 +92,11 @@
                             style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">Register</strong></a></li>
                     {% endif %}
                 </ul>
-                <ul class="navbar-nav  ml-auto">
+                <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Logged in as: {{ user.get_username }}
+                                <strong style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">Logged in as: {{ user.get_username }}</strong>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
