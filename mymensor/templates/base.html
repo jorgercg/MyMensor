@@ -91,8 +91,10 @@
                         <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}" id="regnewuser" href="{% url 'registration_register' %}"><strong
                             style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">Register</strong></a></li>
                     {% endif %}
+                </ul>
+                <ul class="navbar-nav  ml-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item dropdown ml-auto">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Logged in as: {{ user.get_username }}
                             </a>
