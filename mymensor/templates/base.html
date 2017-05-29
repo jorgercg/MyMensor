@@ -58,7 +58,7 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'portfolio' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}"
+        <a class="navbar-brand mr-auto" href="{% url 'portfolio' %}"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}"
                                                                   width="46" height="46" alt=""></a>
         <div id="navbarNavDropdown" class="collapse navbar-collapse">
 
@@ -96,7 +96,7 @@
                     </li>
                 </ul>
             {% else %}
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}"
                                             href="{% url 'auth_login' %}">Login</a></li>
                     <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}"
