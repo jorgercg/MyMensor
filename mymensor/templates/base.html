@@ -96,7 +96,7 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <strong style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">Logged in as: {{ user.get_username }}</strong>
+                                <strong style="color: #28669F;">Logged in as: {{ user.get_username }}</strong>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
