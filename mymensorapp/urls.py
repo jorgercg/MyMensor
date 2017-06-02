@@ -21,8 +21,9 @@ from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
 from instant.views import instant_auth
 from mymensor import mymviews
+from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     url(r'^$', RedirectView.as_view(url='/portfolio/')),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
@@ -103,4 +104,4 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
-]
+)
