@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/vpdetail.html" afterPath="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/settings.py" afterPath="$PROJECT_DIR$/mymensorapp/settings.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="483">
@@ -74,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensorapp/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-466">
-              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="214">
+              <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
               <folding>
                 <element signature="e#332#341#0" expanded="true" />
               </folding>
@@ -210,7 +210,6 @@
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/login.html" />
-        <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
         <option value="$PROJECT_DIR$/locale/pt/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/locale/en/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
@@ -218,6 +217,7 @@
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
+        <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
       </list>
     </option>
   </component>
@@ -668,13 +668,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02228" summary="11mai2017 16h51min">
-      <created>1494517876875</created>
-      <option name="number" value="02228" />
-      <option name="presentableId" value="LOCAL-02228" />
-      <option name="project" value="LOCAL" />
-      <updated>1494517876875</updated>
-    </task>
     <task id="LOCAL-02229" summary="11mai2017 16h51min">
       <created>1494518123332</created>
       <option name="number" value="02229" />
@@ -1011,7 +1004,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496484113182</updated>
     </task>
-    <option name="localTasksCounter" value="2277" />
+    <task id="LOCAL-02277" summary="03jun2017 11h16min">
+      <created>1496485015433</created>
+      <option name="number" value="02277" />
+      <option name="presentableId" value="LOCAL-02277" />
+      <option name="project" value="LOCAL" />
+      <updated>1496485015433</updated>
+    </task>
+    <option name="localTasksCounter" value="2278" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1024,7 +1024,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.49574015" order="6" side_tool="false" content_ui="tabs" />
@@ -1092,7 +1092,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="29mai2017 20h52min" />
     <MESSAGE value="29mai2017 20h54min" />
     <MESSAGE value="29mai2017 20h57min" />
     <MESSAGE value="29mai2017 21h01min" />
@@ -1117,7 +1116,8 @@
     <MESSAGE value="03jun2017 10h53min" />
     <MESSAGE value="03jun2017 10h55min" />
     <MESSAGE value="03jun2017 11h01min" />
-    <option name="LAST_COMMIT_MESSAGE" value="03jun2017 11h01min" />
+    <MESSAGE value="03jun2017 11h16min" />
+    <option name="LAST_COMMIT_MESSAGE" value="03jun2017 11h16min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1438,16 +1438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-466">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#332#341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2370">
@@ -1469,6 +1459,16 @@
         <state relative-caret-position="483">
           <caret line="360" column="33" lean-forward="true" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="153" column="0" lean-forward="true" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+          <folding>
+            <element signature="e#332#341#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
