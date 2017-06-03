@@ -237,7 +237,7 @@
                 console.log(startdate);
                 console.log(enddate);
                 console.log({% url 'tagprocessing' %});
-                window.location={% url 'tagprocessing' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+                window.location='{% url 'tagprocessing' %}'+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
             });
 
         });
@@ -252,7 +252,7 @@
             $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
-                window.location={% url 'tagprocessing' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
+                window.location='{% url 'tagprocessing' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
             });
         });
 
