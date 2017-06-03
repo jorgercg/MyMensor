@@ -5,7 +5,7 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="row">
+        <div class="row" style="padding-bottom: 20px">
             <div class="col-sm-5">
                 <div id="assetsetup">
                     <form role="form" action="." method="post"> {% csrf_token %}
@@ -34,7 +34,6 @@
             <div class="col">
                 <p></p>
             </div>
-            <p></p>
         </div>
     {% endblock %}
 {% else %}
