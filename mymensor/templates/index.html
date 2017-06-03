@@ -273,8 +273,6 @@
 
                     var start = moment("{{ start }}");
                     var end = moment("{{ end }}");
-                    console.log("{{ user }}" );
-                    console.log("{{ user.get_username }}");
 
                     function cb(start, end) {
                         $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
