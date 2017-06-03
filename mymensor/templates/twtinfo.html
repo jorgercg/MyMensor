@@ -5,18 +5,20 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="row">
-            <div class="col-sm-5">
-                <div id="twitterinfo">
-                    <br/>
-                    <img src="{{ twtuser.profile_image_url_https }}"/>
-                    <h3>{{ twtuser.name }}</h3>
-                    <p>{{ twtuser.screen_name }}</p>
-                    <a href="{% url 'twtoauth_unauth' %}" type="button" class="fainsideinput btn btn-seconday">&#xf099; {% trans ' Disconnect from Twitter' %}</a>
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <div id="twitterinfo">
+                        <br/>
+                        <img src="{{ twtuser.profile_image_url_https }}"/>
+                        <h3>{{ twtuser.name }}</h3>
+                        <p>{{ twtuser.screen_name }}</p>
+                        <a href="{% url 'twtoauth_unauth' %}" type="button" class="fainsideinput btn btn-seconday">&#xf099; {% trans ' Disconnect from Twitter' %}</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <p></p>
+                <div class="col">
+                    <p></p>
+                </div>
             </div>
         </div>
     {% endblock %}

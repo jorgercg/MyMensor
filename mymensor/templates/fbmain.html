@@ -5,20 +5,24 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="row">
-            <div class="col-sm-5">
-                <div id="fbaccount">
-                    <br/>
-                    <h2>Facebook Account</h2>
-                    <br/>
-                    <div id="status"></div>
-                    <br/>
-                    <input id="loginButton" type="reset" value="&#xf230; {% trans "  Connect to Facebook" %}" class="fainsideinput btn btn-primary" onclick="authUser();" />
-                    <input id="logoutButton" type="reset" value="&#xf230; {% trans "  Disconnect from Facebook" %}" class="fainsideinput btn btn-secondary" onclick="logoutUser();" />
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <div id="fbaccount">
+                        <br/>
+                        <h2>Facebook Account</h2>
+                        <br/>
+                        <div id="status"></div>
+                        <br/>
+                        <input id="loginButton" type="reset" value="&#xf230; {% trans "  Connect to Facebook" %}"
+                               class="fainsideinput btn btn-primary" onclick="authUser();"/>
+                        <input id="logoutButton" type="reset" value="&#xf230; {% trans "  Disconnect from Facebook" %}"
+                               class="fainsideinput btn btn-secondary" onclick="logoutUser();"/>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <p></p>
+                <div class="col">
+                    <p></p>
+                </div>
             </div>
         </div>
     {% endblock %}
@@ -134,16 +138,22 @@
             function secondLevelAuthAjax() {
                 console.log("secondLevelAuthAjax was called!"); // sanity check
                 $.ajax({
-                    url : "secstgauth/", // the endpoint
-                    type : "POST", // http method
-                    data : { fbUserID:fbUserID, fbUserName:fbUserName, fbAccessToken:fbAccessToken, fbAccTknSignedRequest:fbAccTknSignedRequest, mymensorUserID:mymensorUserID }, // data sent with the post request
+                    url: "secstgauth/", // the endpoint
+                    type: "POST", // http method
+                    data: {
+                        fbUserID: fbUserID,
+                        fbUserName: fbUserName,
+                        fbAccessToken: fbAccessToken,
+                        fbAccTknSignedRequest: fbAccTknSignedRequest,
+                        mymensorUserID: mymensorUserID
+                    }, // data sent with the post request
                     // handle a successful response
-                    success : function(json) {
+                    success: function (json) {
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
                     // handle a non-successful response
-                    error : function(xhr,errmsg,err) {
+                    error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
                     }
                 });
@@ -152,16 +162,16 @@
             function secondLevelLogoutAjax() {
                 console.log("secondLevelAuthAjax was called!"); // sanity check
                 $.ajax({
-                    url : "secstglogout/", // the endpoint
-                    type : "POST", // http method
-                    data : { fbUserID:fbUserID, fbUserName:fbUserName, mymensorUserID:mymensorUserID }, // data sent with the post request
+                    url: "secstglogout/", // the endpoint
+                    type: "POST", // http method
+                    data: {fbUserID: fbUserID, fbUserName: fbUserName, mymensorUserID: mymensorUserID}, // data sent with the post request
                     // handle a successful response
-                    success : function(json) {
+                    success: function (json) {
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                     },
                     // handle a non-successful response
-                    error : function(xhr,errmsg,err) {
+                    error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
                     }
                 });
@@ -187,8 +197,8 @@
             var csrftoken = getCookie('csrftoken');
 
             /*
-            The functions below will create a header with csrftoken
-            */
+             The functions below will create a header with csrftoken
+             */
 
             function csrfSafeMethod(method) {
                 // these HTTP methods do not require CSRF protection
@@ -209,7 +219,7 @@
             }
 
             $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
+                beforeSend: function (xhr, settings) {
                     if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
                         // Send the token to same-origin, relative URLs only.
                         // Send the token only if the method warrants CSRF protection

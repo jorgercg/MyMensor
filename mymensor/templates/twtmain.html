@@ -5,21 +5,23 @@
     {% block header %}
     {% endblock %}
     {% block content %}
-        <div class="row">
-            <div class="col-sm-5">
-                <div id="twittersignin">
-                    <br/>
-                    <h2>Twitter Account</h2>
-                    <br/>
-                    <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
-                    <br/>
-                    <p><a href="{% url 'twtoauth_auth' %}"><img
-                            src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"
-                            alt="Connect to Twitter"/></a></p>
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <div id="twittersignin">
+                        <br/>
+                        <h2>Twitter Account</h2>
+                        <br/>
+                        <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
+                        <br/>
+                        <p><a href="{% url 'twtoauth_auth' %}"><img
+                                src="https://g.twimg.com/dev/sites/default/files/images_documentation/sign-in-with-twitter-gray.png"
+                                alt="Connect to Twitter"/></a></p>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <p></p>
+                <div class="col">
+                    <p></p>
+                </div>
             </div>
         </div>
     {% endblock %}
