@@ -101,7 +101,7 @@
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate=' + startdate + '&enddate=' + enddate + '&linesperpage=' + linesperpage + '&' + tagssel;
+                window.location = '{% url 'tagstatus' %}'+'?startdate=' + startdate + '&enddate=' + enddate + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#linesperpage').change(function () {
@@ -109,7 +109,7 @@
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
+                window.location = '{% url 'tagstatus' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#refreshbtn').click(function () {
@@ -117,18 +117,18 @@
                 var tagssel = $('#tagsselected').serialize();
                 console.log("linesperpage:" + linesperpage);
                 console.log('Chosen:' + tagssel);
-                window.location = {% url 'tagstatus' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
+                window.location = '{% url 'tagstatus' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#exprtcsvbtn').click(function () {
                 var tagssel = $('#tagsselected').serialize();
-                window.location = {% url 'export_tagstatus_csv' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&sort=' + '{{ tablesort }}' + '&' + tagssel;
+                window.location = '{% url 'export_tagstatus_csv' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&sort=' + '{{ tablesort }}' + '&' + tagssel;
             });
 
             $('.mym-table').on('click', 'tr', function() {
                 var td = this.cells[0];  // the first <td>
                 if (!isNaN($(td).text())) {
-                    window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+$(td).text();
+                    window.location= '{% url 'taganalysis' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&tagsselected='+$(td).text();
                 }
             });
 
