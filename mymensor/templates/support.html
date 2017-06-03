@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
+{% load staticfiles i18n %}
 {% block title %}Support - {{ block.super }}{% endblock %}
 {% block content %}
-		<h1>Support page</h1>
-		<p>This will be the support page!!!</p>
+    <p></p>
+    <h3>Support page</h3>
+    <p></p>
+    <p class="text-justify">{% trans "Many thanks for using our software! Please see below how you can find info to help clarify your doubts." %} </p>
+    <h4 class="text-info text-capitalize">{% trans "Explainer Videos" %}</h4>
+    <p class="text-justify">{% trans "Video #1 - How to...." %}</p>
+    <p class="text-justify">{% trans "Video #2 - How to...." %}</p>
+    <p class="text-justify">{% trans "Video #3 - How to...." %}</p>
+    <h4 class="text-info text-capitalize">{% trans "Software Docs" %}</h4>
+    <p class="text-justify">{% trans "Explanation about concepts and definitions used in this software." %}</p>
+    <h4 class="text-info text-capitalize">{% trans "Email Support" %}</h4>
+    <p class="text-justify">{% trans "If you cannot clarify your doubts using the above methods, please send us an email to "%}
+        <a href="mailto: support@mymensor.com">support@mymensor.com</a> {% trans " and we will responded as soon as practically possible." %}</p>
 {% endblock %}
