@@ -236,7 +236,7 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                console.log({% url 'tagprocessing' %});
+                console.log('{% url 'tagprocessing' %}');
                 window.location='{% url 'tagprocessing' %}'+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
             });
 

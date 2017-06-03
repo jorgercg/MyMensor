@@ -236,8 +236,8 @@
                 var enddate = picker.endDate.format('YYYY-MM-DD');
                 console.log(startdate);
                 console.log(enddate);
-                console.log({% url 'proctagedit' %});
-                window.location={% url 'proctagedit' %}+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
+                console.log('{% url 'proctagedit' %}');
+                window.location='{% url 'proctagedit' %}'+'?startdate='+startdate+'&enddate='+enddate+'&qtypervp='+{{ qtypervp }};
             });
 
         });
@@ -252,7 +252,7 @@
             $('#qtytodisplaypervp').change(function(){
                 var qtyselected = $(this).find(":selected").val();
                 console.log(qtyselected);
-                window.location={% url 'proctagedit' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
+                window.location='{% url 'proctagedit' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&qtypervp='+qtyselected;
             });
         });
 
