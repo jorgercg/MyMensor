@@ -132,6 +132,7 @@
     <div class="container-fluid">
         {% block content %}{% endblock %}
         {% block footer %}
+            {% get_current_language as LANGUAGE_CODE %}
             <div class="block block-inverse app-footer">
                 <div class="container">
                     <div class="row">
@@ -147,22 +148,21 @@
                         <div class="col-md-3 offset-md-1 mb-5">
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">{% trans "Product" %}</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/docs/">{% trans "Docs" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/videos/">{% trans "Videos" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/faq/">{% trans "FAQ" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/docs/">{% trans "Docs" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/videos/">{% trans "Videos" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/faq/">{% trans "FAQ" %}</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 mb-5">
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">Legal</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/terms/">{% trans "Terms of Service" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/privacy/">{% trans "Privacy" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/terms/">{% trans "Terms of Service" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/privacy/">{% trans "Privacy" %}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5 mb-5">
-                            {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
                             <ul class="list-unstyled list-spaced">
