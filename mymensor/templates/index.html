@@ -308,7 +308,7 @@
                     $('#refreshbtn').click(function () {
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = {% url 'portfolio' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
                     });
 
                 });
@@ -334,7 +334,7 @@
                                 }
                             }
                             console.log("Clicked on: mediaid=" + mediaid + " vpnumber=" + vpnumber);  // sanity check
-                            window.location = {% url 'vpdetail' %}+'?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
+                            window.location = '{% url 'vpdetail' %}'+'?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
                         }
                     });
                 });
@@ -355,7 +355,7 @@
                         console.log(qtyselected);
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = {% url 'portfolio' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' +'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
                     });
                 });
 
@@ -384,7 +384,7 @@
                             data: {mediaid: mediaid}, // data sent with the post request
                             // handle a successful response
                             success: function (json) {
-                                var output = {% url 'taganalysis' %}+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
+                                var output = '{% url 'taganalysis' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
                                 console.log(json); // log the returned json to the console
                                 console.log("success"); // another sanity check
                                 for (i = 0; i < json.result.length; i++) {
