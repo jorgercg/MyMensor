@@ -99,10 +99,10 @@
             {% else %}
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link {% is_active request 'auth_login' %}"
-                                            href="{% url 'auth_login' %}">Login</a></li>
+                                            href="{% url 'auth_login' %}">{% trans 'Login' %}</a></li>
                     <li class="nav-item"><a class="nav-link {% is_active request 'registration_register' %}"
                                             id="regnewuser" href="{% url 'registration_register' %}"><strong
-                            style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">Register</strong></a>
+                            style="background: #fff; padding: 12px; border-radius: 4px; color: #28669F;">{% trans 'Register' %}</strong></a>
                     </li>
                 </ul>
             {% endif %}
@@ -112,16 +112,16 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <strong style="color: #28669F;">Logged in as: {{ user.get_username }}</strong>
+                            <strong style="color: #28669F;">{% blocktrans %}Logged in as: {{ user.get_username }}{% endblocktrans %}</strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'auth_logout' %}">Logout</a>
-                            <a class="dropdown-item" href="{% url 'auth_password_change' %}">Password change</a>
+                            <a class="dropdown-item" href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
+                            <a class="dropdown-item" href="{% url 'auth_password_change' %}">{% trans 'Password change' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'fbmain' %}">Facebook Account</a>
-                            <a class="dropdown-item" href="{% url 'twtmain' %}">Twitter Account</a>
+                            <a class="dropdown-item" href="{% url 'fbmain' %}">{% trans 'Facebook Account' %}</a>
+                            <a class="dropdown-item" href="{% url 'twtmain' %}">{% trans 'Twitter Account' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'support' %}">Support</a>
+                            <a class="dropdown-item" href="{% url 'support' %}">{% trans 'Support' %}</a>
                         </div>
                     </li>
                 </ul>
@@ -137,26 +137,26 @@
                     <div class="row">
                         <div class="col-md-5 mb-5">
                             <ul class="list-unstyled list-spaced">
-                                <li class="mb-2"><h6 class="text-uppercase">About</h6></li>
+                                <li class="mb-2"><h6 class="text-uppercase">{% trans 'About' %}</h6></li>
                                 <li class="text-muted">
-                                    It' been a long journey and we are just starting! Contact us anytime at <a
+                                    {% trans "It\'s been a long journey and we are just starting! Contact us anytime at"%}<a
                                         href="mailto: contact@mymensor.com">contact@mymensor.com</a>.
                                 </li>
                             </ul>
                         </div>
                         <div class="col-md-3 offset-md-1 mb-5">
                             <ul class="list-unstyled list-spaced">
-                                <li class="mb-2"><h6 class="text-uppercase">Product</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/docs/">Docs</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/videos/">Videos</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/faq/">FAQ</a></li>
+                                <li class="mb-2"><h6 class="text-uppercase">{% trans "Product" %}</h6></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/docs/">{% trans "Docs" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/videos/">{% trans "Videos" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/faq/">{% trans "FAQ" %}</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 mb-5">
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">Legal</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/terms/">Terms of Service</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/privacy/">Privacy</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/terms/">{% trans "Terms of Service" %}</a></li>
+                                <li><a class="text-muted" href="https://mymensor.com/{{ language.code }}/privacy/">{% trans "Privacy" %}</a></li>
                             </ul>
                         </div>
                     </div>
