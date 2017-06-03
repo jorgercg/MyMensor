@@ -590,6 +590,8 @@ svg {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 /* general block overrrides */
@@ -608,6 +610,6 @@ svg {
     color: rgba(255, 255, 255, .7) !important;
 }
 
-.block-footer .h6 {
+.block-footer h6 {
     color: rgba(255, 255, 255, .7) !important;
 }
