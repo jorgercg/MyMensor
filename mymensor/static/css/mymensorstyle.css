@@ -587,6 +587,81 @@ svg {
   color: #fff;
 }
 
+.block {
+  position: relative;
+  width: 100%;
+  padding: 60px 30px;
+  color: inherit;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+.block-inverse .block-bg-img {
+  background-color: #000000; }
+
+.block-inverse {
+  color: #fff;
+  background-color: #000; }
+  .block-inverse.block-bordered:before,
+  .block-inverse hr {
+    border-color: rgba(255, 255, 255, 0.2); }
+  .block-inverse h1, .block-inverse h2, .block-inverse h3, .block-inverse h4, .block-inverse h5, .block-inverse h6,
+  .block-inverse .h1, .block-inverse .h2, .block-inverse .h3, .block-inverse .h4, .block-inverse .h5, .block-inverse .h6 {
+    color: inherit; }
+  .block-inverse .btn-outline.btn-secondary {
+    color: #fff;
+    background-image: none;
+    background-color: transparent;
+    border-color: #fff; }
+    .block-inverse .btn-outline.btn-secondary:hover {
+      color: #fff;
+      background-color: #fff;
+      border-color: #fff; }
+    .block-inverse .btn-outline.btn-secondary:focus, .block-inverse .btn-outline.btn-secondary.focus {
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); }
+    .block-inverse .btn-outline.btn-secondary.disabled, .block-inverse .btn-outline.btn-secondary:disabled {
+      color: #fff;
+      background-color: transparent; }
+    .block-inverse .btn-outline.btn-secondary:active, .block-inverse .btn-outline.btn-secondary.active,
+    .show > .block-inverse .btn-outline.btn-secondary.dropdown-toggle {
+      color: #fff;
+      background-color: #fff;
+      border-color: #fff; }
+  .block-inverse .btn-outline.btn-secondary:focus, .block-inverse .btn-outline.btn-secondary.focus, .block-inverse .btn-outline.btn-secondary:hover, .block-inverse .btn-outline.btn-secondary:active, .block-inverse .btn-outline.btn-secondary.active,
+  .block-inverse .btn-outline.btn-secondary .open > .dropdown-toggle,
+  .block-inverse .btn-outline:focus,
+  .block-inverse .btn-outline.focus,
+  .block-inverse .btn-outline:hover,
+  .block-inverse .btn-outline:active,
+  .block-inverse .btn-outline.active,
+  .block-inverse .btn-outline .open > .dropdown-toggle {
+    color: #000; }
+    .block-inverse .btn-outline.btn-secondary:focus:hover, .block-inverse .btn-outline.btn-secondary:focus:focus, .block-inverse .btn-outline.btn-secondary:focus.focus, .block-inverse .btn-outline.btn-secondary.focus:hover, .block-inverse .btn-outline.btn-secondary.focus:focus, .block-inverse .btn-outline.btn-secondary.focus.focus, .block-inverse .btn-outline.btn-secondary:hover:hover, .block-inverse .btn-outline.btn-secondary:hover:focus, .block-inverse .btn-outline.btn-secondary:hover.focus, .block-inverse .btn-outline.btn-secondary:active:hover, .block-inverse .btn-outline.btn-secondary:active:focus, .block-inverse .btn-outline.btn-secondary:active.focus, .block-inverse .btn-outline.btn-secondary.active:hover, .block-inverse .btn-outline.btn-secondary.active:focus, .block-inverse .btn-outline.btn-secondary.active.focus,
+    .block-inverse .btn-outline.btn-secondary .open > .dropdown-toggle:hover,
+    .block-inverse .btn-outline.btn-secondary .open > .dropdown-toggle:focus,
+    .block-inverse .btn-outline.btn-secondary .open > .dropdown-toggle.focus,
+    .block-inverse .btn-outline:focus:hover,
+    .block-inverse .btn-outline:focus:focus,
+    .block-inverse .btn-outline:focus.focus,
+    .block-inverse .btn-outline.focus:hover,
+    .block-inverse .btn-outline.focus:focus,
+    .block-inverse .btn-outline.focus.focus,
+    .block-inverse .btn-outline:hover:hover,
+    .block-inverse .btn-outline:hover:focus,
+    .block-inverse .btn-outline:hover.focus,
+    .block-inverse .btn-outline:active:hover,
+    .block-inverse .btn-outline:active:focus,
+    .block-inverse .btn-outline:active.focus,
+    .block-inverse .btn-outline.active:hover,
+    .block-inverse .btn-outline.active:focus,
+    .block-inverse .btn-outline.active.focus,
+    .block-inverse .btn-outline .open > .dropdown-toggle:hover,
+    .block-inverse .btn-outline .open > .dropdown-toggle:focus,
+    .block-inverse .btn-outline .open > .dropdown-toggle.focus {
+      color: #000; }
+
+
 /* general block overrrides */
 @media (max-width: 768px) {
   .block .lead {
