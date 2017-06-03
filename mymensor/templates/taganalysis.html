@@ -109,13 +109,13 @@
                 console.log(enddate);
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'taganalysis' %}+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
+                window.location='{% url 'taganalysis' %}'+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
             });
 
             $('#refreshbtn').click(function(){
                 var tagssel = $('#tagsselected').serialize();
                 console.log('Chosen:'+tagssel);
-                window.location={% url 'taganalysis' %}+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
+                window.location='{% url 'taganalysis' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
             });
 
         });
