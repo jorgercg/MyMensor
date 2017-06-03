@@ -88,7 +88,7 @@
                     $('#currentvp').change(function () {
                         var vpselected = $(this).find(":selected").val();
                         console.log(vpselected);
-                        window.location = {% url 'vpsetup' %}+'?currentvp=' + vpselected;
+                        window.location ='{% url 'vpsetup' %}'+'?currentvp=' + vpselected;
                     });
                 });
                 // Function to take care of the tag marking
