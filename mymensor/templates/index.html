@@ -302,7 +302,7 @@
                         //console.log({% url 'portfolio' %});
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = {% url 'portfolio' %}+'?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}'+'?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
                     });
 
                     $('#refreshbtn').click(function () {
