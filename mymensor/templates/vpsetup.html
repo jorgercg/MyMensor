@@ -61,6 +61,7 @@
                         </form>
                     </div>
                 </div>
+                <p></p>
             </div>
         {% endblock %}
         {% block javascript %}
@@ -88,7 +89,7 @@
                     $('#currentvp').change(function () {
                         var vpselected = $(this).find(":selected").val();
                         console.log(vpselected);
-                        window.location ='{% url 'vpsetup' %}'+'?currentvp=' + vpselected;
+                        window.location = '{% url 'vpsetup' %}' + '?currentvp=' + vpselected;
                     });
                 });
                 // Function to take care of the tag marking
@@ -185,17 +186,20 @@
 
                                 {% for tagbbox in tagbboxes %}
 
-                                    var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} * mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
+                                    var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
+                                    mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
                                     {{ tagbbox.tagbboxHeight }} * mediapaperheight);
                                     bbox.attr('stroke', "rgb(0,175,239)");
                                     bbox.attr('stroke-width', 2);
                                     {% for tag in tags %}
                                         {% if tagbbox.tag == tag %}
-                                        var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2), {{ tagbbox.tagbboxY }} * mediapaperheight + 20, "Tag#{{ tag.tagNumber }}");
-                                        tagnumber.attr('stroke', "rgb(0,175,239)");
-                                        tagnumber.attr('stroke-width', 2);
-                                        tagnumber.attr('font-family', "Verdana");
-                                        tagnumber.attr('font-size', 20);
+                                            var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
+                                            ), {{ tagbbox.tagbboxY }} * mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
+                                            );
+                                            tagnumber.attr('stroke', "rgb(0,175,239)");
+                                            tagnumber.attr('stroke-width', 2);
+                                            tagnumber.attr('font-family', "Verdana");
+                                            tagnumber.attr('font-size', 20);
                                         {% endif %}
                                     {% endfor %}
                                 {% endfor %}
