@@ -112,11 +112,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <strong style="color: #28669F;">{% blocktrans %}Logged in as: {{ user.get_username }}{% endblocktrans %}</strong>
+                            <strong style="color: #28669F;">{% blocktrans %}Logged in as: {{ user.get_username }} {% endblocktrans %}</strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
-                            <a class="dropdown-item" href="{% url 'auth_password_change' %}">{% trans 'Password change' %}</a>
+                            <a class="dropdown-item"
+                               href="{% url 'auth_password_change' %}">{% trans 'Password change' %}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'fbmain' %}">{% trans 'Facebook Account' %}</a>
                             <a class="dropdown-item" href="{% url 'twtmain' %}">{% trans 'Twitter Account' %}</a>
@@ -140,7 +141,7 @@
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">{% trans 'About' %}</h6></li>
                                 <li class="text-muted">
-                                    {% trans "It\'s been a long journey and we are just starting! Contact us anytime at"%}<a
+                                    {% trans "It\'s been a long journey and we are just starting! Contact us anytime at" %}<a
                                         href="mailto: contact@mymensor.com">contact@mymensor.com</a>.
                                 </li>
                             </ul>
@@ -148,16 +149,24 @@
                         <div class="col-md-3 offset-md-1 mb-5">
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">{% trans "Product" %}</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/docs/">{% trans "Docs" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/videos/">{% trans "Videos" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/faq/">{% trans "FAQ" %}</a></li>
+                                <li><a class="text-muted"
+                                       href="https://mymensor.com/{{ LANGUAGE_CODE }}/docs/">{% trans "Docs" %}</a></li>
+                                <li><a class="text-muted"
+                                       href="https://mymensor.com/{{ LANGUAGE_CODE }}/videos/">{% trans "Videos" %}</a>
+                                </li>
+                                <li><a class="text-muted"
+                                       href="https://mymensor.com/{{ LANGUAGE_CODE }}/faq/">{% trans "FAQ" %}</a></li>
                             </ul>
                         </div>
                         <div class="col-md-3 mb-5">
                             <ul class="list-unstyled list-spaced">
                                 <li class="mb-2"><h6 class="text-uppercase">Legal</h6></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/terms/">{% trans "Terms of Service" %}</a></li>
-                                <li><a class="text-muted" href="https://mymensor.com/{{ LANGUAGE_CODE }}/privacy/">{% trans "Privacy" %}</a></li>
+                                <li><a class="text-muted"
+                                       href="https://mymensor.com/{{ LANGUAGE_CODE }}/terms/">{% trans "Terms of Service" %}</a>
+                                </li>
+                                <li><a class="text-muted"
+                                       href="https://mymensor.com/{{ LANGUAGE_CODE }}/privacy/">{% trans "Privacy" %}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
