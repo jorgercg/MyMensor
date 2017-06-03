@@ -299,7 +299,7 @@
                         var enddate = picker.endDate.format('YYYY-MM-DD');
                         console.log(startdate);
                         console.log(enddate);
-                        console.log({% url 'portfolio' %});
+                        //console.log({% url 'portfolio' %});
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
                         window.location = {% url 'portfolio' %}+'?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
@@ -324,7 +324,7 @@
                         event.preventDefault();
                         var spanclicked = $(this).attr('id');
                         if (spanclicked.lastIndexOf('location', 0) === 0) {
-                            console.log("Clicked on:" + spanclicked);  // sanity check
+                            //console.log("Clicked on:" + spanclicked);  // sanity check
                             spanid = spanclicked.replace('location', '');
                             for (var i = 0; i < spanid.length; i++) {
                                 if (spanid.charAt(i) == "-") {
