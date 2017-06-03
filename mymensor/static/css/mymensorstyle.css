@@ -578,3 +578,26 @@ svg {
         height: 520px;
     }
 }
+
+/* footer block */
+.app-footer {
+  background-color: #262F36;
+}
+.app-footer a {
+  color: #fff;
+}
+
+/* general block overrrides */
+@media (max-width: 768px) {
+  .block .lead {
+    line-height: 1.3;
+  }
+  .block h3 {
+    line-height: 1.15;
+  }
+}
+
+/* general inverse overrides */
+.block-inverse .text-muted {
+  color: rgba(255, 255, 255, .7) !important;
+}
