@@ -4,7 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/index.html" afterPath="$PROJECT_DIR$/mymensor/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/base.html" afterPath="$PROJECT_DIR$/mymensor/templates/base.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +45,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="116" column="69" lean-forward="false" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
+            <state relative-caret-position="471">
+              <caret line="137" column="33" lean-forward="true" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -79,11 +79,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1383">
-              <caret line="661" column="20" lean-forward="false" selection-start-line="661" selection-start-column="20" selection-end-line="661" selection-end-column="20" />
+            <state relative-caret-position="594">
+              <caret line="604" column="13" lean-forward="true" selection-start-line="604" selection-start-column="13" selection-end-line="604" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vpdetail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1710">
+              <caret line="360" column="33" lean-forward="true" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -92,8 +102,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="266" column="22" lean-forward="false" selection-start-line="266" selection-start-column="22" selection-end-line="266" selection-end-column="22" />
+            <state relative-caret-position="370">
+              <caret line="262" column="18" lean-forward="false" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -214,11 +224,11 @@
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpsetup.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
+        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
       </list>
     </option>
   </component>
@@ -709,20 +719,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02252" summary="29mai2017 20h54min">
-      <created>1496087695011</created>
-      <option name="number" value="02252" />
-      <option name="presentableId" value="LOCAL-02252" />
-      <option name="project" value="LOCAL" />
-      <updated>1496087695012</updated>
-    </task>
-    <task id="LOCAL-02253" summary="29mai2017 20h57min">
-      <created>1496087837103</created>
-      <option name="number" value="02253" />
-      <option name="presentableId" value="LOCAL-02253" />
-      <option name="project" value="LOCAL" />
-      <updated>1496087837103</updated>
-    </task>
     <task id="LOCAL-02254" summary="29mai2017 21h01min">
       <created>1496088108055</created>
       <option name="number" value="02254" />
@@ -1052,7 +1048,21 @@
       <option name="project" value="LOCAL" />
       <updated>1496504150360</updated>
     </task>
-    <option name="localTasksCounter" value="2301" />
+    <task id="LOCAL-02301" summary="03jun2017 16h42min">
+      <created>1496504569982</created>
+      <option name="number" value="02301" />
+      <option name="presentableId" value="LOCAL-02301" />
+      <option name="project" value="LOCAL" />
+      <updated>1496504569982</updated>
+    </task>
+    <task id="LOCAL-02302" summary="03jun2017 16h58min">
+      <created>1496505494684</created>
+      <option name="number" value="02302" />
+      <option name="presentableId" value="LOCAL-02302" />
+      <option name="project" value="LOCAL" />
+      <updated>1496505494684</updated>
+    </task>
+    <option name="localTasksCounter" value="2303" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1133,8 +1143,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="03jun2017 11h01min" />
-    <MESSAGE value="03jun2017 11h16min" />
     <MESSAGE value="03jun2017 11h19min" />
     <MESSAGE value="03jun2017 11h26min" />
     <MESSAGE value="03jun2017 11h28min" />
@@ -1158,7 +1166,9 @@
     <MESSAGE value="03jun2017 16h18min" />
     <MESSAGE value="03jun2017 16h27min" />
     <MESSAGE value="03jun2017 16h35min" />
-    <option name="LAST_COMMIT_MESSAGE" value="03jun2017 16h35min" />
+    <MESSAGE value="03jun2017 16h42min" />
+    <MESSAGE value="03jun2017 16h58min" />
+    <option name="LAST_COMMIT_MESSAGE" value="03jun2017 16h58min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1424,14 +1434,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="360" column="33" lean-forward="true" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="302">
@@ -1508,26 +1510,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="266" column="22" lean-forward="false" selection-start-line="266" selection-start-column="22" selection-end-line="266" selection-end-column="22" />
+        <state relative-caret-position="1710">
+          <caret line="360" column="33" lean-forward="true" selection-start-line="360" selection-start-column="33" selection-end-line="360" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="116" column="69" lean-forward="false" selection-start-line="116" selection-start-column="69" selection-end-line="116" selection-end-column="69" />
+        <state relative-caret-position="370">
+          <caret line="262" column="18" lean-forward="false" selection-start-line="262" selection-start-column="18" selection-end-line="262" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1383">
-          <caret line="661" column="20" lean-forward="false" selection-start-line="661" selection-start-column="20" selection-end-line="661" selection-end-column="20" />
+        <state relative-caret-position="594">
+          <caret line="604" column="13" lean-forward="true" selection-start-line="604" selection-start-column="13" selection-end-line="604" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="137" column="33" lean-forward="true" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
           <folding />
         </state>
       </provider>

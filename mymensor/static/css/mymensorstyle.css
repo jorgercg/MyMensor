@@ -580,19 +580,13 @@ svg {
 }
 
 /* footer block */
-.app-footer {
-  background-color: #262F36;
-}
-.app-footer a {
-  color: #fff;
-}
 
-.block {
+.block-footer {
   position: relative;
   width: 100%;
   padding: 60px 30px;
   color: inherit;
-  background-color: #fff;
+  background-color: #262F36;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
@@ -608,6 +602,6 @@ svg {
 }
 
 /* general inverse overrides */
-.block-inverse .text-muted {
+.block-footer .text-muted {
   color: rgba(255, 255, 255, .7) !important;
 }
