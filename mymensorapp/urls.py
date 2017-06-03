@@ -23,7 +23,29 @@ from instant.views import instant_auth
 from mymensor import mymviews
 from django.conf.urls.i18n import i18n_patterns
 
-urlpatterns = i18n_patterns(
+urlpatterns = [
+    url(r'^landing/$', mymviews.landingView, name='landing'),
+    url(r'^chaining/', include('smart_selects.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^sns-notifications/', mymviews.amazon_sns_processor),
+    url(r'^cognito-auth/', mymviews.cognitoauth),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^.well-known/acme-challenge/6tkddfaSb9H4On2KEHI9q8sKzO3eIW225xNkH-4PMnU/$', mymviews.zerossl),
+    url(r'^api-token-auth/', views.obtain_auth_token),
+    url(r'^instant/', include('instant.urls')),
+    url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
+    url(r'^tz_detect/', include('tz_detect.urls')),
+    url(r'^twtmain/$', mymviews.twtmain, name='twtmain'),
+    url(r'^twtoauthcallback/$', mymviews.twtcallback, name='twtauth_return'),
+    url(r'^twtlogout/$', mymviews.twtunauth, name='twtoauth_unauth'),
+    url(r'^twtauth/$', mymviews.twtauth, name='twtoauth_auth'),
+    url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
+    url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
+    url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
+    url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
+]
+
+urlpatterns += i18n_patterns(
     url(r'^$', RedirectView.as_view(url='/portfolio/')),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
@@ -39,10 +61,6 @@ urlpatterns = i18n_patterns(
 
     url(r'^mobilebackup/$', mymviews.mobileBackupFormView, name='mobilebackup'),
 
-    url(r'^landing/$', mymviews.landingView, name='landing'),
-
-    url(r'^chaining/', include('smart_selects.urls')),
-
     url(r'^accounts/', include('registration.backends.default.urls')),
 
     # password reset urls
@@ -52,24 +70,6 @@ urlpatterns = i18n_patterns(
         name="password_reset_confirm"),
     url(r'^accounts/password/done/$', password_reset_complete, {'template_name': 'registration/password_reset_complete.html'}, name="password_reset_complete"),
     url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
-
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-
-    url(r'^sns-notifications/', mymviews.amazon_sns_processor),
-
-    url(r'^cognito-auth/', mymviews.cognitoauth),
-
-    url(r'^admin/', include(admin.site.urls)),
-
-    url(r'^.well-known/acme-challenge/6tkddfaSb9H4On2KEHI9q8sKzO3eIW225xNkH-4PMnU/$', mymviews.zerossl),
-
-    url(r'^api-token-auth/', views.obtain_auth_token),
-
-    url(r'^instant/', include('instant.urls')),
-
-    url(r'^centrifuge/auth/$', instant_auth, name='instant-auth'),
-
-    url(r'^tz_detect/', include('tz_detect.urls')),
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
 
@@ -94,14 +94,4 @@ urlpatterns = i18n_patterns(
     url(r'^vpdetail/move_media/', mymviews.movemedia, name='move_media'),
 
     url(r'^export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
-
-    url(r'^twtmain/$', mymviews.twtmain, name='twtmain'),
-    url(r'^twtoauthcallback/$', mymviews.twtcallback, name='twtauth_return'),
-    url(r'^twtlogout/$', mymviews.twtunauth, name='twtoauth_unauth'),
-    url(r'^twtauth/$', mymviews.twtauth, name='twtoauth_auth'),
-    url(r'^twtinfo/$', mymviews.twtinfo, name='twtinfo'),
-
-    url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
-    url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
-    url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
 )
