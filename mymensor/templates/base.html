@@ -112,7 +112,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <strong style="color: #28669F;">{% blocktrans %}Logged in as: {{ user.get_username }} {% endblocktrans %}</strong>
+                            <strong style="color: #28669F;">{% blocktrans %}Logged in as: '{{ user.get_username }}' {% endblocktrans %}</strong>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'auth_logout' %}">{% trans 'Logout' %}</a>
