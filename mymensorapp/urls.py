@@ -46,7 +46,7 @@ urlpatterns = [
 ]
 
 urlpatterns += i18n_patterns(
-    url(r'^$', RedirectView.as_view(url='/portfolio/')),
+    url(r'^$', mymviews.portfolio, name='index'),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^vpdetail/$', mymviews.vpDetailView, name='vpdetail'),
