@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html" afterPath="$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" afterPath="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,11 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="banner.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="banner.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cookielaw.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/css/cookielaw.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -145,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/venv/lib/python2.7/site-packages/registration/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/activate.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_change_done.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/password_reset_complete.html" />
@@ -196,6 +205,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html" />
+        <option value="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" />
       </list>
     </option>
   </component>
@@ -319,11 +329,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cookielaw" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -342,6 +348,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -686,13 +696,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02269" summary="02jun2017 22h20min">
-      <created>1496438416017</created>
-      <option name="number" value="02269" />
-      <option name="presentableId" value="LOCAL-02269" />
-      <option name="project" value="LOCAL" />
-      <updated>1496438416018</updated>
-    </task>
     <task id="LOCAL-02270" summary="02jun2017 22h23min">
       <created>1496438634458</created>
       <option name="number" value="02270" />
@@ -1029,7 +1032,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496570719167</updated>
     </task>
-    <option name="localTasksCounter" value="2318" />
+    <task id="LOCAL-02318" summary="04jun2017 11h08min">
+      <created>1496570908813</created>
+      <option name="number" value="02318" />
+      <option name="presentableId" value="LOCAL-02318" />
+      <option name="project" value="LOCAL" />
+      <updated>1496570908813</updated>
+    </task>
+    <option name="localTasksCounter" value="2319" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1110,7 +1120,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="03jun2017 12h56min" />
     <MESSAGE value="03jun2017 12h59min" />
     <MESSAGE value="03jun2017 15h18min" />
     <MESSAGE value="03jun2017 15h58min" />
@@ -1135,7 +1144,8 @@
     <MESSAGE value="03jun2017 18h51min" />
     <MESSAGE value="03jun2017 18h59min" />
     <MESSAGE value="04jun2017 11h05min" />
-    <option name="LAST_COMMIT_MESSAGE" value="04jun2017 11h05min" />
+    <MESSAGE value="04jun2017 11h08min" />
+    <option name="LAST_COMMIT_MESSAGE" value="04jun2017 11h08min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1147,14 +1157,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/mymmessages.html" />
-    <entry file="file://$PROJECT_DIR$/../mymensorapp/venv/lib/python2.7/site-packages/instant/templates/instant/js/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="33" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/mediafeed.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -1324,15 +1326,15 @@
         <state relative-caret-position="225">
           <caret line="0" column="5271" lean-forward="false" selection-start-line="0" selection-start-column="5268" selection-end-line="0" selection-end-column="5271" />
           <folding>
-            <element signature="e#25709#25956#2" expanded="true" />
-            <element signature="e#26321#26641#2" expanded="true" />
-            <element signature="e#26997#27286#2" expanded="true" />
-            <element signature="e#50864#51064#2" expanded="true" />
-            <element signature="e#51186#51335#2" expanded="true" />
-            <element signature="e#51481#51627#2" expanded="true" />
-            <element signature="e#51910#52073#1" expanded="true" />
-            <element signature="e#57721#57964#2" expanded="true" />
-            <element signature="e#59155#59404#2" expanded="true" />
+            <element signature="e#25709#25956#2" expanded="false" />
+            <element signature="e#26321#26641#2" expanded="false" />
+            <element signature="e#26997#27286#2" expanded="false" />
+            <element signature="e#50864#51064#2" expanded="false" />
+            <element signature="e#51186#51335#2" expanded="false" />
+            <element signature="e#51481#51627#2" expanded="false" />
+            <element signature="e#51910#52073#1" expanded="false" />
+            <element signature="e#57721#57964#2" expanded="false" />
+            <element signature="e#59155#59404#2" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1358,7 +1360,7 @@
         <state relative-caret-position="154">
           <caret line="42" column="54" lean-forward="true" selection-start-line="42" selection-start-column="54" selection-end-line="42" selection-end-column="54" />
           <folding>
-            <element signature="e#644#685#0" expanded="true" />
+            <element signature="e#644#685#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1440,7 +1442,7 @@
         <state relative-caret-position="375">
           <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1450,7 +1452,7 @@
         <state relative-caret-position="285">
           <caret line="19" column="27" lean-forward="true" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1470,7 +1472,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1480,7 +1482,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1490,7 +1492,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
           <folding>
-            <element signature="e#165#193#0#HTML" expanded="true" />
+            <element signature="e#165#193#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1500,7 +1502,7 @@
         <state relative-caret-position="90">
           <caret line="6" column="49" lean-forward="false" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1510,7 +1512,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1549,10 +1551,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/daterangepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/cookielaw.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
           <folding />
         </state>
       </provider>
