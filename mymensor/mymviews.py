@@ -917,7 +917,7 @@ def createdcicfgbackup(request):
                     obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
             backupinstance = MobileSetupBackup(backupOwner=request.user)
             backupinstance.backupDescription = "Manual user-requested backup"
-            backupinstance.backupName = usernameEncoded + "_backup"
+            backupinstance.backupName = request.user.username + "_backup"
             backupinstance.save()
             return HttpResponse(
                 json.dumps({"result": "backup_saved"}),
