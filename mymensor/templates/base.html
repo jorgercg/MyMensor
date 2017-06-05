@@ -1,4 +1,4 @@
-{% load staticfiles is_active i18n tz counter assign cookielaw_tags %}
+{% load staticfiles is_active i18n tz counter assign %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     <!DOCTYPE html>
@@ -29,7 +29,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/daterangepicker.css' %}">
-        <link rel="stylesheet" href="{% static 'css/cookielaw.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery-eu-cookie-law-popup.css' %}">
         <link rel="stylesheet" href="{% static 'css/chosen.css' %}">
         <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
         <link rel="stylesheet" href="{% static 'css/social-share-kit.css' %}">
@@ -45,7 +45,6 @@
         <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
         <meta name="msapplication-config" content="images/browserconfig.xml">
         <meta name="theme-color" content="#00afef">
-        {% cookielaw_banner %}
         {% block header %}{% endblock %}
     </head>
     {% load tz_detect %}
@@ -134,7 +133,7 @@
         {% block content %}{% endblock %}
     </div>
     {% get_current_language as LANGUAGE_CODE %}
-    <div class="block-footer">
+    <div class="block-footer eupopup eupopup-bottom eupopup-style-compact">
         <div class="container">
             <div class="row">
                 <div class="col-md-5 mb-5">
@@ -197,12 +196,30 @@
     <script src="{% static "js/daterangepicker.js" %}"></script>
     <script src="{% static "js/chosen.jquery.min.js" %}"></script>
     <script src="{% static "js/mymensor-jquery.js" %}"></script>
-    <script src="{% static "js/cookielaw.js" %}"></script>
+    <script src="{% static "js/jquery-eu-cookie-law-popup.js" %}"></script>
     <script src="{% static "js/social-share-kit.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
     <!-- Page Local Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script>
+        $(document).ready(function () {
+            if ($(".eupopup").length > 0) {
+                $(document).euCookieLawPopup().init({
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% if LANGUAGE_CODE == "pt" %}
+                        'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
+                        'popupTitle': 'Este website utiliza cookies. ',
+                        'popupText': 'Nós utilizamos cookies para lhe dar a melhor experiência. Se você continuar a usar nosso website, consideraremos que você aceita receber todos os cookies deste website.'
+                    {% else %}
+                        'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
+                        'popupTitle': 'This website is using cookies. ',
+                        'popupText': 'We use them to give you the best experience. If you continue using our website, we\'ll assume that you are happy to receive all cookies on this website.'
+                    {% endif %}
+                });
+            }
+        });
+    </script>
     {% block javascript %}{% endblock %}
     {% block extra_head %}{% endblock %}
     </body>
