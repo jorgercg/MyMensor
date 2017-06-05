@@ -1,151 +1,162 @@
 {% extends 'base.html' %}
 {% load i18n tz %}
 {% localtime on %}
-{% get_current_timezone as TIME_ZONE %}
-{% block title %}Mobile Setup Backup - {{ block.super }}{% endblock %}
-{% block content %}
-    <br>
-	<h3>Mobile Setup Backup</h3>
-    <p>
-    {% if backupinstance == None %}
-    <p>{% trans "No backup of the mobile configuration setup was ever made in this account" %}</p>
-    <br>
-    <button id="createbackup" type="button" class="btn btn-outline-primary">{% trans "Create Backup" %}</button>
-    {% else %}
-    <p>{% trans "Current backup of the mobile configuration setup for this account was made on " %}{{ backupinstance.backupDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</p>
-    <br>
-    <button id="createbackup" type="button" class="btn btn-outline-primary">{% trans "Create Backup" %}</button>
-    <br>
-    <p></p>
-    <button id="restorebackup" type="button" class="btn btn-outline-primary">{% trans "Restore Backup" %}</button>
-    {% endif %}
-{% endblock %}
-{% block javascript %}
-<script>
-$(function() {
-            var value_id = "";
-            var button_id = "";
+    {% get_current_timezone as TIME_ZONE %}
+    {% block title %}Mobile Setup Backup - {{ block.super }}{% endblock %}
+    {% block content %}
+        <div class="container" style="padding-bottom: 20px">
+            <br>
+            <h3>Mobile Setup Backup</h3>
+            <p>
+                {% if backupinstance == None %}
+                    <p>{% trans "No backup of the mobile configuration setup was ever made in this account" %}</p>
+                    <br>
+                    <button id="createbackup" type="button"
+                            class="btn btn-outline-primary">{% trans "Create Backup" %}</button>
+                {% else %}
+                    <p>
+                        {% trans "Current backup of the mobile configuration setup for this account was made on " %}{{ backupinstance.backupDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}</p>
+                    <br>
+                    <button id="createbackup" type="button"
+                            class="btn btn-outline-primary">{% trans "Create Backup" %}</button>
+                    <br>
+                    <p></p>
+                    <button id="restorebackup" type="button"
+                            class="btn btn-outline-primary">{% trans "Restore Backup" %}</button>
 
-            // Submit post on button click
-            $('button').click(function(event){
-                event.preventDefault();
-                console.log("Button pressed:"+$(this).attr('id'));  // sanity check
-                value_id = $(this).attr('id');
-                button_id = "#"+value_id;
+                {% endif %}
+        </div>
+    {% endblock %}
+    {% block javascript %}
+        <script>
+            $(function () {
+                var value_id = "";
+                var button_id = "";
 
-                if (button_id=="#createbackup") {
-                    create_backup();
-                };
-                if (button_id=="#restorebackup") {
-                    restore_backup();
-                };
+                // Submit post on button click
+                $('button').click(function (event) {
+                    event.preventDefault();
+                    console.log("Button pressed:" + $(this).attr('id'));  // sanity check
+                    value_id = $(this).attr('id');
+                    button_id = "#" + value_id;
 
-
-            });
-
-            // AJAX for posting
-            function create_backup() {
-                console.log("Create backup was called!"); // sanity check
-                $(button_id).text("{% trans "Waiting..." %}");
-                $.ajax({
-                    url : "create_backup/", // the endpoint
-                    type : "POST", // http method
-                    //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
-                    // handle a successful response
-                    success : function(json) {
-                        $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
-                        $(button_id).removeClass('btn-danger').addClass('btn-success');
-                        $(button_id).text("{% trans "Backup done!" %}");
-                        console.log(json); // log the returned json to the console
-                        console.log("success"); // another sanity check
-                    },
-                    // handle a non-successful response
-                    error : function(xhr,errmsg,err) {
-                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                    if (button_id == "#createbackup") {
+                        create_backup();
                     }
-                });
-            };
-
-
-            function restore_backup() {
-                console.log("Restore backup was called!"); // sanity check
-                $(button_id).text("{% trans "Waiting..." %}");
-                $.ajax({
-                    url : "restore_backup/", // the endpoint
-                    type : "POST", // http method
-                    //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
-                    // handle a successful response
-                    success : function(json) {
-                        $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
-                        $(button_id).removeClass('btn-danger').addClass('btn-success');
-                        $(button_id).text("{% trans "Backup restore done!" %}");
-                        console.log(json); // log the returned json to the console
-                        console.log("success"); // another sanity check
-                    },
-                    // handle a non-successful response
-                    error : function(xhr,errmsg,err) {
-                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                    ;
+                    if (button_id == "#restorebackup") {
+                        restore_backup();
                     }
+                    ;
+
+
                 });
-            };
+
+                // AJAX for posting
+                function create_backup() {
+                    console.log("Create backup was called!"); // sanity check
+                    $(button_id).text("{% trans "Waiting..." %}");
+                    $.ajax({
+                        url: "create_backup/", // the endpoint
+                        type: "POST", // http method
+                        //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
+                        // handle a successful response
+                        success: function (json) {
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
+                            $(button_id).removeClass('btn-danger').addClass('btn-success');
+                            $(button_id).text("{% trans "Backup done!" %}");
+                            console.log(json); // log the returned json to the console
+                            console.log("success"); // another sanity check
+                        },
+                        // handle a non-successful response
+                        error: function (xhr, errmsg, err) {
+                            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                        }
+                    });
+                };
 
 
-            // This function gets cookie with a given name
-            function getCookie(name) {
-                var cookieValue = null;
-                if (document.cookie && document.cookie != '') {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = jQuery.trim(cookies[i]);
-                        // Does this cookie string begin with the name we want?
-                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
+                function restore_backup() {
+                    console.log("Restore backup was called!"); // sanity check
+                    $(button_id).text("{% trans "Waiting..." %}");
+                    $.ajax({
+                        url: "restore_backup/", // the endpoint
+                        type: "POST", // http method
+                        //data : { value : $(input_id).val(), mediaid:mediaid, vpid:vpid, tagid:tagid }, // data sent with the post request
+                        // handle a successful response
+                        success: function (json) {
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
+                            $(button_id).removeClass('btn-danger').addClass('btn-success');
+                            $(button_id).text("{% trans "Backup restore done!" %}");
+                            console.log(json); // log the returned json to the console
+                            console.log("success"); // another sanity check
+                        },
+                        // handle a non-successful response
+                        error: function (xhr, errmsg, err) {
+                            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                        }
+                    });
+                };
+
+
+                // This function gets cookie with a given name
+                function getCookie(name) {
+                    var cookieValue = null;
+                    if (document.cookie && document.cookie != '') {
+                        var cookies = document.cookie.split(';');
+                        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                break;
+                            }
                         }
                     }
+                    return cookieValue;
                 }
-                return cookieValue;
-            }
-            var csrftoken = getCookie('csrftoken');
 
-            /*
-            The functions below will create a header with csrftoken
-            */
+                var csrftoken = getCookie('csrftoken');
 
-            function csrfSafeMethod(method) {
-                // these HTTP methods do not require CSRF protection
-                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-            }
-            function sameOrigin(url) {
-                // test that a given url is a same-origin URL
-                // url could be relative or scheme relative or absolute
-                var host = document.location.host; // host + port
-                var protocol = document.location.protocol;
-                var sr_origin = '//' + host;
-                var origin = protocol + sr_origin;
-                // Allow absolute or scheme relative URLs to same origin
-                return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
-                    (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-                    // or any other URL that isn't scheme relative or absolute i.e relative.
-                    !(/^(\/\/|http:|https:).*/.test(url));
-            }
+                /*
+                 The functions below will create a header with csrftoken
+                 */
 
-            $.ajaxSetup({
-                beforeSend: function(xhr, settings) {
-                    if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
-                        // Send the token to same-origin, relative URLs only.
-                        // Send the token only if the method warrants CSRF protection
-                        // Using the CSRFToken value acquired earlier
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                function csrfSafeMethod(method) {
+                    // these HTTP methods do not require CSRF protection
+                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                }
+
+                function sameOrigin(url) {
+                    // test that a given url is a same-origin URL
+                    // url could be relative or scheme relative or absolute
+                    var host = document.location.host; // host + port
+                    var protocol = document.location.protocol;
+                    var sr_origin = '//' + host;
+                    var origin = protocol + sr_origin;
+                    // Allow absolute or scheme relative URLs to same origin
+                    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                        // or any other URL that isn't scheme relative or absolute i.e relative.
+                        !(/^(\/\/|http:|https:).*/.test(url));
+                }
+
+                $.ajaxSetup({
+                    beforeSend: function (xhr, settings) {
+                        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                            // Send the token to same-origin, relative URLs only.
+                            // Send the token only if the method warrants CSRF protection
+                            // Using the CSRFToken value acquired earlier
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        }
                     }
-                }
+                });
+
             });
 
-        });
 
-
-</script>
-{% endblock %}
+        </script>
+    {% endblock %}
 {% endlocaltime %}
