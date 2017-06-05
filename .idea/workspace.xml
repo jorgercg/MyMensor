@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/css/jquery-eu-cookie-law-popup.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/js/jquery-eu-cookie-law-popup.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mymensor/static/css/cookielaw.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/mymensor/static/js/cookielaw.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/mymensor/templates/cookielaw/banner.html" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/base.html" afterPath="$PROJECT_DIR$/mymensor/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,8 +48,18 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1965">
-              <caret line="131" column="33" lean-forward="true" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+            <state relative-caret-position="418">
+              <caret line="202" column="27" lean-forward="true" selection-start-line="202" selection-start-column="27" selection-end-line="202" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery-eu-cookie-law-popup.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/js/jquery-eu-cookie-law-popup.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="37" column="49" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -302,11 +308,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="static" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="registration" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -670,13 +676,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02274" summary="03jun2017 10h53min">
-      <created>1496483606097</created>
-      <option name="number" value="02274" />
-      <option name="presentableId" value="LOCAL-02274" />
-      <option name="project" value="LOCAL" />
-      <updated>1496483606098</updated>
-    </task>
     <task id="LOCAL-02275" summary="03jun2017 10h55min">
       <created>1496483751623</created>
       <option name="number" value="02275" />
@@ -1013,7 +1012,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496583979732</updated>
     </task>
-    <option name="localTasksCounter" value="2323" />
+    <task id="LOCAL-02323" summary="05jun2017 11h34min">
+      <created>1496658859122</created>
+      <option name="number" value="02323" />
+      <option name="presentableId" value="LOCAL-02323" />
+      <option name="project" value="LOCAL" />
+      <updated>1496658859122</updated>
+    </task>
+    <option name="localTasksCounter" value="2324" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1095,7 +1101,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="03jun2017 16h18min" />
     <MESSAGE value="03jun2017 16h27min" />
     <MESSAGE value="03jun2017 16h35min" />
     <MESSAGE value="03jun2017 16h42min" />
@@ -1120,7 +1125,8 @@
     <MESSAGE value="04jun2017 11h20min" />
     <MESSAGE value="04jun2017 14h40min" />
     <MESSAGE value="04jun2017 14h46min" />
-    <option name="LAST_COMMIT_MESSAGE" value="04jun2017 14h46min" />
+    <MESSAGE value="05jun2017 11h34min" />
+    <option name="LAST_COMMIT_MESSAGE" value="05jun2017 11h34min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1511,16 +1517,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/jquery-eu-cookie-law-popup.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="555">
+          <caret line="37" column="49" lean-forward="true" selection-start-line="36" selection-start-column="8" selection-end-line="37" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="131" column="33" lean-forward="true" selection-start-line="131" selection-start-column="33" selection-end-line="131" selection-end-column="33" />
+        <state relative-caret-position="418">
+          <caret line="202" column="27" lean-forward="true" selection-start-line="202" selection-start-column="27" selection-end-line="202" selection-end-column="27" />
           <folding />
         </state>
       </provider>
