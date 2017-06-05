@@ -590,9 +590,11 @@ svg {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    padding-right: 0;
-    padding-left: 0;
-    margin-top: 48px;
+    padding-right: 14px;
+    padding-left: 14px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+
 }
 
 /* general block overrrides */
@@ -609,8 +611,13 @@ svg {
 /* general inverse overrides */
 .block-footer .text-muted {
     color: rgba(255, 255, 255, .7) !important;
+    font-weight: 300;
 }
 
 .block-footer h6 {
     color: rgba(255, 255, 255, .999) !important;
+}
+
+.text-uppercase {
+    letter-spacing: 0.15rem;
 }
