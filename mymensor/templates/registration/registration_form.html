@@ -12,21 +12,36 @@
             <div id="signinform">
                 <p></p>
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
-                <form method="post" action="">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-
+                <form role="form" action="." method="post"> {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                    {% endif %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                        <div class="form-group {% if field.errors %}has-error{% endif %}">
+                            {{ field.label|add_class:"control-label" }}
+                            {% if field.help_text %}
+                                <span class="help-block">{{ field.help_text }}</span>
+                            {% endif %}
+                            {% if field.errors %}
+                                <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                            {% endif %}
+                            {{ field|add_class:"form-control" }}
+                        </div>
+                    {% endfor %}
                     <p class="text-justify">{% trans "By creating and Account you agree with our " %}<a
                             href="https://mymensor.com/terms">{% trans "Terms of Service" %}</a>{% trans " and " %}<a
                             href="https://mymensor.com/privacy">{% trans "Privacy Policy." %}</a></p>
-                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}"/>
+                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Log in' %}">
+                    <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
             </div>
             <p></p>
             <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a></p>
         </div>
         <div class="col-lg">
-
         </div>
     </div>
 {% endblock %}
