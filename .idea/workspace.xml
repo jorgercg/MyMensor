@@ -4,7 +4,6 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/urls.py" afterPath="$PROJECT_DIR$/mymensorapp/urls.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +79,8 @@
       <file leaf-file-name="registration_form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+            <state relative-caret-position="435">
+              <caret line="29" column="67" lean-forward="false" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
               <folding>
                 <element signature="e#149#177#0#HTML" expanded="true" />
               </folding>
@@ -499,6 +498,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="mymensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="locale" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -803,13 +824,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-02297" summary="03jun2017 16h02min">
-      <created>1496502170633</created>
-      <option name="number" value="02297" />
-      <option name="presentableId" value="LOCAL-02297" />
-      <option name="project" value="LOCAL" />
-      <updated>1496502170633</updated>
     </task>
     <task id="LOCAL-02298" summary="03jun2017 16h18min">
       <created>1496503128301</created>
@@ -1147,7 +1161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1496771935962</updated>
     </task>
-    <option name="localTasksCounter" value="2346" />
+    <task id="LOCAL-02346" summary="06jun2017 19h14min">
+      <created>1496772849291</created>
+      <option name="number" value="02346" />
+      <option name="presentableId" value="LOCAL-02346" />
+      <option name="project" value="LOCAL" />
+      <updated>1496772849291</updated>
+    </task>
+    <option name="localTasksCounter" value="2347" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1229,7 +1250,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="04jun2017 14h40min" />
     <MESSAGE value="04jun2017 14h46min" />
     <MESSAGE value="05jun2017 11h34min" />
     <MESSAGE value="05jun2017 11h39min" />
@@ -1254,7 +1274,8 @@
     <MESSAGE value="06jun2017 18h49min" />
     <MESSAGE value="06jun2017 18h54min" />
     <MESSAGE value="06jun2017 18h58min" />
-    <option name="LAST_COMMIT_MESSAGE" value="06jun2017 18h58min" />
+    <MESSAGE value="06jun2017 19h14min" />
+    <option name="LAST_COMMIT_MESSAGE" value="06jun2017 19h14min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1306,13 +1327,6 @@
         <state relative-caret-position="409">
           <caret line="238" column="53" lean-forward="false" selection-start-line="238" selection-start-column="53" selection-end-line="238" selection-end-column="53" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/static/css/toolkit-light.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="0" column="5271" lean-forward="false" selection-start-line="0" selection-start-column="5268" selection-end-line="0" selection-end-column="5271" />
         </state>
       </provider>
     </entry>
@@ -1423,6 +1437,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1439,6 +1454,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1453,6 +1469,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
           <caret line="602" column="25" lean-forward="false" selection-start-line="602" selection-start-column="25" selection-end-line="602" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1630,10 +1647,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/toolkit-light.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="0" column="5271" lean-forward="false" selection-start-line="0" selection-start-column="5268" selection-end-line="0" selection-end-column="5271" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        <state relative-caret-position="435">
+          <caret line="29" column="67" lean-forward="false" selection-start-line="29" selection-start-column="67" selection-end-line="29" selection-end-column="67" />
           <folding>
             <element signature="e#149#177#0#HTML" expanded="true" />
           </folding>
