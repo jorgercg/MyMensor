@@ -12,7 +12,6 @@
             <div id="signinform">
                 <p></p>
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
-
                 <form role="form" action="." method="post"> {% csrf_token %}
                     {% if form.non_field_errors %}
                         <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
@@ -38,9 +37,6 @@
                     <input class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}"/>
                     <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
-
-
-
             </div>
             <p></p>
             <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a></p>
