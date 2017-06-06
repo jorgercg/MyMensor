@@ -14,8 +14,28 @@
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
                 <form method="post" action="">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="{% trans 'Submit' %}"/>
+                    <p class="required"><label class="required" for="id_username">{% trans "Username" %}</label> <input
+                            autofocus="" id="id_username" maxlength="150" name="username" type="text" required/> <span
+                            class="helptext">{% trans "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only." %}</span>
+                    </p>
+                    <p class="required"><label class="required" for="id_email">{% trans "E-mail:" %}</label> <input
+                            id="id_email"
+                            name="email"
+                            type="email"
+                            required/></p>
+                    <p class="required"><label class="required" for="id_password1">{% trans "Password:" %}</label>
+                        <input
+                                id="id_password1" name="password1" type="password" required/></p>
+                    <p class="required"><label class="required"
+                                               for="id_password2">{% trans "Password confirmation:" %}</label>
+                        <input id="id_password2" name="password2" type="password" required/> <span
+                                class="helptext">{% trans "Enter the same password as before, for verification." %}</span>
+                    </p>
+
+                    <p class="text-justify">{% trans "By creating and Account you agree with our " %}<a
+                            href="https://mymensor.com/terms">{% trans "Terms of Service" %}</a>{% trans " and " %}<a
+                            href="https://mymensor.com/privacy">{% trans "Privacy Policy." %}</a></p>
+                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}"/>
                 </form>
             </div>
             <p></p>
