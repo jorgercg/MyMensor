@@ -43,6 +43,16 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
+
+    url(r'^accounts/', include('registration.backends.default.urls')),
+
+    # password reset urls
+    url(r'^accounts/password/reset/$', password_reset, {'template_name': 'registration/password_reset_form.html'}, name="password_reset"),
+    url(r'^accounts/password/reset/done/$', password_reset_done, {'template_name': 'registration/password_reset_done.html'}, name="password_reset_done"),
+    url(r'^accounts/password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', password_reset_confirm,{'template_name': 'registration/password_reset_confirm.html'},
+        name="password_reset_confirm"),
+    url(r'^accounts/password/done/$', password_reset_complete, {'template_name': 'registration/password_reset_complete.html'}, name="password_reset_complete"),
+    url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
 ]
 
 urlpatterns += i18n_patterns(
@@ -60,16 +70,6 @@ urlpatterns += i18n_patterns(
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
 
     url(r'^mobilebackup/$', mymviews.mobileBackupFormView, name='mobilebackup'),
-
-    url(r'^accounts/', include('registration.backends.default.urls')),
-
-    # password reset urls
-    url(r'^accounts/password/reset/$', password_reset, {'template_name': 'registration/password_reset_form.html'}, name="password_reset"),
-    url(r'^accounts/password/reset/done/$', password_reset_done, {'template_name': 'registration/password_reset_done.html'}, name="password_reset_done"),
-    url(r'^accounts/password/reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', password_reset_confirm,{'template_name': 'registration/password_reset_confirm.html'},
-        name="password_reset_confirm"),
-    url(r'^accounts/password/done/$', password_reset_complete, {'template_name': 'registration/password_reset_complete.html'}, name="password_reset_complete"),
-    url(r'^accounts/register/$', RegistrationView.as_view(), name='registration_register'),
 
     url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
 
