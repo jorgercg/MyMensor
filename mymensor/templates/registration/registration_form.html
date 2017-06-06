@@ -14,8 +14,14 @@
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
                 <form role="form" action="" method="post">
                     {% csrf_token %}
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                    {% endif %}
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
                     <div class="form-group">
-                        <label class="required" for="id_username">Username</label>
+                        <label class="required control-label" for="id_username">Username</label>
                         <input autofocus="" id="id_username" maxlength="150" type="text" class="form-control"
                                aria-describedby="usernameHelp"
                                placeholder="Enter username" required>
@@ -24,15 +30,15 @@
                         </small>
                     </div>
                     <div class="form-group">
-                        <label class="required" for="id_email">Your Email Address</label>
+                        <label class="required control-label" for="id_email">Your Email Address</label>
                         <input id="id_email" type="email" class="form-control" placeholder="Enter email address" required>
                     </div>
                     <div class="form-group">
-                        <label class="required" for="id_password1">Password</label>
+                        <label class="required control-label" for="id_password1">Password</label>
                         <input name="password1" type="password" class="form-control" id="id_password1" placeholder="Password" required>
                     </div>
                     <div class="form-group">
-                        <label class="required" for="id_password2">Password Confirmation</label>
+                        <label class="required control-label" for="id_password2">Password Confirmation</label>
                         <input name="password2" type="password" class="form-control" id="id_password2" aria-describedby="passwordHelp" placeholder="Password" required>
                         <small id="passwordHelp" class="form-text text-muted">Enter the same password as before, for verification.</small>
                     </div>
