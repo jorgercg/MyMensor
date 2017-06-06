@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters %}
+{% load i18n%}
 
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 
@@ -12,7 +12,7 @@
             <div id="signinform">
                 <p></p>
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
-                <form role="form" action="" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
                     <div class="form-group">
                         <label class="required" for="id_username">Username</label>
