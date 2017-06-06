@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters%}
+{% load i18n mymfilters %}
 
-{% block title %}{% trans "Register" %}{% endblock %}
+{% block title %}{% trans "Register for an account" %}{% endblock %}
 
 {% block content %}
     <div class="row" style="padding-bottom: 20px">
@@ -12,36 +12,41 @@
             <div id="signinform">
                 <p></p>
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
-                <form role="form" action="." method="post"> {% csrf_token %}
-                    {% if form.non_field_errors %}
-                        <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
-                    {% endif %}
-                    {% for hidden in form.hidden_fields %}
-                        {{ hidden }}
-                    {% endfor %}
-                    {% for field in form.visible_fields %}
-                        <div class="form-group {% if field.errors %}has-error{% endif %}">
-                            {{ field.label|add_class:"control-label" }}
-                            {% if field.help_text %}
-                                <span class="help-block">{{ field.help_text }}</span>
-                            {% endif %}
-                            {% if field.errors %}
-                                <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
-                            {% endif %}
-                            {{ field|add_class:"form-control" }}
-                        </div>
-                    {% endfor %}
-                    <p class="text-justify">{% trans "By creating and Account you agree with our " %}<a
-                            href="https://mymensor.com/terms">{% trans "Terms of Service" %}</a>{% trans " and " %}<a
-                            href="https://mymensor.com/privacy">{% trans "Privacy Policy." %}</a></p>
-                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Log in' %}">
-                    <input type="hidden" name="next" value="{{ next }}"/>
+                <form role="form" action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="required" for="id_username">Username</label>
+                        <input autofocus="" id="id_username" maxlength="150" type="text" class="form-control"
+                               aria-describedby="usernameHelp"
+                               placeholder="Enter username" required>
+                        <small id="usernamelHelp" class="form-text text-muted">Required. 150 characters or fewer.
+                            Letters, digits and @/./+/-/_ only.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="id_email">Your Email Address</label>
+                        <input id="id_email" type="email" class="form-control" placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="id_password1">Password</label>
+                        <input name="password1" type="password" class="form-control" id="id_password1" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required" for="id_password2">Password Confirmation</label>
+                        <input name="password2" type="password" class="form-control" id="id_password2" aria-describedby="passwordHelp" placeholder="Password" required>
+                        <small id="passwordHelp" class="form-text text-muted">Enter the same password as before, for verification.</small>
+                    </div>
+                    <p class="text-justify">By creating and Account you agree with our <a href="https://mymensor.com/terms">Terms of Service</a> and <a href="https://mymensor.com/privacy">Privacy Policy.</a></p>
+                    <input class="btn btn-success btn-block" type="submit"
+                           value="{% trans 'Agree and Create Account' %}">
+						   <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
             </div>
             <p></p>
             <p>{% trans "Already have an Account?" %} <a href="{% url 'auth_login' %}">{% trans "Log In." %}</a></p>
         </div>
         <div class="col-lg">
+
         </div>
     </div>
 {% endblock %}
