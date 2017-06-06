@@ -13,8 +13,6 @@
                 <p></p>
                 <h2>{% trans "Create your MyMensor Account." %}</h2>
 
-
-
                 <form role="form" action="." method="post"> {% csrf_token %}
                     {% if form.non_field_errors %}
                         <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
@@ -26,10 +24,10 @@
                         <div class="form-group {% if field.errors %}has-error{% endif %}">
                             {{ field.label|add_class:"control-label" }}
                             {% if field.help_text %}
-                                <span class="help-block">{{ field.help_text }}</span>
+                                <small class="form-text text-muted">{{ field.help_text }}</small>
                             {% endif %}
                             {% if field.errors %}
-                                <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                                <small class="form-text text-muted">{{ field.errors|join:"<br \>" }}</small>
                             {% endif %}
                             {{ field|add_class:"form-control" }}
                         </div>
