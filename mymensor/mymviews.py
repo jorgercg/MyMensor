@@ -437,15 +437,12 @@ def tagSetupFormView(request):
         error_code = e
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
-    qtytagsglobal = listoftagsglobal.count()
-    qtyinitial = listoftagsglobal.count()
-    listoftagsglobalcount = qtytagsglobal
+    listoftagsindatabase = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
+    qtytagsindatabase = listoftagsindatabase.count()
 
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag', 1))
-        qtytagsglobal = int(request.POST.get('qtytags', qtytagsglobal))
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
@@ -462,53 +459,63 @@ def tagSetupFormView(request):
         currenttag_temp = int(request.GET.get('currenttag', 0))
         tagdeleted = int(request.GET.get('tagdeleted', 0))
         if tagdeleted > 0:
-            taginstance = Tag()
-            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
-                tagNumber=tagdeleted).get()
+            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=tagdeleted).get()
             taginstance.delete()
-        qtytagsglobalfromclient = int(request.GET.get('qtytags', listoftagsglobalcount))
-        if listoftagsglobalcount > 0:
-            listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
-            qtytags = listoftags.count()
-            if qtytags > 0:
-                if currenttag_temp in listoftags:
+        qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
+        if qtytagsindatabase > 0:
+            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+            qtytagsincurrentvp = listoftagsincurrentvp.count()
+            if qtytagsincurrentvp > 0:
+                if currenttag_temp in listoftagsincurrentvp:
                     currenttag = currenttag_temp
-                elif qtytagsglobalfromclient > listoftagsglobalcount:
-                    currenttag = qtytagsglobalfromclient
+                elif qtytagsinclient > qtytagsindatabase:
+                    currenttag = qtytagsinclient
                 else:
-                    currenttag = listoftags[0]
+                    currenttag = listoftagsincurrentvp[0]
                 tag = Tag()
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+                    lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                    listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+                    qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
                 except tag.DoesNotExist:
                     tag = Tag.objects.create(
                         vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
                             vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                         tagQuestion='Tag question for TAG#' + str(currenttag))
+                    lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                    listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+                    qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
-            if qtytags == 0  and qtytagsglobalfromclient > listoftagsglobalcount:
-                currenttag = qtytagsglobalfromclient
+            if qtytagsincurrentvp == 0  and qtytagsinclient > qtytagsindatabase:
+                currenttag = qtytagsinclient
                 tag = Tag.objects.create(
                     vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
                         vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                     tagQuestion='Tag question for TAG#' + str(currenttag))
+                lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+                qtytagsindatabase = listoftagsindatabase.count()
+                form = TagForm(instance=tag)
+        if qtytagsindatabase == 0:
+            if qtytagsinclient > qtytagsindatabase:
+                currenttag = qtytagsinclient
+                tag = Tag.objects.create(
+                    vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                        vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
+                    tagQuestion='Tag question for TAG#' + str(currenttag))
+                lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+                qtytagsindatabase = listoftagsindatabase.count()
                 form = TagForm(instance=tag)
             else:
+                currenttag = 0
                 form = None
-        if listoftagsglobalcount == 0:
-            currenttag = 0
-            form = None
     if form is not None:
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
-        lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-        listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
-        qtyinitial = listoftagsglobal.count()
     else:
         tags = None
-        lasttag = None
-        listoftagsglobal = None
-        qtyinitial = 0
 
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by(
         'vpNumber')
@@ -538,9 +545,9 @@ def tagSetupFormView(request):
     except:
         descvpTimeStamp = " "
     return render(request, 'tagsetup.html',
-                  {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytags': qtytagsglobalfromclient,
+                  {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytagsinclient': qtytagsinclient,
                    'currenttag': currenttag, 'tags': tags, 'vps': vps, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'qtyinitial':qtyinitial})
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'qtytagsindatabase':qtytagsindatabase})
 
 
 @login_required
