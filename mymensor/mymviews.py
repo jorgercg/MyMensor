@@ -438,11 +438,10 @@ def tagSetupFormView(request):
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
-    if listoftagsglobal:
+    if listoftagsglobal is not None:
         qtytagsglobal = listoftagsglobal.count()
     else:
         qtytagsglobal = 0
-
     listoftagsglobalcount = qtytagsglobal
 
     if request.method == 'POST':
@@ -460,7 +459,6 @@ def tagSetupFormView(request):
             form = TagForm(request.POST, instance=tag)
         if form.is_valid():
             form.save()
-
     if request.method == 'GET':
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag_temp = int(request.GET.get('currenttag', 0))
@@ -503,7 +501,6 @@ def tagSetupFormView(request):
         if qtytagsglobal == 0:
             currenttag = 0
             form = None
-
     if form:
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
         lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
