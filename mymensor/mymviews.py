@@ -438,10 +438,7 @@ def tagSetupFormView(request):
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
-    if listoftagsglobal is not None:
-        qtytagsglobal = listoftagsglobal.count()
-    else:
-        qtytagsglobal = 0
+    qtytagsglobal = listoftagsglobal.count()
     listoftagsglobalcount = qtytagsglobal
 
     if request.method == 'POST':
