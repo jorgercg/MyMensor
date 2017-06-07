@@ -27,14 +27,12 @@
                     <button id="inctags" type="button" class="btn btn-outline-primary">
                         {% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
-                {% for tag in tags %}
-                    {% if tag.tagNumber == lasttag.tagNumber %}
-                        <div id="tagstotalqtydecuder" class="mym-dash-item">
-                            <button id="deltag" type="button" class="btn btn-outline-danger">
-                                {% trans 'Delete TAG#' %}{{ currenttag }}</button>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                {% if currenttag == lasttag.tagNumber %}
+                    <div id="tagstotalqtydecuder" class="mym-dash-item">
+                        <button id="deltag" type="button" class="btn btn-outline-danger">
+                            {% trans 'Delete TAG#' %}{{ currenttag }}</button>
+                    </div>
+                {% endif %}
             </div>
         </div>
         <hr>
