@@ -439,6 +439,7 @@ def tagSetupFormView(request):
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
     listoftagsglobal = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytagsglobal = listoftagsglobal.count()
+    qtyinitial = listoftagsglobal.count()
     listoftagsglobalcount = qtytagsglobal
 
     if request.method == 'POST':
@@ -539,7 +540,7 @@ def tagSetupFormView(request):
     return render(request, 'tagsetup.html',
                   {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytags': qtytagsglobalfromclient,
                    'currenttag': currenttag, 'tags': tags, 'vps': vps, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag})
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'qtyinitial':qtyinitial})
 
 
 @login_required
