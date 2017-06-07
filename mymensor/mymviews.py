@@ -468,7 +468,7 @@ def tagSetupFormView(request):
             taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                 tagNumber=tagdeleted).get()
             taginstance.delete()
-        qtytagsglobal = int(request.GET.get('qtytags', qtytagsglobal))
+        qtytagsglobal = int(request.GET.get('qtytags', listoftagsglobalcount))
         if qtytagsglobal > 0:
             listoftags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
             qtytags = listoftags.count()
