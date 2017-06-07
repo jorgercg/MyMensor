@@ -499,16 +499,16 @@ def tagSetupFormView(request):
         if listoftagsglobalcount == 0:
             currenttag = 0
             form = None
-    if form:
+    if form is not None:
         tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
         lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
         listoftagsglobal = Tag.objects.filter(vp__asset__assetOwner=request.user)
-        qtytagsglobalfromclient = listoftagsglobalcount
+        qtyinitial = listoftagsglobal.count()
     else:
         tags = None
         lasttag = None
         listoftagsglobal = None
-        qtytagsglobalfromclient = 0
+        qtyinitial = 0
 
     vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by(
         'vpNumber')
