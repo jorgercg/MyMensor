@@ -446,7 +446,7 @@ def tagSetupFormView(request):
         qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
         tag = Tag()
         try:
-            tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
+            tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
