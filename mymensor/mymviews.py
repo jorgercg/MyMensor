@@ -150,7 +150,8 @@ def amazon_sns_processor(request):
                 return HttpResponse(status=200)
             else:
                 media_received.save()
-            publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public", data={"username": media_received.mediaMymensorAccount})
+            publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
+                    data={"username": media_received.mediaMymensorAccount})
             vp_received = media_received.vp
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -198,7 +199,8 @@ def amazon_sns_processor(request):
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
                         reply_to = [from_email]
-                        email = EmailMessage(subject=subject, body=message, from_email=from_email, to=recipient_list, reply_to=reply_to)
+                        email = EmailMessage(subject=subject, body=message, from_email=from_email, to=recipient_list,
+                                             reply_to=reply_to)
                         email.attach(video.name, video.read(), 'video/mp4')
                         email.send(fail_silently=False)
                         os.remove(filename)
@@ -211,7 +213,8 @@ def amazon_sns_processor(request):
                 except:
                     twitterAccount = None
                 if twitterAccount is not None:
-                    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+                    twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
+                                          twitterAccount.twtAccessTokenSecret)
                     if media_received.mediaContentType == "image/jpeg":
                         filename = 'temp.jpg'
                         requesturl = requests.get(url, stream=True)
@@ -297,7 +300,8 @@ def portfolio(request):
             media_vpnumbers.append(media.mediaVpNumber)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist, 'media_vpnumbers':media_vpnumbers})
+                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
+                       'media_vpnumbers': media_vpnumbers})
 
 
 # Media Feed View
@@ -436,7 +440,7 @@ def tagSetupFormView(request):
     except ClientError as e:
         error_code = e
     currentvp = 1
-    qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
+    qtyvps = Vp.objects.filter(asset__assetOwner=request.user).count()
     listoftagsindatabase = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
     qtytagsindatabase = listoftagsindatabase.count()
 
@@ -449,13 +453,15 @@ def tagSetupFormView(request):
             tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+            vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
-            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+            tag = Tag(vp=Vp.objects.filter(asset__assetOwner=request.user).filter(
                 vpNumber=currentvp).get())
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+            vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
@@ -466,11 +472,13 @@ def tagSetupFormView(request):
         currenttag_temp = int(request.GET.get('currenttag', 0))
         tagdeleted = int(request.GET.get('tagdeleted', 0))
         if tagdeleted > 0:
-            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=tagdeleted).get()
+            taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
+                tagNumber=tagdeleted).get()
             taginstance.delete()
         qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
         if qtytagsindatabase > 0:
-            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
+                vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
             qtytagsincurrentvp = listoftagsincurrentvp.count()
             if qtytagsincurrentvp > 0:
                 if currenttag_temp in listoftagsincurrentvp:
@@ -481,27 +489,31 @@ def tagSetupFormView(request):
                     currenttag = listoftagsincurrentvp[0]
                 tag = Tag()
                 try:
-                    tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+                    tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
+                        tagNumber=currenttag).get()
                     lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                    vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                     qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
                 except tag.DoesNotExist:
                     tag = Tag.objects.create(
-                        vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                        vp=Vp.objects.filter(asset__assetOwner=request.user).filter(
                             vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                         tagQuestion='Tag question for TAG#' + str(currenttag))
                     lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                    vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                     qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
-            if qtytagsincurrentvp == 0  and qtytagsinclient > qtytagsindatabase:
+            if qtytagsincurrentvp == 0 and qtytagsinclient > qtytagsindatabase:
                 currenttag = qtytagsinclient
                 tag = Tag.objects.create(
-                    vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                    vp=Vp.objects.filter(asset__assetOwner=request.user).filter(
                         vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                     tagQuestion='Tag question for TAG#' + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                 qtytagsindatabase = listoftagsindatabase.count()
                 form = TagForm(instance=tag)
@@ -512,10 +524,11 @@ def tagSetupFormView(request):
             if qtytagsinclient > qtytagsindatabase:
                 currenttag = qtytagsinclient
                 tag = Tag.objects.create(
-                    vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                    vp=Vp.objects.filter(asset__assetOwner=request.user).filter(
                         vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                     tagQuestion='Tag question for TAG#' + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+                vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                 qtytagsindatabase = listoftagsindatabase.count()
                 form = TagForm(instance=tag)
@@ -523,14 +536,16 @@ def tagSetupFormView(request):
                 currenttag = 0
                 form = None
     if form is not None:
-        tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by('tagNumber')
+        tags = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).order_by(
+            'tagNumber')
     else:
         tags = None
         lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+        vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag)
 
-    vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).exclude(vpNumber=0).order_by(
+    vps = Vp.objects.filter(asset__assetOwner=request.user).exclude(vpNumber=0).order_by(
         'vpNumber')
-    vp = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
+    vp = Vp.objects.filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get()
     try:
         tagbbox = Tagbbox.objects.get(tag=tag)
     except:
@@ -558,7 +573,8 @@ def tagSetupFormView(request):
     return render(request, 'tagsetup.html',
                   {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytagsinclient': qtytagsinclient,
                    'currenttag': currenttag, 'tags': tags, 'vps': vps, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'qtytagsindatabase':qtytagsindatabase})
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'vpoflasttag':vpoflasttag,
+                   'qtytagsindatabase': qtytagsindatabase})
 
 
 @login_required
@@ -1128,7 +1144,7 @@ def vpDetailView(request):
                                                      'loclatitude': mediainstance.mediaLatitude,
                                                      'loclongitude': mediainstance.mediaLongitude,
                                                      'locprecisioninm': mediainstance.mediaLocPrecisionInMeters,
-                                                     'mediaRemark':mediainstance.mediaRemark,
+                                                     'mediaRemark': mediainstance.mediaRemark,
                                                      })
         else:
             return render(request, 'index.html')
@@ -1238,7 +1254,8 @@ def twtinfo(request):
     """
     if twtcheck_key(request):
         twitterAccount = TwitterAccount.objects.get(twtOwner=request.user)
-        twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey, twitterAccount.twtAccessTokenSecret)
+        twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
+                              twitterAccount.twtAccessTokenSecret)
         user = twitter_api.verify_credentials()
         return render(request, 'twtinfo.html', {'twtuser': user})
     else:
@@ -1265,8 +1282,8 @@ def twtcallback(request):
     request.session['access_key_tw'] = final_step['oauth_token']
     request.session['access_secret_tw'] = final_step['oauth_token_secret']
     twitteraccount, created = TwitterAccount.objects.get_or_create(twtOwner=request.user)
-    twitteraccount.twtAccessTokenKey=final_step['oauth_token']
-    twitteraccount.twtAccessTokenSecret=final_step['oauth_token_secret']
+    twitteraccount.twtAccessTokenKey = final_step['oauth_token']
+    twitteraccount.twtAccessTokenSecret = final_step['oauth_token_secret']
     twitteraccount.save()
     return HttpResponseRedirect(reverse('twtmain'))
 
@@ -1307,7 +1324,8 @@ def twtget_api(request):
 @login_required
 def fbmain(request):
     mymensoruserID = request.user.id
-    return render(request, 'fbmain.html', {'mymensoruserID':mymensoruserID})
+    return render(request, 'fbmain.html', {'mymensoruserID': mymensoruserID})
+
 
 @login_required
 def fbsecstageauth(request):
@@ -1317,14 +1335,15 @@ def fbsecstageauth(request):
         shrtAccessToken = request.POST.get('fbAccessToken')
         shrtAccessTokenSignRqst = request.POST.get('fbAccTknSignedRequest')
         mymensorUserID = request.POST.get('mymensorUserID')
-        params = {'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret':FB_APP_SECRET, 'fb_exchange_token': shrtAccessToken}
+        params = {'grant_type': 'fb_exchange_token', 'client_id': FB_APP_ID, 'client_secret': FB_APP_SECRET,
+                  'fb_exchange_token': shrtAccessToken}
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
             timenow = datetime.utcnow()
             data = longlivetokenresponse.json()
             facebookaccount, created = FacebookAccount.objects.get_or_create(fbOwner_id=mymensorUserID,
-                                                    fbUserId=fbUserID,
-                                                    fbUserName=fbUserName)
+                                                                             fbUserId=fbUserID,
+                                                                             fbUserName=fbUserName)
             facebookaccount.fbShortTermAccesToken = shrtAccessToken
             facebookaccount.fbShortTermAccesTokenSignedRequest = shrtAccessTokenSignRqst
             facebookaccount.fbLongTermAccesToken = data['access_token']
@@ -1349,13 +1368,15 @@ def fbsecstageauth(request):
             status=400
         )
 
+
 @login_required
 def fbsecstagelogout(request):
     if request.method == 'POST':
         fbUserID = request.POST.get('fbUserID')
         fbUserName = request.POST.get('fbUserName')
         mymensorUserID = request.POST.get('mymensorUserID')
-        facebookaccount = FacebookAccount.objects.get(fbOwner_id=mymensorUserID, fbUserId=fbUserID, fbUserName=fbUserName)
+        facebookaccount = FacebookAccount.objects.get(fbOwner_id=mymensorUserID, fbUserId=fbUserID,
+                                                      fbUserName=fbUserName)
         facebookaccount.delete()
         return HttpResponse(
             json.dumps({"Sucess": "facebook account deleted"}),

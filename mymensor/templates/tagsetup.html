@@ -31,7 +31,7 @@
                 </div>
                 <div id="lasttag" class="mym-dash-item">
                     {% if lasttag is not None %}
-                        <span class="badge badge-pill badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}</span>
+                        <span class="badge badge-pill badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}{% trans " in VP#" %}{{ vpoflasttag.vpNumber }}</span>
                     {% else %}
                         <span class="badge badge-pill badge-info">{% trans "No TAGs" %}</span>
                     {% endif %}
