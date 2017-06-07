@@ -27,9 +27,17 @@
                     <button id="inctags" type="button" class="btn btn-outline-primary">
                         {% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
+                <div id="lasttag" class="mym-dash-item">
+                    <span class="badge badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}</span>
+                </div>
                 {% if currenttag == lasttag.tagNumber %}
                     <div id="tagstotalqtydecuder" class="mym-dash-item">
                         <button id="deltag" type="button" class="btn btn-outline-danger">
+                            {% trans 'Delete TAG#' %}{{ currenttag }}</button>
+                    </div>
+                {% else %}
+                    <div id="tagstotalqtydecuder" class="mym-dash-item">
+                        <button id="deltagOFF" type="button" class="btn btn-outline-secondary">
                             {% trans 'Delete TAG#' %}{{ currenttag }}</button>
                     </div>
                 {% endif %}
