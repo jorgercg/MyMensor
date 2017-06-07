@@ -118,7 +118,7 @@
                     window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + '{{ qtytags }}' + '&currenttag=' + tagselected;
                 });
 
-                console.log("INITIAL: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}');
+                console.log("INITIAL: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}' + " lasttag.tagNumber=" + '{{ lasttag.tagNumber }}');
 
                 $('#currvp').change(function () {
                     var vpselected = $(this).find(":selected").val();
