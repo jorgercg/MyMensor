@@ -20,6 +20,8 @@
                         {% for tag in tags %}
                             <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>
                                 TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
+                        {% empty %}
+                            <option value="">{% trans "No TAGs" %}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -28,9 +30,18 @@
                         {% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
                 <div id="lasttag" class="mym-dash-item">
-                    <span class="badge badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}</span>
+                    {% if lasttag is not None %}
+                        <span class="badge badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}</span>
+                    {% else %}
+                        <span class="badge badge-info">{% trans "No TAGs" %}</span>
+                    {% endif %}
                 </div>
-                {% if currenttag == lasttag.tagNumber %}
+                {% if tags is None %}
+                    <div id="tagstotalqtydecuder" class="mym-dash-item">
+                        <button id="deltagOFF" type="button" class="btn btn-outline-secondary">
+                            {% trans 'No TAGs' %}</button>
+                    </div>
+                {% elif currenttag == lasttag.tagNumber %}
                     <div id="tagstotalqtydecuder" class="mym-dash-item">
                         <button id="deltag" type="button" class="btn btn-outline-danger">
                             {% trans 'Delete TAG#' %}{{ currenttag }}</button>
