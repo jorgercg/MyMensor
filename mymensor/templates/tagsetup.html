@@ -28,7 +28,7 @@
                         {% trans 'Increase tag qty in VP#' %}{{ currentvp }}</button>
                 </div>
                 {% for tag in tags %}
-                    {% if tag == tags|last %}
+                    {% if tag.tagNumber == lasttag.tagNumber %}
                         <div id="tagstotalqtydecuder" class="mym-dash-item">
                             <button id="deltag" type="button" class="btn btn-outline-danger">
                                 {% trans 'Delete TAG#' %}{{ currenttag }}</button>
