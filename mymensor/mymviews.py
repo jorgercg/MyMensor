@@ -443,14 +443,21 @@ def tagSetupFormView(request):
     if request.method == 'POST':
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag', 1))
+        qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
         tag = Tag()
         try:
             tag = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
+            lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+            listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+            qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
             tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
                 vpNumber=currentvp).get())
+            lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
+            listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
+            qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
         if form.is_valid():
             form.save()
