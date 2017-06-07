@@ -453,7 +453,7 @@ def tagSetupFormView(request):
             tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-            vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+            vpoflasttag = lasttag.vp
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
@@ -461,7 +461,7 @@ def tagSetupFormView(request):
             tag = Tag(vp=Vp.objects.filter(asset__assetOwner=request.user).filter(
                 vpNumber=currentvp).get())
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-            vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+            vpoflasttag = lasttag.vp
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
@@ -492,7 +492,7 @@ def tagSetupFormView(request):
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()
                     lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-                    vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+                    vpoflasttag = lasttag.vp
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                     qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
@@ -502,7 +502,7 @@ def tagSetupFormView(request):
                             vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                         tagQuestion='Tag question for TAG#' + str(currenttag))
                     lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-                    vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+                    vpoflasttag = lasttag.vp
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                     qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
@@ -513,7 +513,7 @@ def tagSetupFormView(request):
                         vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                     tagQuestion='Tag question for TAG#' + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-                vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+                vpoflasttag = lasttag.vp
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                 qtytagsindatabase = listoftagsindatabase.count()
                 form = TagForm(instance=tag)
@@ -528,7 +528,7 @@ def tagSetupFormView(request):
                         vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
                     tagQuestion='Tag question for TAG#' + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-                vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+                vpoflasttag = lasttag.vp
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                 qtytagsindatabase = listoftagsindatabase.count()
                 form = TagForm(instance=tag)
@@ -541,7 +541,7 @@ def tagSetupFormView(request):
     else:
         tags = None
         lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-        vpoflasttag = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__tag=lasttag).get()
+        vpoflasttag = lasttag.vp
 
     vps = Vp.objects.filter(asset__assetOwner=request.user).exclude(vpNumber=0).order_by(
         'vpNumber')
