@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-08 19:36+0100\n"
-"PO-Revision-Date: 2017-06-08 19:35+0100\n"
+"POT-Creation-Date: 2017-06-08 21:33+0100\n"
+"PO-Revision-Date: 2017-06-08 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -93,11 +93,13 @@ msgstr "Sair"
 msgid "Password change"
 msgstr "Alterar senha"
 
-#: mymensor/templates/base.html:121
+#: mymensor/templates/base.html:121 mymensor/templates/fbmain.html:4
+#: mymensor/templates/fbmain.html:13
 msgid "Facebook Account"
 msgstr "Conta do Facebook"
 
-#: mymensor/templates/base.html:122
+#: mymensor/templates/base.html:122 mymensor/templates/twtinfo.html:4
+#: mymensor/templates/twtmain.html:4 mymensor/templates/twtmain.html:13
 msgid "Twitter Account"
 msgstr "Conta do Twitter"
 
@@ -110,13 +112,9 @@ msgid "About"
 msgstr "Sobre"
 
 #: mymensor/templates/base.html:143
-#, fuzzy
-#| msgid ""
-#| "It\\'s been a long journey and we are just starting! Contact us anytime "
-#| "at "
 msgid "The journey was long, but we are just starting! Contact us anytime at "
 msgstr ""
-"Já é uma longa jornada, mas estamos apenas começando! Entre em contato a "
+"A jornada foi longa, mas estamos apenas começando! Entre em contato a "
 "qualquer momento em "
 
 #: mymensor/templates/base.html:150
@@ -516,6 +514,10 @@ msgid ""
 "%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"Você (ou alguém fingindo ser você) pediu para registrar uma conta em\n"
+"%(site_name)s.  Se não foi você, por favor, ignore este e-mail\n"
+"e seu endereço será removido de nossos registros.\n"
 
 #: mymensor/templates/registration/activation_email.txt:7
 #, python-format
@@ -524,6 +526,10 @@ msgid ""
 "To activate this account, please click the following link within the next\n"
 "%(expiration_days)s days:\n"
 msgstr ""
+"\n"
+" Para ativar essa conta, por favor clique no link a seguir dentro dos "
+"próximos\n"
+" %(expiration_days)s dias:\n"
 
 #: mymensor/templates/registration/activation_email.txt:14
 #, python-format
@@ -532,10 +538,13 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"Atenciosamente,\n"
+"Equipe %(site_name)s\n"
 
 #: mymensor/templates/registration/activation_email_subject.txt:1
 msgid "Account activation on"
-msgstr ""
+msgstr "Conta ativa em"
 
 #: mymensor/templates/registration/login.html:4
 #: mymensor/templates/registration/login.html:14
@@ -561,7 +570,7 @@ msgstr "Desconectado"
 
 #: mymensor/templates/registration/logout.html:13
 msgid "Successfully logged out"
-msgstr "Você conseguiu deslogar com sucesso, volte sempre."
+msgstr "Você conseguiu deslogar com sucesso, volte sempre"
 
 #: mymensor/templates/registration/password_change_done.html:4
 msgid "Password changed"
@@ -569,7 +578,7 @@ msgstr "Senha Alterada"
 
 #: mymensor/templates/registration/password_change_done.html:13
 msgid "Password successfully changed!"
-msgstr "Senha alterada com sucesso."
+msgstr "Senha alterada com sucesso!"
 
 #: mymensor/templates/registration/password_change_form.html:4
 #: mymensor/templates/registration/password_change_form.html:17
@@ -582,43 +591,45 @@ msgstr "Reposição de password concluída"
 
 #: mymensor/templates/registration/password_reset_complete.html:14
 msgid "Your password has been reset!"
-msgstr ""
+msgstr "A sua senha foi redefinida!"
 
 #: mymensor/templates/registration/password_reset_complete.html:15
 #, python-format
 msgid "You may now <a href=\"%(login_url)s\">log in</a>"
-msgstr ""
+msgstr "Você pode agora <a href=\"%(login_url)s\">fazer login</a>"
 
 #: mymensor/templates/registration/password_reset_confirm.html:4
 msgid "Confirm password reset"
-msgstr ""
+msgstr "Confirme a redefinição de senha"
 
 #: mymensor/templates/registration/password_reset_confirm.html:15
 #: mymensor/templates/registration/password_reset_form.html:14
 msgid "Password Reset"
-msgstr ""
+msgstr "Redefinição de Senha"
 
 #: mymensor/templates/registration/password_reset_confirm.html:17
 msgid "Enter your new password below to reset your password:"
-msgstr ""
+msgstr "Digite a nova senha abaixo para redefinir sua senha:"
 
 #: mymensor/templates/registration/password_reset_confirm.html:21
 msgid "Set password"
-msgstr ""
+msgstr "Definir senha"
 
 #: mymensor/templates/registration/password_reset_confirm.html:24
 msgid "Password reset unsuccessful"
-msgstr ""
+msgstr "Reposição de password mal sucedida"
 
 #: mymensor/templates/registration/password_reset_confirm.html:25
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
+"O link de redefinição de senha era inválido, possivelmente porque ele já foi "
+"usado. Solicite uma nova redefinição de senha."
 
 #: mymensor/templates/registration/password_reset_done.html:4
 msgid "Password reset"
-msgstr ""
+msgstr "Redefinição de senha"
 
 #: mymensor/templates/registration/password_reset_done.html:14
 msgid ""
@@ -628,10 +639,15 @@ msgid ""
 "                    your email and click the link to continue.\n"
 "                "
 msgstr ""
+"\n"
+"                    Enviamos um e-mail com um link para redefinir sua senha. "
+"Por favor verifique\n"
+"                     o seu e-mail e clique no link para continuar.\n"
+"                 "
 
 #: mymensor/templates/registration/password_reset_email.html:3
 msgid "Greetings"
-msgstr ""
+msgstr "Saudações"
 
 #: mymensor/templates/registration/password_reset_email.html:5
 #, python-format
@@ -641,6 +657,10 @@ msgid ""
 "requested that your password be reset on the %(domain)s site. If you do not\n"
 "wish to reset your password, please ignore this message.\n"
 msgstr ""
+"\n"
+"Você está recebendo este e-mail porque você (ou alguém fingindo ser você)\n"
+"solicitou que sua senha fosse redefinida no site %(domain)s. Se você não\n"
+"deseja redefinir sua senha, por favor ignore esta mensagem.\n"
 
 #: mymensor/templates/registration/password_reset_email.html:11
 msgid ""
@@ -649,23 +669,27 @@ msgid ""
 "it\n"
 "into your web browser:\n"
 msgstr ""
+"\n"
+"Para redefinir sua senha, por favor clique no seguinte link, ou copie e cole-"
+"o\n"
+"em seu navegador da web:\n"
 
 #: mymensor/templates/registration/password_reset_email.html:18
 msgid "Your username, in case you've forgotten:"
-msgstr ""
+msgstr "O seu nome de utilizador, caso o tenha esquecido:"
 
 #: mymensor/templates/registration/password_reset_email.html:21
 msgid "Best regards"
-msgstr ""
+msgstr "Atenciosamente"
 
 #: mymensor/templates/registration/password_reset_email.html:22
 msgid "Management"
-msgstr ""
+msgstr "Equipe"
 
 #: mymensor/templates/registration/password_reset_form.html:4
 #: mymensor/templates/registration/password_reset_form.html:40
 msgid "Reset password"
-msgstr ""
+msgstr "Redefinir senha"
 
 #: mymensor/templates/registration/password_reset_form.html:16
 msgid ""
@@ -675,48 +699,55 @@ msgid ""
 "                        creating a new one.\n"
 "                    "
 msgstr ""
+"\n"
+"                        Esqueceu sua senha? Digite seu e-mail no formulário "
+"abaixo e enviaremos as instruções para\n"
+"                        criar uma nova.\n"
+"                    "
 
 #: mymensor/templates/registration/registration_complete.html:4
 msgid "Activation email sent"
-msgstr ""
+msgstr "E-mail de ativação enviado"
 
 #: mymensor/templates/registration/registration_complete.html:13
 msgid "Please check your email to complete the registration process."
-msgstr ""
+msgstr "Por favor, verifique seu e-mail para concluir o processo de registro."
 
 #: mymensor/templates/registration/registration_form.html:14
 msgid "Create your MyMensor Account."
-msgstr ""
+msgstr "Crie sua conta MyMensor."
 
 #: mymensor/templates/registration/registration_form.html:34
 msgid "By creating and Account you agree with our "
-msgstr ""
+msgstr "Ao criar uma conta, você concorda com os "
 
 #: mymensor/templates/registration/registration_form.html:35
 msgid " and "
-msgstr ""
+msgstr " e "
 
 #: mymensor/templates/registration/registration_form.html:36
 msgid "Privacy Policy."
-msgstr ""
+msgstr "Política de Privacidade."
 
 #: mymensor/templates/registration/registration_form.html:37
 msgid "Agree and Create Account"
-msgstr ""
+msgstr "Concordar e Criar Conta"
 
 #: mymensor/templates/registration/registration_form.html:42
 msgid "Already have an Account?"
-msgstr ""
+msgstr "Já possui uma conta?"
 
 #: mymensor/templates/registration/registration_form.html:42
 msgid "Log In."
-msgstr ""
+msgstr "Entrar."
 
 #: mymensor/templates/support.html:9
 msgid ""
 "Many thanks for using our software! Please see below how you can find info "
 "to help clarify your doubts."
 msgstr ""
+"Muito obrigado por usar nosso software! Por favor, veja abaixo como você "
+"pode encontrar informações para ajudar a esclarecer suas dúvidas."
 
 #: mymensor/templates/support.html:10
 msgid "Explainer Videos"
@@ -758,136 +789,139 @@ msgstr ""
 
 #: mymensor/templates/taganalysis.html:26 mymensor/templates/tagstatus.html:42
 msgid "Refresh chart with current selection"
-msgstr ""
+msgstr "Atualizar o gráfico com a seleção atual"
 
 #: mymensor/templates/tagsetup.html:24 mymensor/templates/tagsetup.html:36
 #: mymensor/templates/tagsetup.html:42
 msgid "No TAGs"
-msgstr ""
+msgstr "Sem TAGs"
 
 #: mymensor/templates/tagsetup.html:30
 msgid "Add a TAG in VP#"
-msgstr ""
+msgstr "Adicionar um TAG no VP#"
 
 #: mymensor/templates/tagsetup.html:34
 msgid "Last tag is TAG#"
-msgstr ""
+msgstr "O último é o TAG#"
 
 #: mymensor/templates/tagsetup.html:34
 msgid " in VP#"
-msgstr ""
+msgstr " no VP#"
 
 #: mymensor/templates/tagsetup.html:47 mymensor/templates/tagsetup.html:52
 msgid "Delete TAG#"
-msgstr ""
+msgstr "Excluir TAG#"
 
 #: mymensor/templates/tagsetup.html:73
 msgid "Mark position of TAG#"
-msgstr ""
+msgstr "Marcar a posição do TAG#"
 
 #: mymensor/templates/tagsetup.html:73
 msgid " in the VP standard photo"
-msgstr ""
+msgstr " na foto padrão deste VP"
 
 #: mymensor/templates/tagsetup.html:75
 msgid "Clear marking"
-msgstr ""
+msgstr "Limpar marcações"
 
 #: mymensor/templates/tagsetup.html:161
 msgid "Please confirm this TAG deletion."
-msgstr ""
+msgstr "Por favor, confirme esta supressão de TAG."
 
 #: mymensor/templates/tagstatus.html:27
 msgid " lines per page"
-msgstr ""
+msgstr " linhas por página"
 
 #: mymensor/templates/tagstatus.html:48
 msgid "Export complete table as CSV"
-msgstr ""
+msgstr "Exportar tabela completa no formato CSV"
 
 #: mymensor/templates/twtinfo.html:16
 msgid " Disconnect from Twitter"
-msgstr ""
+msgstr " Desconecte do Twitter"
 
 #: mymensor/templates/vpdetail.html:31
 msgid "Media captured on "
-msgstr ""
+msgstr "Mídia capturada em "
 
 #: mymensor/templates/vpdetail.html:39
 msgid "Choose a VP to move the media to:"
-msgstr ""
+msgstr "Escolha um VP para mover a mídia para:"
 
 #: mymensor/templates/vpdetail.html:42
 msgid "Move to "
-msgstr ""
+msgstr "Mover para "
 
 #: mymensor/templates/vpdetail.html:49
 msgid "Click to move media to the selected VP# folder"
-msgstr ""
+msgstr "Clique para mover a mídia para a pasta do VP# selecionada"
 
 #: mymensor/templates/vpdetail.html:50
 msgid "Please confirm that you want to move this media."
-msgstr ""
+msgstr "Por favor, confirme que você deseja mover essa mídia."
 
 #: mymensor/templates/vpdetail.html:67
 msgid "Delete media from server"
-msgstr ""
+msgstr "Excluir a mídia do servidor"
 
 #: mymensor/templates/vpdetail.html:68
 msgid "Please confirm that you want to delete this media from MyMensor server."
 msgstr ""
+"Por favor, confirme que você deseja excluir essa mídia do servidor MyMensor."
 
 #: mymensor/templates/vpdetail.html:112 mymensor/templates/vpdetail.html:204
 msgid " means that augmented reality was used to capture this media"
 msgstr ""
+" significa que a realidade aumentada foi usada para capturar essa mídia"
 
 #: mymensor/templates/vpdetail.html:116 mymensor/templates/vpdetail.html:208
 msgid " means that augmented reality was not used to capture this media"
 msgstr ""
+" significa que a realidade aumentada não foi usada para capturar essa mídia"
 
 #: mymensor/templates/vpdetail.html:121 mymensor/templates/vpdetail.html:213
 msgid " means that the capture time was certified by MyMensor"
-msgstr ""
+msgstr " significa que o horário de captura foi certificado pelo MyMensor"
 
 #: mymensor/templates/vpdetail.html:125 mymensor/templates/vpdetail.html:217
 msgid " means that the capture time was not certified by MyMensor"
-msgstr ""
+msgstr " significa que o horário de captura não foi certificado pelo MyMensor"
 
 #: mymensor/templates/vpdetail.html:130 mymensor/templates/vpdetail.html:222
 msgid " means that the capture location was certified by MyMensor"
-msgstr ""
+msgstr " significa que o local de captura foi certificado pelo MyMensor"
 
 #: mymensor/templates/vpdetail.html:134 mymensor/templates/vpdetail.html:226
 msgid " means that the capture location was not certified by MyMensor"
-msgstr ""
+msgstr " significa que o local de captura não foi certificado pelo MyMensor"
 
 #: mymensor/templates/vpdetail.html:143 mymensor/templates/vpdetail.html:235
 msgid " No remark for this media"
-msgstr ""
+msgstr " Nenhum comentário para esta mídia"
 
 #: mymensor/templates/vpdetail.html:277
 msgid "Check this media at MyMensor"
-msgstr ""
+msgstr "Verifique essa mídia no MyMensor"
 
 #: mymensor/templates/vpdetail.html:416
 msgid "Media deleted."
-msgstr ""
+msgstr "Mídia excluída."
 
 #: mymensor/templates/vpdetail.html:424
 msgid "Error: file not deleted."
-msgstr ""
+msgstr "Erro: arquivo não excluído."
 
 #: mymensor/templates/vpdetail.html:440
 msgid "Media moved."
-msgstr ""
+msgstr "Mídia movida."
 
 #: mymensor/templates/vpdetail.html:448
 msgid "Error: media not moved."
-msgstr ""
+msgstr "Erro: mídia não movida."
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
-msgstr ""
+msgstr "Mensagens"
 
 #: venv/lib/python2.7/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
@@ -903,20 +937,20 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:33
 msgid "Enter a valid value."
-msgstr ""
+msgstr "Digite um valor válido."
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:106
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:663
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "Por favor, insira um URL válido."
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:159
 msgid "Enter a valid integer."
-msgstr ""
+msgstr "Insira um número inteiro válido."
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:170
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Insira um endereço de email válido."
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:243
 msgid ""
@@ -947,7 +981,7 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/core/validators.py:305
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1110
 msgid "Enter only digits separated by commas."
-msgstr ""
+msgstr "Digite somente dígitos separados por vírgulas."
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:311
 #, python-format
@@ -1012,7 +1046,7 @@ msgstr[1] ""
 #: venv/lib/python2.7/site-packages/django/db/models/base.py:1191
 #: venv/lib/python2.7/site-packages/django/forms/models.py:734
 msgid "and"
-msgstr ""
+msgstr "e"
 
 #: venv/lib/python2.7/site-packages/django/db/models/base.py:1193
 #, python-format
@@ -1026,11 +1060,11 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:111
 msgid "This field cannot be null."
-msgstr ""
+msgstr "Este campo não pode ser nulo."
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:112
 msgid "This field cannot be blank."
-msgstr ""
+msgstr "Este campo não pode ser deixado em branco."
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:113
 #, python-format
@@ -1053,7 +1087,7 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:881
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1788
 msgid "Integer"
-msgstr ""
+msgstr "Inteiro"
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:885
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1786
@@ -1143,7 +1177,7 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1662
 msgid "Email address"
-msgstr ""
+msgstr "Endereço de e-mail"
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1686
 msgid "File path"

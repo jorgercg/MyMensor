@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n mymfilters %}
 {% if user.is_authenticated %}
-    {% block title %}Twitter Account - {{ block.super }}{% endblock %}
+    {% block title %}{% trans "Twitter Account" %} - {{ block.super }}{% endblock %}
     {% block header %}
     {% endblock %}
     {% block content %}
@@ -10,7 +10,7 @@
                 <div class="col-sm-5">
                     <div id="twittersignin">
                         <br/>
-                        <h2>Twitter Account</h2>
+                        <h2>{% trans "Twitter Account" %}</h2>
                         <br/>
                         <p>Sign in with Twitter to be able to distribute MyMensor captures to Twitter.</p>
                         <br/>
