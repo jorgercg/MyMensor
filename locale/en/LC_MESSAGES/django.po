@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-02 21:59+0100\n"
+"POT-Creation-Date: 2017-06-08 18:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,87 +18,155 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mymensor/templates/assetsetup.html:30 mymensor/templates/tagsetup.html:81
+#: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:103
 #: mymensor/templates/vpsetup.html:60
 msgid "Submit"
 msgstr ""
 
-#: mymensor/templates/base.html:69
+#: mymensor/templates/base.html:68
 msgid "Portfolio"
 msgstr ""
 
-#: mymensor/templates/base.html:71
+#: mymensor/templates/base.html:70
 msgid "Media"
 msgstr ""
 
-#: mymensor/templates/base.html:75
+#: mymensor/templates/base.html:74
 msgid "Data"
 msgstr ""
 
-#: mymensor/templates/base.html:78
+#: mymensor/templates/base.html:77
 msgid "Status"
 msgstr ""
 
-#: mymensor/templates/base.html:79
+#: mymensor/templates/base.html:78
 msgid "Analysis"
 msgstr ""
 
-#: mymensor/templates/base.html:81
+#: mymensor/templates/base.html:80
 msgid "Processing"
 msgstr ""
 
-#: mymensor/templates/base.html:82
+#: mymensor/templates/base.html:81
 msgid "Edit"
 msgstr ""
 
-#: mymensor/templates/base.html:88
+#: mymensor/templates/base.html:87
 msgid "Setup"
 msgstr ""
 
-#: mymensor/templates/base.html:91
+#: mymensor/templates/base.html:90
 msgid "Asset"
 msgstr ""
 
-#: mymensor/templates/base.html:92
+#: mymensor/templates/base.html:91
 msgid "VPs"
 msgstr ""
 
-#: mymensor/templates/base.html:93
+#: mymensor/templates/base.html:92
 msgid "TAGs"
 msgstr ""
 
-#: mymensor/templates/base.html:95
+#: mymensor/templates/base.html:94
 msgid "Mobile Backup"
 msgstr ""
 
-#: mymensor/templates/base.html:169
+#: mymensor/templates/base.html:101
+msgid "Login"
+msgstr ""
+
+#: mymensor/templates/base.html:104
+#: mymensor/templates/registration/login.html:40
+#: mymensor/templates/registration/registration_form.html:4
+msgid "Register"
+msgstr ""
+
+#: mymensor/templates/base.html:114
+msgid "Logged in as: "
+msgstr ""
+
+#: mymensor/templates/base.html:117
+msgid "Logout"
+msgstr ""
+
+#: mymensor/templates/base.html:119
+msgid "Password change"
+msgstr ""
+
+#: mymensor/templates/base.html:121
+msgid "Facebook Account"
+msgstr ""
+
+#: mymensor/templates/base.html:122
+msgid "Twitter Account"
+msgstr ""
+
+#: mymensor/templates/base.html:124
+msgid "Support"
+msgstr ""
+
+#: mymensor/templates/base.html:141
+msgid "About"
+msgstr ""
+
+#: mymensor/templates/base.html:143
+msgid ""
+"It\\'s been a long journey and we are just starting! Contact us anytime at "
+msgstr ""
+
+#: mymensor/templates/base.html:150
+msgid "Product"
+msgstr ""
+
+#: mymensor/templates/base.html:152
+msgid "Docs"
+msgstr ""
+
+#: mymensor/templates/base.html:154
+msgid "Videos"
+msgstr ""
+
+#: mymensor/templates/base.html:157
+msgid "FAQ"
+msgstr ""
+
+#: mymensor/templates/base.html:164
+#: mymensor/templates/registration/registration_form.html:35
+msgid "Terms of Service"
+msgstr ""
+
+#: mymensor/templates/base.html:167
+msgid "Privacy"
+msgstr ""
+
+#: mymensor/templates/base.html:177
 msgid "Language"
 msgstr ""
 
-#: mymensor/templates/fbmain.html:16
+#: mymensor/templates/fbmain.html:17
 msgid "  Connect to Facebook"
 msgstr ""
 
-#: mymensor/templates/fbmain.html:17
+#: mymensor/templates/fbmain.html:19
 msgid "  Disconnect from Facebook"
 msgstr ""
 
-#: mymensor/templates/fbmain.html:67
+#: mymensor/templates/fbmain.html:71
 msgid "Please log in to distribute MyMensor captures to Facebook."
 msgstr ""
 
-#: mymensor/templates/fbmain.html:128
+#: mymensor/templates/fbmain.html:132
 msgid "You are distributing MyMensor captures to the Facebbok accout of "
 msgstr ""
 
 #: mymensor/templates/index.html:18 mymensor/templates/proctagedit.html:17
-#: mymensor/templates/tagprocessing.html:17
+#: mymensor/templates/tagprocessing.html:18
 #: mymensor/templates/tagstatus.html:17
 msgid "Show "
 msgstr ""
 
 #: mymensor/templates/index.html:20 mymensor/templates/proctagedit.html:19
-#: mymensor/templates/tagprocessing.html:19
+#: mymensor/templates/tagprocessing.html:20
 msgid " entries per VP"
 msgstr ""
 
@@ -121,9 +189,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:31 mymensor/templates/mediafeed.html:92
 #: mymensor/templates/proctagedit.html:49
 #: mymensor/templates/proctagedit.html:110
-#: mymensor/templates/tagprocessing.html:49
-#: mymensor/templates/tagprocessing.html:110
-#: mymensor/templates/vpdetail.html:85 mymensor/templates/vpdetail.html:173
+#: mymensor/templates/tagprocessing.html:60
+#: mymensor/templates/tagprocessing.html:146
+#: mymensor/templates/vpdetail.html:85 mymensor/templates/vpdetail.html:175
 msgid "Augmented reality used to capture"
 msgstr ""
 
@@ -132,9 +200,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:33 mymensor/templates/mediafeed.html:94
 #: mymensor/templates/proctagedit.html:51
 #: mymensor/templates/proctagedit.html:112
-#: mymensor/templates/tagprocessing.html:51
-#: mymensor/templates/tagprocessing.html:112
-#: mymensor/templates/vpdetail.html:88 mymensor/templates/vpdetail.html:176
+#: mymensor/templates/tagprocessing.html:64
+#: mymensor/templates/tagprocessing.html:150
+#: mymensor/templates/vpdetail.html:88 mymensor/templates/vpdetail.html:178
 msgid "Augmented reality not used to capture"
 msgstr ""
 
@@ -143,9 +211,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:36 mymensor/templates/mediafeed.html:97
 #: mymensor/templates/proctagedit.html:54
 #: mymensor/templates/proctagedit.html:115
-#: mymensor/templates/tagprocessing.html:54
-#: mymensor/templates/tagprocessing.html:115
-#: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:180
+#: mymensor/templates/tagprocessing.html:69
+#: mymensor/templates/tagprocessing.html:155
+#: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:182
 msgid "Capture time certified"
 msgstr ""
 
@@ -154,9 +222,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:38 mymensor/templates/mediafeed.html:99
 #: mymensor/templates/proctagedit.html:56
 #: mymensor/templates/proctagedit.html:117
-#: mymensor/templates/tagprocessing.html:56
-#: mymensor/templates/tagprocessing.html:117
-#: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:183
+#: mymensor/templates/tagprocessing.html:73
+#: mymensor/templates/tagprocessing.html:159
+#: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:185
 msgid "Capture time not certified"
 msgstr ""
 
@@ -169,9 +237,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:43 mymensor/templates/mediafeed.html:104
 #: mymensor/templates/proctagedit.html:61
 #: mymensor/templates/proctagedit.html:122
-#: mymensor/templates/tagprocessing.html:61
-#: mymensor/templates/tagprocessing.html:122
-#: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:190
+#: mymensor/templates/tagprocessing.html:82
+#: mymensor/templates/tagprocessing.html:168
+#: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:192
 msgid "Capture location not certified"
 msgstr ""
 
@@ -184,10 +252,10 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:49 mymensor/templates/mediafeed.html:110
 #: mymensor/templates/proctagedit.html:82
 #: mymensor/templates/proctagedit.html:143
-#: mymensor/templates/tagprocessing.html:82
-#: mymensor/templates/tagprocessing.html:143
-#: mymensor/templates/tagsetup.html:43 mymensor/templates/vpdetail.html:82
-#: mymensor/templates/vpdetail.html:170 mymensor/templates/vpsetup.html:29
+#: mymensor/templates/tagprocessing.html:109
+#: mymensor/templates/tagprocessing.html:195
+#: mymensor/templates/tagsetup.html:64 mymensor/templates/vpdetail.html:82
+#: mymensor/templates/vpdetail.html:172 mymensor/templates/vpsetup.html:29
 msgid "Captured on"
 msgstr ""
 
@@ -195,8 +263,8 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:53 mymensor/templates/mediafeed.html:114
 #: mymensor/templates/proctagedit.html:86
 #: mymensor/templates/proctagedit.html:147
-#: mymensor/templates/tagprocessing.html:86
-#: mymensor/templates/tagprocessing.html:147
+#: mymensor/templates/tagprocessing.html:115
+#: mymensor/templates/tagprocessing.html:201
 msgid "Received at server on"
 msgstr ""
 
@@ -220,9 +288,9 @@ msgstr ""
 #: mymensor/templates/mediafeed.html:41 mymensor/templates/mediafeed.html:102
 #: mymensor/templates/proctagedit.html:59
 #: mymensor/templates/proctagedit.html:120
-#: mymensor/templates/tagprocessing.html:59
-#: mymensor/templates/tagprocessing.html:120
-#: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:187
+#: mymensor/templates/tagprocessing.html:78
+#: mymensor/templates/tagprocessing.html:164
+#: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:189
 msgid "Capture location certified"
 msgstr ""
 
@@ -251,29 +319,29 @@ msgid " the capture location was not certified by MyMensor"
 msgstr ""
 
 #: mymensor/templates/landing.html:127 mymensor/templates/landing.html:209
-#: mymensor/templates/vpdetail.html:157 mymensor/templates/vpdetail.html:247
+#: mymensor/templates/vpdetail.html:157 mymensor/templates/vpdetail.html:249
 msgid " Latitude: "
 msgstr ""
 
 #: mymensor/templates/landing.html:127 mymensor/templates/landing.html:129
 #: mymensor/templates/landing.html:209 mymensor/templates/landing.html:211
 #: mymensor/templates/vpdetail.html:157 mymensor/templates/vpdetail.html:159
-#: mymensor/templates/vpdetail.html:247 mymensor/templates/vpdetail.html:249
+#: mymensor/templates/vpdetail.html:249 mymensor/templates/vpdetail.html:251
 msgid " degrees"
 msgstr ""
 
 #: mymensor/templates/landing.html:129 mymensor/templates/landing.html:211
-#: mymensor/templates/vpdetail.html:159 mymensor/templates/vpdetail.html:249
+#: mymensor/templates/vpdetail.html:159 mymensor/templates/vpdetail.html:251
 msgid " Longitude: "
 msgstr ""
 
 #: mymensor/templates/landing.html:131 mymensor/templates/landing.html:213
-#: mymensor/templates/vpdetail.html:161 mymensor/templates/vpdetail.html:251
+#: mymensor/templates/vpdetail.html:161 mymensor/templates/vpdetail.html:253
 msgid " Precision: "
 msgstr ""
 
 #: mymensor/templates/landing.html:131 mymensor/templates/landing.html:213
-#: mymensor/templates/vpdetail.html:161 mymensor/templates/vpdetail.html:251
+#: mymensor/templates/vpdetail.html:161 mymensor/templates/vpdetail.html:253
 msgid " meters"
 msgstr ""
 
@@ -299,64 +367,64 @@ msgid ""
 "media online."
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:11
+#: mymensor/templates/mobilebackup.html:12
 msgid ""
 "No backup of the mobile configuration setup was ever made in this account"
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:13
-#: mymensor/templates/mobilebackup.html:17
+#: mymensor/templates/mobilebackup.html:15
+#: mymensor/templates/mobilebackup.html:21
 msgid "Create Backup"
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:15
+#: mymensor/templates/mobilebackup.html:18
 msgid ""
 "Current backup of the mobile configuration setup for this account was made "
 "on "
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:20
+#: mymensor/templates/mobilebackup.html:25
 msgid "Restore Backup"
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:49
-#: mymensor/templates/mobilebackup.html:73
+#: mymensor/templates/mobilebackup.html:57
+#: mymensor/templates/mobilebackup.html:81
 msgid "Waiting..."
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:58
+#: mymensor/templates/mobilebackup.html:66
 msgid "Backup done!"
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:82
+#: mymensor/templates/mobilebackup.html:90
 msgid "Backup restore done!"
 msgstr ""
 
 #: mymensor/templates/proctagedit.html:36
 #: mymensor/templates/proctagedit.html:95
-#: mymensor/templates/tagprocessing.html:36
-#: mymensor/templates/tagprocessing.html:95
+#: mymensor/templates/tagprocessing.html:41
+#: mymensor/templates/tagprocessing.html:127
 msgid "Processed"
 msgstr ""
 
 #: mymensor/templates/proctagedit.html:46
 #: mymensor/templates/proctagedit.html:107
-#: mymensor/templates/tagprocessing.html:46
-#: mymensor/templates/tagprocessing.html:107
+#: mymensor/templates/tagprocessing.html:56
+#: mymensor/templates/tagprocessing.html:142
 msgid "VP standard photo"
 msgstr ""
 
 #: mymensor/templates/proctagedit.html:71
 #: mymensor/templates/proctagedit.html:132
-#: mymensor/templates/tagprocessing.html:71
-#: mymensor/templates/tagprocessing.html:132
+#: mymensor/templates/tagprocessing.html:94
+#: mymensor/templates/tagprocessing.html:180
 msgid "Answer here..."
 msgstr ""
 
 #: mymensor/templates/proctagedit.html:73
 #: mymensor/templates/proctagedit.html:134
-#: mymensor/templates/tagprocessing.html:73
-#: mymensor/templates/tagprocessing.html:134
+#: mymensor/templates/tagprocessing.html:98
+#: mymensor/templates/tagprocessing.html:184
 msgid "Save"
 msgstr ""
 
@@ -454,10 +522,6 @@ msgstr ""
 
 #: mymensor/templates/registration/login.html:40
 msgid "Not a member?"
-msgstr ""
-
-#: mymensor/templates/registration/login.html:40
-msgid "Register"
 msgstr ""
 
 #: mymensor/templates/registration/logout.html:4
@@ -589,51 +653,116 @@ msgstr ""
 msgid "Please check your email to complete the registration process."
 msgstr ""
 
-#: mymensor/templates/registration/registration_form.html:4
-msgid "Register for an account"
-msgstr ""
-
 #: mymensor/templates/registration/registration_form.html:14
 msgid "Create your MyMensor Account."
 msgstr ""
 
-#: mymensor/templates/registration/registration_form.html:41
+#: mymensor/templates/registration/registration_form.html:34
+msgid "By creating and Account you agree with our "
+msgstr ""
+
+#: mymensor/templates/registration/registration_form.html:35
+msgid " and "
+msgstr ""
+
+#: mymensor/templates/registration/registration_form.html:36
+msgid "Privacy Policy."
+msgstr ""
+
+#: mymensor/templates/registration/registration_form.html:37
 msgid "Agree and Create Account"
 msgstr ""
 
-#: mymensor/templates/registration/registration_form.html:45
+#: mymensor/templates/registration/registration_form.html:42
 msgid "Already have an Account?"
 msgstr ""
 
-#: mymensor/templates/registration/registration_form.html:45
+#: mymensor/templates/registration/registration_form.html:42
 msgid "Log In."
+msgstr ""
+
+#: mymensor/templates/support.html:9
+msgid ""
+"Many thanks for using our software! Please see below how you can find info "
+"to help clarify your doubts."
+msgstr ""
+
+#: mymensor/templates/support.html:10
+msgid "Explainer Videos"
+msgstr ""
+
+#: mymensor/templates/support.html:11
+msgid "Video #1 - How to...."
+msgstr ""
+
+#: mymensor/templates/support.html:12
+msgid "Video #2 - How to...."
+msgstr ""
+
+#: mymensor/templates/support.html:13
+msgid "Video #3 - How to...."
+msgstr ""
+
+#: mymensor/templates/support.html:14
+msgid "Software Docs"
+msgstr ""
+
+#: mymensor/templates/support.html:15
+msgid "Explanation about concepts and definitions used in this software."
+msgstr ""
+
+#: mymensor/templates/support.html:16
+msgid "Email Support"
+msgstr ""
+
+#: mymensor/templates/support.html:17
+msgid ""
+"If you cannot clarify your doubts using the above methods, please send us an "
+"email to "
+msgstr ""
+
+#: mymensor/templates/support.html:18
+msgid " and we will responded as soon as practically possible."
 msgstr ""
 
 #: mymensor/templates/taganalysis.html:26 mymensor/templates/tagstatus.html:42
 msgid "Refresh chart with current selection"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:28
-msgid "Increase tag qty in VP#"
+#: mymensor/templates/tagsetup.html:24 mymensor/templates/tagsetup.html:36
+#: mymensor/templates/tagsetup.html:42
+msgid "No TAGs"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:32
+#: mymensor/templates/tagsetup.html:30
+msgid "Add a TAG in VP#"
+msgstr ""
+
+#: mymensor/templates/tagsetup.html:34
+msgid "Last tag is TAG#"
+msgstr ""
+
+#: mymensor/templates/tagsetup.html:34
+msgid " in VP#"
+msgstr ""
+
+#: mymensor/templates/tagsetup.html:47 mymensor/templates/tagsetup.html:52
 msgid "Delete TAG#"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:52
+#: mymensor/templates/tagsetup.html:73
 msgid "Mark position of TAG#"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:52
+#: mymensor/templates/tagsetup.html:73
 msgid " in the VP standard photo"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:54
+#: mymensor/templates/tagsetup.html:75
 msgid "Clear marking"
 msgstr ""
 
-#: mymensor/templates/tagsetup.html:138
+#: mymensor/templates/tagsetup.html:161
 msgid "Please confirm this TAG deletion."
 msgstr ""
 
@@ -645,7 +774,7 @@ msgstr ""
 msgid "Export complete table as CSV"
 msgstr ""
 
-#: mymensor/templates/twtinfo.html:15
+#: mymensor/templates/twtinfo.html:16
 msgid " Disconnect from Twitter"
 msgstr ""
 
@@ -677,51 +806,51 @@ msgstr ""
 msgid "Please confirm that you want to delete this media from MyMensor server."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:112 mymensor/templates/vpdetail.html:202
+#: mymensor/templates/vpdetail.html:112 mymensor/templates/vpdetail.html:204
 msgid " means that augmented reality was used to capture this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:116 mymensor/templates/vpdetail.html:206
+#: mymensor/templates/vpdetail.html:116 mymensor/templates/vpdetail.html:208
 msgid " means that augmented reality was not used to capture this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:121 mymensor/templates/vpdetail.html:211
+#: mymensor/templates/vpdetail.html:121 mymensor/templates/vpdetail.html:213
 msgid " means that the capture time was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:125 mymensor/templates/vpdetail.html:215
+#: mymensor/templates/vpdetail.html:125 mymensor/templates/vpdetail.html:217
 msgid " means that the capture time was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:130 mymensor/templates/vpdetail.html:220
+#: mymensor/templates/vpdetail.html:130 mymensor/templates/vpdetail.html:222
 msgid " means that the capture location was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:134 mymensor/templates/vpdetail.html:224
+#: mymensor/templates/vpdetail.html:134 mymensor/templates/vpdetail.html:226
 msgid " means that the capture location was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:143 mymensor/templates/vpdetail.html:233
+#: mymensor/templates/vpdetail.html:143 mymensor/templates/vpdetail.html:235
 msgid " No remark for this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:278
+#: mymensor/templates/vpdetail.html:277
 msgid "Check this media at MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:417
+#: mymensor/templates/vpdetail.html:416
 msgid "Media deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:425
+#: mymensor/templates/vpdetail.html:424
 msgid "Error: file not deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:441
+#: mymensor/templates/vpdetail.html:440
 msgid "Media moved."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:449
+#: mymensor/templates/vpdetail.html:448
 msgid "Error: media not moved."
 msgstr ""
 
