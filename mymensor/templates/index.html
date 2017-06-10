@@ -255,7 +255,8 @@
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <p>{% trans 'No media for VP#' %}{{ vp.vpNumber }}{% trans ' in the selected timeframe.' %}</p>
+                            <p>
+                                {% trans 'No media for VP#' %}{{ vp.vpNumber }}{% trans ' in the selected timeframe.' %}</p>
                         {% endif %}
                     </div>
                 {% endfor %}
@@ -281,14 +282,26 @@
                         startDate: {{ start }},
                         endDate: {{ end }},
                         "alwaysShowCalendars": true,
-                        ranges: {
-                            'Today': [moment(), moment()],
-                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                            'This Month': [moment().startOf('month'), moment().endOf('month')],
-                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                        }
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "pt" %}
+                            ranges: {
+                                'Hoje': [moment(), moment()],
+                                'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                                'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                                'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                                'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            }
+                        {% else %}
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            }
+                        {% endif %}
                     }, cb);
 
                     cb(start, end);
@@ -301,13 +314,13 @@
                         //console.log({% url 'portfolio' %});
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}'+'?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
                     });
 
                     $('#refreshbtn').click(function () {
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
                     });
 
                 });
@@ -333,7 +346,7 @@
                                 }
                             }
                             console.log("Clicked on: mediaid=" + mediaid + " vpnumber=" + vpnumber);  // sanity check
-                            window.location = '{% url 'vpdetail' %}'+'?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
+                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
                         }
                     });
                 });
@@ -354,7 +367,7 @@
                         console.log(qtyselected);
                         var vpssel = $('#vpsselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' +'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
                     });
                 });
 
@@ -383,7 +396,7 @@
                             data: {mediaid: mediaid}, // data sent with the post request
                             // handle a successful response
                             success: function (json) {
-                                var output = '{% url 'taganalysis' %}'+'?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
+                                var output = '{% url 'taganalysis' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
                                 console.log(json); // log the returned json to the console
                                 console.log("success"); // another sanity check
                                 for (i = 0; i < json.result.length; i++) {
