@@ -270,8 +270,6 @@
                 $('#vpsselected').chosen();
 
                 $(function () {
-                    {% get_current_language as LANGUAGE_CODE %}
-                    moment.locale(LANGUAGE_CODE);
 
                     var start = moment("{{ start }}");
                     var end = moment("{{ end }}");
@@ -284,6 +282,7 @@
                         startDate: {{ start }},
                         endDate: {{ end }},
                         "alwaysShowCalendars": true,
+                        {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "pt" %}
                             ranges: {
                                 'Hoje': [moment(), moment()],
