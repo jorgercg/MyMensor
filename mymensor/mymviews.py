@@ -541,7 +541,10 @@ def tagSetupFormView(request):
     else:
         tags = None
         lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
-        vpoflasttag = lasttag.vp
+        if lasttag == None:
+            vpoflasttag = None
+        else:
+            vpoflasttag = lasttag.vp
 
     vps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).exclude(vpNumber=0).order_by(
         'vpNumber')
