@@ -2,11 +2,11 @@
 {% load i18n tz %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
-    {% block title %}Mobile Setup Backup - {{ block.super }}{% endblock %}
+    {% block title %}{% trans "Mobile Setup Backup" %} - {{ block.super }}{% endblock %}
     {% block content %}
         <div class="container" style="padding-bottom: 20px">
             <br>
-            <h3>Mobile Setup Backup</h3>
+            <h3>{% trans "Mobile Setup Backup"%}</h3>
             <p>
                 {% if backupinstance == None %}
                     <p>{% trans "No backup of the mobile configuration setup was ever made in this account" %}</p>

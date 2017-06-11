@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles i18n %}
-{% block title %}Support - {{ block.super }}{% endblock %}
+{% block title %}{% trans "Support" %} - {{ block.super }}{% endblock %}
 {% block content %}
     <div class="container">
         <p></p>
-        <h3>Support page</h3>
+        <h3>{% trans "Support page" %}</h3>
         <p></p>
         <p class="text-justify">{% trans "Many thanks for using our software! Please see below how you can find info to help clarify your doubts." %} </p>
         <h4 class="text-info text-capitalize">{% trans "Explainer Videos" %}</h4>
