@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-11 18:59+0100\n"
-"PO-Revision-Date: 2017-06-11 18:17+0100\n"
+"PO-Revision-Date: 2017-06-11 19:09+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -229,7 +229,7 @@ msgstr "Sair"
 
 #: mymensor/templates/base.html:119
 msgid "Password change"
-msgstr "Alterar senha"
+msgstr "Alterar palavra-passe"
 
 #: mymensor/templates/base.html:121 mymensor/templates/fbmain.html:4
 #: mymensor/templates/fbmain.html:13
@@ -697,7 +697,7 @@ msgstr "Entrar"
 
 #: mymensor/templates/registration/login.html:38
 msgid "Forgot your password?"
-msgstr "Esqueceu sua senha?"
+msgstr "Esqueceu sua palavra-passe?"
 
 #: mymensor/templates/registration/login.html:38
 msgid "Reset it"
@@ -717,16 +717,16 @@ msgstr "Você conseguiu deslogar com sucesso, volte sempre"
 
 #: mymensor/templates/registration/password_change_done.html:4
 msgid "Password changed"
-msgstr "Senha Alterada"
+msgstr "Palavra-passe Alterada"
 
 #: mymensor/templates/registration/password_change_done.html:13
 msgid "Password successfully changed!"
-msgstr "Senha alterada com sucesso!"
+msgstr "Palavra-passe alterada com sucesso!"
 
 #: mymensor/templates/registration/password_change_form.html:4
 #: mymensor/templates/registration/password_change_form.html:17
 msgid "Change password"
-msgstr "Mudar senha"
+msgstr "Mudar palavra-passe"
 
 #: mymensor/templates/registration/password_reset_complete.html:4
 msgid "Password reset complete"
@@ -734,7 +734,7 @@ msgstr "Reposição de password concluída"
 
 #: mymensor/templates/registration/password_reset_complete.html:14
 msgid "Your password has been reset!"
-msgstr "A sua senha foi redefinida!"
+msgstr "A sua palavra-passe foi redefinida!"
 
 #: mymensor/templates/registration/password_reset_complete.html:15
 #, python-format
@@ -743,20 +743,20 @@ msgstr "Você pode agora <a href=\"%(login_url)s\">fazer login</a>"
 
 #: mymensor/templates/registration/password_reset_confirm.html:4
 msgid "Confirm password reset"
-msgstr "Confirme a redefinição de senha"
+msgstr "Confirme a redefinição de palavra-passe"
 
 #: mymensor/templates/registration/password_reset_confirm.html:15
 #: mymensor/templates/registration/password_reset_form.html:14
 msgid "Password Reset"
-msgstr "Redefinição de Senha"
+msgstr "Redefinição de Palavra-passe"
 
 #: mymensor/templates/registration/password_reset_confirm.html:17
 msgid "Enter your new password below to reset your password:"
-msgstr "Digite a nova senha abaixo para redefinir sua senha:"
+msgstr "Digite a nova palavra-passe abaixo para redefinir sua palavra-passe:"
 
 #: mymensor/templates/registration/password_reset_confirm.html:21
 msgid "Set password"
-msgstr "Definir senha"
+msgstr "Definir palavra-passe"
 
 #: mymensor/templates/registration/password_reset_confirm.html:24
 msgid "Password reset unsuccessful"
@@ -767,12 +767,12 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"O link de redefinição de senha era inválido, possivelmente porque ele já foi "
-"usado. Solicite uma nova redefinição de senha."
+"O link de redefinição de palavra-passe era inválido, possivelmente porque "
+"ele já foi usado. Solicite uma nova redefinição de palavra-passe."
 
 #: mymensor/templates/registration/password_reset_done.html:4
 msgid "Password reset"
-msgstr "Redefinição de senha"
+msgstr "Redefinição de palavra-passe"
 
 #: mymensor/templates/registration/password_reset_done.html:14
 msgid ""
@@ -783,8 +783,8 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Enviamos um e-mail com um link para redefinir sua senha. "
-"Por favor verifique\n"
+"                    Enviamos um e-mail com um link para redefinir sua "
+"palavra-passe. Por favor verifique\n"
 "                     o seu e-mail e clique no link para continuar.\n"
 "                 "
 
@@ -802,8 +802,9 @@ msgid ""
 msgstr ""
 "\n"
 "Você está recebendo este e-mail porque você (ou alguém fingindo ser você)\n"
-"solicitou que sua senha fosse redefinida no site %(domain)s. Se você não\n"
-"deseja redefinir sua senha, por favor ignore esta mensagem.\n"
+"solicitou que sua palavra-passe fosse redefinida no site %(domain)s. Se você "
+"não\n"
+"deseja redefinir sua palavra-passe, por favor ignore esta mensagem.\n"
 
 #: mymensor/templates/registration/password_reset_email.html:11
 msgid ""
@@ -813,8 +814,8 @@ msgid ""
 "into your web browser:\n"
 msgstr ""
 "\n"
-"Para redefinir sua senha, por favor clique no seguinte link, ou copie e cole-"
-"o\n"
+"Para redefinir sua palavra-passe, por favor clique no seguinte link, ou "
+"copie e cole-o\n"
 "em seu navegador da web:\n"
 
 #: mymensor/templates/registration/password_reset_email.html:18
@@ -832,7 +833,7 @@ msgstr "Equipe"
 #: mymensor/templates/registration/password_reset_form.html:4
 #: mymensor/templates/registration/password_reset_form.html:40
 msgid "Reset password"
-msgstr "Redefinir senha"
+msgstr "Redefinir palavra-passe"
 
 #: mymensor/templates/registration/password_reset_form.html:16
 msgid ""
@@ -843,8 +844,8 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"                        Esqueceu sua senha? Digite seu e-mail no formulário "
-"abaixo e enviaremos as instruções para\n"
+"                        Esqueceu sua palavra-passe? Digite seu e-mail no "
+"formulário abaixo e enviaremos as instruções para\n"
 "                        criar uma nova.\n"
 "                    "
 
