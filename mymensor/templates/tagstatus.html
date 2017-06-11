@@ -221,7 +221,26 @@
         $(document).ready(function () {
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function () {
-                {% if LANGUAGE_CODE == "pt" %}
+                {% if LANGUAGE_CODE == "pt-BR" %}
+                    if (($.trim($(this).text())) == "PROCESSADO") {
+                        $(this).addClass("statusprocessed");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO BAIXO") {
+                        $(this).addClass("statuslowred");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO BAIXO") {
+                        $(this).addClass("statuslowyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERDE") {
+                        $(this).addClass("statusgreen");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO ALTO") {
+                        $(this).addClass("statushighyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO ALTO") {
+                        $(this).addClass("statushighred");
+                    }
+                {% elif LANGUAGE_CODE == "pt-PT" %}
                     if (($.trim($(this).text())) == "PROCESSADO") {
                         $(this).addClass("statusprocessed");
                     }

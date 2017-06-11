@@ -180,7 +180,7 @@
                                 <a class="text-muted" href="/{{ language.code }}/"
                                         {% if language.code == LANGUAGE_CODE %}
                                    class="selected" {% endif %}>
-                                    {{ language.name_local }}
+                                    {{ language.name_local }} - {{ language.locale }}
                                 </a>
                             </li>
                         {% endfor %}
@@ -208,7 +208,13 @@
             if ($(".eupopup").length > 0) {
                 $(document).euCookieLawPopup().init({
                     {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == "pt" %}
+                    {% if LANGUAGE_CODE == "pt-BR" %}
+                        'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
+                        'popupTitle': 'Este website utiliza cookies. ',
+                        'popupText': 'Nós utilizamos cookies para lhe dar a melhor experiência. Se você continuar a usar nosso website, consideraremos que você aceita receber todos os cookies deste website.',
+                        'buttonContinueTitle': 'Continuar',
+                        'buttonLearnmoreTitle': 'Mais&nbsp;informação'
+                    {% elif LANGUAGE_CODE == "pt-PT" %}
                         'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
                         'popupTitle': 'Este website utiliza cookies. ',
                         'popupText': 'Nós utilizamos cookies para lhe dar a melhor experiência. Se você continuar a usar nosso website, consideraremos que você aceita receber todos os cookies deste website.',
