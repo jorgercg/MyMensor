@@ -3,12 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
-    assetDescription = models.CharField(max_length=1024, null=True, verbose_name="Asset Description")
+    assetDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Description'))
     assetNumber = models.IntegerField(verbose_name="Asset Number")
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Asset Owner")  ###### FK
