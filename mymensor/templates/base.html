@@ -171,20 +171,22 @@
             </div>
             <div class="row">
                 <div class="col-md-5 mb-5">
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    <ul class="list-unstyled list-spaced">
-                        <li class="mb-2"><h6 class="text-uppercase">{% trans "Language" %}</h6></li>
-                        {% for language in languages %}
-                            <li>
-                                <a class="text-muted" href="/{{ language.code }}/"
-                                        {% if language.code == LANGUAGE_CODE %}
-                                   class="selected" {% endif %}>
-                                    {{ language.code }} - {{ language.name_local }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Go"/>
+                    </form>
                 </div>
             </div>
         </div>
