@@ -1,299 +1,399 @@
 {% extends 'base.html' %}
-{% load i18n staticfiles tz mymfilters%}
+{% load i18n staticfiles tz mymfilters %}
 {% localtime on %}
-{% get_current_timezone as TIME_ZONE %}
-{% block title %}Data Analysis - {{ block.super }}{% endblock %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% block title %}Data Analysis - {{ block.super }}{% endblock %}
 
-{% block content %}
-    <div class="mym-dash">
-        <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-            <div class="mym-dash-item">
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                    <span id="selcdates"></span> <b class="caret"></b>
+    {% block content %}
+        <div class="mym-dash">
+            <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+                <div class="mym-dash-item">
+                    <div id="reportrange"
+                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                        <span id="selcdates"></span> <b class="caret"></b>
+                    </div>
+                </div>
+                <div id="tagselector" class="mym-dash-item" style="width:30rem">
+                    <select multiple="multiple" id="tagsselected" name="tagsselected">
+                        {% for processedtagnumber in listofprocessedtagsnumbers %}
+                            <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
+                                    value='{{ processedtagnumber.statusTagNumber }}'
+                                    {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>
+                                Tag#{{ processedtagnumber.statusTagNumber }}
+                                - {{ processedtagnumber.statusTagDescription }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mym-dash-item">
+                    <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip"
+                            data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
+                        <span class="fa fa-refresh"></span>
+                    </button>
                 </div>
             </div>
-            <div id="tagselector" class="mym-dash-item" style="width:30rem">
-                <select multiple="multiple" id="tagsselected" name="tagsselected">
-                {% for processedtagnumber in listofprocessedtagsnumbers %}
-                    <option id="optiontag#{{ processedtagnumber.statusTagNumber }}"
-                            value='{{ processedtagnumber.statusTagNumber }}'
-                            {% if processedtagnumber.statusTagNumber in tagsselected %}selected{% endif %}>Tag#{{ processedtagnumber.statusTagNumber }} - {{ processedtagnumber.statusTagDescription }}</option>
-                {% endfor %}
-                </select>
-            </div>
-            <div class="mym-dash-item">
-                <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg" data-toggle="tooltip" data-placement="top" title="{% trans 'Refresh chart with current selection' %}">
-                    <span class="fa fa-refresh"></span>
-                </button>
-            </div>
         </div>
-    </div>
-    <hr>
-    <div class="canvasstyle" style="width:70%">
-        <br>
-        <canvas id="canvas"></canvas>
-        <br>
-    </div>
+        <hr>
+        <div class="canvasstyle" style="width:70%">
+            <br>
+            <canvas id="canvas"></canvas>
+            <br>
+        </div>
 
-    <!-- Modals for all points being shown on chart -->
-    {% for processedtagnumber in listofprocessedtagsnumbers %}
-        {% if processedtagnumber.statusTagNumber in tagsselected %}
-            {% for processedtag in processedtags %}
-                {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                    <div href="#" class="modal fade" id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag{{ processedtagnumber.statusTagNumber }}" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                              {% for media in medias %}
-                                  {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
-                                      {% if media.mediaContentType == "image/jpeg" %}
-                                        <img id="mediaContent" class="img-fluid" src="{{ media.mediaStorageURL }}" alt="">
-                                      {% endif %}
-                                      {% if media.mediaContentType == "video/mp4" %}
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <video controls>
-                                                <source src="{{ media.mediaStorageURL }}" type="video/mp4">
-                                            </video>
-                                        </div>
-                                      {% endif %}
-                                  {% endif %}
-                              {% endfor %}
-                          </div>
+        <!-- Modals for all points being shown on chart -->
+        {% for processedtagnumber in listofprocessedtagsnumbers %}
+            {% if processedtagnumber.statusTagNumber in tagsselected %}
+                {% for processedtag in processedtags %}
+                    {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
+                        <div href="#" class="modal fade"
+                             id="Modal{{ processedtag.statusMediaMillisSinceEpoch | frommillistoseconds }}Tag{{ processedtagnumber.statusTagNumber }}"
+                             tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        {% for media in medias %}
+                                            {% if media.mediaMillisSinceEpoch == processedtag.statusMediaMillisSinceEpoch %}
+                                                {% if media.mediaContentType == "image/jpeg" %}
+                                                    <img id="mediaContent" class="img-fluid"
+                                                         src="{{ media.mediaStorageURL }}" alt="">
+                                                {% endif %}
+                                                {% if media.mediaContentType == "video/mp4" %}
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <video controls>
+                                                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
+                                                        </video>
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-    {% endfor %}
-
-
-
-{% endblock %}
-{% block javascript %}
-    <script type="text/javascript">
-        $('#tagsselected').chosen();
-        $(function() {
-
-            var start = moment("{{ start }}");
-            var end = moment("{{ end }}");
-
-            console.log("{{ start }}");
-            console.log("{{ end }}");
-            console.log("{{ tagsselected }}");
-
-            function cb(start, end) {
-                $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
-            }
-
-            $('#reportrange').daterangepicker({
-                startDate: {{ start }},
-                endDate: {{ end }},
-                "alwaysShowCalendars": true,
-                ranges: {
-                   'Today': [moment(), moment()],
-                   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                   'This Month': [moment().startOf('month'), moment().endOf('month')],
-                   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                }
-            }, cb);
-
-            cb(start, end);
-
-            $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
-                var startdate = picker.startDate.format('YYYY-MM-DD');
-                var enddate = picker.endDate.format('YYYY-MM-DD');
-                console.log(startdate);
-                console.log(enddate);
-                var tagssel = $('#tagsselected').serialize();
-                console.log('Chosen:'+tagssel);
-                window.location='{% url 'taganalysis' %}'+'?startdate='+startdate+'&enddate='+enddate+'&'+tagssel;
-            });
-
-            $('#refreshbtn').click(function(){
-                var tagssel = $('#tagsselected').serialize();
-                console.log('Chosen:'+tagssel);
-                window.location='{% url 'taganalysis' %}'+'?startdate='+'{{ start }}'+'&enddate='+'{{ end }}'+'&'+tagssel;
-            });
-
-        });
-
-    </script>
-{% endblock %}
-
-{% block extra_head %}
-    <script type="text/javascript" src="{% static "js/Chart.min.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/chartjs-plugin-annotation.js" %}"></script>
-    <script type="text/javascript">
-
-        console.log('Initially Chosen:'+'{{ tagsselected }}');
-
-        var timeFormat = 'x';
-
-        function newDate(date) {
-			    return moment(date, timeFormat).format('YYYY-MM-DDTHH:mm:ss');
-		    }
-
-        var colorNames = Object.keys(window.chartColors);
-
-        var color = Chart.helpers.color;
-
-        var config = {
-            type: 'line',
-            data: {
-                datasets: [
-                    {% for processedtagnumber in listofprocessedtagsnumbers %}
-                        {% if processedtagnumber.statusTagNumber in tagsselected %}
-                        {
-                            label: 'Tag' + {{ processedtagnumber.statusTagNumber }},
-                            backgroundColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
-                            borderColor: window.chartColors[colorNames[ ({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
-                            data: [
-                                {% for processedtag in processedtags %}
-                                    {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
-                                        {x:newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"), y: {{ processedtag.statusValValueEvaluated }} },
-                                    {% endif %}
-                                {% endfor %}
-                            ],
-                            fill: false,
-                            tension: 0
-                        },
-                        {% endif %}
-                    {% endfor %}
-            ]},
-            options: {
-                responsive: true,
-                legend: {
-                    display: true,
-                    position: 'right'
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true
-                },
-                scales: {
-                    xAxes: [{
-                        type: 'time',
-                        id: 'x-axis-1',
-                        position: 'bottom',
-                        display: true,
-                        time: {
-                            unit: 'day',
-                            displayFormats: {
-                                "day": 'YYYY-MM-DD'
-                            }
-                        }
-                    }],
-                    yAxes: [{
-                        display: true,
-                        id: 'y-axis-1',
-                        position: "left"
-                    }]
-                },
-        {% if qtyoftagsselected == 1 %}
-            {% for tag in tags %}
-                {% if tag.tagNumber == tagsselected.0 and tag.tagLowRed is not None and tag.tagLowYellow is not None and tag.tagExpValue is not None and tag.tagHighYellow is not None and tag.tagHighRed is not None %}
-                annotation: {
-                        drawTime: "beforeDatasetsDraw",
-                        annotations: [{
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagLowRed }},
-                            yMax: {{ tag.tagLowRed }},
-                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                            borderColor: 'rgb(255, 0, 0)',
-                            borderWidth: 1},
-                            {
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagLowRed }},
-                            yMax: {{ tag.tagLowYellow }},
-                            backgroundColor: 'rgba(255, 255, 0, 0.2)',
-                            borderColor: 'rgb(255, 255, 0)',
-                            borderWidth: 1},
-                            {
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagLowYellow }},
-                            yMax: {{ tag.tagHighYellow }},
-                            backgroundColor: 'rgba(0, 128, 0, 0.2)',
-                            borderColor: 'rgb(0, 128, 0)',
-                            borderWidth: 1},
-                            {
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagExpValue }},
-                            yMax: {{ tag.tagExpValue }},
-                            backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                            borderColor: 'rgb(0, 0, 0)',
-                            borderWidth: 1},
-                            {
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagHighYellow }},
-                            yMax: {{ tag.tagHighRed }},
-                            backgroundColor: 'rgba(255, 255, 0, 0.2)',
-                            borderColor: 'rgb(255, 255, 0)',
-                            borderWidth: 1},
-                            {
-                            type: 'box',
-                            xScaleID: 'x-axis-1',
-                            yScaleID: 'y-axis-1',
-                            yMin: {{ tag.tagHighRed }},
-                            yMax: {{ tag.tagHighRed }},
-                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
-                            borderColor: 'rgb(255, 0, 0)',
-                            borderWidth: 1}
-
-                        ]
-                }
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            }
-        };
-
-        window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            var myScatter = new Chart(ctx, config);
-            var axisy = myScatter.scales['y-axis-1'];
-            var max = axisy.max;
-            var min = axisy.min;
-            console.log('max:'+max);
-            console.log('min:'+min);
-            {% if qtyoftagsselected == 1 %}
-            config.options.annotation.annotations[0].yMin=min;
-            config.options.annotation.annotations[5].yMax=max;
-			myScatter.update();
+                    {% endif %}
+                {% endfor %}
             {% endif %}
-            canvas.onclick = function(evt){
-                var activePoint = myScatter.getElementAtEvent(evt);
-                console.log(activePoint[0]);
-                console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index]);
-                console.log(config.data.datasets[activePoint[0]._datasetIndex].label);
-                console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x);
-                console.log(moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').valueOf());
-                console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].y);
-                taglabel = config.data.datasets[activePoint[0]._datasetIndex].label;
-                console.log('taglabel:'+taglabel);
-                var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x,'YYYY-MM-DDTHH:mm:ss.sss').unix();
-                var modalname = "Modal"+restoredseconds+taglabel;
-                console.log('#'+modalname);
-                jQuery('#'+modalname).modal({
-                    show: true
-                });
-            };
-        };
+        {% endfor %}
 
-    </script>
-{% endblock %}
+
+
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript">
+            $('#tagsselected').chosen();
+            $(function () {
+
+                {% get_current_language as LANGUAGE_CODE %}
+
+                moment.locale('{{ LANGUAGE_CODE }}');
+
+                var start = moment("{{ start }}");
+                var end = moment("{{ end }}");
+
+                console.log("{{ start }}");
+                console.log("{{ end }}");
+                console.log("{{ tagsselected }}");
+
+                function cb(start, end) {
+                    $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+                }
+
+                $('#reportrange').daterangepicker({
+                    startDate: {{ start }},
+                    endDate: {{ end }},
+                    "alwaysShowCalendars": true,
+                    {% if LANGUAGE_CODE == "pt" %}
+                        ranges: {
+                            'Hoje': [moment(), moment()],
+                            'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                            'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                            'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                            'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        },
+                        "locale": {
+                            "format": "YYYY-MMM-DD",
+                            "separator": " - ",
+                            "applyLabel": "Aplicar",
+                            "cancelLabel": "Cancelar",
+                            "fromLabel": "De",
+                            "toLabel": "a",
+                            "customRangeLabel": "Personalizado",
+                            "weekLabel": "S",
+                            "daysOfWeek": [
+                                "Do",
+                                "2a",
+                                "3a",
+                                "4a",
+                                "5a",
+                                "6a",
+                                "Sa"
+                            ],
+                            "monthNames": [
+                                "Janeiro",
+                                "Fevereiro",
+                                "Março",
+                                "Abril",
+                                "Maio",
+                                "Junho",
+                                "Julho",
+                                "Agosto",
+                                "Setembro",
+                                "Outubro",
+                                "Novembro",
+                                "Dezembro"
+                            ],
+                            "firstDay": 1
+                        }
+                    {% else %}
+                        ranges: {
+                            'Today': [moment(), moment()],
+                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        },
+                        "locale": {
+                            "format": "YYYY-MMM-DD",
+                            "separator": " - ",
+                            "applyLabel": "Apply",
+                            "cancelLabel": "Cancel",
+                            "fromLabel": "From",
+                            "toLabel": "To",
+                            "customRangeLabel": "Custom",
+                            "weekLabel": "W",
+                            "daysOfWeek": [
+                                "Su",
+                                "Mo",
+                                "Tu",
+                                "We",
+                                "Th",
+                                "Fr",
+                                "Sa"
+                            ],
+                            "monthNames": [
+                                "January",
+                                "February",
+                                "March",
+                                "April",
+                                "May",
+                                "June",
+                                "July",
+                                "August",
+                                "September",
+                                "October",
+                                "November",
+                                "December"
+                            ],
+                            "firstDay": 1
+                        }
+                    {% endif %}
+                }, cb);
+
+                cb(start, end);
+
+                $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                    var startdate = picker.startDate.format('YYYY-MM-DD');
+                    var enddate = picker.endDate.format('YYYY-MM-DD');
+                    console.log(startdate);
+                    console.log(enddate);
+                    var tagssel = $('#tagsselected').serialize();
+                    console.log('Chosen:' + tagssel);
+                    window.location = '{% url 'taganalysis' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&' + tagssel;
+                });
+
+                $('#refreshbtn').click(function () {
+                    var tagssel = $('#tagsselected').serialize();
+                    console.log('Chosen:' + tagssel);
+                    window.location = '{% url 'taganalysis' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&' + tagssel;
+                });
+
+            });
+
+        </script>
+    {% endblock %}
+
+    {% block extra_head %}
+        <script type="text/javascript" src="{% static "js/Chart.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/chartjs-plugin-annotation.js" %}"></script>
+        <script type="text/javascript">
+
+            console.log('Initially Chosen:' + '{{ tagsselected }}');
+
+            var timeFormat = 'x';
+
+            function newDate(date) {
+                return moment(date, timeFormat).format('YYYY-MM-DDTHH:mm:ss');
+            }
+
+            var colorNames = Object.keys(window.chartColors);
+
+            var color = Chart.helpers.color;
+
+            var config = {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {% for processedtagnumber in listofprocessedtagsnumbers %}
+                            {% if processedtagnumber.statusTagNumber in tagsselected %}
+                                {
+                                    label: 'Tag' + {{ processedtagnumber.statusTagNumber }},
+                                    backgroundColor: window.chartColors[colorNames[({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
+                                    borderColor: window.chartColors[colorNames[({{ processedtagnumber.statusTagNumber }}) % colorNames.length]],
+                                    data: [
+                                        {% for processedtag in processedtags %}
+                                            {% if processedtag.statusTagNumber == processedtagnumber.statusTagNumber %}
+                                                {
+                                                    x: newDate("{{ processedtag.statusMediaMillisSinceEpoch }}"),
+                                                    y: {{ processedtag.statusValValueEvaluated }}
+                                                },
+                                            {% endif %}
+                                        {% endfor %}
+                                    ],
+                                    fill: false,
+                                    tension: 0
+                                },
+                            {% endif %}
+                        {% endfor %}
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: true,
+                        position: 'right'
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            id: 'x-axis-1',
+                            position: 'bottom',
+                            display: true,
+                            time: {
+                                unit: 'day',
+                                displayFormats: {
+                                    "day": 'YYYY-MM-DD'
+                                }
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            id: 'y-axis-1',
+                            position: "left"
+                        }]
+                    },
+                    {% if qtyoftagsselected == 1 %}
+                        {% for tag in tags %}
+                            {% if tag.tagNumber == tagsselected.0 and tag.tagLowRed is not None and tag.tagLowYellow is not None and tag.tagExpValue is not None and tag.tagHighYellow is not None and tag.tagHighRed is not None %}
+                                annotation: {
+                                    drawTime: "beforeDatasetsDraw",
+                                    annotations: [{
+                                        type: 'box',
+                                        xScaleID: 'x-axis-1',
+                                        yScaleID: 'y-axis-1',
+                                        yMin: {{ tag.tagLowRed }},
+                                        yMax: {{ tag.tagLowRed }},
+                                        backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                                        borderColor: 'rgb(255, 0, 0)',
+                                        borderWidth: 1
+                                    },
+                                        {
+                                            type: 'box',
+                                            xScaleID: 'x-axis-1',
+                                            yScaleID: 'y-axis-1',
+                                            yMin: {{ tag.tagLowRed }},
+                                            yMax: {{ tag.tagLowYellow }},
+                                            backgroundColor: 'rgba(255, 255, 0, 0.2)',
+                                            borderColor: 'rgb(255, 255, 0)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            type: 'box',
+                                            xScaleID: 'x-axis-1',
+                                            yScaleID: 'y-axis-1',
+                                            yMin: {{ tag.tagLowYellow }},
+                                            yMax: {{ tag.tagHighYellow }},
+                                            backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                                            borderColor: 'rgb(0, 128, 0)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            type: 'box',
+                                            xScaleID: 'x-axis-1',
+                                            yScaleID: 'y-axis-1',
+                                            yMin: {{ tag.tagExpValue }},
+                                            yMax: {{ tag.tagExpValue }},
+                                            backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                                            borderColor: 'rgb(0, 0, 0)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            type: 'box',
+                                            xScaleID: 'x-axis-1',
+                                            yScaleID: 'y-axis-1',
+                                            yMin: {{ tag.tagHighYellow }},
+                                            yMax: {{ tag.tagHighRed }},
+                                            backgroundColor: 'rgba(255, 255, 0, 0.2)',
+                                            borderColor: 'rgb(255, 255, 0)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            type: 'box',
+                                            xScaleID: 'x-axis-1',
+                                            yScaleID: 'y-axis-1',
+                                            yMin: {{ tag.tagHighRed }},
+                                            yMax: {{ tag.tagHighRed }},
+                                            backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                                            borderColor: 'rgb(255, 0, 0)',
+                                            borderWidth: 1
+                                        }
+
+                                    ]
+                                }
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                }
+            };
+
+            window.onload = function () {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                var myScatter = new Chart(ctx, config);
+                var axisy = myScatter.scales['y-axis-1'];
+                var max = axisy.max;
+                var min = axisy.min;
+                console.log('max:' + max);
+                console.log('min:' + min);
+                {% if qtyoftagsselected == 1 %}
+                    config.options.annotation.annotations[0].yMin = min;
+                    config.options.annotation.annotations[5].yMax = max;
+                    myScatter.update();
+                {% endif %}
+                canvas.onclick = function (evt) {
+                    var activePoint = myScatter.getElementAtEvent(evt);
+                    console.log(activePoint[0]);
+                    console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index]);
+                    console.log(config.data.datasets[activePoint[0]._datasetIndex].label);
+                    console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x);
+                    console.log(moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x, 'YYYY-MM-DDTHH:mm:ss.sss').valueOf());
+                    console.log(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].y);
+                    taglabel = config.data.datasets[activePoint[0]._datasetIndex].label;
+                    console.log('taglabel:' + taglabel);
+                    var restoredseconds = moment(config.data.datasets[activePoint[0]._datasetIndex].data[activePoint[0]._index].x, 'YYYY-MM-DDTHH:mm:ss.sss').unix();
+                    var modalname = "Modal" + restoredseconds + taglabel;
+                    console.log('#' + modalname);
+                    jQuery('#' + modalname).modal({
+                        show: true
+                    });
+                };
+            };
+
+        </script>
+    {% endblock %}
 
 {% endlocaltime %}
