@@ -222,43 +222,47 @@
         {% endblock %}
         {% block javascript %}
             <script type="text/javascript">
+                /*
 
+                 console.log("{{ mediasofthevaluelist }}");
+                 console.log("{{ tagsofthevaluelist }}");
 
-                $(function () {
-
-                    console.log("{{ mediasofthevaluelist }}");
-                    console.log("{{ tagsofthevaluelist }}");
-
-                    {% for media in medias %}
-                        console.log("{{ media.id }} - {{ media.mediaMillisSinceEpoch }}");
-                    {% endfor %}
+                {% for media in medias %}
+                     console.log("{{ media.id }} - {{ media.mediaMillisSinceEpoch }}");
+                {% endfor %}
 
                     {% for value in values %}
-                        console.log("{{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
-                    {% endfor %}
+                     console.log("{{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
+                {% endfor %}
 
                     {%  for tag in tags %}
-                        console.log("Tag: {{ tag }}")
-                        {% for value in values %}
-                            console.log("Exists: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
-                        {% empty %}
-                            console.log("Empty: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}");
-                        {% endfor %}
+                     console.log("Tag: {{ tag }}")
+                    {% for value in values %}
+                         console.log("Exists: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}
+                        ");
+                    {% empty %}
+                         console.log("Empty: {{ value.media.id }} - {{ value.tag.id }} - {{ value.valValueEvaluated }}
+                        ");
+                    {% endfor %}
                     {% endfor %}
 
 
                     {% for vp in vps %}
-                        console.log("vp.qtyoftags= {{ vp.qtyoftags }}");
-                        {%  for tag in tags %}
+                     console.log("vp.qtyoftags= {{ vp.qtyoftags }}");
+                    {%  for tag in tags %}
                             {% if tag.vp.id == vp.id %}
-                                console.log("tag.vp.id == vp.id TRUE - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
-                            {%  else %}
-                                console.log("tag.vp.id == vp FALSE  - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
-                            {%  endif %}
+                         console.log("tag.vp.id == vp.id TRUE - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
+                    {%  else %}
+                         console.log("tag.vp.id == vp FALSE  - {{ tag.vp.id }} - {{ vp.id }} - {{ tag.id }}");
+                    {%  endif %}
 
                         {% endfor %}
                     {% endfor %}
 
+
+                 */
+
+                $(function () {
 
                     {% get_current_language as LANGUAGE_CODE %}
 
