@@ -203,7 +203,7 @@ class Value(models.Model):
 
 class TagStatusTable(models.Model):
 
-    TAG_STATUS_CHOICES = (('NP', _('NOT PROCESSED') ), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'), ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+    TAG_STATUS_CHOICES = (('NP', _('NOT PROCESSED') ), ('PR', _('PROCESSED')), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'), ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
 
     processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
     statusTagNumber = models.IntegerField(verbose_name=_('Tag#'))
