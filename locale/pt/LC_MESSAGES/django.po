@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-11 16:06+0100\n"
+"POT-Creation-Date: 2017-06-11 16:39+0100\n"
 "PO-Revision-Date: 2017-06-11 16:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,6 +21,137 @@ msgstr ""
 #: mymensor/models.py:12
 msgid "Asset Description"
 msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:16
+#, fuzzy
+#| msgid "Asset Description"
+msgid "Asset Owner Description"
+msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:20
+msgid "Capture frequency unit"
+msgstr ""
+
+#: mymensor/models.py:21
+msgid "Minimum capture frequency value"
+msgstr ""
+
+#: mymensor/models.py:51
+#, fuzzy
+#| msgid "Asset Description"
+msgid "vp description"
+msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:74
+msgid "unit for the vp capture frequency"
+msgstr ""
+
+#: mymensor/models.py:75
+msgid "minimum vp capture frequency"
+msgstr ""
+
+#: mymensor/models.py:76
+msgid "share all of this vp captures to the Twitter Account configured."
+msgstr ""
+
+#: mymensor/models.py:77
+#, fuzzy
+#| msgid "You are distributing MyMensor captures to the Facebbok accout of "
+msgid "share all of this vp captures to the Facebook Account configured."
+msgstr "Você está distribuindo capturas MyMensor para a conta do Facebook de "
+
+#: mymensor/models.py:78
+msgid "send all of this vp captures to the following email."
+msgstr ""
+
+#: mymensor/models.py:82
+#, fuzzy
+#| msgid "Asset Description"
+msgid "tag description"
+msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:84
+msgid "tag is active"
+msgstr ""
+
+#: mymensor/models.py:86
+msgid "question that shall be answered when processing this tag"
+msgstr ""
+
+#: mymensor/models.py:87
+msgid "unit to be used when processing this tag"
+msgstr ""
+
+#: mymensor/models.py:88
+msgid "minimum value from which the tag will be flagged as in LOW RED state"
+msgstr ""
+
+#: mymensor/models.py:89
+msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
+msgstr ""
+
+#: mymensor/models.py:90
+msgid "expected value for the tag"
+msgstr ""
+
+#: mymensor/models.py:91
+msgid ""
+"maximum value from which the tag will be flagged as in HIGH YELLOW state"
+msgstr ""
+
+#: mymensor/models.py:92
+msgid "maximum value from which the tag will be flagged as in HIGH RED state"
+msgstr ""
+
+#: mymensor/models.py:206
+msgid "NOT PROCESSED"
+msgstr ""
+
+#: mymensor/models.py:209
+msgid "Tag#"
+msgstr ""
+
+#: mymensor/models.py:210
+#, fuzzy
+#| msgid "Asset Description"
+msgid "Tag Description"
+msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:211
+#, fuzzy
+#| msgid "VPs"
+msgid "VP#"
+msgstr "VPs"
+
+#: mymensor/models.py:212
+#, fuzzy
+#| msgid "Asset Description"
+msgid "VP Description"
+msgstr "Descrição do Ativo"
+
+#: mymensor/models.py:213
+msgid "Value"
+msgstr ""
+
+#: mymensor/models.py:214
+msgid "Unit"
+msgstr ""
+
+#: mymensor/models.py:215
+#, fuzzy
+#| msgid "Media moved."
+msgid "Media Time"
+msgstr "Mídia movida."
+
+#: mymensor/models.py:217
+#, fuzzy
+#| msgid "Processing"
+msgid "Processing Time"
+msgstr "Processamento"
+
+#: mymensor/models.py:218 mymensor/templates/base.html:77
+msgid "Status"
+msgstr "Status"
 
 #: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:103
 #: mymensor/templates/vpsetup.html:60
@@ -38,10 +169,6 @@ msgstr "Mídia"
 #: mymensor/templates/base.html:74
 msgid "Data"
 msgstr "Dados"
-
-#: mymensor/templates/base.html:77
-msgid "Status"
-msgstr "Status"
 
 #: mymensor/templates/base.html:78
 msgid "Analysis"
