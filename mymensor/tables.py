@@ -4,8 +4,8 @@ from mymensor.models import TagStatusTable
 
 class TagStatusTableClass(tables.Table):
     TAG_STATUS_CHOICES = (
-    ('NP', _('NOT PROCESSED')), ('PR', _('PROCESSED')), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
-    ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+    ('NP', _('NOT PROCESSED')), ('PR', _('PROCESSED')), ('LR', _('LOW RED')), ('LY', _('LOW YELLOW') ), ('GR', _('GREEN')),
+    ('HY', _('HIGH YELLOW')), ('HR', _('HIGH RED')),)
 
     statusTagNumber = tables.Column(verbose_name=_('Tag#'))
     statusTagDescription = tables.Column(verbose_name=_('Tag Description'))
