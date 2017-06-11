@@ -43,6 +43,7 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
 urlpatterns += i18n_patterns(
