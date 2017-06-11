@@ -6,22 +6,26 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
+
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
     assetDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Description'))
     assetNumber = models.IntegerField(verbose_name="Asset Number")
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
-    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Asset Owner")  ###### FK
+    assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
+                                   verbose_name="Asset Owner")  ###### FK
     assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Owner Description'))
     assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, verbose_name="Asset Registry code")
-    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis", verbose_name=_('Capture frequency unit'))
+    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis",
+                                             verbose_name=_('Capture frequency unit'))
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Minimum capture frequency value'))
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
+
 
 class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
@@ -29,20 +33,29 @@ class MobileSetupBackup(models.Model):
     backupName = models.CharField(max_length=255, null=True)
     backupDBTimeStamp = models.DateTimeField(auto_now=True)
 
+
 class TwitterAccount(models.Model):
-    twtOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Twitter Owner")  ###### FK
+    twtOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
+                                 verbose_name="Twitter Owner")  ###### FK
     twtAccessTokenKey = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Key")
     twtAccessTokenSecret = models.CharField(max_length=1024, null=True, verbose_name="Twitter Auth Access Token Secret")
 
+
 class FacebookAccount(models.Model):
-    fbOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1, verbose_name="Facebook Owner")  ###### FK
+    fbOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
+                                verbose_name="Facebook Owner")  ###### FK
     fbUserId = models.CharField(max_length=1024, null=True, verbose_name="Facebook User ID")
     fbUserName = models.CharField(max_length=1024, null=True, verbose_name="Facebook User Name")
-    fbShortTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
-    fbShortTermAccesTokenSignedRequest = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token Signed Request")
+    fbShortTermAccesToken = models.CharField(max_length=2048, null=True,
+                                             verbose_name="Facebook Short Term Access Token")
+    fbShortTermAccesTokenSignedRequest = models.CharField(max_length=2048, null=True,
+                                                          verbose_name="Facebook Short Term Access Token Signed Request")
     fbLongTermAccesToken = models.CharField(max_length=2048, null=True, verbose_name="Facebook Short Term Access Token")
-    fbLongTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True, verbose_name="Facebook Short Term Access Token Issue Time")
-    fbLongTermAccesTokenExpiresIn = models.CharField(max_length=255, null=True, verbose_name="Facebook Long Term Access Token Expires In Seconds")
+    fbLongTermAccesTokenIssuedAt = models.DateTimeField(auto_now=False, null=True,
+                                                        verbose_name="Facebook Short Term Access Token Issue Time")
+    fbLongTermAccesTokenExpiresIn = models.CharField(max_length=255, null=True,
+                                                     verbose_name="Facebook Long Term Access Token Expires In Seconds")
+
 
 class Vp(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
@@ -71,11 +84,16 @@ class Vp(models.Model):
     vpIsSuperSingle = models.BooleanField(default=False)
     vpFlashTorchIsOn = models.BooleanField(default=False)
     vpSuperMarkerId = models.IntegerField(default=0)
-    vpFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, null=True, verbose_name=_('unit for the vp capture frequency'))
+    vpFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, null=True,
+                                       verbose_name=_('unit for the vp capture frequency'))
     vpFrequencyValue = models.IntegerField(null=True, verbose_name=_('minimum vp capture frequency'))
-    vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name=_('share all of this vp captures to the Twitter Account configured.'))
-    vpIsSharedToFacebook = models.BooleanField(default=False, verbose_name=_('share all of this vp captures to the Facebook Account configured.'))
-    vpShareEmail = models.EmailField(null=True, blank=True, verbose_name=_('send all of this vp captures to the following email.'))
+    vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name=_(
+        'share all of this vp captures to the Twitter Account configured.'))
+    vpIsSharedToFacebook = models.BooleanField(default=False, verbose_name=_(
+        'share all of this vp captures to the Facebook Account configured.'))
+    vpShareEmail = models.EmailField(null=True, blank=True,
+                                     verbose_name=_('send all of this vp captures to the following email.'))
+
 
 class Tag(models.Model):
     vp = models.ForeignKey(Vp, on_delete=models.CASCADE)  ###### FK
@@ -83,19 +101,25 @@ class Tag(models.Model):
     tagNumber = models.IntegerField()
     tagIsActive = models.BooleanField(default=True, verbose_name=_('tag is active'))
     tagListNumber = models.IntegerField(null=True)
-    tagQuestion = models.CharField(max_length=1024, verbose_name=_('question that shall be answered when processing this tag'))
+    tagQuestion = models.CharField(max_length=1024,
+                                   verbose_name=_('question that shall be answered when processing this tag'))
     tagUnit = models.CharField(max_length=50, null=True, verbose_name=_('unit to be used when processing this tag'))
-    tagLowRed = models.FloatField(null=True, blank=True, verbose_name=_('minimum value from which the tag will be flagged as in LOW RED state'))
-    tagLowYellow = models.FloatField(null=True, blank=True, verbose_name=_('minimum value from which the tag will be flagged as in LOW YELLOW state'))
+    tagLowRed = models.FloatField(null=True, blank=True, verbose_name=_(
+        'minimum value from which the tag will be flagged as in LOW RED state'))
+    tagLowYellow = models.FloatField(null=True, blank=True, verbose_name=_(
+        'minimum value from which the tag will be flagged as in LOW YELLOW state'))
     tagExpValue = models.FloatField(null=True, blank=True, verbose_name=_('expected value for the tag'))
-    tagHighYellow = models.FloatField(null=True, blank=True, verbose_name=_('maximum value from which the tag will be flagged as in HIGH YELLOW state'))
-    tagHighRed = models.FloatField(null=True, blank=True, verbose_name=_('maximum value from which the tag will be flagged as in HIGH RED state'))
+    tagHighYellow = models.FloatField(null=True, blank=True, verbose_name=_(
+        'maximum value from which the tag will be flagged as in HIGH YELLOW state'))
+    tagHighRed = models.FloatField(null=True, blank=True, verbose_name=_(
+        'maximum value from which the tag will be flagged as in HIGH RED state'))
     tagType = models.CharField(max_length=50, null=True)
     tagIsDependantOfMasterTagNumber = models.IntegerField(null=True)
     tagMaxLagFromMasterTagInMillis = models.BigIntegerField(null=True)
     tagMaxLagFromSlaveTagsInMillis = models.BigIntegerField(null=True)
     tagIsSetForSpecialCheck = models.BooleanField(default=False)
     tagSpecialCheckAcceptableDiscrepancy = models.FloatField(null=True)
+
 
 class Tagbbox(models.Model):
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
@@ -108,12 +132,13 @@ class Tagbbox(models.Model):
     tagbboxStrokeWidth = models.IntegerField(default=2)
     tagbboxFill = models.CharField(max_length=50, default="none")
 
+
 class AmazonSNSNotification(models.Model):
     Message = models.CharField(max_length=4096, null=True)
     MessageId = models.CharField(max_length=1024, null=True)
     Signature = models.CharField(max_length=1024, null=True)
     Subject = models.CharField(max_length=1024, null=True)
-    Timestamp =  models.CharField(max_length=1024, null=True)
+    Timestamp = models.CharField(max_length=1024, null=True)
     TopicArn = models.CharField(max_length=1244, null=True)
     Type = models.CharField(max_length=1024, null=True)
     UnsubscribeURL = models.CharField(max_length=1024, null=True)
@@ -178,8 +203,8 @@ class Media(models.Model):
 
 class ProcessedTag(models.Model):
     TAG_STATUS_CHOICES = (
-    ('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
-    ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+        ('NP', 'NOT PROCESSED'), ('PR', 'PROCESSED'), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'),
+        ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
 
     media = models.ForeignKey(Media, on_delete=models.CASCADE)  ###### FK
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)  ###### FK
@@ -202,12 +227,14 @@ class Value(models.Model):
 
 
 class TagStatusTable(models.Model):
-
-    TAG_STATUS_CHOICES = (('NP', _('NOT PROCESSED') ), ('PR', _('PROCESSED')), ('LR', 'LOW RED'), ('LY', 'LOW YELLOW'), ('GR', 'GREEN'), ('HY', 'HIGH YELLOW'), ('HR', 'HIGH RED'),)
+    TAG_STATUS_CHOICES = (
+        ('NP', _('NOT PROCESSED')), ('PR', _('PROCESSED')), ('LR', _('LOW RED')), ('LY', _('LOW YELLOW')),
+        ('GR', _('GREEN')),
+        ('HY', _('HIGH YELLOW')), ('HR', _('HIGH RED')),)
 
     processedTag = models.ForeignKey(ProcessedTag, on_delete=models.CASCADE)  ###### FK
     statusTagNumber = models.IntegerField(verbose_name=_('Tag#'))
-    statusTagDescription = models.CharField(max_length=1024,verbose_name=_('Tag Description'))
+    statusTagDescription = models.CharField(max_length=1024, verbose_name=_('Tag Description'))
     statusVpNumber = models.IntegerField(verbose_name=_('VP#'))
     statusVpDescription = models.CharField(max_length=1024, verbose_name=_('VP Description'))
     statusValValueEvaluated = models.FloatField(verbose_name=_('Value'))

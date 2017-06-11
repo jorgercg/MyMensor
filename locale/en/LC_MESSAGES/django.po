@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-11 17:59+0100\n"
+"POT-Creation-Date: 2017-06-11 18:17+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mymensor/models.py:12
+#: mymensor/models.py:13
 msgid "Asset Description"
 msgstr ""
 
-#: mymensor/models.py:16
+#: mymensor/models.py:18
 msgid "Asset Owner Description"
 msgstr ""
 
-#: mymensor/models.py:20
+#: mymensor/models.py:23
 msgid "Capture frequency unit"
 msgstr ""
 
-#: mymensor/models.py:21
+#: mymensor/models.py:24
 msgid "Minimum capture frequency value"
 msgstr ""
 
-#: mymensor/models.py:51
+#: mymensor/models.py:64
 msgid "vp description"
 msgstr ""
 
-#: mymensor/models.py:74
+#: mymensor/models.py:88
 msgid "unit for the vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:75
+#: mymensor/models.py:89
 msgid "minimum vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:76
+#: mymensor/models.py:91
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 
-#: mymensor/models.py:77
+#: mymensor/models.py:93
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
 
-#: mymensor/models.py:78
+#: mymensor/models.py:95
 msgid "send all of this vp captures to the following email."
 msgstr ""
 
-#: mymensor/models.py:82
+#: mymensor/models.py:100
 msgid "tag description"
 msgstr ""
 
-#: mymensor/models.py:84
+#: mymensor/models.py:102
 msgid "tag is active"
 msgstr ""
 
-#: mymensor/models.py:86
+#: mymensor/models.py:105
 msgid "question that shall be answered when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:87
+#: mymensor/models.py:106
 msgid "unit to be used when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:88
+#: mymensor/models.py:108
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
 
-#: mymensor/models.py:89
+#: mymensor/models.py:110
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:90
+#: mymensor/models.py:111
 msgid "expected value for the tag"
 msgstr ""
 
-#: mymensor/models.py:91
+#: mymensor/models.py:113
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:92
+#: mymensor/models.py:115
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 
-#: mymensor/models.py:206 mymensor/tables.py:7
+#: mymensor/models.py:231 mymensor/tables.py:7
 msgid "NOT PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:206 mymensor/tables.py:7
+#: mymensor/models.py:231 mymensor/tables.py:7
 msgid "PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:209 mymensor/tables.py:10
-msgid "Tag#"
-msgstr ""
-
-#: mymensor/models.py:210 mymensor/tables.py:11
-msgid "Tag Description"
-msgstr ""
-
-#: mymensor/models.py:211 mymensor/tables.py:12
-msgid "VP#"
-msgstr ""
-
-#: mymensor/models.py:212 mymensor/tables.py:13
-msgid "VP Description"
-msgstr ""
-
-#: mymensor/models.py:213 mymensor/tables.py:14
-msgid "Value"
-msgstr ""
-
-#: mymensor/models.py:214 mymensor/tables.py:15
-msgid "Unit"
-msgstr ""
-
-#: mymensor/models.py:215 mymensor/tables.py:16
-msgid "Media Time"
-msgstr ""
-
-#: mymensor/models.py:217 mymensor/tables.py:17
-msgid "Processing Time"
-msgstr ""
-
-#: mymensor/models.py:218 mymensor/tables.py:18 mymensor/templates/base.html:77
-msgid "Status"
-msgstr ""
-
-#: mymensor/tables.py:7
+#: mymensor/models.py:231 mymensor/tables.py:7
 msgid "LOW RED"
 msgstr ""
 
-#: mymensor/tables.py:7
+#: mymensor/models.py:231 mymensor/tables.py:7
 msgid "LOW YELLOW"
 msgstr ""
 
-#: mymensor/tables.py:7
+#: mymensor/models.py:232 mymensor/tables.py:7
 msgid "GREEN"
 msgstr ""
 
-#: mymensor/tables.py:8
+#: mymensor/models.py:233 mymensor/tables.py:8
 msgid "HIGH YELLOW"
 msgstr ""
 
-#: mymensor/tables.py:8
+#: mymensor/models.py:233 mymensor/tables.py:8
 msgid "HIGH RED"
+msgstr ""
+
+#: mymensor/models.py:236 mymensor/tables.py:10
+msgid "Tag#"
+msgstr ""
+
+#: mymensor/models.py:237 mymensor/tables.py:11
+msgid "Tag Description"
+msgstr ""
+
+#: mymensor/models.py:238 mymensor/tables.py:12
+msgid "VP#"
+msgstr ""
+
+#: mymensor/models.py:239 mymensor/tables.py:13
+msgid "VP Description"
+msgstr ""
+
+#: mymensor/models.py:240 mymensor/tables.py:14
+msgid "Value"
+msgstr ""
+
+#: mymensor/models.py:241 mymensor/tables.py:15
+msgid "Unit"
+msgstr ""
+
+#: mymensor/models.py:242 mymensor/tables.py:16
+msgid "Media Time"
+msgstr ""
+
+#: mymensor/models.py:244 mymensor/tables.py:17
+msgid "Processing Time"
+msgstr ""
+
+#: mymensor/models.py:245 mymensor/tables.py:18 mymensor/templates/base.html:77
+msgid "Status"
 msgstr ""
 
 #: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:103
