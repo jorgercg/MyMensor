@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-08 21:33+0100\n"
+"POT-Creation-Date: 2017-06-11 16:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: mymensor/models.py:12
+msgid "Asset Description"
+msgstr ""
 
 #: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:103
 #: mymensor/templates/vpsetup.html:60
@@ -103,7 +107,7 @@ msgstr ""
 msgid "Twitter Account"
 msgstr ""
 
-#: mymensor/templates/base.html:124
+#: mymensor/templates/base.html:124 mymensor/templates/support.html:3
 msgid "Support"
 msgstr ""
 
@@ -160,13 +164,13 @@ msgstr ""
 msgid "You are distributing MyMensor captures to the Facebbok accout of "
 msgstr ""
 
-#: mymensor/templates/index.html:18 mymensor/templates/proctagedit.html:17
+#: mymensor/templates/index.html:18 mymensor/templates/proctagedit.html:18
 #: mymensor/templates/tagprocessing.html:18
 #: mymensor/templates/tagstatus.html:17
 msgid "Show "
 msgstr ""
 
-#: mymensor/templates/index.html:20 mymensor/templates/proctagedit.html:19
+#: mymensor/templates/index.html:20 mymensor/templates/proctagedit.html:20
 #: mymensor/templates/tagprocessing.html:20
 msgid " entries per VP"
 msgstr ""
@@ -188,8 +192,8 @@ msgstr ""
 #: mymensor/templates/index.html:80 mymensor/templates/index.html:182
 #: mymensor/templates/landing.html:64 mymensor/templates/landing.html:144
 #: mymensor/templates/mediafeed.html:31 mymensor/templates/mediafeed.html:92
-#: mymensor/templates/proctagedit.html:49
-#: mymensor/templates/proctagedit.html:110
+#: mymensor/templates/proctagedit.html:60
+#: mymensor/templates/proctagedit.html:146
 #: mymensor/templates/tagprocessing.html:60
 #: mymensor/templates/tagprocessing.html:146
 #: mymensor/templates/vpdetail.html:85 mymensor/templates/vpdetail.html:175
@@ -199,8 +203,8 @@ msgstr ""
 #: mymensor/templates/index.html:84 mymensor/templates/index.html:186
 #: mymensor/templates/landing.html:67 mymensor/templates/landing.html:147
 #: mymensor/templates/mediafeed.html:33 mymensor/templates/mediafeed.html:94
-#: mymensor/templates/proctagedit.html:51
-#: mymensor/templates/proctagedit.html:112
+#: mymensor/templates/proctagedit.html:64
+#: mymensor/templates/proctagedit.html:150
 #: mymensor/templates/tagprocessing.html:64
 #: mymensor/templates/tagprocessing.html:150
 #: mymensor/templates/vpdetail.html:88 mymensor/templates/vpdetail.html:178
@@ -210,8 +214,8 @@ msgstr ""
 #: mymensor/templates/index.html:89 mymensor/templates/index.html:191
 #: mymensor/templates/landing.html:71 mymensor/templates/landing.html:151
 #: mymensor/templates/mediafeed.html:36 mymensor/templates/mediafeed.html:97
-#: mymensor/templates/proctagedit.html:54
-#: mymensor/templates/proctagedit.html:115
+#: mymensor/templates/proctagedit.html:69
+#: mymensor/templates/proctagedit.html:155
 #: mymensor/templates/tagprocessing.html:69
 #: mymensor/templates/tagprocessing.html:155
 #: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:182
@@ -221,8 +225,8 @@ msgstr ""
 #: mymensor/templates/index.html:94 mymensor/templates/index.html:196
 #: mymensor/templates/landing.html:74 mymensor/templates/landing.html:154
 #: mymensor/templates/mediafeed.html:38 mymensor/templates/mediafeed.html:99
-#: mymensor/templates/proctagedit.html:56
-#: mymensor/templates/proctagedit.html:117
+#: mymensor/templates/proctagedit.html:73
+#: mymensor/templates/proctagedit.html:159
 #: mymensor/templates/tagprocessing.html:73
 #: mymensor/templates/tagprocessing.html:159
 #: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:185
@@ -236,8 +240,8 @@ msgstr ""
 #: mymensor/templates/index.html:106 mymensor/templates/index.html:208
 #: mymensor/templates/landing.html:81 mymensor/templates/landing.html:161
 #: mymensor/templates/mediafeed.html:43 mymensor/templates/mediafeed.html:104
-#: mymensor/templates/proctagedit.html:61
-#: mymensor/templates/proctagedit.html:122
+#: mymensor/templates/proctagedit.html:82
+#: mymensor/templates/proctagedit.html:168
 #: mymensor/templates/tagprocessing.html:82
 #: mymensor/templates/tagprocessing.html:168
 #: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:192
@@ -251,8 +255,8 @@ msgstr ""
 #: mymensor/templates/index.html:125 mymensor/templates/index.html:226
 #: mymensor/templates/landing.html:61 mymensor/templates/landing.html:141
 #: mymensor/templates/mediafeed.html:49 mymensor/templates/mediafeed.html:110
-#: mymensor/templates/proctagedit.html:82
-#: mymensor/templates/proctagedit.html:143
+#: mymensor/templates/proctagedit.html:109
+#: mymensor/templates/proctagedit.html:195
 #: mymensor/templates/tagprocessing.html:109
 #: mymensor/templates/tagprocessing.html:195
 #: mymensor/templates/tagsetup.html:64 mymensor/templates/vpdetail.html:82
@@ -262,18 +266,18 @@ msgstr ""
 
 #: mymensor/templates/index.html:131 mymensor/templates/index.html:232
 #: mymensor/templates/mediafeed.html:53 mymensor/templates/mediafeed.html:114
-#: mymensor/templates/proctagedit.html:86
-#: mymensor/templates/proctagedit.html:147
+#: mymensor/templates/proctagedit.html:115
+#: mymensor/templates/proctagedit.html:201
 #: mymensor/templates/tagprocessing.html:115
 #: mymensor/templates/tagprocessing.html:201
 msgid "Received at server on"
 msgstr ""
 
-#: mymensor/templates/index.html:258
+#: mymensor/templates/index.html:259
 msgid "No media for VP#"
 msgstr ""
 
-#: mymensor/templates/index.html:258
+#: mymensor/templates/index.html:259
 msgid " in the selected timeframe."
 msgstr ""
 
@@ -287,8 +291,8 @@ msgstr ""
 
 #: mymensor/templates/landing.html:78 mymensor/templates/landing.html:158
 #: mymensor/templates/mediafeed.html:41 mymensor/templates/mediafeed.html:102
-#: mymensor/templates/proctagedit.html:59
-#: mymensor/templates/proctagedit.html:120
+#: mymensor/templates/proctagedit.html:78
+#: mymensor/templates/proctagedit.html:164
 #: mymensor/templates/tagprocessing.html:78
 #: mymensor/templates/tagprocessing.html:164
 #: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:189
@@ -368,6 +372,11 @@ msgid ""
 "media online."
 msgstr ""
 
+#: mymensor/templates/mobilebackup.html:5
+#: mymensor/templates/mobilebackup.html:9
+msgid "Mobile Setup Backup"
+msgstr ""
+
 #: mymensor/templates/mobilebackup.html:12
 msgid ""
 "No backup of the mobile configuration setup was ever made in this account"
@@ -401,29 +410,29 @@ msgstr ""
 msgid "Backup restore done!"
 msgstr ""
 
-#: mymensor/templates/proctagedit.html:36
-#: mymensor/templates/proctagedit.html:95
+#: mymensor/templates/proctagedit.html:41
+#: mymensor/templates/proctagedit.html:127
 #: mymensor/templates/tagprocessing.html:41
 #: mymensor/templates/tagprocessing.html:127
 msgid "Processed"
 msgstr ""
 
-#: mymensor/templates/proctagedit.html:46
-#: mymensor/templates/proctagedit.html:107
+#: mymensor/templates/proctagedit.html:56
+#: mymensor/templates/proctagedit.html:142
 #: mymensor/templates/tagprocessing.html:56
 #: mymensor/templates/tagprocessing.html:142
 msgid "VP standard photo"
 msgstr ""
 
-#: mymensor/templates/proctagedit.html:71
-#: mymensor/templates/proctagedit.html:132
+#: mymensor/templates/proctagedit.html:94
+#: mymensor/templates/proctagedit.html:180
 #: mymensor/templates/tagprocessing.html:94
 #: mymensor/templates/tagprocessing.html:180
 msgid "Answer here..."
 msgstr ""
 
-#: mymensor/templates/proctagedit.html:73
-#: mymensor/templates/proctagedit.html:134
+#: mymensor/templates/proctagedit.html:98
+#: mymensor/templates/proctagedit.html:184
 #: mymensor/templates/tagprocessing.html:98
 #: mymensor/templates/tagprocessing.html:184
 msgid "Save"
@@ -682,6 +691,10 @@ msgstr ""
 msgid "Log In."
 msgstr ""
 
+#: mymensor/templates/support.html:7
+msgid "Support page"
+msgstr ""
+
 #: mymensor/templates/support.html:9
 msgid ""
 "Many thanks for using our software! Please see below how you can find info "
@@ -726,7 +739,7 @@ msgstr ""
 msgid " and we will responded as soon as practically possible."
 msgstr ""
 
-#: mymensor/templates/taganalysis.html:26 mymensor/templates/tagstatus.html:42
+#: mymensor/templates/taganalysis.html:30 mymensor/templates/tagstatus.html:42
 msgid "Refresh chart with current selection"
 msgstr ""
 
@@ -777,6 +790,15 @@ msgstr ""
 
 #: mymensor/templates/twtinfo.html:16
 msgid " Disconnect from Twitter"
+msgstr ""
+
+#: mymensor/templates/twtmain.html:15
+msgid ""
+"Sign in to Twitter to be able to distribute MyMensor captures to Twitter."
+msgstr ""
+
+#: mymensor/templates/twtmain.html:19
+msgid "Connect to Twitter"
 msgstr ""
 
 #: mymensor/templates/vpdetail.html:31
@@ -835,23 +857,27 @@ msgstr ""
 msgid " No remark for this media"
 msgstr ""
 
+#: mymensor/templates/vpdetail.html:244
+msgid "Location details"
+msgstr ""
+
 #: mymensor/templates/vpdetail.html:277
 msgid "Check this media at MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:416
+#: mymensor/templates/vpdetail.html:499
 msgid "Media deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:424
+#: mymensor/templates/vpdetail.html:507
 msgid "Error: file not deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:440
+#: mymensor/templates/vpdetail.html:523
 msgid "Media moved."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:448
+#: mymensor/templates/vpdetail.html:531
 msgid "Error: media not moved."
 msgstr ""
 
