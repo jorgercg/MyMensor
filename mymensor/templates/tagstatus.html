@@ -221,25 +221,48 @@
         $(document).ready(function () {
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function () {
-                if (($.trim($(this).text())) == "PROCESSED") {
-                    $(this).addClass("statusprocessed");
-                }
-                if (($.trim($(this).text())) == "LOW RED") {
-                    $(this).addClass("statuslowred");
-                }
-                if (($.trim($(this).text())) == "LOW YELLOW") {
-                    $(this).addClass("statuslowyellow");
-                }
-                if (($.trim($(this).text())) == "GREEN") {
-                    $(this).addClass("statusgreen");
-                }
-                if (($.trim($(this).text())) == "HIGH YELLOW") {
-                    $(this).addClass("statushighyellow");
-                }
-                if (($.trim($(this).text())) == "HIGH RED") {
-                    $(this).addClass("statushighred");
-                }
+                {% if LANGUAGE_CODE == "pt" %}
+                    if (($.trim($(this).text())) == "PROCESSADO") {
+                        $(this).addClass("statusprocessed");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO BAIXO") {
+                        $(this).addClass("statuslowred");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO BAIXO") {
+                        $(this).addClass("statuslowyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERDE") {
+                        $(this).addClass("statusgreen");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO ALTO") {
+                        $(this).addClass("statushighyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO ALTO") {
+                        $(this).addClass("statushighred");
+                    }
+                {% else %}
+                    if (($.trim($(this).text())) == "PROCESSADO") {
+                        $(this).addClass("statusprocessed");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO BAIXO") {
+                        $(this).addClass("statuslowred");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO BAIXO") {
+                        $(this).addClass("statuslowyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERDE") {
+                        $(this).addClass("statusgreen");
+                    }
+                    if (($.trim($(this).text())) == "AMARELO ALTO") {
+                        $(this).addClass("statushighyellow");
+                    }
+                    if (($.trim($(this).text())) == "VERMELHO ALTO") {
+                        $(this).addClass("statushighred");
+                    }
+                {% endif %}
             });
+
+
         });
 
     </script>
