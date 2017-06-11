@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-06-11 16:39+0100\n"
-"PO-Revision-Date: 2017-06-11 16:15+0100\n"
+"PO-Revision-Date: 2017-06-11 16:50+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -23,10 +23,8 @@ msgid "Asset Description"
 msgstr "Descrição do Ativo"
 
 #: mymensor/models.py:16
-#, fuzzy
-#| msgid "Asset Description"
 msgid "Asset Owner Description"
-msgstr "Descrição do Ativo"
+msgstr "Descrição do Proprietário do Ativo"
 
 #: mymensor/models.py:20
 msgid "Capture frequency unit"
@@ -37,10 +35,8 @@ msgid "Minimum capture frequency value"
 msgstr ""
 
 #: mymensor/models.py:51
-#, fuzzy
-#| msgid "Asset Description"
 msgid "vp description"
-msgstr "Descrição do Ativo"
+msgstr "descrição do VP"
 
 #: mymensor/models.py:74
 msgid "unit for the vp capture frequency"
@@ -55,20 +51,17 @@ msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 
 #: mymensor/models.py:77
-#, fuzzy
-#| msgid "You are distributing MyMensor captures to the Facebbok accout of "
 msgid "share all of this vp captures to the Facebook Account configured."
-msgstr "Você está distribuindo capturas MyMensor para a conta do Facebook de "
+msgstr ""
+"compartilhar todas as capturas deste VP para a conta do Facebook configurada."
 
 #: mymensor/models.py:78
 msgid "send all of this vp captures to the following email."
 msgstr ""
 
 #: mymensor/models.py:82
-#, fuzzy
-#| msgid "Asset Description"
 msgid "tag description"
-msgstr "Descrição do Ativo"
+msgstr "descrição do TAG"
 
 #: mymensor/models.py:84
 msgid "tag is active"
@@ -105,49 +98,39 @@ msgstr ""
 
 #: mymensor/models.py:206
 msgid "NOT PROCESSED"
-msgstr ""
+msgstr "NÃO PROCESSADO"
 
 #: mymensor/models.py:209
 msgid "Tag#"
 msgstr ""
 
 #: mymensor/models.py:210
-#, fuzzy
-#| msgid "Asset Description"
 msgid "Tag Description"
-msgstr "Descrição do Ativo"
+msgstr "Descrição do TAG"
 
 #: mymensor/models.py:211
-#, fuzzy
-#| msgid "VPs"
 msgid "VP#"
-msgstr "VPs"
+msgstr "VP#"
 
 #: mymensor/models.py:212
-#, fuzzy
-#| msgid "Asset Description"
 msgid "VP Description"
-msgstr "Descrição do Ativo"
+msgstr "Descrição do VP"
 
 #: mymensor/models.py:213
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: mymensor/models.py:214
 msgid "Unit"
-msgstr ""
+msgstr "Unidade"
 
 #: mymensor/models.py:215
-#, fuzzy
-#| msgid "Media moved."
 msgid "Media Time"
-msgstr "Mídia movida."
+msgstr "Horário da Mídia"
 
 #: mymensor/models.py:217
-#, fuzzy
-#| msgid "Processing"
 msgid "Processing Time"
-msgstr "Processamento"
+msgstr "Horário de Processamento"
 
 #: mymensor/models.py:218 mymensor/templates/base.html:77
 msgid "Status"
@@ -989,7 +972,7 @@ msgstr ""
 
 #: mymensor/templates/twtmain.html:19
 msgid "Connect to Twitter"
-msgstr " Conecte ao Twitter"
+msgstr "Conecte ao Twitter"
 
 #: mymensor/templates/vpdetail.html:31
 msgid "Media captured on "
