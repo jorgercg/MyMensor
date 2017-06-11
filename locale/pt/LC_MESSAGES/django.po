@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-11 16:39+0100\n"
-"PO-Revision-Date: 2017-06-11 16:50+0100\n"
+"POT-Creation-Date: 2017-06-11 17:28+0100\n"
+"PO-Revision-Date: 2017-06-11 17:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -96,9 +96,13 @@ msgstr ""
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 
-#: mymensor/models.py:206
+#: mymensor/models.py:206 mymensor/tables.py:8
 msgid "NOT PROCESSED"
 msgstr "NÃO PROCESSADO"
+
+#: mymensor/models.py:206 mymensor/tables.py:8
+msgid "PROCESSED"
+msgstr "PROCESSADO"
 
 #: mymensor/models.py:209
 msgid "Tag#"
