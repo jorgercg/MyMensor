@@ -127,6 +127,49 @@
                         ],
                         "firstDay": 1
                     }
+                {% elif LANGUAGE_CODE == "pt-br" %}
+                    ranges: {
+                        'Hoje': [moment(), moment()],
+                        'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                        'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                        'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                        'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    "locale": {
+                        "format": "YYYY-MMM-DD",
+                        "separator": " - ",
+                        "applyLabel": "Aplicar",
+                        "cancelLabel": "Cancelar",
+                        "fromLabel": "De",
+                        "toLabel": "a",
+                        "customRangeLabel": "Personalizado",
+                        "weekLabel": "S",
+                        "daysOfWeek": [
+                            "Do",
+                            "2a",
+                            "3a",
+                            "4a",
+                            "5a",
+                            "6a",
+                            "Sa"
+                        ],
+                        "monthNames": [
+                            "Janeiro",
+                            "Fevereiro",
+                            "Março",
+                            "Abril",
+                            "Maio",
+                            "Junho",
+                            "Julho",
+                            "Agosto",
+                            "Setembro",
+                            "Outubro",
+                            "Novembro",
+                            "Dezembro"
+                        ],
+                        "firstDay": 1
+                    }
                 {% else %}
                     ranges: {
                         'Today': [moment(), moment()],
@@ -221,7 +264,7 @@
         $(document).ready(function () {
             console.log("ready!");
             $(".statusTagStateEvaluated").filter(function () {
-                {% if LANGUAGE_CODE == "pt-BR" %}
+                {% if LANGUAGE_CODE == "pt" %}
                     if (($.trim($(this).text())) == "PROCESSADO") {
                         $(this).addClass("statusprocessed");
                     }
@@ -240,7 +283,7 @@
                     if (($.trim($(this).text())) == "VERMELHO ALTO") {
                         $(this).addClass("statushighred");
                     }
-                {% elif LANGUAGE_CODE == "pt-PT" %}
+                {% elif LANGUAGE_CODE == "pt-br" %}
                     if (($.trim($(this).text())) == "PROCESSADO") {
                         $(this).addClass("statusprocessed");
                     }
@@ -260,22 +303,22 @@
                         $(this).addClass("statushighred");
                     }
                 {% else %}
-                    if (($.trim($(this).text())) == "PROCESSADO") {
+                    if (($.trim($(this).text())) == "PROCESSED") {
                         $(this).addClass("statusprocessed");
                     }
-                    if (($.trim($(this).text())) == "VERMELHO BAIXO") {
+                    if (($.trim($(this).text())) == "LOW RED") {
                         $(this).addClass("statuslowred");
                     }
-                    if (($.trim($(this).text())) == "AMARELO BAIXO") {
+                    if (($.trim($(this).text())) == "LOW YELLOW") {
                         $(this).addClass("statuslowyellow");
                     }
-                    if (($.trim($(this).text())) == "VERDE") {
+                    if (($.trim($(this).text())) == "GREEN") {
                         $(this).addClass("statusgreen");
                     }
-                    if (($.trim($(this).text())) == "AMARELO ALTO") {
+                    if (($.trim($(this).text())) == "HIGH YELLOW") {
                         $(this).addClass("statushighyellow");
                     }
-                    if (($.trim($(this).text())) == "VERMELHO ALTO") {
+                    if (($.trim($(this).text())) == "HIGH RED") {
                         $(this).addClass("statushighred");
                     }
                 {% endif %}

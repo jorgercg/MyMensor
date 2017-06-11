@@ -210,13 +210,13 @@
             if ($(".eupopup").length > 0) {
                 $(document).euCookieLawPopup().init({
                     {% get_current_language as LANGUAGE_CODE %}
-                    {% if LANGUAGE_CODE == "pt-BR" %}
+                    {% if LANGUAGE_CODE == "pt-br" %}
                         'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
                         'popupTitle': 'Este website utiliza cookies. ',
                         'popupText': 'Nós utilizamos cookies para lhe dar a melhor experiência. Se você continuar a usar nosso website, consideraremos que você aceita receber todos os cookies deste website.',
                         'buttonContinueTitle': 'Continuar',
                         'buttonLearnmoreTitle': 'Mais&nbsp;informação'
-                    {% elif LANGUAGE_CODE == "pt-PT" %}
+                    {% elif LANGUAGE_CODE == "pt" %}
                         'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
                         'popupTitle': 'Este website utiliza cookies. ',
                         'popupText': 'Nós utilizamos cookies para lhe dar a melhor experiência. Se você continuar a usar nosso website, consideraremos que você aceita receber todos os cookies deste website.',
