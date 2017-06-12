@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 16:57+0100\n"
-"PO-Revision-Date: 2017-06-12 17:06+0100\n"
+"POT-Creation-Date: 2017-06-12 17:16+0100\n"
+"PO-Revision-Date: 2017-06-12 17:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -237,8 +237,10 @@ msgid "Logout"
 msgstr "Sair"
 
 #: mymensor/templates/base.html:119
-msgid "Password change"
-msgstr "Alterar senha"
+#: mymensor/templates/registration/password_change_form.html:4
+#: mymensor/templates/registration/password_change_form.html:17
+msgid "Change password"
+msgstr "Mudar senha"
 
 #: mymensor/templates/base.html:121 mymensor/templates/fbmain.html:4
 #: mymensor/templates/fbmain.html:13
@@ -735,11 +737,6 @@ msgstr "Senha Alterada"
 #: mymensor/templates/registration/password_change_done.html:13
 msgid "Password successfully changed!"
 msgstr "Senha alterada com sucesso!"
-
-#: mymensor/templates/registration/password_change_form.html:4
-#: mymensor/templates/registration/password_change_form.html:17
-msgid "Change password"
-msgstr "Mudar senha"
 
 #: mymensor/templates/registration/password_reset_complete.html:4
 msgid "Password reset complete"
@@ -2190,3 +2187,6 @@ msgstr ""
 #, python-format
 msgid "Index of %(directory)s"
 msgstr ""
+
+#~ msgid "Password change"
+#~ msgstr "Alterar senha"
