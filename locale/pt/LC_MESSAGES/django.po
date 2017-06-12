@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-11 19:57+0100\n"
-"PO-Revision-Date: 2017-06-11 19:09+0100\n"
+"POT-Creation-Date: 2017-06-12 16:57+0100\n"
+"PO-Revision-Date: 2017-06-12 17:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -28,11 +28,11 @@ msgstr "Descrição do Proprietário do Ativo"
 
 #: mymensor/models.py:23
 msgid "Capture frequency unit"
-msgstr ""
+msgstr "Unidade da frequência de captura"
 
 #: mymensor/models.py:24
 msgid "Minimum capture frequency value"
-msgstr ""
+msgstr "Valor mínimo para a frequência de captura"
 
 #: mymensor/models.py:64
 msgid "vp description"
@@ -40,15 +40,16 @@ msgstr "descrição do VP"
 
 #: mymensor/models.py:88
 msgid "unit for the vp capture frequency"
-msgstr ""
+msgstr "unidade para a frequência de captura do VP"
 
 #: mymensor/models.py:89
 msgid "minimum vp capture frequency"
-msgstr ""
+msgstr "valor mínimo para a frequência de captura do VP"
 
 #: mymensor/models.py:91
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
+"compartilhar todas as capturas deste VP para a conta do Twitter configurada."
 
 #: mymensor/models.py:93
 msgid "share all of this vp captures to the Facebook Account configured."
@@ -57,7 +58,7 @@ msgstr ""
 
 #: mymensor/models.py:95
 msgid "send all of this vp captures to the following email."
-msgstr ""
+msgstr "enviar todas as capturas deste VP para o email abaixo."
 
 #: mymensor/models.py:100
 msgid "tag description"
@@ -65,36 +66,44 @@ msgstr "descrição do TAG"
 
 #: mymensor/models.py:102
 msgid "tag is active"
-msgstr ""
+msgstr "TAG está ativo"
 
 #: mymensor/models.py:105
 msgid "question that shall be answered when processing this tag"
-msgstr ""
+msgstr "questão que deve ser respondida quando processar este TAG"
 
 #: mymensor/models.py:106
 msgid "unit to be used when processing this tag"
-msgstr ""
+msgstr "unidade a ser usada quando processar este TAG"
 
 #: mymensor/models.py:108
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
+"valor mínimo a partir do qual este TAG será marcado como em estado VERMELHO "
+"BAIXO"
 
 #: mymensor/models.py:110
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
+"valor mínimo a partir do qual este TAG será marcado como em estado AMARELO "
+"BAIXO"
 
 #: mymensor/models.py:111
 msgid "expected value for the tag"
-msgstr ""
+msgstr "valor esperado para este TAG"
 
 #: mymensor/models.py:113
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
+"valor máximo a partir do qual este TAG será marcado como em estado AMARELO "
+"ALTO"
 
 #: mymensor/models.py:115
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
+"valor máximo a partir do qual este TAG será marcado como em estado VERMELHO "
+"ALTO"
 
 #: mymensor/models.py:231 mymensor/tables.py:7
 msgid "NOT PROCESSED"
@@ -283,6 +292,10 @@ msgstr "Privacidade"
 #: mymensor/templates/base.html:174
 msgid "Language"
 msgstr "Idioma"
+
+#: mymensor/templates/base.html:188
+msgid "Set"
+msgstr "Definir"
 
 #: mymensor/templates/fbmain.html:17
 msgid "  Connect to Facebook"
@@ -1066,19 +1079,19 @@ msgstr "Detalhes da Localização"
 msgid "Check this media at MyMensor"
 msgstr "Verifique essa mídia no MyMensor"
 
-#: mymensor/templates/vpdetail.html:499
+#: mymensor/templates/vpdetail.html:542
 msgid "Media deleted."
 msgstr "Mídia excluída."
 
-#: mymensor/templates/vpdetail.html:507
+#: mymensor/templates/vpdetail.html:550
 msgid "Error: file not deleted."
 msgstr "Erro: arquivo não excluído."
 
-#: mymensor/templates/vpdetail.html:523
+#: mymensor/templates/vpdetail.html:566
 msgid "Media moved."
 msgstr "Mídia movida."
 
-#: mymensor/templates/vpdetail.html:531
+#: mymensor/templates/vpdetail.html:574
 msgid "Error: media not moved."
 msgstr "Erro: mídia não movida."
 
