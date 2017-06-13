@@ -157,7 +157,7 @@
                 $('#deltag').click(function () {
                     console.log("Clicked on deltag!!!!");
                     qttags = qttags - 1;
-                    console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
+                    console.log("DELTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
                     var choice = confirm("{% trans "Please confirm this TAG deletion." %}");
                     if (choice) {
                         window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}' + '&tagdeleted=' + '{{ currenttag }}';

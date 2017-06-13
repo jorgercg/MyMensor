@@ -507,7 +507,7 @@ def tagSetupFormView(request):
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
                     qtytagsindatabase = listoftagsindatabase.count()
                     form = TagForm(instance=tag)
-            if qtytagsincurrentvp == 0 and qtytagsinclient == qtytagsindatabase:
+            if qtytagsincurrentvp == 0 and qtytagsinclient <= qtytagsindatabase:
                 currenttag = 0
                 form = None
             if qtytagsincurrentvp == 0 and qtytagsinclient > qtytagsindatabase:
