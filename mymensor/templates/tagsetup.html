@@ -133,25 +133,25 @@
                 var qttags = {{ qtytagsindatabase }};
                 var qtvps = {{ qtyvps }};
 
-                console.log("INITIAL: qtvps=" + qtvps + " qtytagsinclient=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}' + " lasttag.tagNumber=" + '{{ lasttag.tagNumber }}' + " qtytagsindatabase=" + '{{ qtytagsindatabase }}');
+                console.log("INITIAL: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}' + " lasttag.tagNumber=" + '{{ lasttag.tagNumber }}' + " qtytagsindatabase=" + '{{ qtytagsindatabase }}');
 
                 $('#currtag').change(function () {
                     var tagselected = $(this).find(":selected").val();
-                    console.log("TAGSELECTED: qtvps=" + qtvps + " qtytagsinclient=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + tagselected);
+                    console.log("TAGSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + tagselected);
                     window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + '{{ qtytagsindatabase }}' + '&currenttag=' + tagselected;
                 });
 
                 $('#currvp').change(function () {
                     var vpselected = $(this).find(":selected").val();
-                    console.log("VPSELECTED: qtvps=" + qtvps + " qtytagsinclient=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytagsinclient=' + '{{ qtytagsindatabase }}';
+                    console.log("VPSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
+                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytagsindatabase }}';
                 });
 
                 $('#inctags').click(function () {
                     console.log("Clicked on inctags!!!!");
                     qttags = qttags + 1;
                     console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytagsinclient=' + qttags + '&currenttag=' + qttags;
+                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + qttags;
                 });
 
                 $('#deltag').click(function () {
@@ -160,7 +160,7 @@
                     console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
                     var choice = confirm("{% trans "Please confirm this TAG deletion." %}");
                     if (choice) {
-                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytagsinclient=' + qttags + '&currenttag=' + '{{ currenttag }}' + '&tagdeleted=' + '{{ currenttag }}';
+                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}' + '&tagdeleted=' + '{{ currenttag }}';
                     }
 
 
