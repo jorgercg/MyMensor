@@ -468,6 +468,7 @@ def tagSetupFormView(request):
         if form.is_valid():
             form.save()
     if request.method == 'GET':
+        form = None
         currentvp = int(request.GET.get('currentvp', 1))
         currenttag_temp = int(request.GET.get('currenttag', 0))
         tagdeleted = int(request.GET.get('tagdeleted', 0))
