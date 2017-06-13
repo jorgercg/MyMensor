@@ -14,19 +14,23 @@
                             <span id="selcdates"></span> <b class="caret"></b>
                         </div>
                     </div>
-                    <div id="qtyselector" class="mym-dash-item">
-                        <p>{% trans 'Show ' %}</p>
-                        <select id="qtytodisplaypervp" class="1-100"></select>
-                        <p>{% trans ' entries per VP' %}</p>
+                    <div class="mym-dash-item">
+                        <div id="qtyselector" class="mym-dash-item">
+                            <p>{% trans 'Show ' %}</p>
+                            <select id="qtytodisplaypervp" class="1-100"></select>
+                            <p>{% trans ' entries per VP' %}</p>
+                        </div>
                     </div>
-                    <div id="vpselector" class="mym-dash-item">
-                        <select multiple="multiple" id="vpsselected" name="vpsselected">
-                            {% for vpnumber in vpslist %}
-                                <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
-                                        {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
-                                    VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
-                            {% endfor %}
-                        </select>
+                    <div class="mym-dash-item">
+                        <div id="vpselector" class="mym-dash-item">
+                            <select multiple="multiple" id="vpsselected" name="vpsselected">
+                                {% for vpnumber in vpslist %}
+                                    <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
+                                            {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
+                                        VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                     <div class="mym-dash-item">
                         <button id="refreshbtn" type="button" class="btn btn-outline-primary btn-lg"
