@@ -241,7 +241,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+
+
+            <!-- Footer -->
+            {% block footer %}{% endblock %}
+        </div><!-- /.container -->
+        <div class="row">
                 <div class="col-md-5 mb-5">
                     <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
@@ -261,10 +266,6 @@
                     </form>
                 </div>
             </div>
-
-            <!-- Footer -->
-            {% block footer %}{% endblock %}
-        </div><!-- /.container -->
         <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
         <script src="{% static "js/tether.min.js" %}"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
