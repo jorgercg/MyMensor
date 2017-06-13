@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-12 18:14+0100\n"
-"PO-Revision-Date: 2017-06-12 18:16+0100\n"
+"POT-Creation-Date: 2017-06-13 16:46+0100\n"
+"PO-Revision-Date: 2017-06-13 16:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -169,7 +169,7 @@ msgstr "Horário de Processamento"
 msgid "Status"
 msgstr "Status"
 
-#: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:103
+#: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:107
 #: mymensor/templates/vpsetup.html:60
 msgid "Submit"
 msgstr "Enviar"
@@ -291,11 +291,11 @@ msgstr "Termos de Serviço"
 msgid "Privacy"
 msgstr "Privacidade"
 
-#: mymensor/templates/base.html:174
+#: mymensor/templates/base.html:174 mymensor/templates/landing.html:251
 msgid "Language"
 msgstr "Idioma"
 
-#: mymensor/templates/base.html:188
+#: mymensor/templates/base.html:188 mymensor/templates/landing.html:265
 msgid "Set"
 msgstr "Definir"
 
@@ -315,32 +315,32 @@ msgstr "Efetue o login para distribuir capturas do MyMensor para o Facebook."
 msgid "You are distributing MyMensor captures to the Facebbok accout of "
 msgstr "Você está distribuindo capturas MyMensor para a conta do Facebook de "
 
-#: mymensor/templates/index.html:18 mymensor/templates/proctagedit.html:18
+#: mymensor/templates/index.html:19 mymensor/templates/proctagedit.html:18
 #: mymensor/templates/tagprocessing.html:18
 #: mymensor/templates/tagstatus.html:17
 msgid "Show "
 msgstr "Mostrar "
 
-#: mymensor/templates/index.html:20 mymensor/templates/proctagedit.html:20
+#: mymensor/templates/index.html:21 mymensor/templates/proctagedit.html:20
 #: mymensor/templates/tagprocessing.html:20
 msgid " entries per VP"
 msgstr " itens por VP"
 
-#: mymensor/templates/index.html:34
+#: mymensor/templates/index.html:38
 msgid "Refresh with current selection"
 msgstr "Recarregar com a seleção atual"
 
-#: mymensor/templates/index.html:60 mymensor/templates/index.html:160
+#: mymensor/templates/index.html:64 mymensor/templates/index.html:164
 #: mymensor/templates/mediafeed.html:19 mymensor/templates/mediafeed.html:76
 msgid "Processed. Click to see evolution over time."
 msgstr "Processado. Clique para ver a evolução ao longo do tempo."
 
-#: mymensor/templates/index.html:64 mymensor/templates/index.html:164
+#: mymensor/templates/index.html:68 mymensor/templates/index.html:168
 #: mymensor/templates/mediafeed.html:21 mymensor/templates/mediafeed.html:78
 msgid "Not processed"
 msgstr "Não processado"
 
-#: mymensor/templates/index.html:80 mymensor/templates/index.html:182
+#: mymensor/templates/index.html:84 mymensor/templates/index.html:186
 #: mymensor/templates/landing.html:64 mymensor/templates/landing.html:144
 #: mymensor/templates/mediafeed.html:31 mymensor/templates/mediafeed.html:92
 #: mymensor/templates/proctagedit.html:60
@@ -351,7 +351,7 @@ msgstr "Não processado"
 msgid "Augmented reality used to capture"
 msgstr "Realidade aumentada usada para capturar"
 
-#: mymensor/templates/index.html:84 mymensor/templates/index.html:186
+#: mymensor/templates/index.html:88 mymensor/templates/index.html:190
 #: mymensor/templates/landing.html:67 mymensor/templates/landing.html:147
 #: mymensor/templates/mediafeed.html:33 mymensor/templates/mediafeed.html:94
 #: mymensor/templates/proctagedit.html:64
@@ -362,7 +362,7 @@ msgstr "Realidade aumentada usada para capturar"
 msgid "Augmented reality not used to capture"
 msgstr "Realidade aumentada não usada para capturar"
 
-#: mymensor/templates/index.html:89 mymensor/templates/index.html:191
+#: mymensor/templates/index.html:93 mymensor/templates/index.html:195
 #: mymensor/templates/landing.html:71 mymensor/templates/landing.html:151
 #: mymensor/templates/mediafeed.html:36 mymensor/templates/mediafeed.html:97
 #: mymensor/templates/proctagedit.html:69
@@ -373,7 +373,7 @@ msgstr "Realidade aumentada não usada para capturar"
 msgid "Capture time certified"
 msgstr "Horário de captura certificado"
 
-#: mymensor/templates/index.html:94 mymensor/templates/index.html:196
+#: mymensor/templates/index.html:98 mymensor/templates/index.html:200
 #: mymensor/templates/landing.html:74 mymensor/templates/landing.html:154
 #: mymensor/templates/mediafeed.html:38 mymensor/templates/mediafeed.html:99
 #: mymensor/templates/proctagedit.html:73
@@ -384,13 +384,13 @@ msgstr "Horário de captura certificado"
 msgid "Capture time not certified"
 msgstr "Horário de captura não certificado"
 
-#: mymensor/templates/index.html:101 mymensor/templates/index.html:203
+#: mymensor/templates/index.html:105 mymensor/templates/index.html:207
 msgid "Capture location certified. Click here to see location map."
 msgstr ""
 "Localização da captura certificada. Clique aqui para ver a localização no "
 "mapa."
 
-#: mymensor/templates/index.html:106 mymensor/templates/index.html:208
+#: mymensor/templates/index.html:110 mymensor/templates/index.html:212
 #: mymensor/templates/landing.html:81 mymensor/templates/landing.html:161
 #: mymensor/templates/mediafeed.html:43 mymensor/templates/mediafeed.html:104
 #: mymensor/templates/proctagedit.html:82
@@ -401,23 +401,23 @@ msgstr ""
 msgid "Capture location not certified"
 msgstr "Localização da captura não certificada"
 
-#: mymensor/templates/index.html:116 mymensor/templates/index.html:218
+#: mymensor/templates/index.html:120 mymensor/templates/index.html:222
 msgid "No remark for this media"
 msgstr "Nenhum comentário para esta mídia"
 
-#: mymensor/templates/index.html:125 mymensor/templates/index.html:226
+#: mymensor/templates/index.html:129 mymensor/templates/index.html:230
 #: mymensor/templates/landing.html:61 mymensor/templates/landing.html:141
 #: mymensor/templates/mediafeed.html:49 mymensor/templates/mediafeed.html:110
 #: mymensor/templates/proctagedit.html:109
 #: mymensor/templates/proctagedit.html:195
 #: mymensor/templates/tagprocessing.html:109
 #: mymensor/templates/tagprocessing.html:195
-#: mymensor/templates/tagsetup.html:64 mymensor/templates/vpdetail.html:82
+#: mymensor/templates/tagsetup.html:68 mymensor/templates/vpdetail.html:82
 #: mymensor/templates/vpdetail.html:172 mymensor/templates/vpsetup.html:29
 msgid "Captured on"
 msgstr "Capturada em"
 
-#: mymensor/templates/index.html:131 mymensor/templates/index.html:232
+#: mymensor/templates/index.html:135 mymensor/templates/index.html:236
 #: mymensor/templates/mediafeed.html:53 mymensor/templates/mediafeed.html:114
 #: mymensor/templates/proctagedit.html:115
 #: mymensor/templates/proctagedit.html:201
@@ -426,11 +426,11 @@ msgstr "Capturada em"
 msgid "Received at server on"
 msgstr "Recebida no servidor em"
 
-#: mymensor/templates/index.html:259
+#: mymensor/templates/index.html:263
 msgid "No media for VP#"
 msgstr "Nenhuma mídia para o VP#"
 
-#: mymensor/templates/index.html:259
+#: mymensor/templates/index.html:263
 msgid " in the selected timeframe."
 msgstr " no período de tempo selecionado."
 
@@ -475,6 +475,11 @@ msgstr " localização da captura certificada por MyMensor"
 #: mymensor/templates/landing.html:113 mymensor/templates/landing.html:195
 msgid " the capture location was not certified by MyMensor"
 msgstr " localização da captura não certificada por MyMensor"
+
+#: mymensor/templates/landing.html:122 mymensor/templates/vpdetail.html:152
+#: mymensor/templates/vpdetail.html:244
+msgid "Location details"
+msgstr "Detalhes da Localização"
 
 #: mymensor/templates/landing.html:127 mymensor/templates/landing.html:209
 #: mymensor/templates/vpdetail.html:157 mymensor/templates/vpdetail.html:249
@@ -949,7 +954,7 @@ msgid "Refresh chart with current selection"
 msgstr "Atualizar o gráfico com a seleção atual"
 
 #: mymensor/templates/tagsetup.html:24 mymensor/templates/tagsetup.html:36
-#: mymensor/templates/tagsetup.html:42
+#: mymensor/templates/tagsetup.html:44
 msgid "No TAGs"
 msgstr "Sem TAGs"
 
@@ -965,23 +970,35 @@ msgstr "O último é o TAG#"
 msgid " in VP#"
 msgstr " no VP#"
 
-#: mymensor/templates/tagsetup.html:47 mymensor/templates/tagsetup.html:52
+#: mymensor/templates/tagsetup.html:43
+msgid "No tags to be deleted!"
+msgstr "Não há tags para excluir!"
+
+#: mymensor/templates/tagsetup.html:49 mymensor/templates/tagsetup.html:56
 msgid "Delete TAG#"
 msgstr "Excluir TAG#"
 
-#: mymensor/templates/tagsetup.html:73
+#: mymensor/templates/tagsetup.html:55
+msgid ""
+"This is not the last TAG, so you cannot delete it! If you want you can "
+"deactivate it in the form below."
+msgstr ""
+"Este não é o último TAG, então você não pode apagá-lo! Você pode desativá-lo "
+"no formulário abaixo."
+
+#: mymensor/templates/tagsetup.html:77
 msgid "Mark position of TAG#"
 msgstr "Marcar a posição do TAG#"
 
-#: mymensor/templates/tagsetup.html:73
+#: mymensor/templates/tagsetup.html:77
 msgid " in the VP standard photo"
 msgstr " na foto padrão deste VP"
 
-#: mymensor/templates/tagsetup.html:75
+#: mymensor/templates/tagsetup.html:79
 msgid "Clear marking"
 msgstr "Limpar marcações"
 
-#: mymensor/templates/tagsetup.html:161
+#: mymensor/templates/tagsetup.html:165
 msgid "Please confirm this TAG deletion."
 msgstr "Por favor, confirme esta supressão de TAG."
 
@@ -1066,10 +1083,6 @@ msgstr " significa que o local de captura não foi certificado pelo MyMensor"
 #: mymensor/templates/vpdetail.html:143 mymensor/templates/vpdetail.html:235
 msgid " No remark for this media"
 msgstr " Nenhum comentário para esta mídia"
-
-#: mymensor/templates/vpdetail.html:152 mymensor/templates/vpdetail.html:244
-msgid "Location details"
-msgstr "Detalhes da Localização"
 
 #: mymensor/templates/vpdetail.html:277
 msgid "Check this media at MyMensor"
