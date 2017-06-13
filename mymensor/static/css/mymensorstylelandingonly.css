@@ -339,6 +339,11 @@ p {
     padding-left: 1rem;
 }
 
+.language-selector {
+    padding: 1rem;
+    background-color: #e3f2fd;
+}
+
 @media (min-width: 576px) {
     body {
         overflow: visible;
@@ -452,6 +457,10 @@ p {
     .container-fluid {
         padding-right: 0;
         padding-left: 0;
+    }
+
+    .language-selector {
+        visibility: hidden;
     }
 
 }

@@ -246,7 +246,7 @@
             <!-- Footer -->
             {% block footer %}{% endblock %}
         </div><!-- /.container -->
-        <div class="row">
+        <div class="row language-selector">
                 <div class="col-md-5 mb-5">
                     <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
