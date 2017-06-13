@@ -51,228 +51,248 @@
     </nav>
     <div class="container-fluid">
         <div class="row justify-content-center">
-        <div class="col-sm-6">
-            {% if mediaContentType == "image/jpeg" %}
-                <div class="card card-outline-primary m-2 landingcard">
-                    <div class="card-block">
-                        <p class="card-text">
-                            <span>{% trans "Photo of " %}</span>
-                            <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
-                                  title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+            <div class="col-sm-6">
+                {% if mediaContentType == "image/jpeg" %}
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text">
+                                <span>{% trans "Photo of " %}</span>
+                                <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                {% if mediaArIsOn == "1" %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                {% endif %}
+                                {% if mediaTimeIsCertified == "1" %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time not certified' %}"></span>
+                                {% endif %}
+                                {% if mediaLocIsCertified == "1" %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location not certified' %}"></span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
+                            <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
+                        </a>
+                        <ul class="list-group list-group-flush">
                             {% if mediaArIsOn == "1" %}
-                                <span class="arused" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                <li class="list-group-item"><span
+                                        class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
+                                </li>
                             {% else %}
-                                <span class="arnotused" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                <li class="list-group-item"><span
+                                        class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
+                                </li>
                             {% endif %}
                             {% if mediaTimeIsCertified == "1" %}
-                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture time certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
+                                </li>
                             {% else %}
-                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture time not certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
+                                </li>
                             {% endif %}
                             {% if mediaLocIsCertified == "1" %}
-                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture location certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
+                                </li>
                             {% else %}
-                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture location not certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
+                                </li>
                             {% endif %}
-                        </p>
+                        </ul>
                     </div>
-                    <a data-toggle="modal" data-target="#mediaModal" data-whatever="{{ mediaStorageURL }}">
-                        <img class="card-img-top img-fluid" src="{{ mediaStorageURL }}" alt="">
-                    </a>
-                    <ul class="list-group list-group-flush">
-                        {% if mediaArIsOn == "1" %}
-                            <li class="list-group-item"><span
-                                    class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
-                            </li>
-                        {% endif %}
-                        {% if mediaTimeIsCertified == "1" %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
-                            </li>
-                        {% endif %}
-                        {% if mediaLocIsCertified == "1" %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="card card-outline-primary m-2 landingcard">
-                    <div class="card-block">
-                        <p class="card-text font-weight-bold">Location details</p>
                     </div>
-                    <div id="landingmapid"></div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
-                        <li class="list-group-item">
-                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
-                        <li class="list-group-item">
-                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
-                    </ul>
-                </div>
-            {% endif %}
-            {% if mediaContentType == "video/mp4" %}
-                <div class="card card-outline-primary m-2 landingcard">
-                    <div class="card-block">
-                        <p class="card-text">
-                            <span>{% trans "Video of " %}</span>
-                            <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top"
-                                  title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                    <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text font-weight-bold">Location details</p>
+                        </div>
+                        <div id="landingmapid"></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                            <li class="list-group-item">
+                                {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                            <li class="list-group-item">
+                                {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                        </ul>
+                    </div>
+                {% endif %}
+                {% if mediaContentType == "video/mp4" %}
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text">
+                                <span>{% trans "Video of " %}</span>
+                                <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                {% if mediaArIsOn == "1" %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                {% endif %}
+                                {% if mediaTimeIsCertified == "1" %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time not certified' %}"></span>
+                                {% endif %}
+                                {% if mediaLocIsCertified == "1" %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location not certified' %}"></span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video controls>
+                                <source src="{{ mediaStorageURL }}" type="video/mp4">
+                            </video>
+                        </div>
+                        <ul class="list-group list-group-flush">
                             {% if mediaArIsOn == "1" %}
-                                <span class="arused" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                <li class="list-group-item"><span
+                                        class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
+                                </li>
                             {% else %}
-                                <span class="arnotused" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                <li class="list-group-item"><span
+                                        class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
+                                </li>
                             {% endif %}
                             {% if mediaTimeIsCertified == "1" %}
-                                <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture time certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
+                                </li>
                             {% else %}
-                                <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture time not certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
+                                </li>
                             {% endif %}
                             {% if mediaLocIsCertified == "1" %}
-                                <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture location certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
+                                </li>
                             {% else %}
-                                <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Capture location not certified' %}"></span>
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
+                                </li>
                             {% endif %}
-                        </p>
+                        </ul>
                     </div>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <video controls>
-                            <source src="{{ mediaStorageURL }}" type="video/mp4">
-                        </video>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        {% if mediaArIsOn == "1" %}
-                            <li class="list-group-item"><span
-                                    class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
-                            </li>
-                        {% endif %}
-                        {% if mediaTimeIsCertified == "1" %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
-                            </li>
-                        {% endif %}
-                        {% if mediaLocIsCertified == "1" %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><span
-                                    class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
-                            </li>
-                        {% endif %}
-                    </ul>
-                </div>
-                </div>
-                <div class="col-sm-6">
-                <div class="card card-outline-primary m-2 landingcard">
-                    <div class="card-block">
-                        <p class="card-text font-weight-bold">Location details</p>
+                    <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text font-weight-bold">Location details</p>
+                        </div>
+                        <div id="landingmapid"></div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                            <li class="list-group-item">
+                                {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                            <li class="list-group-item">
+                                {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                        </ul>
                     </div>
-                    <div id="landingmapid"></div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
-                        <li class="list-group-item">
-                            {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
-                        <li class="list-group-item">
-                            {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
-                    </ul>
-                </div>
-            {% endif %}
+                {% endif %}
 
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
+                </div>
+            <!-- Modal -->
+            <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="footer-dash" class="mym-dash">
-            <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
-                <div class="mym-dash-item">
-                    {{ mediaCheckURL|qrcode:"my alt" }}
-                </div>
-                <div class="mym-dash-item">
-                    <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated."%}
-                        {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
-                        {% trans "Please use the code to the left or the following address to validate this media online." %}
-                        <a href="{{ mediaCheckURL }}">{{ mediaCheckURL }}</a>
-                    </p>
+            <div id="footer-dash" class="mym-dash">
+                <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
+                    <div class="mym-dash-item">
+                        {{ mediaCheckURL|qrcode:"my alt" }}
+                    </div>
+                    <div class="mym-dash-item">
+                        <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
+                            {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
+                            {% trans "Please use the code to the left or the following address to validate this media online." %}
+                            <a href="{{ mediaCheckURL }}">{{ mediaCheckURL }}</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-5 mb-5">
+                    <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
+                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select name="language">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
+                    </form>
+                </div>
+            </div>
 
-        <!-- Footer -->
-        {% block footer %}{% endblock %}
-    </div><!-- /.container -->
-    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-    <script src="{% static "js/tether.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/leaflet.js" %}"></script>
-    <script src="{% static "js/mymensor-jquery.js" %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-    <!-- Page Local Scripts
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script>
-        var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], 13);
+            <!-- Footer -->
+            {% block footer %}{% endblock %}
+        </div><!-- /.container -->
+        <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+        <script src="{% static "js/tether.min.js" %}"></script>
+        <script src="{% static "js/bootstrap.min.js" %}"></script>
+        <script src="{% static "js/leaflet.js" %}"></script>
+        <script src="{% static "js/mymensor-jquery.js" %}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+        <!-- Page Local Scripts
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <script>
+            var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], 13);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(mymap);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
 
-        var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+            var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
 
-        var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
-            color: 'red',
-            fillColor: '#f03',
-            fillOpacity: 0.5,
-            radius: {{ locprecisioninm }}
-        }).addTo(mymap);
+            var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: {{ locprecisioninm }}
+            }).addTo(mymap);
 
 
-    </script>
-    {% block javascript %}{% endblock %}
+        </script>
+        {% block javascript %}{% endblock %}
     </body>
     </html>
 {% endlocaltime %}
