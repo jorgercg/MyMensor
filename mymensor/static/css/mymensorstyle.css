@@ -623,36 +623,42 @@ svg {
 }
 
 #vpselected {
-    max-width: 20rem;
+    max-width: 28rem;
+}
+
+@media (min-width: 350px) {
+    #vpselected {
+        max-width: 23rem;
+    }
 }
 
 @media (min-width: 576px) {
     #vpselected {
-        max-width: 20rem;
+        max-width: 23rem;
     }
 }
 
 @media (min-width: 768px) {
     #vpselected {
-        max-width: 20rem;
+        max-width: 23rem;
     }
 }
 
 @media (min-width: 992px) {
     #vpselected {
-        max-width: 25rem;
+        max-width: 28rem;
     }
 }
 
 @media (min-width: 1200px) {
     #vpselected {
-        max-width: 25rem;
+        max-width: 28rem;
     }
 }
 
 @media (min-width: 1440px) {
     #vpselected {
-        max-width: 30rem;
+        max-width: 28rem;
     }
 }
 
