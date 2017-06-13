@@ -23,7 +23,7 @@
                     </div>
                     <div class="mym-dash-item">
                         <div id="vpselector" class="mym-dash-item">
-                            <select multiple="multiple" id="vpsselected" name="vpsselected">
+                            <select class="vpselectedclass"  multiple="multiple" id="vpsselected" name="vpsselected">
                                 {% for vpnumber in vpslist %}
                                     <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
                                             {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
