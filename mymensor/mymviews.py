@@ -138,7 +138,7 @@ def amazon_sns_processor(request):
             media_received.mediaArIsOn = obj_metadata['isarswitchon']
             media_received.mediaTimeStamp = obj_metadata['datetime']
             try:
-                media_received.mediaRemark = obj_metadata['remark']
+                media_received.mediaRemark = urllib.unquote(obj_metadata['remark'])
             except:
                 media_received.mediaRemark = None
             # Presently the Mobile App DOES NOT PROCESS the VPs
