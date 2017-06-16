@@ -87,6 +87,8 @@ urlpatterns += i18n_patterns(
 
     url(r'^mobilebackup/restore_backup/', mymviews.restoredcicfgbackup, name='restore_backup'),
 
+    url(r'^pf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
+
     url(r'^portfolio/pf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='pf_mediaid_sendvalue'),
 
     url(r'^mediafeed/mf_mediaid_sendvalue/', mymviews.tagsprocessedinthismedia, name='mf_mediaid_sendvalue'),
