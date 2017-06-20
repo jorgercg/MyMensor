@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}{% trans "Subscriptions" %} - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <p></p>
+                    <h3>{% trans "Your Subscription" %}</h3>
+                    <p></p>
+                </div>
+                <div class="col">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

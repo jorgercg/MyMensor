@@ -20,7 +20,7 @@ from django.contrib.auth.views import (password_reset, password_reset_done, pass
 from registration.backends.default.views import RegistrationView, ActivationView
 from rest_framework.authtoken import views
 from instant.views import instant_auth
-from mymensor import mymviews
+from mymensor import mymviews, billingviews
 from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
+    url(r'^accounts/billing/', billingviews.subscription, name='subscription'),
+    url(r'^accounts/token/', billingviews.get_braintree_client_token, name='get_braintree_client_token'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
