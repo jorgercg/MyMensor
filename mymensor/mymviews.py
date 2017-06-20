@@ -1393,3 +1393,10 @@ def fbsecstagelogout(request):
             content_type="application/json",
             status=400
         )
+
+
+@login_required
+def subscription(request):
+    if request.method == "GET":
+        return render(request, 'subscription.html')
+    return HttpResponse(status=404)

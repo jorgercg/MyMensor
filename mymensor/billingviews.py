@@ -2,13 +2,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 import braintree
-
 from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, BRAINTREE_PRODUCTION
 
 @login_required
-def subscription(request):
+def updatepaymentmethod(request):
     if request.method == "GET":
-        return render(request, 'subscription.html')
+        return render(request, 'updatepaymentmethod.html')
     return HttpResponse(status=404)
 
 @login_required
