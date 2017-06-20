@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-13 16:58+0100\n"
-"PO-Revision-Date: 2017-06-13 17:00+0100\n"
+"POT-Creation-Date: 2017-06-20 10:48+0100\n"
+"PO-Revision-Date: 2017-06-20 10:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -49,12 +49,12 @@ msgstr "valor mínimo para a frequência de captura do VP"
 #: mymensor/models.py:91
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
-"compartilhar todas as capturas deste VP para a conta do Twitter configurada."
+"partilhar todas as capturas deste VP para a conta do Twitter configurada."
 
 #: mymensor/models.py:93
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
-"compartilhar todas as capturas deste VP para a conta do Facebook configurada."
+"partilhar todas as capturas deste VP para a conta do Facebook configurada."
 
 #: mymensor/models.py:95
 msgid "send all of this vp captures to the following email."
@@ -616,7 +616,7 @@ msgstr "Conta ativada"
 
 #: mymensor/templates/registration/activation_complete.html:14
 msgid "Your account is now activated."
-msgstr "Sua conta agora está ativa."
+msgstr "Vossa conta agora está ativa."
 
 #: mymensor/templates/registration/activation_complete.html:16
 msgid "You can log in."
@@ -717,7 +717,7 @@ msgstr "Entrar"
 
 #: mymensor/templates/registration/login.html:38
 msgid "Forgot your password?"
-msgstr "Esqueceu sua palavra-passe?"
+msgstr "Esqueceu vossa palavra-passe?"
 
 #: mymensor/templates/registration/login.html:38
 msgid "Reset it"
@@ -749,7 +749,7 @@ msgstr "Reposição de password concluída"
 
 #: mymensor/templates/registration/password_reset_complete.html:14
 msgid "Your password has been reset!"
-msgstr "A sua palavra-passe foi redefinida!"
+msgstr "A vossa palavra-passe foi redefinida!"
 
 #: mymensor/templates/registration/password_reset_complete.html:15
 #, python-format
@@ -767,7 +767,7 @@ msgstr "Redefinição de Palavra-passe"
 
 #: mymensor/templates/registration/password_reset_confirm.html:17
 msgid "Enter your new password below to reset your password:"
-msgstr "Digite a nova palavra-passe abaixo para redefinir sua palavra-passe:"
+msgstr "Digite a nova palavra-passe abaixo para redefinir vossa palavra-passe:"
 
 #: mymensor/templates/registration/password_reset_confirm.html:21
 msgid "Set password"
@@ -798,7 +798,7 @@ msgid ""
 "                "
 msgstr ""
 "\n"
-"                    Enviamos um e-mail com um link para redefinir sua "
+"                    Enviamos um e-mail com um link para redefinir vossa "
 "palavra-passe. Por favor verifique\n"
 "                     o seu e-mail e clique no link para continuar.\n"
 "                 "
@@ -817,9 +817,9 @@ msgid ""
 msgstr ""
 "\n"
 "Você está recebendo este e-mail porque você (ou alguém fingindo ser você)\n"
-"solicitou que sua palavra-passe fosse redefinida no site %(domain)s. Se você "
-"não\n"
-"deseja redefinir sua palavra-passe, por favor ignore esta mensagem.\n"
+"solicitou que vossa palavra-passe fosse redefinida no site %(domain)s. Se "
+"você não\n"
+"deseja redefinir vossa palavra-passe, por favor ignore esta mensagem.\n"
 
 #: mymensor/templates/registration/password_reset_email.html:11
 msgid ""
@@ -829,7 +829,7 @@ msgid ""
 "into your web browser:\n"
 msgstr ""
 "\n"
-"Para redefinir sua palavra-passe, por favor clique no seguinte link, ou "
+"Para redefinir vossa palavra-passe, por favor clique no seguinte link, ou "
 "copie e cole-o\n"
 "em seu navegador da web:\n"
 
@@ -859,7 +859,7 @@ msgid ""
 "                    "
 msgstr ""
 "\n"
-"                        Esqueceu sua palavra-passe? Digite seu e-mail no "
+"                        Esqueceu vossa palavra-passe? Digite seu e-mail no "
 "formulário abaixo e enviaremos as instruções para\n"
 "                        criar uma nova.\n"
 "                    "
@@ -874,7 +874,7 @@ msgstr "Por favor, verifique seu e-mail para concluir o processo de registo."
 
 #: mymensor/templates/registration/registration_form.html:14
 msgid "Create your MyMensor Account."
-msgstr "Crie sua conta MyMensor."
+msgstr "Crie vossa conta MyMensor."
 
 #: mymensor/templates/registration/registration_form.html:34
 msgid "By creating and Account you agree with our "
@@ -900,55 +900,77 @@ msgstr "Já possui uma conta?"
 msgid "Log In."
 msgstr "Entrar."
 
-#: mymensor/templates/support.html:7
+#: mymensor/templates/support.html:8
 msgid "Support page"
 msgstr "Página de Suporte"
 
-#: mymensor/templates/support.html:9
+#: mymensor/templates/support.html:10
 msgid ""
 "Many thanks for using our software! Please see below how you can find info "
 "to help clarify your doubts."
 msgstr ""
 "Muito obrigado por usar nosso software! Por favor, veja abaixo como você "
-"pode encontrar informações para ajudar a esclarecer suas dúvidas."
-
-#: mymensor/templates/support.html:10
-msgid "Explainer Videos"
-msgstr ""
+"pode encontrar informações para ajudar a esclarecer vossas dúvidas."
 
 #: mymensor/templates/support.html:11
-msgid "Video #1 - How to...."
-msgstr ""
+msgid "Frequently Asked Questions"
+msgstr "Perguntas Frequentes"
 
 #: mymensor/templates/support.html:12
-msgid "Video #2 - How to...."
-msgstr ""
+msgid "Frequently asked questions can be found at "
+msgstr "Perguntas frequentes podem ser encontradas em "
+
+#: mymensor/templates/support.html:12 mymensor/templates/support.html:14
+#: mymensor/templates/support.html:15 mymensor/templates/support.html:16
+#: mymensor/templates/support.html:18
+msgid "link"
+msgstr "link"
 
 #: mymensor/templates/support.html:13
-msgid "Video #3 - How to...."
-msgstr ""
+msgid "Marketing and Training Videos"
+msgstr "Vídeos de Marketing e Treinamento"
 
 #: mymensor/templates/support.html:14
-msgid "Software Docs"
-msgstr ""
+msgid "Marketing Videos can be found at "
+msgstr "Vídeos de marketing podem ser encontrados em "
 
 #: mymensor/templates/support.html:15
-msgid "Explanation about concepts and definitions used in this software."
+msgid "Training Videos for the MyMensor Mobile App can be found at "
 msgstr ""
+"Vídeos de Treinamento para o MyMensor Mobile App podem ser encontrados em "
 
 #: mymensor/templates/support.html:16
-msgid "Email Support"
+msgid "Training Videos for the MyMensor Web App can be found at "
 msgstr ""
+"Vídeos de Treinamento para o MyMensor Web App podem ser encontrados em "
 
 #: mymensor/templates/support.html:17
+msgid "Software Docs"
+msgstr "Documentos sobre o Software"
+
+#: mymensor/templates/support.html:18
+msgid ""
+"Explanation about concepts and definitions used in this software can be "
+"found at "
+msgstr ""
+"Explicações sobre os conceitos e definições utilizados neste software podem "
+"ser encontradas em "
+
+#: mymensor/templates/support.html:19
+msgid "Email Support"
+msgstr "Suporte por E-Mail"
+
+#: mymensor/templates/support.html:20
 msgid ""
 "If you cannot clarify your doubts using the above methods, please send us an "
 "email to "
 msgstr ""
+"Se você não esclarecer vossas dúvidas usando os métodos acima, envie-nos um "
+"e-mail para "
 
-#: mymensor/templates/support.html:18
+#: mymensor/templates/support.html:21
 msgid " and we will responded as soon as practically possible."
-msgstr ""
+msgstr " e responderemos o mais breve possível."
 
 #: mymensor/templates/taganalysis.html:30 mymensor/templates/tagstatus.html:42
 msgid "Refresh chart with current selection"
