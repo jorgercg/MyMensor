@@ -354,6 +354,7 @@ def cognitoauth(request):
         response.update({'key': token})
         assetinstance = Asset.objects.get(assetOwner=request.user)
         assetinstance.assetOwnerIdentityId = response['IdentityId']
+        assetinstance.assetDciClientSoftwareType = mymensormobileclienttype
         assetinstance.save()
         return JsonResponse(response)
     return HttpResponse(status=400)

@@ -30,7 +30,7 @@ def loaddcicfg(request):
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
     usernameEncoded = urllib.quote(request.user.username)
-    s3_object_key = usernameEncoded + "/cfg/1/vps/vps.xml"
+    s3_object_key = "usrcfg/" + usernameEncoded + "/cfg/1/vps/vps.xml"
     object = s3.Object(AWS_S3_BUCKET_NAME, s3_object_key)
     vpsfilecontents = object.get()['Body'].read()
 
@@ -137,7 +137,7 @@ def writedcicfg(request):
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
     usernameEncoded = urllib.quote(request.user.username)
-    s3_object_key = usernameEncoded + "/cfg/1/vps/vps.xml"
+    s3_object_key = "usrcfg/" + usernameEncoded + "/cfg/1/vps/vps.xml"
 
     vpsdata = ET.Element("VpsData")
     parameters = ET.SubElement(vpsdata, "Parameters")
