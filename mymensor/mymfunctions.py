@@ -15,9 +15,9 @@ def setup_new_user(instance, **kwargs):
         vpdescription = "VP#"+str(i)
         if i<2:
             vpisactive = True
-            vpstdphotostorageurl = instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/dsc/descvp"+str(i)+".png"
-            vpstdtagdescphotostorageurl = instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/dsc/tagdescvp"+str(i)+".png"
-            vpstdmarkerphotostorageurl = instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/mrk/markervp"+str(i)+".png"
+            vpstdphotostorageurl = "usrcfg/"+instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/dsc/descvp"+str(i)+".png"
+            vpstdtagdescphotostorageurl = "usrcfg/"+instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/dsc/tagdescvp"+str(i)+".png"
+            vpstdmarkerphotostorageurl = "usrcfg/"+instance.username+"/cfg/"+str(asset.assetNumber)+"/vps/mrk/markervp"+str(i)+".png"
             vpstdphotofilesize = 36156
             vpstdmarkerphotofilesize = 32209
         else:
