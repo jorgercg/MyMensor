@@ -337,6 +337,8 @@ def cognitoauth(request):
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         )
 
+        mymensormobileclienttype = request.META['HTTP_FROM']
+
         token = (Token.objects.get(user_id=request.user.id)).key
 
         username = request.user.username

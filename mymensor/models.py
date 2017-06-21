@@ -25,6 +25,7 @@ class Asset(models.Model):
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
+    assetDciClientSoftwareType = models.CharField(max_length=255, null=True, verbose_name="Client Software Type")
 
 
 class MobileSetupBackup(models.Model):
