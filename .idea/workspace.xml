@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/dcidatasync.py" afterPath="$PROJECT_DIR$/mymensor/dcidatasync.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" afterPath="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,16 +56,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dcidatasync.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mymensor/dcidatasync.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1556">
-              <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vpsetup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/vpsetup.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -79,11 +69,21 @@
       <file leaf-file-name="billingviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="255">
               <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="taganalysis.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="421" column="29" lean-forward="false" selection-start-line="421" selection-start-column="29" selection-end-line="421" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -191,8 +191,8 @@
       <find>pf_mediaid_sendvalue_loc</find>
       <find>pf_mediaid_sendvalue</find>
       <find>settings</find>
-      <find>dci</find>
       <find>s3_object_key</find>
+      <find>dci</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -247,7 +247,6 @@
         <option value="$PROJECT_DIR$/mymensor/tables.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/locale/pt/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagstatus.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
         <option value="$PROJECT_DIR$/locale/pt/LC_MESSAGES/django.po" />
@@ -270,6 +269,7 @@
         <option value="$PROJECT_DIR$/mymensorapp/settings.py" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
       </list>
     </option>
   </component>
@@ -753,13 +753,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02438" summary="13jun2017 09h43min">
-      <created>1497343394047</created>
-      <option name="number" value="02438" />
-      <option name="presentableId" value="LOCAL-02438" />
-      <option name="project" value="LOCAL" />
-      <updated>1497343394047</updated>
-    </task>
     <task id="LOCAL-02439" summary="13jun2017 11h18min">
       <created>1497349101439</created>
       <option name="number" value="02439" />
@@ -1096,7 +1089,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498070480874</updated>
     </task>
-    <option name="localTasksCounter" value="2487" />
+    <task id="LOCAL-02487" summary="21jun2017 20h28min">
+      <created>1498073316078</created>
+      <option name="number" value="02487" />
+      <option name="presentableId" value="LOCAL-02487" />
+      <option name="project" value="LOCAL" />
+      <updated>1498073316078</updated>
+    </task>
+    <option name="localTasksCounter" value="2488" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1178,7 +1178,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="13jun2017 15h04min" />
     <MESSAGE value="13jun2017 15h58min" />
     <MESSAGE value="13jun2017 16h02min" />
     <MESSAGE value="13jun2017 16h10min" />
@@ -1203,7 +1202,8 @@
     <MESSAGE value="21jun2017 18h14min" />
     <MESSAGE value="21jun2017 18h34min" />
     <MESSAGE value="21jun2017 19h41min" />
-    <option name="LAST_COMMIT_MESSAGE" value="21jun2017 19h41min" />
+    <MESSAGE value="21jun2017 20h28min" />
+    <option name="LAST_COMMIT_MESSAGE" value="21jun2017 20h28min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1332,13 +1332,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2100">
           <caret line="140" column="43" lean-forward="false" selection-start-line="140" selection-start-column="43" selection-end-line="140" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2370">
-          <caret line="158" column="47" lean-forward="false" selection-start-line="158" selection-start-column="47" selection-end-line="158" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -1515,16 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1551,18 +1534,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpsetup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymfunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/dcidatasync.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2925">
+          <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1577,10 +1560,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/dcidatasync.py">
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/vpsetup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1556">
-          <caret line="199" column="0" lean-forward="true" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/taganalysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="421" column="29" lean-forward="false" selection-start-line="421" selection-start-column="29" selection-end-line="421" selection-end-column="29" />
           <folding />
         </state>
       </provider>

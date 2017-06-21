@@ -413,9 +413,13 @@
                 console.log('max:' + max);
                 console.log('min:' + min);
                 {% if qtyoftagsselected == 1 %}
-                    config.options.annotation.annotations[0].yMin = min;
-                    config.options.annotation.annotations[5].yMax = max;
-                    myScatter.update();
+                    {% for tag in tags %}
+                        {% if tag.tagNumber == tagsselected.0 and tag.tagLowRed is not None and tag.tagLowYellow is not None and tag.tagExpValue is not None and tag.tagHighYellow is not None and tag.tagHighRed is not None %}
+                            config.options.annotation.annotations[0].yMin = min;
+                            config.options.annotation.annotations[5].yMax = max;
+                            myScatter.update();
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
                 canvas.onclick = function (evt) {
                     var activePoint = myScatter.getElementAtEvent(evt);
