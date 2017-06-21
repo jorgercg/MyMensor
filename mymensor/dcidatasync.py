@@ -107,9 +107,9 @@ def loaddcicfg(request):
         loadvp.vpNumber = int(VpNumber[i])
         loadvp.vpIsActive = True
         loadvp.vpListNumber = int(VpNumber[i])
-        loadvp.vpStdPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/descvp"+str(VpNumber[i])+".png"
-        loadvp.vpStdTagDescPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/tagdescvp"+str(VpNumber[i])+".png"
-        loadvp.vpStdMarkerPhotoStorageURL = usernameEncoded + "/cfg/1/vps/dsc/markervp"+str(VpNumber[i])+".png"
+        loadvp.vpStdPhotoStorageURL = "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp"+str(VpNumber[i])+".png"
+        loadvp.vpStdTagDescPhotoStorageURL = "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/tagdescvp"+str(VpNumber[i])+".png"
+        loadvp.vpStdMarkerPhotoStorageURL = "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/markervp"+str(VpNumber[i])+".png"
         loadvp.vpStdPhotoFileSize = int(VpDescFileSize[i])
         loadvp.vpStdMarkerPhotoFileSize = int(VpMarkerFileSize[i])
         loadvp.vpXDistance = int(VpXCameraDistance[i])
