@@ -11,8 +11,8 @@
                     <p></p>
                     <h3>{% trans "Your Subscription" %}</h3>
                     <p></p>
-                    <p>{% trans "First Login:" %}</p>
-                    <p>{% trans "Last Login:" %}</p>
+                    <p>{% trans "First Login:" %}{{ userloggedin.date_joined }}</p>
+                    <p>{% trans "Last Login:" %}{{ userloggedin.last_login }}</p>
                 </div>
                 <div class="col">
                     <p></p>

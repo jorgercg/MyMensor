@@ -70,7 +70,8 @@
                         // handle a non-successful response
                         error: function (xhr, errmsg, err) {
                             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger');
+                            $(button_id).text("{% trans "Error" %}");
                         }
                     });
                 };
@@ -94,7 +95,8 @@
                         // handle a non-successful response
                         error: function (xhr, errmsg, err) {
                             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger')
+                            $(button_id).removeClass('btn-outline-primary').addClass('btn-danger');
+                            $(button_id).text("{% trans "Error" %}");
                         }
                     });
                 };

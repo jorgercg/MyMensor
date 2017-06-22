@@ -1401,5 +1401,6 @@ def fbsecstagelogout(request):
 @login_required
 def subscription(request):
     if request.method == "GET":
-        return render(request, 'subscription.html')
+        userloggedin = request.user
+        return render(request, 'subscription.html', { 'userloggedin':userloggedin })
     return HttpResponse(status=404)
