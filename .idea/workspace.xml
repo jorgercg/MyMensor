@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/migrations/0058_auto_20170623_1513.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/createsubscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/createsubscription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,8 +72,8 @@
       <file leaf-file-name="createsubscription.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+            <state relative-caret-position="585">
+              <caret line="46" column="70" lean-forward="false" selection-start-line="46" selection-start-column="70" selection-end-line="46" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -115,8 +114,8 @@
       <file leaf-file-name="subscription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="68" column="74" lean-forward="true" selection-start-line="68" selection-start-column="74" selection-end-line="68" selection-end-column="74" />
+            <state relative-caret-position="521">
+              <caret line="61" column="135" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="135" />
               <folding />
             </state>
           </provider>
@@ -272,9 +271,9 @@
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/forms.py" />
         <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/createsubscription.html" />
       </list>
     </option>
@@ -759,13 +758,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02453" summary="13jun2017 14h02min">
-      <created>1497358944165</created>
-      <option name="number" value="02453" />
-      <option name="presentableId" value="LOCAL-02453" />
-      <option name="project" value="LOCAL" />
-      <updated>1497358944165</updated>
-    </task>
     <task id="LOCAL-02454" summary="13jun2017 14h08min">
       <created>1497359306379</created>
       <option name="number" value="02454" />
@@ -1102,7 +1094,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498230245452</updated>
     </task>
-    <option name="localTasksCounter" value="2502" />
+    <task id="LOCAL-02502" summary="23jun2017 16h14min">
+      <created>1498230856571</created>
+      <option name="number" value="02502" />
+      <option name="presentableId" value="LOCAL-02502" />
+      <option name="project" value="LOCAL" />
+      <updated>1498230856571</updated>
+    </task>
+    <option name="localTasksCounter" value="2503" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1116,11 +1115,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.49574015" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.32882413" sideWeight="0.4978701" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24453694" sideWeight="0.52183175" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26326743" sideWeight="0.47816828" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26326743" sideWeight="0.47816828" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32778355" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44120708" sideWeight="0.48935038" order="13" side_tool="false" content_ui="tabs" />
@@ -1183,7 +1183,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="16jun2017 20h31min" />
     <MESSAGE value="20jun2017 10h39min" />
     <MESSAGE value="20jun2017 10h46min" />
     <MESSAGE value="20jun2017 10h59min" />
@@ -1208,7 +1207,8 @@
     <MESSAGE value="23jun2017 16h00min" />
     <MESSAGE value="23jun2017 16h03min" />
     <MESSAGE value="23jun2017 16h04min" />
-    <option name="LAST_COMMIT_MESSAGE" value="23jun2017 16h04min" />
+    <MESSAGE value="23jun2017 16h14min" />
+    <option name="LAST_COMMIT_MESSAGE" value="23jun2017 16h14min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1592,16 +1592,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="68" column="74" lean-forward="true" selection-start-line="68" selection-start-column="74" selection-end-line="68" selection-end-column="74" />
+        <state relative-caret-position="521">
+          <caret line="61" column="135" lean-forward="true" selection-start-line="61" selection-start-column="24" selection-end-line="61" selection-end-column="135" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="18" selection-end-line="41" selection-end-column="18" />
+        <state relative-caret-position="585">
+          <caret line="46" column="70" lean-forward="false" selection-start-line="46" selection-start-column="70" selection-end-line="46" selection-end-column="70" />
           <folding />
         </state>
       </provider>

@@ -7,6 +7,7 @@
     {% block content %}
         <div class="container">
             <div class="row" style="padding-bottom: 20px">
+                <p></p>
                 <h3>{% trans "Create Subscription" %}</h3>
                 <p></p>
             </div>
@@ -38,6 +39,19 @@
                         {% endfor %}
                         <input class="btn btn-success" type="submit" value="{% trans 'Change currency' %}">
                     </form>
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <p></p>
+                    <p>{% trans "Press the button to start paying " %}
+                    </p>
+                </div>
+                <div class="col">
+                    <p></p>
+                    <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                       role="button">{% trans "Accept and pay" %}</a>
+                    <p></p>
                 </div>
             </div>
         </div>
