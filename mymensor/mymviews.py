@@ -1402,7 +1402,7 @@ def fbsecstagelogout(request):
 def subscription(request):
     if request.method == "GET":
         userloggedin = request.user
-        btcustomer = BraintreeCustomer(braintreecustomerOwner=userloggedin)
+        btcustomer = BraintreeCustomer(braintreecustomerOwner=userloggedin.id)
         dateofendoftrialbeforesubscription = userloggedin.date_joined + timedelta(days=30)
         return render(request, 'subscription.html', { 'userloggedin':userloggedin, 'btcustomer': btcustomer, 'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription })
     return HttpResponse(status=404)
