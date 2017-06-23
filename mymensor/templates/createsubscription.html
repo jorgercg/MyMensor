@@ -48,7 +48,8 @@
             // Submit post on submit
             $('#set-currency-form').on('submit', function (event) {
                 event.preventDefault();
-                console.log("Currency Set to "+$('#id_braintreecustomerMerchantAccId').val());  // sanity check
+                currency = $('#id_braintreecustomerMerchantAccId').val();
+                console.log("Currency Set to "+ currency);  // sanity check
                 //set_currency();
             });
 
