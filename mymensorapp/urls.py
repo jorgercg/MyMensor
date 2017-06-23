@@ -62,7 +62,7 @@ urlpatterns += i18n_patterns(
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
     url(r'^billingupdatepaymentmethod/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
     url(r'^billingnonce/', billingviews.get_braintree_payment_nonce, name='get_braintree_payment_nonce'),
-    url(r'^billingcreatesubscription/', billingviews.createsubscription, name='createsubscription'),
+    url(r'^billingcreatesubscription/$', billingviews.createsubscription, name='createsubscription'),
     url(r'^billingcreatesubscription/setmerchid/', billingviews.setmerchid, name='setmerchid'),
 
     # account urls
