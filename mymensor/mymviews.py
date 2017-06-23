@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
-    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount
+    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
@@ -1402,5 +1402,7 @@ def fbsecstagelogout(request):
 def subscription(request):
     if request.method == "GET":
         userloggedin = request.user
-        return render(request, 'subscription.html', { 'userloggedin':userloggedin })
+        btcustomer = BraintreeCustomer(braintreecustomerOwner=userloggedin)
+        dateofendoftrialbeforesubscription = userloggedin.date_joined + timedelta(days=30)
+        return render(request, 'subscription.html', { 'userloggedin':userloggedin, 'btcustomer': btcustomer, 'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription })
     return HttpResponse(status=404)

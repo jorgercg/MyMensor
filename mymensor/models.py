@@ -27,6 +27,19 @@ class Asset(models.Model):
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, verbose_name="Client Software Type")
 
+class BraintreeCustomer(models.Model):
+    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), )
+
+    braintreecustomerOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    braintreecustomerCustomerId = models.CharField(max_length=1024, null=True)
+    braintreecustomerPaymentMethodNonce = models.CharField(max_length=1024, null=True)
+    braintreecustomerPaymentMethodToken = models.CharField(max_length=1024, null=True)
+    braintreecustomerPlanId = models.CharField(max_length=1024, null=True)
+    braintreecustomerMerchantAccId = models.CharField(max_length=1024, choices=MERCHID_CHOICES, default="mymensorUSD")
+    braintreecustomerPrice = models.FloatField(null=True)
+    braintreecustomerSubscriptionId = models.CharField(max_length=1024, null=True)
+    braintreecustomerSubscriptionStatus = models.CharField(max_length=50, null=True)
+    braintreecustomerCustomerCreated = models.NullBooleanField(null=True)
 
 class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}{% trans "Create Subscription" %} - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px">
+                <h3>{% trans "Create Subscription" %}</h3>
+                <p></p>
+            </div>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    <p></p>
+                    <p>{% trans "Please choose which currency you want to use to pay for your monthly subscription:" %}</p>
+                </div>
+                <div class="col">
+                    <p></p>
+                    <form role="form" action="." method="post" id="set-currency-form"> {% csrf_token %}
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                        {% endif %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                            <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                {{ field.label|add_class:"control-label" }}
+                                {% if field.help_text %}
+                                    <span class="help-block">{{ field.help_text }}</span>
+                                {% endif %}
+                                {% if field.errors %}
+                                    <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                                {% endif %}
+                                {{ field|add_class:"form-control" }}
+                            </div>
+                        {% endfor %}
+                        <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <script>
+
+            // Submit post on submit
+            $('#set-currency-form').on('submit', function (event) {
+                event.preventDefault();
+                console.log("Currency Set to "+"{{ form.braintreecustomerMerchantAccId }}");  // sanity check
+                set_currency();
+            });
+
+            function set_currency() {
+
+            }
+
+            // AJAX for posting
+            function saving_value(nonce) {
+                console.log("Saving Value is working!"); // sanity check
+                $.ajax({
+                    url: "save_value/", // the endpoint
+                    type: "POST", // http method
+                    data: {nonce: nonce}, // data sent with the post request
+                    // handle a successful response
+                    success: function (json) {
+                        $(button_id).removeClass('btn-outline-info').addClass('btn-success');
+                        $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+
+                    },
+                    // handle a non-successful response
+                    error: function (xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        $(button_id).removeClass('btn-outline-info').addClass('btn-danger')
+                    }
+                });
+            }
+
+            // This function gets cookie with a given name
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            /*
+             The functions below will create a header with csrftoken
+             */
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            function sameOrigin(url) {
+                // test that a given url is a same-origin URL
+                // url could be relative or scheme relative or absolute
+                var host = document.location.host; // host + port
+                var protocol = document.location.protocol;
+                var sr_origin = '//' + host;
+                var origin = protocol + sr_origin;
+                // Allow absolute or scheme relative URLs to same origin
+                return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                    (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                    // or any other URL that isn't scheme relative or absolute i.e relative.
+                    !(/^(\/\/|http:|https:).*/.test(url));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                        // Send the token to same-origin, relative URLs only.
+                        // Send the token only if the method warrants CSRF protection
+                        // Using the CSRFToken value acquired earlier
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+        </script>
+
+
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

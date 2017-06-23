@@ -43,8 +43,9 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
-    url(r'^accounts/billing/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
-    url(r'^accounts/token/', billingviews.get_braintree_client_token, name='get_braintree_client_token'),
+    url(r'^billingaccounts/billing/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
+    url(r'^billingaccounts/nonce/', billingviews.get_braintree_payment_nonce, name='get_braintree_payment_nonce'),
+    url(r'^billingaccounts/createsubscription/', billingviews.createsubscription, name='createsubscription'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
