@@ -40,6 +40,7 @@ class Asset(models.Model):
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
+    assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
 
 class BraintreeCustomer(models.Model):
     MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), )
@@ -49,7 +50,7 @@ class BraintreeCustomer(models.Model):
     braintreecustomerPaymentMethodNonce = models.CharField(max_length=1024, null=True)
     braintreecustomerPaymentMethodToken = models.CharField(max_length=1024, null=True)
     braintreecustomerPlanId = models.CharField(max_length=1024, null=True)
-    braintreecustomerMerchantAccId = models.CharField(max_length=1024, choices=MERCHID_CHOICES, default="mymensorUSD", verbose_name="Current currency in use")
+    braintreecustomerMerchantAccId = models.CharField(max_length=1024, choices=MERCHID_CHOICES, default="mymensorUSD", verbose_name=_("Current currency in use"))
     braintreecustomerPrice = models.FloatField(null=True)
     braintreecustomerSubscriptionId = models.CharField(max_length=1024, null=True)
     braintreecustomerSubscriptionStatus = models.CharField(max_length=50, null=True)
