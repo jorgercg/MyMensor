@@ -43,9 +43,6 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
-    url(r'^billingaccounts/billing/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
-    url(r'^billingaccounts/nonce/', billingviews.get_braintree_payment_nonce, name='get_braintree_payment_nonce'),
-    url(r'^billingaccounts/createsubscription/', billingviews.createsubscription, name='createsubscription'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
@@ -63,6 +60,10 @@ urlpatterns += i18n_patterns(
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
+    url(r'^billingupdatepaymentmethod/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
+    url(r'^billingnonce/', billingviews.get_braintree_payment_nonce, name='get_braintree_payment_nonce'),
+    url(r'^billingcreatesubscription/', billingviews.createsubscription, name='createsubscription'),
+    url(r'^billingcreatesubscription/setmerchid/', billingviews.setmerchid, name='setmerchid'),
 
     # account urls
     url(r'^accounts/', include('registration.backends.default.urls')),
@@ -81,9 +82,9 @@ urlpatterns += i18n_patterns(
 
     url(r'^mobilebackup/$', mymviews.mobileBackupFormView, name='mobilebackup'),
 
-    url(r'^tagprocessing/save_value/', mymviews.saveValue, name='save_value'),
+    url(r'^tagprocessing/save_value/', mymviews.saveValue, name='tagproc_save_value'),
 
-    url(r'^proctagedit/save_value/', mymviews.saveValue, name='save_value'),
+    url(r'^proctagedit/save_value/', mymviews.saveValue, name='tagprocedit_save_value'),
 
     url(r'^tagsetup/save_tagbboxvalues/', mymviews.save_tagboundingbox, name='save_tagbboxvalues'),
 

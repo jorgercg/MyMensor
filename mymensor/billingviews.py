@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from mymensor.models import BraintreeCustomer
+from mymensor.models import BraintreeCustomer, Asset, MyMPrice
 from mymensor.forms import PaymentCurrencyForm
 import braintree, json
-from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, BRAINTREE_PRODUCTION
+from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
+    BRAINTREE_PRODUCTION
+
 
 @login_required
 def updatepaymentmethod(request):
@@ -23,12 +25,13 @@ def updatepaymentmethod(request):
         try:
             client_token = braintree.ClientToken.generate({
                 "customer_id": btcustomer.braintreecustomerCustomerId,
-                "merchant_account_id" : btcustomer.braintreecustomerMerchantAccId
+                "merchant_account_id": btcustomer.braintreecustomerMerchantAccId
             })
         except ValueError as e:
             return render(request, 'updatepaymentmethod.html', {"result_ok": False})
-        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok":True})
+        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True})
     return HttpResponse(status=404)
+
 
 @login_required
 def get_braintree_payment_nonce(request):
@@ -57,10 +60,41 @@ def get_braintree_payment_nonce(request):
             status=400
         )
 
+
 @login_required
 def createsubscription(request):
     if request.method == "GET":
         btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
         form = PaymentCurrencyForm(instance=btcustomer)
-        return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "form":form })
+        currentasset = Asset.objects.get(assetOwner=request.user)
+        currentmymprice = MyMPrice.objects.get(id=currentasset.assetMyMPrice.id)
+        return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "form": form, "currentmymprice":currentmymprice})
     return HttpResponse(status=404)
+
+
+@login_required
+def setmerchid(request):
+    if request.method == "POST":
+        merchid = request.POST.get('merchantID')
+        btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
+        btcustomer.braintreecustomerMerchantAccId = merchid
+        try:
+            btcustomer.save()
+        except:
+            return HttpResponse(
+                json.dumps({"error": "not saved"}),
+                content_type="application/json",
+                status=400
+            )
+
+        return HttpResponse(
+            json.dumps({"success": "success"}),
+            content_type="application/json",
+            status=200
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )

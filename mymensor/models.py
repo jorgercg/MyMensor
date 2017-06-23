@@ -43,7 +43,7 @@ class Asset(models.Model):
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
 
 class BraintreeCustomer(models.Model):
-    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), )
+    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR') )
 
     braintreecustomerOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     braintreecustomerCustomerId = models.CharField(max_length=1024, null=True)

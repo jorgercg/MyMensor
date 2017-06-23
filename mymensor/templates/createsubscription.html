@@ -16,7 +16,7 @@
                     <p></p>
                     <p>{% trans "Please choose which currency you want to use to pay for your monthly subscription:" %}</p>
                 </div>
-                <div class="col">
+                <div class="col-sm-5">
                     <p></p>
                     <form role="form" action="." method="post" id="set-currency-form"> {% csrf_token %}
                         {% if form.non_field_errors %}
@@ -43,8 +43,8 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-5">
                     <p></p>
-                    <p>{% trans "Press the button to start paying " %}
-                    </p>
+                    <p>
+                        {% trans "Press the button to start paying " %}{{ currentmymprice.mympriceCurrency }}{{ currentmymprice.mympriceNumericalValue|floatformat:2 }}{% trans " per month" %}</p>
                 </div>
                 <div class="col">
                     <p></p>
@@ -61,26 +61,22 @@
             // Submit post on submit
             $('#set-currency-form').change(function (event) {
                 event.preventDefault();
-                currency = $('#id_braintreecustomerMerchantAccId').val();
-                console.log("Currency Set to " + currency);  // sanity check
-                //set_currency();
+                merchid = $('#id_braintreecustomerMerchantAccId').val();
+                console.log("MerchantID Set to " + merchid);  // sanity check
+                save_value(merchid);
             });
 
-            function set_currency() {
-
-            }
-
             // AJAX for posting
-            function saving_value(nonce) {
+            function save_value(merchantID) {
                 console.log("Saving Value is working!"); // sanity check
                 $.ajax({
-                    url: "save_value/", // the endpoint
+                    url: "setmerchid/", // the endpoint
                     type: "POST", // http method
-                    data: {nonce: nonce}, // data sent with the post request
+                    data: {merchantID: merchantID}, // data sent with the post request
                     // handle a successful response
                     success: function (json) {
-                        $(button_id).removeClass('btn-outline-info').addClass('btn-success');
-                        $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        //$(button_id).removeClass('btn-outline-info').addClass('btn-success');
+                        //$(button_id).removeClass('btn-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
 
@@ -88,7 +84,7 @@
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-outline-info').addClass('btn-danger')
+                        //$(button_id).removeClass('btn-outline-info').addClass('btn-danger')
                     }
                 });
             }
