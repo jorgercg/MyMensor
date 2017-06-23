@@ -76,7 +76,7 @@ def createsubscription(request):
 def setmerchid(request):
     if request.method == "POST":
         merchid = request.POST.get('merchantID')
-        btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btcustomer.braintreecustomerMerchantAccId = merchid
         try:
             btcustomer.save()
