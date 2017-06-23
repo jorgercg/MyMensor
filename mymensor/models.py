@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
 class MyMPrice(models.Model):
-    CURRENCY_CHOICES = (('USD', 'USD'), ('EUR', 'EUR'), ('BRL', 'BRL'),)
+    CURRENCY_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR'))
 
     mympricePlanName = models.CharField(max_length=1024)
     mympriceBraintreePlanID = models.CharField(max_length=1024)
@@ -43,7 +43,7 @@ class Asset(models.Model):
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
 
 class BraintreeCustomer(models.Model):
-    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR') )
+    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR'))
 
     braintreecustomerOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
     braintreecustomerCustomerId = models.CharField(max_length=1024, null=True)
