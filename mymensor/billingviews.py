@@ -65,7 +65,7 @@ def get_braintree_payment_nonce(request):
 def createsubscription(request):
     if request.method == "GET":
         btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
-        form = PaymentCurrencyForm(instance=btcustomer)
+        form = PaymentCurrencyForm.objects.get(instance=btcustomer)
         currentasset = Asset.objects.get(assetOwner=request.user)
         currentmymprice = MyMPrice.objects.get(id=currentasset.assetMyMPrice.id)
         return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "form": form, "currentmymprice":currentmymprice})
