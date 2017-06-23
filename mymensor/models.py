@@ -31,16 +31,15 @@ class Asset(models.Model):
                                    verbose_name="Asset Owner")  ###### FK
     assetMyMPrice = models.ForeignKey(MyMPrice, null=True, on_delete=models.SET_NULL)
     assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Owner Description'))
-    assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
-    assetOwnerIdentityId = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Identity Id")
-    assetRegistryCode = models.CharField(max_length=255, null=True, verbose_name="Asset Registry code")
+    assetOwnerKey = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Key")
+    assetOwnerIdentityId = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Identity Id")
+    assetRegistryCode = models.CharField(max_length=255, null=True, blank=True, verbose_name="Asset Registry code")
     assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis",
                                              verbose_name=_('Capture frequency unit'))
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Minimum capture frequency value'))
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
-    assetDciClientSoftwareType = models.CharField(max_length=255, null=True, verbose_name="Client Software Type")
 
 class BraintreeCustomer(models.Model):
     MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), )
