@@ -6,6 +6,20 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
+class MyMPrice(models.Model):
+    CURRENCY_CHOICES = (('USD', 'USD'), ('EUR', 'EUR'), ('BRL', 'BRL'),)
+
+    mympricePlanName = models.CharField(max_length=1024)
+    mympriceBraintreePlanID = models.CharField(max_length=1024)
+    mympriceClientType = models.CharField(max_length=1024)
+    mympriceCurrency = models.CharField(max_length=4, choices=CURRENCY_CHOICES)
+    mympriceNumericalValue = models.FloatField()
+    mympriceBillingCycleQty = models.IntegerField()
+    mympriceBillingCycleUnit = models.CharField(max_length=255)
+    mympriceBillingExpirationExists = models.BooleanField(default=False)
+    mympriceBillingExpirationInCycleQty = models.IntegerField(null=True)
+    mympriceDiscountExists = models.BooleanField(default=False)
+    mympriceDiscountPercentage = models.FloatField(null=True)
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
@@ -15,6 +29,7 @@ class Asset(models.Model):
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
                                    verbose_name="Asset Owner")  ###### FK
+    assetMyMPrice = models.ForeignKey(MyMPrice, null=True, on_delete=models.SET_NULL)
     assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Owner Description'))
     assetOwnerKey = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, verbose_name="Asset Owner Identity Id")
