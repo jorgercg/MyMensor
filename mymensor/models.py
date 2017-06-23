@@ -17,9 +17,9 @@ class MyMPrice(models.Model):
     mympriceBillingCycleQty = models.IntegerField()
     mympriceBillingCycleUnit = models.CharField(max_length=255)
     mympriceBillingExpirationExists = models.BooleanField(default=False)
-    mympriceBillingExpirationInCycleQty = models.IntegerField(null=True)
+    mympriceBillingExpirationInCycleQty = models.IntegerField(null=True, blank=True)
     mympriceDiscountExists = models.BooleanField(default=False)
-    mympriceDiscountPercentage = models.FloatField(null=True)
+    mympriceDiscountPercentage = models.FloatField(null=True, blank=True)
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
