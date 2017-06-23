@@ -42,14 +42,15 @@
             </div>
 
         </div>
-
+    {% endblock %}
+    {% block javascript %}
         <script type="text/javascript">
 
             // Submit post on submit
             $('#set-currency-form').on('submit', function (event) {
                 event.preventDefault();
                 currency = $('#id_braintreecustomerMerchantAccId').val();
-                console.log("Currency Set to "+ currency);  // sanity check
+                console.log("Currency Set to " + currency);  // sanity check
                 //set_currency();
             });
 
@@ -134,8 +135,6 @@
             });
 
         </script>
-
-
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>
