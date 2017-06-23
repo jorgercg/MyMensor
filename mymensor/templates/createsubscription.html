@@ -36,7 +36,7 @@
                                 {{ field|add_class:"form-control" }}
                             </div>
                         {% endfor %}
-                        <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
+                        <input class="btn btn-success" type="submit" value="{% trans 'Set currency' %}">
                     </form>
                 </div>
             </div>
@@ -48,8 +48,8 @@
             // Submit post on submit
             $('#set-currency-form').on('submit', function (event) {
                 event.preventDefault();
-                console.log("Currency Set to "+"{{ form.braintreecustomerMerchantAccId }}");  // sanity check
-                set_currency();
+                console.log("Currency Set to "+$('#id_braintreecustomerMerchantAccId').val());  // sanity check
+                //set_currency();
             });
 
             function set_currency() {
