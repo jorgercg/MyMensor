@@ -36,7 +36,7 @@
             // Submit post on submit
             $('#confirm-plan').click(function (event) {
                 event.preventDefault();
-                priceid = $('#set-price-select').chosen();
+                var priceid = $('#set-price-select').find(":selected").val();
                 console.log("PriceID Set to " + priceid);  // sanity check
                 save_value(priceid);
             });
