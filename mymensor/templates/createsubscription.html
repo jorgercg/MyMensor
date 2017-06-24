@@ -14,7 +14,7 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-5">
                     <p></p>
-                    <p>{% trans "Please choose which plan you want to use:" %}</p>
+                    <p>{% trans "Please choose below which plan you want to use, after that you will be taken to the payment page:" %}</p>
                     <p></p>
                     <select id="set-price-select" name="priceselected">
                         {% for price in availablebtprices %}
@@ -24,7 +24,7 @@
                         {% endfor %}
                     </select>
                     <p></p>
-                    <a id="confirm-plan"  class="btn btn-primary" role="button">{% trans "Press to confirm Subscription Plan choice" %}</a>
+                    <a id="confirm-plan"  class="btn btn-primary" role="button">{% trans "Go!" %}</a>
                     <p></p>
                 </div>
             </div>
