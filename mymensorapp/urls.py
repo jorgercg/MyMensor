@@ -61,9 +61,9 @@ urlpatterns += i18n_patterns(
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
     url(r'^billingupdatepaymentmethod/', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
-    url(r'^billingnonce/', billingviews.get_braintree_payment_nonce, name='get_braintree_payment_nonce'),
+    url(r'^billingnonce/', billingviews.getbraintreepaymentnonce, name='getbraintreepaymentnonce'),
     url(r'^billingcreatesubscription/$', billingviews.createsubscription, name='createsubscription'),
-    url(r'^billingcreatesubscription/setmerchid/', billingviews.setmerchid, name='setmerchid'),
+    url(r'^billingcreatesubscription/setplanmerchid/', billingviews.setplanmerchid, name='setplanmerchid'),
 
     # account urls
     url(r'^accounts/', include('registration.backends.default.urls')),

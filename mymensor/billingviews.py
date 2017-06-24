@@ -15,17 +15,20 @@ def updatepaymentmethod(request):
             braintree_env = braintree.Environment.Production
         else:
             braintree_env = braintree.Environment.Sandbox
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        btprice = btsubscription.braintreeprice
+        btmerchant = btprice.braintreemerchant
         braintree.Configuration.configure(
             braintree_env,
-            merchant_id=BRAINTREE_MERCHANT_ID,
+            merchant_id=btmerchant.braintreemerchMerchId,
             public_key=BRAINTREE_PUBLIC_KEY,
             private_key=BRAINTREE_PRIVATE_KEY,
         )
-        btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
         try:
             client_token = braintree.ClientToken.generate({
                 "customer_id": btcustomer.braintreecustomerCustomerId,
-                "merchant_account_id": btcustomer.braintreecustomerMerchantAccId
+                "merchant_account_id": btmerchant.braintreemerchMerchId
             })
         except ValueError as e:
             return render(request, 'updatepaymentmethod.html', {"result_ok": False})
@@ -34,7 +37,7 @@ def updatepaymentmethod(request):
 
 
 @login_required
-def get_braintree_payment_nonce(request):
+def getbraintreepaymentnonce(request):
     if request.method == 'POST':
         payment_nonce = int(request.POST.get('nonce'))
         btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
@@ -47,7 +50,6 @@ def get_braintree_payment_nonce(request):
                 content_type="application/json",
                 status=400
             )
-
         return HttpResponse(
             json.dumps({"success": "success"}),
             content_type="application/json",
@@ -94,20 +96,16 @@ def createsubscription(request):
 
 
 @login_required
-def setmerchid(request):
+def setplanmerchid(request):
     if request.method == "POST":
-        merchid = request.POST.get('merchantID')
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
-        btcustomer.braintreecustomerMerchantAccId = merchid
+        priceid = request.POST.get('priceID')
+        btprice = BraintreePrice.objects.get(pk=priceid)
+        btsubscription = BraintreeSubscription()
         try:
-            btcustomer.save()
-        except:
-            return HttpResponse(
-                json.dumps({"error": "not saved"}),
-                content_type="application/json",
-                status=400
-            )
-
+            btsubscription = BraintreeSubscription.objects.get(braintreeprice=btprice, braintreecustomer=btcustomer)
+        except btsubscription.DoesNotExist:
+            btsubscription = BraintreeSubscription.objects.create(braintreeprice=btprice, braintreecustomer=btcustomer)
         return HttpResponse(
             json.dumps({"success": "success"}),
             content_type="application/json",

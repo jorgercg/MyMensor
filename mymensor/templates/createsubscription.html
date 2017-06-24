@@ -20,12 +20,11 @@
                         {% for price in availablebtprices %}
                             <option id="op{{ price.id }}" value='{{ price.id }}'
                                     {% if price == currentbtprice %}selected{% endif %}>
-                                {% trans "Pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice }}{% trans " per " %}{{ price.braintreeplan.braintreeplanBillingCycleUnit }}</option>
+                                {% trans "Pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per " %}{{ price.braintreeplan.braintreeplanBillingCycleUnit }}</option>
                         {% endfor %}
                     </select>
                     <p></p>
-                    <a class="btn btn-primary" href="{% url 'createsubscription' %}"
-                       role="button">{% trans "Accept and pay" %}</a>
+                    <a id="confirm-plan"  class="btn btn-primary" role="button">{% trans "Press to confirm Subscription Plan choice" %}</a>
                     <p></p>
                 </div>
             </div>
@@ -35,32 +34,32 @@
         <script type="text/javascript">
 
             // Submit post on submit
-            $('#set-price-select').change(function (event) {
+            $('#confirm-plan').onclick(function (event) {
                 event.preventDefault();
-                merchid = $('#id_braintreecustomerMerchantAccId').val();
-                console.log("MerchantID Set to " + merchid);  // sanity check
-                save_value(merchid);
+                priceid = $('#set-price-select').chosen();
+                console.log("PriceID Set to " + priceid);  // sanity check
+                save_value(priceid);
             });
 
             // AJAX for posting
-            function save_value(merchantID) {
+            function save_value(priceID) {
                 console.log("Saving Value is working!"); // sanity check
                 $.ajax({
-                    url: "setmerchid/", // the endpoint
+                    url: "setplanmerchid/", // the endpoint
                     type: "POST", // http method
-                    data: {merchantID: merchantID}, // data sent with the post request
+                    data: {priceID: priceID}, // data sent with the post request
                     // handle a successful response
                     success: function (json) {
                         //$(button_id).removeClass('btn-outline-info').addClass('btn-success');
-                        //$(button_id).removeClass('btn-danger').addClass('btn-success');
+                        $('#confirm-plan').removeClass('btn-primary').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-                        window.location = '{% url 'createsubscription' %}'
+                        window.location = '{% url 'updatepaymentmethod' %}'
                     },
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        //$(button_id).removeClass('btn-outline-info').addClass('btn-danger')
+                        $('#confirm-plan').removeClass('btn-primary').addClass('btn-danger')
                     }
                 });
             }
