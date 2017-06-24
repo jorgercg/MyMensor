@@ -21,10 +21,11 @@ def updatepaymentmethod(request):
         btmerchant = btprice.braintreemerchant
         braintree.Configuration.configure(
             braintree_env,
-            merchant_id=btmerchant.braintreemerchMerchId,
+            merchant_id=BRAINTREE_MERCHANT_ID,
             public_key=BRAINTREE_PUBLIC_KEY,
             private_key=BRAINTREE_PRIVATE_KEY,
         )
+
         try:
             client_token = braintree.ClientToken.generate({
                 "customer_id": btcustomer.braintreecustomerCustomerId,
