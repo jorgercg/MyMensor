@@ -40,7 +40,7 @@ def updatepaymentmethod(request):
 @login_required
 def getbraintreepaymentnonce(request):
     if request.method == 'POST':
-        payment_nonce = int(request.POST.get('nonce'))
+        payment_nonce = request.POST.get('nonce')
         btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
         btcustomer.braintreecustomerPaymentMethodNonce = payment_nonce
         try:
