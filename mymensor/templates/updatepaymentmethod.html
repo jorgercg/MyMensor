@@ -17,7 +17,7 @@
         var submitButton = document.querySelector('#submit-button');
 
         braintree.dropin.create({
-            authorization: {{ token }},
+            authorization:"{{ token }}",
             container: '#dropin-container'
         }, function (err, dropinInstance) {
             if (err) {
