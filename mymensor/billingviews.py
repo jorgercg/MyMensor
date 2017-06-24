@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from mymensor.models import BraintreeCustomer, Asset
+from mymensor.models import BraintreeCustomer, Asset, BraintreeSubscription, BraintreePlan, BraintreeMerchant, \
+    BraintreePrice
 import braintree, json
 from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
     BRAINTREE_PRODUCTION
@@ -63,10 +64,32 @@ def get_braintree_payment_nonce(request):
 @login_required
 def createsubscription(request):
     if request.method == "GET":
-        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
-        currentasset = Asset.objects.get(assetOwner=request.user)
-        currentmymprice = MyMPrice.objects.get(id=currentasset.assetMyMPrice.id)
-        return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "currentmymprice":currentmymprice})
+        availablebtmerchants = BraintreeMerchant.objects.all()
+        availablebtplans = BraintreePlan.objects.all()
+        availablebtprices = BraintreePrice.objects.all()
+        currentbtcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        currentbtsubscription=BraintreeSubscription()
+        try:
+            currentbtsubscription = BraintreeSubscription.objects.get(braintreecustomer=currentbtcustomer)
+            currentbtprice = currentbtsubscription.braintreeprice
+            currentbtmerchant = currentbtprice.braintreemerchant
+            currentbtplan = currentbtprice.braintreeplan
+        except currentbtsubscription.DoesNotExist:
+            currentbtmerchant = availablebtmerchants.first()
+            currentbtplan = availablebtplans.first()
+            currentbtprice = availablebtprices.filter(braintreeplan=currentbtplan,braintreemerchant=currentbtmerchant)
+            currentbtsubscription = BraintreeSubscription(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice)
+
+        return render(request, 'createsubscription.html',
+                      { "currentbtcustomer": currentbtcustomer,
+                        "currentsubscription": currentbtsubscription,
+                        "currentbtprice":currentbtprice,
+                        "currentmerchant":currentbtmerchant,
+                        "currentplan":currentbtplan,
+                        "availablebtmerchants":availablebtmerchants,
+                        "availablebtplans":availablebtplans,
+                        "availablebtprices":availablebtprices
+                       })
     return HttpResponse(status=404)
 
 

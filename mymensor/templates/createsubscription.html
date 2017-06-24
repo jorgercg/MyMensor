@@ -15,32 +15,14 @@
                 <div class="col-sm-5">
                     <p></p>
                     <p>{% trans "Please choose which currency you want to use to pay for your monthly subscription:" %}</p>
-                </div>
-                <div class="col-sm-5">
                     <p></p>
-                    <form role="form" action="." method="post" id="set-currency-form">
-
-
-                    </form>
-
-                    <select class="vpselectedclass"  multiple="multiple" id="vpsselected" name="vpsselected">
-                                {% for vpnumber in vpslist %}
-                                    <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
-                                            {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
-                                        VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                    <select id="set-price-select" name="priceselected">
+                                {% for price in availablebtprices %}
+                                    <option id="op{{ price.id }}" value='{{ price.id }}'
+                                            {% if price == currentbtprice %}selected{% endif %}>
+                                        Plan {{ price.braintreeplan }} - {{ price.braintreemerchant }} - {{ price.braintrepricePrice }}</option>
                                 {% endfor %}
-                            </select>
-
-
-                </div>
-            </div>
-            <div class="row" style="padding-bottom: 20px">
-                <div class="col-sm-5">
-                    <p></p>
-                    <p>
-                        {% trans "Press the button to start paying " %}{{ currentmymprice.mympriceCurrency }}{{ currentmymprice.mympriceNumericalValue|floatformat:2 }}{% trans " per month" %}</p>
-                </div>
-                <div class="col">
+                    </select>
                     <p></p>
                     <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                        role="button">{% trans "Accept and pay" %}</a>
@@ -53,7 +35,7 @@
         <script type="text/javascript">
 
             // Submit post on submit
-            $('#set-currency-form').change(function (event) {
+            $('#set-price-select').change(function (event) {
                 event.preventDefault();
                 merchid = $('#id_braintreecustomerMerchantAccId').val();
                 console.log("MerchantID Set to " + merchid);  // sanity check

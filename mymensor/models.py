@@ -39,8 +39,7 @@ class BraintreeSubscription(models.Model):
     braintreesubscriptionSubscriptionId = models.CharField(max_length=1024, null=True)
     braintreesubscriptionSubscriptionStatus = models.CharField(max_length=50, null=True)
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
-    braintreemerchant = models.ForeignKey(BraintreeMerchant, on_delete=models.CASCADE)
-    braintreeplan = models.ForeignKey(BraintreePlan, on_delete=models.CASCADE)
+    braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
