@@ -14,14 +14,14 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-5">
                     <p></p>
-                    <p>{% trans "Please choose which currency you want to use to pay for your monthly subscription:" %}</p>
+                    <p>{% trans "Please choose which plan you want to use:" %}</p>
                     <p></p>
                     <select id="set-price-select" name="priceselected">
-                                {% for price in availablebtprices %}
-                                    <option id="op{{ price.id }}" value='{{ price.id }}'
-                                            {% if price == currentbtprice %}selected{% endif %}>
-                                        Plan {{ price.braintreeplan.braintreeplanBillingCycleUnit }} - {{ price.braintreemerchant.braintreemerchCurrency }} - {{ price.braintrepricePrice }}</option>
-                                {% endfor %}
+                        {% for price in availablebtprices %}
+                            <option id="op{{ price.id }}" value='{{ price.id }}'
+                                    {% if price == currentbtprice %}selected{% endif %}>
+                                {% trans "Pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice }}{% trans " per " %}{{ price.braintreeplan.braintreeplanBillingCycleUnit }}</option>
+                        {% endfor %}
                     </select>
                     <p></p>
                     <a class="btn btn-primary" href="{% url 'createsubscription' %}"
