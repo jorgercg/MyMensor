@@ -20,7 +20,7 @@
                                 {% for price in availablebtprices %}
                                     <option id="op{{ price.id }}" value='{{ price.id }}'
                                             {% if price == currentbtprice %}selected{% endif %}>
-                                        Plan {{ price.braintreeplan }} - {{ price.braintreemerchant }} - {{ price.braintrepricePrice }}</option>
+                                        Plan {{ price.braintreeplan.braintreeplanBillingCycleUnit }} - {{ price.braintreemerchant.braintreemerchCurrency }} - {{ price.braintrepricePrice }}</option>
                                 {% endfor %}
                     </select>
                     <p></p>
