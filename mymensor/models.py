@@ -6,20 +6,41 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
-class MyMPrice(models.Model):
-    CURRENCY_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR'))
+class BraintreePlan(models.Model):
+    braintreeplanPlanName = models.CharField(max_length=1024)
+    braintreeplanPlanId = models.CharField(max_length=1024)
+    braintreeplanBillingCycleQty = models.IntegerField()
+    braintreeplanBillingCycleUnit = models.CharField(max_length=255)
+    braintreeplanBillingExpirationExists = models.BooleanField(default=False)
+    braintreeplanBillingExpirationInCycleQty = models.IntegerField(null=True, blank=True)
+    braintreeplanDiscountExists = models.BooleanField(default=False)
+    braintreeplanDiscountPercentage = models.FloatField(null=True, blank=True)
 
-    mympricePlanName = models.CharField(max_length=1024)
-    mympriceBraintreePlanID = models.CharField(max_length=1024)
-    mympriceClientType = models.CharField(max_length=1024)
-    mympriceCurrency = models.CharField(max_length=4, choices=CURRENCY_CHOICES)
-    mympriceNumericalValue = models.FloatField()
-    mympriceBillingCycleQty = models.IntegerField()
-    mympriceBillingCycleUnit = models.CharField(max_length=255)
-    mympriceBillingExpirationExists = models.BooleanField(default=False)
-    mympriceBillingExpirationInCycleQty = models.IntegerField(null=True, blank=True)
-    mympriceDiscountExists = models.BooleanField(default=False)
-    mympriceDiscountPercentage = models.FloatField(null=True, blank=True)
+class BraintreeMerchant(models.Model):
+    CURRENCY_CHOICES = (('USD', 'USD'), ('EUR', 'EUR'), ('BRL', 'BRL'))
+
+    braintreemerchMerchId = models.CharField(max_length=1024, null=True)
+    braintreemerchCurrency = models.CharField(max_length=50, choices=CURRENCY_CHOICES)
+
+class BraintreePrice(models.Model):
+    braintrepricePrice = models.FloatField()
+    braintreeplan = models.ForeignKey(BraintreePlan,on_delete=None)
+    braintreemerchant = models.ForeignKey(BraintreeMerchant, on_delete=None)
+
+class BraintreeCustomer(models.Model):
+    braintreecustomerOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    braintreecustomerCustomerId = models.CharField(max_length=1024, null=True)
+    braintreecustomerPaymentMethodNonce = models.CharField(max_length=1024, null=True)
+    braintreecustomerPaymentMethodToken = models.CharField(max_length=1024, null=True)
+    braintreecustomerCustomerCreated = models.NullBooleanField(null=True)
+    braintreecustomerCustomerCreatedDate = models.DateTimeField(auto_now=False, null=True)
+
+class BraintreeSubscription(models.Model):
+    braintreesubscriptionSubscriptionId = models.CharField(max_length=1024, null=True)
+    braintreesubscriptionSubscriptionStatus = models.CharField(max_length=50, null=True)
+    braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
+    braintreemerchant = models.ForeignKey(BraintreeMerchant, on_delete=models.CASCADE)
+    braintreeplan = models.ForeignKey(BraintreePlan, on_delete=models.CASCADE)
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
@@ -29,7 +50,6 @@ class Asset(models.Model):
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
                                    verbose_name="Asset Owner")  ###### FK
-    assetMyMPrice = models.ForeignKey(MyMPrice, null=True, on_delete=models.SET_NULL)
     assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Owner Description'))
     assetOwnerKey = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Identity Id")
@@ -41,20 +61,6 @@ class Asset(models.Model):
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
-
-class BraintreeCustomer(models.Model):
-    MERCHID_CHOICES = (('mymensorUSD', 'USD'), ('mymensorEUR', 'EUR'), ('mymensorBRL', 'BRL'), ('gfng', 'EUR'))
-
-    braintreecustomerOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
-    braintreecustomerCustomerId = models.CharField(max_length=1024, null=True)
-    braintreecustomerPaymentMethodNonce = models.CharField(max_length=1024, null=True)
-    braintreecustomerPaymentMethodToken = models.CharField(max_length=1024, null=True)
-    braintreecustomerPlanId = models.CharField(max_length=1024, null=True)
-    braintreecustomerMerchantAccId = models.CharField(max_length=1024, choices=MERCHID_CHOICES, default="mymensorUSD", verbose_name=_("Current currency in use"))
-    braintreecustomerPrice = models.FloatField(null=True)
-    braintreecustomerSubscriptionId = models.CharField(max_length=1024, null=True)
-    braintreecustomerSubscriptionStatus = models.CharField(max_length=50, null=True)
-    braintreecustomerCustomerCreated = models.NullBooleanField(null=True)
 
 class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK

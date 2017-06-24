@@ -12,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
-    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer
+    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
@@ -580,7 +580,8 @@ def tagSetupFormView(request):
     return render(request, 'tagsetup.html',
                   {'form': form, 'qtyvps': qtyvps, 'currentvp': currentvp, 'qtytagsinclient': qtytagsinclient,
                    'currenttag': currenttag, 'tags': tags, 'vps': vps, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag, 'vpoflasttag':vpoflasttag,
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbbox': tagbbox, 'lasttag': lasttag,
+                   'vpoflasttag': vpoflasttag,
                    'qtytagsindatabase': qtytagsindatabase})
 
 
@@ -959,7 +960,7 @@ def createdcicfgbackup(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        usernameEncoded = "usrcfg/"+urllib.quote(request.user.username)
+        usernameEncoded = "usrcfg/" + urllib.quote(request.user.username)
         keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncoded)
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
@@ -1002,7 +1003,7 @@ def restoredcicfgbackup(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        usernameEncoded = "usrcfg/"+urllib.quote(request.user.username)
+        usernameEncoded = "usrcfg/" + urllib.quote(request.user.username)
         keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncoded + "_backup")
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
@@ -1402,6 +1403,12 @@ def fbsecstagelogout(request):
 def subscription(request):
     if request.method == "GET":
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        try:
+            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        except:
+            btsubscription = None
         dateofendoftrialbeforesubscription = request.user.date_joined + timedelta(days=30)
-        return render(request, 'subscription.html', { 'userloggedin':request.user, 'btcustomer': btcustomer, 'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription })
+        return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
+                                                     'btsubscription':btsubscription,
+                                                     'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription})
     return HttpResponse(status=404)

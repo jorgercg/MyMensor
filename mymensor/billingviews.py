@@ -1,8 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from mymensor.models import BraintreeCustomer, Asset, MyMPrice
-from mymensor.forms import PaymentCurrencyForm
+from mymensor.models import BraintreeCustomer, Asset
 import braintree, json
 from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
     BRAINTREE_PRODUCTION
@@ -64,11 +63,10 @@ def get_braintree_payment_nonce(request):
 @login_required
 def createsubscription(request):
     if request.method == "GET":
-        btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
-        form = PaymentCurrencyForm(request.POST, instance=btcustomer)
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         currentasset = Asset.objects.get(assetOwner=request.user)
         currentmymprice = MyMPrice.objects.get(id=currentasset.assetMyMPrice.id)
-        return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "form": form, "currentmymprice":currentmymprice})
+        return render(request, 'createsubscription.html', {"btcustomer": btcustomer, "currentmymprice":currentmymprice})
     return HttpResponse(status=404)
 
 

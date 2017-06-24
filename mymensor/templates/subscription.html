@@ -18,62 +18,66 @@
                     <p></p>
                 </div>
             </div>
-            {% if btcustomer.braintreecustomerSubscriptionStatus == "braintree.Subscription.Status.Active" %}
-                <div class="row" style="padding-bottom: 20px">
-                    <div class="col-sm-5">
-                        <p></p>
-                        <h3>{% trans "Current Payment Method" %}</h3>
-                        <p></p>
-                        <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
+            {% if btsubscription is not None %}
+                {% if btsubscription.braintreesubscriptionSubscriptionStatus == "braintree.Subscription.Status.Active" %}
+                    <div class="row" style="padding-bottom: 20px">
+                        <div class="col-sm-5">
+                            <p></p>
+                            <h3>{% trans "Current Payment Method" %}</h3>
+                            <p></p>
+                            <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="col">
-                        <p></p>
+                    <div class="row" style="padding-bottom: 20px">
+                        <div class="col-sm-5">
+                            <p></p>
+                            <h3>{% trans "Your Billing History" %}</h3>
+                            <p></p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
                     </div>
-                </div>
-                <div class="row" style="padding-bottom: 20px">
-                    <div class="col-sm-5">
-                        <p></p>
-                        <h3>{% trans "Your Billing History" %}</h3>
-                        <p></p>
+                    <div class="row" style="padding-bottom: 20px">
+                        <div class="col-sm-5">
+                            <p></p>
+                            <h3>{% trans "Cancel Subscription" %}</h3>
+                            <p></p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="col">
-                        <p></p>
+                {% else %}
+                    <div class="row" style="padding-bottom: 20px">
+                        <div class="col-sm-5">
+                            <p></p>
+                            <h3>{% trans "Current Subscription Status" %}</h3>
+                            <p></p>
+                            <p>{% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
+                            <p></p>
+                            <p>{% trans "If you wish, please contact support about your current status." %}</p>
+                        </div>
+                        <div class="col">
+                            <p></p>
+                        </div>
                     </div>
-                </div>
-                <div class="row" style="padding-bottom: 20px">
-                    <div class="col-sm-5">
-                        <p></p>
-                        <h3>{% trans "Cancel Subscription" %}</h3>
-                        <p></p>
-                    </div>
-                    <div class="col">
-                        <p></p>
-                    </div>
-                </div>
-            {% elif btcustomer.braintreecustomerSubscriptionStatus == "onTrialBeforeSubscription" %}
+                {% endif %}
+            {% else %}
                 <div class="row" style="padding-bottom: 20px">
                     <div class="col-sm-5">
                         <p></p>
                         <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
                         <p></p>
-                        <p>{% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
+                        <p>
+                            {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                         <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
                         <p></p>
-                        <a class="btn btn-primary" href="{% url 'createsubscription' %}" role="button">{% trans "Subscribe Now!" %}</a>
-                    </div>
-                </div>
-            {% else %}
-                <div class="row" style="padding-bottom: 20px">
-                    <div class="col-sm-5">
-                        <p></p>
-                        <h3>{% trans "Current Subscription Status" %}</h3>
-                        <p></p>
-                        <p>{% trans "Status: " %}{{ btcustomer.braintreecustomerSubscriptionStatus }}</p>
-                        <p></p>
-                        <p>{% trans "If you wish, please contact support about your current status." %}</p>
-                    </div>
-                    <div class="col">
-                        <p></p>
+                        <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                           role="button">{% trans "Subscribe Now!" %}</a>
                     </div>
                 </div>
             {% endif %}

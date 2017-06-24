@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from mymensor.models import Asset, Vp, Media, Tag, ProcessedTag, Value, MyMPrice
+from mymensor.models import Asset, Vp, Media, Tag, ProcessedTag, Value, BraintreePlan, BraintreeMerchant, BraintreePrice
 
 
 class AssetAdmin(admin.ModelAdmin):
@@ -36,13 +36,24 @@ class ValueAdmin(admin.ModelAdmin):
                     'tagStateResultingFromValValueStatus')
 
 
-class MymPriceAdmin(admin.ModelAdmin):
-    model = MyMPrice
+class BraintreePlanAdmin(admin.ModelAdmin):
+    model = BraintreePlan
     list_display = (
-        'mympricePlanName', 'mympriceBraintreePlanID', 'mympriceClientType', 'mympriceCurrency',
-        'mympriceNumericalValue',
-        'mympriceBillingCycleQty', 'mympriceBillingCycleUnit', 'mympriceBillingExpirationExists',
-        'mympriceBillingExpirationInCycleQty', 'mympriceDiscountExists', 'mympriceDiscountPercentage')
+        'braintreeplanPlanName', 'braintreeplanPlanId', 'braintreeplanBillingCycleQty', 'braintreeplanBillingCycleUnit',
+        'braintreeplanBillingExpirationExists',
+        'braintreeplanBillingExpirationInCycleQty', 'braintreeplanDiscountExists', 'braintreeplanDiscountPercentage')
+
+
+class BraintreeMerchantAdmin(admin.ModelAdmin):
+    model = BraintreeMerchant
+    list_display = (
+        'braintreemerchMerchId', 'braintreemerchCurrency')
+
+
+class BraintreePriceAdmin(admin.ModelAdmin):
+    model = BraintreePrice
+    list_display = (
+        'braintrepricePrice', 'braintreeplan', 'braintreemerchant')
 
 
 # Register your models here.
@@ -52,4 +63,6 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(Media, MediaAdmin)
 admin.site.register(ProcessedTag, ProcesedTagAdmin)
 admin.site.register(Value, ValueAdmin)
-admin.site.register(MyMPrice, MymPriceAdmin)
+admin.site.register(BraintreePlan, BraintreePlanAdmin)
+admin.site.register(BraintreeMerchant, BraintreeMerchantAdmin)
+admin.site.register(BraintreePrice, BraintreePriceAdmin)

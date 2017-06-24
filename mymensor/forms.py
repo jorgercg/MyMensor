@@ -20,10 +20,3 @@ class TagForm(ModelForm):
     class Meta:
         model = Tag
         fields = ['tagDescription', 'tagIsActive', 'tagQuestion', 'tagUnit', 'tagLowRed', 'tagLowYellow', 'tagExpValue', 'tagHighYellow', 'tagHighRed']
-
-
-class PaymentCurrencyForm(ModelForm):
-
-    class Meta:
-        model = BraintreeCustomer
-        fields = ['braintreecustomerMerchantAccId']

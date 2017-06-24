@@ -39,6 +39,7 @@ def setup_new_user(instance, **kwargs):
 
 def create_braintree_customer(instance):
     import braintree
+    from datetime import datetime
     from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
         BRAINTREE_PRODUCTION
     from mymensor.models import BraintreeCustomer
@@ -60,9 +61,8 @@ def create_braintree_customer(instance):
         if result.is_success:
             btnewcustomer = BraintreeCustomer(braintreecustomerOwner=instance,
                                               braintreecustomerCustomerId=result.customer.id,
-                                              braintreecustomerMerchantAccId="mymensorUSD",
-                                              braintreecustomerSubscriptionStatus="onTrialBeforeSubscription",
-                                              braintreecustomerCustomerCreated=True)
+                                              braintreecustomerCustomerCreated=True,
+                                              braintreecustomerCustomerCreatedDate=datetime.utcnow())
         else:
             btnewcustomer = BraintreeCustomer(braintreecustomerOwner=instance,
                                               braintreecustomerCustomerCreated=False)
