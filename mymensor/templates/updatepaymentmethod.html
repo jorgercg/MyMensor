@@ -6,9 +6,12 @@
     {% endblock %}
     {% block content %}
         <div class="container">
+        <div class="row" style="padding-top: 20px; padding-bottom: 20px">
+            <h3>{% trans "Authorize Your Payment Method" %}</h3>
+        </div>
         <div class="row" style="padding-bottom: 20px">
-        <h3>{% trans "Authorize Your Payment Method" %}</h3>
-        <div id="dropin-container"></div>
+            <div id="dropin-container"></div>
+        </div>
         <button id="submit-button" class="btn-outline-info">{% trans "Authorize" %}</button>
     {% endblock %}
 {% block javascript %}
@@ -17,7 +20,7 @@
         var submitButton = document.querySelector('#submit-button');
 
         braintree.dropin.create({
-            authorization:"{{ token }}",
+            authorization: "{{ token }}",
             container: '#dropin-container'
         }, function (err, dropinInstance) {
             if (err) {
