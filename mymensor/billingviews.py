@@ -77,8 +77,8 @@ def createsubscription(request):
         except currentbtsubscription.DoesNotExist:
             currentbtmerchant = availablebtmerchants.first()
             currentbtplan = availablebtplans.first()
-            currentbtprice = availablebtprices.filter(braintreeplan=currentbtplan,braintreemerchant=currentbtmerchant)
-            currentbtsubscription = BraintreeSubscription(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice.pk)
+            currentbtprice = BraintreePrice.objects.get(braintreeplan=currentbtplan,braintreemerchant=currentbtmerchant)
+            currentbtsubscription = BraintreeSubscription(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice)
 
         return render(request, 'createsubscription.html',
                       { "currentbtcustomer": currentbtcustomer,
