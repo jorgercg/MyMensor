@@ -5,7 +5,7 @@ from mymensor.models import Asset, Vp, Media, Tag, ProcessedTag, Value, Braintre
 
 class AssetAdmin(admin.ModelAdmin):
     model = Asset
-    list_display = ('assetDescription', 'assetOwnerDescription', 'assetNumber', 'assetIsActive', 'assetMyMPrice')
+    list_display = ('assetDescription', 'assetOwnerDescription', 'assetNumber', 'assetIsActive')
 
 
 class VpAdmin(admin.ModelAdmin):
