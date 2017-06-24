@@ -12,13 +12,13 @@
         <div class="row" style="padding-bottom: 20px">
             <div id="dropin-container"></div>
         </div>
-        <button id="submit-button" class="btn-outline-info">{% trans "Authorize" %}</button>
+        <button id="submit-button" class="btn btn-outline-info">{% trans "Authorize" %}</button>
     {% endblock %}
 {% block javascript %}
     <script src="https://js.braintreegateway.com/web/dropin/1.3.1/js/dropin.min.js"></script>
     <script type="text/javascript">
         var submitButton = document.querySelector('#submit-button');
-
+        var button_id = submitButton;
         braintree.dropin.create({
             authorization: "{{ token }}",
             container: '#dropin-container'
@@ -52,7 +52,7 @@
                     $(button_id).removeClass('btn-danger').addClass('btn-success');
                     console.log(json); // log the returned json to the console
                     console.log("success"); // another sanity check
-
+                    window.location = '{% url 'startsubscription' %}'
                 },
                 // handle a non-successful response
                 error: function (xhr, errmsg, err) {

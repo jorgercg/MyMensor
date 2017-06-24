@@ -60,6 +60,7 @@ urlpatterns += i18n_patterns(
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
+    url(r'^startsubscription/$', billingviews.startsubscription, name='startsubscription'),
     url(r'^billingupdatepaymentmethod/$', billingviews.updatepaymentmethod, name='updatepaymentmethod'),
     url(r'^billingupdatepaymentmethod/billingnonce/', billingviews.getbraintreepaymentnonce, name='getbraintreepaymentnonce'),
     url(r'^billingcreatesubscription/$', billingviews.createsubscription, name='createsubscription'),

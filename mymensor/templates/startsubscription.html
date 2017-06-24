@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}{% trans "Start Subscription" %} - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
+                <p></p>
+                <h3>{% trans "Start Subscription" %}</h3>
+                <p></p>
+            </div>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    {% if succesful %}
+                        <p></p>
+                        <p>{% trans "Your subscription was succesful!" %}</p>
+                        <p></p>
+                        <p>{{ result.status }}</p>
+                    {% else %}
+                        <p></p>
+                        <p>{% trans "There was a problem while registering your subscription, please contact support." %}</p>
+                        <p></p>
+                        <p></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

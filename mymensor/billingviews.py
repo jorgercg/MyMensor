@@ -63,6 +63,38 @@ def getbraintreepaymentnonce(request):
             status=400
         )
 
+@login_required
+def startsubscription(request):
+    if request.method == "GET":
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        btprice = btsubscription.braintreeprice
+        btplan = btprice.braintreeplan
+        succesful = False
+        try:
+            result = braintree.Subscription.create({
+                "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
+                "plan_id": btplan.braintreeplanPlanId
+            })
+            if result.is_success:
+                btsubscription.braintreesubscriptionSubscriptionId=result.id
+                btsubscription.braintreesubscriptionSubscriptionStatus=result.status
+                btsubscription.save()
+                succesful = True
+            else:
+                btsubscription.delete()
+                return render(request, 'startsubscription.html',
+                              {"succesful": succesful})
+        except:
+            btsubscription.delete()
+            return render(request, 'startsubscription.html',
+                          {"succesful": succesful})
+        return render(request, 'startsubscription.html',
+                      { "succesful":succesful,
+                        "result": result,
+                        "btsubscription": btsubscription
+                       })
+    return HttpResponse(status=404)
 
 @login_required
 def createsubscription(request):
