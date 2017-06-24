@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html" afterPath="$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/urls.py" afterPath="$PROJECT_DIR$/mymensorapp/urls.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="62" column="103" lean-forward="false" selection-start-line="62" selection-start-column="103" selection-end-line="62" selection-end-column="103" />
+            <state relative-caret-position="484">
+              <caret line="63" column="38" lean-forward="false" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
               <folding>
                 <element signature="e#644#685#0" expanded="true" />
               </folding>
@@ -68,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="updatepaymentmethod.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="updatepaymentmethod.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
@@ -260,10 +260,10 @@
         <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
         <option value="$PROJECT_DIR$/mymensor/admin.py" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
-        <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/createsubscription.html" />
         <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html" />
+        <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
       </list>
     </option>
   </component>
@@ -748,13 +748,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02480" summary="20jun2017 11h01min">
-      <created>1497952925508</created>
-      <option name="number" value="02480" />
-      <option name="presentableId" value="LOCAL-02480" />
-      <option name="project" value="LOCAL" />
-      <updated>1497952925508</updated>
-    </task>
     <task id="LOCAL-02481" summary="20jun2017 19h28min">
       <created>1497983290835</created>
       <option name="number" value="02481" />
@@ -1091,7 +1084,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498330549656</updated>
     </task>
-    <option name="localTasksCounter" value="2529" />
+    <task id="LOCAL-02529" summary="24jun2017 19h59min">
+      <created>1498330797898</created>
+      <option name="number" value="02529" />
+      <option name="presentableId" value="LOCAL-02529" />
+      <option name="project" value="LOCAL" />
+      <updated>1498330797898</updated>
+    </task>
+    <option name="localTasksCounter" value="2530" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1173,7 +1173,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="23jun2017 18h48min" />
     <MESSAGE value="23jun2017 18h56min" />
     <MESSAGE value="23jun2017 19h04min" />
     <MESSAGE value="23jun2017 19h24min" />
@@ -1198,7 +1197,8 @@
     <MESSAGE value="24jun2017 19h40min" />
     <MESSAGE value="24jun2017 19h50min" />
     <MESSAGE value="24jun2017 19h55min" />
-    <option name="LAST_COMMIT_MESSAGE" value="24jun2017 19h55min" />
+    <MESSAGE value="24jun2017 19h59min" />
+    <option name="LAST_COMMIT_MESSAGE" value="24jun2017 19h59min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1528,16 +1528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="62" column="103" lean-forward="false" selection-start-line="62" selection-start-column="103" selection-end-line="62" selection-end-column="103" />
-          <folding>
-            <element signature="e#644#685#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -1597,6 +1587,16 @@
         <state relative-caret-position="285">
           <caret line="19" column="39" lean-forward="false" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="63" column="38" lean-forward="false" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+          <folding>
+            <element signature="e#644#685#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
