@@ -41,7 +41,7 @@ def updatepaymentmethod(request):
 def getbraintreepaymentnonce(request):
     if request.method == 'POST':
         payment_nonce = request.POST.get('nonce')
-        btcustomer = BraintreeCustomer(braintreecustomerOwner=request.user)
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btcustomer.braintreecustomerPaymentMethodNonce = payment_nonce
         try:
             btcustomer.save()
