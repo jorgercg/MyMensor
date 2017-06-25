@@ -92,7 +92,10 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionStatus=result.subscription.status
             btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transactions[0].payment_instrument_type
             if btsubscription.braintreesubscriptionPaymentInstrumentType=="credit_card":
-                btsubscription.
+                btsubscription.braintreesubscriptionCClast4=result.subscription.transactions[0].credit_card_details.last_4
+                btsubscription.braintreesubscriptionCCtype=result.subscription.transactions[0].credit_card_details.card_type
+                btsubscription.braintreesubscriptionCCexpyear=result.subscription.transactions[0].credit_card_details.expiration_year
+                btsubscription.braintreesubscriptionCCexpmonth=result.subscription.transactions[0].credit_card_details.expiration_month
             btsubscription.save()
             succesful = True
         else:
