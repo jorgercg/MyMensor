@@ -66,6 +66,16 @@ def getbraintreepaymentnonce(request):
 @login_required
 def startsubscription(request):
     if request.method == "GET":
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         btprice = btsubscription.braintreeprice
