@@ -77,8 +77,9 @@ def startsubscription(request):
             "plan_id": btplan.braintreeplanPlanId
         })
         if result.is_success:
-            btsubscription.braintreesubscriptionSubscriptionId=result.id
-            btsubscription.braintreesubscriptionSubscriptionStatus=result.status
+            btsubscription.braintreesubscriptionSubscriptionId=result.subscription.id
+            btsubscription.braintreesubscriptionSubscriptionStatus=result.subscription.status
+            btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transaction.payment_instrument_type
             btsubscription.save()
             succesful = True
         else:

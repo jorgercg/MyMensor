@@ -38,6 +38,9 @@ class BraintreeCustomer(models.Model):
 class BraintreeSubscription(models.Model):
     braintreesubscriptionSubscriptionId = models.CharField(max_length=1024, null=True)
     braintreesubscriptionSubscriptionStatus = models.CharField(max_length=50, null=True)
+    braintreesubscriptionPaymentInstrumentType = models.CharField(max_length=50, null=True)
+
+
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
     braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
