@@ -71,24 +71,24 @@ def startsubscription(request):
         btprice = btsubscription.braintreeprice
         btplan = btprice.braintreeplan
         succesful = False
-        try:
-            result = braintree.Subscription.create({
-                "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
-                "plan_id": btplan.braintreeplanPlanId
-            })
-            if result.is_success:
-                btsubscription.braintreesubscriptionSubscriptionId=result.id
-                btsubscription.braintreesubscriptionSubscriptionStatus=result.status
-                btsubscription.save()
-                succesful = True
-            else:
-                btsubscription.delete()
-                return render(request, 'startsubscription.html',
-                              {"succesful": succesful})
-        except:
-            btsubscription.delete()
+        #try:
+        result = braintree.Subscription.create({
+            "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
+            "plan_id": btplan.braintreeplanPlanId
+        })
+        if result.is_success:
+            btsubscription.braintreesubscriptionSubscriptionId=result.id
+            btsubscription.braintreesubscriptionSubscriptionStatus=result.status
+            btsubscription.save()
+            succesful = True
+        else:
+            #btsubscription.delete()
             return render(request, 'startsubscription.html',
                           {"succesful": succesful})
+        #except:
+            #btsubscription.delete()
+            #return render(request, 'startsubscription.html',
+                          #{"succesful": succesful})
         return render(request, 'startsubscription.html',
                       { "succesful":succesful,
                         "result": result,
