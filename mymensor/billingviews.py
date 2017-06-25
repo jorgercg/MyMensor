@@ -80,7 +80,7 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionResultObject=result
             btsubscription.braintreesubscriptionSubscriptionId=result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus=result.subscription.status
-            btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transactions['payment_instrument_type']
+            btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transactions[0].payment_instrument_type
             btsubscription.save()
             succesful = True
         else:
