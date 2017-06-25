@@ -21,7 +21,10 @@
         var button_id = submitButton;
         braintree.dropin.create({
             authorization: "{{ token }}",
-            container: '#dropin-container'
+            container: '#dropin-container',
+            paypal: {
+                flow: 'vault'
+            }
         }, function (err, dropinInstance) {
             if (err) {
                 // Handle any errors that might've occurred when creating Drop-in

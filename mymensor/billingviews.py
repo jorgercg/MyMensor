@@ -91,6 +91,8 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionId=result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus=result.subscription.status
             btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transactions[0].payment_instrument_type
+            if btsubscription.braintreesubscriptionPaymentInstrumentType=="credit_card":
+                btsubscription.
             btsubscription.save()
             succesful = True
         else:
