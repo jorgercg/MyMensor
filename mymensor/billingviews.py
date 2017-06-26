@@ -99,7 +99,9 @@ def startsubscription(request):
             btsubscription.save()
             succesful = True
         else:
+            btsubscription.braintreesubscriptionResultObject = result
             btsubscription.braintreesubscriptionSubscriptionStatus="Unsuccessful"
+            btsubscription.save()
             return render(request, 'startsubscription.html',
                           {"succesful": succesful})
         #except:
