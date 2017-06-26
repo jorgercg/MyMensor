@@ -103,7 +103,10 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionStatus="Unsuccessful"
             btsubscription.save()
             return render(request, 'startsubscription.html',
-                          {"succesful": succesful})
+                          {"result": result,
+                          "btsubscription": btsubscription,
+                           "btprice":btprice,
+                          "succesful": succesful})
         #except:
             #btsubscription.delete()
             #return render(request, 'startsubscription.html',
@@ -111,6 +114,7 @@ def startsubscription(request):
         return render(request, 'startsubscription.html',
                       { "succesful":succesful,
                         "result": result,
+                        "btprice": btprice,
                         "btsubscription": btsubscription
                        })
     return HttpResponse(status=404)
