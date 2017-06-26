@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/index.html" afterPath="$PROJECT_DIR$/mymensor/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,18 +44,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="56" column="73" lean-forward="false" selection-start-line="56" selection-start-column="73" selection-end-line="56" selection-end-column="73" />
-              <folding>
-                <element signature="e#644#685#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -73,16 +61,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="registration_form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/registration_form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="30" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="10" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -120,11 +98,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
               <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chosen.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="291" column="0" lean-forward="true" selection-start-line="256" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="630" column="8" lean-forward="false" selection-start-line="630" selection-start-column="8" selection-end-line="630" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -165,8 +163,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>initial</find>
-      <find>qtytagsglobal</find>
       <find>listoftags</find>
       <find>qtyinitial</find>
       <find>qtytags</find>
@@ -195,6 +191,8 @@
       <find>time</find>
       <find>does</find>
       <find>btsubscription</find>
+      <find>99px</find>
+      <find>.chosen-choices</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -248,7 +246,6 @@
         <option value="$PROJECT_DIR$/locale/pt/LC_MESSAGES/django.po" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
-        <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
         <option value="$PROJECT_DIR$/mymensor/static/css/chosen.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
@@ -272,6 +269,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
         <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
+        <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
       </list>
     </option>
   </component>
@@ -414,6 +412,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -755,13 +793,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02505" summary="23jun2017 18h56min">
-      <created>1498240584506</created>
-      <option name="number" value="02505" />
-      <option name="presentableId" value="LOCAL-02505" />
-      <option name="project" value="LOCAL" />
-      <updated>1498240584506</updated>
-    </task>
     <task id="LOCAL-02506" summary="23jun2017 19h04min">
       <created>1498241083443</created>
       <option name="number" value="02506" />
@@ -1098,7 +1129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498491203479</updated>
     </task>
-    <option name="localTasksCounter" value="2554" />
+    <task id="LOCAL-02554" summary="26jun2017 16h36min">
+      <created>1498491387234</created>
+      <option name="number" value="02554" />
+      <option name="presentableId" value="LOCAL-02554" />
+      <option name="project" value="LOCAL" />
+      <updated>1498491387234</updated>
+    </task>
+    <option name="localTasksCounter" value="2555" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1180,7 +1218,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="24jun2017 19h59min" />
     <MESSAGE value="24jun2017 20h10min" />
     <MESSAGE value="24jun2017 20h13min" />
     <MESSAGE value="24jun2017 20h15min" />
@@ -1205,7 +1242,8 @@
     <MESSAGE value="26jun2017 16h13min" />
     <MESSAGE value="26jun2017 16h26min" />
     <MESSAGE value="26jun2017 16h33min" />
-    <option name="LAST_COMMIT_MESSAGE" value="26jun2017 16h33min" />
+    <MESSAGE value="26jun2017 16h36min" />
+    <option name="LAST_COMMIT_MESSAGE" value="26jun2017 16h36min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1369,20 +1407,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="118" column="42" lean-forward="false" selection-start-line="118" selection-start-column="42" selection-end-line="118" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="258" column="17" lean-forward="false" selection-start-line="258" selection-start-column="17" selection-end-line="258" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="643" column="5" lean-forward="false" selection-start-line="643" selection-start-column="5" selection-end-line="643" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1597,6 +1621,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="291" column="0" lean-forward="true" selection-start-line="256" selection-start-column="0" selection-end-line="291" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="630" column="8" lean-forward="false" selection-start-line="630" selection-start-column="8" selection-end-line="630" selection-end-column="8" />
           <folding />
         </state>
       </provider>
