@@ -152,12 +152,11 @@ def setplanmerchid(request):
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         priceid = request.POST.get('priceID')
         btprice = BraintreePrice.objects.get(pk=priceid)
-        btsubscription = BraintreeSubscription()
         try:
             btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
             btsubscription.braintreeprice=btprice
             btsubscription.braintreesubscriptionSubscriptionStatus="Empty"
-            btsubscription.save()
+            btsubscription.save(update_fields=['braintreeprice','braintreesubscriptionSubscriptionStatus'])
         except btsubscription.DoesNotExist:
             BraintreeSubscription.objects.create(braintreeprice=btprice, braintreecustomer=btcustomer,braintreesubscriptionSubscriptionStatus="Empty")
         return HttpResponse(
