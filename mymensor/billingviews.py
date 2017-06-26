@@ -130,8 +130,9 @@ def createsubscription(request):
             currentbtmerchant = availablebtmerchants.first()
             currentbtplan = availablebtplans.first()
             currentbtprice = BraintreePrice.objects.get(braintreeplan=currentbtplan,braintreemerchant=currentbtmerchant)
-            currentbtsubscription = BraintreeSubscription.objects.create(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice,braintreesubscriptionSubscriptionStatus="Empty")
-
+            currentbtsubscription = BraintreeSubscription.objects.create(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice)
+            currentbtsubscription.braintreesubscriptionSubscriptionStatus="Empty"
+            currentbtsubscription.save()
         return render(request, 'createsubscription.html',
                       { "currentbtcustomer": currentbtcustomer,
                         "currentsubscription": currentbtsubscription,
