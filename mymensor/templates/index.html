@@ -21,16 +21,14 @@
                             <p>{% trans ' entries per VP' %}</p>
                         </div>
                     </div>
-                    <div class="mym-dash-item">
-                        <div id="vpselector" class="mym-dash-item">
-                            <select class="vpselectedclass"  multiple="multiple" id="vpsselected" name="vpsselected">
-                                {% for vpnumber in vpslist %}
-                                    <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
-                                            {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
-                                        VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+                    <div id="vpselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="vpsselected" name="vpsselected">
+                            {% for vpnumber in vpslist %}
+                                <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
+                                        {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
+                                    VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="mym-dash-item">
                         <button id="refreshbtn" type="button" class="mym-dash-item btn btn-outline-primary btn-lg"
