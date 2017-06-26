@@ -20,8 +20,8 @@
                         <p>{{ result }}</p>
                         <p>{{ btprice.id }}</p>
                         <p>{{ btprice.braintrepricePrice }}</p>
-                        <p>{{ btprice.braintreeplan }}</p>
-                        <p>{{ btprice.braintreemerchant }}</p>
+                        <p>{{ btprice.braintreeplan.id }}</p>
+                        <p>{{ btprice.braintreemerchant.id }}</p>
                     {% else %}
                         <p></p>
                         <p>{% trans "There was a problem while registering your subscription, please contact support." %}</p>
@@ -29,8 +29,8 @@
                         <p>{{ result }}</p>
                         <p>{{ btprice.id }}</p>
                         <p>{{ btprice.braintrepricePrice }}</p>
-                        <p>{{ btprice.braintreeplan }}</p>
-                        <p>{{ btprice.braintreemerchant }}</p>
+                        <p>{{ btprice.braintreeplan.id }}</p>
+                        <p>{{ btprice.braintreemerchant.id }}</p>
                     {% endif %}
                 </div>
             </div>
