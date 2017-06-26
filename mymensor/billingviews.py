@@ -32,7 +32,7 @@ def updatepaymentmethod(request):
             })
         except ValueError as e:
             return render(request, 'updatepaymentmethod.html', {"result_ok": False})
-        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True})
+        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True, "btprice":btprice, "btmerchant":btmerchant})
     return HttpResponse(status=404)
 
 
