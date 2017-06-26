@@ -78,8 +78,8 @@ def startsubscription(request):
         )
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-        btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice)
-        btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan)
+        btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice.pk)
+        btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan.pk)
         succesful = False
         #try:
         result = braintree.Subscription.create({
