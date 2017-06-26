@@ -99,7 +99,7 @@ def startsubscription(request):
             btsubscription.save()
             succesful = True
         else:
-            #btsubscription.delete()
+            btsubscription.braintreesubscriptionSubscriptionStatus="Unsuccessful"
             return render(request, 'startsubscription.html',
                           {"succesful": succesful})
         #except:
@@ -130,7 +130,7 @@ def createsubscription(request):
             currentbtmerchant = availablebtmerchants.first()
             currentbtplan = availablebtplans.first()
             currentbtprice = BraintreePrice.objects.get(braintreeplan=currentbtplan,braintreemerchant=currentbtmerchant)
-            currentbtsubscription = BraintreeSubscription(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice)
+            currentbtsubscription = BraintreeSubscription.objects.create(braintreecustomer=currentbtcustomer,braintreeprice=currentbtprice,braintreesubscriptionSubscriptionStatus="Empty")
 
         return render(request, 'createsubscription.html',
                       { "currentbtcustomer": currentbtcustomer,
@@ -155,7 +155,7 @@ def setplanmerchid(request):
         try:
             btsubscription = BraintreeSubscription.objects.get(braintreeprice=btprice, braintreecustomer=btcustomer)
         except btsubscription.DoesNotExist:
-            btsubscription = BraintreeSubscription.objects.create(braintreeprice=btprice, braintreecustomer=btcustomer)
+            btsubscription = BraintreeSubscription.objects.create(braintreeprice=btprice, braintreecustomer=btcustomer,braintreesubscriptionSubscriptionStatus="Empty")
         return HttpResponse(
             json.dumps({"success": "success"}),
             content_type="application/json",
