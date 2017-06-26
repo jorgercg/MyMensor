@@ -18,13 +18,19 @@
                         <p>{% trans "Your subscription was succesful!" %}</p>
                         <p></p>
                         <p>{{ result }}</p>
-                        <p>{{ btprice }}</p>
+                        <p>{{ btprice.id }}</p>
+                        <p>{{ btprice.braintrepricePrice }}</p>
+                        <p>{{ btprice.braintreeplan }}</p>
+                        <p>{{ btprice.braintreemerchant }}</p>
                     {% else %}
                         <p></p>
                         <p>{% trans "There was a problem while registering your subscription, please contact support." %}</p>
                         <p></p>
                         <p>{{ result }}</p>
-                        <p>{{ btprice }}</p>
+                        <p>{{ btprice.id }}</p>
+                        <p>{{ btprice.braintrepricePrice }}</p>
+                        <p>{{ btprice.braintreeplan }}</p>
+                        <p>{{ btprice.braintreemerchant }}</p>
                     {% endif %}
                 </div>
             </div>
