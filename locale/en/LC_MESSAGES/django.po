@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-20 10:48+0100\n"
+"POT-Creation-Date: 2017-06-26 12:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,144 +18,144 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mymensor/models.py:13
+#: mymensor/models.py:53
 msgid "Asset Description"
 msgstr ""
 
-#: mymensor/models.py:18
+#: mymensor/models.py:58
 msgid "Asset Owner Description"
 msgstr ""
 
-#: mymensor/models.py:23
+#: mymensor/models.py:63
 msgid "Capture frequency unit"
 msgstr ""
 
-#: mymensor/models.py:24
+#: mymensor/models.py:64
 msgid "Minimum capture frequency value"
 msgstr ""
 
-#: mymensor/models.py:64
+#: mymensor/models.py:104
 msgid "vp description"
 msgstr ""
 
-#: mymensor/models.py:88
+#: mymensor/models.py:128
 msgid "unit for the vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:89
+#: mymensor/models.py:129
 msgid "minimum vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:91
+#: mymensor/models.py:131
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 
-#: mymensor/models.py:93
+#: mymensor/models.py:133
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
 
-#: mymensor/models.py:95
+#: mymensor/models.py:135
 msgid "send all of this vp captures to the following email."
 msgstr ""
 
-#: mymensor/models.py:100
+#: mymensor/models.py:140
 msgid "tag description"
 msgstr ""
 
-#: mymensor/models.py:102
+#: mymensor/models.py:142
 msgid "tag is active"
 msgstr ""
 
-#: mymensor/models.py:105
+#: mymensor/models.py:145
 msgid "question that shall be answered when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:106
+#: mymensor/models.py:146
 msgid "unit to be used when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:108
+#: mymensor/models.py:148
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
 
-#: mymensor/models.py:110
+#: mymensor/models.py:150
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:111
+#: mymensor/models.py:151
 msgid "expected value for the tag"
 msgstr ""
 
-#: mymensor/models.py:113
+#: mymensor/models.py:153
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:115
+#: mymensor/models.py:155
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 
-#: mymensor/models.py:231 mymensor/tables.py:7
+#: mymensor/models.py:271 mymensor/tables.py:7
 msgid "NOT PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:231 mymensor/tables.py:7
+#: mymensor/models.py:271 mymensor/tables.py:7
 msgid "PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:231 mymensor/tables.py:7
+#: mymensor/models.py:271 mymensor/tables.py:7
 msgid "LOW RED"
 msgstr ""
 
-#: mymensor/models.py:231 mymensor/tables.py:7
+#: mymensor/models.py:271 mymensor/tables.py:7
 msgid "LOW YELLOW"
 msgstr ""
 
-#: mymensor/models.py:232 mymensor/tables.py:7
+#: mymensor/models.py:272 mymensor/tables.py:7
 msgid "GREEN"
 msgstr ""
 
-#: mymensor/models.py:233 mymensor/tables.py:8
+#: mymensor/models.py:273 mymensor/tables.py:8
 msgid "HIGH YELLOW"
 msgstr ""
 
-#: mymensor/models.py:233 mymensor/tables.py:8
+#: mymensor/models.py:273 mymensor/tables.py:8
 msgid "HIGH RED"
 msgstr ""
 
-#: mymensor/models.py:236 mymensor/tables.py:10
+#: mymensor/models.py:276 mymensor/tables.py:10
 msgid "Tag#"
 msgstr ""
 
-#: mymensor/models.py:237 mymensor/tables.py:11
+#: mymensor/models.py:277 mymensor/tables.py:11
 msgid "Tag Description"
 msgstr ""
 
-#: mymensor/models.py:238 mymensor/tables.py:12
+#: mymensor/models.py:278 mymensor/tables.py:12
 msgid "VP#"
 msgstr ""
 
-#: mymensor/models.py:239 mymensor/tables.py:13
+#: mymensor/models.py:279 mymensor/tables.py:13
 msgid "VP Description"
 msgstr ""
 
-#: mymensor/models.py:240 mymensor/tables.py:14
+#: mymensor/models.py:280 mymensor/tables.py:14
 msgid "Value"
 msgstr ""
 
-#: mymensor/models.py:241 mymensor/tables.py:15
+#: mymensor/models.py:281 mymensor/tables.py:15
 msgid "Unit"
 msgstr ""
 
-#: mymensor/models.py:242 mymensor/tables.py:16
+#: mymensor/models.py:282 mymensor/tables.py:16
 msgid "Media Time"
 msgstr ""
 
-#: mymensor/models.py:244 mymensor/tables.py:17
+#: mymensor/models.py:284 mymensor/tables.py:17
 msgid "Processing Time"
 msgstr ""
 
-#: mymensor/models.py:245 mymensor/tables.py:18 mymensor/templates/base.html:77
+#: mymensor/models.py:285 mymensor/tables.py:18 mymensor/templates/base.html:77
 msgid "Status"
 msgstr ""
 
@@ -242,49 +242,76 @@ msgstr ""
 msgid "Twitter Account"
 msgstr ""
 
-#: mymensor/templates/base.html:124 mymensor/templates/support.html:3
+#: mymensor/templates/base.html:124 mymensor/templates/subscription.html:4
+msgid "Subscription"
+msgstr ""
+
+#: mymensor/templates/base.html:126 mymensor/templates/support.html:3
 msgid "Support"
 msgstr ""
 
-#: mymensor/templates/base.html:141
+#: mymensor/templates/base.html:143
 msgid "About"
 msgstr ""
 
-#: mymensor/templates/base.html:143
+#: mymensor/templates/base.html:145
 msgid "The journey was long, but we are just starting! Contact us anytime at "
 msgstr ""
 
-#: mymensor/templates/base.html:150
+#: mymensor/templates/base.html:152
 msgid "Product"
 msgstr ""
 
-#: mymensor/templates/base.html:152
+#: mymensor/templates/base.html:154
 msgid "Docs"
 msgstr ""
 
-#: mymensor/templates/base.html:154
+#: mymensor/templates/base.html:156
 msgid "Videos"
 msgstr ""
 
-#: mymensor/templates/base.html:157
+#: mymensor/templates/base.html:159
 msgid "FAQ"
 msgstr ""
 
-#: mymensor/templates/base.html:164
+#: mymensor/templates/base.html:166
 #: mymensor/templates/registration/registration_form.html:35
 msgid "Terms of Service"
 msgstr ""
 
-#: mymensor/templates/base.html:167
+#: mymensor/templates/base.html:169
 msgid "Privacy"
 msgstr ""
 
-#: mymensor/templates/base.html:174 mymensor/templates/landing.html:251
+#: mymensor/templates/base.html:176 mymensor/templates/landing.html:251
 msgid "Language"
 msgstr ""
 
-#: mymensor/templates/base.html:188 mymensor/templates/landing.html:265
+#: mymensor/templates/base.html:190 mymensor/templates/landing.html:265
 msgid "Set"
+msgstr ""
+
+#: mymensor/templates/createsubscription.html:4
+#: mymensor/templates/createsubscription.html:11
+msgid "Create Subscription"
+msgstr ""
+
+#: mymensor/templates/createsubscription.html:17
+msgid ""
+"Please choose below which plan you want to use, after that you will be taken "
+"to the payment page:"
+msgstr ""
+
+#: mymensor/templates/createsubscription.html:23
+msgid "Pay "
+msgstr ""
+
+#: mymensor/templates/createsubscription.html:23
+msgid " per "
+msgstr ""
+
+#: mymensor/templates/createsubscription.html:27
+msgid "Go!"
 msgstr ""
 
 #: mymensor/templates/fbmain.html:17
@@ -542,7 +569,7 @@ msgid "Restore Backup"
 msgstr ""
 
 #: mymensor/templates/mobilebackup.html:57
-#: mymensor/templates/mobilebackup.html:81
+#: mymensor/templates/mobilebackup.html:82
 msgid "Waiting..."
 msgstr ""
 
@@ -550,7 +577,12 @@ msgstr ""
 msgid "Backup done!"
 msgstr ""
 
-#: mymensor/templates/mobilebackup.html:90
+#: mymensor/templates/mobilebackup.html:74
+#: mymensor/templates/mobilebackup.html:99
+msgid "Error"
+msgstr ""
+
+#: mymensor/templates/mobilebackup.html:91
 msgid "Backup restore done!"
 msgstr ""
 
@@ -830,6 +862,78 @@ msgstr ""
 msgid "Log In."
 msgstr ""
 
+#: mymensor/templates/startsubscription.html:4
+#: mymensor/templates/startsubscription.html:11
+msgid "Start Subscription"
+msgstr ""
+
+#: mymensor/templates/startsubscription.html:18
+msgid "Your subscription was succesful!"
+msgstr ""
+
+#: mymensor/templates/startsubscription.html:23
+msgid ""
+"There was a problem while registering your subscription, please contact "
+"support."
+msgstr ""
+
+#: mymensor/templates/subscription.html:12
+msgid "Your User Registration"
+msgstr ""
+
+#: mymensor/templates/subscription.html:14
+msgid "First Login:"
+msgstr ""
+
+#: mymensor/templates/subscription.html:15
+msgid "Last Login:"
+msgstr ""
+
+#: mymensor/templates/subscription.html:26
+msgid "Current Payment Method"
+msgstr ""
+
+#: mymensor/templates/subscription.html:28
+msgid "Update or Add Payment Method"
+msgstr ""
+
+#: mymensor/templates/subscription.html:37
+msgid "Your Billing History"
+msgstr ""
+
+#: mymensor/templates/subscription.html:47
+msgid "Cancel Subscription"
+msgstr ""
+
+#: mymensor/templates/subscription.html:58
+msgid "Current Subscription Status"
+msgstr ""
+
+#: mymensor/templates/subscription.html:60
+msgid "Status: "
+msgstr ""
+
+#: mymensor/templates/subscription.html:62
+msgid "If you wish, please contact support about your current status."
+msgstr ""
+
+#: mymensor/templates/subscription.html:73
+msgid "Thanks for registering with Mymensor and using our Web App!"
+msgstr ""
+
+#: mymensor/templates/subscription.html:76
+msgid "You are currently on a trial period that will extend for another "
+msgstr ""
+
+#: mymensor/templates/subscription.html:77
+msgid ""
+"If you would like to subscribe to our service, please press the button below."
+msgstr ""
+
+#: mymensor/templates/subscription.html:80
+msgid "Subscribe Now!"
+msgstr ""
+
 #: mymensor/templates/support.html:8
 msgid "Support page"
 msgstr ""
@@ -840,57 +944,57 @@ msgid ""
 "to help clarify your doubts."
 msgstr ""
 
-#: mymensor/templates/support.html:11
+#: mymensor/templates/support.html:12
 msgid "Frequently Asked Questions"
 msgstr ""
 
-#: mymensor/templates/support.html:12
+#: mymensor/templates/support.html:13
 msgid "Frequently asked questions can be found at "
 msgstr ""
 
-#: mymensor/templates/support.html:12 mymensor/templates/support.html:14
-#: mymensor/templates/support.html:15 mymensor/templates/support.html:16
-#: mymensor/templates/support.html:18
+#: mymensor/templates/support.html:13 mymensor/templates/support.html:16
+#: mymensor/templates/support.html:17 mymensor/templates/support.html:18
+#: mymensor/templates/support.html:21
 msgid "link"
 msgstr ""
 
-#: mymensor/templates/support.html:13
+#: mymensor/templates/support.html:15
 msgid "Marketing and Training Videos"
 msgstr ""
 
-#: mymensor/templates/support.html:14
+#: mymensor/templates/support.html:16
 msgid "Marketing Videos can be found at "
 msgstr ""
 
-#: mymensor/templates/support.html:15
+#: mymensor/templates/support.html:17
 msgid "Training Videos for the MyMensor Mobile App can be found at "
 msgstr ""
 
-#: mymensor/templates/support.html:16
+#: mymensor/templates/support.html:18
 msgid "Training Videos for the MyMensor Web App can be found at "
 msgstr ""
 
-#: mymensor/templates/support.html:17
+#: mymensor/templates/support.html:20
 msgid "Software Docs"
 msgstr ""
 
-#: mymensor/templates/support.html:18
+#: mymensor/templates/support.html:21
 msgid ""
 "Explanation about concepts and definitions used in this software can be "
 "found at "
 msgstr ""
 
-#: mymensor/templates/support.html:19
+#: mymensor/templates/support.html:23
 msgid "Email Support"
 msgstr ""
 
-#: mymensor/templates/support.html:20
+#: mymensor/templates/support.html:24
 msgid ""
 "If you cannot clarify your doubts using the above methods, please send us an "
 "email to "
 msgstr ""
 
-#: mymensor/templates/support.html:21
+#: mymensor/templates/support.html:25
 msgid " and we will responded as soon as practically possible."
 msgstr ""
 
@@ -964,6 +1068,22 @@ msgstr ""
 
 #: mymensor/templates/twtmain.html:19
 msgid "Connect to Twitter"
+msgstr ""
+
+#: mymensor/templates/updatepaymentmethod.html:5
+msgid "Payment Method"
+msgstr ""
+
+#: mymensor/templates/updatepaymentmethod.html:13
+msgid "Authorize Your Payment Method"
+msgstr ""
+
+#: mymensor/templates/updatepaymentmethod.html:27
+msgid "Authorize"
+msgstr ""
+
+#: mymensor/templates/updatepaymentmethod.html:42
+msgid "en_US"
 msgstr ""
 
 #: mymensor/templates/vpdetail.html:31

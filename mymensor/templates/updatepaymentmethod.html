@@ -39,7 +39,7 @@
             braintree.dropin.create({
                 authorization: "{{ token }}",
                 container: '#dropin-container',
-                locale: "{{ LANGUAGE_CODE }}",
+                locale: "{% trans "en_US" %}",
                 paypal: {
                     flow: 'vault'
                 }
