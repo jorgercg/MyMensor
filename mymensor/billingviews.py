@@ -78,6 +78,7 @@ def startsubscription(request):
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice.pk)
+        btmerchant = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant.pk)
         btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan.pk)
         succesful = False
 
@@ -88,6 +89,7 @@ def startsubscription(request):
         #try:
         result = braintree.Subscription.create({
             "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
+            "merchant_account_id":btmerchant.braintreemerchMerchId,
             "plan_id": btplan.braintreeplanPlanId
         })
         if result.is_success:
