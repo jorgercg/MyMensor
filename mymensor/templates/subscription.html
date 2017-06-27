@@ -1,64 +1,97 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters %}
-{% if user.is_authenticated %}
-    {% block title %}{% trans "Subscription" %} - {{ block.super }}{% endblock %}
-    {% block header %}
-    {% endblock %}
-    {% block content %}
-        <div class="container">
-            <div class="row" style="padding-bottom: 20px">
-                <div class="col-sm-5">
-                    <p></p>
-                    <h3>{% trans "Your User Registration" %}</h3>
-                    <p></p>
-                    <p>{% trans "First Login:" %}{{ userloggedin.date_joined }}</p>
-                    <p>{% trans "Last Login:" %}{{ userloggedin.last_login }}</p>
+{% load i18n tz mymfilters %}
+{% localtime on %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% if user.is_authenticated %}
+        {% block title %}{% trans "Subscription" %} - {{ block.super }}{% endblock %}
+        {% block header %}
+        {% endblock %}
+        {% block content %}
+            <div class="container">
+                <div class="row" style="padding-bottom: 20px">
+                    <div class="col-sm-5">
+                        <p></p>
+                        <h3>{% trans "Your User Registration" %}</h3>
+                        <p></p>
+                        <p>{% trans "First Login:" %}{{ userloggedin.date_joined }}</p>
+                        <p>{% trans "Last Login:" %}{{ userloggedin.last_login }}</p>
+                    </div>
+                    <div class="col">
+                        <p></p>
+                    </div>
                 </div>
-                <div class="col">
-                    <p></p>
-                </div>
-            </div>
-            {% if btsubscription is not None %}
-                {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
-                    <div class="row" style="padding-bottom: 20px">
-                        <div class="col-sm-5">
-                            <p></p>
-                            <h3>{% trans "Current Payment Method" %}</h3>
-                            <p></p>
-                            <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
+                {% if btsubscription is not None %}
+                    {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-sm-5">
+                                <p></p>
+                                <h3>{% trans "Current Payment Method" %}</h3>
+                                <p></p>
+                                <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
+                            </div>
+                            <div class="col">
+                                <p></p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p></p>
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-sm-5">
+                                <p></p>
+                                <h3>{% trans "Your Billing History" %}</h3>
+                                <p></p>
+                            </div>
+                            <div class="col">
+                                <p></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="padding-bottom: 20px">
-                        <div class="col-sm-5">
-                            <p></p>
-                            <h3>{% trans "Your Billing History" %}</h3>
-                            <p></p>
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-sm-5">
+                                <p></p>
+                                <h3>{% trans "Cancel Subscription" %}</h3>
+                                <p></p>
+                                <p>{% trans "Press the button below to cancel your subscription. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
+                                <p></p>
+                                <p>
+                                    {% trans "Your subscription is paid through " %}{{ btsubscription.braintreesubscriptionLastDay | localtime | date:"Y-b-d H:i:sO" }}</p>
+                                <p></p>
+                                <a id="cancel-subscription" class="btn btn-danger"
+                                   role="button">{% trans "Cancel Subscription" %}</a>
+                                <p></p>
+                            </div>
+                            <div class="col">
+                                <p></p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p></p>
+                    {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-sm-5">
+                                <p></p>
+                                <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
+                                <p></p>
+                                <p>
+                                    {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
+                                <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
+                                <p></p>
+                                <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                                   role="button">{% trans "Subscribe Now!" %}</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row" style="padding-bottom: 20px">
-                        <div class="col-sm-5">
-                            <p></p>
-                            <h3>{% trans "Cancel Subscription" %}</h3>
-                            <p></p>
-                            <p>{% trans "Press the button below to cancel your subscription. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
-                            <p></p>
-                            <p>
-                                {% trans "Your subscription is paid through " %}{{ btsubscription.braintreesubscriptionLastDay }}</p>
-                            <p></p>
-                            <a id="cancel-subscription" class="btn btn-danger" role="button">{% trans "Cancel Subscription" %}</a>
-                            <p></p>
+                    {% else %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-sm-5">
+                                <p></p>
+                                <h3>{% trans "Current Subscription Status" %}</h3>
+                                <p></p>
+                                <p>
+                                    {% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
+                                <p></p>
+                                <p>{% trans "If you wish, please contact support about your current status." %}</p>
+                            </div>
+                            <div class="col">
+                                <p></p>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p></p>
-                        </div>
-                    </div>
-                {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
+                    {% endif %}
+                {% else %}
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-sm-5">
                             <p></p>
@@ -72,49 +105,22 @@
                                role="button">{% trans "Subscribe Now!" %}</a>
                         </div>
                     </div>
-                {% else %}
-                    <div class="row" style="padding-bottom: 20px">
-                        <div class="col-sm-5">
-                            <p></p>
-                            <h3>{% trans "Current Subscription Status" %}</h3>
-                            <p></p>
-                            <p>{% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
-                            <p></p>
-                            <p>{% trans "If you wish, please contact support about your current status." %}</p>
-                        </div>
-                        <div class="col">
-                            <p></p>
-                        </div>
-                    </div>
                 {% endif %}
-            {% else %}
-                <div class="row" style="padding-bottom: 20px">
-                    <div class="col-sm-5">
-                        <p></p>
-                        <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
-                        <p></p>
-                        <p>
-                            {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
-                        <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
-                        <p></p>
-                        <a class="btn btn-primary" href="{% url 'createsubscription' %}"
-                           role="button">{% trans "Subscribe Now!" %}</a>
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-    {% endblock %}
-    {% block javascript %}
-        <script type="text/javascript">
-            $('#cancel-subscription').click(function () {
-                var choice = confirm("{% trans "Please confirm that you want to cancel your subscription." %}");
-                if (choice) {
-                    window.location = "{% url 'deletesubscription' %}";
-                }
-            });
-        </script>
+            </div>
+        {% endblock %}
+        {% block javascript %}
+            <script type="text/javascript">
+                $('#cancel-subscription').click(function () {
+                    var choice = confirm("{% trans "Please confirm that you want to cancel your subscription." %}");
+                    if (choice) {
+                        window.location = "{% url 'deletesubscription' %}";
+                    }
+                });
+            </script>
 
-    {% endblock %}
-{% else %}
-    <h1>Not Logged In....</h1>
-{% endif %}
+        {% endblock %}
+    {% else %}
+        <h1>Not Logged In....</h1>
+    {% endif %}
+{% endlocaltime %}
+
