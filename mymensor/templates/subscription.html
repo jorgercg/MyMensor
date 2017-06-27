@@ -21,7 +21,20 @@
                 {% if btsubscription is not None %}
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
                         <div class="row" style="padding-bottom: 20px">
-                            <h3>{% trans "Current Payment Method" %}</h3>
+                            <div class="col-lg-5">
+                                <h3>{% trans "Current Payment Method" %}</h3>
+                                <ul class="list-group">
+                                    {% if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card" %}
+                                        <li class="list-group-item">{% trans "Credit Card" %}</li>
+                                        <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCtype }} {{ btsubscription.braintreesubscriptionCClast4 }}</li>
+                                        <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCexpmonth }}
+                                            / {{ btsubscription.braintreesubscriptionCCexpyear }}</li>
+                                    {% else %}
+                                        <li class="list-group-item">{% trans "Credit Card" %}</li>
+                                    {% endif %}
+                                </ul>
+
+                            </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
@@ -42,7 +55,7 @@
                             <p></p>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <a id="cancel-subscription" class="btn btn-danger"
+                            <a id="cancel-subscription" class="btn btn-outline-danger"
                                role="button">{% trans "Cancel Subscription" %}</a>
                         </div>
                     {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
