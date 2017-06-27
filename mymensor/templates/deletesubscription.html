@@ -15,14 +15,14 @@
                         <p></p>
                     </div>
                     <div class="row" style="padding-bottom: 20px">
-                        <div class="col-sm-5">
+                        <div class="col-lg-6">
                             <p></p>
                             <p>{% trans "Your subscription was succesfully cancelled. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
                             <p></p>
                             <p>
-                                {% trans "The subscription of " %}{{ request.user.username }}{% trans " is paid through " %}{{ currentsubscription.braintreesubscriptionLastDay }}</p>
+                                {% trans "The subscription of " %}{{ request.user.username }}{% trans " is paid through " %}{{ currentsubscription.braintreesubscriptionLastDay | localtime | date:"Y-b-d H:i:sO" }}</p>
                             <p></p>
-                            <p>{% trans "We hope that you had a good time using MyMensor!" %}</p>
+                            <p>{% trans "We are sorry to see you go. We hope that you had a good time using MyMensor!" %}</p>
                             <p></p>
                             <p>{% trans "Please let us now about your comments or suggestions (Please use our contact email)" %}</p>
                             <p></p>
