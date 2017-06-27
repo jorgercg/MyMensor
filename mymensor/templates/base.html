@@ -14,7 +14,6 @@
             {% endblock %}
         </title>
         <meta name="MyMensor WebApp" content="">
-        <meta name="SeaMate" content="">
 
         <!-- Mobile Specific Metas
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -107,10 +106,10 @@
             {% endif %}
 
             {% if user.is_authenticated %}
-                <span class="navbar-text ml-auto">
-                    Navbar text with an inline element
-                </span>
                 <ul class="navbar-nav ml-auto">
+                    <span class="navbar-text">
+                    Navbar text with an inline element
+                    </span>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
