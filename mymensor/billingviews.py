@@ -32,7 +32,7 @@ def updatepaymentmethod(request):
             })
         except ValueError as e:
             return render(request, 'updatepaymentmethod.html', {"result_ok": False})
-        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True, "btprice":btprice, "btmerchant":btmerchant})
+        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True})
     return HttpResponse(status=404)
 
 
@@ -81,11 +81,6 @@ def startsubscription(request):
         btmerchant = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant.pk)
         btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan.pk)
         succesful = False
-
-        gateway = braintree.Configuration.gateway()
-        resultmercacc = gateway.merchant_account.all()
-
-
         #try:
         result = braintree.Subscription.create({
             "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
@@ -97,6 +92,7 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionId=result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus=result.subscription.status
             btsubscription.braintreesubscriptionPaymentInstrumentType=result.subscription.transactions[0].payment_instrument_type
+            btsubscription.braintreesubscriptionLastDay=result.subscription.paid_through_date
             if btsubscription.braintreesubscriptionPaymentInstrumentType=="credit_card":
                 btsubscription.braintreesubscriptionCClast4=result.subscription.transactions[0].credit_card_details.last_4
                 btsubscription.braintreesubscriptionCCtype=result.subscription.transactions[0].credit_card_details.card_type
@@ -110,10 +106,6 @@ def startsubscription(request):
             btsubscription.save()
             return render(request, 'startsubscription.html',
                           {"result": result,
-                          "btsubscription": btsubscription,
-                           "btprice":btprice,
-                           "btplan":btplan,
-                           "resultmercacc":resultmercacc.merchant_accounts,
                           "succesful": succesful})
         #except:
             #btsubscription.delete()
@@ -121,11 +113,7 @@ def startsubscription(request):
                           #{"succesful": succesful})
         return render(request, 'startsubscription.html',
                       { "succesful":succesful,
-                        "result": result,
-                        "btprice": btprice,
-                        "btplan": btplan,
-                        "btsubscription": btsubscription,
-                        "resultmercacc": resultmercacc.merchant_accounts
+                        "result": result
                        })
     return HttpResponse(status=404)
 
@@ -186,3 +174,22 @@ def setplanmerchid(request):
             content_type="application/json",
             status=400
         )
+
+
+@login_required
+def deletesubscription(request):
+    if request.method == "GET":
+        currentbtcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        try:
+            currentbtsubscription = BraintreeSubscription.objects.get(braintreecustomer=currentbtcustomer)
+        except currentbtsubscription.DoesNotExist:
+            currentbtsubscription = None
+            return render(request, 'deletesubscription.html',
+                          {"currentbtcustomer": currentbtcustomer,
+                           "currentsubscription": currentbtsubscription
+                           })
+        return render(request, 'deletesubscription.html',
+                      { "currentbtcustomer": currentbtcustomer,
+                        "currentsubscription": currentbtsubscription
+                       })
+    return HttpResponse(status=404)

@@ -1407,7 +1407,8 @@ def subscription(request):
             btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         except:
             btsubscription = None
-        dateofendoftrialbeforesubscription = request.user.date_joined + timedelta(days=30)
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
                                                      'btsubscription':btsubscription,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription})

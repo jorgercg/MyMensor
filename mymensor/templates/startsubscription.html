@@ -17,34 +17,11 @@
                         <p></p>
                         <p>{% trans "Your subscription was succesful!" %}</p>
                         <p></p>
-                        <p>{{ result }}</p>
-                        <p>{{ btprice.id }}</p>
-                        <p>{{ btprice.braintrepricePrice }}</p>
-                        <p>{{ btprice.braintreeplan.id }}</p>
-                        <p>{{ btprice.braintreemerchant.id }}</p>
-                        <p>{{ btplan.braintreeplanPlanId }}</p>
-                        {% for mercacc in resultmercacc %}
-                            <p>{{ mercacc.id }}</p>
-                            <p>{{ mercacc.status }}</p>
-                            <p>{{ mercacc.default }}</p>
-                            <p>{{ mercacc.currency_iso_code }}</p>
-                        {% endfor %}
                     {% else %}
                         <p></p>
                         <p>{% trans "There was a problem while registering your subscription, please contact support." %}</p>
                         <p></p>
                         <p>{{ result }}</p>
-                        <p>{{ btprice.id }}</p>
-                        <p>{{ btprice.braintrepricePrice }}</p>
-                        <p>{{ btprice.braintreeplan.id }}</p>
-                        <p>{{ btprice.braintreemerchant.id }}</p>
-                        <p>{{ btplan.braintreeplanPlanId }}</p>
-                         {% for mercacc in resultmercacc %}
-                            <p>{{ mercacc.id }}</p>
-                            <p>{{ mercacc.status }}</p>
-                            <p>{{ mercacc.default }}</p>
-                            <p>{{ mercacc.currency_iso_code }}</p>
-                        {% endfor %}
                     {% endif %}
                 </div>
             </div>

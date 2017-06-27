@@ -44,6 +44,7 @@ class BraintreeSubscription(models.Model):
     braintreesubscriptionCCtype = models.CharField(max_length=10, null=True)
     braintreesubscriptionCCexpyear = models.CharField(max_length=10, null=True)
     braintreesubscriptionCCexpmonth = models.CharField(max_length=10, null=True)
+    braintreesubscriptionLastDay = models.DateTimeField(auto_now=False, null=True)
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
     braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
@@ -59,6 +60,7 @@ class Asset(models.Model):
     assetOwnerKey = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, blank=True, verbose_name="Asset Registry code")
+    assetDateOfEndEfTrialBeforeSubscription = models.DateTimeField(auto_now=False, null=True, verbose_name="End of Trial Befor Subscription")
     assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis",
                                              verbose_name=_('Capture frequency unit'))
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Minimum capture frequency value'))

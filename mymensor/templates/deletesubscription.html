@@ -1,30 +1,23 @@
 {% extends 'base.html' %}
 {% load i18n mymfilters %}
 {% if user.is_authenticated %}
-    {% block title %}{% trans "Create Subscription" %} - {{ block.super }}{% endblock %}
+    {% block title %}{% trans "Delete Subscription" %} - {{ block.super }}{% endblock %}
     {% block header %}
     {% endblock %}
     {% block content %}
         <div class="container">
             <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
                 <p></p>
-                <h3>{% trans "Create Subscription" %}</h3>
+                <h3>{% trans "Delete Subscription" %}</h3>
                 <p></p>
             </div>
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-5">
                     <p></p>
-                    <p>{% trans "Please choose below which plan you want to use, after that you will be taken to the payment page:" %}</p>
+                    <p>{% trans "Press the button below to delete your subscription. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
                     <p></p>
-                    <select id="set-price-select" name="priceselected">
-                        {% for price in availablebtprices %}
-                            <option id="op{{ price.id }}" value='{{ price.id }}'
-                                    {% if price == currentbtprice %}selected{% endif %}>
-                                {% trans "Pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
-                        {% endfor %}
-                    </select>
                     <p></p>
-                    <a id="confirm-plan"  class="btn btn-primary" role="button">{% trans "Go!" %}</a>
+                    <a id="cancel-subscription"  class="btn btn-danger" role="button">{% trans "Delete Subscription" %}</a>
                     <p></p>
                 </div>
             </div>
@@ -34,7 +27,7 @@
         <script type="text/javascript">
 
             // Submit post on submit
-            $('#confirm-plan').click(function (event) {
+            $('#cancel-subscription').click(function (event) {
                 event.preventDefault();
                 var priceid = $('#set-price-select').find(":selected").val();
                 console.log("PriceID Set to " + priceid);  // sanity check

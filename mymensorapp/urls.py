@@ -65,6 +65,7 @@ urlpatterns += i18n_patterns(
     url(r'^billingupdatepaymentmethod/billingnonce/', billingviews.getbraintreepaymentnonce, name='getbraintreepaymentnonce'),
     url(r'^billingcreatesubscription/$', billingviews.createsubscription, name='createsubscription'),
     url(r'^billingcreatesubscription/setplanmerchid/', billingviews.setplanmerchid, name='setplanmerchid'),
+    url(r'^billingdeletesubscription/$', billingviews.deletesubscription, name='deletesubscription'),
 
     # account urls
     url(r'^accounts/', include('registration.backends.default.urls')),
