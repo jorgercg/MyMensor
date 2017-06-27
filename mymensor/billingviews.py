@@ -198,13 +198,13 @@ def deletesubscription(request):
             return render(request, 'deletesubscription.html',
                           {"succesful": succesful
                            })
-        try:
-            result = braintree.Subscription.cancel(currentbtsubscription.braintreesubscriptionSubscriptionId)
-            currentbtsubscription.braintreesubscriptionCancelResultObject = result
-        except:
-            return render(request, 'deletesubscription.html',
-                          {"succesful": succesful
-                           })
+        #try:
+        result = braintree.Subscription.cancel(currentbtsubscription.braintreesubscriptionSubscriptionId)
+        currentbtsubscription.braintreesubscriptionCancelResultObject = result
+        #except:
+        #    return render(request, 'deletesubscription.html',
+        #                  {"succesful": succesful
+        #                  })
         if result.subscription.status=="Canceled":
             succesful = True
             currentbtsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
