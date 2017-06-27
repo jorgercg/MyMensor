@@ -205,7 +205,7 @@ def deletesubscription(request):
             return render(request, 'deletesubscription.html',
                           {"succesful": succesful
                            })
-        if result.is_success:
+        if result.subscription.status=="Canceled":
             succesful = True
             currentbtsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
             currentbtsubscription.save()
