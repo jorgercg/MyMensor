@@ -8,19 +8,20 @@
         {% endblock %}
         {% block content %}
             <div class="container">
-                <div class="row" style="padding-bottom: 20px">
-                    <p></p>
+                <div class="row" style="padding-top:20px; padding-bottom: 20px">
                     <h3>{% trans "Your Activity at MyMensor" %}</h3>
-                    <p></p>
+                </div>
+                <div class="row" style="padding-bottom: 20px">
                     <p>{% trans "First Login: " %}{{ userloggedin.date_joined }}</p>
+                    <br>
                     <p>{% trans "Last Login: " %}{{ userloggedin.last_login }}</p>
                 </div>
                 {% if btsubscription is not None %}
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
                         <div class="row" style="padding-bottom: 20px">
-                            <p></p>
                             <h3>{% trans "Current Payment Method" %}</h3>
-                            <p></p>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
                             <a href="{% url 'updatepaymentmethod' %}">{% trans "Update or Add Payment Method" %}</a>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
@@ -37,6 +38,8 @@
                             <p>
                                 {% trans "Your subscription is paid through " %}{{ btsubscription.braintreesubscriptionLastDay | localtime | date:"Y-b-d H:i:sO" }}</p>
                             <p></p>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
                             <a id="cancel-subscription" class="btn btn-danger"
                                role="button">{% trans "Cancel Subscription" %}</a>
                             <p></p>
@@ -58,8 +61,7 @@
                             <p></p>
                             <h3>{% trans "Current Subscription Status" %}</h3>
                             <p></p>
-                            <p>
-                                {% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
+                            <p>{% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
                             <p></p>
                             <p>{% trans "If you wish, please contact support about your current status." %}</p>
                         </div>
