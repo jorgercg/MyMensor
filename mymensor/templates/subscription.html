@@ -12,9 +12,10 @@
                     <h3>{% trans "Your Activity at MyMensor" %}</h3>
                 </div>
                 <div class="row" style="padding-bottom: 20px">
-                    <p>{% trans "First Login: " %}{{ userloggedin.date_joined }}</p>
-                    <br>
-                    <p>{% trans "Last Login: " %}{{ userloggedin.last_login }}</p>
+                    <div class="col-lg-5">
+                    <p>{% trans "First Login: " %}{{ userloggedin.date_joined | localtime | date:"Y-b-d H:i:sO"}}</p>
+                    <p>{% trans "Last Login: " %}{{ userloggedin.last_login | localtime | date:"Y-b-d H:i:sO"}}</p>
+                    </div>
                 </div>
                 {% if btsubscription is not None %}
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
@@ -55,6 +56,21 @@
                             <p></p>
                             <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                                role="button">{% trans "Subscribe Now!" %}</a>
+                        </div>
+                    {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Cancelled" %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <p></p>
+                            <h3>{% trans "Thanks for using Mymensor!" %}</h3>
+                            <p></p>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
+                            <p>
+                                {% trans "Your present subscription is cancelled." %}</p>
+                            <p></p>
+                            <p>{% trans "If you would like to subscribe again to our service, please press the button below." %}</p>
+                            <p></p>
+                            <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                               role="button">{% trans "Subscribe Again Now!" %}</a>
                         </div>
                     {% else %}
                         <div class="row" style="padding-bottom: 20px">
