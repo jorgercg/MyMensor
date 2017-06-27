@@ -1,6 +1,6 @@
 ## subscrip_state.py
 from django.template import Library
-from datetime import datetime
+from django.utils import timezone
 from mymensor.models import Asset, BraintreeCustomer, BraintreeSubscription
 register = Library()
 
@@ -14,7 +14,7 @@ def subscrip_state(request):
         btsubscription = None
     currentAsset = Asset.objects.get(assetOwner=request.user)
     dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
-    if dateofendoftrialbeforesubscription < datetime.now():
+    if dateofendoftrialbeforesubscription < timezone.now():
         return "Trial"
     else:
         return "TrialExpired"
