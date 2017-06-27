@@ -200,6 +200,7 @@ def deletesubscription(request):
                            })
         try:
             result = braintree.Subscription.cancel(currentbtsubscription.braintreesubscriptionSubscriptionId)
+            currentbtsubscription.braintreesubscriptionCancelResultObject = result
         except:
             return render(request, 'deletesubscription.html',
                           {"succesful": succesful
@@ -213,6 +214,8 @@ def deletesubscription(request):
                            "currentbtcustomer": currentbtcustomer,
                            "currentsubscription": currentbtsubscription
                            })
+        else:
+            currentbtsubscription.save()
         return render(request, 'deletesubscription.html',
                       {"succesful": succesful
                        })
