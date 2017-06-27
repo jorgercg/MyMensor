@@ -13,8 +13,9 @@
                 </div>
                 <div class="row" style="padding-bottom: 20px">
                     <div class="col-lg-5">
-                    <p>{% trans "First Login: " %}{{ userloggedin.date_joined | localtime | date:"Y-b-d H:i:sO"}}</p>
-                    <p>{% trans "Last Login: " %}{{ userloggedin.last_login | localtime | date:"Y-b-d H:i:sO"}}</p>
+                        <p>
+                            {% trans "First Login: " %}{{ userloggedin.date_joined | localtime | date:"Y-b-d H:i:sO" }}</p>
+                        <p>{% trans "Last Login: " %}{{ userloggedin.last_login | localtime | date:"Y-b-d H:i:sO" }}</p>
                     </div>
                 </div>
                 {% if btsubscription is not None %}
@@ -57,7 +58,7 @@
                             <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                                role="button">{% trans "Subscribe Now!" %}</a>
                         </div>
-                    {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Cancelled" %}
+                    {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Canceled" %}
                         <div class="row" style="padding-bottom: 20px">
                             <p></p>
                             <h3>{% trans "Thanks for using Mymensor!" %}</h3>
@@ -76,9 +77,13 @@
                         <div class="row" style="padding-bottom: 20px">
                             <p></p>
                             <h3>{% trans "Current Subscription Status" %}</h3>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
                             <p></p>
                             <p>{% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
                             <p></p>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
                             <p>{% trans "If you wish, please contact support about your current status." %}</p>
                         </div>
                     {% endif %}
