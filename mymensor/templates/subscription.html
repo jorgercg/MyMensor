@@ -46,12 +46,19 @@
                             <p></p>
                             <h3>{% trans "Cancel Subscription" %}</h3>
                             <p></p>
+                            <p>{% trans "Press the button below to cancel your subscription. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
+                            <p></p>
+                            <p>
+                                {% trans "Your subscription is paid through " %}{{ btsubscription.braintreesubscriptionLastDay }}</p>
+                            <p></p>
+                            <a id="cancel-subscription" class="btn btn-danger" role="button">{% trans "Cancel Subscription" %}</a>
+                            <p></p>
                         </div>
                         <div class="col">
                             <p></p>
                         </div>
                     </div>
-                {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty"%}
+                {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-sm-5">
                             <p></p>
@@ -96,6 +103,17 @@
                 </div>
             {% endif %}
         </div>
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript">
+            $('#cancel-subscription').click(function () {
+                var choice = confirm("{% trans "Please confirm that you want to cancel your subscription." %}");
+                if (choice) {
+                    window.location = "{% url 'deletesubscription' %}";
+                }
+            });
+        </script>
+
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>

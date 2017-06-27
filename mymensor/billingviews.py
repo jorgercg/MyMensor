@@ -179,17 +179,39 @@ def setplanmerchid(request):
 @login_required
 def deletesubscription(request):
     if request.method == "GET":
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
         currentbtcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        succesful = False
         try:
             currentbtsubscription = BraintreeSubscription.objects.get(braintreecustomer=currentbtcustomer)
         except currentbtsubscription.DoesNotExist:
             currentbtsubscription = None
             return render(request, 'deletesubscription.html',
-                          {"currentbtcustomer": currentbtcustomer,
+                          {"succesful": succesful
+                           })
+        try:
+            result = braintree.Subscription.cancel(currentbtsubscription.braintreesubscriptionSubscriptionId)
+        except:
+            return render(request, 'deletesubscription.html',
+                          {"succesful": succesful
+                           })
+        if result.is_success:
+            succesful = True
+            return render(request, 'deletesubscription.html',
+                          {"succesful": succesful,
+                           "currentbtcustomer": currentbtcustomer,
                            "currentsubscription": currentbtsubscription
                            })
         return render(request, 'deletesubscription.html',
-                      { "currentbtcustomer": currentbtcustomer,
-                        "currentsubscription": currentbtsubscription
+                      {"succesful": succesful
                        })
     return HttpResponse(status=404)
