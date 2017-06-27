@@ -206,6 +206,8 @@ def deletesubscription(request):
                            })
         if result.is_success:
             succesful = True
+            currentbtsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
+            currentbtsubscription.save()
             return render(request, 'deletesubscription.html',
                           {"succesful": succesful,
                            "currentbtcustomer": currentbtcustomer,
