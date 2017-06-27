@@ -6,8 +6,8 @@ register = Library()
 
 @register.simple_tag
 def subscrip_state(request):
-    btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
     try:
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         return btsubscription.braintreesubscriptionSubscriptionStatus
     except:
