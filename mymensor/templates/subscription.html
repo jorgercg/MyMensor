@@ -44,7 +44,6 @@
                         <div class="row" style="padding-bottom: 20px">
                             <a id="cancel-subscription" class="btn btn-danger"
                                role="button">{% trans "Cancel Subscription" %}</a>
-                            <p></p>
                         </div>
                     {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
                         <div class="row" style="padding-bottom: 20px">
@@ -60,16 +59,11 @@
                         </div>
                     {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Canceled" %}
                         <div class="row" style="padding-bottom: 20px">
-                            <p></p>
                             <h3>{% trans "Thanks for using Mymensor!" %}</h3>
-                            <p></p>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <p>
-                                {% trans "Your present subscription is canceled." %}</p>
-                            <p></p>
+                            <p>{% trans "Your present subscription is canceled. " %}</p>
                             <p>{% trans "If you would like to subscribe again to our service, please press the button below." %}</p>
-                            <p></p>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <a class="btn btn-primary" href="{% url 'createsubscription' %}"
@@ -77,13 +71,10 @@
                         </div>
                     {% else %}
                         <div class="row" style="padding-bottom: 20px">
-                            <p></p>
                             <h3>{% trans "Current Subscription Status" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <p></p>
                             <p>{% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
-                            <p></p>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <p>{% trans "If you wish, please contact support about your current status." %}</p>
@@ -91,13 +82,16 @@
                     {% endif %}
                 {% else %}
                     <div class="row" style="padding-bottom: 20px">
-                        <p></p>
                         <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
-                        <p></p>
+                    </div>
+                    <div class="row" style="padding-bottom: 20px">
                         <p>
                             {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
+                    </div>
+                    <div class="row" style="padding-bottom: 20px">
                         <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
-                        <p></p>
+                    </div>
+                    <div class="row" style="padding-bottom: 20px">
                         <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                            role="button">{% trans "Subscribe Now!" %}</a>
                     </div>
