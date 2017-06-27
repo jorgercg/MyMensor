@@ -111,7 +111,7 @@
                     {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text" style="border: rgba(157,202,49,0.8)">
-                        {% trans "TRIAL UNTIL " %}{% finaldateoftrial | localtime | date:"Y-b-d H:i:sO" %}
+                        {% trans "TRIAL UNTIL " %}{{ finaldateoftrial | localtime | date:"Y-b-d H:i:sO" }}
                         </span>
                     {% endif %}
                     <li class="nav-item dropdown">
