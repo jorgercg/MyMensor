@@ -1,4 +1,4 @@
-{% load staticfiles is_active i18n tz counter assign %}
+{% load staticfiles is_active i18n tz counter assign subscrip_state trial_end_date %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     <!DOCTYPE html>
@@ -107,9 +107,13 @@
 
             {% if user.is_authenticated %}
                 <ul class="navbar-nav ml-auto">
-                    <span class="navbar-text" style="border: rgba(157,202,49,0.8)">
-                    Navbar text with an inline element
-                    </span>
+                    {% subscrip_state request as stateofsubscription %}
+                    {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" %}
+                        {% trial_end_date request as finaldateoftrial %}
+                        <span class="navbar-text" style="border: rgba(157,202,49,0.8)">
+                        {% trans "TRIAL UNTIL " %}{% finaldateoftrial | localtime | date:"Y-b-d H:i:sO" %}
+                        </span>
+                    {% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
