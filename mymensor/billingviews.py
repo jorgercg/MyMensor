@@ -32,7 +32,37 @@ def updatepaymentmethod(request):
             })
         except ValueError as e:
             return render(request, 'updatepaymentmethod.html', {"result_ok": False})
-        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True})
+        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True, "btsubscription":btsubscription})
+    return HttpResponse(status=404)
+
+
+@login_required
+def deletepaymentmethod(request):
+    if request.method == "POST":
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice.pk)
+        btmerchant = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant.pk)
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
+
+
+        try:
+            client_token = braintree.ClientToken.generate({
+                "customer_id": btcustomer.braintreecustomerCustomerId,
+                "merchant_account_id": btmerchant.braintreemerchMerchId
+            })
+        except ValueError as e:
+            return render(request, 'updatepaymentmethod.html', {"result_ok": False})
+        return render(request, 'updatepaymentmethod.html', {"token": client_token, "result_ok": True, "btsubscription":btsubscription})
     return HttpResponse(status=404)
 
 

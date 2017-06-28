@@ -34,7 +34,8 @@
                     <p class="text-justify">{% trans "By creating and Account you agree with our " %}<a
                             href="https://mymensor.com/terms">{% trans "Terms of Service" %}</a>{% trans " and " %}<a
                             href="https://mymensor.com/privacy">{% trans "Privacy Policy." %}</a></p>
-                    <input class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}"/>
+                    <input type="checkbox" onchange="document.getElementById('regbutton').disabled=!this.checked;" value="{% trans " I have read and agree with the Terms of Service and Privacy Policy." %}"/>
+                    <input id="regbutton" class="btn btn-success btn-block" type="submit" value="{% trans 'Agree and Create Account' %}"/>
                     <input type="hidden" name="next" value="{{ next }}"/>
                 </form>
             </div>
