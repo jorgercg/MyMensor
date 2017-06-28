@@ -98,15 +98,10 @@
                         <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
                     </div>
                     <div class="row" style="padding-bottom: 20px">
-                        <p>
-                            {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
-                    </div>
-                    <div class="row" style="padding-bottom: 20px">
+                    <div class="col-lg-5">
+                        <p>{% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                         <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
-                    </div>
-                    <div class="row" style="padding-bottom: 20px">
-                        <a class="btn btn-primary" href="{% url 'createsubscription' %}"
-                           role="button">{% trans "Subscribe Now!" %}</a>
+                        <a class="btn btn-primary" href="{% url 'createsubscription' %}" role="button">{% trans "Subscribe Now!" %}</a>
                     </div>
                 {% endif %}
             </div>
