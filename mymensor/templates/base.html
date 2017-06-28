@@ -104,11 +104,10 @@
                     </li>
                 </ul>
             {% endif %}
-
             {% if user.is_authenticated %}
                 <ul class="navbar-nav ml-auto">
                     {% subscrip_state request as stateofsubscription %}
-                    {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" %}
+                    {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" or stateofsubscription == "Empty" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text">
                         {% trans "Trial until " %}{{ finaldateoftrial | localtime | date:"Y-b-d H:i:sO" }}
@@ -138,7 +137,6 @@
                     </li>
                 </ul>
             {% endif %}
-
         </div>
     </nav>
     <div class="container-fluid">
