@@ -53,6 +53,7 @@
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript">
+        $('#regbutton').attr('disabled', true);
         $('#toggle').click(function () {
             //check if checkbox is checked
             if ($(this).is(':checked')) {
