@@ -35,8 +35,7 @@
                             href="https://mymensor.com/terms">{% trans "Terms of Service" %}</a>{% trans " and " %}<a
                             href="https://mymensor.com/privacy">{% trans "Privacy Policy." %}</a></p>
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"
-                               onchange="document.getElementById('regbutton').disabled=!this.checked;" value=""/>
+                        <input id="toggle" class="form-check-input" type="checkbox" value=""/>
                         {% trans " I have read and agreed with the Terms of Service and Privacy Policy." %}
                     </label>
                     <p></p>
@@ -51,4 +50,16 @@
         <div class="col-lg">
         </div>
     </div>
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        $('#toggle').click(function () {
+            //check if checkbox is checked
+            if ($(this).is(':checked')) {
+                $('#regbutton').removeAttr('disabled'); //enable input
+            } else {
+                $('#regbutton').attr('disabled', true); //disable input
+            }
+        });
+    </script>
 {% endblock %}
