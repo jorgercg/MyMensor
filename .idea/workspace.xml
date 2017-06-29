@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/migrations/0073_braintreesubscription_braintreesubscriptionpaymthdresultobject.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/migrations/0074_auto_20170629_1606.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/billingviews.py" afterPath="$PROJECT_DIR$/mymensor/billingviews.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
@@ -73,8 +73,8 @@
       <file leaf-file-name="billingviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="467">
-              <caret line="294" column="91" lean-forward="false" selection-start-line="294" selection-start-column="91" selection-end-line="294" selection-end-column="91" />
+            <state relative-caret-position="587">
+              <caret line="302" column="86" lean-forward="false" selection-start-line="302" selection-start-column="86" selection-end-line="302" selection-end-column="86" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -105,8 +105,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="44" />
+            <state relative-caret-position="423">
+              <caret line="44" column="64" lean-forward="false" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -729,13 +729,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02577" summary="27jun2017 12h10min">
-      <created>1498561818654</created>
-      <option name="number" value="02577" />
-      <option name="presentableId" value="LOCAL-02577" />
-      <option name="project" value="LOCAL" />
-      <updated>1498561818654</updated>
-    </task>
     <task id="LOCAL-02578" summary="27jun2017 12h17min">
       <created>1498562249177</created>
       <option name="number" value="02578" />
@@ -1072,7 +1065,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498748330597</updated>
     </task>
-    <option name="localTasksCounter" value="2626" />
+    <task id="LOCAL-02626" summary="29jun2017 16h37min">
+      <created>1498750649425</created>
+      <option name="number" value="02626" />
+      <option name="presentableId" value="LOCAL-02626" />
+      <option name="project" value="LOCAL" />
+      <updated>1498750649425</updated>
+    </task>
+    <option name="localTasksCounter" value="2627" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1153,7 +1153,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="27jun2017 19h55min" />
     <MESSAGE value="27jun2017 20h28min" />
     <MESSAGE value="28jun2017 10h11min" />
     <MESSAGE value="28jun2017 10h18min" />
@@ -1178,7 +1177,8 @@
     <MESSAGE value="29jun2017 15h42min" />
     <MESSAGE value="29jun2017 15h51min" />
     <MESSAGE value="29jun2017 15h58min" />
-    <option name="LAST_COMMIT_MESSAGE" value="29jun2017 15h58min" />
+    <MESSAGE value="29jun2017 16h37min" />
+    <option name="LAST_COMMIT_MESSAGE" value="29jun2017 16h37min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1565,16 +1565,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="41" column="44" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="44" />
+        <state relative-caret-position="423">
+          <caret line="44" column="64" lean-forward="false" selection-start-line="44" selection-start-column="64" selection-end-line="44" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="294" column="91" lean-forward="false" selection-start-line="294" selection-start-column="91" selection-end-line="294" selection-end-column="91" />
+        <state relative-caret-position="587">
+          <caret line="302" column="86" lean-forward="false" selection-start-line="302" selection-start-column="86" selection-end-line="302" selection-end-column="86" />
           <folding>
             <element signature="e#0#57#0" expanded="true" />
           </folding>

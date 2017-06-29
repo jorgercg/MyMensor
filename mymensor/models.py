@@ -42,7 +42,7 @@ class BraintreeSubscription(models.Model):
     braintreesubscriptionPayMthdResultObject = models.CharField(max_length=32768, null=True)
     braintreesubscriptionResultObject = models.CharField(max_length=32768, null=True)
     braintreesubscriptionCancelResultObject = models.CharField(max_length=32768, null=True)
-    braintreesubscriptionCClast4 = models.CharField(max_length=10, null=True)
+    braintreesubscriptionCClast4 = models.CharField(max_length=50, null=True)
     braintreesubscriptionCCtype = models.CharField(max_length=10, null=True)
     braintreesubscriptionCCexpyear = models.CharField(max_length=10, null=True)
     braintreesubscriptionCCexpmonth = models.CharField(max_length=10, null=True)
