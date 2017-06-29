@@ -94,18 +94,16 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionId = result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
             btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
-            btsubscription.braintreesubscriptionPaymentInstrumentType = result.subscription.transactions[
-                0].payment_instrument_type
+            payment_method_result = braintree.PaymentMethod.find(result.subscription.payment_method_token)
+            btsubscription.braintreesubscriptionPayMthdResultObject = payment_method_result
+            if (payment_method_result.__class__ == braintree.credit_card.CreditCard):
+                btsubscription.braintreesubscriptionPaymentInstrumentType = "credit_card"
             btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
-                btsubscription.braintreesubscriptionCClast4 = result.subscription.transactions[
-                    0].credit_card_details.last_4
-                btsubscription.braintreesubscriptionCCtype = result.subscription.transactions[
-                    0].credit_card_details.card_type
-                btsubscription.braintreesubscriptionCCexpyear = result.subscription.transactions[
-                    0].credit_card_details.expiration_year
-                btsubscription.braintreesubscriptionCCexpmonth = result.subscription.transactions[
-                    0].credit_card_details.expiration_month
+                btsubscription.braintreesubscriptionCClast4 = payment_method_result.masked_number
+                btsubscription.braintreesubscriptionCCtype = payment_method_result.card_type
+                btsubscription.braintreesubscriptionCCexpyear = payment_method_result.expiration_year
+                btsubscription.braintreesubscriptionCCexpmonth = payment_method_result.expiration_month
             btcustomer.save()
             btsubscription.save()
             succesful = True
