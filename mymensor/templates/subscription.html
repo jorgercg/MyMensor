@@ -23,34 +23,34 @@
                         <div class="row" style="padding-bottom: 20px">
                             <h3>{% trans "Current Payment Method" %}</h3>
                         </div>
+                        {% if succesful is not None %}
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8">
+                            <div class="col-lg-5">
+                                {% elif succesful == True %}
+                                    <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
+                                {% elif succesful == False %}
+                                    <p>{% trans "We could not modify your payment method, please see result:" %}</p>
+                                    <p>{{ result }}</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-lg-5">
                                 {% if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card" %}
                                     <ul class="list-group">
-                                        <li class="list-group-item">{% trans "Payment Method: Credit Card" %}</li>
-                                        <li class="list-group-item">{% trans "Card Flag:" %}{{ btsubscription.braintreesubscriptionCCtype }}   {% trans "Last four digits: " %}{{ btsubscription.braintreesubscriptionCClast4 }}</li>
-                                        <li class="list-group-item">{% trans "Card Expiration (MM/YYYY): " %}{{ btsubscription.braintreesubscriptionCCexpmonth }}
+                                        <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCtype }}
+                                            "..."{{ btsubscription.braintreesubscriptionCClast4 }}</li>
+                                        <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCexpmonth }}
                                             / {{ btsubscription.braintreesubscriptionCCexpyear }}</li>
                                     </ul>
-                                {% endif %}
-                                {% if btsubscription.braintreesubscriptionPaymentInstrumentType == None %}
-                                    <p>{% trans "You currently have an active subscription without a payment method associated to it." %}</p>
-                                    <p>{% trans "Please associate a payment method before the end of this subscription period in order to avoid any detrimental effect that this may cause to your capacity to use our services." %}</p>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            {% if btsubscription.braintreesubscriptionPaymentInstrumentType == None %} %}
-                                <div class="col-lg-8">
-                                    <a id="associate-paymentmethod" class="btn btn-warning"
-                                       role="button">{% trans "Associate a Payment Method" %}</a>
-                                </div>
-                            {% else %}
-                                <div class="col-lg-8">
-                                    <a id="dissociate-paymentmethod" class="btn btn-outline-danger text-danger"
-                                       role="button">{% trans "Dissociate Current Payment Method" %}</a>
-                                </div>
-                            {% endif %}
+                            <div class="col-lg-8">
+                                <a href="{% url 'updatepaymentmethod' %}" class="btn btn-outline-danger text-danger"
+                                   role="button">{% trans "Modify Current Payment Method" %}</a>
+                            </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <h3>{% trans "Cancel Subscription" %}</h3>
@@ -135,6 +135,8 @@
                         window.location = "{% url 'deletesubscription' %}";
                     }
                 });
+
+
             </script>
         {% endblock %}
     {% else %}
