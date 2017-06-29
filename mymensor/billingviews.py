@@ -291,6 +291,10 @@ def modifypaymentmethodinsubscription(request):
             btsubscription.braintreesubscriptionSubscriptionId = result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
             btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
+            payment_method_result = braintree.PaymentMethod.find(result.subscription.payment_method_token)
+            btsubscription.braintreesubscriptionPayMthdResultObject = payment_method_result
+
+
             btsubscription.braintreesubscriptionPaymentInstrumentType = result.subscription.transactions[
                 0].payment_instrument_type
             btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
