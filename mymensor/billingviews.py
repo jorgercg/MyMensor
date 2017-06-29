@@ -258,9 +258,24 @@ def modifypaymentmethod(request):
             "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce
         })
         if result.is_success:
-            btsubscription.save()
+            btsubscription.braintreesubscriptionResultObject = result
+            btsubscription.braintreesubscriptionSubscriptionId = result.subscription.id
+            btsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
             btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
+            btsubscription.braintreesubscriptionPaymentInstrumentType = result.subscription.transactions[
+                0].payment_instrument_type
+            btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
+            if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
+                btsubscription.braintreesubscriptionCClast4 = result.subscription.transactions[
+                    0].credit_card_details.last_4
+                btsubscription.braintreesubscriptionCCtype = result.subscription.transactions[
+                    0].credit_card_details.card_type
+                btsubscription.braintreesubscriptionCCexpyear = result.subscription.transactions[
+                    0].credit_card_details.expiration_year
+                btsubscription.braintreesubscriptionCCexpmonth = result.subscription.transactions[
+                    0].credit_card_details.expiration_month
             btcustomer.save()
+            btsubscription.save()
             succesful = True
         else:
             return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
