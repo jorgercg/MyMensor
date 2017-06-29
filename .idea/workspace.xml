@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/billingviews.py" afterPath="$PROJECT_DIR$/mymensor/billingviews.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +47,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="74" />
+            <state relative-caret-position="509">
+              <caret line="51" column="63" lean-forward="true" selection-start-line="51" selection-start-column="63" selection-end-line="51" selection-end-column="63" />
               <folding>
                 <element signature="e#644#685#0" expanded="true" />
               </folding>
@@ -68,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="billingviews.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="billingviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="278" column="28" lean-forward="false" selection-start-line="278" selection-start-column="28" selection-end-line="278" selection-end-column="28" />
+            <state relative-caret-position="594">
+              <caret line="281" column="101" lean-forward="false" selection-start-line="281" selection-start-column="101" selection-end-line="281" selection-end-column="101" />
               <folding>
                 <element signature="e#0#57#0" expanded="true" />
               </folding>
@@ -83,8 +83,8 @@
       <file leaf-file-name="updatepaymentmethod.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="76" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="76" />
+            <state relative-caret-position="-775">
+              <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -130,7 +130,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="468">
@@ -258,8 +258,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html" />
-        <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+        <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
       </list>
     </option>
   </component>
@@ -757,13 +757,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02571" summary="27jun2017 11h39min">
-      <created>1498559953378</created>
-      <option name="number" value="02571" />
-      <option name="presentableId" value="LOCAL-02571" />
-      <option name="project" value="LOCAL" />
-      <updated>1498559953378</updated>
-    </task>
     <task id="LOCAL-02572" summary="27jun2017 11h41min">
       <created>1498560068272</created>
       <option name="number" value="02572" />
@@ -1100,7 +1093,14 @@
       <option name="project" value="LOCAL" />
       <updated>1498745010359</updated>
     </task>
-    <option name="localTasksCounter" value="2620" />
+    <task id="LOCAL-02620" summary="29jun2017 15h05min">
+      <created>1498745128309</created>
+      <option name="number" value="02620" />
+      <option name="presentableId" value="LOCAL-02620" />
+      <option name="project" value="LOCAL" />
+      <updated>1498745128309</updated>
+    </task>
+    <option name="localTasksCounter" value="2621" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1182,7 +1182,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="27jun2017 18h45min" />
     <MESSAGE value="27jun2017 18h47min" />
     <MESSAGE value="27jun2017 19h25min" />
     <MESSAGE value="27jun2017 19h31min" />
@@ -1207,7 +1206,8 @@
     <MESSAGE value="29jun2017 14h41min" />
     <MESSAGE value="29jun2017 14h56min" />
     <MESSAGE value="29jun2017 15h03min" />
-    <option name="LAST_COMMIT_MESSAGE" value="29jun2017 15h03min" />
+    <MESSAGE value="29jun2017 15h05min" />
+    <option name="LAST_COMMIT_MESSAGE" value="29jun2017 15h05min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1547,16 +1547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="63" column="74" lean-forward="false" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="74" />
-          <folding>
-            <element signature="e#644#685#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1575,28 +1565,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="278" column="28" lean-forward="false" selection-start-line="278" selection-start-column="28" selection-end-line="278" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="56" column="75" lean-forward="true" selection-start-line="56" selection-start-column="42" selection-end-line="56" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="76" lean-forward="false" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="76" />
           <folding />
         </state>
       </provider>
@@ -1606,6 +1578,34 @@
         <state relative-caret-position="468">
           <caret line="56" column="34" lean-forward="true" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-775">
+          <caret line="19" column="53" lean-forward="true" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="51" column="63" lean-forward="true" selection-start-line="51" selection-start-column="63" selection-end-line="51" selection-end-column="63" />
+          <folding>
+            <element signature="e#644#685#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="281" column="101" lean-forward="false" selection-start-line="281" selection-start-column="101" selection-end-line="281" selection-end-column="101" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

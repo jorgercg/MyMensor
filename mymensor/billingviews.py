@@ -276,6 +276,10 @@ def modifypaymentmethod(request):
                     0].credit_card_details.expiration_month
             btcustomer.save()
             btsubscription.save()
+            btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+            currentAsset = Asset.objects.get(assetOwner=request.user)
+            dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
             succesful = True
         else:
             return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
