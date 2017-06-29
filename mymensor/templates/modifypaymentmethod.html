@@ -2,7 +2,7 @@
 {% load i18n mymfilters %}
 {% if user.is_authenticated %}
     {% get_current_language as LANGUAGE_CODE %}
-    {% block title %}{% trans "Payment Method" %} - {{ block.super }}{% endblock %}
+    {% block title %}{% trans "Modify Payment Method" %} - {{ block.super }}{% endblock %}
     {% block header %}
     {% endblock %}
     {% block content %}
@@ -10,7 +10,7 @@
             <div class="row" style="padding-top: 20px; padding-bottom: 20px">
                 <div class="col-lg"></div>
                 <div class="col-lg-5">
-                    <h3>{% trans "Authorize Your Payment Method" %}</h3>
+                    <h3>{% trans "Authorize Your New Payment Method" %}</h3>
                 </div>
                 <div class="col-lg"></div>
             </div>
@@ -73,7 +73,7 @@
                         $(button_id).removeClass('btn-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-                        window.location = '{% url 'startsubscription' %}'
+                        window.location = '{% url 'modifypaymentmethod' %}'
                     },
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
@@ -82,6 +82,7 @@
                     }
                 });
             }
+
             // This function gets cookie with a given name
             function getCookie(name) {
                 var cookieValue = null;
