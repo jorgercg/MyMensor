@@ -23,23 +23,23 @@
                         <div class="row" style="padding-bottom: 20px">
                             <h3>{% trans "Current Payment Method" %}</h3>
                         </div>
-                        {% if succesful is not None %}
-                            <div class="row" style="padding-bottom: 20px">
-                                <div class="col-lg-5">
-                                    {% elif succesful == "True" %}
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-lg-5">
+                                {% if succesful %}
+                                {% elif succesful is True %}
                                     <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
-                                    {% elif succesful == "False" %}
+                                {% elif succesful is False %}
                                     <p>{% trans "We could not modify your payment method, please see result:" %}</p>
                                     <p>{{ result }}</p>
-                                </div>
+                                {% endif %}
                             </div>
-                        {% endif %}
+                        </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-5">
                                 {% if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card" %}
                                     <ul class="list-group">
                                         <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCtype }}
-                                            "..."{{ btsubscription.braintreesubscriptionCClast4 }}</li>
+                                            ...{{ btsubscription.braintreesubscriptionCClast4 }}</li>
                                         <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCexpmonth }}
                                             / {{ btsubscription.braintreesubscriptionCCexpyear }}</li>
                                     </ul>
