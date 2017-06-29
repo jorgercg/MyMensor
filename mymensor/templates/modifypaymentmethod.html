@@ -73,7 +73,7 @@
                         $(button_id).removeClass('btn-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
-                        window.location = '{% url 'modifypaymentmethod' %}'
+                        window.location = '{% url 'modifypaymentmethodinsubscription' %}'
                     },
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
