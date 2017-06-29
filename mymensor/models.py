@@ -46,6 +46,7 @@ class BraintreeSubscription(models.Model):
     braintreesubscriptionCCexpyear = models.CharField(max_length=10, null=True)
     braintreesubscriptionCCexpmonth = models.CharField(max_length=10, null=True)
     braintreesubscriptionLastDay = models.DateTimeField(auto_now=False, null=True)
+    braintreesubscriptionDBTimeStamp = models.DateTimeField(auto_now=True, null=True)
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
     braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
