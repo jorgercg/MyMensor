@@ -24,12 +24,11 @@
                             <h3>{% trans "Current Payment Method" %}</h3>
                         </div>
                         {% if succesful is not None %}
-                            {{ succesful }}
                             <div class="row" style="padding-bottom: 20px">
                                 <div class="col-lg-5">
-                                    {% elif succesful == True %}
+                                    {% elif succesful == "True" %}
                                     <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
-                                    {% elif succesful == False %}
+                                    {% elif succesful == "False" %}
                                     <p>{% trans "We could not modify your payment method, please see result:" %}</p>
                                     <p>{{ result }}</p>
                                 </div>
