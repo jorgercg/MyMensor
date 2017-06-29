@@ -250,19 +250,16 @@ def modifypaymentmethod(request):
         )
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-        paymentmethodtoken = btcustomer.braintreecustomerPaymentMethodToken
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         succesful = False
         # try:
-        result = braintree.PaymentMethod.update(paymentmethodtoken, {
-            "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce,
-            "options": {
-                "verify_card": True,
-            }
+        result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
+            "payment_method_nonce": btcustomer.braintreecustomerPaymentMethodNonce
         })
         if result.is_success:
-            btcustomer.braintreecustomerPaymentMethodToken = result.token
+            btsubscription.save()
+            btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
             btcustomer.save()
             succesful = True
         else:
