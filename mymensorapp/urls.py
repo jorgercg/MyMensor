@@ -59,6 +59,7 @@ urlpatterns += i18n_patterns(
     url(r'^assetsetup/$', mymviews.assetSetupFormView, name='assetsetup'),
     url(r'^vpsetup/$', mymviews.vpSetupFormView, name='vpsetup'),
     url(r'^tagsetup/$', mymviews.tagSetupFormView, name='tagsetup'),
+    url(r'^markerdownload/$', mymviews.markerdownload, name='markerdownload'),
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
     url(r'^startsubscription/$', billingviews.startsubscription, name='startsubscription'),
     url(r'^subscriptionmodifypaymentmethod/$', billingviews.modifypaymentmethodinsubscription, name='modifypaymentmethodinsubscription'),

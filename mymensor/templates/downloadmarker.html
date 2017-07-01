@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load i18n tz mymfilters %}
+{% localtime on %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% if user.is_authenticated %}
+        {% block title %}{% trans "Download Markers" %} - {{ block.super }}{% endblock %}
+        {% block header %}
+        {% endblock %}
+        {% block content %}
+            <div class="container">
+                <div class="row" style="padding-top:20px; padding-bottom: 20px">
+                    <h3>{% trans "Standard Markers" %}</h3>
+                </div>
+                <div class="row" style="padding-bottom: 20px">
+                    <div class="col-lg-5">
+                        <a href="{{ stdmrkurl1 }}" download>{% trans "Standard Markers from 10 to 33" %}</a>
+                        <a href="{{ stdmrkurl2 }}" download>{% trans "Standard Markers from 34 to 39" %}</a>
+                    </div>
+                </div>
+                <div class="row" style="padding-top:20px; padding-bottom: 20px">
+                    <h3>{% trans "Super Markers" %}</h3>
+                </div>
+                <div class="row" style="padding-bottom: 20px">
+                    <div class="col-lg-5">
+                        <a href="{{ supermrkurl1 }}" download>{% trans "Super Markers from 10 to 12" %}</a>
+                        <a href="{{ supermrkurl2 }}" download>{% trans "Super Markers from 13 to 15" %}</a>
+                        <a href="{{ supermrkurl3 }}" download>{% trans "Super Markers from 16 to 18" %}</a>
+                        <a href="{{ supermrkurl4 }}" download>{% trans "Super Markers from 19 to 21" %}</a>
+                        <a href="{{ supermrkurl5 }}" download>{% trans "Super Markers from 22 to 24" %}</a>
+                        <a href="{{ supermrkurl6 }}" download>{% trans "Super Markers from 25 to 27" %}</a>
+                        <a href="{{ supermrkurl7 }}" download>{% trans "Super Markers from 28 to 30" %}</a>
+                        <a href="{{ supermrkurl8 }}" download>{% trans "Super Markers from 31 to 33" %}</a>
+                        <a href="{{ supermrkurl9 }}" download>{% trans "Super Markers from 34 to 36" %}</a>
+                        <a href="{{ supermrkurl10 }}" download>{% trans "Super Markers from 37 to 39" %}</a>
+                    </div>
+                </div>
+        {% endblock %}
+    {% else %}
+        <h1>{% trans "Not Logged In...." %}</h1>
+    {% endif %}
+{% endlocaltime %}
+
