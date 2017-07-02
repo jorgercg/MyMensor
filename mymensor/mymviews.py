@@ -1410,9 +1410,10 @@ def subscription(request):
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
-                                                     'btsubscription':btsubscription,
+                                                     'btsubscription': btsubscription,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription})
     return HttpResponse(status=404)
+
 
 @login_required
 def markerdownload(request):
@@ -1420,13 +1421,15 @@ def markerdownload(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        stdmrkurl1 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME, 'Key': 'markers/standard/MyMensor StandardMarkers 20mm 10 to 33.png'}, ExpiresIn=3600)
+        stdmrkurl1 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                           'Key': 'markers/standard/MyMensor StandardMarkers 20mm 10 to 33.png'},
+                                                     ExpiresIn=3600)
         stdmrkurl2 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                            'Key': 'markers/standard/MyMensor StandardMarkers 20mm 34 to 39.png'},
                                                      ExpiresIn=3600)
         supermrkurl1 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                           'Key': 'markers/super/MyMensor SuperMarkers 60mm 10-11-12.png'},
-                                                     ExpiresIn=3600)
+                                                                             'Key': 'markers/super/MyMensor SuperMarkers 60mm 10-11-12.png'},
+                                                       ExpiresIn=3600)
         supermrkurl2 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                              'Key': 'markers/super/MyMensor SuperMarkers 60mm 13-14-15.png'},
                                                        ExpiresIn=3600)
@@ -1452,9 +1455,12 @@ def markerdownload(request):
                                                                              'Key': 'markers/super/MyMensor SuperMarkers 60mm 34-35-36.png'},
                                                        ExpiresIn=3600)
         supermrkurl10 = s3Client.generate_presigned_url('get_object', Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                             'Key': 'markers/super/MyMensor SuperMarkers 60mm 37-38-39.png'},
-                                                       ExpiresIn=3600)
-        return render(request, 'downloadmarker.html', {'stdmrkurl1': stdmrkurl1, 'stdmrkurl2': stdmrkurl2, 'supermrkurl1':supermrkurl1, 'supermrkurl2':supermrkurl2, 'supermrkurl3':supermrkurl3,
-                                                       'supermrkurl4':supermrkurl4, 'supermrkurl5':supermrkurl5, 'supermrkurl6':supermrkurl6, 'supermrkurl7':supermrkurl7, 'supermrkurl8':supermrkurl8,
-                                                       'supermrkurl9':supermrkurl9, 'supermrkurl10':supermrkurl10 })
+                                                                              'Key': 'markers/super/MyMensor SuperMarkers 60mm 37-38-39.png'},
+                                                        ExpiresIn=3600)
+        return render(request, 'downloadmarker.html',
+                      {'stdmrkurl1': stdmrkurl1, 'stdmrkurl2': stdmrkurl2, 'supermrkurl1': supermrkurl1,
+                       'supermrkurl2': supermrkurl2, 'supermrkurl3': supermrkurl3,
+                       'supermrkurl4': supermrkurl4, 'supermrkurl5': supermrkurl5, 'supermrkurl6': supermrkurl6,
+                       'supermrkurl7': supermrkurl7, 'supermrkurl8': supermrkurl8,
+                       'supermrkurl9': supermrkurl9, 'supermrkurl10': supermrkurl10})
     return HttpResponse(status=404)

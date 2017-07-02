@@ -52,6 +52,14 @@
                         </button>
                     </div>
                 {% endif %}
+                <div id="generatemediacheck" class="mym-dash-item">
+                    <button id="mediacheckbtn" type="button" class="btn btn-outline-danger btn-sm move"
+                            data-toggle="tooltip" data-placement="top"
+                            title="{% trans 'Click to open media check share page' %}" target="_blank"
+                            onclick="location.href='https://app.mymensor.com/landing/?type=1&key={{ mediaObjectS3Key }}&signature={{ mediaSha256 }}';">
+                        <span class="fa fa-arrows"></span>
+                    </button>
+                </div>
                 <div id="sharebtns" class="mym-dash-item">
                     <div class="ssk-xs ssk-group">
                         <a href="" class="ssk ssk-email"></a>
