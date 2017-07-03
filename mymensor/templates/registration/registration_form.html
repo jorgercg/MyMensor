@@ -53,6 +53,11 @@
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript">
+        {% if user.is_authenticated %}
+            $(document).ready(function () {
+                window.location = '{% url 'portfolio' %}';
+            });
+        {% endif %}
         $('#regbutton').attr('disabled', true);
         $('#toggle').click(function () {
             //check if checkbox is checked

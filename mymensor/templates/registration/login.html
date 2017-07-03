@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters%}
+{% load i18n mymfilters %}
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
@@ -47,11 +47,13 @@
     </div>
 {% endblock %}
 {% block javascript %}
-    <script type="text/javascript">
-         $(document).ready(function () {
-            window.location = '{% url 'portfolio' %}';
-         });
-    </script>
+    {% if user.is_authenticated %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                window.location = '{% url 'portfolio' %}';
+            });
+        </script>
+    {% endif %}
 {% endblock %}
 
 
