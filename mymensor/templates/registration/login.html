@@ -46,27 +46,13 @@
         </div>
     </div>
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+{% block javascript %}
+    <script type="text/javascript">
+         $(document).ready(function () {
+            window.location = '{% url 'portfolio' %}';
+         });
+    </script>
+{% endblock %}
 
 
 {% comment %}
