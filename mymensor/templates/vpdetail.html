@@ -494,7 +494,6 @@
             if (precision<20) zoomlevel = 14;
             if (precision<10) zoomlevel = 15;
 
-
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

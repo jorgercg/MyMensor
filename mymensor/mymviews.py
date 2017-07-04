@@ -161,9 +161,9 @@ def amazon_sns_processor(request):
                                                           'Key': media_received.mediaObjectS3Key},
                                                   ExpiresIn=3600)
             if media_received.mediaRemark is None:
-                mediaRemarkToBeShared = 'link to media'
+                mediaRemarkToBeShared = 'Media Shared by MyMensor Server'
             else:
-                mediaRemarkToBeShared = media_received.mediaRemark + ' + link to media'
+                mediaRemarkToBeShared = media_received.mediaRemark + ' + Media Shared by MyMensor Server'
             if vp_received.vpShareEmail is not None:
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
