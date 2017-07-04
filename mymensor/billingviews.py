@@ -98,12 +98,18 @@ def startsubscription(request):
             btsubscription.braintreesubscriptionPayMthdResultObject = payment_method_result
             if (payment_method_result.__class__ == braintree.credit_card.CreditCard):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "credit_card"
+            if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
+                btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
+            btsubscription.braintreesubscriptionPaymentImageURL = payment_method_result.image_url
             btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
                 btsubscription.braintreesubscriptionCClast4 = payment_method_result.masked_number
                 btsubscription.braintreesubscriptionCCtype = payment_method_result.card_type
                 btsubscription.braintreesubscriptionCCexpyear = payment_method_result.expiration_year
                 btsubscription.braintreesubscriptionCCexpmonth = payment_method_result.expiration_month
+            if btsubscription.braintreesubscriptionPaymentInstrumentType == "paypal_account":
+                btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
+                btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
             btcustomer.save()
             btsubscription.save()
             succesful = True
