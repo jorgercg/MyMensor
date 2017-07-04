@@ -100,6 +100,7 @@ def startsubscription(request):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "credit_card"
             if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
+                btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
             btsubscription.braintreesubscriptionPaymentImageURL = payment_method_result.image_url
             btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
@@ -297,14 +298,17 @@ def modifypaymentmethodinsubscription(request):
             btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
             payment_method_result = braintree.PaymentMethod.find(result.subscription.payment_method_token)
             btsubscription.braintreesubscriptionPayMthdResultObject = payment_method_result
+            btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
+            btsubscription.braintreesubscriptionPaymentImageURL = payment_method_result.image_url
             if (payment_method_result.__class__ == braintree.credit_card.CreditCard):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "credit_card"
-            btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
-            if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
                 btsubscription.braintreesubscriptionCClast4 = payment_method_result.masked_number
                 btsubscription.braintreesubscriptionCCtype = payment_method_result.card_type
                 btsubscription.braintreesubscriptionCCexpyear = payment_method_result.expiration_year
                 btsubscription.braintreesubscriptionCCexpmonth = payment_method_result.expiration_month
+            if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
+                btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
+                btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
             btcustomer.save()
             btsubscription.save()
             btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
