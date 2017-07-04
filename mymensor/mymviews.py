@@ -174,7 +174,7 @@ def amazon_sns_processor(request):
                             for chunk in requesturl:
                                 image.write(chunk)
                         image = open(filename, 'rb')
-                        subject = "Testing auto email - Image"
+                        subject = "Media Shared by MyMensor Server"
                         message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
@@ -194,7 +194,7 @@ def amazon_sns_processor(request):
                             for chunk in requesturl:
                                 video.write(chunk)
                         video = open(filename, 'rb')
-                        subject = "Testing auto email - Video"
+                        subject = "Media Shared by MyMensor Server"
                         message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
