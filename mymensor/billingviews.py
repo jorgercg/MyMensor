@@ -101,6 +101,7 @@ def startsubscription(request):
             if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
                 btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
+                btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
             btsubscription.braintreesubscriptionPaymentImageURL = payment_method_result.image_url
             btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
@@ -309,6 +310,7 @@ def modifypaymentmethodinsubscription(request):
             if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
                 btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
                 btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
+                btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
             btcustomer.save()
             btsubscription.save()
             btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
