@@ -148,7 +148,7 @@
     <div class="block-footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-5 mb-5">
+                <div class="col-md-5 mb-3">
                     <ul class="list-unstyled list-spaced">
                         <li class="mb-2"><h6 class="text-uppercase">{% trans 'About' %}</h6></li>
                         <li class="text-muted">
@@ -157,7 +157,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-3 offset-md-1 mb-5">
+                <div class="col-md-2 mb-3">
                     <ul class="list-unstyled list-spaced">
                         <li class="mb-2"><h6 class="text-uppercase">{% trans "Product" %}</h6></li>
                         <li><a class="text-muted"
@@ -169,7 +169,7 @@
                                href="https://mymensor.com/{{ LANGUAGE_CODE }}/faq/">{% trans "FAQ" %}</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-5">
+                <div class="col-md-4 mb-3">
                     <ul class="list-unstyled list-spaced">
                         <li class="mb-2"><h6 class="text-uppercase">Legal</h6></li>
                         <li><a class="text-muted"
@@ -182,7 +182,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5 mb-5">
+                <div class="col-md-5 mb-3">
                     <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                         <input name="next" type="hidden" value="{{ redirect_to }}"/>
@@ -200,8 +200,8 @@
                         <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
                     </form>
                 </div>
-                <div class="col-md-3 offset-md-1 mb-5"></div>
-                <div class="col-md-4 mb-5">
+                <div class="col-md-3 mb-3"></div>
+                <div class="col-md-4 mb-3">
                     <a href="https://www.braintreegateway.com/merchants/2y7nzj4w7xt29z45/verified" target="_blank">
                         <img src="https://s3.amazonaws.com/braintree-badges/braintree-badge-wide-dark.png" width="280px"
                              height="44px" border="0"/>
@@ -209,19 +209,17 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5 mb-5"></div>
-                <div class="col-md-3 offset-md-1 mb-5"></div>
-                <div class="col-md-4 mb-5">
+                <div class="col-md-5 mb-3"></div>
+                <div class="col-md-3 mb-3"></div>
+                <div class="col-md-4 mb-3">
                     <img src="{% static 'images/paypal.png' %}">
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5 mb-5"></div>
-                <div class="col-md-3 offset-md-1 mb-5"></div>
-                <div class="col-md-4 mb-5">
-                    <img src="{% static 'images/american_express.png' %}">
+                <div class="col-md-5 mb-3"></div>
+                <div class="col-md-3 mb-3"></div>
+                <div class="col-md-4 mb-3">
                     <img src="{% static 'images/discover.png' %}">
-                    <img src="{% static 'images/jcb.png' %}">
                     <img src="{% static 'images/maestro.png' %}">
                     <img src="{% static 'images/mastercard.png' %}">
                     <img src="{% static 'images/visa.png' %}">
