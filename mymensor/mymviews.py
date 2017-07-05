@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -1470,7 +1470,14 @@ def createmobileonlyuser(request):
     if request.method == "GET":
         succesful = False
         try:
-            mobuser = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+            currentusername = request.user.username
+            currentuseremail = request.user.email
+            mobusername = "mym+"+currentusername
+            mobuser = User.objects.create_user(mobusername, currentuseremail, 'johnpassword')
+            g = Group.objects.get(name='mymARwebapp')
+            g.user_set.remove(mobuser)
+            g = Group.objects.get(name='mymARmobileapp')
+            g.user_set.add(mobuser)
             succesful = True
         except:
             return render(request, 'createmobileonlyuserresult.html',
