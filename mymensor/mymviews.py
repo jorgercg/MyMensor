@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
@@ -27,6 +27,10 @@ from .tables import TagStatusTableClass
 import csv, os, requests
 from twython import Twython
 from django.utils.encoding import smart_str
+
+
+def group_check(user):
+    return user.groups.filter(name__in=['mymARwebapp']).exists()
 
 
 def landingView(request):
@@ -304,7 +308,6 @@ def portfolio(request):
                        'media_vpnumbers': media_vpnumbers})
 
 
-# Media Feed View
 @login_required
 def mediafeed(request):
     if request.user.is_authenticated:
@@ -1072,6 +1075,7 @@ def locofthismedia(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def vpDetailView(request):
     if request.user.is_authenticated:
         mediascount = Media.objects.filter(vp__asset__assetOwner=request.user).count()
@@ -1464,6 +1468,7 @@ def markerdownload(request):
                        'supermrkurl7': supermrkurl7, 'supermrkurl8': supermrkurl8,
                        'supermrkurl9': supermrkurl9, 'supermrkurl10': supermrkurl10})
     return HttpResponse(status=404)
+
 
 @login_required
 def createmobileonlyuser(request):
