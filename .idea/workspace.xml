@@ -59,8 +59,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15609">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="301">
+              <caret line="352" column="56" lean-forward="false" selection-start-line="352" selection-start-column="56" selection-end-line="352" selection-end-column="56" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -71,8 +71,8 @@
       <file leaf-file-name="createmobileonlyuserresult.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="35" />
+            <state relative-caret-position="165">
+              <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -91,7 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>active</find>
       <find>vpIsActive</find>
       <find>badg</find>
       <find>Vp.objects.</find>
@@ -121,6 +120,7 @@
       <find>text</find>
       <find>ResultObject</find>
       <find>payment_method_result.__class__</find>
+      <find>@user_passes_test(group_check)</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -775,13 +775,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02626" summary="29jun2017 16h37min">
-      <created>1498750649425</created>
-      <option name="number" value="02626" />
-      <option name="presentableId" value="LOCAL-02626" />
-      <option name="project" value="LOCAL" />
-      <updated>1498750649425</updated>
-    </task>
     <task id="LOCAL-02627" summary="29jun2017 16h37min">
       <created>1498752438911</created>
       <option name="number" value="02627" />
@@ -1118,7 +1111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499284422761</updated>
     </task>
-    <option name="localTasksCounter" value="2675" />
+    <task id="LOCAL-02675" summary="05jul2017 21h11min">
+      <created>1499285477779</created>
+      <option name="number" value="02675" />
+      <option name="presentableId" value="LOCAL-02675" />
+      <option name="project" value="LOCAL" />
+      <updated>1499285477779</updated>
+    </task>
+    <option name="localTasksCounter" value="2676" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1200,7 +1200,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="04jul2017 11h27min" />
     <MESSAGE value="04jul2017 12h58min" />
     <MESSAGE value="04jul2017 13h53min" />
     <MESSAGE value="04jul2017 13h55min" />
@@ -1225,7 +1224,8 @@
     <MESSAGE value="05jul2017 19h49min" />
     <MESSAGE value="05jul2017 20h29min" />
     <MESSAGE value="05jul2017 20h53min" />
-    <option name="LAST_COMMIT_MESSAGE" value="05jul2017 20h53min" />
+    <MESSAGE value="05jul2017 21h11min" />
+    <option name="LAST_COMMIT_MESSAGE" value="05jul2017 21h11min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1518,6 +1518,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1598,14 +1599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
@@ -1624,10 +1617,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="23" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15609">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="301">
+          <caret line="352" column="56" lean-forward="false" selection-start-line="352" selection-start-column="56" selection-end-line="352" selection-end-column="56" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>

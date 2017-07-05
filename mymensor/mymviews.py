@@ -267,6 +267,7 @@ def amazon_sns_processor(request):
 
 # Portfolio View
 @login_required
+@user_passes_test(group_check)
 def portfolio(request):
     if request.user.is_authenticated:
         try:
@@ -309,6 +310,7 @@ def portfolio(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def mediafeed(request):
     if request.user.is_authenticated:
         try:
@@ -346,6 +348,10 @@ def cognitoauth(request):
 
         username = request.user.username
 
+        if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
+            usernameprefix = username[0:3]
+            username = username.replace(usernameprefix,'')
+
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
             Logins={
@@ -374,6 +380,7 @@ def android_assetlinks(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def assetSetupFormView(request):
     try:
         loaddcicfg(request)
@@ -391,6 +398,7 @@ def assetSetupFormView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def vpSetupFormView(request):
     try:
         loaddcicfg(request)
@@ -440,6 +448,7 @@ def vpSetupFormView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def tagSetupFormView(request):
     try:
         loaddcicfg(request)
@@ -589,6 +598,7 @@ def tagSetupFormView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def save_tagboundingbox(request):
     if request.method == 'POST':
         received_json_data = json.loads(request.body)
@@ -624,6 +634,7 @@ def save_tagboundingbox(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def procTagEditView(request):
     if request.user.is_authenticated:
         try:
@@ -671,6 +682,7 @@ def procTagEditView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def tagProcessingFormView(request):
     if request.user.is_authenticated:
         try:
@@ -718,6 +730,7 @@ def tagProcessingFormView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def saveValue(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
@@ -805,6 +818,7 @@ def saveValue(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def TagStatusView(request):
     if request.user.is_authenticated:
         try:
@@ -853,7 +867,8 @@ def TagStatusView(request):
     else:
         return HttpResponse(status=404)
 
-
+@login_required
+@user_passes_test(group_check)
 def export_tagstatus_csv(request):
     if request.method == 'GET':
         startdate = datetime.strptime(
@@ -899,6 +914,7 @@ def export_tagstatus_csv(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def tagAnalysisView(request):
     if request.user.is_authenticated:
         try:
@@ -945,6 +961,7 @@ def tagAnalysisView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def mobileBackupFormView(request):
     try:
         loaddcicfg(request)
@@ -958,6 +975,7 @@ def mobileBackupFormView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def createdcicfgbackup(request):
     if request.method == 'POST':
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -1001,6 +1019,7 @@ def createdcicfgbackup(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def restoredcicfgbackup(request):
     if request.method == 'POST':
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -1039,6 +1058,7 @@ def restoredcicfgbackup(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def tagsprocessedinthismedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
@@ -1056,6 +1076,7 @@ def tagsprocessedinthismedia(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def locofthismedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
@@ -1165,6 +1186,7 @@ def vpDetailView(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def deletemedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
@@ -1197,6 +1219,7 @@ def deletemedia(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def movemedia(request):
     if request.method == 'POST':
         mediaid = int(request.POST.get('mediaid'))
@@ -1228,6 +1251,7 @@ def movemedia(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtmain(request):
     """
     main view of app, either login page or info page
@@ -1244,6 +1268,7 @@ def twtmain(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtunauth(request):
     """
     logout and remove all session data
@@ -1260,6 +1285,7 @@ def twtunauth(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtinfo(request):
     """
     display some user info to show we have authenticated successfully
@@ -1275,6 +1301,7 @@ def twtinfo(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtauth(request):
     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET)
     auth = twitter_api.get_authentication_tokens(callback_url='https://app.mymensor.com/twtoauthcallback')
@@ -1285,6 +1312,7 @@ def twtauth(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtcallback(request):
     oauth_verifier = request.GET.get('oauth_verifier')
     oauth_token = request.session['oauth_token']
@@ -1301,6 +1329,7 @@ def twtcallback(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtcheck_key(request):
     """
     Check to see if we already have an access_key stored, if we do then we have already gone through
@@ -1321,6 +1350,7 @@ def twtcheck_key(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def twtget_api(request):
     try:
         access_key = request.session['access_key_tw']
@@ -1334,12 +1364,14 @@ def twtget_api(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def fbmain(request):
     mymensoruserID = request.user.id
     return render(request, 'fbmain.html', {'mymensoruserID': mymensoruserID})
 
 
 @login_required
+@user_passes_test(group_check)
 def fbsecstageauth(request):
     if request.method == 'POST':
         fbUserID = request.POST.get('fbUserID')
@@ -1382,6 +1414,7 @@ def fbsecstageauth(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def fbsecstagelogout(request):
     if request.method == 'POST':
         fbUserID = request.POST.get('fbUserID')
@@ -1404,6 +1437,7 @@ def fbsecstagelogout(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def subscription(request):
     if request.method == "GET":
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
@@ -1420,6 +1454,7 @@ def subscription(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def markerdownload(request):
     if request.method == "GET":
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
@@ -1471,6 +1506,7 @@ def markerdownload(request):
 
 
 @login_required
+@user_passes_test(group_check)
 def createmobileonlyuser(request):
     if request.method == "GET":
         succesful = False
