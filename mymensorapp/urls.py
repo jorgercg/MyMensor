@@ -70,6 +70,7 @@ urlpatterns += i18n_patterns(
     url(r'^billingcreatesubscription/$', billingviews.createsubscription, name='createsubscription'),
     url(r'^billingcreatesubscription/setplanmerchid/', billingviews.setplanmerchid, name='setplanmerchid'),
     url(r'^billingdeletesubscription/$', billingviews.deletesubscription, name='deletesubscription'),
+    url(r'^createmobileonlyuser/$', mymviews.createmobileonlyuser, name='createmobileonlyuser'),
 
     # account urls
     url(r'^accounts/', include('registration.backends.default.urls')),

@@ -1464,3 +1464,17 @@ def markerdownload(request):
                        'supermrkurl7': supermrkurl7, 'supermrkurl8': supermrkurl8,
                        'supermrkurl9': supermrkurl9, 'supermrkurl10': supermrkurl10})
     return HttpResponse(status=404)
+
+@login_required
+def createmobileonlyuser(request):
+    if request.method == "GET":
+        succesful = False
+        try:
+            mobuser = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
+            succesful = True
+        except:
+            return render(request, 'createmobileonlyuserresult.html',
+                          {'succesful': succesful})
+        return render(request, 'createmobileonlyuserresult.html',
+                      { 'mobuser':mobuser, 'succesful':succesful})
+    return HttpResponse(status=404)
