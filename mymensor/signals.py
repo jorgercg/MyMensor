@@ -13,6 +13,9 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
         setup_new_user(instance)
         create_braintree_customer(instance)
+        from django.contrib.auth.models import Group
+        g = Group.objects.get(name='mymARwebapp')
+        g.user_set.add(instance)
 
 @receiver(pre_delete, sender=settings.AUTH_USER_MODEL)
 def delete_cognito_related_id(sender, instance=None, **kwargs):
