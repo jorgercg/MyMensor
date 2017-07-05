@@ -349,7 +349,7 @@ def cognitoauth(request):
         username = request.user.username
 
         if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
-            usernameprefix = username[0:3]
+            usernameprefix = username[:4]
             username = username.replace(usernameprefix,'')
 
         response = client.get_open_id_token_for_developer_identity(
