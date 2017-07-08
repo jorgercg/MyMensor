@@ -344,13 +344,17 @@ def cognitoauth(request):
 
         mymensormobileclienttype = request.META['HTTP_FROM']
 
+        usergroup = 'mymARwebapp'
+
         token = (Token.objects.get(user_id=request.user.id)).key
 
         username = request.user.username
 
         if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
+            #TODO: Bring the prefix from Asset (Firstly put it there, obviusly....)
             usernameprefix = username[:4]
             username = username.replace(usernameprefix,'')
+            usergroup = 'mymARmobileapp'
 
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
@@ -361,6 +365,7 @@ def cognitoauth(request):
         )
         response.update({'identityPoolId': 'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'key': token})
+        response.update({'usergroup': usergroup})
         assetinstance = Asset.objects.get(assetOwner=request.user)
         assetinstance.assetOwnerIdentityId = response['IdentityId']
         assetinstance.assetDciClientSoftwareType = mymensormobileclienttype
