@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/activate.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/activate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/registration/logout.html" afterPath="$PROJECT_DIR$/mymensor/templates/registration/logout.html" />
     </list>
     <ignored path="mymensorapp.iws" />
@@ -66,11 +68,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="activation_complete.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="logout.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/logout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+            <state relative-caret-position="135">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,8 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mymensor/templates/assetsetup.html" />
-        <option value="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/fbmain.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtinfo.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/twtmain.html" />
@@ -205,6 +215,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/mobileonlyerror.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/404.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/500.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/registration/activate.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/logout.html" />
       </list>
     </option>
@@ -614,13 +626,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02642" summary="03jul2017 15h06min">
-      <created>1499090780221</created>
-      <option name="number" value="02642" />
-      <option name="presentableId" value="LOCAL-02642" />
-      <option name="project" value="LOCAL" />
-      <updated>1499090780221</updated>
-    </task>
     <task id="LOCAL-02643" summary="03jul2017 15h41min">
       <created>1499092894651</created>
       <option name="number" value="02643" />
@@ -957,7 +962,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499534724688</updated>
     </task>
-    <option name="localTasksCounter" value="2691" />
+    <task id="LOCAL-02691" summary="08jul2017 18h26min">
+      <created>1499534814233</created>
+      <option name="number" value="02691" />
+      <option name="presentableId" value="LOCAL-02691" />
+      <option name="project" value="LOCAL" />
+      <updated>1499534814233</updated>
+    </task>
+    <option name="localTasksCounter" value="2692" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1039,7 +1051,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="04jul2017 16h20min" />
     <MESSAGE value="04jul2017 20h12min" />
     <MESSAGE value="05jul2017 13h19min" />
     <MESSAGE value="05jul2017 14h02min" />
@@ -1064,7 +1075,8 @@
     <MESSAGE value="08jul2017 18h18min" />
     <MESSAGE value="08jul2017 18h21min" />
     <MESSAGE value="08jul2017 18h25min" />
-    <option name="LAST_COMMIT_MESSAGE" value="08jul2017 18h25min" />
+    <MESSAGE value="08jul2017 18h26min" />
+    <option name="LAST_COMMIT_MESSAGE" value="08jul2017 18h26min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,20 +1306,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_email.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1405,8 +1403,8 @@
         <state relative-caret-position="195">
           <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
           <folding>
-            <element signature="e#168#196#0#HTML" expanded="true" />
-            <element signature="e#373#401#0#HTML" expanded="true" />
+            <element signature="e#168#196#0#HTML" expanded="false" />
+            <element signature="e#373#401#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1416,8 +1414,8 @@
         <state relative-caret-position="165">
           <caret line="11" column="44" lean-forward="false" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
           <folding>
-            <element signature="e#168#196#0#HTML" expanded="true" />
-            <element signature="e#416#444#0#HTML" expanded="true" />
+            <element signature="e#168#196#0#HTML" expanded="false" />
+            <element signature="e#416#444#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1427,8 +1425,8 @@
         <state relative-caret-position="195">
           <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
           <folding>
-            <element signature="e#198#226#0#HTML" expanded="true" />
-            <element signature="e#463#491#0#HTML" expanded="true" />
+            <element signature="e#198#226#0#HTML" expanded="false" />
+            <element signature="e#463#491#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1443,6 +1441,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="14" lean-forward="true" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
@@ -1451,10 +1457,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="28" lean-forward="true" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/registration/logout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
