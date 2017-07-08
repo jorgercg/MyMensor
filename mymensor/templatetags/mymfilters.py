@@ -3,9 +3,11 @@ import urllib
 from django.utils.safestring import mark_safe
 from django.template.defaultfilters import stringfilter
 from django.utils.html import conditional_escape
+from django.contrib.auth.models import Group
 from django import template
 
 register = template.Library()
+
 
 @register.filter(name="lookupvpnumber")
 def lookupvpnumber(value, key):
@@ -15,12 +17,18 @@ def lookupvpnumber(value, key):
         return key
 
 
+@register.filter(name='has_group')
+def has_group(user, group_name):
+    group =  Group.objects.get(name=group_name)
+    return group in user.groups.all()
+
 @register.filter(name="frommillistoseconds")
 def frommillistoseconds(value):
     return int(value/1000)
 
 
 class_re = re.compile(r'(?<=class=["\'])(.*)(?=["\'])')
+
 
 @register.filter
 def add_class(value, css_class):

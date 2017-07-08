@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
+{% load i18n mymfilters %}
 {% block title %} 500 - {{ block.super }}{% endblock %}
 {% block content %}
 <p></p>
-<h1> 500 Error</h1>
-<p> Sorry! Unfortunately there was an error!</p>
+<h1>{% trans "500 Error" %}</h1>
+<p> {% trans "Sorry! Unfortunately there was an error!" %}</p>
 {% endblock %}

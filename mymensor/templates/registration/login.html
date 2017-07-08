@@ -48,11 +48,19 @@
 {% endblock %}
 {% block javascript %}
     {% if user.is_authenticated %}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                window.location = '{% url 'portfolio' %}';
-            });
-        </script>
+        {% if user|has_group:"mymARwebapp" %}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    window.location = '{% url 'portfolio' %}';
+                });
+            </script>
+        {% else %}
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    window.location = '{% url 'mobileonlyerror' %}';
+                });
+            </script>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
