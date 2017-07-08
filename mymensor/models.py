@@ -54,6 +54,7 @@ class BraintreeSubscription(models.Model):
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
     braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
+
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
 
@@ -74,6 +75,12 @@ class Asset(models.Model):
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
+
+
+class MobileOnlyUser(models.Model):
+    mobileOnlyUser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, verbose_name="Mobile Only User")
+    mobileOnlyUserPrefix = models.CharField(max_length=50, null=True, verbose_name=_('Mobile Only User Prefix'))
+
 
 class MobileSetupBackup(models.Model):
     backupOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
