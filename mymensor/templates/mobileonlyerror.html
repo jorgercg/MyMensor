@@ -2,14 +2,16 @@
 {% load i18n mymfilters %}
 {% block title %} {% trans "Mobile Only User Error" %}{{ block.super }}{% endblock %}
 {% block content %}
-    <div class="col-lg">
-        <p></p>
-    </div>
-    <div class="col-lg-5">
-        <h2>{% trans "Mobile Only User Error" %}</h2>
-        <p> {% trans "Sorry! Unfortunately you cannot access MyMensor server." %}</p>
-    </div>
-    <div class="col-lg">
-        <p></p>
+    <div class="row" style="padding-bottom: 20px">
+        <div class="col-lg">
+            <p></p>
+        </div>
+        <div class="col-lg-5">
+            <h2>{% trans "Mobile Only User Error" %}</h2>
+            <p> {% trans "Sorry! Unfortunately you cannot access MyMensor server." %}</p>
+        </div>
+        <div class="col-lg">
+            <p></p>
+        </div>
     </div>
 {% endblock %}

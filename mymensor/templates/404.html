@@ -2,14 +2,16 @@
 {% load i18n mymfilters %}
 {% block title %} 404 - {{ block.super }}{% endblock %}
 {% block content %}
-    <div class="col-lg">
-        <p></p>
-    </div>
-    <div class="col-lg-5">
-        <h2>{% trans "404 Error" %}</h2>
-        <p> {% trans "Sorry! Unfortunately you are looking for a page that does not exist in this server!" %}</p>
-    </div>
-    <div class="col-lg">
-        <p></p>
+    <div class="row" style="padding-bottom: 20px">
+        <div class="col-lg">
+            <p></p>
+        </div>
+        <div class="col-lg-5">
+            <h2>{% trans "404 Error" %}</h2>
+            <p> {% trans "Sorry! Unfortunately you are looking for a page that does not exist in this server!" %}</p>
+        </div>
+        <div class="col-lg">
+            <p></p>
+        </div>
     </div>
 {% endblock %}
