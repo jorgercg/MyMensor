@@ -1,20 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
-
 {% block title %}{% trans "Logged out" %}{% endblock %}
-
 {% block content %}
-    <div class="row">
-        <div class="col-sm">
-            <p></p>
-        </div>
-        <div class="col-sm">
-            <p></p>
-            <p>{% trans "Successfully logged out" %}.</p>
-        </div>
-        <div class="col-sm">
-            <p></p>
-        </div>
+    <div class="container-fill-height">
+        <p>{% trans "Successfully logged out" %}.</p>
     </div>
 {% endblock %}
 
