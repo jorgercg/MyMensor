@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html" afterPath="$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +60,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="1564" column="90" lean-forward="false" selection-start-line="1564" selection-start-column="90" selection-end-line="1564" selection-end-column="90" />
+            <state relative-caret-position="290">
+              <caret line="1564" column="74" lean-forward="false" selection-start-line="1564" selection-start-column="74" selection-end-line="1564" selection-end-column="74" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -71,8 +72,8 @@
       <file leaf-file-name="createmobileonlyuserresult.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
+            <state relative-caret-position="386">
+              <caret line="118" column="38" lean-forward="false" selection-start-line="118" selection-start-column="38" selection-end-line="118" selection-end-column="38" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -656,13 +657,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02663" summary="04jul2017 15h44min">
-      <created>1499179461464</created>
-      <option name="number" value="02663" />
-      <option name="presentableId" value="LOCAL-02663" />
-      <option name="project" value="LOCAL" />
-      <updated>1499179461465</updated>
-    </task>
     <task id="LOCAL-02664" summary="04jul2017 15h54min">
       <created>1499180068146</created>
       <option name="number" value="02664" />
@@ -999,7 +993,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499634697952</updated>
     </task>
-    <option name="localTasksCounter" value="2712" />
+    <task id="LOCAL-02712" summary="09jul2017 22h29min">
+      <created>1499635790569</created>
+      <option name="number" value="02712" />
+      <option name="presentableId" value="LOCAL-02712" />
+      <option name="project" value="LOCAL" />
+      <updated>1499635790569</updated>
+    </task>
+    <option name="localTasksCounter" value="2713" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1081,7 +1082,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="08jul2017 18h07min" />
     <MESSAGE value="08jul2017 18h18min" />
     <MESSAGE value="08jul2017 18h21min" />
     <MESSAGE value="08jul2017 18h25min" />
@@ -1106,7 +1106,8 @@
     <MESSAGE value="09jul2017 21h47min" />
     <MESSAGE value="09jul2017 22h04min" />
     <MESSAGE value="09jul2017 22h11min" />
-    <option name="LAST_COMMIT_MESSAGE" value="09jul2017 22h11min" />
+    <MESSAGE value="09jul2017 22h29min" />
+    <option name="LAST_COMMIT_MESSAGE" value="09jul2017 22h29min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1494,18 +1495,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="78" column="36" lean-forward="false" selection-start-line="78" selection-start-column="36" selection-end-line="78" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
@@ -1516,10 +1505,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="386">
+          <caret line="118" column="38" lean-forward="false" selection-start-line="118" selection-start-column="38" selection-end-line="118" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="1564" column="90" lean-forward="false" selection-start-line="1564" selection-start-column="90" selection-end-line="1564" selection-end-column="90" />
+        <state relative-caret-position="290">
+          <caret line="1564" column="74" lean-forward="false" selection-start-line="1564" selection-start-column="74" selection-end-line="1564" selection-end-column="74" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>
