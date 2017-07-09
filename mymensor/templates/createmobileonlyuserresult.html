@@ -8,24 +8,146 @@
         <div class="container">
             <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
                 <p></p>
-                <h3>{% trans "Mob User Creation" %}</h3>
+                <h3>{% trans "Mobile Only User Status" %}</h3>
                 <p></p>
             </div>
             <div class="row" style="padding-bottom: 20px">
-                <div class="col-sm-5">
-                    {% if succesful %}
-                        <p></p>
-                        <p>{% trans "Your mobile user creation was succesful!" %}</p>
-                        <p>{{ mobuser.username }}</p>
-                    {% else %}
-                        <p></p>
-                        <p>{% trans "There was a problem while creating your mobile user, please contact support." %}</p>
-                        <p></p>
-                        <p></p>
-                    {% endif %}
-                </div>
+                {% if succesful %}
+                    <p></p>
+                    <p>{% trans "Your current mobile only user is the following:" %}</p>
+                    <p></p>
+                    <p>{% trans "Mobile Ony Username: " %}{{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</p>
+                    <p></p>
+                    <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
+                    <p></p>
+                    <div class="input-group">
+                        <input id="existingpassword"
+                               type="password" class="form-control"
+                               placeholder="{% trans 'Password here...' %}">
+                        <span class="input-group-btn">
+                            <button id="modifyexistingpassword"
+                                    class="btn btn-info"
+                                    type="button">{% trans 'Modify password' %}</button>
+                        </span>
+                    </div>
+                {% else %}
+                    <p></p>
+                    <p>{% trans "Current you do not have a mobile only user." %}</p>
+                    <p></p>
+                    <p>{% trans "To create one insert below a password to be used by your new mobile only user." %}</p>
+                    <p></p>
+                    <div class="input-group">
+                        <input id="newpassword"
+                               type="password" class="form-control"
+                               placeholder="{% trans 'Password here...' %}">
+                        <span class="input-group-btn">
+                            <button id="createpassword"
+                                    class="btn btn-secondary"
+                                    type="button">{% trans 'Create password and mobile user' %}</button>
+                        </span>
+                    </div>
+                {% endif %}
             </div>
         </div>
+    {% endblock %}
+    {% block javascript %}
+        <script type="text/javascript">
+
+            // Submit post on submit
+            $('#modifyexistingpassword').click(function (event) {
+                event.preventDefault();
+                var password = document.getElementById("existingpassword").value;
+                button_id = '#modifyexistingpassword';
+                console.log("Password existingpassword: " + password);  // sanity check
+                save_value(password);
+            });
+
+            $('#createpassword').click(function (event) {
+                event.preventDefault();
+                var password = document.getElementById("newpassword").value;
+                 button_id = '#createpassword';
+                console.log("Password newpassword: " + password);  // sanity check
+                save_value(password);
+            });
+
+            // AJAX for posting
+            function save_value(password) {
+                console.log("Saving Value is working!"); // sanity check
+                $.ajax({
+                    url: "password/", // the endpoint
+                    type: "POST", // http method
+                    data: {mobuserplainpassword: password}, // data sent with the post request
+                    // handle a successful response
+                    success: function (json) {
+                        $(button_id).removeClass('btn-secondary').addClass('btn-success');
+                        $(button_id).removeClass('btn-info').addClass('btn-success');
+                        $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+                        window.location = '{% url 'createmobileonlyuser' %}'
+                    },
+                    // handle a non-successful response
+                    error: function (xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        $(button_id).removeClass('btn-info').addClass('btn-danger');
+                    }
+                });
+            }
+
+            // This function gets cookie with a given name
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            var csrftoken = getCookie('csrftoken');
+
+            /*
+             The functions below will create a header with csrftoken
+             */
+
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            function sameOrigin(url) {
+                // test that a given url is a same-origin URL
+                // url could be relative or scheme relative or absolute
+                var host = document.location.host; // host + port
+                var protocol = document.location.protocol;
+                var sr_origin = '//' + host;
+                var origin = protocol + sr_origin;
+                // Allow absolute or scheme relative URLs to same origin
+                return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                    (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                    // or any other URL that isn't scheme relative or absolute i.e relative.
+                    !(/^(\/\/|http:|https:).*/.test(url));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                        // Send the token to same-origin, relative URLs only.
+                        // Send the token only if the method warrants CSRF protection
+                        // Using the CSRFToken value acquired earlier
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+        </script>
     {% endblock %}
 {% else %}
     <h1>Not Logged In....</h1>

@@ -6,6 +6,11 @@ def isfloat(value):
         return False
 
 
+def mobonlyprefix():
+    import random, string
+    return 'mym'.join(random.choice(string.uppercase) for i in range(3)).join('+')
+
+
 def setup_new_user(instance, **kwargs):
     from mymensor.models import Asset, Vp
     from datetime import datetime, timedelta
