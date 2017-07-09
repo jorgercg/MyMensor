@@ -57,7 +57,7 @@
                                    placeholder="{% trans 'Password here...' %}">
                             <span class="input-group-btn">
                             <button id="createpassword"
-                                    class="btn btn-secondary"
+                                    class="btn btn-info"
                                     type="button">{% trans 'Create password and mobile user' %}</button>
                         </span>
                         </div>
@@ -105,7 +105,6 @@
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                        $(button_id).removeClass('btn-info').addClass('btn-danger');
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "pt" %}
                             bootstrap_alert.warning('Por favor verifique que a vossa palavra-passe esteja corretamente formada.');
