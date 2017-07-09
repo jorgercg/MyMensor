@@ -1576,7 +1576,7 @@ def savemobileonlyuser(request):
                 while User.objects.filter(username=mobusername).exists():
                     mobusernamecurrentprefix = mobonlyprefix()
                     mobusername = mobusernamecurrentprefix + currentusername
-                try:
+                #try:
                     if mobusername and currentuseremail and mobuserplainpassword:
                         mobuser = User.objects.create_user(mobusername, currentuseremail, mobuserplainpassword)
                         g = Group.objects.get(name='mymARwebapp')
@@ -1592,12 +1592,12 @@ def savemobileonlyuser(request):
                             content_type="application/json",
                             status=400
                         )
-                except:
-                    return HttpResponse(
-                        json.dumps({"succesful": succesful, "error": "exception"}),
-                        content_type="application/json",
-                        status=400
-                    )
+                #except:
+                #    return HttpResponse(
+                #        json.dumps({"succesful": succesful, "error": "exception"}),
+                #        content_type="application/json",
+                #        status=400
+                #    )
                 return HttpResponse(
                     json.dumps({"succesful": succesful}),
                     content_type="application/json",
