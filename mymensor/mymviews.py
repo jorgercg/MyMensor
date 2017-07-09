@@ -1550,17 +1550,12 @@ def savemobileonlyuser(request):
         if mobuserplainpassword is not None:
             if mobuseralreadyexists == 1:
                 try:
-                    if mobusername and currentuseremail and mobuserplainpassword:
-                        mobuser = User.objects.get(username=mobusername)
-                        mobuser.set_password(mobuserplainpassword)
-                        mobuser.save()
-                        succesful = True
-                    else:
-                        return HttpResponse(
-                            json.dumps({"succesful": succesful, "error": "password"}),
-                            content_type="application/json",
-                            status=400
-                        )
+                    mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+                    mobusername = mobonlyuser.mobileOnlyUserPrefix+currentusername
+                    mobuser = User.objects.get(username=mobusername)
+                    mobuser.set_password(mobuserplainpassword)
+                    mobuser.save()
+                    succesful = True
                 except:
                     return HttpResponse(
                         json.dumps({"succesful": succesful, "error": "exception"}),
