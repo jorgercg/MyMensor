@@ -38,6 +38,16 @@
                                     type="button">{% trans 'Modify password' %}</button>
                         </span>
                         </div>
+                        <div class="row" style="padding-bottom: 20px">
+                            <h3>{% trans "Delete your current mobile only user" %}</h3>
+                        </div>
+                        <div class="row" style="padding-bottom: 20px">
+                            <div class="col-lg-8 ">
+                                <p>{% trans "Press the button below to delete your current mobile only user." %}</p>
+                                <a id="delete-mobuser" class="btn btn-outline-danger text-danger"
+                                   role="button">{% trans "Delete Mobile Only User" %}</a>
+                            </div>
+                        </div>
                     {% else %}
                         <div id="alert_placeholder"></div>
                         <p></p>
@@ -68,11 +78,14 @@
     {% block javascript %}
         <script type="text/javascript">
 
+        var mobuseralreadyexists = false;
+
             // Submit post on submit
             $('#modifyexistingpassword').click(function (event) {
                 event.preventDefault();
                 var password = document.getElementById("existingpassword").value;
                 button_id = '#modifyexistingpassword';
+                mobuseralreadyexists = true;
                 console.log("Password existingpassword: " + password);  // sanity check
                 save_value(password);
             });
@@ -85,18 +98,25 @@
                 save_value(password);
             });
 
+            $('#delete-mobuser').click(function (event) {
+                event.preventDefault();
+                button_id = '#createpassword';
+                deletemobuser();
+            });
+
             // AJAX for posting
             function save_value(password) {
                 console.log("Saving Value is working!"); // sanity check
                 $.ajax({
                     url: "password/", // the endpoint
                     type: "POST", // http method
-                    data: {mobuserplainpassword: password}, // data sent with the post request
+                    data: {mobuserplainpassword: password, mobuseralreadyexists: mobuseralreadyexists}, // data sent with the post request
                     // handle a successful response
                     success: function (json) {
                         $(button_id).removeClass('btn-secondary').addClass('btn-success');
                         $(button_id).removeClass('btn-info').addClass('btn-success');
                         $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        $(button_id).removeClass('btn-outline-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
                         window.location = '{% url 'createmobileonlyuser' %}'
@@ -111,6 +131,37 @@
                             bootstrap_alert.warning('Por favor forme a sua senha corretamente.');
                         {% else %}
                             bootstrap_alert.warning('Please make sure that your password is correctly formed.');
+                        {% endif %}
+                    }
+                });
+            }
+
+            function deletemobuser() {
+                console.log("Deletemobuser is working!"); // sanity check
+                $.ajax({
+                    url: "delete/", // the endpoint
+                    type: "POST", // http method
+                    data: {payload: "empty"}, // data sent with the post request
+                    // handle a successful response
+                    success: function (json) {
+                        $(button_id).removeClass('btn-secondary').addClass('btn-success');
+                        $(button_id).removeClass('btn-info').addClass('btn-success');
+                        $(button_id).removeClass('btn-danger').addClass('btn-success');
+                        $(button_id).removeClass('btn-outline-danger').addClass('btn-success');
+                        console.log(json); // log the returned json to the console
+                        console.log("success"); // another sanity check
+                        window.location = '{% url 'createmobileonlyuser' %}'
+                    },
+                    // handle a non-successful response
+                    error: function (xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "pt" %}
+                            bootstrap_alert.warning('Aconteceu um erro.');
+                        {% elif LANGUAGE_CODE == "pt-br" %}
+                            bootstrap_alert.warning('Aconteceu um erro.');
+                        {% else %}
+                            bootstrap_alert.warning('An error occurred.');
                         {% endif %}
                     }
                 });

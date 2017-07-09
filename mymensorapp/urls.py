@@ -72,6 +72,7 @@ urlpatterns += i18n_patterns(
     url(r'^billingdeletesubscription/$', billingviews.deletesubscription, name='deletesubscription'),
     url(r'^createmobileonlyuser/$', mymviews.createmobileonlyuser, name='createmobileonlyuser'),
     url(r'^createmobileonlyuser/password/', mymviews.savemobileonlyuser, name='savemobileonlyuser'),
+    url(r'^createmobileonlyuser/delete/', mymviews.deletemobileonlyuser, name='deletemobileonlyuser'),
     url(r'^mobileonlyerror/$', TemplateView.as_view(template_name='mobileonlyerror.html'), name='mobileonlyerror'),
 
     # account urls

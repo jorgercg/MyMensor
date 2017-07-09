@@ -12,7 +12,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
-    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, MobileOnlyUser
+    TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
+    MobileOnlyUser
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
@@ -351,9 +352,9 @@ def cognitoauth(request):
         username = request.user.username
 
         if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
-            #TODO: Bring the prefix from Asset (Firstly put it there, obviusly....)
+            # TODO: Bring the prefix from Asset (Firstly put it there, obviusly....)
             usernameprefix = username[:4]
-            username = username.replace(usernameprefix,'')
+            username = username.replace(usernameprefix, '')
             usergroup = 'mymARmobileapp'
 
         response = client.get_open_id_token_for_developer_identity(
@@ -871,6 +872,7 @@ def TagStatusView(request):
                                                   })
     else:
         return HttpResponse(status=404)
+
 
 @login_required
 @user_passes_test(group_check)
@@ -1522,7 +1524,7 @@ def createmobileonlyuser(request):
             return render(request, 'createmobileonlyuserresult.html',
                           {'succesful': succesful})
         return render(request, 'createmobileonlyuserresult.html',
-                       {'succesful':succesful, 'mobonlyuser':mobonlyuser})
+                      {'succesful': succesful, 'mobonlyuser': mobonlyuser})
     return HttpResponse(status=404)
 
 
@@ -1536,6 +1538,7 @@ def savemobileonlyuser(request):
         mobusernamecurrentprefix = mobonlyprefix()
         mobusername = mobusernamecurrentprefix + currentusername
         mobuserplainpassword = request.POST.get('mobuserplainpassword', None)
+        mobuseralreadyexists = request.POST.get('mobuseralreadyexists', None)
         if all(c.isdigit() or c.islower() or c.isupper() for c in mobuserplainpassword) is not True:
             mobuserplainpassword = None
         if mobuserplainpassword is not None:
@@ -1545,41 +1548,94 @@ def savemobileonlyuser(request):
             if len(mobuserplainpassword) < 8:
                 mobuserplainpassword = None
         if mobuserplainpassword is not None:
-            while User.objects.filter(username=mobusername).exists():
-                mobusernamecurrentprefix = mobonlyprefix()
-                mobusername = mobusernamecurrentprefix + currentusername
-            try:
-                if mobusername and currentuseremail and mobuserplainpassword:
-                    mobuser = User.objects.create_user(mobusername, currentuseremail, mobuserplainpassword)
-                    g = Group.objects.get(name='mymARwebapp')
-                    g.user_set.remove(mobuser)
-                    g = Group.objects.get(name='mymARmobileapp')
-                    g.user_set.add(mobuser)
-                    MobileOnlyUser.objects.update_or_create(mobileOnlyUser=request.user, mobileOnlyUserPrefix=mobusernamecurrentprefix)
-                    succesful = True
-                else:
+            if mobuseralreadyexists:
+                try:
+                    if mobusername and currentuseremail and mobuserplainpassword:
+                        mobuser = User.objects.get(username=mobusername)
+                        mobuser.set_password(mobuserplainpassword)
+                        mobuser.save()
+                        succesful = True
+                    else:
+                        return HttpResponse(
+                            json.dumps({"succesful": succesful, "error": "password"}),
+                            content_type="application/json",
+                            status=400
+                        )
+                except:
                     return HttpResponse(
-                        json.dumps({"succesful": succesful, "error": "password"}),
+                        json.dumps({"succesful": succesful, "error": "exception"}),
                         content_type="application/json",
                         status=400
                     )
-            except:
                 return HttpResponse(
-                    json.dumps({"succesful": succesful, "error": "exception"}),
+                    json.dumps({"succesful": succesful}),
                     content_type="application/json",
-                    status=400
+                    status=200
                 )
-            return HttpResponse(
-                json.dumps({"succesful": succesful}),
-                content_type="application/json",
-                status=200
-            )
+            else:
+                while User.objects.filter(username=mobusername).exists():
+                    mobusernamecurrentprefix = mobonlyprefix()
+                    mobusername = mobusernamecurrentprefix + currentusername
+                try:
+                    if mobusername and currentuseremail and mobuserplainpassword:
+                        mobuser = User.objects.create_user(mobusername, currentuseremail, mobuserplainpassword)
+                        g = Group.objects.get(name='mymARwebapp')
+                        g.user_set.remove(mobuser)
+                        g = Group.objects.get(name='mymARmobileapp')
+                        g.user_set.add(mobuser)
+                        MobileOnlyUser.objects.update_or_create(mobileOnlyUser=request.user,
+                                                                mobileOnlyUserPrefix=mobusernamecurrentprefix)
+                        succesful = True
+                    else:
+                        return HttpResponse(
+                            json.dumps({"succesful": succesful, "error": "password"}),
+                            content_type="application/json",
+                            status=400
+                        )
+                except:
+                    return HttpResponse(
+                        json.dumps({"succesful": succesful, "error": "exception"}),
+                        content_type="application/json",
+                        status=400
+                    )
+                return HttpResponse(
+                    json.dumps({"succesful": succesful}),
+                    content_type="application/json",
+                    status=200
+                )
         else:
             return HttpResponse(
                 json.dumps({"succesful": succesful, "error": "password"}),
                 content_type="application/json",
                 status=400
             )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing": "not happening"}),
+            content_type="application/json",
+            status=400
+        )
+
+
+@login_required
+@user_passes_test(group_check)
+def deletemobileonlyuser(request):
+    if request.method == 'POST':
+        succesful = False
+        mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+        try:
+            mobonlyuser.delete()
+        except:
+            return HttpResponse(
+                json.dumps({"succesful": succesful, "error": "exception"}),
+                content_type="application/json",
+                status=400
+            )
+        return HttpResponse(
+            json.dumps({"succesful": succesful}),
+            content_type="application/json",
+            status=200
+        )
     else:
         return HttpResponse(
             json.dumps({"nothing": "not happening"}),
