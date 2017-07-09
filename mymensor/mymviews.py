@@ -1551,7 +1551,7 @@ def savemobileonlyuser(request):
             if mobuseralreadyexists == 1:
                 #try:
                 mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
-                mobuser = User.objects.get(username=mobonlyuser.mobileOnlyUserPrefix+currentusername)
+                mobuser = User.objects.get(id=mobonlyuser.mobileOnlyUserAuthUserId)
                 mobuser.set_password(mobuserplainpassword)
                 mobuser.save()
                 succesful = True
@@ -1578,7 +1578,8 @@ def savemobileonlyuser(request):
                         g = Group.objects.get(name='mymARmobileapp')
                         g.user_set.add(mobuser)
                         MobileOnlyUser.objects.update_or_create(mobileOnlyUser=request.user,
-                                                                mobileOnlyUserPrefix=mobusernamecurrentprefix)
+                                                                mobileOnlyUserPrefix=mobusernamecurrentprefix,
+                                                                mobileOnlyUserAuthUserId=mobuser.id)
                         succesful = True
                     else:
                         return HttpResponse(
