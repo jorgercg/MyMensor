@@ -1538,7 +1538,7 @@ def savemobileonlyuser(request):
         mobusernamecurrentprefix = mobonlyprefix()
         mobusername = mobusernamecurrentprefix + currentusername
         mobuserplainpassword = request.POST.get('mobuserplainpassword', None)
-        mobuseralreadyexists = request.POST.get('mobuseralreadyexists', None)
+        mobuseralreadyexists = request.POST.get('mobuseralreadyexists', 0)
         if all(c.isdigit() or c.islower() or c.isupper() for c in mobuserplainpassword) is not True:
             mobuserplainpassword = None
         if mobuserplainpassword is not None:
@@ -1548,7 +1548,7 @@ def savemobileonlyuser(request):
             if len(mobuserplainpassword) < 8:
                 mobuserplainpassword = None
         if mobuserplainpassword is not None:
-            if mobuseralreadyexists=='true':
+            if mobuseralreadyexists == 1:
                 try:
                     if mobusername and currentuseremail and mobuserplainpassword:
                         mobuser = User.objects.get(username=mobusername)

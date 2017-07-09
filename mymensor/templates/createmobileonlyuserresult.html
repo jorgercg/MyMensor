@@ -76,14 +76,14 @@
     {% block javascript %}
         <script type="text/javascript">
 
-        var mobuseralreadyexists = false;
+        var mobuseralreadyexists = 0;
 
             // Submit post on submit
             $('#modifyexistingpassword').click(function (event) {
                 event.preventDefault();
                 var password = document.getElementById("existingpassword").value;
                 button_id = '#modifyexistingpassword';
-                mobuseralreadyexists = true;
+                mobuseralreadyexists = 1;
                 console.log("Password existingpassword: " + password);  // sanity check
                 save_value(password);
             });
