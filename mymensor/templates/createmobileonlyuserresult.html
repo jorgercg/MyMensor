@@ -12,41 +12,57 @@
                 <p></p>
             </div>
             <div class="row" style="padding-bottom: 20px">
-                {% if succesful %}
-                    <p></p>
-                    <p>{% trans "Your current mobile only user is the following:" %}</p>
-                    <p></p>
-                    <p>{% trans "Mobile Ony Username: " %}{{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</p>
-                    <p></p>
-                    <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
-                    <p></p>
-                    <div class="input-group">
-                        <input id="existingpassword"
-                               type="password" class="form-control"
-                               placeholder="{% trans 'Password here...' %}">
-                        <span class="input-group-btn">
+                <div class="col-md-5">
+                    {% if succesful %}
+                        <p></p><br/>
+                        <p>{% trans "Your current mobile only user is the following:" %}</p><br/>
+                        <p></p><br/>
+                        <p>
+                            {% trans "Mobile Only Username: " %}{{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</p>
+                        <br/>
+                        <p></p><br/>
+                        <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
+                        <br/>
+                        <p></p><br/>
+                        <ul>
+                            <li>{% trans "Your password must contain only letters and numbers." %}</li>
+                            <li>{% trans "Your password must contain at least 8 characters." %}</li>
+                            <li>{% trans "Your password can't be entirely numeric." %}</li>
+                        </ul>
+                        <div class="input-group">
+                            <input id="existingpassword"
+                                   type="password" class="form-control"
+                                   placeholder="{% trans 'Password here...' %}">
+                            <span class="input-group-btn">
                             <button id="modifyexistingpassword"
                                     class="btn btn-info"
                                     type="button">{% trans 'Modify password' %}</button>
                         </span>
-                    </div>
-                {% else %}
-                    <p></p>
-                    <p>{% trans "Current you do not have a mobile only user." %}</p>
-                    <p></p>
-                    <p>{% trans "To create one insert below a password to be used by your new mobile only user." %}</p>
-                    <p></p>
-                    <div class="input-group">
-                        <input id="newpassword"
-                               type="password" class="form-control"
-                               placeholder="{% trans 'Password here...' %}">
-                        <span class="input-group-btn">
+                        </div>
+                    {% else %}
+                        <p></p><br/>
+                        <p>{% trans "Current you do not have a mobile only user." %}</p><br/>
+                        <p></p><br/>
+                        <p>{% trans "To create one insert below a password to be used by your new mobile only user." %}</p>
+                        <br/>
+                        <p></p><br/>
+                        <ul>
+                            <li>{% trans "Your password must contain only letters and numbers." %}</li>
+                            <li>{% trans "Your password must contain at least 8 characters." %}</li>
+                            <li>{% trans "Your password can't be entirely numeric." %}</li>
+                        </ul>
+                        <div class="input-group">
+                            <input id="newpassword"
+                                   type="password" class="form-control"
+                                   placeholder="{% trans 'Password here...' %}">
+                            <span class="input-group-btn">
                             <button id="createpassword"
                                     class="btn btn-secondary"
                                     type="button">{% trans 'Create password and mobile user' %}</button>
                         </span>
-                    </div>
-                {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     {% endblock %}
@@ -65,7 +81,7 @@
             $('#createpassword').click(function (event) {
                 event.preventDefault();
                 var password = document.getElementById("newpassword").value;
-                 button_id = '#createpassword';
+                button_id = '#createpassword';
                 console.log("Password newpassword: " + password);  // sanity check
                 save_value(password);
             });
