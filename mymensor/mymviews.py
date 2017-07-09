@@ -1562,7 +1562,7 @@ def savemobileonlyuser(request):
                         status=400
                     )
                 return HttpResponse(
-                    json.dumps({"succesful": succesful}),
+                    json.dumps({"succesful": succesful, "mobuserUsername":mobuser.username}),
                     content_type="application/json",
                     status=200
                 )
