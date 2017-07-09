@@ -107,6 +107,7 @@
             // AJAX for posting
             function save_value(password) {
                 console.log("Saving Value is working!"); // sanity check
+                console.log("mobuseralreadyexists:"+mobuseralreadyexists); // sanity check
                 $.ajax({
                     url: "password/", // the endpoint
                     type: "POST", // http method
