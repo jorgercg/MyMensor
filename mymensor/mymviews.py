@@ -1619,7 +1619,9 @@ def deletemobileonlyuser(request):
     if request.method == 'POST':
         succesful = False
         mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+        mobuser = User.objects.get(id=mobonlyuser.mobileOnlyUserAuthUserId)
         try:
+            mobuser.delete()
             mobonlyuser.delete()
         except:
             return HttpResponse(
