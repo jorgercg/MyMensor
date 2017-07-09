@@ -1552,6 +1552,7 @@ def savemobileonlyuser(request):
                 #try:
                 mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
                 mobuser = User.objects.get(id=mobonlyuser.mobileOnlyUserAuthUserId)
+                mobuserusername = mobuser.username
                 mobuser.set_password(mobuserplainpassword)
                 mobuser.save()
                 succesful = True
@@ -1562,7 +1563,7 @@ def savemobileonlyuser(request):
                 #        status=400
                 #    )
                 return HttpResponse(
-                    json.dumps({"succesful": succesful, "mobuserUsername" : mobuser.username}),
+                    json.dumps({"succesful": succesful, "mobuserUsername" : mobuserusername}),
                     content_type="application/json",
                     status=200
                 )
