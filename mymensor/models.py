@@ -80,6 +80,7 @@ class Asset(models.Model):
 class MobileOnlyUser(models.Model):
     mobileOnlyUser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, verbose_name="Mobile Only User")
     mobileOnlyUserPrefix = models.CharField(max_length=50, null=True, verbose_name=_('Mobile Only User Prefix'))
+    mobileOnlyUserAuthUserId = models.IntegerField(null=True)
 
 
 class MobileSetupBackup(models.Model):
