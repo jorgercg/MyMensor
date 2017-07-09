@@ -1551,8 +1551,7 @@ def savemobileonlyuser(request):
             if mobuseralreadyexists == 1:
                 try:
                     mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
-                    mobusername = mobonlyuser.mobileOnlyUserPrefix+currentusername
-                    mobuser = User.objects.get(username=mobusername)
+                    mobuser = User.objects.get(username=mobonlyuser.mobileOnlyUserPrefix+currentusername)
                     mobuser.set_password(mobuserplainpassword)
                     mobuser.save()
                     succesful = True
