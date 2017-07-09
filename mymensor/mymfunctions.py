@@ -8,7 +8,8 @@ def isfloat(value):
 
 def mobonlyprefix():
     import random, string
-    return 'mym'.join(random.choice(string.uppercase) for i in range(3)).join('+')
+    code = ''.join(random.choice(string.uppercase) for i in range(3))
+    return 'mym'+code+'+'
 
 
 def setup_new_user(instance, **kwargs):
