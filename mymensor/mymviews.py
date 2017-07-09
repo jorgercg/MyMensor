@@ -1538,8 +1538,9 @@ def savemobileonlyuser(request):
         mobuserplainpassword = request.POST.get('mobuserplainpassword', None)
         if all(c.isdigit() or c.islower() or c.isupper() for c in mobuserplainpassword) is not True:
             mobuserplainpassword = None
-        if all(c.isdigit() for c in mobuserplainpassword):
-            mobuserplainpassword = None
+        if mobuserplainpassword is not None:
+            if all(c.isdigit() for c in mobuserplainpassword):
+                mobuserplainpassword = None
         if mobuserplainpassword is not None:
             if len(mobuserplainpassword) < 8:
                 mobuserplainpassword = None
