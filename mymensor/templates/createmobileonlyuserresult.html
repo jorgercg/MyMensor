@@ -14,16 +14,16 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-8">
                     {% if succesful %}
-                        <p></p><br/>
-                        <p>{% trans "Your current mobile only user is the following:" %}</p><br/>
-                        <p></p><br/>
+                        <div id="alert_placeholder"></div>
+                        <p></p>
+                        <p>{% trans "Your current mobile only user is the following:" %}</p>
+                        <p></p>
                         <p>
                             {% trans "Mobile Only Username: " %}{{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</p>
                         <br/>
-                        <p></p><br/>
+                        <p></p>
                         <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
-                        <br/>
-                        <p></p><br/>
+                        <p></p>
                         <ul>
                             <li>{% trans "Your password must contain only letters and numbers." %}</li>
                             <li>{% trans "Your password must contain at least 8 characters." %}</li>
@@ -40,12 +40,12 @@
                         </span>
                         </div>
                     {% else %}
-                        <p></p><br/>
-                        <p>{% trans "Current you do not have a mobile only user." %}</p><br/>
-                        <p></p><br/>
+                        <div id="alert_placeholder"></div>
+                        <p></p>
+                        <p>{% trans "Current you do not have a mobile only user." %}</p>
+                        <p></p>
                         <p>{% trans "To create one insert below a password to be used by your new mobile only user." %}</p>
-                        <br/>
-                        <p></p><br/>
+                        <p></p>
                         <ul>
                             <li>{% trans "Your password must contain only letters and numbers." %}</li>
                             <li>{% trans "Your password must contain at least 8 characters." %}</li>
@@ -106,6 +106,14 @@
                     error: function (xhr, errmsg, err) {
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
                         $(button_id).removeClass('btn-info').addClass('btn-danger');
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% if LANGUAGE_CODE == "pt" %}
+                            bootstrap_alert.warning('Por favor verifique que a vossa palavra-passe esteja corretamente formada.');
+                        {% elif LANGUAGE_CODE == "pt-br" %}
+                            bootstrap_alert.warning('Por favor forme a sua senha corretamente.');
+                        {% else %}
+                            bootstrap_alert.warning('Please make sure that your password is correctly formed.');
+                        {% endif %}
                     }
                 });
             }
@@ -162,6 +170,12 @@
                     }
                 }
             });
+
+            bootstrap_alert = function () {
+            };
+            bootstrap_alert.warning = function (message) {
+                $('#alert_placeholder').html('<div class="alert alert-danger" role="alert"><strong>' + message + '</strong></div>')
+            }
 
         </script>
     {% endblock %}
