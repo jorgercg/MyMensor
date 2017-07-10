@@ -18,7 +18,8 @@
                         <p>{% trans "Your current mobile only user is the following:" %}</p>
                         <p></p>
                         <p>
-                            {% trans "Mobile Only Username: " %}<strong>{{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</strong></p>
+                            {% trans "Mobile Only Username: " %}<strong>
+                            {{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</strong></p>
                         <p></p>
                         <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
                         <p></p>
@@ -28,14 +29,15 @@
                             <li>{% trans "Your password can't be entirely numeric." %}</li>
                         </ul>
                         <div class="input-group">
+
                             <input id="existingpassword"
                                    type="password" class="form-control"
                                    placeholder="{% trans 'Password here...' %}">
                             <span class="input-group-btn">
-                            <button id="modifyexistingpassword"
-                                    class="btn btn-info"
-                                    type="button">{% trans 'Modify password' %}</button>
-                        </span>
+                                <button id="modifyexistingpassword"
+                                        class="btn btn-info"
+                                        type="button">{% trans 'Modify password' %}</button>
+                            </span>
                         </div>
                         <div class="row" style="padding-top: 20px; padding-bottom: 20px">
                             <h3>{% trans "Delete your current mobile only user" %}</h3>
@@ -59,6 +61,9 @@
                             <li>{% trans "Your password can't be entirely numeric." %}</li>
                         </ul>
                         <div class="input-group">
+                            <span class="input-group-btn">
+                                <button id="newpasswdbtn" class="btn btn-secondary" type="button">{% trans 'Show' %}</button>
+                            </span>
                             <input id="newpassword"
                                    type="password" class="form-control"
                                    placeholder="{% trans 'Password here...' %}">
@@ -76,7 +81,19 @@
     {% block javascript %}
         <script type="text/javascript">
 
-        var mobuseralreadyexists = 0;
+            $("#newpasswdbtn").click(function () {
+                if ($("#newpassword").attr("type") == "password") {
+                    $("#newpassword").attr("type", "text");
+                    $("#newpasswdbtn").text("Hide");
+
+                } else {
+                    $("#newpassword").attr("type", "password");
+                    $("#newpasswdbtn").text("Show");
+                }
+            });
+
+
+            var mobuseralreadyexists = 0;
 
             // Submit post on submit
             $('#modifyexistingpassword').click(function (event) {
@@ -105,7 +122,7 @@
             // AJAX for posting
             function save_value(password) {
                 console.log("Saving Value is working!"); // sanity check
-                console.log("mobuseralreadyexists:"+mobuseralreadyexists); // sanity check
+                console.log("mobuseralreadyexists:" + mobuseralreadyexists); // sanity check
                 $.ajax({
                     url: "password/", // the endpoint
                     type: "POST", // http method
