@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-03 15:14+0100\n"
+"POT-Creation-Date: 2017-07-10 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,145 +18,167 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: mymensor/models.py:57
+#: mymensor/models.py:61
 msgid "Asset Description"
 msgstr ""
 
-#: mymensor/models.py:62
+#: mymensor/models.py:66
 msgid "Asset Owner Description"
 msgstr ""
 
-#: mymensor/models.py:68
+#: mymensor/models.py:72
 msgid "Capture frequency unit"
 msgstr ""
 
-#: mymensor/models.py:69
+#: mymensor/models.py:73
 msgid "Minimum capture frequency value"
 msgstr ""
 
-#: mymensor/models.py:109
+#: mymensor/models.py:82
+msgid "Mobile Only User Prefix"
+msgstr ""
+
+#: mymensor/models.py:120
 msgid "vp description"
 msgstr ""
 
-#: mymensor/models.py:133
+#: mymensor/models.py:144
 msgid "unit for the vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:134
+#: mymensor/models.py:145
 msgid "minimum vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:136
+#: mymensor/models.py:147
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 
-#: mymensor/models.py:138
+#: mymensor/models.py:149
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
 
-#: mymensor/models.py:140
+#: mymensor/models.py:151
 msgid "send all of this vp captures to the following email."
 msgstr ""
 
-#: mymensor/models.py:145
+#: mymensor/models.py:156
 msgid "tag description"
 msgstr ""
 
-#: mymensor/models.py:147
+#: mymensor/models.py:158
 msgid "tag is active"
 msgstr ""
 
-#: mymensor/models.py:150
+#: mymensor/models.py:161
 msgid "question that shall be answered when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:151
+#: mymensor/models.py:162
 msgid "unit to be used when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:153
+#: mymensor/models.py:164
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
 
-#: mymensor/models.py:155
+#: mymensor/models.py:166
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:156
+#: mymensor/models.py:167
 msgid "expected value for the tag"
 msgstr ""
 
-#: mymensor/models.py:158
+#: mymensor/models.py:169
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:160
+#: mymensor/models.py:171
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 
-#: mymensor/models.py:276 mymensor/tables.py:7
+#: mymensor/models.py:287 mymensor/tables.py:7
 msgid "NOT PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:276 mymensor/tables.py:7
+#: mymensor/models.py:287 mymensor/tables.py:7
 msgid "PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:276 mymensor/tables.py:7
+#: mymensor/models.py:287 mymensor/tables.py:7
 msgid "LOW RED"
 msgstr ""
 
-#: mymensor/models.py:276 mymensor/tables.py:7
+#: mymensor/models.py:287 mymensor/tables.py:7
 msgid "LOW YELLOW"
 msgstr ""
 
-#: mymensor/models.py:277 mymensor/tables.py:7
+#: mymensor/models.py:288 mymensor/tables.py:7
 msgid "GREEN"
 msgstr ""
 
-#: mymensor/models.py:278 mymensor/tables.py:8
+#: mymensor/models.py:289 mymensor/tables.py:8
 msgid "HIGH YELLOW"
 msgstr ""
 
-#: mymensor/models.py:278 mymensor/tables.py:8
+#: mymensor/models.py:289 mymensor/tables.py:8
 msgid "HIGH RED"
 msgstr ""
 
-#: mymensor/models.py:281 mymensor/tables.py:10
+#: mymensor/models.py:292 mymensor/tables.py:10
 msgid "Tag#"
 msgstr ""
 
-#: mymensor/models.py:282 mymensor/tables.py:11
+#: mymensor/models.py:293 mymensor/tables.py:11
 msgid "Tag Description"
 msgstr ""
 
-#: mymensor/models.py:283 mymensor/tables.py:12
+#: mymensor/models.py:294 mymensor/tables.py:12
 msgid "VP#"
 msgstr ""
 
-#: mymensor/models.py:284 mymensor/tables.py:13
+#: mymensor/models.py:295 mymensor/tables.py:13
 msgid "VP Description"
 msgstr ""
 
-#: mymensor/models.py:285 mymensor/tables.py:14
+#: mymensor/models.py:296 mymensor/tables.py:14
 msgid "Value"
 msgstr ""
 
-#: mymensor/models.py:286 mymensor/tables.py:15
+#: mymensor/models.py:297 mymensor/tables.py:15
 msgid "Unit"
 msgstr ""
 
-#: mymensor/models.py:287 mymensor/tables.py:16
+#: mymensor/models.py:298 mymensor/tables.py:16
 msgid "Media Time"
 msgstr ""
 
-#: mymensor/models.py:289 mymensor/tables.py:17
+#: mymensor/models.py:300 mymensor/tables.py:17
 msgid "Processing Time"
 msgstr ""
 
-#: mymensor/models.py:290 mymensor/tables.py:18 mymensor/templates/base.html:76
+#: mymensor/models.py:301 mymensor/tables.py:18 mymensor/templates/base.html:76
 msgid "Status"
+msgstr ""
+
+#: mymensor/templates/404.html:8
+msgid "404 Error"
+msgstr ""
+
+#: mymensor/templates/404.html:10
+msgid ""
+"Sorry! Unfortunately you are looking for a page that does not exist in this "
+"server!"
+msgstr ""
+
+#: mymensor/templates/500.html:8
+msgid "500 Error"
+msgstr ""
+
+#: mymensor/templates/500.html:10
+msgid "Sorry! Unfortunately there was an error!"
 msgstr ""
 
 #: mymensor/templates/assetsetup.html:32 mymensor/templates/tagsetup.html:107
@@ -258,49 +280,121 @@ msgstr ""
 msgid "Subscription"
 msgstr ""
 
-#: mymensor/templates/base.html:137 mymensor/templates/support.html:3
+#: mymensor/templates/base.html:137
+#: mymensor/templates/createmobileonlyuserresult.html:4
+msgid "Mobile Only User"
+msgstr ""
+
+#: mymensor/templates/base.html:139 mymensor/templates/support.html:3
 msgid "Support"
 msgstr ""
 
-#: mymensor/templates/base.html:153
+#: mymensor/templates/base.html:155
 msgid "About"
 msgstr ""
 
-#: mymensor/templates/base.html:155
+#: mymensor/templates/base.html:157
 msgid "The journey was long, but we are just starting! Contact us anytime at "
 msgstr ""
 
-#: mymensor/templates/base.html:162
+#: mymensor/templates/base.html:164
 msgid "Product"
 msgstr ""
 
-#: mymensor/templates/base.html:164
+#: mymensor/templates/base.html:166
 msgid "Docs"
 msgstr ""
 
-#: mymensor/templates/base.html:166
+#: mymensor/templates/base.html:168
 msgid "Videos"
 msgstr ""
 
-#: mymensor/templates/base.html:169
+#: mymensor/templates/base.html:171
 msgid "FAQ"
 msgstr ""
 
-#: mymensor/templates/base.html:176
+#: mymensor/templates/base.html:178
 #: mymensor/templates/registration/registration_form.html:35
 msgid "Terms of Service"
 msgstr ""
 
-#: mymensor/templates/base.html:179
+#: mymensor/templates/base.html:181
 msgid "Privacy"
 msgstr ""
 
-#: mymensor/templates/base.html:186 mymensor/templates/landing.html:251
+#: mymensor/templates/base.html:188 mymensor/templates/landing.html:251
 msgid "Language"
 msgstr ""
 
-#: mymensor/templates/base.html:200 mymensor/templates/landing.html:265
+#: mymensor/templates/base.html:202 mymensor/templates/landing.html:265
 msgid "Set"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:11
+msgid "Mobile Only User Status"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:18
+msgid "Your current mobile only user is the following:"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:21
+msgid "Mobile Only Username: "
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:24
+msgid ""
+"To modify the password in use by your mobile only user use the field below."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:27
+#: mymensor/templates/createmobileonlyuserresult.html:61
+msgid "Your password must contain only letters and numbers."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:28
+#: mymensor/templates/createmobileonlyuserresult.html:62
+msgid "Your password must contain at least 8 characters."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:29
+#: mymensor/templates/createmobileonlyuserresult.html:63
+msgid "Your password can't be entirely numeric."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:37
+#: mymensor/templates/createmobileonlyuserresult.html:71
+msgid "Password here..."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:41
+msgid "Modify password"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:45
+msgid "Delete your current mobile only user"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:49
+msgid "Press the button below to delete your current mobile only user."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:51
+msgid "Delete Mobile Only User"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:56
+msgid "Currently you do not have a mobile only user configured."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:58
+msgid ""
+"To create one insert below a password to be used by your new mobile only "
+"user."
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:75
+msgid "Create password and mobile user"
 msgstr ""
 
 #: mymensor/templates/createsubscription.html:4
@@ -775,6 +869,17 @@ msgstr ""
 msgid "Backup restore done!"
 msgstr ""
 
+#: mymensor/templates/mobileonlyerror.html:3
+#: mymensor/templates/mobileonlyerror.html:8
+msgid "Mobile Only User Error"
+msgstr ""
+
+#: mymensor/templates/mobileonlyerror.html:10
+msgid ""
+"Sorry! Unfortunately you are a mobile only user and thus cannot access "
+"MyMensor server."
+msgstr ""
+
 #: mymensor/templates/modifypaymentmethod.html:5
 msgid "Modify Payment Method"
 msgstr ""
@@ -789,7 +894,7 @@ msgid "Authorize"
 msgstr ""
 
 #: mymensor/templates/modifypaymentmethod.html:42
-#: mymensor/templates/updatepaymentmethod.html:42
+#: mymensor/templates/updatepaymentmethod.html:43
 msgid "en_US"
 msgstr ""
 
@@ -829,11 +934,11 @@ msgstr ""
 msgid "Account Activated"
 msgstr ""
 
-#: mymensor/templates/registration/activation_complete.html:14
+#: mymensor/templates/registration/activation_complete.html:11
 msgid "Your account is now activated."
 msgstr ""
 
-#: mymensor/templates/registration/activation_complete.html:16
+#: mymensor/templates/registration/activation_complete.html:13
 msgid "You can log in."
 msgstr ""
 
@@ -917,11 +1022,11 @@ msgstr ""
 msgid "Not a member?"
 msgstr ""
 
-#: mymensor/templates/registration/logout.html:4
+#: mymensor/templates/registration/logout.html:3
 msgid "Logged out"
 msgstr ""
 
-#: mymensor/templates/registration/logout.html:13
+#: mymensor/templates/registration/logout.html:6
 msgid "Successfully logged out"
 msgstr ""
 
@@ -929,7 +1034,7 @@ msgstr ""
 msgid "Password changed"
 msgstr ""
 
-#: mymensor/templates/registration/password_change_done.html:13
+#: mymensor/templates/registration/password_change_done.html:10
 msgid "Password successfully changed!"
 msgstr ""
 
@@ -1037,7 +1142,7 @@ msgstr ""
 msgid "Activation email sent"
 msgstr ""
 
-#: mymensor/templates/registration/registration_complete.html:13
+#: mymensor/templates/registration/registration_complete.html:10
 msgid "Please check your email to complete the registration process."
 msgstr ""
 
@@ -1112,78 +1217,90 @@ msgstr ""
 msgid "We could not modify your payment method, please see result:"
 msgstr ""
 
-#: mymensor/templates/subscription.html:55
+#: mymensor/templates/subscription.html:60
 msgid "Modify Current Payment Method"
 msgstr ""
 
-#: mymensor/templates/subscription.html:59
-#: mymensor/templates/subscription.html:67
+#: mymensor/templates/subscription.html:64
+#: mymensor/templates/subscription.html:72
 msgid "Cancel Subscription"
 msgstr ""
 
-#: mymensor/templates/subscription.html:63
+#: mymensor/templates/subscription.html:68
 msgid ""
 "Press the button below to cancel your subscription. Nonetheless, you will be "
 "able to use your current account until the end of the present subscription "
 "period."
 msgstr ""
 
-#: mymensor/templates/subscription.html:65
+#: mymensor/templates/subscription.html:70
 msgid "Your subscription is paid through "
 msgstr ""
 
-#: mymensor/templates/subscription.html:72
-#: mymensor/templates/subscription.html:118
+#: mymensor/templates/subscription.html:77
+#: mymensor/templates/subscription.html:139
 msgid "Thanks for registering with Mymensor and using our Web App!"
 msgstr ""
 
-#: mymensor/templates/subscription.html:77
-#: mymensor/templates/subscription.html:123
+#: mymensor/templates/subscription.html:82
+#: mymensor/templates/subscription.html:144
 msgid "You are currently on a trial period that will extend for another "
 msgstr ""
 
-#: mymensor/templates/subscription.html:78
-#: mymensor/templates/subscription.html:124
+#: mymensor/templates/subscription.html:83
+#: mymensor/templates/subscription.html:145
 msgid ""
 "If you would like to subscribe to our service, please press the button below."
 msgstr ""
 
-#: mymensor/templates/subscription.html:81
-#: mymensor/templates/subscription.html:127
+#: mymensor/templates/subscription.html:86
+#: mymensor/templates/subscription.html:118
+#: mymensor/templates/subscription.html:148
 msgid "Subscribe Now!"
 msgstr ""
 
-#: mymensor/templates/subscription.html:86
+#: mymensor/templates/subscription.html:91
+#: mymensor/templates/subscription.html:107
 msgid "Thanks for using Mymensor!"
 msgstr ""
 
-#: mymensor/templates/subscription.html:90
+#: mymensor/templates/subscription.html:95
 msgid "Your present subscription is canceled. "
 msgstr ""
 
-#: mymensor/templates/subscription.html:91
+#: mymensor/templates/subscription.html:96
 msgid ""
 "If you would like to subscribe again to our service, please press the button "
 "below."
 msgstr ""
 
-#: mymensor/templates/subscription.html:97
+#: mymensor/templates/subscription.html:102
 msgid "Subscribe Again Now!"
 msgstr ""
 
-#: mymensor/templates/subscription.html:102
-msgid "Current Subscription Status"
-msgstr ""
-
-#: mymensor/templates/subscription.html:107
-msgid "Status: "
+#: mymensor/templates/subscription.html:111
+msgid "Your last attempt to subscribe was unsuccessful. "
 msgstr ""
 
 #: mymensor/templates/subscription.html:112
+msgid ""
+"If you would like to try again to subscribe to our service, please press the "
+"button below."
+msgstr ""
+
+#: mymensor/templates/subscription.html:123
+msgid "Current Subscription Status"
+msgstr ""
+
+#: mymensor/templates/subscription.html:128
+msgid "Status: "
+msgstr ""
+
+#: mymensor/templates/subscription.html:133
 msgid "If you wish, please contact support about your current status."
 msgstr ""
 
-#: mymensor/templates/subscription.html:136
+#: mymensor/templates/subscription.html:157
 msgid "Please confirm that you want to cancel your subscription."
 msgstr ""
 
@@ -1395,19 +1512,19 @@ msgstr ""
 msgid "Check this media at MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:550
+#: mymensor/templates/vpdetail.html:564
 msgid "Media deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:558
+#: mymensor/templates/vpdetail.html:572
 msgid "Error: file not deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:574
+#: mymensor/templates/vpdetail.html:588
 msgid "Media moved."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:582
+#: mymensor/templates/vpdetail.html:596
 msgid "Error: media not moved."
 msgstr ""
 
