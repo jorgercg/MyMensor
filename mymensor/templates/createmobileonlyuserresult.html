@@ -29,7 +29,9 @@
                             <li>{% trans "Your password can't be entirely numeric." %}</li>
                         </ul>
                         <div class="input-group">
-
+                            <span class="input-group-btn">
+                                <button id="existpasswdbtn" class="btn btn-outline-info" type="button"><span id="existpassspan" class="fa fa-eye-slash"></span></button>
+                            </span>
                             <input id="existingpassword"
                                    type="password" class="form-control"
                                    placeholder="{% trans 'Password here...' %}">
@@ -80,18 +82,27 @@
     {% endblock %}
     {% block javascript %}
         <script type="text/javascript">
-
             $("#newpasswdbtn").click(function () {
                 if ($("#newpassword").attr("type") == "password") {
                     $("#newpassword").attr("type", "text");
-                    $("#newpassspan").attr("class", "fa fa-eye-slash");
+                    $("#newpassspan").attr("class", "fa fa-eye");
 
                 } else {
                     $("#newpassword").attr("type", "password");
-                    $("#newpassspan").attr("class", "fa fa-eye");
+                    $("#newpassspan").attr("class", "fa fa-eye-slash");
                 }
             });
 
+            $("#existpasswdbtn").click(function () {
+                if ($("#existingpassword").attr("type") == "password") {
+                    $("#existingpassword").attr("type", "text");
+                    $("#existpassspan").attr("class", "fa fa-eye");
+
+                } else {
+                    $("#existingpassword").attr("type", "password");
+                    $("#existpassspan").attr("class", "fa fa-eye-slash");
+                }
+            });
 
             var mobuseralreadyexists = 0;
 
