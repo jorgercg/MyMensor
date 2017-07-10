@@ -62,7 +62,7 @@
                         </ul>
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button id="newpasswdbtn" class="btn btn-secondary" type="button">{% trans 'Show' %}</button>
+                                <button id="newpasswdbtn" class="btn btn-outline-info text-info" type="button"><span id="newpassspan" class="fa fa-eye-slash"></span></button>
                             </span>
                             <input id="newpassword"
                                    type="password" class="form-control"
@@ -84,11 +84,11 @@
             $("#newpasswdbtn").click(function () {
                 if ($("#newpassword").attr("type") == "password") {
                     $("#newpassword").attr("type", "text");
-                    $("#newpasswdbtn").text("Hide");
+                    $("#newpassspan").attr("class", "fa fa-eye-slash");
 
                 } else {
                     $("#newpassword").attr("type", "password");
-                    $("#newpasswdbtn").text("Show");
+                    $("#newpassspan").attr("class", "fa fa-eye");
                 }
             });
 
