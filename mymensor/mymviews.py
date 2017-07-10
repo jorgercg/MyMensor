@@ -353,7 +353,7 @@ def cognitoauth(request):
 
         if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
             # TODO: Bring the prefix from Asset (Firstly put it there, obviusly....)
-            usernameprefix = username[:4]
+            usernameprefix = username[:7]
             username = username.replace(usernameprefix, '')
             usergroup = 'mymARmobileapp'
 
