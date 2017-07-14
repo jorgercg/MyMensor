@@ -355,7 +355,7 @@ def cognitoauth(request):
 
         qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
             mobileClientInstallDBTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
-
+        mobclientinstallinstace = None
         try:
             mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
         except mobclientinstallinstace.DoesNotExist:
