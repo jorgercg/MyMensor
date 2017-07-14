@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
-    MobileOnlyUser
+    MobileOnlyUser, MobileClientInstall
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
@@ -345,6 +345,13 @@ def cognitoauth(request):
 
         mymensormobileclienttype = request.META['HTTP_FROM']
 
+        mymclientguid = request.META['HTTP_WARNING']
+
+        assetinstance = Asset.objects.get(assetOwner=request.user)
+
+        mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+        mobclientinstallinstace.save()
+
         usergroup = 'mymARwebapp'
 
         token = (Token.objects.get(user_id=request.user.id)).key
@@ -367,7 +374,7 @@ def cognitoauth(request):
         response.update({'identityPoolId': 'eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73'})
         response.update({'key': token})
         response.update({'usergroup': usergroup})
-        assetinstance = Asset.objects.get(assetOwner=request.user)
+
         assetinstance.assetOwnerIdentityId = response['IdentityId']
         assetinstance.assetDciClientSoftwareType = mymensormobileclienttype
         assetinstance.save()

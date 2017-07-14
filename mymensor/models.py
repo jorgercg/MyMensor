@@ -77,6 +77,12 @@ class Asset(models.Model):
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
 
 
+class MobileClientInstall(models.Model):
+    asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
+    mobileClientInstallGUID = models.CharField(max_length=1024, null=True, blank=True)
+    mobileClientInstallDBTimeStamp = models.DateTimeField(auto_now=True)
+
+
 class MobileOnlyUser(models.Model):
     mobileOnlyUser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, verbose_name="Mobile Only User")
     mobileOnlyUserPrefix = models.CharField(max_length=50, null=True, verbose_name=_('Mobile Only User Prefix'))
