@@ -80,7 +80,9 @@ class Asset(models.Model):
 class MobileClientInstall(models.Model):
     asset = models.ForeignKey(Asset, on_delete=models.CASCADE)  ###### FK
     mobileClientInstallGUID = models.CharField(max_length=1024, null=True, blank=True)
-    mobileClientInstallDBTimeStamp = models.DateTimeField(auto_now=True)
+    mobileClientInstallCreationTimeStamp = models.DateTimeField(auto_now=False, null=True)
+    mobileClientInstallOrderNumber = models.IntegerField(null=True)
+    mobileClientInstallLastAccessTimeStamp = models.DateTimeField(auto_now=False, null=True)
 
 
 class MobileOnlyUser(models.Model):

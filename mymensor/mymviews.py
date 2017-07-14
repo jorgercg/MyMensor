@@ -353,13 +353,16 @@ def cognitoauth(request):
 
         thirtydaysago = datetime.today() - timedelta(days=30)
 
-        qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
-            mobileClientInstallDBTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
+        qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(mobileClientInstallLastAccessTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
+
+        qtyofinstallevermade = MobileClientInstall.objects.filter(asset=assetinstance).distinct('mobileClientInstallGUID').count()
+
         mobclientinstallinstace = MobileClientInstall()
         try:
             mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
         except mobclientinstallinstace.DoesNotExist:
-            mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+            timenow = datetime.utcnow()
+            mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid, mobileClientInstallOrderNumber=qtyofinstallevermade+1, mobileClientInstallCreationTimeStamp=timenow, mobileClientInstallLastAccessTimeStamp=timenow)
             mobclientinstallinstace.save()
 
 
