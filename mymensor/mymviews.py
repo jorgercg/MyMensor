@@ -349,6 +349,9 @@ def cognitoauth(request):
         except KeyError:
             mymclientguid = "NOTSET"
 
+        if mymclientguid == "NOTSET":
+            return HttpResponse(status=401)
+
         assetinstance = Asset.objects.get(assetOwner=request.user)
 
         thirtydaysago = datetime.today() - timedelta(days=30)
@@ -360,11 +363,12 @@ def cognitoauth(request):
         mobclientinstallinstace = MobileClientInstall()
         try:
             mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+            mobclientinstallinstace.mobileClientInstallLastAccessTimeStamp = datetime.utcnow()
+            mobclientinstallinstace.save(force_update=True)
         except mobclientinstallinstace.DoesNotExist:
             timenow = datetime.utcnow()
             mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid, mobileClientInstallOrderNumber=qtyofinstallevermade+1, mobileClientInstallCreationTimeStamp=timenow, mobileClientInstallLastAccessTimeStamp=timenow)
-            mobclientinstallinstace.save()
-
+            mobclientinstallinstace.save(force_insert=True)
 
         usergroup = 'mymARwebapp'
 
