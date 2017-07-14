@@ -344,8 +344,10 @@ def cognitoauth(request):
         )
 
         mymensormobileclienttype = request.META['HTTP_FROM']
-
-        mymclientguid = request.META['HTTP_WARNING']
+        try:
+            mymclientguid = request.META['HTTP_WARNING']
+        except KeyError:
+            mymclientguid = "NOTSET"
 
         assetinstance = Asset.objects.get(assetOwner=request.user)
 
