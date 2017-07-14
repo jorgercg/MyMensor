@@ -351,8 +351,17 @@ def cognitoauth(request):
 
         assetinstance = Asset.objects.get(assetOwner=request.user)
 
-        mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
-        mobclientinstallinstace.save()
+        thirtydaysago = datetime.today() - timedelta(days=30)
+
+        qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
+            mobileClientInstallDBTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
+
+        try:
+            mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+        except mobclientinstallinstace.DoesNotExist:
+            mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+            mobclientinstallinstace.save()
+
 
         usergroup = 'mymARwebapp'
 
@@ -1572,7 +1581,7 @@ def savemobileonlyuser(request):
                         status=400
                     )
                 return HttpResponse(
-                    json.dumps({"succesful": succesful, "mobuserUsername" : mobuserusername}),
+                    json.dumps({"succesful": succesful, "mobuserUsername": mobuserusername}),
                     content_type="application/json",
                     status=200
                 )
