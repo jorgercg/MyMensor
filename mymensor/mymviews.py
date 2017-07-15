@@ -28,6 +28,7 @@ from .tables import TagStatusTableClass
 import csv, os, requests
 from twython import Twython
 from django.utils.encoding import smart_str
+from django.utils.translation import ugettext_lazy as _
 
 
 def group_check(user):
@@ -165,10 +166,11 @@ def amazon_sns_processor(request):
                                                   Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                           'Key': media_received.mediaObjectS3Key},
                                                   ExpiresIn=3600)
+            landingurl = 'https://app.mymensor.com/landing/?type=1&key='+media_received.mediaObjectS3Key+'&signature='+media_received.mediaSha256
             if media_received.mediaRemark is None:
-                mediaRemarkToBeShared = 'Media Shared by MyMensor Server'
+                mediaRemarkToBeShared = _('Media Shared by MyMensor Bot /n')+landingurl
             else:
-                mediaRemarkToBeShared = media_received.mediaRemark + ' + Media Shared by MyMensor Server'
+                mediaRemarkToBeShared = media_received.mediaRemark + _(' (by MyMensor Bot) /n')+landingurl
             if vp_received.vpShareEmail is not None:
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
@@ -179,7 +181,7 @@ def amazon_sns_processor(request):
                             for chunk in requesturl:
                                 image.write(chunk)
                         image = open(filename, 'rb')
-                        subject = "Media Shared by MyMensor Server"
+                        subject = _("MyMensor Bot sent you a media by request of ")+emailsender
                         message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
