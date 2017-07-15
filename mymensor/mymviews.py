@@ -170,8 +170,8 @@ def amazon_sns_processor(request):
             if media_received.mediaRemark is None:
                 mediaRemarkToBeShared = _('Media Shared by MyMensor Bot /n')+landingurl
             else:
-                mediaRemarkToBeShared = media_received.mediaRemark + _(' (by MyMensor Bot)')+landingurl
-            if vp_received.vpShareEmail is not None:
+                mediaRemarkToBeShared = media_received.mediaRemark + _(' (by MyMensor Bot) /n')+landingurl
+            if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail)>0):
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
                     filename = 'temp.jpg'
