@@ -181,7 +181,7 @@ def amazon_sns_processor(request):
                             for chunk in requesturl:
                                 image.write(chunk)
                         image = open(filename, 'rb')
-                        subject = _("MyMensor Bot sent you a media by request of ")+emailsender
+                        subject = _("MyMensor Bot sent you a media by request of ")+emailsender.username
                         message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
