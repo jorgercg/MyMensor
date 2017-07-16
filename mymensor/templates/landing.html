@@ -17,6 +17,8 @@
         <meta property="og:title" content="MyMensor Media Check">
         <meta property="og:description" content="This media can be checked at MyMensor WebApp.">
         <meta property="og:image" content="{{ mediaStorageURL }}">
+        <meta property="og:image:width" content="1280">
+        <meta property="og:image:height" content="720">
         <meta property="og:url" content="{{ mediaCheckURL }}">
         <meta name="twitter:card" content="summary_large_image">
         <meta property="og:site_name" content="MyMensor WebApp">
@@ -49,8 +51,9 @@
     </head>
     <body>
     <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
-        <a class="navbar-brand" href="https://mymensor.com"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}" width="46" height="46"
-                                              class="d-inline-block align-center" alt=""><span
+        <a class="navbar-brand" href="https://mymensor.com"><img src="{% static 'images/Logo_MyMensor_NEW3.svg' %}"
+                                                                 width="46" height="46"
+                                                                 class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span></a>
     </nav>
     <div class="container-fluid">
@@ -251,25 +254,25 @@
             {% block footer %}{% endblock %}
         </div><!-- /.container -->
         <div class="row language-selector">
-                <div class="col-md-5 mb-5">
-                    <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
-                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                        <select name="language">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                        selected="selected"{% endif %}>
-                                    {{ language.name_local }} ({{ language.code }})
-                                </option>
-                            {% endfor %}
-                        </select>
-                        <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
-                    </form>
-                </div>
+            <div class="col-md-5 mb-5">
+                <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
+                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                    <select name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                    selected="selected"{% endif %}>
+                                {{ language.name_local }} ({{ language.code }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
+                </form>
             </div>
+        </div>
         <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
         <script src="{% static "js/tether.min.js" %}"></script>
         <script src="{% static "js/bootstrap.min.js" %}"></script>
@@ -282,17 +285,17 @@
         <script>
             var zoomlevel = 1;
             var precision = {{ locprecisioninm | floatformat:3 }};
-            if (precision<10000) zoomlevel = 5;
-            if (precision<4800) zoomlevel = 6;
-            if (precision<2400) zoomlevel = 7;
-            if (precision<1200) zoomlevel = 8;
-            if (precision<600) zoomlevel = 9;
-            if (precision<300) zoomlevel = 10;
-            if (precision<160) zoomlevel = 11;
-            if (precision<80) zoomlevel = 12;
-            if (precision<40) zoomlevel = 13;
-            if (precision<20) zoomlevel = 14;
-            if (precision<10) zoomlevel = 15;
+            if (precision < 10000) zoomlevel = 5;
+            if (precision < 4800) zoomlevel = 6;
+            if (precision < 2400) zoomlevel = 7;
+            if (precision < 1200) zoomlevel = 8;
+            if (precision < 600) zoomlevel = 9;
+            if (precision < 300) zoomlevel = 10;
+            if (precision < 160) zoomlevel = 11;
+            if (precision < 80) zoomlevel = 12;
+            if (precision < 40) zoomlevel = 13;
+            if (precision < 20) zoomlevel = 14;
+            if (precision < 10) zoomlevel = 15;
 
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
 
