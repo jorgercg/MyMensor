@@ -89,6 +89,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                       'Key': mediaObjectS3KeyEncoded},
                                                               ExpiresIn=3600)
+            mediaStorageURLHeader = mediaStorageURL
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3 = session.resource('s3')
@@ -97,8 +98,15 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             obj_metadata = object.metadata
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+            if obj_metadata['Content-Type'] == 'video/mp4':
+                mediaObjectS3KeyEncodedHeader = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey.sub('_v_','_t_'))
+                mediaStorageURLHeader = s3Client.generate_presigned_url('get_object',
+                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                      'Key': mediaObjectS3KeyEncodedHeader},
+                                                              ExpiresIn=3600)
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
+                                                        'mediaStorageURLHeader': mediaStorageURLHeader,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
                                                         'mediaTimeIsCertified': obj_metadata['timecertified'],
@@ -267,23 +275,14 @@ def amazon_sns_processor(request):
                         if media_received.mediaRemark is None:
                             mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl + unicode(
-                                _('\n\n(Image Sent by MyMensor Bot)\n'))
+                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
                     if media_received.mediaContentType == "video/mp4":
-                        filename = 'temp.mp4'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as video:
-                                for chunk in requesturl:
-                                    video.write(chunk)
-                            video = open(filename, 'rb')
-                            response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
-                                                      media_ids=[response['media_id']])
-                            os.remove(filename)
+                        if media_received.mediaRemark is None:
+                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
                         else:
-                            print("Unable to download media")
+                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
+                        twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
             facebookAccount = None
             if vp_received.vpIsSharedToFacebook:
                 try:

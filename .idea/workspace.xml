@@ -4,6 +4,7 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/landing.html" afterPath="$PROJECT_DIR$/mymensor/templates/landing.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +60,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="270" column="39" lean-forward="true" selection-start-line="270" selection-start-column="39" selection-end-line="270" selection-end-column="39" />
+            <state relative-caret-position="-2550">
+              <caret line="95" column="75" lean-forward="true" selection-start-line="95" selection-start-column="75" selection-end-line="95" selection-end-column="75" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -81,8 +82,8 @@
       <file leaf-file-name="landing.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/landing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2932">
-              <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+            <state relative-caret-position="330">
+              <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -224,11 +225,11 @@
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/createmobileonlyuserresult.html" />
         <option value="$PROJECT_DIR$/mymensor/models.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
         <option value="$PROJECT_DIR$/mymensor/static/js/social-share-kit.js" />
         <option value="$PROJECT_DIR$/staticfiles/robots.txt" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
+        <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
       </list>
     </option>
@@ -694,13 +695,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-02714" summary="09jul2017 22h52min">
-      <created>1499637157270</created>
-      <option name="number" value="02714" />
-      <option name="presentableId" value="LOCAL-02714" />
-      <option name="project" value="LOCAL" />
-      <updated>1499637157270</updated>
-    </task>
     <task id="LOCAL-02715" summary="10jul2017 00h04min">
       <created>1499641496118</created>
       <option name="number" value="02715" />
@@ -1037,7 +1031,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500231013831</updated>
     </task>
-    <option name="localTasksCounter" value="2763" />
+    <task id="LOCAL-02763" summary="16jul2017 19h57min">
+      <created>1500231434700</created>
+      <option name="number" value="02763" />
+      <option name="presentableId" value="LOCAL-02763" />
+      <option name="project" value="LOCAL" />
+      <updated>1500231434700</updated>
+    </task>
+    <option name="localTasksCounter" value="2764" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1119,7 +1120,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="15jul2017 12h42min" />
     <MESSAGE value="15jul2017 12h49min" />
     <MESSAGE value="15jul2017 12h58min" />
     <MESSAGE value="15jul2017 13h14min" />
@@ -1144,7 +1144,8 @@
     <MESSAGE value="16jul2017 19h28min" />
     <MESSAGE value="16jul2017 19h40min" />
     <MESSAGE value="16jul2017 19h50min" />
-    <option name="LAST_COMMIT_MESSAGE" value="16jul2017 19h50min" />
+    <MESSAGE value="16jul2017 19h57min" />
+    <option name="LAST_COMMIT_MESSAGE" value="16jul2017 19h57min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1507,14 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/landing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2932">
-          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/vpdetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
@@ -1523,10 +1516,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/landing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="64" lean-forward="true" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="270" column="39" lean-forward="true" selection-start-line="270" selection-start-column="39" selection-end-line="270" selection-end-column="39" />
+        <state relative-caret-position="-2550">
+          <caret line="95" column="75" lean-forward="true" selection-start-line="95" selection-start-column="75" selection-end-line="95" selection-end-column="75" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>
