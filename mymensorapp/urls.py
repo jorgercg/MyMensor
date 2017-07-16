@@ -25,7 +25,7 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     url(r'^landing/$', mymviews.landingView, name='landing'),
-    url(r'^mc/([0-9])/cap/(.+)/([0-9]+_[pv]_[0-9]{13}\.[.]{3})/([0-9][A-Z]{64})/$', mymviews.mediacheck, name='mediacheck'),
+    url(r'^mc/([0-9])/cap/(.+)/([0-9]+[_][pv][_][0-9]{13}[\.][.]{3})/([0-9][A-Z]{64})/$', mymviews.mediacheck, name='mediacheck'),
     url(r'^chaining/', include('smart_selects.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^sns-notifications/', mymviews.amazon_sns_processor),
