@@ -269,18 +269,7 @@ def amazon_sns_processor(request):
                     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
                                           twitterAccount.twtAccessTokenSecret)
                     if media_received.mediaContentType == "image/jpeg":
-                        filename = 'temp.jpg'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as image:
-                                for chunk in requesturl:
-                                    image.write(chunk)
-                            image = open(filename, 'rb')
-                            response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter, media_ids=[response['media_id']])
-                            os.remove(filename)
-                        else:
-                            print("Unable to download media")
+                        twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
                     if media_received.mediaContentType == "video/mp4":
                         filename = 'temp.mp4'
                         requesturl = requests.get(url, stream=True)
