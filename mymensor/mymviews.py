@@ -78,6 +78,46 @@ def landingView(request):
     return HttpResponse(status=404)
 
 
+def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, requestsignature):
+    if request.method == "GET":
+        if mediaObjectS3partialKey != 0 and messagetype != 0 and requestsignature != 0 and messagemymuser != 0:
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+            s3Client = session.client('s3')
+            mediaObjectS3KeyEncoded = urllib.quote('cap/'+messagemymuser+'/'+mediaObjectS3partialKey)
+            mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                      'Key': mediaObjectS3KeyEncoded},
+                                                              ExpiresIn=3600)
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+            s3 = session.resource('s3')
+            object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
+            object.load()
+            obj_metadata = object.metadata
+            mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
+            mediaCheckURL = mediaCheckURL + '/cap/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+            if obj_metadata['sha-256'] == requestsignature:
+                return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
+                                                        'mediaContentType': object.content_type,
+                                                        'mediaArIsOn': obj_metadata['isarswitchon'],
+                                                        'mediaTimeIsCertified': obj_metadata['timecertified'],
+                                                        'mediaLocIsCertified': obj_metadata['loccertified'],
+                                                        'mediaTimeStamp': obj_metadata['datetime'],
+                                                        'loclatitude': obj_metadata['loclatitude'],
+                                                        'loclongitude': obj_metadata['loclongitude'],
+                                                        'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                        'mediasignature': obj_metadata['sha-256'],
+                                                        'mediaCheckURL': mediaCheckURL,
+                                                        })
+            else:
+                return HttpResponse(status=404)
+        else:
+            return HttpResponse(status=404)
+
+    return HttpResponse(status=404)
+
+
 # Amazon SNS Notification Processor View
 @csrf_exempt
 def amazon_sns_processor(request):
@@ -167,10 +207,11 @@ def amazon_sns_processor(request):
                                                           'Key': media_received.mediaObjectS3Key},
                                                   ExpiresIn=3600)
             landingurl = 'https://app.mymensor.com/landing/?type=1&key='+media_received.mediaObjectS3Key+'&signature='+media_received.mediaSha256
+            mcurl= 'https://app.mymensor.com/mc/1/'+media_received.mediaObjectS3Key+'/'+media_received.mediaSha256
             if media_received.mediaRemark is None:
-                mediaRemarkToBeShared = unicode(_('Media Shared by MyMensor Bot \n\n'))+landingurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
+                mediaRemarkToBeShared = unicode(_('Media Shared by MyMensor Bot \n\n'))+mcurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
             else:
-                mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + landingurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
+                mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
             if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail)>0):
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
