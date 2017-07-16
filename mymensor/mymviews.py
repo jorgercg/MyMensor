@@ -256,11 +256,6 @@ def amazon_sns_processor(request):
                         print("Unable to download media")
             twitterAccount = None
             if vp_received.vpIsSharedToTwitter:
-                if media_received.mediaRemark is None:
-                    mediaRemarkToBeSharedToTwitter = unicode(_('Media Shared by MyMensor Bot \n\n')) + mcurl
-                else:
-                    mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl + unicode(
-                        _('\n\n(Sent by MyMensor Bot)\n'))
                 try:
                     twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
                 except:
@@ -269,6 +264,11 @@ def amazon_sns_processor(request):
                     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
                                           twitterAccount.twtAccessTokenSecret)
                     if media_received.mediaContentType == "image/jpeg":
+                        if media_received.mediaRemark is None:
+                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
+                        else:
+                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl + unicode(
+                                _('\n\n(Image Sent by MyMensor Bot)\n'))
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
                     if media_received.mediaContentType == "video/mp4":
                         filename = 'temp.mp4'
