@@ -99,7 +99,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
             if object.content_type == 'video/mp4':
-                mediaObjectS3KeyEncodedHeader = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey.sub('_v_','_t_'))
+                mediaObjectS3KeyEncodedHeader = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey.replace('_v_','_t_'))
                 mediaStorageURLHeader = s3Client.generate_presigned_url('get_object',
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                       'Key': mediaObjectS3KeyEncodedHeader},
