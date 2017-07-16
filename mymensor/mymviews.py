@@ -96,7 +96,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             object.load()
             obj_metadata = object.metadata
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
-            mediaCheckURL = mediaCheckURL + '/cap/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+            mediaCheckURL = mediaCheckURL + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
@@ -256,6 +256,11 @@ def amazon_sns_processor(request):
                         print("Unable to download media")
             twitterAccount = None
             if vp_received.vpIsSharedToTwitter:
+                if media_received.mediaRemark is None:
+                    mediaRemarkToBeSharedToTwitter = unicode(_('Media Shared by MyMensor Bot \n\n')) + mcurl
+                else:
+                    mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl + unicode(
+                        _('\n\n(Sent by MyMensor Bot)\n'))
                 try:
                     twitterAccount = TwitterAccount.objects.get(twtOwner_id=media_user_id)
                 except:
@@ -272,7 +277,7 @@ def amazon_sns_processor(request):
                                     image.write(chunk)
                             image = open(filename, 'rb')
                             response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=mediaRemarkToBeShared, media_ids=[response['media_id']])
+                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter, media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
                             print("Unable to download media")
@@ -285,7 +290,7 @@ def amazon_sns_processor(request):
                                     video.write(chunk)
                             video = open(filename, 'rb')
                             response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=mediaRemarkToBeShared,
+                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
                                                       media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
