@@ -14,9 +14,13 @@
             {% endblock %}
         </title>
         <meta name="MyMensor WebApp" content="">
-        <meta property="og:image" content="{{ mediaStorageURL }}"/>
-        <meta property="og:title" content="MyMensor Media Check"/>
-        <meta property="og:description" content="Media Signature: {{ mediasignature }}"/>
+        <meta property="og:title" content="MyMensor Media Check">
+        <meta property="og:description" content="This media can be checked at MyMensor WebApp.">
+        <meta property="og:image" content="{{ mediaStorageURL }}">
+        <meta property="og:url" content="{{ mediaCheckURL }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta property="og:site_name" content="MyMensor WebApp">
+
         <!-- Mobile Specific Metas
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
