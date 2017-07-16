@@ -44,6 +44,7 @@ urlpatterns = [
     url(r'^fbmain/$', mymviews.fbmain, name='fbmain'),
     url(r'^fbmain/secstgauth/', mymviews.fbsecstageauth, name='fbsecstageauth'),
     url(r'^fbmain/secstglogout/', mymviews.fbsecstagelogout, name='fbsecstagelogout'),
+    url(r'^robots.txt$', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots_file"),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
 
