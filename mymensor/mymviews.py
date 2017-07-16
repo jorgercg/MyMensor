@@ -96,7 +96,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             object.load()
             obj_metadata = object.metadata
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
-            mediaCheckURL = mediaCheckURL + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+            mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
