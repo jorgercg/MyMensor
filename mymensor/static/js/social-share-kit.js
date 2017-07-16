@@ -203,7 +203,7 @@ var SocialShareKit = (function () {
                 break;
             case 'twitter':
                 url = 'https://twitter.com/intent/tweet?url=' + paramsObj.shareUrlEncoded() +
-                    '&text=' + encodeURIComponent(title + (text && title ? ' - ' : '') + text);
+                    '&text=' + encodeURIComponent(text);
                 if (via)
                     url += '&via=' + via.replace('@', '');
                 break;
