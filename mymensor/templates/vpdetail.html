@@ -55,7 +55,7 @@
                     <button id="mediacheckbtn" type="button" class="btn btn-outline-danger btn-sm move"
                             data-toggle="tooltip" data-placement="top"
                             title="{% trans 'Click to open media check share page' %}" target="_blank"
-                            onclick=" window.open('https://app.mymensor.com/landing/?type=1&key={{ mediaObjectS3Key }}&signature={{ mediaSha256 }}','_blank')">
+                            onclick=" window.open('https://app.mymensor.com/mc/1/' + '{{ mediaObjectS3Key }}' + '/' + '{{ mediaSha256 }}','_blank')">
                         <span class="fa fa-qrcode"></span>
                     </button>
                 </div>
