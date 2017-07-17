@@ -669,3 +669,16 @@ svg {
     }
 }
 
+.thumbnail {
+    position: absolute;
+    display: table;
+    z-index: 2;
+    opacity: 0;
+    left: 10px;
+    top: 10px;
+    width:603px;
+    height:417px;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+}
