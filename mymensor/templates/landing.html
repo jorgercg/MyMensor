@@ -260,10 +260,10 @@
         </div><!-- /.container -->
         <div class="row language-selector">
             <div class="col-md-5 mb-5">
-                <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
-                <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                    <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
                     <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select name="language">
+                    <select id="languageselect" name="language">
                         {% get_current_language as LANGUAGE_CODE %}
                         {% get_available_languages as LANGUAGES %}
                         {% get_language_info_list for LANGUAGES as languages %}
