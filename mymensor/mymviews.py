@@ -174,6 +174,8 @@ def amazon_sns_processor(request):
             media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
             media_received.mediaVpNumber = obj_metadata['vp']
             media_received.mediaMymensorAccount = urllib.unquote(obj_metadata['mymensoraccount'])
+            media_received.mediaOriginalMymensorAccount = urllib.unquote(obj_metadata['origmymacc'])
+            media_received.mediaDeviceId = obj_metadata['deviceid']
 
             # Fetching the info necessary to fill the vp_id i.e. pk information
             media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
