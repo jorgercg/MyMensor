@@ -171,9 +171,9 @@
                                                     <a data-toggle="modal"
                                                        data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
                                                        data-whatever="{{ media.mediaStorageURL }}">
-                                                        <video controls>
-                                                            <source src="{{ media.mediaStorageURL }}" type="video/mp4">
-                                                        </video>
+                                                        <img class="card-img-top img-fluid"
+                                                         src="{{ media.mediaThumbnailStorageURL }}"
+                                                         alt="">
                                                     </a>
                                                 </div>
                                                 <div class="card-block">
