@@ -292,10 +292,14 @@ def amazon_sns_processor(request):
                 except:
                     facebookAccount = None
                 if facebookAccount is not None:
+                    if media_received.mediaRemark is None:
+                        mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot'))
+                    else:
+                        mediaRemarkToBeSharedToFB = media_received.mediaRemark
                     if media_received.mediaContentType == "image/jpeg":
-                        data = {'url': url, 'caption': mediaRemarkToBeShared,
+                        data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
-                        imgpostresponse = requests.post('https://graph.facebook.com/v2.8/me/photos', data=data)
+                        feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
                     if media_received.mediaContentType == "video/mp4":
                         data = {'file_url': url, 'description': mediaRemarkToBeShared,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
