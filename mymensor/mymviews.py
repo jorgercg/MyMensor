@@ -360,6 +360,13 @@ def portfolio(request):
                                                                             'Key': media.mediaObjectS3Key},
                                                                     ExpiresIn=3600)
             media_vpnumbers.append(media.mediaVpNumber)
+            if media.mediaContentType == 'video/mp4':
+                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_','_t_')
+                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4','.jpg')
+                media.mediaThumbnailStorageURL = s3Client.generate_presigned_url('get_object',
+                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                      'Key': mediaObjectS3KeyForThumbnail},
+                                                              ExpiresIn=3600)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,

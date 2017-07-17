@@ -246,6 +246,7 @@ class Media(models.Model):
     mediaAssetNumber = models.IntegerField(null=True)
     mediaObjectS3Key = models.CharField(max_length=255, null=True)
     mediaStorageURL = models.CharField(max_length=1024, null=True)
+    mediaThumbnailStorageURL = models.CharField(max_length=1024, null=True)
     mediaContentType = models.CharField(max_length=255, null=True)
     mediaLatitude = models.FloatField(null=True)
     mediaLongitude = models.FloatField(null=True)
