@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/landing.html" afterPath="$PROJECT_DIR$/mymensor/templates/landing.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,11 +80,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/landing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
+            <state relative-caret-position="78">
               <caret line="261" column="39" lean-forward="false" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mymensorstylelandingonly.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="337" column="27" lean-forward="true" selection-start-line="337" selection-start-column="27" selection-end-line="337" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -113,7 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>qtytagsinclient</find>
       <find>proce</find>
       <find>pf_mediaid_sendvalue_loc</find>
       <find>pf_mediaid_sendvalue</find>
@@ -143,6 +152,7 @@
       <find>DoesNotExist</find>
       <find>paramsObj</find>
       <find>landingurl</find>
+      <find>language-selector</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -174,7 +184,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/tagstatus.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagprocessing.html" />
         <option value="$PROJECT_DIR$/locale/pt/LC_MESSAGES/django.po" />
-        <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
         <option value="$PROJECT_DIR$/mymensor/static/css/chosen.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/support.html" />
@@ -220,6 +229,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
+        <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
       </list>
     </option>
   </component>
@@ -368,7 +378,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MyMensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mymensor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -643,13 +675,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-02724" summary="10jul2017 12h43min">
-      <created>1499687000911</created>
-      <option name="number" value="02724" />
-      <option name="presentableId" value="LOCAL-02724" />
-      <option name="project" value="LOCAL" />
-      <updated>1499687000911</updated>
     </task>
     <task id="LOCAL-02725" summary="10jul2017 14h47min">
       <created>1499694472065</created>
@@ -987,7 +1012,14 @@
       <option name="project" value="LOCAL" />
       <updated>1500289051501</updated>
     </task>
-    <option name="localTasksCounter" value="2773" />
+    <task id="LOCAL-02773" summary="17jul2017 12h06min">
+      <created>1500289622390</created>
+      <option name="number" value="02773" />
+      <option name="presentableId" value="LOCAL-02773" />
+      <option name="project" value="LOCAL" />
+      <updated>1500289622390</updated>
+    </task>
+    <option name="localTasksCounter" value="2774" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1069,7 +1101,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="false" />
-    <MESSAGE value="16jul2017 13h36min" />
     <MESSAGE value="16jul2017 13h40min" />
     <MESSAGE value="16jul2017 13h59min" />
     <MESSAGE value="16jul2017 16h39min" />
@@ -1094,7 +1125,8 @@
     <MESSAGE value="17jul2017 11h30min" />
     <MESSAGE value="17jul2017 11h37min" />
     <MESSAGE value="17jul2017 11h57min" />
-    <option name="LAST_COMMIT_MESSAGE" value="17jul2017 11h57min" />
+    <MESSAGE value="17jul2017 12h06min" />
+    <option name="LAST_COMMIT_MESSAGE" value="17jul2017 12h06min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1106,13 +1138,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1475,8 +1500,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/landing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
+        <state relative-caret-position="78">
           <caret line="261" column="39" lean-forward="false" selection-start-line="261" selection-start-column="39" selection-end-line="261" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="337" column="27" lean-forward="true" selection-start-line="337" selection-start-column="27" selection-end-line="337" selection-end-column="27" />
           <folding />
         </state>
       </provider>
