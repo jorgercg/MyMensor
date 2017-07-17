@@ -218,13 +218,15 @@ def amazon_sns_processor(request):
                                                   ExpiresIn=3600)
             landingurl = 'https://app.mymensor.com/landing/?type=1&key='+media_received.mediaObjectS3Key+'&signature='+media_received.mediaSha256
             mcurl= 'https://app.mymensor.com/mc/1/'+media_received.mediaObjectS3Key+'/'+media_received.mediaSha256
-            if media_received.mediaRemark is None:
-                mediaRemarkToBeShared = unicode(_('Media Shared by MyMensor Bot \n\n'))+mcurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
-            else:
-                mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl+unicode(_('\n\n(Sent by MyMensor Bot - folow the link above to check media on mymensor.com) \n'))
             if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail)>0):
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
+                    if media_received.mediaRemark is None:
+                        mediaRemarkToBeShared = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl + unicode(
+                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
+                    else:
+                        mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl + unicode(
+                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
                     filename = 'temp.jpg'
                     requesturl = requests.get(url, stream=True)
                     if requesturl.status_code == 200:
@@ -245,6 +247,12 @@ def amazon_sns_processor(request):
                     else:
                         print("Unable to download media")
                 if media_received.mediaContentType == "video/mp4":
+                    if media_received.mediaRemark is None:
+                        mediaRemarkToBeShared = unicode(_('Video Shared by MyMensor Bot \n\n')) + mcurl + unicode(
+                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
+                    else:
+                        mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl + unicode(
+                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
                     filename = 'temp.mp4'
                     requesturl = requests.get(url, stream=True)
                     if requesturl.status_code == 200:
