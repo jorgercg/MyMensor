@@ -281,7 +281,7 @@ def amazon_sns_processor(request):
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
                     if media_received.mediaContentType == "video/mp4":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
+                            mediaRemarkToBeSharedToTwitter = unicode(_('Video Shared by MyMensor Bot \n\n')) + mcurl
                         else:
                             mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
@@ -292,14 +292,22 @@ def amazon_sns_processor(request):
                 except:
                     facebookAccount = None
                 if facebookAccount is not None:
-                    if media_received.mediaRemark is None:
-                        mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot'))
-                    else:
-                        mediaRemarkToBeSharedToFB = media_received.mediaRemark
-                    data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
-                            'access_token': facebookAccount.fbLongTermAccesToken}
-                    feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
-
+                    if media_received.mediaContentType == "image/jpeg":
+                        if media_received.mediaRemark is None:
+                            mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot'))
+                        else:
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark
+                        data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
+                                'access_token': facebookAccount.fbLongTermAccesToken}
+                        feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
+                    if media_received.mediaContentType == "video/mp4":
+                        if media_received.mediaRemark is None:
+                            mediaRemarkToBeSharedToFB = unicode(_('Video Shared by MyMensor Bot'))
+                        else:
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark
+                        data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
+                                'access_token': facebookAccount.fbLongTermAccesToken}
+                        feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
