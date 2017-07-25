@@ -102,7 +102,9 @@
                                                                   data-placement="top"
                                                                   title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                                         {% else %}
-                                                            <span class="fa fa-map-marker locnotcert"
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker locnotcert"
                                                                   data-toggle="tooltip"
                                                                   data-placement="top"
                                                                   title="{% trans 'Capture location not certified' %}"></span>
@@ -202,7 +204,9 @@
                                                                   data-placement="top"
                                                                   title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                                         {% else %}
-                                                            <span class="fa fa-map-marker locnotcert"
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker locnotcert"
                                                                   data-toggle="tooltip"
                                                                   data-placement="top"
                                                                   title="{% trans 'Capture location not certified' %}"></span>
