@@ -285,15 +285,15 @@ def amazon_sns_processor(request):
                                           twitterAccount.twtAccessTokenSecret)
                     if media_received.mediaContentType == "image/jpeg":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
+                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
+                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
                     if media_received.mediaContentType == "video/mp4":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(_('Video Shared by MyMensor Bot \n\n')) + mcurl
+                            mediaRemarkToBeSharedToTwitter = unicode(_('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
+                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
             facebookAccount = None
             if vp_received.vpIsSharedToFacebook:
