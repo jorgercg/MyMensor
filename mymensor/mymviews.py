@@ -305,7 +305,19 @@ def amazon_sns_processor(request):
                             mediaRemarkToBeSharedToTwitter = unicode(_('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
                             mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
-                        twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
+                        filename = 'temp.mp4'
+                        requesturl = requests.get(url, stream=True)
+                        if requesturl.status_code == 200:
+                            with open(filename, 'wb') as video:
+                                for chunk in requesturl:
+                                    video.write(chunk)
+                            video = open(filename, 'rb')
+                            response = twitter_api.upload_video(media=video, media_type='video/mp4')
+                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
+                                                      media_ids=[response['media_id']])
+                            os.remove(filename)
+                        else:
+                            print("Unable to download media")
             facebookAccount = None
             if vp_received.vpIsSharedToFacebook:
                 try:
