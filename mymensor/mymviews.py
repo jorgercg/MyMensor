@@ -217,7 +217,7 @@ def amazon_sns_processor(request):
             url = s3Client.generate_presigned_url('get_object',
                                                   Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                           'Key': media_received.mediaObjectS3Key},
-                                                  ExpiresIn=60)
+                                                  ExpiresIn=1)
             landingurl = 'https://app.mymensor.com/landing/?type=1&key='+media_received.mediaObjectS3Key+'&signature='+media_received.mediaSha256
             mcurl= 'https://app.mymensor.com/mc/1/'+media_received.mediaObjectS3Key+'/'+media_received.mediaSha256
             if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail)>0):
