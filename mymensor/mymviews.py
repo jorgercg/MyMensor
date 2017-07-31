@@ -304,20 +304,20 @@ def amazon_sns_processor(request):
                 if facebookAccount is not None:
                     if media_received.mediaContentType == "image/jpeg":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl
+                            mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark+ '\n\n' + mcurl
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark+ '\n\n Use the link to check the media: \n\n' + mcurl
                         data = {'url': url, 'caption': mediaRemarkToBeSharedToFB,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/photos', data=data)
                     if media_received.mediaContentType == "video/mp4":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(_('Video Shared by MyMensor Bot'))
+                            mediaRemarkToBeSharedToFB = unicode(_('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark
-                        data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark+ '\n\n Use the link to check the media: \n\n' + mcurl
+                        data = {'file_url': url, 'description': mediaRemarkToBeSharedToFB,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
-                        feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
+                        feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/videos', data=data)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
