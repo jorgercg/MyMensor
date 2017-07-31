@@ -88,7 +88,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                       'Key': mediaObjectS3KeyEncoded},
-                                                              ExpiresIn=60)
+                                                              ExpiresIn=3600)
             mediaStorageURLHeader = mediaStorageURL
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
@@ -307,7 +307,7 @@ def amazon_sns_processor(request):
                             mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot'))
                         else:
                             mediaRemarkToBeSharedToFB = media_received.mediaRemark
-                        data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
+                        data = {'url': mcurl, 'caption': mediaRemarkToBeSharedToFB,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         feedpostresponse = requests.post('https://graph.facebook.com/v2.9/me/feed', data=data)
                     if media_received.mediaContentType == "video/mp4":
