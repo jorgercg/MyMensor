@@ -205,11 +205,13 @@ def amazon_sns_processor(request):
             listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
 
             vp_received = media_received.vp
+            vp_received.vpIsUsed = True
 
             if media_received.mediaSha256 in listofmediaindb:
                 return HttpResponse(status=200)
             else:
                 media_received.save()
+                vp_received.save()
 
             publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
                     data={"username": media_received.mediaMymensorAccount})
@@ -365,7 +367,7 @@ def portfolio(request):
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 5))
         vpsselected = request.GET.getlist('vpsselected', default=None)
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(vpIsUsed=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
