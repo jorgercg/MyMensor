@@ -151,6 +151,7 @@ class Vp(models.Model):
     vpFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, null=True,
                                        verbose_name=_('unit for the vp capture frequency'))
     vpFrequencyValue = models.IntegerField(null=True, verbose_name=_('minimum vp capture frequency'))
+    vpIsUsed = models.BooleanField(default=False)
     vpIsSharedToTwitter = models.BooleanField(default=False, verbose_name=_(
         'share all of this vp captures to the Twitter Account configured.'))
     vpIsSharedToFacebook = models.BooleanField(default=False, verbose_name=_(

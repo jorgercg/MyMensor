@@ -204,13 +204,15 @@ def amazon_sns_processor(request):
 
             listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
 
+            vp_received = media_received.vp
+
             if media_received.mediaSha256 in listofmediaindb:
                 return HttpResponse(status=200)
             else:
                 media_received.save()
+
             publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
                     data={"username": media_received.mediaMymensorAccount})
-            vp_received = media_received.vp
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
