@@ -20,25 +20,18 @@ def setup_new_user(instance, **kwargs):
     maxqtyvps = 31  ###### Maximum quantity of vps in a DCI + 1 !!!!!!!
     for i in range(0, maxqtyvps):
         vpdescription = "VP#" + str(i)
-        if i < 2:
-            vpisactive = True
-            vpstdphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
+        vpisactive = True
+        vpisused = False
+        vpstdphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
                 asset.assetNumber) + "/vps/dsc/descvp" + str(i) + ".png"
-            vpstdtagdescphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
+        vpstdtagdescphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
                 asset.assetNumber) + "/vps/dsc/tagdescvp" + str(i) + ".png"
-            vpstdmarkerphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
+        vpstdmarkerphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
                 asset.assetNumber) + "/vps/mrk/markervp" + str(i) + ".png"
-            vpstdphotofilesize = 36156
-            vpstdmarkerphotofilesize = 32209
-        else:
-            vpisactive = False
-            vpstdphotostorageurl = None
-            vpstdtagdescphotostorageurl = None
-            vpstdmarkerphotostorageurl = None
-            vpstdphotofilesize = None
-            vpstdmarkerphotofilesize = None
+        vpstdphotofilesize = 36156
+        vpstdmarkerphotofilesize = 32209
         Vp.objects.create(asset=asset, vpDescription=vpdescription, vpNumber=i, vpIsActive=vpisactive, vpListNumber=i,
-                          vpStdPhotoStorageURL=vpstdphotostorageurl,
+                          vpIsUsed=vpisused, vpStdPhotoStorageURL=vpstdphotostorageurl,
                           vpStdTagDescPhotoStorageURL=vpstdtagdescphotostorageurl,
                           vpStdMarkerPhotoStorageURL=vpstdmarkerphotostorageurl, vpStdPhotoFileSize=vpstdphotofilesize,
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
