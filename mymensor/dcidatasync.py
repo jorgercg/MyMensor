@@ -265,7 +265,7 @@ def writedciinitialcfg(instance):
         s3.meta.client.copy(copy_source_dsc, AWS_S3_BUCKET_NAME, dest_dsc)
         dest_mrk = "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png"
         s3.meta.client.copy(copy_source_mrk, AWS_S3_BUCKET_NAME, dest_mrk)
-    j += 1
+        j += 1
 
 
 def writedciinitialvpschk(instance):
