@@ -262,11 +262,9 @@ def writedciinitialcfg(instance):
     j = 0
     while j < writeasset.assetDciQtyVps:
         dest_dsc = "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png"
-        source_dsc = ASSETFILES_FOLDER+'mymensordescvp.png'
-        s3.Object(AWS_S3_BUCKET_NAME, dest_dsc).upload_file(source_dsc)
+        s3.meta.client.copy(copy_source_dsc, AWS_S3_BUCKET_NAME, dest_dsc)
         dest_mrk = "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png"
-        source_mrk = ASSETFILES_FOLDER+'mymensormarkervpbw.png'
-        s3.Object(AWS_S3_BUCKET_NAME, dest_mrk).upload_file(source_mrk)
+        s3.meta.client.copy(copy_source_mrk, AWS_S3_BUCKET_NAME, dest_mrk)
     j += 1
 
 
