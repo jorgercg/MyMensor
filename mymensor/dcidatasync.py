@@ -260,10 +260,8 @@ def writedciinitialcfg(instance):
 
     j = 0
     while j < writeasset.assetDciQtyVps:
-        s3.meta.client.copy(copy_source_dsc, AWS_S3_BUCKET_NAME,
-                            "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png")
-        s3.meta.client.copy(copy_source_mrk, AWS_S3_BUCKET_NAME,
-                            "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png")
+        s3.Object(AWS_S3_BUCKET_NAME, "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png").copy_from(copy_source_dsc)
+        s3.Object(AWS_S3_BUCKET_NAME, "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png").copy_from(copy_source_mrk)
     j += 1
 
 
