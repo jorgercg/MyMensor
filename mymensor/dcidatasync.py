@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
-import boto3, urllib, os
-from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, AWS_DEFAULT_REGION, STATICFILES_DIRS
+import boto3, urllib
+from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
 
@@ -259,12 +259,14 @@ def writedciinitialcfg(instance):
     }
 
     source_dsc = '/app/mymensorapp/static/mymensordescvp.png'
-    source_mrk = '/app/mymensorapp/static/mymensormarkervpbw.png')
+    source_mrk = '/app/mymensorapp/static/mymensormarkervpbw.png'
 
     j = 0
     while j < writeasset.assetDciQtyVps:
-        s3.Object(AWS_S3_BUCKET_NAME, "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png").upload_file(source_dsc)
-        s3.Object(AWS_S3_BUCKET_NAME, "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png").upload_file(source_mrk)
+        s3.Object(AWS_S3_BUCKET_NAME,
+                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png").upload_file(source_dsc)
+        s3.Object(AWS_S3_BUCKET_NAME,
+                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png").upload_file(source_mrk)
     j += 1
 
 
