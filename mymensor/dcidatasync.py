@@ -255,7 +255,7 @@ def writedciinitialcfg(instance):
 
     copy_source_mrk = {
         'Bucket': AWS_S3_BUCKET_NAME,
-        'Key': 'admin/cfgbase/mymensordescvp.png'
+        'Key': 'admin/cfgbase/mymensormarkervpbw.png'
     }
 
     j = 0
