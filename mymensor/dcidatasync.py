@@ -259,8 +259,8 @@ def writedciinitialcfg(instance):
         'Key': 'admin/cfgbase/mymensormarkervpbw.png'
     }
 
-    source_dsc = finders.find('image/mymensordescvp.png')
-    source_mrk = finders.find('image/mymensormarkervpbw.png')
+    source_dsc = finders.find('images/mymensordescvp.png')
+    source_mrk = finders.find('images/mymensormarkervpbw.png')
 
     j = 0
     while j < writeasset.assetDciQtyVps:
