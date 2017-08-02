@@ -259,15 +259,15 @@ def writedciinitialcfg(instance):
         'Key': 'admin/cfgbase/mymensormarkervpbw.png'
     }
 
-    source_dsc = finders.find('images/mymensordescvp.png')
-    source_mrk = finders.find('images/mymensormarkervpbw.png')
+    #source_dsc = finders.find('images/mymensordescvp.png')
+    #source_mrk = finders.find('images/mymensormarkervpbw.png')
 
     j = 0
     while j < writeasset.assetDciQtyVps:
         s3.Object(AWS_S3_BUCKET_NAME,
-                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png").upload_file(source_dsc)
+                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png").upload_file('staticfiles/mymensordescvp.png')
         s3.Object(AWS_S3_BUCKET_NAME,
-                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png").upload_file(source_mrk)
+                  "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png").upload_file('staticfiles/mymensormarkervpbw.png')
     j += 1
 
 
