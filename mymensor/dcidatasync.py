@@ -236,8 +236,14 @@ def writedciinitialcfg(instance):
         ET.SubElement(vp, "VpFlashTorchIsOn").text = bool2str(writevp.vpFlashTorchIsOn)
         ET.SubElement(vp, "VpIsSuperSingle").text = bool2str(writevp.vpIsSuperSingle)
         ET.SubElement(vp, "VpSuperMarkerId").text = str(writevp.vpSuperMarkerId)
-        ET.SubElement(vp, "VpFrequencyUnit").text = writevp.vpFrequencyUnit
-        ET.SubElement(vp, "VpFrequencyValue").text = str(writevp.vpFrequencyValue)
+        if writevp.vpFrequencyUnit is not None:
+            ET.SubElement(vp, "VpFrequencyUnit").text = writevp.vpFrequencyUnit
+        else:
+            ET.SubElement(vp, "VpFrequencyUnit").text = ""
+        if writevp.vpFrequencyValue is not None:
+            ET.SubElement(vp, "VpFrequencyValue").text = str(writevp.vpFrequencyValue)
+        else:
+            ET.SubElement(vp, "VpFrequencyValue").text = str(0)
 
         i += 1
 
