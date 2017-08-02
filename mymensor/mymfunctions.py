@@ -9,13 +9,15 @@ def isfloat(value):
 def mobonlyprefix():
     import random, string
     code = ''.join(random.choice(string.uppercase) for i in range(3))
-    return 'mym'+code+'+'
+    return 'mym' + code + '+'
 
 
 def setup_new_user(instance, **kwargs):
     from mymensor.models import Asset, Vp
     from datetime import datetime, timedelta
-    asset = Asset(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email, assetDateOfEndEfTrialBeforeSubscription=datetime.utcnow()+timedelta(days=30))
+    from mymensor.dcidatasync import writedciinitialcfg, writedciinitialvpschk
+    asset = Asset(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email,
+                  assetDateOfEndEfTrialBeforeSubscription=datetime.utcnow() + timedelta(days=30))
     asset.save()
     maxqtyvps = 31  ###### Maximum quantity of vps in a DCI + 1 !!!!!!!
     for i in range(0, maxqtyvps):
@@ -23,11 +25,11 @@ def setup_new_user(instance, **kwargs):
         vpisactive = True
         vpisused = False
         vpstdphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
-                asset.assetNumber) + "/vps/dsc/descvp" + str(i) + ".png"
+            asset.assetNumber) + "/vps/dsc/descvp" + str(i) + ".png"
         vpstdtagdescphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
-                asset.assetNumber) + "/vps/dsc/tagdescvp" + str(i) + ".png"
+            asset.assetNumber) + "/vps/dsc/tagdescvp" + str(i) + ".png"
         vpstdmarkerphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
-                asset.assetNumber) + "/vps/mrk/markervp" + str(i) + ".png"
+            asset.assetNumber) + "/vps/mrk/markervp" + str(i) + ".png"
         vpstdphotofilesize = 36156
         vpstdmarkerphotofilesize = 32209
         Vp.objects.create(asset=asset, vpDescription=vpdescription, vpNumber=i, vpIsActive=vpisactive, vpListNumber=i,
@@ -35,6 +37,8 @@ def setup_new_user(instance, **kwargs):
                           vpStdTagDescPhotoStorageURL=vpstdtagdescphotostorageurl,
                           vpStdMarkerPhotoStorageURL=vpstdmarkerphotostorageurl, vpStdPhotoFileSize=vpstdphotofilesize,
                           vpStdMarkerPhotoFileSize=vpstdmarkerphotofilesize)
+    writedciinitialcfg(instance)
+    writedciinitialvpschk(instance)
 
 
 def create_braintree_customer(instance):
