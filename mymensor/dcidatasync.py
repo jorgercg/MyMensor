@@ -254,7 +254,7 @@ def writedciinitialvpschk(instance):
                                     aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
     s3 = session.resource('s3')
     usernameEncoded = urllib.quote(instance.username)
-    s3_object_key = "usrcfg/" + usernameEncoded + "/chk/1/vps/vpschecked.xml"
+    s3_object_key = "usrcfg/" + usernameEncoded + "/chk/1/vpschecked.xml"
 
     vpsdata = ET.Element("VpsChecked")
 
