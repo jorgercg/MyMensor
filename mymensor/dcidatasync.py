@@ -258,8 +258,8 @@ def writedciinitialcfg(instance):
         'Key': 'admin/cfgbase/mymensormarkervpbw.png'
     }
 
-    source_dsc = os.path.join(STATICFILES_DIRS, 'mymensordescvp.png')
-    source_mrk = os.path.join(STATICFILES_DIRS, 'mymensormarkervpbw.png')
+    source_dsc = '/app/mymensorapp/static/mymensordescvp.png'
+    source_mrk = '/app/mymensorapp/static/mymensormarkervpbw.png')
 
     j = 0
     while j < writeasset.assetDciQtyVps:
