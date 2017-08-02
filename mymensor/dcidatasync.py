@@ -248,6 +248,24 @@ def writedciinitialcfg(instance):
 
     s3.Object(AWS_S3_BUCKET_NAME, s3_object_key).upload_file("tempfile.xml")
 
+    copy_source_dsc = {
+        'Bucket': AWS_S3_BUCKET_NAME,
+        'Key': 'admin/cfgbase/mymensordescvp.png'
+    }
+
+    copy_source_mrk = {
+        'Bucket': AWS_S3_BUCKET_NAME,
+        'Key': 'admin/cfgbase/mymensordescvp.png'
+    }
+
+    j = 0
+    while j < writeasset.assetDciQtyVps:
+        s3.meta.client.copy(copy_source_dsc, AWS_S3_BUCKET_NAME,
+                            "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png")
+        s3.meta.client.copy(copy_source_mrk, AWS_S3_BUCKET_NAME,
+                            "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png")
+    j += 1
+
 
 def writedciinitialvpschk(instance):
     session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
