@@ -30,7 +30,7 @@ def setup_new_user(instance, **kwargs):
             asset.assetNumber) + "/vps/dsc/tagdescvp" + str(i) + ".png"
         vpstdmarkerphotostorageurl = "usrcfg/" + instance.username + "/cfg/" + str(
             asset.assetNumber) + "/vps/mrk/markervp" + str(i) + ".png"
-        vpstdphotofilesize = 36156
+        vpstdphotofilesize = 36043
         vpstdmarkerphotofilesize = 32209
         Vp.objects.create(asset=asset, vpDescription=vpdescription, vpNumber=i, vpIsActive=vpisactive, vpListNumber=i,
                           vpIsUsed=vpisused, vpStdPhotoStorageURL=vpstdphotostorageurl,
