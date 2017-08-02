@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import boto3, urllib
+from django.contrib.staticfiles import finders
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
@@ -258,8 +259,8 @@ def writedciinitialcfg(instance):
         'Key': 'admin/cfgbase/mymensormarkervpbw.png'
     }
 
-    source_dsc = '/app/mymensorapp/static/mymensordescvp.png'
-    source_mrk = '/app/mymensorapp/static/mymensormarkervpbw.png'
+    source_dsc = finders.find('image/mymensordescvp.png')
+    source_mrk = finders.find('image/mymensormarkervpbw.png')
 
     j = 0
     while j < writeasset.assetDciQtyVps:
