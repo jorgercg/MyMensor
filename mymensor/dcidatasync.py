@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 import boto3, urllib
 from django.contrib.staticfiles import finders
-from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, STATICFILES_DIRS
+from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, ASSETFILES_FOLDER
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
 
@@ -262,10 +262,10 @@ def writedciinitialcfg(instance):
     j = 0
     while j < writeasset.assetDciQtyVps:
         dest_dsc = "usrcfg/" + usernameEncoded + "/cfg/1/vps/dsc/descvp" + str(j) + ".png"
-        source_dsc = STATICFILES_DIRS+'mymensordescvp.png'
+        source_dsc = ASSETFILES_FOLDER+'mymensordescvp.png'
         s3.Object(AWS_S3_BUCKET_NAME, dest_dsc).upload_file(source_dsc)
         dest_mrk = "usrcfg/" + usernameEncoded + "/cfg/1/vps/mrk/markervp" + str(j) + ".png"
-        source_mrk = STATICFILES_DIRS+'mymensormarkervpbw.png'
+        source_mrk = ASSETFILES_FOLDER+'mymensormarkervpbw.png'
         s3.Object(AWS_S3_BUCKET_NAME, dest_mrk).upload_file(source_mrk)
     j += 1
 
