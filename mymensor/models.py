@@ -267,6 +267,7 @@ class Media(models.Model):
     mediaStateEvaluated = models.CharField(max_length=50, choices=TAG_STATUS_CHOICES, null=True)
     mediaOriginalMymensorAccount = models.CharField(max_length=255, null=True)
     mediaDeviceId = models.CharField(max_length=255, null=True)
+    mediaClientType = models.CharField(max_length=255, null=True)
 
 
 class ProcessedTag(models.Model):
