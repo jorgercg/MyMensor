@@ -366,7 +366,29 @@ def portfolio(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = int(request.GET.get('qtypervp', 5))
+        maxcolumnstxt = request.device.matched
+        maxcolumns = 10
+        if 'onecolumn' in maxcolumnstxt:
+            maxcolumns = 1
+        elif 'twocolumn' in maxcolumnstxt:
+            maxcolumns = 2
+        elif 'threecolumn' in maxcolumnstxt:
+            maxcolumns = 3
+        elif 'fourcolumn' in maxcolumnstxt:
+            maxcolumns = 4
+        elif 'fivecolumn' in maxcolumnstxt:
+            maxcolumns = 5
+        elif 'sixcolumn' in maxcolumnstxt:
+            maxcolumns = 6
+        elif 'sevencolumn' in maxcolumnstxt:
+            maxcolumns = 7
+        elif 'eightcolumn' in maxcolumnstxt:
+            maxcolumns = 8
+        elif 'ninecolumn' in maxcolumnstxt:
+            maxcolumns = 9
+        elif 'tencolumn' in maxcolumnstxt:
+            maxcolumns = 10
+        qtypervp = int(request.GET.get('qtypervp', maxcolumns))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
@@ -398,7 +420,7 @@ def portfolio(request):
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'media_vpnumbers': media_vpnumbers, 'maxcolumns':request.device.matched})
+                       'media_vpnumbers': media_vpnumbers,})
 
 
 @login_required
