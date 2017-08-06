@@ -451,6 +451,25 @@
 
                 });
 
+                $(function () {
+
+                    var zoomlevel = 10;
+
+                    var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(mymap);
+
+                    var marker = L.marker([0, 0]).addTo(mymap);
+
+                    var circle = L.circle([0, 0], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 10.0
+                    }).addTo(mymap);
+                });
 
                 $(function () {
 
@@ -597,26 +616,7 @@
                 });
 
             </script>
-            <script type="text/javascript">
-                var zoomlevel = 10;
 
-                var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
-
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(mymap);
-
-                var marker = L.marker([0, 0]).addTo(mymap);
-
-                var circle = L.circle([0, 0], {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5,
-                    radius: 10.0
-                }).addTo(mymap);
-
-
-            </script>
         {% endblock %}
     {% else %}
         <h1>Not Logged In....</h1>
