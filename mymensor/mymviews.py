@@ -423,6 +423,79 @@ def portfolio(request):
                        'media_vpnumbers': media_vpnumbers,})
 
 
+# Location View
+@login_required
+@user_passes_test(group_check)
+def location(request):
+    if request.user.is_authenticated:
+        try:
+            loaddcicfg(request)
+        except ClientError as e:
+            error_code = e
+        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+        s3Client = session.client('s3')
+        startdate = datetime.strptime(
+            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        new_enddate = enddate + timedelta(days=1)
+        maxcolumnstxt = request.device.matched
+        maxcolumns = 10
+        if 'onecolumn' in maxcolumnstxt:
+            maxcolumns = 1
+        elif 'twocolumn' in maxcolumnstxt:
+            maxcolumns = 2
+        elif 'threecolumn' in maxcolumnstxt:
+            maxcolumns = 3
+        elif 'fourcolumn' in maxcolumnstxt:
+            maxcolumns = 4
+        elif 'fivecolumn' in maxcolumnstxt:
+            maxcolumns = 5
+        elif 'sixcolumn' in maxcolumnstxt:
+            maxcolumns = 6
+        elif 'sevencolumn' in maxcolumnstxt:
+            maxcolumns = 7
+        elif 'eightcolumn' in maxcolumnstxt:
+            maxcolumns = 8
+        elif 'ninecolumn' in maxcolumnstxt:
+            maxcolumns = 9
+        elif 'tencolumn' in maxcolumnstxt:
+            maxcolumns = 10
+        qtypervp = int(request.GET.get('qtypervp', maxcolumns))
+        vpsselected = request.GET.getlist('vpsselected', default=None)
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+        vpslist = vps
+        vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
+        if not vpsselected:
+            vpsselected = vpsselectedfromlist
+        else:
+            vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
+            vpsselected = vps.values_list('vpNumber', flat=True)
+
+        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        startdateformatted = startdate.strftime('%Y-%m-%d')
+        enddateformatted = enddate.strftime('%Y-%m-%d')
+        media_vpnumbers = []
+        for media in medias:
+            media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                    Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                            'Key': media.mediaObjectS3Key},
+                                                                    ExpiresIn=3600)
+            media_vpnumbers.append(media.mediaVpNumber)
+            if media.mediaContentType == 'video/mp4':
+                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_','_t_')
+                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4','.jpg')
+                media.mediaThumbnailStorageURL = s3Client.generate_presigned_url('get_object',
+                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                      'Key': mediaObjectS3KeyForThumbnail},
+                                                              ExpiresIn=3600)
+        return render(request, 'location.html',
+                      {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
+                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
+                       'media_vpnumbers': media_vpnumbers,})
+
+
 @login_required
 @user_passes_test(group_check)
 def mediafeed(request):

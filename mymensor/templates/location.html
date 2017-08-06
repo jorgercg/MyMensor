@@ -1,0 +1,624 @@
+{% extends 'base.html' %}
+{% load staticfiles i18n tz counter assign %}
+{% localtime on %}
+    {% get_current_timezone as TIME_ZONE %}
+    {% if user.is_authenticated %}
+        {% block title %}Location - {{ block.super }}{% endblock %}
+        {% block content %}
+            <div class="mym-dash">
+                <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+                    <div class="mym-dash-item">
+                        <div id="reportrange"
+                             style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                            <span id="selcdates"></span> <b class="caret"></b>
+                        </div>
+                    </div>
+                    <div class="mym-dash-item">
+                        <div id="qtyselector" class="mym-dash-item">
+                            <p>{% trans 'Show ' %}</p>
+                            <select id="qtytodisplaypervp" class="1-100"></select>
+                            <p>{% trans ' entries per VP' %}</p>
+                        </div>
+                    </div>
+                    <div id="vpselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="vpsselected" name="vpsselected">
+                            {% for vpnumber in vpslist %}
+                                <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
+                                        {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
+                                    VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mym-dash-item">
+                        <button id="refreshbtn" type="button" class="mym-dash-item btn btn-outline-primary btn-lg"
+                                data-toggle="tooltip"
+                                data-placement="top" title="{% trans 'Refresh with current selection' %}">
+                            <span class="fa fa-refresh"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="locationview">
+                <div id="locationmapid"></div>
+            </div>
+            <hr>
+            <div id="vpsview">
+                {% for vp in vps %}
+                    <hr>
+                    <div class="d-flex align-content-start flex-wrap">
+                        {% if vp.vpNumber in media_vpnumbers %}
+                            {% for media in medias %}
+                                {% if vp.vpNumber == media.mediaVpNumber %}
+                                    {% counter start=0 silent=True assign='mediaqtyinvp' %}
+                                    {% if qtypervp > mediaqtyinvp %}
+                                        {% if media.mediaContentType == "image/jpeg" %}
+                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                                <div class="card-header text-primary">
+                                                    <h5 data-toggle="tooltip" data-placement="top"
+                                                        title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                                        {% if vp.vpNumber == 0 %}
+                                                        {% elif media.mediaProcessed %}
+                                                            <span role="button" id="processed{{ media.id }}"
+                                                                  class="fa fa-bar-chart vpprocessed"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-bar-chart vpnotprocessed"
+                                                                  data-toggle="tooltip" data-placement="top"
+                                                                  title="{% trans 'Not processed' %}"></span>
+                                                        {% endif %}
+                                                    </h5>
+                                                </div>
+                                                <a data-toggle="modal"
+                                                   data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                                   data-whatever="{{ media.mediaStorageURL }}">
+                                                    <img class="card-img-top img-fluid"
+                                                         src="{{ media.mediaStorageURL }}"
+                                                         alt="">
+                                                </a>
+                                                <div class="card-block">
+                                                    <p class="card-text">
+                                                        {% if media.mediaArIsOn %}
+                                                            <span class="arused" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                                        {% else %}
+                                                            <span class="arnotused" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                                        {% endif %}
+                                                        {% if media.mediaTimeIsCertified %}
+                                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture time certified' %}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-clock-o timenotcert"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture time not certified' %}"></span>
+                                                        {% endif %}
+                                                        {% if media.mediaLocIsCertified %}
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker loccert" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
+                                                        {% else %}
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker locnotcert"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture location not certified' %}"></span>
+                                                        {% endif %}
+                                                        {% if media.mediaRemark is not None %}
+                                                            <span class="fa fa-edit remarkpresent" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{{ media.mediaRemark }}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-edit remarknotpresent"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'No remark for this media' %}"></span>
+                                                        {% endif %}
+
+                                                    </p>
+                                                </div>
+                                                <div class="card-block">
+                                                    <p class="card-text">
+                                                    <span class="fa fa-camera" data-toggle="tooltip"
+                                                          data-placement="top"
+                                                          title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                    </p>
+                                                </div>
+                                                <div class="card-footer text-muted">
+                                                <span class="fa fa-cloud-upload" data-toggle="tooltip"
+                                                      data-placement="top"
+                                                      title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                </div>
+                                            </div>
+                                            <!-- Modal to Images -->
+                                            <div class="modal fade"
+                                                 id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                                 tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <img id="mediaContent" class="img-fluid"
+                                                                 src="{{ media.mediaStorageURL }}" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if media.mediaContentType == "video/mp4" %}
+                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                                <div class="card-header text-primary">
+                                                    <h5 data-toggle="tooltip" data-placement="top"
+                                                        title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                                        {% if vp.vpNumber == 0 %}
+                                                        {% elif media.mediaProcessed %}
+                                                            <span role="button" id="processed{{ media.id }}"
+                                                                  class="fa fa-bar-chart vpprocessed"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-bar-chart vpnotprocessed"
+                                                                  data-toggle="tooltip" data-placement="top"
+                                                                  title="{% trans 'Not processed' %}"></span>
+                                                        {% endif %}
+                                                    </h5>
+                                                </div>
+                                                <a data-toggle="modal"
+                                                   data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                                   data-whatever="{{ media.mediaStorageURL }}"><span
+                                                        class="fa fa-play-circle-o fa-4x thumbnail"></span>
+                                                    <img class="card-img-top img-fluid"
+                                                         src="{{ media.mediaThumbnailStorageURL }}"
+                                                         alt="">
+                                                </a>
+                                                <div class="card-block">
+                                                    <p class="card-text">
+                                                        {% if media.mediaArIsOn %}
+                                                            <span class="arused" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                                        {% else %}
+                                                            <span class="arnotused" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                                        {% endif %}
+                                                        {% if media.mediaTimeIsCertified %}
+                                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture time certified' %}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-clock-o timenotcert"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture time not certified' %}"></span>
+                                                        {% endif %}
+                                                        {% if media.mediaLocIsCertified %}
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker loccert" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
+                                                        {% else %}
+                                                            <span role="button"
+                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                  class="fa fa-map-marker locnotcert"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'Capture location not certified' %}"></span>
+                                                        {% endif %}
+                                                        {% if media.mediaRemark is not None %}
+                                                            <span class="fa fa-edit remarkpresent" data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{{ media.mediaRemark }}"></span>
+                                                        {% else %}
+                                                            <span class="fa fa-edit remarknotpresent"
+                                                                  data-toggle="tooltip"
+                                                                  data-placement="top"
+                                                                  title="{% trans 'No remark for this media' %}"></span>
+                                                        {% endif %}
+                                                    </p>
+                                                </div>
+                                                <div class="card-block">
+                                                    <p class="card-text">
+                                                    <span class="fa fa-video-camera" data-toggle="tooltip"
+                                                          data-placement="top"
+                                                          title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                    </p>
+                                                </div>
+                                                <div class="card-footer text-muted">
+                                                <span class="fa fa-cloud-upload" data-toggle="tooltip"
+                                                      data-placement="top"
+                                                      title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                </div>
+                                            </div>
+                                            <!-- Modal to Videos -->
+                                            <div class="modal fade"
+                                                 id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                                 tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-xl">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <div class="embed-responsive embed-responsive-16by9">
+                                                                <video controls>
+                                                                    <source src="{{ media.mediaStorageURL }}"
+                                                                            type="video/mp4">
+                                                                </video>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <p>
+                                {% trans 'No media for VP#' %}{{ vp.vpNumber }}{% trans ' in the selected timeframe.' %}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- Django Instant client engine
+            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+            {% include "mymclient.html" %}
+        {% endblock %}
+        {% block javascript %}
+            <script src="{% static "js/leaflet.js" %}"></script>
+            <script type="text/javascript">
+
+                $('#vpsselected').chosen();
+
+                {% get_current_language as LANGUAGE_CODE %}
+
+                moment.locale('{{ LANGUAGE_CODE }}');
+
+                $(function () {
+
+                    var start = moment("{{ start }}");
+                    var end = moment("{{ end }}");
+
+                    function cb(start, end) {
+                        $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+                    }
+
+                    $('#reportrange').daterangepicker({
+                        startDate: {{ start }},
+                        endDate: {{ end }},
+                        "alwaysShowCalendars": true,
+                        {% if LANGUAGE_CODE == "pt" %}
+                            ranges: {
+                                'Hoje': [moment(), moment()],
+                                'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                                'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                                'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                                'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            "locale": {
+                                "format": "YYYY-MMM-DD",
+                                "separator": " - ",
+                                "applyLabel": "Aplicar",
+                                "cancelLabel": "Cancelar",
+                                "fromLabel": "De",
+                                "toLabel": "a",
+                                "customRangeLabel": "Personalizado",
+                                "weekLabel": "S",
+                                "daysOfWeek": [
+                                    "Do",
+                                    "2a",
+                                    "3a",
+                                    "4a",
+                                    "5a",
+                                    "6a",
+                                    "Sa"
+                                ],
+                                "monthNames": [
+                                    "Janeiro",
+                                    "Fevereiro",
+                                    "Março",
+                                    "Abril",
+                                    "Maio",
+                                    "Junho",
+                                    "Julho",
+                                    "Agosto",
+                                    "Setembro",
+                                    "Outubro",
+                                    "Novembro",
+                                    "Dezembro"
+                                ],
+                                "firstDay": 1
+                            }
+                        {% elif LANGUAGE_CODE == "pt-br" %}
+                            ranges: {
+                                'Hoje': [moment(), moment()],
+                                'Ontem': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Últimos 7 Dias': [moment().subtract(6, 'days'), moment()],
+                                'Últimos 30 Dias': [moment().subtract(29, 'days'), moment()],
+                                'Este Mês': [moment().startOf('month'), moment().endOf('month')],
+                                'Mês Passado': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            "locale": {
+                                "format": "YYYY-MMM-DD",
+                                "separator": " - ",
+                                "applyLabel": "Aplicar",
+                                "cancelLabel": "Cancelar",
+                                "fromLabel": "De",
+                                "toLabel": "a",
+                                "customRangeLabel": "Personalizado",
+                                "weekLabel": "S",
+                                "daysOfWeek": [
+                                    "Do",
+                                    "2a",
+                                    "3a",
+                                    "4a",
+                                    "5a",
+                                    "6a",
+                                    "Sa"
+                                ],
+                                "monthNames": [
+                                    "Janeiro",
+                                    "Fevereiro",
+                                    "Março",
+                                    "Abril",
+                                    "Maio",
+                                    "Junho",
+                                    "Julho",
+                                    "Agosto",
+                                    "Setembro",
+                                    "Outubro",
+                                    "Novembro",
+                                    "Dezembro"
+                                ],
+                                "firstDay": 1
+                            }
+                        {% else %}
+                            ranges: {
+                                'Today': [moment(), moment()],
+                                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                            },
+                            "locale": {
+                                "format": "YYYY-MMM-DD",
+                                "separator": " - ",
+                                "applyLabel": "Apply",
+                                "cancelLabel": "Cancel",
+                                "fromLabel": "From",
+                                "toLabel": "To",
+                                "customRangeLabel": "Custom",
+                                "weekLabel": "W",
+                                "daysOfWeek": [
+                                    "Su",
+                                    "Mo",
+                                    "Tu",
+                                    "We",
+                                    "Th",
+                                    "Fr",
+                                    "Sa"
+                                ],
+                                "monthNames": [
+                                    "January",
+                                    "February",
+                                    "March",
+                                    "April",
+                                    "May",
+                                    "June",
+                                    "July",
+                                    "August",
+                                    "September",
+                                    "October",
+                                    "November",
+                                    "December"
+                                ],
+                                "firstDay": 1
+                            }
+                        {% endif %}
+                    }, cb);
+
+                    cb(start, end);
+
+                    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+                        var startdate = picker.startDate.format('YYYY-MM-DD');
+                        var enddate = picker.endDate.format('YYYY-MM-DD');
+                        console.log(startdate);
+                        console.log(enddate);
+                        //console.log({% url 'portfolio' %});
+                        var vpssel = $('#vpsselected').serialize();
+                        console.log('Chosen:' + vpssel);
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                    });
+
+                    $('#refreshbtn').click(function () {
+                        var vpssel = $('#vpsselected').serialize();
+                        console.log('Chosen:' + vpssel);
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                    });
+
+                });
+
+
+                $(function () {
+
+                    var spanid = "";
+                    var mediaid = 0;
+                    var vpnumber = 0;
+
+                    $('span').click(function (event) {
+                        event.preventDefault();
+                        var spanclicked = $(this).attr('id');
+                        if (spanclicked.lastIndexOf('location', 0) === 0) {
+                            //console.log("Clicked on:" + spanclicked);  // sanity check
+                            spanid = spanclicked.replace('location', '');
+                            for (var i = 0; i < spanid.length; i++) {
+                                if (spanid.charAt(i) == "-") {
+                                    mediaid = parseInt(spanid.slice(0, i));
+                                    vpnumber = parseInt(spanid.slice(i + 1));
+                                    break;
+                                }
+                            }
+                            console.log("Clicked on: mediaid=" + mediaid + " vpnumber=" + vpnumber);  // sanity check
+                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
+                        }
+                    });
+                });
+
+
+                $(function () {
+                    console.log({{ qtypervp }});
+                    var $select = $('.1-100');
+                    for (i = 1; i <= 20; i++) {
+                        $select.append($('<option></option>').val(i).html(i))
+                    }
+                    for (i = 30; i <= 101; i = i + 10) {
+                        $select.append($('<option></option>').val(i).html(i))
+                    }
+                    $('.1-100 option[value="{{ qtypervp }}"]').attr('selected', 'selected');
+                    $('#qtytodisplaypervp').change(function () {
+                        var qtyselected = $(this).find(":selected").val();
+                        console.log(qtyselected);
+                        var vpssel = $('#vpsselected').serialize();
+                        console.log('Chosen:' + vpssel);
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
+                    });
+                });
+
+                $(function () {
+
+                    var mediaid = 0;
+
+                    // Submit post on submit
+                    $('span').click(function (event) {
+                        event.preventDefault();
+                        var spanclicked = $(this).attr('id');
+                        if (spanclicked.lastIndexOf('processed', 0) === 0) {
+                            console.log("Clicked on:" + spanclicked);  // sanity check
+                            mediaid = spanclicked.replace('processed', '');
+                            console.log("Clicked on:" + mediaid);  // sanity check
+                            mediaid_sendvalue();
+                        }
+                    });
+
+                    // AJAX for posting
+                    function mediaid_sendvalue() {
+                        console.log("mediaid_sendvalue was called!"); // sanity check
+                        $.ajax({
+                            url: "pf_mediaid_sendvalue/", // the endpoint
+                            type: "POST", // http method
+                            data: {mediaid: mediaid}, // data sent with the post request
+                            // handle a successful response
+                            success: function (json) {
+                                var output = '{% url 'taganalysis' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
+                                console.log(json); // log the returned json to the console
+                                console.log("success"); // another sanity check
+                                for (i = 0; i < json.result.length; i++) {
+                                    var tag_i = json.result[i].statusTagNumber;
+                                    output += "&tagsselected=" + tag_i;
+                                }
+                                console.log("call:" + output);
+                                window.location = output;
+                            },
+                            // handle a non-successful response
+                            error: function (xhr, errmsg, err) {
+                                //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                                //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            }
+                        });
+                    };
+
+                    // This function gets cookie with a given name
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
+                            }
+                        }
+                        return cookieValue;
+                    }
+
+                    var csrftoken = getCookie('csrftoken');
+
+                    /*
+                     The functions below will create a header with csrftoken
+                     */
+
+                    function csrfSafeMethod(method) {
+                        // these HTTP methods do not require CSRF protection
+                        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                    }
+
+                    function sameOrigin(url) {
+                        // test that a given url is a same-origin URL
+                        // url could be relative or scheme relative or absolute
+                        var host = document.location.host; // host + port
+                        var protocol = document.location.protocol;
+                        var sr_origin = '//' + host;
+                        var origin = protocol + sr_origin;
+                        // Allow absolute or scheme relative URLs to same origin
+                        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                            // or any other URL that isn't scheme relative or absolute i.e relative.
+                            !(/^(\/\/|http:|https:).*/.test(url));
+                    }
+
+                    $.ajaxSetup({
+                        beforeSend: function (xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                                // Send the token to same-origin, relative URLs only.
+                                // Send the token only if the method warrants CSRF protection
+                                // Using the CSRFToken value acquired earlier
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                        }
+                    });
+
+                });
+
+            </script>
+            <script>
+            var zoomlevel = 10;
+
+            var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(mymap);
+
+            var marker = L.marker([0, 0]).addTo(mymap);
+
+            var circle = L.circle([0, 0], {
+                color: 'red',
+                fillColor: '#f03',
+                fillOpacity: 0.5,
+                radius: 10.0
+            }).addTo(mymap);
+
+
+        </script>
+        {% endblock %}
+    {% else %}
+        <h1>Not Logged In....</h1>
+    {% endif %}
+{% endlocaltime %}

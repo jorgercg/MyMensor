@@ -51,6 +51,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     url(r'^$', mymviews.portfolio, name='index'),
     url(r'^portfolio/$', mymviews.portfolio, name='portfolio'),
+    url(r'^location/$', mymviews.portfolio, name='location'),
     url(r'^mediafeed/$', mymviews.mediafeed, name='mediafeed'),
     url(r'^vpdetail/$', mymviews.vpDetailView, name='vpdetail'),
     url(r'^tagstatus/$', mymviews.TagStatusView, name='tagstatus'),
