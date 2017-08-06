@@ -398,7 +398,7 @@ def portfolio(request):
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'media_vpnumbers': media_vpnumbers})
+                       'media_vpnumbers': media_vpnumbers, 'maxcolumns':request.device.matched})
 
 
 @login_required
