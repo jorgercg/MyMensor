@@ -547,6 +547,37 @@ svg {
 
 #locationmapid {
     height: 600px;
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    #locationmapid {
+        height: 192px;
+    }
+}
+
+@media (min-width: 768px) {
+    #locationmapid {
+        height: 256px;
+    }
+}
+
+@media (min-width: 992px) {
+    #locationmapid {
+        height: 330px;
+    }
+}
+
+@media (min-width: 1345px) {
+    #locationmapid {
+        height: 450px;
+    }
+}
+
+@media (min-width: 1800px) {
+    #locationmapid {
+        height: 600px;
+    }
 }
 
 #landingmapid {
