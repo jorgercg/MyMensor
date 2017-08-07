@@ -318,7 +318,7 @@
                 radius: {{ locprecisioninm | floatformat:3 }}
             }).addTo(mymap);
 
-            var qrcode = new QRCode("test", {
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
                 text: "{{ mediaCheckURL }}",
                 width: 60,
                 height: 60,
