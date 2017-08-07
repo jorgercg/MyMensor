@@ -1726,7 +1726,7 @@ def createmobileonlyuser(request):
         succesful = False
         mobonlyuser = None
         try:
-            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user.pk)
+            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
             succesful = True
         except:
             return render(request, 'createmobileonlyuserresult.html',
