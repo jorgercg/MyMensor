@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-10 17:41+0100\n"
+"POT-Creation-Date: 2017-08-07 19:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,133 +34,185 @@ msgstr ""
 msgid "Minimum capture frequency value"
 msgstr ""
 
-#: mymensor/models.py:82
+#: mymensor/models.py:90
 msgid "Mobile Only User Prefix"
 msgstr ""
 
-#: mymensor/models.py:120
+#: mymensor/models.py:128
 msgid "vp description"
 msgstr ""
 
-#: mymensor/models.py:144
+#: mymensor/models.py:152
 msgid "unit for the vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:145
+#: mymensor/models.py:153
 msgid "minimum vp capture frequency"
 msgstr ""
 
-#: mymensor/models.py:147
+#: mymensor/models.py:156
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 
-#: mymensor/models.py:149
+#: mymensor/models.py:158
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
 
-#: mymensor/models.py:151
+#: mymensor/models.py:160
 msgid "send all of this vp captures to the following email."
 msgstr ""
 
-#: mymensor/models.py:156
+#: mymensor/models.py:165
 msgid "tag description"
 msgstr ""
 
-#: mymensor/models.py:158
+#: mymensor/models.py:167
 msgid "tag is active"
 msgstr ""
 
-#: mymensor/models.py:161
+#: mymensor/models.py:170
 msgid "question that shall be answered when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:162
+#: mymensor/models.py:171
 msgid "unit to be used when processing this tag"
 msgstr ""
 
-#: mymensor/models.py:164
+#: mymensor/models.py:173
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
 
-#: mymensor/models.py:166
+#: mymensor/models.py:175
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:167
+#: mymensor/models.py:176
 msgid "expected value for the tag"
 msgstr ""
 
-#: mymensor/models.py:169
+#: mymensor/models.py:178
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
 
-#: mymensor/models.py:171
+#: mymensor/models.py:180
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 
-#: mymensor/models.py:287 mymensor/tables.py:7
+#: mymensor/models.py:300 mymensor/tables.py:7
 msgid "NOT PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:287 mymensor/tables.py:7
+#: mymensor/models.py:300 mymensor/tables.py:7
 msgid "PROCESSED"
 msgstr ""
 
-#: mymensor/models.py:287 mymensor/tables.py:7
+#: mymensor/models.py:300 mymensor/tables.py:7
 msgid "LOW RED"
 msgstr ""
 
-#: mymensor/models.py:287 mymensor/tables.py:7
+#: mymensor/models.py:300 mymensor/tables.py:7
 msgid "LOW YELLOW"
 msgstr ""
 
-#: mymensor/models.py:288 mymensor/tables.py:7
+#: mymensor/models.py:301 mymensor/tables.py:7
 msgid "GREEN"
 msgstr ""
 
-#: mymensor/models.py:289 mymensor/tables.py:8
+#: mymensor/models.py:302 mymensor/tables.py:8
 msgid "HIGH YELLOW"
 msgstr ""
 
-#: mymensor/models.py:289 mymensor/tables.py:8
+#: mymensor/models.py:302 mymensor/tables.py:8
 msgid "HIGH RED"
 msgstr ""
 
-#: mymensor/models.py:292 mymensor/tables.py:10
+#: mymensor/models.py:305 mymensor/tables.py:10
 msgid "Tag#"
 msgstr ""
 
-#: mymensor/models.py:293 mymensor/tables.py:11
+#: mymensor/models.py:306 mymensor/tables.py:11
 msgid "Tag Description"
 msgstr ""
 
-#: mymensor/models.py:294 mymensor/tables.py:12
+#: mymensor/models.py:307 mymensor/tables.py:12
 msgid "VP#"
 msgstr ""
 
-#: mymensor/models.py:295 mymensor/tables.py:13
+#: mymensor/models.py:308 mymensor/tables.py:13
 msgid "VP Description"
 msgstr ""
 
-#: mymensor/models.py:296 mymensor/tables.py:14
+#: mymensor/models.py:309 mymensor/tables.py:14
 msgid "Value"
 msgstr ""
 
-#: mymensor/models.py:297 mymensor/tables.py:15
+#: mymensor/models.py:310 mymensor/tables.py:15
 msgid "Unit"
 msgstr ""
 
-#: mymensor/models.py:298 mymensor/tables.py:16
+#: mymensor/models.py:311 mymensor/tables.py:16
 msgid "Media Time"
 msgstr ""
 
-#: mymensor/models.py:300 mymensor/tables.py:17
+#: mymensor/models.py:313 mymensor/tables.py:17
 msgid "Processing Time"
 msgstr ""
 
-#: mymensor/models.py:301 mymensor/tables.py:18 mymensor/templates/base.html:76
+#: mymensor/models.py:314 mymensor/tables.py:18 mymensor/templates/base.html:76
 msgid "Status"
+msgstr ""
+
+#: mymensor/mymviews.py:233
+msgid ""
+"Image Shared by MyMensor Bot \n"
+"\n"
+msgstr ""
+
+#: mymensor/mymviews.py:235 mymensor/mymviews.py:239
+msgid ""
+"\n"
+"\n"
+"(Sent by MyMensor Bot - folow the link above to check the image on mymensor."
+"com) \n"
+msgstr ""
+
+#: mymensor/mymviews.py:247
+msgid "MyMensor Bot sent you this PHOTO by request of "
+msgstr ""
+
+#: mymensor/mymviews.py:261
+msgid ""
+"Video Shared by MyMensor Bot \n"
+"\n"
+msgstr ""
+
+#: mymensor/mymviews.py:263 mymensor/mymviews.py:267
+msgid ""
+"\n"
+"\n"
+"(Sent by MyMensor Bot - folow the link above to check the video on mymensor."
+"com) \n"
+msgstr ""
+
+#: mymensor/mymviews.py:275
+msgid "MyMensor Bot sent you this VIDEO by request of "
+msgstr ""
+
+#: mymensor/mymviews.py:299 mymensor/mymviews.py:344
+msgid ""
+"Image Shared by MyMensor Bot \n"
+"\n"
+" Use the link to check the media: \n"
+"\n"
+msgstr ""
+
+#: mymensor/mymviews.py:318 mymensor/mymviews.py:353
+msgid ""
+"Video Shared by MyMensor Bot \n"
+"\n"
+" Use the link to check the media: \n"
+"\n"
 msgstr ""
 
 #: mymensor/templates/404.html:8
@@ -281,7 +333,6 @@ msgid "Subscription"
 msgstr ""
 
 #: mymensor/templates/base.html:137
-#: mymensor/templates/createmobileonlyuserresult.html:4
 msgid "Mobile Only User"
 msgstr ""
 
@@ -322,79 +373,89 @@ msgstr ""
 msgid "Privacy"
 msgstr ""
 
-#: mymensor/templates/base.html:188 mymensor/templates/landing.html:251
+#: mymensor/templates/base.html:188 mymensor/templates/landing.html:264
 msgid "Language"
 msgstr ""
 
-#: mymensor/templates/base.html:202 mymensor/templates/landing.html:265
+#: mymensor/templates/base.html:202 mymensor/templates/landing.html:277
 msgid "Set"
 msgstr ""
 
+#: mymensor/templates/createmobileonlyuserresult.html:4
+msgid "Service User"
+msgstr ""
+
 #: mymensor/templates/createmobileonlyuserresult.html:11
-msgid "Mobile Only User Status"
+msgid "Service User Status"
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:18
-msgid "Your current mobile only user is the following:"
+msgid "Your current service user is the following:"
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:21
-msgid "Mobile Only Username: "
+msgid "Service user Username: "
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:24
-msgid ""
-"To modify the password in use by your mobile only user use the field below."
+msgid "To modify the password in use by your service user use the field below."
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:27
-#: mymensor/templates/createmobileonlyuserresult.html:61
+#: mymensor/templates/createmobileonlyuserresult.html:62
 msgid "Your password must contain only letters and numbers."
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:28
-#: mymensor/templates/createmobileonlyuserresult.html:62
+#: mymensor/templates/createmobileonlyuserresult.html:63
 msgid "Your password must contain at least 8 characters."
 msgstr ""
 
 #: mymensor/templates/createmobileonlyuserresult.html:29
-#: mymensor/templates/createmobileonlyuserresult.html:63
+#: mymensor/templates/createmobileonlyuserresult.html:64
 msgid "Your password can't be entirely numeric."
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:37
-#: mymensor/templates/createmobileonlyuserresult.html:71
+#: mymensor/templates/createmobileonlyuserresult.html:38
+#: mymensor/templates/createmobileonlyuserresult.html:73
 msgid "Password here..."
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:41
+#: mymensor/templates/createmobileonlyuserresult.html:42
 msgid "Modify password"
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:45
-msgid "Delete your current mobile only user"
+#: mymensor/templates/createmobileonlyuserresult.html:46
+msgid "Delete your current service user"
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:49
-msgid "Press the button below to delete your current mobile only user."
+#: mymensor/templates/createmobileonlyuserresult.html:50
+msgid "Press the button below to delete your current service user."
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:51
-msgid "Delete Mobile Only User"
+#: mymensor/templates/createmobileonlyuserresult.html:52
+msgid "Delete Service User"
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:56
-msgid "Currently you do not have a mobile only user configured."
+#: mymensor/templates/createmobileonlyuserresult.html:57
+msgid "Currently you do not have a service user configured."
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:58
+#: mymensor/templates/createmobileonlyuserresult.html:59
 msgid ""
 "To create one insert below a password to be used by your new mobile only "
 "user."
 msgstr ""
 
-#: mymensor/templates/createmobileonlyuserresult.html:75
-msgid "Create password and mobile user"
+#: mymensor/templates/createmobileonlyuserresult.html:77
+msgid "Create Service User with this password"
+msgstr ""
+
+#: mymensor/templates/createmobileonlyuserresult.html:116
+#: mymensor/templates/createmobileonlyuserresult.html:130
+#: mymensor/templates/mobilebackup.html:57
+#: mymensor/templates/mobilebackup.html:82
+msgid "Waiting..."
 msgstr ""
 
 #: mymensor/templates/createsubscription.html:4
@@ -624,61 +685,61 @@ msgstr ""
 msgid " entries per VP"
 msgstr ""
 
-#: mymensor/templates/index.html:36
+#: mymensor/templates/index.html:36 mymensor/templates/location.html:38
 msgid "Refresh with current selection"
 msgstr ""
 
-#: mymensor/templates/index.html:62 mymensor/templates/index.html:162
+#: mymensor/templates/index.html:62 mymensor/templates/index.html:164
 #: mymensor/templates/mediafeed.html:19 mymensor/templates/mediafeed.html:76
 msgid "Processed. Click to see evolution over time."
 msgstr ""
 
-#: mymensor/templates/index.html:66 mymensor/templates/index.html:166
+#: mymensor/templates/index.html:66 mymensor/templates/index.html:168
 #: mymensor/templates/mediafeed.html:21 mymensor/templates/mediafeed.html:78
 msgid "Not processed"
 msgstr ""
 
 #: mymensor/templates/index.html:82 mymensor/templates/index.html:184
-#: mymensor/templates/landing.html:64 mymensor/templates/landing.html:144
+#: mymensor/templates/landing.html:76 mymensor/templates/landing.html:156
 #: mymensor/templates/mediafeed.html:31 mymensor/templates/mediafeed.html:92
 #: mymensor/templates/proctagedit.html:60
 #: mymensor/templates/proctagedit.html:146
 #: mymensor/templates/tagprocessing.html:60
 #: mymensor/templates/tagprocessing.html:146
-#: mymensor/templates/vpdetail.html:93 mymensor/templates/vpdetail.html:183
+#: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:182
 msgid "Augmented reality used to capture"
 msgstr ""
 
 #: mymensor/templates/index.html:86 mymensor/templates/index.html:188
-#: mymensor/templates/landing.html:67 mymensor/templates/landing.html:147
+#: mymensor/templates/landing.html:79 mymensor/templates/landing.html:159
 #: mymensor/templates/mediafeed.html:33 mymensor/templates/mediafeed.html:94
 #: mymensor/templates/proctagedit.html:64
 #: mymensor/templates/proctagedit.html:150
 #: mymensor/templates/tagprocessing.html:64
 #: mymensor/templates/tagprocessing.html:150
-#: mymensor/templates/vpdetail.html:96 mymensor/templates/vpdetail.html:186
+#: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:185
 msgid "Augmented reality not used to capture"
 msgstr ""
 
 #: mymensor/templates/index.html:91 mymensor/templates/index.html:193
-#: mymensor/templates/landing.html:71 mymensor/templates/landing.html:151
+#: mymensor/templates/landing.html:83 mymensor/templates/landing.html:163
 #: mymensor/templates/mediafeed.html:36 mymensor/templates/mediafeed.html:97
 #: mymensor/templates/proctagedit.html:69
 #: mymensor/templates/proctagedit.html:155
 #: mymensor/templates/tagprocessing.html:69
 #: mymensor/templates/tagprocessing.html:155
-#: mymensor/templates/vpdetail.html:100 mymensor/templates/vpdetail.html:190
+#: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:189
 msgid "Capture time certified"
 msgstr ""
 
 #: mymensor/templates/index.html:96 mymensor/templates/index.html:198
-#: mymensor/templates/landing.html:74 mymensor/templates/landing.html:154
+#: mymensor/templates/landing.html:86 mymensor/templates/landing.html:166
 #: mymensor/templates/mediafeed.html:38 mymensor/templates/mediafeed.html:99
 #: mymensor/templates/proctagedit.html:73
 #: mymensor/templates/proctagedit.html:159
 #: mymensor/templates/tagprocessing.html:73
 #: mymensor/templates/tagprocessing.html:159
-#: mymensor/templates/vpdetail.html:103 mymensor/templates/vpdetail.html:193
+#: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:192
 msgid "Capture time not certified"
 msgstr ""
 
@@ -686,34 +747,34 @@ msgstr ""
 msgid "Capture location certified. Click here to see location map."
 msgstr ""
 
-#: mymensor/templates/index.html:108 mymensor/templates/index.html:210
-#: mymensor/templates/landing.html:81 mymensor/templates/landing.html:161
+#: mymensor/templates/index.html:110 mymensor/templates/index.html:212
+#: mymensor/templates/landing.html:93 mymensor/templates/landing.html:173
 #: mymensor/templates/mediafeed.html:43 mymensor/templates/mediafeed.html:104
 #: mymensor/templates/proctagedit.html:82
 #: mymensor/templates/proctagedit.html:168
 #: mymensor/templates/tagprocessing.html:82
 #: mymensor/templates/tagprocessing.html:168
-#: mymensor/templates/vpdetail.html:110 mymensor/templates/vpdetail.html:200
+#: mymensor/templates/vpdetail.html:109 mymensor/templates/vpdetail.html:199
 msgid "Capture location not certified"
 msgstr ""
 
-#: mymensor/templates/index.html:118 mymensor/templates/index.html:220
+#: mymensor/templates/index.html:120 mymensor/templates/index.html:222
 msgid "No remark for this media"
 msgstr ""
 
-#: mymensor/templates/index.html:127 mymensor/templates/index.html:228
-#: mymensor/templates/landing.html:61 mymensor/templates/landing.html:141
+#: mymensor/templates/index.html:129 mymensor/templates/index.html:230
+#: mymensor/templates/landing.html:73 mymensor/templates/landing.html:153
 #: mymensor/templates/mediafeed.html:49 mymensor/templates/mediafeed.html:110
 #: mymensor/templates/proctagedit.html:109
 #: mymensor/templates/proctagedit.html:195
 #: mymensor/templates/tagprocessing.html:109
 #: mymensor/templates/tagprocessing.html:195
-#: mymensor/templates/tagsetup.html:68 mymensor/templates/vpdetail.html:90
-#: mymensor/templates/vpdetail.html:180 mymensor/templates/vpsetup.html:29
+#: mymensor/templates/tagsetup.html:68 mymensor/templates/vpdetail.html:89
+#: mymensor/templates/vpdetail.html:179 mymensor/templates/vpsetup.html:29
 msgid "Captured on"
 msgstr ""
 
-#: mymensor/templates/index.html:133 mymensor/templates/index.html:234
+#: mymensor/templates/index.html:135 mymensor/templates/index.html:236
 #: mymensor/templates/mediafeed.html:53 mymensor/templates/mediafeed.html:114
 #: mymensor/templates/proctagedit.html:115
 #: mymensor/templates/proctagedit.html:201
@@ -722,105 +783,105 @@ msgstr ""
 msgid "Received at server on"
 msgstr ""
 
-#: mymensor/templates/index.html:261
+#: mymensor/templates/index.html:263
 msgid "No media for VP#"
 msgstr ""
 
-#: mymensor/templates/index.html:261
+#: mymensor/templates/index.html:263
 msgid " in the selected timeframe."
 msgstr ""
 
-#: mymensor/templates/landing.html:50
+#: mymensor/templates/landing.html:62
 msgid "MyMensor Media Check"
 msgstr ""
 
-#: mymensor/templates/landing.html:59
+#: mymensor/templates/landing.html:71
 msgid "Photo of "
 msgstr ""
 
-#: mymensor/templates/landing.html:78 mymensor/templates/landing.html:158
+#: mymensor/templates/landing.html:90 mymensor/templates/landing.html:170
 #: mymensor/templates/mediafeed.html:41 mymensor/templates/mediafeed.html:102
 #: mymensor/templates/proctagedit.html:78
 #: mymensor/templates/proctagedit.html:164
 #: mymensor/templates/tagprocessing.html:78
 #: mymensor/templates/tagprocessing.html:164
-#: mymensor/templates/vpdetail.html:107 mymensor/templates/vpdetail.html:197
+#: mymensor/templates/vpdetail.html:106 mymensor/templates/vpdetail.html:196
 msgid "Capture location certified"
 msgstr ""
 
-#: mymensor/templates/landing.html:91 mymensor/templates/landing.html:173
+#: mymensor/templates/landing.html:103 mymensor/templates/landing.html:185
 msgid " augmented reality used to capture"
 msgstr ""
 
-#: mymensor/templates/landing.html:95 mymensor/templates/landing.html:177
+#: mymensor/templates/landing.html:107 mymensor/templates/landing.html:189
 msgid " augmented reality not used to capture"
 msgstr ""
 
-#: mymensor/templates/landing.html:100 mymensor/templates/landing.html:182
+#: mymensor/templates/landing.html:112 mymensor/templates/landing.html:194
 msgid " the capture time was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/landing.html:104 mymensor/templates/landing.html:186
+#: mymensor/templates/landing.html:116 mymensor/templates/landing.html:198
 msgid " the capture time was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/landing.html:109 mymensor/templates/landing.html:191
+#: mymensor/templates/landing.html:121 mymensor/templates/landing.html:203
 msgid " the capture location was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/landing.html:113 mymensor/templates/landing.html:195
+#: mymensor/templates/landing.html:125 mymensor/templates/landing.html:207
 msgid " the capture location was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/landing.html:122 mymensor/templates/vpdetail.html:160
-#: mymensor/templates/vpdetail.html:252
+#: mymensor/templates/landing.html:134 mymensor/templates/vpdetail.html:159
+#: mymensor/templates/vpdetail.html:251
 msgid "Location details"
 msgstr ""
 
-#: mymensor/templates/landing.html:127 mymensor/templates/landing.html:209
-#: mymensor/templates/vpdetail.html:165 mymensor/templates/vpdetail.html:257
+#: mymensor/templates/landing.html:139 mymensor/templates/landing.html:221
+#: mymensor/templates/vpdetail.html:164 mymensor/templates/vpdetail.html:256
 msgid " Latitude: "
 msgstr ""
 
-#: mymensor/templates/landing.html:127 mymensor/templates/landing.html:129
-#: mymensor/templates/landing.html:209 mymensor/templates/landing.html:211
-#: mymensor/templates/vpdetail.html:165 mymensor/templates/vpdetail.html:167
-#: mymensor/templates/vpdetail.html:257 mymensor/templates/vpdetail.html:259
+#: mymensor/templates/landing.html:139 mymensor/templates/landing.html:141
+#: mymensor/templates/landing.html:221 mymensor/templates/landing.html:223
+#: mymensor/templates/vpdetail.html:164 mymensor/templates/vpdetail.html:166
+#: mymensor/templates/vpdetail.html:256 mymensor/templates/vpdetail.html:258
 msgid " degrees"
 msgstr ""
 
-#: mymensor/templates/landing.html:129 mymensor/templates/landing.html:211
-#: mymensor/templates/vpdetail.html:167 mymensor/templates/vpdetail.html:259
+#: mymensor/templates/landing.html:141 mymensor/templates/landing.html:223
+#: mymensor/templates/vpdetail.html:166 mymensor/templates/vpdetail.html:258
 msgid " Longitude: "
 msgstr ""
 
-#: mymensor/templates/landing.html:131 mymensor/templates/landing.html:213
-#: mymensor/templates/vpdetail.html:169 mymensor/templates/vpdetail.html:261
+#: mymensor/templates/landing.html:143 mymensor/templates/landing.html:225
+#: mymensor/templates/vpdetail.html:168 mymensor/templates/vpdetail.html:260
 msgid " Precision: "
 msgstr ""
 
-#: mymensor/templates/landing.html:131 mymensor/templates/landing.html:213
-#: mymensor/templates/vpdetail.html:169 mymensor/templates/vpdetail.html:261
+#: mymensor/templates/landing.html:143 mymensor/templates/landing.html:225
+#: mymensor/templates/vpdetail.html:168 mymensor/templates/vpdetail.html:260
 msgid " meters"
 msgstr ""
 
-#: mymensor/templates/landing.html:139
+#: mymensor/templates/landing.html:151
 msgid "Video of "
 msgstr ""
 
-#: mymensor/templates/landing.html:236
+#: mymensor/templates/landing.html:248
 msgid ""
 "The media above was produced using the MyMensor mobile app on the date, time "
 "and location above stated."
 msgstr ""
 
-#: mymensor/templates/landing.html:237
+#: mymensor/templates/landing.html:249
 msgid ""
 "Below the media one can read if capture time and location were certified or "
 "not by MyMensor."
 msgstr ""
 
-#: mymensor/templates/landing.html:238
+#: mymensor/templates/landing.html:250
 msgid ""
 "Please use the code to the left or the following address to validate this "
 "media online."
@@ -849,11 +910,6 @@ msgstr ""
 
 #: mymensor/templates/mobilebackup.html:25
 msgid "Restore Backup"
-msgstr ""
-
-#: mymensor/templates/mobilebackup.html:57
-#: mymensor/templates/mobilebackup.html:82
-msgid "Waiting..."
 msgstr ""
 
 #: mymensor/templates/mobilebackup.html:66
@@ -1448,84 +1504,120 @@ msgstr ""
 msgid "Authorize Your Payment Method"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:31
+#: mymensor/templates/vpdetail.html:30
 msgid "Media captured on "
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:39
+#: mymensor/templates/vpdetail.html:38
 msgid "Choose a VP to move the media to:"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:42
+#: mymensor/templates/vpdetail.html:41
 msgid "Move to "
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:49
+#: mymensor/templates/vpdetail.html:48
 msgid "Click to move media to the selected VP# folder"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:50
+#: mymensor/templates/vpdetail.html:49
 msgid "Please confirm that you want to move this media."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:58
+#: mymensor/templates/vpdetail.html:57
 msgid "Click to open media check share page"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:75
+#: mymensor/templates/vpdetail.html:74
 msgid "Delete media from server"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:76
+#: mymensor/templates/vpdetail.html:75
 msgid "Please confirm that you want to delete this media from MyMensor server."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:120 mymensor/templates/vpdetail.html:212
+#: mymensor/templates/vpdetail.html:119 mymensor/templates/vpdetail.html:211
 msgid " means that augmented reality was used to capture this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:124 mymensor/templates/vpdetail.html:216
+#: mymensor/templates/vpdetail.html:123 mymensor/templates/vpdetail.html:215
 msgid " means that augmented reality was not used to capture this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:129 mymensor/templates/vpdetail.html:221
+#: mymensor/templates/vpdetail.html:128 mymensor/templates/vpdetail.html:220
 msgid " means that the capture time was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:133 mymensor/templates/vpdetail.html:225
+#: mymensor/templates/vpdetail.html:132 mymensor/templates/vpdetail.html:224
 msgid " means that the capture time was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:138 mymensor/templates/vpdetail.html:230
+#: mymensor/templates/vpdetail.html:137 mymensor/templates/vpdetail.html:229
 msgid " means that the capture location was certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:142 mymensor/templates/vpdetail.html:234
+#: mymensor/templates/vpdetail.html:141 mymensor/templates/vpdetail.html:233
 msgid " means that the capture location was not certified by MyMensor"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:151 mymensor/templates/vpdetail.html:243
+#: mymensor/templates/vpdetail.html:150 mymensor/templates/vpdetail.html:242
 msgid " No remark for this media"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:285
-msgid "Check this media at MyMensor"
+#: mymensor/templates/vpdetail.html:284
+msgid "Check this at MyMensor!"
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:564
+#: mymensor/templates/vpdetail.html:563
 msgid "Media deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:572
+#: mymensor/templates/vpdetail.html:571
 msgid "Error: file not deleted."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:588
+#: mymensor/templates/vpdetail.html:587
 msgid "Media moved."
 msgstr ""
 
-#: mymensor/templates/vpdetail.html:596
+#: mymensor/templates/vpdetail.html:595
 msgid "Error: media not moved."
+msgstr ""
+
+#: mymensorapp/settings.py:223
+msgid "One column"
+msgstr ""
+
+#: mymensorapp/settings.py:228
+msgid "Two column"
+msgstr ""
+
+#: mymensorapp/settings.py:233
+msgid "Three column"
+msgstr ""
+
+#: mymensorapp/settings.py:238
+msgid "Four column"
+msgstr ""
+
+#: mymensorapp/settings.py:243
+msgid "Five column"
+msgstr ""
+
+#: mymensorapp/settings.py:248
+msgid "Six column"
+msgstr ""
+
+#: mymensorapp/settings.py:253
+msgid "Seven column"
+msgstr ""
+
+#: mymensorapp/settings.py:258
+msgid "Eight column"
+msgstr ""
+
+#: mymensorapp/settings.py:263 mymensorapp/settings.py:268
+msgid "Nine column"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
