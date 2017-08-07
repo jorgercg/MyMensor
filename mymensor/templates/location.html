@@ -14,15 +14,17 @@
                             <span id="selcdates"></span> <b class="caret"></b>
                         </div>
                     </div>
-                    <div class="mym-dash-item">
-                        <div id="qtyselector" class="mym-dash-item">
-                            <p>{% trans 'Show ' %}</p>
-                            <select id="qtytodisplaypervp" class="1-100"></select>
-                            <p>{% trans ' entries per VP' %}</p>
-                        </div>
-                    </div>
                     <div id="vpselector" class="mym-dash-item">
                         <select class="vpselectedclass" multiple="multiple" id="vpsselected" name="vpsselected">
+                            {% for vpnumber in vpslist %}
+                                <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
+                                        {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
+                                    VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="orgmymaccselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="orgmymaccselected" name="orgmymaccselected">
                             {% for vpnumber in vpslist %}
                                 <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
                                         {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
@@ -51,13 +53,6 @@
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaContentType == "image/jpeg" %}
-                                        <a data-toggle="modal"
-                                           data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
-                                           data-whatever="{{ media.mediaStorageURL }}">
-                                            <img class="card-img-top img-fluid"
-                                                 src="{{ media.mediaStorageURL }}"
-                                                 alt="">
-                                        </a>
                                         <!-- Modal to Images -->
                                         <div class="modal fade"
                                              id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"

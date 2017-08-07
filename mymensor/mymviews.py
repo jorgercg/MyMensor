@@ -84,7 +84,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
-            mediaObjectS3KeyEncoded = urllib.quote('cap/'+messagemymuser+'/'+mediaObjectS3partialKey)
+            mediaObjectS3KeyEncoded = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey)
             mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                       'Key': mediaObjectS3KeyEncoded},
@@ -99,13 +99,14 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
             if object.content_type == 'video/mp4':
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_','_t_')
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4','.jpg')
-                mediaObjectS3KeyEncodedHeader = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
+                mediaObjectS3KeyEncodedHeader = urllib.quote(
+                    'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
                 mediaStorageURLHeader = s3Client.generate_presigned_url('get_object',
-                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                      'Key': mediaObjectS3KeyEncodedHeader},
-                                                              ExpiresIn=3600)
+                                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                                'Key': mediaObjectS3KeyEncodedHeader},
+                                                                        ExpiresIn=3600)
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaStorageURLHeader': mediaStorageURLHeader,
@@ -223,17 +224,19 @@ def amazon_sns_processor(request):
                                                   Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                           'Key': media_received.mediaObjectS3Key},
                                                   ExpiresIn=3600)
-            landingurl = 'https://app.mymensor.com/landing/?type=1&key='+media_received.mediaObjectS3Key+'&signature='+media_received.mediaSha256
-            mcurl= 'https://app.mymensor.com/mc/1/'+media_received.mediaObjectS3Key+'/'+media_received.mediaSha256
-            if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail)>0):
+            landingurl = 'https://app.mymensor.com/landing/?type=1&key=' + media_received.mediaObjectS3Key + '&signature=' + media_received.mediaSha256
+            mcurl = 'https://app.mymensor.com/mc/1/' + media_received.mediaObjectS3Key + '/' + media_received.mediaSha256
+            if (vp_received.vpShareEmail is not None) and (len(vp_received.vpShareEmail) > 0):
                 emailsender = User.objects.get(username=media_received.mediaMymensorAccount)
                 if media_received.mediaContentType == "image/jpeg":
                     if media_received.mediaRemark is None:
                         mediaRemarkToBeShared = unicode(_('Image Shared by MyMensor Bot \n\n')) + mcurl + unicode(
-                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
+                            _(
+                                '\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
                     else:
                         mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl + unicode(
-                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
+                            _(
+                                '\n\n(Sent by MyMensor Bot - folow the link above to check the image on mymensor.com) \n'))
                     filename = 'temp.jpg'
                     requesturl = requests.get(url, stream=True)
                     if requesturl.status_code == 200:
@@ -241,7 +244,7 @@ def amazon_sns_processor(request):
                             for chunk in requesturl:
                                 image.write(chunk)
                         image = open(filename, 'rb')
-                        subject = _("MyMensor Bot sent you this PHOTO by request of ")+emailsender.username
+                        subject = _("MyMensor Bot sent you this PHOTO by request of ") + emailsender.username
                         message = mediaRemarkToBeShared
                         from_email = emailsender.email
                         recipient_list = [vp_received.vpShareEmail]
@@ -256,10 +259,12 @@ def amazon_sns_processor(request):
                 if media_received.mediaContentType == "video/mp4":
                     if media_received.mediaRemark is None:
                         mediaRemarkToBeShared = unicode(_('Video Shared by MyMensor Bot \n\n')) + mcurl + unicode(
-                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
+                            _(
+                                '\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
                     else:
                         mediaRemarkToBeShared = media_received.mediaRemark + '\n\n' + mcurl + unicode(
-                            _('\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
+                            _(
+                                '\n\n(Sent by MyMensor Bot - folow the link above to check the video on mymensor.com) \n'))
                     filename = 'temp.mp4'
                     requesturl = requests.get(url, stream=True)
                     if requesturl.status_code == 200:
@@ -290,7 +295,8 @@ def amazon_sns_processor(request):
                                           twitterAccount.twtAccessTokenSecret)
                     if media_received.mediaContentType == "image/jpeg":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(_('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
+                            mediaRemarkToBeSharedToTwitter = unicode(
+                                _('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
                             mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         filename = 'temp.jpg'
@@ -301,13 +307,15 @@ def amazon_sns_processor(request):
                                     image.write(chunk)
                             image = open(filename, 'rb')
                             response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter, media_ids=[response['media_id']])
+                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
+                                                      media_ids=[response['media_id']])
                             os.remove(filename)
                         else:
                             print("Unable to download media")
                     if media_received.mediaContentType == "video/mp4":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(_('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
+                            mediaRemarkToBeSharedToTwitter = unicode(
+                                _('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
                             mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         filename = 'temp.mp4'
@@ -332,17 +340,19 @@ def amazon_sns_processor(request):
                 if facebookAccount is not None:
                     if media_received.mediaContentType == "image/jpeg":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(_('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
+                            mediaRemarkToBeSharedToFB = unicode(
+                                _('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark+ '\n\n Use the link to check the media: \n\n' + mcurl
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         data = {'url': url, 'caption': mediaRemarkToBeSharedToFB,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/photos', data=data)
                     if media_received.mediaContentType == "video/mp4":
                         if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(_('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
+                            mediaRemarkToBeSharedToFB = unicode(
+                                _('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
                         else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark+ '\n\n Use the link to check the media: \n\n' + mcurl
+                            mediaRemarkToBeSharedToFB = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
                         data = {'file_url': url, 'description': mediaRemarkToBeSharedToFB,
                                 'access_token': facebookAccount.fbLongTermAccesToken}
                         feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/videos', data=data)
@@ -411,16 +421,16 @@ def portfolio(request):
                                                                     ExpiresIn=3600)
             media_vpnumbers.append(media.mediaVpNumber)
             if media.mediaContentType == 'video/mp4':
-                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_','_t_')
-                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4','.jpg')
+                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_', '_t_')
+                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4', '.jpg')
                 media.mediaThumbnailStorageURL = s3Client.generate_presigned_url('get_object',
-                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                      'Key': mediaObjectS3KeyForThumbnail},
-                                                              ExpiresIn=3600)
+                                                                                 Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                                         'Key': mediaObjectS3KeyForThumbnail},
+                                                                                 ExpiresIn=3600)
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'media_vpnumbers': media_vpnumbers,})
+                       'media_vpnumbers': media_vpnumbers, })
 
 
 # Location View
@@ -441,6 +451,7 @@ def location(request):
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', 10))
         vpsselected = request.GET.getlist('vpsselected', default=None)
+        orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
@@ -454,6 +465,7 @@ def location(request):
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
+        orgmymaccselected = medias.values_list('mediaOriginalMymensorAccount', flat=True).distinct()
         media_vpnumbers = []
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
@@ -462,16 +474,16 @@ def location(request):
                                                                     ExpiresIn=3600)
             media_vpnumbers.append(media.mediaVpNumber)
             if media.mediaContentType == 'video/mp4':
-                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_','_t_')
-                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4','.jpg')
+                mediaObjectS3KeyForThumbnail = media.mediaObjectS3Key.replace('_v_', '_t_')
+                mediaObjectS3KeyForThumbnail = mediaObjectS3KeyForThumbnail.replace('.mp4', '.jpg')
                 media.mediaThumbnailStorageURL = s3Client.generate_presigned_url('get_object',
-                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                      'Key': mediaObjectS3KeyForThumbnail},
-                                                              ExpiresIn=3600)
+                                                                                 Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                                         'Key': mediaObjectS3KeyForThumbnail},
+                                                                                 ExpiresIn=3600)
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'media_vpnumbers': media_vpnumbers,})
+                       'orgmymaccselected': orgmymaccselected, 'media_vpnumbers': media_vpnumbers, })
 
 
 @login_required
@@ -520,18 +532,24 @@ def cognitoauth(request):
 
         thirtydaysago = datetime.today() - timedelta(days=30)
 
-        qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(mobileClientInstallLastAccessTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
+        qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
+            mobileClientInstallLastAccessTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
 
-        qtyofinstallevermade = MobileClientInstall.objects.filter(asset=assetinstance).distinct('mobileClientInstallGUID').count()
+        qtyofinstallevermade = MobileClientInstall.objects.filter(asset=assetinstance).distinct(
+            'mobileClientInstallGUID').count()
 
         mobclientinstallinstace = MobileClientInstall()
         try:
-            mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance, mobileClientInstallGUID=mymclientguid)
+            mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance,
+                                                                      mobileClientInstallGUID=mymclientguid)
             mobclientinstallinstace.mobileClientInstallLastAccessTimeStamp = datetime.utcnow()
             mobclientinstallinstace.save(force_update=True)
         except mobclientinstallinstace.DoesNotExist:
             timenow = datetime.utcnow()
-            mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid, mobileClientInstallOrderNumber=qtyofinstallevermade+1, mobileClientInstallCreationTimeStamp=timenow, mobileClientInstallLastAccessTimeStamp=timenow)
+            mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid,
+                                                          mobileClientInstallOrderNumber=qtyofinstallevermade + 1,
+                                                          mobileClientInstallCreationTimeStamp=timenow,
+                                                          mobileClientInstallLastAccessTimeStamp=timenow)
             mobclientinstallinstace.save(force_insert=True)
 
         usergroup = 'mymARwebapp'
@@ -1707,7 +1725,7 @@ def createmobileonlyuser(request):
     if request.method == "GET":
         succesful = False
         try:
-            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user.pk)
             succesful = True
         except:
             return render(request, 'createmobileonlyuserresult.html',
