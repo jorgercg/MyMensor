@@ -50,44 +50,48 @@
                         {% if vp.vpNumber in media_vpnumbers %}
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
-                                    {% counter start=0 silent=True assign='mediaqtyinvp' %}
-                                    {% if qtypervp > mediaqtyinvp %}
-                                        {% if media.mediaContentType == "image/jpeg" %}
-                                            <!-- Modal to Images -->
-                                            <div class="modal fade"
-                                                 id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
-                                                 tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <img id="mediaContent" class="img-fluid"
-                                                                 src="{{ media.mediaStorageURL }}" alt="">
+                                    {% if media.mediaContentType == "image/jpeg" %}
+                                        <a data-toggle="modal"
+                                           data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                           data-whatever="{{ media.mediaStorageURL }}">
+                                            <img class="card-img-top img-fluid"
+                                                 src="{{ media.mediaStorageURL }}"
+                                                 alt="">
+                                        </a>
+                                        <!-- Modal to Images -->
+                                        <div class="modal fade"
+                                             id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <img id="mediaContent" class="img-fluid"
+                                                             src="{{ media.mediaStorageURL }}" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% if media.mediaContentType == "video/mp4" %}
+                                        <!-- Modal to Videos -->
+                                        <div class="modal fade"
+                                             id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <video controls>
+                                                                <source src="{{ media.mediaStorageURL }}"
+                                                                        type="video/mp4">
+                                                            </video>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        {% endif %}
-                                        {% if media.mediaContentType == "video/mp4" %}
-                                            <!-- Modal to Videos -->
-                                            <div class="modal fade"
-                                                 id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
-                                                 tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <div class="embed-responsive embed-responsive-16by9">
-                                                                <video controls>
-                                                                    <source src="{{ media.mediaStorageURL }}"
-                                                                            type="video/mp4">
-                                                                </video>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endif %}
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
@@ -285,13 +289,14 @@
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(mymap);
 
-                    var marker = L.circleMarker([0, 0], {
+                    var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+
+                    var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
-                        radius: 100.0
+                        radius: {{ locprecisioninm | floatformat:3 }}
                     }).addTo(mymap);
-
                 });
 
                 $(function () {

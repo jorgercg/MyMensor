@@ -439,29 +439,7 @@ def location(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        maxcolumnstxt = request.device.matched
-        maxcolumns = 10
-        if 'onecolumn' in maxcolumnstxt:
-            maxcolumns = 1
-        elif 'twocolumn' in maxcolumnstxt:
-            maxcolumns = 2
-        elif 'threecolumn' in maxcolumnstxt:
-            maxcolumns = 3
-        elif 'fourcolumn' in maxcolumnstxt:
-            maxcolumns = 4
-        elif 'fivecolumn' in maxcolumnstxt:
-            maxcolumns = 5
-        elif 'sixcolumn' in maxcolumnstxt:
-            maxcolumns = 6
-        elif 'sevencolumn' in maxcolumnstxt:
-            maxcolumns = 7
-        elif 'eightcolumn' in maxcolumnstxt:
-            maxcolumns = 8
-        elif 'ninecolumn' in maxcolumnstxt:
-            maxcolumns = 9
-        elif 'tencolumn' in maxcolumnstxt:
-            maxcolumns = 10
-        qtypervp = int(request.GET.get('qtypervp', maxcolumns))
+        qtypervp = int(request.GET.get('qtypervp', 10))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
@@ -473,7 +451,7 @@ def location(request):
             vpsselected = vps.values_list('vpNumber', flat=True)
 
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(
-            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')[:qtypervp]
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         media_vpnumbers = []
