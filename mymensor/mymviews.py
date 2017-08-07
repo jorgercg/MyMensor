@@ -1726,7 +1726,7 @@ def createmobileonlyuser(request):
         succesful = False
         mobonlyuser = None
         try:
-            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+            mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUserOwner=request.user)
             succesful = True
         except:
             return render(request, 'createmobileonlyuserresult.html',
@@ -1762,7 +1762,7 @@ def savemobileonlyuser(request):
         if mobuserplainpassword is not None:
             if mobuseralreadyexists == 1:
                 try:
-                    mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+                    mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUserOwner=request.user)
                     mobuser = User.objects.get(id=mobonlyuser.mobileOnlyUserAuthUserId)
                     mobuserusername = mobuser.username
                     mobuser.set_password(mobuserplainpassword)
@@ -1790,7 +1790,7 @@ def savemobileonlyuser(request):
                         g.user_set.remove(mobuser)
                         g = Group.objects.get(name='mymARmobileapp')
                         g.user_set.add(mobuser)
-                        MobileOnlyUser.objects.update_or_create(mobileOnlyUser=request.user,
+                        MobileOnlyUser.objects.update_or_create(mobileOnlyUserOwner=request.user,
                                                                 mobileOnlyUserPrefix=mobusernamecurrentprefix,
                                                                 mobileOnlyUserAuthUserId=mobuser.id)
                         succesful = True
@@ -1830,7 +1830,7 @@ def savemobileonlyuser(request):
 def deletemobileonlyuser(request):
     if request.method == 'POST':
         succesful = False
-        mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user)
+        mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUserOwner=request.user)
         mobuser = User.objects.get(id=mobonlyuser.mobileOnlyUserAuthUserId)
         try:
             mobuser.delete()
