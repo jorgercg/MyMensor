@@ -283,7 +283,7 @@
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/leaflet.js" %}"></script>
         <script src="{% static "js/mymensor-jquery.js" %}"></script>
-        <script src="{% static "js/qrcode.min.js" %}"></script>
+        <script src="{% static "js/qrious.min.js" %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
         <!-- Page Local Scripts
@@ -318,14 +318,18 @@
                 radius: {{ locprecisioninm | floatformat:3 }}
             }).addTo(mymap);
 
-            var qrcode = new QRCode(document.getElementById("qrcodenew"), {
-                text: "{{ mediaCheckURL }}",
-                width: 60,
-                height: 60,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.H
+            var qr = new QRious({
+                element: document.getElementById('qrcodenew'),
+                background: 'green',
+                backgroundAlpha: 0.8,
+                foreground: 'blue',
+                foregroundAlpha: 0.8,
+                level: 'H',
+                padding: 5,
+                size: 50,
+                value: '{{ mediaCheckURL }}'
             });
+
         </script>
         {% block javascript %}{% endblock %}
     </body>
