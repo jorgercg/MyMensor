@@ -242,7 +242,7 @@
             <div id="footer-dash" class="mym-dash">
                 <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
                     <div class="mym-dash-item">
-                        <div id="qrcode"></div>
+                        <div id="qrcodenew"></div>
                     </div>
                     <div class="mym-dash-item">
                         <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
@@ -318,7 +318,7 @@
                 radius: {{ locprecisioninm | floatformat:3 }}
             }).addTo(mymap);
 
-            var qrcode = new QRCode(document.getElementById("qrcode"), {
+            var qrcode = new QRCode(document.getElementById("qrcodenew"), {
                 text: "{{ mediaCheckURL }}",
                 width: 60,
                 height: 60,
