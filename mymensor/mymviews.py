@@ -1724,14 +1724,19 @@ def markerdownload(request):
 def createmobileonlyuser(request):
     if request.method == "GET":
         succesful = False
+        mobonlyuser = None
         try:
             mobonlyuser = MobileOnlyUser.objects.get(mobileOnlyUser=request.user.pk)
             succesful = True
         except:
             return render(request, 'createmobileonlyuserresult.html',
                           {'succesful': succesful})
-        return render(request, 'createmobileonlyuserresult.html',
+        if mobonlyuser:
+            return render(request, 'createmobileonlyuserresult.html',
                       {'succesful': succesful, 'mobonlyuser': mobonlyuser})
+        else:
+            return render(request, 'createmobileonlyuserresult.html',
+                          {'succesful': succesful})
     return HttpResponse(status=404)
 
 
