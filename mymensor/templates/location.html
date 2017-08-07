@@ -289,13 +289,13 @@
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(mymap);
 
-                    var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+                    var marker = L.marker([0, 0]).addTo(mymap);
 
-                    var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+                    var circle = L.circle([0, 0], {
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.5,
-                        radius: {{ locprecisioninm | floatformat:3 }}
+                        radius: 100.0
                     }).addTo(mymap);
                 });
 
