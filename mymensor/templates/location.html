@@ -53,15 +53,6 @@
                                     {% counter start=0 silent=True assign='mediaqtyinvp' %}
                                     {% if qtypervp > mediaqtyinvp %}
                                         {% if media.mediaContentType == "image/jpeg" %}
-                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                                <a data-toggle="modal"
-                                                   data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
-                                                   data-whatever="{{ media.mediaStorageURL }}">
-                                                    <img class="card-img-top img-fluid"
-                                                         src="{{ media.mediaStorageURL }}"
-                                                         alt="">
-                                                </a>
-                                            </div>
                                             <!-- Modal to Images -->
                                             <div class="modal fade"
                                                  id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
@@ -78,16 +69,6 @@
                                             </div>
                                         {% endif %}
                                         {% if media.mediaContentType == "video/mp4" %}
-                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                                <a data-toggle="modal"
-                                                   data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
-                                                   data-whatever="{{ media.mediaStorageURL }}"><span
-                                                        class="fa fa-play-circle-o fa-4x thumbnail"></span>
-                                                    <img class="card-img-top img-fluid"
-                                                         src="{{ media.mediaThumbnailStorageURL }}"
-                                                         alt="">
-                                                </a>
-                                            </div>
                                             <!-- Modal to Videos -->
                                             <div class="modal fade"
                                                  id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
