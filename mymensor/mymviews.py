@@ -451,7 +451,7 @@ def location(request):
             vpsselected = vps.values_list('vpNumber', flat=True)
 
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(
-            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')[:qtypervp]
+            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         media_vpnumbers = []
