@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 {% load i18n mymfilters %}
 {% if user.is_authenticated %}
-    {% block title %}{% trans "Mobile Only User" %} - {{ block.super }}{% endblock %}
+    {% block title %}{% trans "Service User" %} - {{ block.super }}{% endblock %}
     {% block header %}
     {% endblock %}
     {% block content %}
         <div class="container">
             <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
                 <p></p>
-                <h3>{% trans "Mobile Only User Status" %}</h3>
+                <h3>{% trans "Service User Status" %}</h3>
                 <p></p>
             </div>
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-8">
                     {% if succesful %}
                         <div id="alert_placeholder"></div>
-                        <p>{% trans "Your current mobile only user is the following:" %}</p>
+                        <p>{% trans "Your current service user is the following:" %}</p>
                         <p></p>
                         <p>
-                            {% trans "Mobile Only Username: " %}<strong>
+                            {% trans "Service user Username: " %}<strong>
                             {{ mobonlyuser.mobileOnlyUserPrefix }}{{ user.username }}</strong></p>
                         <p></p>
-                        <p>{% trans "To modify the password in use by your mobile only user use the field below." %}</p>
+                        <p>{% trans "To modify the password in use by your service user use the field below." %}</p>
                         <p></p>
                         <ul>
                             <li>{% trans "Your password must contain only letters and numbers." %}</li>
@@ -30,7 +30,8 @@
                         </ul>
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button id="existpasswdbtn" class="btn btn-outline-info" type="button"><span id="existpassspan" class="fa fa-eye-slash"></span></button>
+                                <button id="existpasswdbtn" class="btn btn-outline-info" type="button"><span
+                                        id="existpassspan" class="fa fa-eye-slash"></span></button>
                             </span>
                             <input id="existingpassword"
                                    type="password" class="form-control"
@@ -42,18 +43,18 @@
                             </span>
                         </div>
                         <div class="row" style="padding-top: 20px; padding-bottom: 20px">
-                            <h3>{% trans "Delete your current mobile only user" %}</h3>
+                            <h3>{% trans "Delete your current service user" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
-                                <p>{% trans "Press the button below to delete your current mobile only user." %}</p>
+                                <p>{% trans "Press the button below to delete your current service user." %}</p>
                                 <a id="delete-mobuser" class="btn btn-danger"
-                                   role="button">{% trans "Delete Mobile Only User" %}</a>
+                                   role="button">{% trans "Delete Service User" %}</a>
                             </div>
                         </div>
                     {% else %}
                         <div id="alert_placeholder"></div>
-                        <p>{% trans "Currently you do not have a mobile only user configured." %}</p>
+                        <p>{% trans "Currently you do not have a service user configured." %}</p>
                         <p></p>
                         <p>{% trans "To create one insert below a password to be used by your new mobile only user." %}</p>
                         <p></p>
@@ -64,7 +65,8 @@
                         </ul>
                         <div class="input-group">
                             <span class="input-group-btn">
-                                <button id="newpasswdbtn" class="btn btn-outline-info" type="button"><span id="newpassspan" class="fa fa-eye-slash"></span></button>
+                                <button id="newpasswdbtn" class="btn btn-outline-info" type="button"><span
+                                        id="newpassspan" class="fa fa-eye-slash"></span></button>
                             </span>
                             <input id="newpassword"
                                    type="password" class="form-control"
@@ -72,7 +74,7 @@
                             <span class="input-group-btn">
                             <button id="createpassword"
                                     class="btn btn-info"
-                                    type="button">{% trans 'Create password and mobile user' %}</button>
+                                    type="button">{% trans 'Create password and Service User' %}</button>
                         </span>
                         </div>
                     {% endif %}
@@ -105,23 +107,33 @@
             });
 
             var mobuseralreadyexists = 0;
+            var savingpassword = 0;
 
-            // Submit post on submit
             $('#modifyexistingpassword').click(function (event) {
                 event.preventDefault();
                 var password = document.getElementById("existingpassword").value;
                 button_id = '#modifyexistingpassword';
+                $(button_id).text("{% trans "Waiting..." %}");
+                $(button_id).removeClass('btn-secondary').addClass('btn-info');
+                $(button_id).removeClass('btn-info').addClass('btn-info');
+                $(button_id).removeClass('btn-danger').addClass('btn-info');
+                $(button_id).removeClass('btn-outline-danger').addClass('btn-info');
                 mobuseralreadyexists = 1;
                 console.log("Password existingpassword: " + password);  // sanity check
-                save_value(password);
+                if (savingpassword === 0) save_value(password);
             });
 
             $('#createpassword').click(function (event) {
                 event.preventDefault();
                 var password = document.getElementById("newpassword").value;
                 button_id = '#createpassword';
+                $(button_id).text("{% trans "Waiting..." %}");
+                $(button_id).removeClass('btn-secondary').addClass('btn-info');
+                $(button_id).removeClass('btn-info').addClass('btn-info');
+                $(button_id).removeClass('btn-danger').addClass('btn-info');
+                $(button_id).removeClass('btn-outline-danger').addClass('btn-info');
                 console.log("Password newpassword: " + password);  // sanity check
-                save_value(password);
+                if (savingpassword === 0) save_value(password);
             });
 
             $('#delete-mobuser').click(function (event) {
@@ -134,6 +146,7 @@
             function save_value(password) {
                 console.log("Saving Value is working!"); // sanity check
                 console.log("mobuseralreadyexists:" + mobuseralreadyexists); // sanity check
+                savingpassword = 1;
                 $.ajax({
                     url: "password/", // the endpoint
                     type: "POST", // http method
@@ -146,11 +159,17 @@
                         $(button_id).removeClass('btn-outline-danger').addClass('btn-success');
                         console.log(json); // log the returned json to the console
                         console.log("success"); // another sanity check
+                        savingpassword = 0;
                         window.location = '{% url 'createmobileonlyuser' %}'
                     },
                     // handle a non-successful response
                     error: function (xhr, errmsg, err) {
+                        savingpassword = 0;
                         console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                        $(button_id).removeClass('btn-secondary').addClass('btn-danger');
+                        $(button_id).removeClass('btn-info').addClass('btn-danger');
+                        $(button_id).removeClass('btn-danger').addClass('btn-danger');
+                        $(button_id).removeClass('btn-outline-danger').addClass('btn-danger');
                         {% get_current_language as LANGUAGE_CODE %}
                         {% if LANGUAGE_CODE == "pt" %}
                             bootstrap_alert.warning('Por favor verifique que a vossa palavra-passe esteja corretamente formada.');
