@@ -242,7 +242,7 @@
             <div id="footer-dash" class="mym-dash">
                 <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
                     <div class="mym-dash-item">
-                        <div id="qrcodenew"></div>
+                        <canvas id="qrcodenew"></canvas>
                     </div>
                     <div class="mym-dash-item">
                         <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
@@ -320,13 +320,7 @@
 
             var qr = new QRious({
                 element: document.getElementById('qrcodenew'),
-                background: 'green',
-                backgroundAlpha: 0.8,
-                foreground: 'blue',
-                foregroundAlpha: 0.8,
-                level: 'H',
-                padding: 5,
-                size: 50,
+                size: 60,
                 value: '{{ mediaCheckURL }}'
             });
 
