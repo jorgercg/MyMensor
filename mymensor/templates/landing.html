@@ -26,7 +26,7 @@
         <meta property="og:url" content="{{ mediaCheckURL }}">
         <meta name="twitter:card" content="summary_large_image">
         <meta property="og:site_name" content="MyMensor WebApp">
-        <meta property="fb:app_id" content="286196915140475" />
+        <meta property="fb:app_id" content="286196915140475"/>
 
         <!-- Mobile Specific Metas
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -242,7 +242,7 @@
             <div id="footer-dash" class="mym-dash">
                 <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
                     <div class="mym-dash-item">
-                        {{ mediaCheckURL|qrcode:"my alt" }}
+                        <div id="qrcode"></div>
                     </div>
                     <div class="mym-dash-item">
                         <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
@@ -283,6 +283,7 @@
         <script src="{% static "js/bootstrap.min.js" %}"></script>
         <script src="{% static "js/leaflet.js" %}"></script>
         <script src="{% static "js/mymensor-jquery.js" %}"></script>
+        <script src="{% static "js/qrcode.min.js" %}"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
         <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
         <!-- Page Local Scripts
@@ -317,7 +318,14 @@
                 radius: {{ locprecisioninm | floatformat:3 }}
             }).addTo(mymap);
 
-
+            var qrcode = new QRCode("test", {
+                text: "{{ mediaCheckURL }}",
+                width: 60,
+                height: 60,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
         </script>
         {% block javascript %}{% endblock %}
     </body>
