@@ -17,8 +17,8 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
-    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID
-import json, boto3, urllib
+    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS
+import json, boto3, urllib, pytz
 from botocore.exceptions import ClientError
 from datetime import datetime, timedelta, date
 from mymensor.forms import AssetForm, VpForm, TagForm
@@ -518,8 +518,14 @@ def cognitoauth(request):
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         )
+        try:
+            mymensormobileclienttype = request.META['HTTP_FROM']
+        except KeyError:
+            mymensormobileclienttype = "UNKNOWN"
 
-        mymensormobileclienttype = request.META['HTTP_FROM']
+        if mymensormobileclienttype == "UNKNOWN":
+            return HttpResponse(status=401)
+
         try:
             mymclientguid = request.META['HTTP_WARNING']
         except KeyError:
@@ -542,15 +548,19 @@ def cognitoauth(request):
         try:
             mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance,
                                                                       mobileClientInstallGUID=mymclientguid)
-            mobclientinstallinstace.mobileClientInstallLastAccessTimeStamp = datetime.utcnow()
+            mobclientinstallinstace.mobileClientInstallLastAccessTimeStamp = datetime.now(pytz.utc)
             mobclientinstallinstace.save(force_update=True)
         except mobclientinstallinstace.DoesNotExist:
-            timenow = datetime.utcnow()
+            timenow = datetime.now(pytz.utc)
             mobclientinstallinstace = MobileClientInstall(asset=assetinstance, mobileClientInstallGUID=mymclientguid,
                                                           mobileClientInstallOrderNumber=qtyofinstallevermade + 1,
                                                           mobileClientInstallCreationTimeStamp=timenow,
                                                           mobileClientInstallLastAccessTimeStamp=timenow)
             mobclientinstallinstace.save(force_insert=True)
+            qtyofinstallactiveduringlastmonth = qtyofinstallactiveduringlastmonth + 1
+
+        if qtyofinstallactiveduringlastmonth > MYMMENSORMOBILE_MAX_INSTALLS:
+            return HttpResponse(status=401)
 
         usergroup = 'mymARwebapp'
 
@@ -1597,7 +1607,7 @@ def fbsecstageauth(request):
                   'fb_exchange_token': shrtAccessToken}
         longlivetokenresponse = requests.get('https://graph.facebook.com/oauth/access_token', params=params)
         if longlivetokenresponse.status_code == 200:
-            timenow = datetime.utcnow()
+            timenow = datetime.now(pytz.utc)
             data = longlivetokenresponse.json()
             facebookaccount, created = FacebookAccount.objects.get_or_create(fbOwner_id=mymensorUserID,
                                                                              fbUserId=fbUserID,
