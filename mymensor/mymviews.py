@@ -524,7 +524,7 @@ def cognitoauth(request):
             mymensormobileclienttype = "UNKNOWN"
 
         if mymensormobileclienttype == "UNKNOWN":
-            return HttpResponse(status=401)
+            return HttpResponse(status=400)
 
         try:
             mymclientguid = request.META['HTTP_WARNING']
@@ -532,7 +532,7 @@ def cognitoauth(request):
             mymclientguid = "NOTSET"
 
         if mymclientguid == "NOTSET":
-            return HttpResponse(status=401)
+            return HttpResponse(status=400)
 
         assetinstance = Asset.objects.get(assetOwner=request.user)
 
