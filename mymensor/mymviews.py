@@ -560,7 +560,7 @@ def cognitoauth(request):
             qtyofinstallactiveduringlastmonth = qtyofinstallactiveduringlastmonth + 1
 
         if qtyofinstallactiveduringlastmonth > MYMMENSORMOBILE_MAX_INSTALLS:
-            return HttpResponse(status=401)
+            return HttpResponse(status=403)
 
         usergroup = 'mymARwebapp'
 
