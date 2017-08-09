@@ -449,7 +449,6 @@ def location(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = int(request.GET.get('qtypervp', 10))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
@@ -465,7 +464,9 @@ def location(request):
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        orgmymaccselected = medias.values_list('mediaOriginalMymensorAccount', flat=True).distinct()
+        orgmymacclist = medias.values_list('mediaOriginalMymensorAccount', flat=True).distinct()
+        if not orgmymaccselected:
+            orgmymaccselected = orgmymacclist
         media_vpnumbers = []
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
@@ -482,8 +483,8 @@ def location(request):
                                                                                  ExpiresIn=3600)
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'orgmymaccselected': orgmymaccselected, 'media_vpnumbers': media_vpnumbers, })
+                       'vpsselected': vpsselected, 'vpslist': vpslist,
+                       'orgmymaccselected': orgmymaccselected, 'orgmymacclist':orgmymacclist, 'media_vpnumbers': media_vpnumbers, })
 
 
 @login_required
