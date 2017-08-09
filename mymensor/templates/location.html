@@ -55,7 +55,7 @@
                                     {% if media.mediaContentType == "image/jpeg" %}
                                         <!-- Modal to Images -->
                                         <div class="modal fade"
-                                             id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                             id="mediaModal{{ media.id }}"
                                              tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
@@ -71,7 +71,7 @@
                                     {% if media.mediaContentType == "video/mp4" %}
                                         <!-- Modal to Videos -->
                                         <div class="modal fade"
-                                             id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                             id="mediaModal{{ media.id }}"
                                              tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
@@ -318,6 +318,7 @@
 
                     function eventCallbackHandler(event){
                         console.log(event.layer.mediaid);
+                        $('#mediaModal'+mediaid).modal('show');
                     }
 
                 });
