@@ -314,11 +314,16 @@
                     {% endfor %}
 
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
+                    var group2 = new L.featureGroup(markerGroup).on('hover', eventCallbackHandler2);
                     mymap.fitBounds(group.getBounds());
 
                     function eventCallbackHandler(event){
                         console.log(event.layer.mediaid);
                         $('#mediaModal'+event.layer.mediaid).modal('show');
+                    }
+
+                    function eventCallbackHandler2(event){
+                        console.log(event.layer.mediaid);
                     }
 
                 });
