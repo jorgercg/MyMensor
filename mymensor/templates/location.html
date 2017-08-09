@@ -316,7 +316,7 @@
                     mymap.fitBounds(group.getBounds());
 
                     mymap.on('click', function(ev) {
-                        console.log(ev.target);
+                        console.log(ev.originalEvent);
                     })
                 });
 
