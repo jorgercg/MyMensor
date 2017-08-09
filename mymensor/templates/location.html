@@ -314,6 +314,10 @@
 
                     var group = new L.featureGroup(markerGroup);
                     mymap.fitBounds(group.getBounds());
+
+                    mymap.on('click', function(ev) {
+                        console.log(ev.target);
+                    })
                 });
 
 
