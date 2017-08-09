@@ -65,6 +65,8 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}"
                                             href="{% url 'portfolio' %}">{% trans "Portfolio" %}</a></li>
+                    <li class="nav-item"><a class="nav-link {% is_active request 'location' %}"
+                                            href="{% url 'location' %}">{% trans "Location" %}</a></li>
                     <li class="nav-item"><a class="nav-link {% is_active request 'vpdetail' %}"
                                             href="{% url 'vpdetail' %}">{% trans "Media" %}</a></li>
                     <li class="nav-item dropdown">
