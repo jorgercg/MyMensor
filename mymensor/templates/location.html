@@ -314,7 +314,7 @@
                     {% endfor %}
 
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
-                    var group2 = new L.featureGroup(markerGroup).on('hover', eventCallbackHandler2);
+                    var group2 = new L.featureGroup(markerGroup).on('mouseover', eventCallbackHandler2);
                     mymap.fitBounds(group.getBounds());
 
                     function eventCallbackHandler(event){
