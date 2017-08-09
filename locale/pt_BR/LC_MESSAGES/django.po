@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-07 19:48+0100\n"
-"PO-Revision-Date: 2017-08-07 19:56+0100\n"
+"POT-Creation-Date: 2017-08-09 17:55+0100\n"
+"PO-Revision-Date: 2017-08-09 17:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -169,7 +169,7 @@ msgstr "Horário da Mídia"
 msgid "Processing Time"
 msgstr "Horário de Processamento"
 
-#: mymensor/models.py:314 mymensor/tables.py:18 mymensor/templates/base.html:76
+#: mymensor/models.py:314 mymensor/tables.py:18 mymensor/templates/base.html:78
 msgid "Status"
 msgstr "Status"
 
@@ -274,149 +274,150 @@ msgid "Portfolio"
 msgstr "Portfolio"
 
 #: mymensor/templates/base.html:69
+msgid "Location"
+msgstr "Localização"
+
+#: mymensor/templates/base.html:71
 msgid "Media"
 msgstr "Mídia"
 
-#: mymensor/templates/base.html:73
+#: mymensor/templates/base.html:75
 msgid "Data"
 msgstr "Dados"
 
-#: mymensor/templates/base.html:77
+#: mymensor/templates/base.html:79
 msgid "Analysis"
 msgstr "Análise"
 
-#: mymensor/templates/base.html:79
+#: mymensor/templates/base.html:81
 msgid "Processing"
 msgstr "Processamento"
 
-#: mymensor/templates/base.html:80
+#: mymensor/templates/base.html:82
 msgid "Edit"
 msgstr "Editar"
 
-#: mymensor/templates/base.html:86
+#: mymensor/templates/base.html:88
 msgid "Setup"
 msgstr "Configurar"
 
-#: mymensor/templates/base.html:89
+#: mymensor/templates/base.html:91
 msgid "Asset"
 msgstr "Ativo"
 
-#: mymensor/templates/base.html:90
+#: mymensor/templates/base.html:92
 msgid "VPs"
 msgstr "VPs"
 
-#: mymensor/templates/base.html:91
+#: mymensor/templates/base.html:93
 msgid "TAGs"
 msgstr "TAGs"
 
-#: mymensor/templates/base.html:93
+#: mymensor/templates/base.html:95
 msgid "Marker Download"
 msgstr "Baixar Marcadores"
 
-#: mymensor/templates/base.html:95
+#: mymensor/templates/base.html:97
 msgid "Mobile Backup"
 msgstr "Backup Smartphone"
 
-#: mymensor/templates/base.html:102
+#: mymensor/templates/base.html:104
 msgid "Login"
 msgstr "Login"
 
-#: mymensor/templates/base.html:105
+#: mymensor/templates/base.html:107
 #: mymensor/templates/registration/login.html:40
 #: mymensor/templates/registration/registration_form.html:4
 msgid "Register"
 msgstr "Registrar"
 
-#: mymensor/templates/base.html:115
+#: mymensor/templates/base.html:117
 msgid "Trial until "
 msgstr "Avaliação até "
 
-#: mymensor/templates/base.html:119
+#: mymensor/templates/base.html:121
 msgid "Subscription "
 msgstr "Assinatura "
 
-#: mymensor/templates/base.html:125
+#: mymensor/templates/base.html:127
 msgid "Logged in as: "
 msgstr "Logado como: "
 
-#: mymensor/templates/base.html:128
+#: mymensor/templates/base.html:130
 msgid "Logout"
 msgstr "Sair"
 
-#: mymensor/templates/base.html:130
+#: mymensor/templates/base.html:132
 #: mymensor/templates/registration/password_change_form.html:4
 #: mymensor/templates/registration/password_change_form.html:17
 msgid "Change password"
 msgstr "Mudar senha"
 
-#: mymensor/templates/base.html:132 mymensor/templates/fbmain.html:4
+#: mymensor/templates/base.html:134 mymensor/templates/fbmain.html:4
 #: mymensor/templates/fbmain.html:13
 msgid "Facebook Account"
 msgstr "Conta do Facebook"
 
-#: mymensor/templates/base.html:133 mymensor/templates/twtinfo.html:4
+#: mymensor/templates/base.html:135 mymensor/templates/twtinfo.html:4
 #: mymensor/templates/twtmain.html:4 mymensor/templates/twtmain.html:13
 msgid "Twitter Account"
 msgstr "Conta do Twitter"
 
-#: mymensor/templates/base.html:135 mymensor/templates/subscription.html:6
+#: mymensor/templates/base.html:137 mymensor/templates/subscription.html:6
 msgid "Subscription"
 msgstr "Assinatura"
 
-#: mymensor/templates/base.html:137
-msgid "Mobile Only User"
-msgstr "Usuário Móvel"
+#: mymensor/templates/base.html:139
+#: mymensor/templates/createmobileonlyuserresult.html:4
+msgid "Service User"
+msgstr "Usuário de Serviço"
 
-#: mymensor/templates/base.html:139 mymensor/templates/support.html:3
+#: mymensor/templates/base.html:141 mymensor/templates/support.html:3
 msgid "Support"
 msgstr "Suporte"
 
-#: mymensor/templates/base.html:155
+#: mymensor/templates/base.html:157
 msgid "About"
 msgstr "Sobre"
 
-#: mymensor/templates/base.html:157
+#: mymensor/templates/base.html:159
 msgid "The journey was long, but we are just starting! Contact us anytime at "
 msgstr ""
 "A jornada foi longa, mas estamos apenas começando! Entre em contato a "
 "qualquer momento em "
 
-#: mymensor/templates/base.html:164
+#: mymensor/templates/base.html:166
 msgid "Product"
 msgstr "Produto"
 
-#: mymensor/templates/base.html:166
+#: mymensor/templates/base.html:168
 msgid "Docs"
 msgstr "Docs"
 
-#: mymensor/templates/base.html:168
+#: mymensor/templates/base.html:170
 msgid "Videos"
 msgstr "Vídeos"
 
-#: mymensor/templates/base.html:171
+#: mymensor/templates/base.html:173
 msgid "FAQ"
 msgstr "FAQ"
 
-#: mymensor/templates/base.html:178
+#: mymensor/templates/base.html:180
 #: mymensor/templates/registration/registration_form.html:35
 msgid "Terms of Service"
 msgstr "Termos de Serviço"
 
-#: mymensor/templates/base.html:181
+#: mymensor/templates/base.html:183
 msgid "Privacy"
 msgstr "Privacidade"
 
-#: mymensor/templates/base.html:188 mymensor/templates/landing.html:264
+#: mymensor/templates/base.html:190 mymensor/templates/landing.html:264
 msgid "Language"
 msgstr "Idioma"
 
-#: mymensor/templates/base.html:202 mymensor/templates/landing.html:277
+#: mymensor/templates/base.html:204 mymensor/templates/landing.html:277
 msgid "Set"
 msgstr "Definir"
-
-#: mymensor/templates/createmobileonlyuserresult.html:4
-msgid "Service User"
-msgstr "Usuário de Serviço"
 
 #: mymensor/templates/createmobileonlyuserresult.html:11
 msgid "Service User Status"
@@ -2865,6 +2866,9 @@ msgstr ""
 #, python-format
 msgid "Index of %(directory)s"
 msgstr ""
+
+#~ msgid "Mobile Only User"
+#~ msgstr "Usuário Móvel"
 
 #~ msgid "Create password and mobile user"
 #~ msgstr "Criar senha e usuário móvel"
