@@ -464,7 +464,8 @@ def location(request):
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
-        orgmymacclist = medias.values_list('mediaOriginalMymensorAccount', flat=True).distinct()
+        orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
+        orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
         if not orgmymaccselected:
             orgmymaccselected = orgmymacclist
         media_vpnumbers = []
