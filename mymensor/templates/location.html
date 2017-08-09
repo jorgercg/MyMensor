@@ -299,6 +299,7 @@
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
                                         var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]).addTo(mymap);
+                                        marker{{ media.id }}.mediaid={{ media.id }};
                                         markerGroup.push(marker{{ media.id }});
                                         var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
                                             color: 'red',
@@ -312,12 +313,13 @@
                         {% endif %}
                     {% endfor %}
 
-                    var group = new L.featureGroup(markerGroup);
+                    var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
 
-                    mymap.on('click', function(ev) {
-                        console.log(ev.originalEvent);
-                    })
+                    function eventCallbackHandler(event){
+                        console.log(event.layer.mediaid);
+                    }
+
                 });
 
 
