@@ -19,7 +19,7 @@
                     <select id="set-price-select" name="priceselected">
                         {% for btplan in availablebtplans %}
                             {% for price in availablebtprices %}
-                                {% if price.braintreeplan == btplan.id %}
+                                {% if price.braintreeplan == btplan %}
                                 <option id="op{{ price.id }}" value='{{ price.id }}'
                                         {% if price == currentbtprice %}selected{% endif %}>
                                     {% trans "I choose the plan " %}{{ btplan.braintreeplanPlanName }}{% trans " and will pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
