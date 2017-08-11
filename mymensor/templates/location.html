@@ -42,13 +42,13 @@
                     <div class="mym-dash-item">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" value="">
+                                <input id="showuserpath" class="form-check-input" type="checkbox" value="" disabled>
                                 {% trans "Show user path on map" %}
                             </label>
                         </div>
                         <div class="form-check disabled">
                             <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" value="" disabled>
+                                <input id="showlocationprecision" class="form-check-input" type="checkbox" value="" checked>
                                 {% trans "Show location precision on map" %}
                             </label>
                         </div>
@@ -300,6 +300,8 @@
 
                 $(function () {
 
+                    var showLocationPrecision = true;
+
                     var zoomlevel = 10;
 
                     var markerGroup = [];
@@ -309,6 +311,14 @@
                     var markerShape = ['circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'star', 'penta'];
 
                     var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
+
+                    $('#showlocationprecision').click(function () {
+                        if ($(this).is(':checked')) {
+                            showLocationPrecision = true;
+                        } else {
+                            showLocationPrecision = false;
+                        }
+                    });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -335,12 +345,14 @@
                                             ev.target.closeTooltip();
                                         });
                                         markerGroup.push(marker{{ media.id }});
-                                        var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
+                                        if (showLocationPrecision) {
+                                            var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
                                             color: 'red',
                                             fillColor: '#f03',
                                             fillOpacity: 0.2,
                                             radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
                                         }).addTo(mymap);
+                                        }
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
