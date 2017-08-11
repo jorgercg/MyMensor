@@ -99,7 +99,10 @@
             {% include "mymclient.html" %}
         {% endblock %}
         {% block javascript %}
+            <link rel="stylesheet" href="{% static 'css/leaflet.extra-markers.min.css' %}">
             <script src="{% static "js/leaflet.js" %}"></script>
+            <script src="{% static "js/leaflet.extra-markers.min.js" %}"></script>
+
             <script type="text/javascript">
 
                 console.log("{{ orgmymaccselected }}");
@@ -298,7 +301,13 @@
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
-                                        var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]).addTo(mymap);
+                                        var marker{{ media.id }} = L.ExtraMarkers.icon({
+                                            icon: 'fa-number',
+                                            markerColor: 'red',
+                                            shape:'circle',
+                                            prefix: 'fa'
+                                        });
+                                        L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: marker{{ media.id }} }).addTo(mymap);
                                         marker{{ media.id }}.mediaid={{ media.id }};
                                         marker{{ media.id }}.on('mouseover', function(ev){
                                            ev.target.bindTooltip('VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
@@ -310,7 +319,7 @@
                                         var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
                                             color: 'red',
                                             fillColor: '#f03',
-                                            fillOpacity: 0.5,
+                                            fillOpacity: 0.2,
                                             radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
                                         }).addTo(mymap);
                                     {% endif %}
