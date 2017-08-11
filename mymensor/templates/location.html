@@ -321,7 +321,9 @@
                             showLocationPrecision = false;
                             pythshlocpresc = 'False';
                         }
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ pythshlocpresc + '&' + {{ vpsselected }} + '&' + {{ orgmymaccselected }};
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ pythshlocpresc + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
