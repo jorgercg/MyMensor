@@ -305,6 +305,7 @@
                                             icon: 'fa-number',
                                             markerColor: 'red',
                                             shape:'circle',
+                                            number: '{{ media.mediaVpNumber }}'
                                             prefix: 'fa'
                                         });
                                         var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }} }).addTo(mymap);
