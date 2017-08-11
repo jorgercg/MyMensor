@@ -451,7 +451,7 @@ def location(request):
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showlocationprecision = request.GET.get('showlocationprecision', default=True)
+        showlocationprecision = int(request.GET.get('showlocationprecision', 1))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)

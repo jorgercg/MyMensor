@@ -285,7 +285,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate +'&showlocationprecision='+ {{ showlocationprecision|yesno:"True,False" }}+ '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate +'&showlocationprecision='+ {{ showlocationprecision }}+ '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
@@ -293,14 +293,14 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ {{ showlocationprecision|yesno:"True,False" }} + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ {{ showlocationprecision }} + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
 
                 $(function () {
 
-                    var showLocationPrecision = {{ showlocationprecision|yesno:"true,false" }};
+                    var showLocationPrecision = {{ showlocationprecision }};
                     var pythshlocpresc;
 
                     var zoomlevel = 10;
@@ -315,15 +315,13 @@
 
                     $('#showlocationprecision').click(function () {
                         if ($(this).is(':checked')) {
-                            showLocationPrecision = true;
-                            pythshlocpresc = 'True';
+                            showLocationPrecision = 1;
                         } else {
-                            showLocationPrecision = false;
-                            pythshlocpresc = 'False';
+                            showLocationPrecision = 0;
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ pythshlocpresc + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ showLocationPrecision + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
