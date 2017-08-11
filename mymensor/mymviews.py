@@ -451,6 +451,7 @@ def location(request):
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
+        showlocationprecision = request.GET.get('showlocationprecision', default=True)
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
@@ -484,7 +485,7 @@ def location(request):
                                                                                  ExpiresIn=3600)
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
-                       'vpsselected': vpsselected, 'vpslist': vpslist,
+                       'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision' : showlocationprecision,
                        'orgmymaccselected': orgmymaccselected, 'orgmymacclist':orgmymacclist, 'media_vpnumbers': media_vpnumbers, })
 
 
