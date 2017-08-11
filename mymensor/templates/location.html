@@ -290,6 +290,10 @@
 
                     var markerGroup = [];
 
+                    var markerColor = ['blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'white', 'blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'white'];
+
+                    var markerShape = ['circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','circle','square','square','square','square','square','square','square','square','square','square','square','square','square','square','square'];
+
                     var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -303,18 +307,18 @@
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
                                             icon: 'fa-number',
-                                            markerColor: 'red',
-                                            shape:'circle',
+                                            markerColor: markerColor[{{ media.mediaVpNumber }}],
+                                            shape: markerShape[{{ media.mediaVpNumber }}],
                                             number: '{{ media.mediaVpNumber }}',
                                             prefix: 'fa'
                                         });
-                                        var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }} }).addTo(mymap);
-                                        marker{{ media.id }}.mediaid={{ media.id }};
-                                        marker{{ media.id }}.on('mouseover', function(ev){
-                                           ev.target.bindTooltip('VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
+                                        var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }}}).addTo(mymap);
+                                        marker{{ media.id }}.mediaid ={{ media.id }};
+                                        marker{{ media.id }}.on('mouseover', function (ev) {
+                                            ev.target.bindTooltip('VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
                                         });
-                                        marker{{ media.id }}.on('mouseout', function(ev){
-                                           ev.target.closeTooltip();
+                                        marker{{ media.id }}.on('mouseout', function (ev) {
+                                            ev.target.closeTooltip();
                                         });
                                         markerGroup.push(marker{{ media.id }});
                                         var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
@@ -332,9 +336,9 @@
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
 
-                    function eventCallbackHandler(event){
+                    function eventCallbackHandler(event) {
                         console.log(event.layer.mediaid);
-                        $('#mediaModal'+event.layer.mediaid).modal('show');
+                        $('#mediaModal' + event.layer.mediaid).modal('show');
                     }
 
                 });
