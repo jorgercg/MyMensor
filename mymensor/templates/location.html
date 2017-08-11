@@ -307,7 +307,7 @@
                                             shape:'circle',
                                             prefix: 'fa'
                                         });
-                                        var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: marker{{ media.id }} }).addTo(mymap);
+                                        var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }} }).addTo(mymap);
                                         marker{{ media.id }}.mediaid={{ media.id }};
                                         marker{{ media.id }}.on('mouseover', function(ev){
                                            ev.target.bindTooltip('VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
