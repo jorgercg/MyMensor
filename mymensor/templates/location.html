@@ -315,9 +315,11 @@
 
                     $('#showlocationprecision').click(function () {
                         if ($(this).is(':checked')) {
-                            showLocationPrecision = 1;
-                        } else {
                             showLocationPrecision = 0;
+                            $(this).removeAttribute(':checked');
+                        } else {
+                            showLocationPrecision = 1;
+                            $(this).setAttribute(':checked');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
