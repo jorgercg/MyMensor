@@ -346,7 +346,7 @@
                     }).addTo(mymap);
                     {% for orgmymacc in orgmymacclist %}
                         {% if orgmymacc in orgmymaccselected %}
-                            var coords{{ orgmymacc }} = [];
+                            var coords{{ orgmymacc | cut:"+" }} = [];
                         {% endif %}
                     {% endfor %}
                     {% for vp in vps %}
@@ -356,7 +356,7 @@
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
                                         {% for orgmymacc in orgmymacclist %}
                                             {% if media.mediaOriginalMymensorAccount == orgmymacc %}
-                                                coords{{ orgmymacc }}.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
+                                                coords{{ orgmymacc | cut:"+" }}.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
                                             {% endif %}
                                         {% endfor %}
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
@@ -392,7 +392,7 @@
                     if (showUserPath == 1) {
                         {% for orgmymacc in orgmymacclist %}
                             {% if orgmymacc in orgmymaccselected %}
-                                var pathLine = L.polyline(coords{{ orgmymacc }}, {color: 'red'}).addTo(mymap);
+                                var pathLine = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: 'red'}).addTo(mymap);
                             {% endif %}
                         {% endfor %}
                     }
