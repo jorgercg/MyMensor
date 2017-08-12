@@ -42,14 +42,19 @@
                     <div class="mym-dash-item">
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="showuserpath" class="form-check-input" type="checkbox" value="" disabled>
+                                {% if showuserpath == 1 %}
+                                    <input id="showuserpath" class="form-check-input" type="checkbox" value="" checked>
+                                {% else %}
+                                    <input id="showuserpath" class="form-check-input" type="checkbox" value="">
+                                {% endif %}
                                 {% trans "Show user path" %}
                             </label>
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
                                 {% if showlocationprecision == 1 %}
-                                    <input id="showlocationprecision" class="form-check-input" type="checkbox" value="" checked>
+                                    <input id="showlocationprecision" class="form-check-input" type="checkbox" value=""
+                                           checked>
                                 {% else %}
                                     <input id="showlocationprecision" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
@@ -286,7 +291,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate +'&showlocationprecision='+ {{ showlocationprecision }}+ '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }}+'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
@@ -294,7 +299,7 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ {{ showlocationprecision }} + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -302,7 +307,7 @@
                 $(function () {
 
                     var showLocationPrecision = {{ showlocationprecision }};
-                    var pythshlocpresc;
+                    var showUserPath = {{ showuserpath }};
 
                     var zoomlevel = 10;
 
@@ -316,18 +321,24 @@
 
                     $('#showlocationprecision').click(function () {
                         if ($(this).is(':checked')) {
-                            console.log("click true:"+showLocationPrecision);
                             showLocationPrecision = 1;
-                            //$(this).removeAttr(':checked');
                         } else {
-                            console.log("click false:"+showLocationPrecision);
                             showLocationPrecision = 0;
-                            //$(this).attr(':checked');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        console.log("click afterif:"+showLocationPrecision);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ showLocationPrecision + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} + '&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#showuserpath').click(function () {
+                        if ($(this).is(':checked')) {
+                            showUserPath = 1;
+                        } else {
+                            showUserPath = 0;
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} + '&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -351,7 +362,7 @@
                                         var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }}}).addTo(mymap);
                                         marker{{ media.id }}.mediaid ={{ media.id }};
                                         marker{{ media.id }}.on('mouseover', function (ev) {
-                                            ev.target.bindTooltip('{{ media.mediaOriginalMymensorAccount }}VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
+                                            ev.target.bindTooltip('{{ media.mediaOriginalMymensorAccount }} - VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
                                         });
                                         marker{{ media.id }}.on('mouseout', function (ev) {
                                             ev.target.closeTooltip();
@@ -371,7 +382,9 @@
                         {% endif %}
                     {% endfor %}
 
-                    var pathLine = L.polyline(coords, {color: 'red'}).addTo(mymap);
+                    if (showUserPath==1) {
+                        var pathLine = L.polyline(coords, {color: 'red'}).addTo(mymap);
+                    }
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
 
