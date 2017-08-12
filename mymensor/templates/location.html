@@ -108,9 +108,6 @@
                     </div>
                 {% endfor %}
             </div>
-            <!-- Django Instant client engine
-            –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-            {% include "mymclient.html" %}
         {% endblock %}
         {% block javascript %}
             <link rel="stylesheet" href="{% static 'css/leaflet.extra-markers.min.css' %}">
@@ -316,11 +313,11 @@
                     $('#showlocationprecision').click(function () {
                         if ($(this).is(':checked')) {
                             console.log("click true:"+showLocationPrecision);
-                            showLocationPrecision = 0;
+                            showLocationPrecision = 1;
                             //$(this).removeAttr(':checked');
                         } else {
                             console.log("click false:"+showLocationPrecision);
-                            showLocationPrecision = 1;
+                            showLocationPrecision = 0;
                             //$(this).attr(':checked');
                         }
                         var vpssel = $('#vpsselected').serialize();
