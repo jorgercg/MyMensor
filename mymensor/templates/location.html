@@ -375,6 +375,8 @@
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
 
+                    console.log(coords);
+
                     function eventCallbackHandler(event) {
                         console.log(event.layer.mediaid);
                         $('#mediaModal' + event.layer.mediaid).modal('show');
