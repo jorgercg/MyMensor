@@ -359,19 +359,19 @@
                                         markerGroup.push(marker{{ media.id }});
                                         if (showLocationPrecision) {
                                             var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
-                                            color: 'red',
-                                            fillColor: '#f03',
-                                            fillOpacity: 0.2,
-                                            radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
-                                        }).addTo(mymap);
+                                                color: 'red',
+                                                fillColor: '#f03',
+                                                fillOpacity: 0.2,
+                                                radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
+                                            }).addTo(mymap);
                                         }
-                                        var pathLine = L.polyline(coords, {color: 'red'}).addTo(mymap);
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
 
+                    var pathLine = L.polyline(coords, {color: 'red'}).addTo(mymap);
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
 
