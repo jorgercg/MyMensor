@@ -365,7 +365,7 @@
                                             radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
                                         }).addTo(mymap);
                                         }
-                                        var pathLine = L.polyline(coords).addTo(map)
+                                        var pathLine = L.polyline(coords).addTo(mymap);
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
