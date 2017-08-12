@@ -38,29 +38,3 @@ window.chartColors = {
     color19: 'rgb(85,116,166)',
     color20: 'rgb(59,62,172)'
 };
-
-window.pathColors = {
-	color01: 'red',
-    color02: 'blue',
-    color03: 'black',
-    color04: 'orange',
-    color05: 'green',
-    color06: 'gray',
-    color07: 'yellow',
-    color08: 'red',
-    color09: 'blue',
-    color10: 'black',
-    color11: 'orange',
-    color12: 'green',
-    color13: 'gray',
-    color14: 'yellow',
-    color15: 'red',
-    color16: 'blue',
-    color17: 'black',
-    color18: 'orange',
-    color19: 'green',
-    color20: 'gray'
-};
-
-
-

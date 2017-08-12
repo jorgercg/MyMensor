@@ -341,7 +341,7 @@
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
-                    var colorNames = Object.keys(window.pathColors);
+                    var colorNames = ['blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black'];
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -394,7 +394,7 @@
                     if (showUserPath == 1) {
                         {% for orgmymacc in orgmymacclist %}
                             {% if orgmymacc in orgmymaccselected %}
-                                var pathLine = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: colorNames[(Math.floor((Math.random() * 100) + 1)) % colorNames.length]}).addTo(mymap);
+                                var pathLine = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: colorNames[(Math.floor((Math.random() * 14) + 1))]}).addTo(mymap);
                             {% endif %}
                         {% endfor %}
                     }
