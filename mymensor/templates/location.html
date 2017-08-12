@@ -341,7 +341,7 @@
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
-                    var colorNames = Object.keys(window.chartColors);
+                    var colorNames = Object.keys(window.pathColors);
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

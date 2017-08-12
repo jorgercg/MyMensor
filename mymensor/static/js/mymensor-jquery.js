@@ -39,4 +39,28 @@ window.chartColors = {
     color20: 'rgb(59,62,172)'
 };
 
+window.pathColors = {
+	color01: '#3366CC',
+    color02: '#3366CC',
+    color03: '#3366CC',
+    color04: '#3366CC',
+    color05: '#3366CC',
+    color06: '#3366CC',
+    color07: '#3366CC',
+    color08: '#3366CC',
+    color09: '#3366CC',
+    color10: '#3366CC',
+    color11: '#3366CC',
+    color12: '#3366CC',
+    color13: '#3366CC',
+    color14: '#3366CC',
+    color15: '#3366CC',
+    color16: '#3366CC',
+    color17: '#3366CC',
+    color18: '#3366CC',
+    color19: '#3366CC',
+    color20: '#3366CC'
+};
+
+
 
