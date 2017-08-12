@@ -327,7 +327,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showuserpath').click(function () {
@@ -338,20 +338,27 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} + '&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(mymap);
-                    var coords = [];
+                    {% for orgmymacc in orgmymacclist %}
+                        {% if orgmymacc in orgmymaccselected %}
+                            var coords{{ orgmymacc }} = [];
+                        {% endif %}
+                    {% endfor %}
                     {% for vp in vps %}
                         {% if vp.vpNumber in media_vpnumbers %}
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
-
-                                        coords.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
+                                        {% for orgmymacc in orgmymacclist %}
+                                            {% if media.mediaOriginalMymensorAccount == orgmymacc %}
+                                                coords{{ orgmymacc }}.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
+                                            {% endif %}
+                                        {% endfor %}
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
                                             icon: 'fa-number',
                                             markerColor: markerColor[{{ media.mediaVpNumber }}],
@@ -382,8 +389,12 @@
                         {% endif %}
                     {% endfor %}
 
-                    if (showUserPath==1) {
-                        var pathLine = L.polyline(coords, {color: 'red'}).addTo(mymap);
+                    if (showUserPath == 1) {
+                        {% for orgmymacc in orgmymacclist %}
+                            {% if orgmymacc in orgmymaccselected %}
+                                var pathLine = L.polyline(coords{{ orgmymacc }}, {color: 'red'}).addTo(mymap);
+                            {% endif %}
+                        {% endfor %}
                     }
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
