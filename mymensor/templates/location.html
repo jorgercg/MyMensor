@@ -315,14 +315,17 @@
 
                     $('#showlocationprecision').click(function () {
                         if ($(this).is(':checked')) {
+                            console.log("click true:"+showLocationPrecision);
                             showLocationPrecision = 0;
                             //$(this).removeAttr(':checked');
                         } else {
+                            console.log("click false:"+showLocationPrecision);
                             showLocationPrecision = 1;
                             //$(this).attr(':checked');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        console.log("click afterif:"+showLocationPrecision);
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}'+'&showlocationprecision='+ showLocationPrecision + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
