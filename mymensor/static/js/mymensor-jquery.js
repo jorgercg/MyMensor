@@ -40,26 +40,26 @@ window.chartColors = {
 };
 
 window.pathColors = {
-	color01: '#3366CC',
-    color02: '#3366CC',
-    color03: '#3366CC',
-    color04: '#3366CC',
-    color05: '#3366CC',
-    color06: '#3366CC',
-    color07: '#3366CC',
-    color08: '#3366CC',
-    color09: '#3366CC',
-    color10: '#3366CC',
-    color11: '#3366CC',
-    color12: '#3366CC',
-    color13: '#3366CC',
-    color14: '#3366CC',
-    color15: '#3366CC',
-    color16: '#3366CC',
-    color17: '#3366CC',
-    color18: '#3366CC',
-    color19: '#3366CC',
-    color20: '#3366CC'
+	color01: 'red',
+    color02: 'blue',
+    color03: 'black',
+    color04: 'orange',
+    color05: 'green',
+    color06: 'gray',
+    color07: 'yellow',
+    color08: 'red',
+    color09: 'blue',
+    color10: 'black',
+    color11: 'orange',
+    color12: 'green',
+    color13: 'gray',
+    color14: 'yellow',
+    color15: 'red',
+    color16: 'blue',
+    color17: 'black',
+    color18: 'orange',
+    color19: 'green',
+    color20: 'gray'
 };
 
 
