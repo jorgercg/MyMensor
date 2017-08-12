@@ -333,13 +333,13 @@
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(mymap);
-
+                    var coords = [];
                     {% for vp in vps %}
                         {% if vp.vpNumber in media_vpnumbers %}
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
-                                        var coords = [];
+
                                         coords.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
                                             icon: 'fa-number',
