@@ -48,7 +48,11 @@
                         </div>
                         <div class="form-check">
                             <label class="form-check-label">
-                                <input id="showlocationprecision" class="form-check-input" type="checkbox" value="" checked>
+                                {% if showlocationprecision == 1 %}
+                                    <input id="showlocationprecision" class="form-check-input" type="checkbox" value="" checked>
+                                {% else %}
+                                    <input id="showlocationprecision" class="form-check-input" type="checkbox" value="">
+                                {% endif %}
                                 {% trans "Show location precision on map" %}
                             </label>
                         </div>
