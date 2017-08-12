@@ -43,7 +43,7 @@
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input id="showuserpath" class="form-check-input" type="checkbox" value="" disabled>
-                                {% trans "Show user path on map" %}
+                                {% trans "Show user path" %}
                             </label>
                         </div>
                         <div class="form-check">
@@ -53,7 +53,7 @@
                                 {% else %}
                                     <input id="showlocationprecision" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                {% trans "Show location precision on map" %}
+                                {% trans "Show location precision" %}
                             </label>
                         </div>
                     </div>
@@ -339,6 +339,8 @@
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
+                                        var coords = [];
+                                        coords.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
                                             icon: 'fa-number',
                                             markerColor: markerColor[{{ media.mediaVpNumber }}],
@@ -363,6 +365,7 @@
                                             radius: {{ media.mediaLocPrecisionInMeters | floatformat:3 }}
                                         }).addTo(mymap);
                                         }
+                                        var pathLine = L.polyline(coords).addTo(map)
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}
