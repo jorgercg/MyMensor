@@ -396,8 +396,13 @@
                         {% for orgmymacc in orgmymacclist %}
                             {% if orgmymacc in orgmymaccselected %}
                                 var colorrand = colorNames[(Math.floor((Math.random() * 10)))];
-                                console.log(colorrand);
-                                var pathLine = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: colorrand}).addTo(mymap);
+                                var pathLine{{ orgmymacc | cut:"+" }} = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: colorrand}).addTo(mymap);
+                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseover', function(ev) {
+                                    ev.target.bindTooltip('{{ orgmymacc }}').openTooltip();
+                                });
+                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseout', function(ev) {
+                                    ev.target.closeTooltip();
+                                });
                             {% endif %}
                         {% endfor %}
                     }
