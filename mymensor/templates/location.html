@@ -291,7 +291,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }}+'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} + '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
@@ -299,7 +299,7 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }}+ '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
