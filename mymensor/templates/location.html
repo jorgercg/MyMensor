@@ -125,7 +125,7 @@
 
             <script type="text/javascript">
 
-                var mymap = L.map('locationmapid').setView([0, 0], zoomlevel);
+                var mymap = L.map('locationmapid').setView([0, 0], 10);
 
                 $('#vpsselected').chosen();
 
@@ -308,8 +308,6 @@
 
                     var showLocationPrecision = {{ showlocationprecision }};
                     var showUserPath = {{ showuserpath }};
-
-                    var zoomlevel = 10;
 
                     var markerGroup = [];
 
