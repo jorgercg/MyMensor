@@ -356,11 +356,6 @@
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
                                     {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
-                                        {% for orgmymacc in orgmymacclist %}
-                                            {% if media.mediaOriginalMymensorAccount == orgmymacc %}
-                                                coords{{ orgmymacc | cut:"+" }}.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
-                                            {% endif %}
-                                        {% endfor %}
                                         var markericon{{ media.id }} = L.ExtraMarkers.icon({
                                             icon: 'fa-number',
                                             markerColor: markerColor[{{ media.mediaVpNumber }}],
@@ -390,7 +385,13 @@
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
-
+                    {% for media in medias %}
+                        {% for orgmymacc in orgmymacclist %}
+                            {% if orgmymacc in orgmymaccselected and media.mediaOriginalMymensorAccount == orgmymacc %}
+                                coords{{ orgmymacc | cut:"+" }}.push([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}]);
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
                     if (showUserPath == 1) {
                         {% for orgmymacc in orgmymacclist %}
                             {% if orgmymacc in orgmymaccselected %}
@@ -402,6 +403,7 @@
                     }
                     var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(group.getBounds());
+
                     function eventCallbackHandler(event) {
                         console.log(event.layer.mediaid);
                         $('#mediaModal' + event.layer.mediaid).modal('show');
