@@ -342,14 +342,16 @@
 
                     //https://maps.omniscale.net/v2/{api-key}/style.default/{z}/{x}/{y}.png
 
-                    var host = 'https://maps.omniscale.net/v2/private-jorge-goncalves-db6f60da/style.default/{z}/{x}/{y}.png';
+                    var id = 'appmymensor-47cc2df8';
+
+                    var host = 'https://maps.omniscale.net/v2/'+id+'/style.default/{z}/{x}/{y}.png';
 
                     var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
                         '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
 
                     L.tileLayer(host, {
-                        id: 'private-jorge-goncalves-db6f60da',
+                        id: id,
                         attribution: attribution }).addTo(mymap);
                     {% for orgmymacc in orgmymacclist %}
                         {% if orgmymacc in orgmymaccselected %}
