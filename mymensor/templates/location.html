@@ -291,7 +291,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} + '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
@@ -299,7 +299,7 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }}+ '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }}+'&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -342,9 +342,15 @@
 
                     //https://maps.omniscale.net/v2/{api-key}/style.default/{z}/{x}/{y}.png
 
-                    L.tileLayer('https://maps.omniscale.net/v2/private-jorge-goncalves-db6f60da/style.default/map/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    }).addTo(mymap);
+                    var host = 'https://maps.omniscale.net/v2/private-jorge-goncalves-db6f60da/style.default/{z}/{x}/{y}.png';
+
+                    var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
+                        '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+
+                    L.tileLayer(host, {
+                        id: private-jorge-goncalves-db6f60da,
+                        attribution: attribution }).addTo(mymap);
                     {% for orgmymacc in orgmymacclist %}
                         {% if orgmymacc in orgmymaccselected %}
                             var coords{{ orgmymacc | cut:"+" }} = [];
@@ -396,10 +402,10 @@
                             {% if orgmymacc in orgmymaccselected %}
                                 var colorrand = colorNames[(Math.floor((Math.random() * 10)))];
                                 var pathLine{{ orgmymacc | cut:"+" }} = L.polyline(coords{{ orgmymacc | cut:"+" }}, {color: colorrand}).addTo(mymap);
-                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseover', function(ev) {
+                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseover', function (ev) {
                                     ev.target.bindTooltip('{{ orgmymacc }}').openTooltip();
                                 });
-                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseout', function(ev) {
+                                pathLine{{ orgmymacc | cut:"+" }}.on('mouseout', function (ev) {
                                     ev.target.closeTooltip();
                                 });
                             {% endif %}
