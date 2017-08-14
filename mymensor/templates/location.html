@@ -84,11 +84,9 @@
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{media.mediaVpNumber}}&mediaselected={{ media.id }}"
-                                                           data-toggle="tooltip" data-placement="top"
-                                                           title="{% trans 'Click to see media details.' %}">
+                                                        <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{ media.mediaVpNumber }}&mediaselected={{ media.id }}">
                                                             <img id="mediaContent" class="img-fluid"
-                                                             src="{{ media.mediaStorageURL }}" alt="">
+                                                                 src="{{ media.mediaStorageURL }}" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -105,10 +103,12 @@
                                                 <div class="modal-content">
                                                     <div class="modal-body">
                                                         <div class="embed-responsive embed-responsive-16by9">
-                                                            <video controls>
-                                                                <source src="{{ media.mediaStorageURL }}"
-                                                                        type="video/mp4">
-                                                            </video>
+                                                            <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{ media.mediaVpNumber }}&mediaselected={{ media.id }}">
+                                                                <video controls>
+                                                                    <source src="{{ media.mediaStorageURL }}"
+                                                                            type="video/mp4">
+                                                                </video>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </div>
