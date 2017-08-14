@@ -465,8 +465,8 @@
                             {% endif %}
                         {% endfor %}
                     }
-                    var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
-                    mymap.fitBounds(group.getBounds());
+                    //var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
+                    mymap.fitBounds(markerGroup.getBounds());
 
                     function eventCallbackHandler(event) {
                         console.log(event.layer.mediaid);
