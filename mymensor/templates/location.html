@@ -340,6 +340,11 @@
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
 
+                    var centerlat = {{ centerlat }};
+                    var centerlng = {{ centerlng }};
+                    var mapzoom = {{ mapzoom }};
+
+
                     var markerGroup = L.markerClusterGroup();
 
                     var markerColor = ['blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'black', 'blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'blue', 'blue'];
@@ -354,10 +359,10 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        var centerlat = mymap.getCenter().lat;
-                        var centerlng = mymap.getCenter().lng;
-                        var mapzoom = mymap.getZoom();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat='+ centerlat + '&centerlng='+ centerlng + '&mapzoom='+ mapzoom;
+                        centerlat = mymap.getCenter().lat;
+                        centerlng = mymap.getCenter().lng;
+                        mapzoom = mymap.getZoom();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
                     });
 
                     $('#showuserpath').click(function () {
@@ -368,7 +373,10 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                        centerlat = mymap.getCenter().lat;
+                        centerlng = mymap.getCenter().lng;
+                        mapzoom = mymap.getZoom();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
                     });
 
                     $('#showonlyloccert').click(function () {
@@ -379,7 +387,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified +'&showonlytimecert='+ {{ showonlytimecert }} + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlytimecert').click(function () {
@@ -390,7 +398,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     var colorNames = ['blue', 'red', 'orange', 'yellow', 'cyan', 'purple', 'violet', 'pink', 'green', 'black'];
@@ -475,8 +483,12 @@
 
                     //var b1 = [-22.98953, -43.37746];
                     //var b2 = [-22.89468, -43.05302];
+                    if (mapzoom==0){
+                        mymap.fitBounds(markerGroup.getBounds());
+                    } else {
+                        mymap.setView(L.latLng(centerlat, centerlng), mapzoom, true);
+                    }
 
-                    mymap.fitBounds(markerGroup.getBounds());
                     //mymap.fitBounds(b1,b2);
                 });
 

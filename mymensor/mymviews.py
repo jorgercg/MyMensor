@@ -455,6 +455,9 @@ def location(request):
         showonlyloccert = int(request.GET.get('showonlyloccert', 1))
         showonlytimecert = int(request.GET.get('showonlytimecert', 1))
         showuserpath = int(request.GET.get('showuserpath', 0))
+        centerlat = float(request.GET.get('centerlat', 0))
+        centerlng = float(request.GET.get('centerlng', 0))
+        mapzoom = int(request.GET.get('centerlat', 0))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
