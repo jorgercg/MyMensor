@@ -354,9 +354,10 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        var bound1 = mymap.getBounds().getSouthWest();
-                        var bound2 = mymap.getBounds().getNorthEast();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&bound1='+ bound1 + '&bound2='+ bound2;
+                        var centerlat = mymap.getCenter().lat;
+                        var centerlng = mymap.getCenter().lng;
+                        var mapzoom = mymap.getZoom();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat='+ centerlat + '&centerlng='+ centerlng + '&mapzoom='+ mapzoom;
                     });
 
                     $('#showuserpath').click(function () {
@@ -472,11 +473,11 @@
 
                     //&bound1=LatLng(-22.98953,%20-43.37746)&bound2=LatLng(-22.89468,%20-43.05302)
 
-                    var b1 = [-22.98953, -43.37746];
-                    var b2 = [-22.89468, -43.05302];
+                    //var b1 = [-22.98953, -43.37746];
+                    //var b2 = [-22.89468, -43.05302];
 
-                    //mymap.fitBounds(markerGroup.getBounds());
-                    mymap.fitBounds(b1,b2);
+                    mymap.fitBounds(markerGroup.getBounds());
+                    //mymap.fitBounds(b1,b2);
                 });
 
 
