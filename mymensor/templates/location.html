@@ -146,7 +146,7 @@
         {% endblock %}
         {% block javascript %}
             <link rel="stylesheet" href="{% static 'css/leaflet.extra-markers.min.css' %}">
-            <link rel="stylesheet" href="{% static 'css/MarkerCluster.css' %}">
+            <link rel="stylesheet" href="{% static 'css/MarkerCluster.Default.css' %}">
 
             <script src="{% static "js/leaflet.js" %}"></script>
             <script src="{% static "js/leaflet.extra-markers.min.js" %}"></script>
@@ -422,12 +422,17 @@
                                             prefix: 'fa'
                                         });
                                         var marker{{ media.id }} = L.marker([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {icon: markericon{{ media.id }}});
-                                        marker{{ media.id }}.mediaid ={{ media.id }};
                                         marker{{ media.id }}.on('mouseover', function (ev) {
                                             ev.target.bindTooltip('{{ media.mediaOriginalMymensorAccount }} - VP#{{ media.mediaVpNumber }} - {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}').openTooltip();
                                         });
                                         marker{{ media.id }}.on('mouseout', function (ev) {
                                             ev.target.closeTooltip();
+                                        });
+                                        marker{{ media.id }}.on('click', function (ev) {
+                                            $('#mediaModal{{ media.id }}').modal('show');
+                                        });
+                                        marker{{ media.id }}.on('dblclick', function (ev) {
+                                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + {{ media.mediaVpNumber }} +'&mediaselected=' + {{ media.id }};
                                         });
                                         markerGroup.addLayer(marker{{ media.id }});
                                         mymap.addLayer(markerGroup);
@@ -465,14 +470,7 @@
                             {% endif %}
                         {% endfor %}
                     }
-                    //var group = new L.featureGroup(markerGroup).on('click', eventCallbackHandler);
                     mymap.fitBounds(markerGroup.getBounds());
-
-                    function eventCallbackHandler(event) {
-                        console.log(event.layer.mediaid);
-                        $('#mediaModal' + event.layer.mediaid).modal('show');
-                    }
-
                 });
 
 
