@@ -430,6 +430,7 @@
                                             ev.target.closeTooltip();
                                         });
                                         markerGroup.addLayer(marker{{ media.id }});
+                                        mymap.addLayer(markerGroup);
                                         if (showLocationPrecision) {
                                             var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
                                                 color: 'red',
