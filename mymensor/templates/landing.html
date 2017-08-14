@@ -305,8 +305,16 @@
 
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            var id = 'appmymensor-47cc2df8';
+
+            var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
+
+            var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
+                '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+            L.tileLayer(host, {
+                id: id,
+                attribution: attribution
             }).addTo(mymap);
 
             var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
