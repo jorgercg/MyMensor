@@ -429,7 +429,7 @@
                                         marker{{ media.id }}.on('mouseout', function (ev) {
                                             ev.target.closeTooltip();
                                         });
-                                        markerGroup.push(marker{{ media.id }});
+                                        markerGroup.addLayer(marker{{ media.id }});
                                         if (showLocationPrecision) {
                                             var circle = L.circle([{{ media.mediaLatitude }}, {{ media.mediaLongitude }}], {
                                                 color: 'red',
