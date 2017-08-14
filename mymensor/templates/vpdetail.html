@@ -481,23 +481,33 @@
         <script>
             var zoomlevel = 1;
             var precision = {{ locprecisioninm | floatformat:3 }};
-            if (precision<10000) zoomlevel = 5;
-            if (precision<4800) zoomlevel = 6;
-            if (precision<2400) zoomlevel = 7;
-            if (precision<1200) zoomlevel = 8;
-            if (precision<600) zoomlevel = 9;
-            if (precision<300) zoomlevel = 10;
-            if (precision<160) zoomlevel = 11;
-            if (precision<80) zoomlevel = 12;
-            if (precision<40) zoomlevel = 13;
-            if (precision<20) zoomlevel = 14;
-            if (precision<10) zoomlevel = 15;
+            if (precision < 10000) zoomlevel = 5;
+            if (precision < 4800) zoomlevel = 6;
+            if (precision < 2400) zoomlevel = 7;
+            if (precision < 1200) zoomlevel = 8;
+            if (precision < 600) zoomlevel = 9;
+            if (precision < 300) zoomlevel = 10;
+            if (precision < 160) zoomlevel = 11;
+            if (precision < 80) zoomlevel = 12;
+            if (precision < 40) zoomlevel = 13;
+            if (precision < 20) zoomlevel = 14;
+            if (precision < 10) zoomlevel = 15;
 
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            var id = 'appmymensor-47cc2df8';
+
+            var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
+
+            var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
+                '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+
+            L.tileLayer(host, {
+                id: id,
+                attribution: attribution
             }).addTo(mymap);
+
 
             var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
 
