@@ -451,7 +451,7 @@ def location(request):
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showlocationprecision = int(request.GET.get('showlocationprecision', 1))
+        showlocationprecision = int(request.GET.get('showlocationprecision', 0))
         showonlyloccert = int(request.GET.get('showonlyloccert', 1))
         showonlytimecert = int(request.GET.get('showonlytimecert', 1))
         showuserpath = int(request.GET.get('showuserpath', 0))

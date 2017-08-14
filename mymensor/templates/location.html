@@ -431,9 +431,6 @@
                                         marker{{ media.id }}.on('click', function (ev) {
                                             $('#mediaModal{{ media.id }}').modal('show');
                                         });
-                                        marker{{ media.id }}.on('dblclick', function (ev) {
-                                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + {{ media.mediaVpNumber }} +'&mediaselected=' + {{ media.id }};
-                                        });
                                         markerGroup.addLayer(marker{{ media.id }});
                                         mymap.addLayer(markerGroup);
                                         if (showLocationPrecision) {
