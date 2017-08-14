@@ -506,7 +506,7 @@ def location(request):
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
                        'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,
-                       'showonlytimecert': showonlytimecert,
+                       'showonlytimecert': showonlytimecert, 'centerlat':centerlat, 'centerlng':centerlng, 'mapzoom':mapzoom,
                        'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
                        'media_vpnumbers': media_vpnumbers, })
 
