@@ -84,8 +84,12 @@
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-body">
-                                                        <img id="mediaContent" class="img-fluid"
+                                                        <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{media.mediaVpNumber}}&mediaselected={{ media.id }}"
+                                                           data-toggle="tooltip" data-placement="top"
+                                                           title="{% trans 'Click to see media details.' %}">
+                                                            <img id="mediaContent" class="img-fluid"
                                                              src="{{ media.mediaStorageURL }}" alt="">
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -341,7 +345,7 @@
 
                     var id = 'appmymensor-47cc2df8';
 
-                    var host = 'https://maps.omniscale.net/v2/'+id+'/style.default/{z}/{x}/{y}.png';
+                    var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
 
                     var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
                         '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
@@ -349,7 +353,8 @@
 
                     L.tileLayer(host, {
                         id: id,
-                        attribution: attribution }).addTo(mymap);
+                        attribution: attribution
+                    }).addTo(mymap);
                     {% for orgmymacc in orgmymacclist %}
                         {% if orgmymacc in orgmymaccselected %}
                             var coords{{ orgmymacc | cut:"+" }} = [];
