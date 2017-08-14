@@ -354,8 +354,8 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        var bound1 = L.getSouthWest(mymap.getBounds());
-                        var bound2 = L.getNorthEast(mymap.getBounds());
+                        var bound1 = mymap.getSouthWest();
+                        var bound2 = mymap.getNorthEast();
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&bound1='+ bound1 + '&bound2='+ bound2;
                     });
 
