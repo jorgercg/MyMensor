@@ -365,7 +365,7 @@
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
-                    $('#showloccert').click(function () {
+                    $('#showonlyloccert').click(function () {
                         if ($(this).is(':checked')) {
                             showOnlyLocCertified = 1;
                         } else {
@@ -376,7 +376,7 @@
                         window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified +'&showonlytimecert='+ {{ showonlytimecert }} + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
-                    $('#showtimecert').click(function () {
+                    $('#showonlytimecert').click(function () {
                         if ($(this).is(':checked')) {
                             showOnlyTimeCertified = 1;
                         } else {
