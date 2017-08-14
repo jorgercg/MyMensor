@@ -61,6 +61,28 @@
                                 {% trans "Show location precision" %}
                             </label>
                         </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {% if showonlyloccert == 1 %}
+                                    <input id="showonlyloccert" class="form-check-input" type="checkbox" value=""
+                                           checked>
+                                {% else %}
+                                    <input id="showonlyloccert" class="form-check-input" type="checkbox" value="">
+                                {% endif %}
+                                {% trans "Show only location certified" %}
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                {% if showonlytimecert == 1 %}
+                                    <input id="showonlytimecert" class="form-check-input" type="checkbox" value=""
+                                           checked>
+                                {% else %}
+                                    <input id="showonlytimecert" class="form-check-input" type="checkbox" value="">
+                                {% endif %}
+                                {% trans "Show only time certified" %}
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -312,6 +334,8 @@
 
                     var showLocationPrecision = {{ showlocationprecision }};
                     var showUserPath = {{ showuserpath }};
+                    var showOnlyLocCertified = {{ showonlyloccert }};
+                    var showOnlyTimeCertified = {{ showonlytimecert }};
 
                     var markerGroup = [];
 
@@ -327,7 +351,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showuserpath').click(function () {
@@ -338,7 +362,29 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#showloccert').click(function () {
+                        if ($(this).is(':checked')) {
+                            showOnlyLocCertified = 1;
+                        } else {
+                            showOnlyLocCertified = 0;
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified +'&showonlytimecert='+ {{ showonlytimecert }} + '&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#showtimecert').click(function () {
+                        if ($(this).is(':checked')) {
+                            showOnlyTimeCertified = 1;
+                        } else {
+                            showOnlyTimeCertified = 0;
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert='+ showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     var colorNames = ['blue', 'red', 'orange', 'yellow', 'cyan', 'purple', 'violet', 'pink', 'green', 'black'];
