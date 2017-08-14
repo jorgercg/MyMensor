@@ -146,8 +146,11 @@
         {% endblock %}
         {% block javascript %}
             <link rel="stylesheet" href="{% static 'css/leaflet.extra-markers.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/MarkerCluster.css' %}">
+
             <script src="{% static "js/leaflet.js" %}"></script>
             <script src="{% static "js/leaflet.extra-markers.min.js" %}"></script>
+            <script src="{% static "js/leaflet.markercluster.js" %}"></script>
 
             <script type="text/javascript">
 
@@ -337,7 +340,7 @@
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
 
-                    var markerGroup = [];
+                    var markerGroup = L.MarkerClusterGroup();
 
                     var markerColor = ['blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'black', 'blue', 'red', 'orange-dark', 'orange', 'yellow', 'blue-dark', 'cyan', 'purple', 'violet', 'pink', 'green-dark', 'green', 'green-light', 'black', 'blue', 'blue'];
 

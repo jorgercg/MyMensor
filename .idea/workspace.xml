@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/css/MarkerCluster.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/js/leaflet.markercluster.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/location.html" afterPath="$PROJECT_DIR$/mymensor/templates/location.html" />
     </list>
@@ -70,8 +72,8 @@
       <file leaf-file-name="location.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/location.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="375" column="71" lean-forward="false" selection-start-line="375" selection-start-column="71" selection-end-line="375" selection-end-column="71" />
+            <state relative-caret-position="-1000">
+              <caret line="344" column="59" lean-forward="true" selection-start-line="344" selection-start-column="59" selection-end-line="344" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -303,6 +305,19 @@
               <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
               <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -345,19 +360,19 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mymensor/static/css" />
+      <recent name="$PROJECT_DIR$/mymensor/static/js" />
+      <recent name="$PROJECT_DIR$/mymensor/static" />
+      <recent name="$PROJECT_DIR$/mymensor/templates" />
+      <recent name="$PROJECT_DIR$/mymensor/static/images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assetfiles" />
       <recent name="$PROJECT_DIR$/mymensorapp/static" />
       <recent name="$PROJECT_DIR$/mymensor/static/css" />
       <recent name="$PROJECT_DIR$/mymensor/static/images" />
       <recent name="$PROJECT_DIR$/mymensor/static/fonts" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mymensor/static/css" />
-      <recent name="$PROJECT_DIR$/mymensor/static" />
-      <recent name="$PROJECT_DIR$/mymensor/static/js" />
-      <recent name="$PROJECT_DIR$/mymensor/templates" />
-      <recent name="$PROJECT_DIR$/mymensor/static/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -581,13 +596,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-02904" summary="11ago2017 16h05min">
-      <created>1502463960467</created>
-      <option name="number" value="02904" />
-      <option name="presentableId" value="LOCAL-02904" />
-      <option name="project" value="LOCAL" />
-      <updated>1502463960467</updated>
     </task>
     <task id="LOCAL-02905" summary="11ago2017 16h05min">
       <created>1502464399932</created>
@@ -925,7 +933,14 @@
       <option name="project" value="LOCAL" />
       <updated>1502721022658</updated>
     </task>
-    <option name="localTasksCounter" value="2953" />
+    <task id="LOCAL-02953" summary="14ago2017 15h35min">
+      <created>1502721354143</created>
+      <option name="number" value="02953" />
+      <option name="presentableId" value="LOCAL-02953" />
+      <option name="project" value="LOCAL" />
+      <updated>1502721354143</updated>
+    </task>
+    <option name="localTasksCounter" value="2954" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1006,7 +1021,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="12ago2017 20h11min" />
     <MESSAGE value="12ago2017 20h15min" />
     <MESSAGE value="12ago2017 20h21min" />
     <MESSAGE value="12ago2017 20h27min" />
@@ -1031,7 +1045,8 @@
     <MESSAGE value="14ago2017 14h57min" />
     <MESSAGE value="14ago2017 15h14min" />
     <MESSAGE value="14ago2017 15h30min" />
-    <option name="LAST_COMMIT_MESSAGE" value="14ago2017 15h30min" />
+    <MESSAGE value="14ago2017 15h35min" />
+    <option name="LAST_COMMIT_MESSAGE" value="14ago2017 15h35min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1043,20 +1058,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../mymensorapp/venv/lib/python2.7/site-packages/registration/users.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../mymensorapp/venv/lib/python2.7/site-packages/registration/signals.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../mymensorapp/venv/lib/python2.7/site-packages/registration/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7784">
@@ -1404,10 +1405,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet.markercluster.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/MarkerCluster.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/location.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="375" column="71" lean-forward="false" selection-start-line="375" selection-start-column="71" selection-end-line="375" selection-end-column="71" />
+        <state relative-caret-position="-1000">
+          <caret line="344" column="59" lean-forward="true" selection-start-line="344" selection-start-column="59" selection-end-line="344" selection-end-column="59" />
           <folding />
         </state>
       </provider>
