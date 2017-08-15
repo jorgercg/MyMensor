@@ -66,6 +66,15 @@
         {% block javascript %}
             <script src="{% static "js/raphael.min.js" %}"></script>
             <script type="text/javascript">
+
+                $('#id_vpIsSharedToTwitter').click(function () {
+                    var choice = confirm("{% trans "Please confirm that you explicitly want and authorizes the sharing of EVERY capture of this VP to the configure Twitter account." %}");
+                    if (!choice) {
+                        alert("Not accepted!!!!");
+                    }
+
+
+                });
                 var dynwidth = 0;
                 var dynheight = 0;
                 $('#currentvp').chosen();
@@ -171,8 +180,6 @@
                         var descurltmp = "{{ descvpStorageURL }}";
 
                         var descurl = descurltmp.replace(/&amp;/g, "&");
-
-                        console.log("descurl:" + descurl);
 
                         var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
                         dfd.done(function (result) {  //result is a Raphael element
