@@ -66,9 +66,9 @@
         {% block javascript %}
             <script src="{% static "js/raphael.min.js" %}"></script>
             <script type="text/javascript">
-                var shareToTwitter = false;
                 $('#id_vpIsSharedToTwitter').click(function () {
                     if ($(this).is(':checked')) {
+                        document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         swal({
                             title: 'Explicit Confirmation Needed!',
                             text: 'To confirm that you want to share ALL INCOMING MEDIA to this VP to the Twitter account configured in MyMensor, please type your MyMensor username below and click on confirm:',
@@ -78,10 +78,9 @@
                             inputValidator: function (value) {
                                 return new Promise(function (resolve, reject) {
                                     if (value === "{{ request.user.username }}") {
-                                        console.log("Before resolve:" + shareToTwitter);
+                                        document.getElementById('id_vpIsSharedToTwitter').checked = true;
                                         resolve()
                                     } else {
-                                        console.log("Before reject:" + shareToTwitter);
                                         reject('You need to enter your username.')
                                     }
                                 })
@@ -89,17 +88,8 @@
                         }).then(function (result) {
                             shareToTwitter = true;
                             console.log("result:" + result);
-                            console.log("After OK:" + shareToTwitter);
                             swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
-                        }).catch(function (reason) {
-                            console.log('Handle rejected promise (' + reason + ') here.');
-                        });
-
-                        if (!shareToTwitter) {
-                            console.log("If sharetotwitter is false:" + shareToTwitter);
-                            document.getElementById('id_vpIsSharedToTwitter').checked = false;
-                        }
-
+                        }).catch(swal.noop);
                     }
 
 
