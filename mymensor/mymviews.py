@@ -18,7 +18,7 @@ from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
     TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS
-import json, boto3, urllib, pytz
+import json, boto3, urllib, pytz, urllib2
 from botocore.exceptions import ClientError
 from datetime import datetime, timedelta, date
 from mymensor.forms import AssetForm, VpForm, TagForm
@@ -146,7 +146,12 @@ def mediacheckurl(request, messagetype, messagemymuser, mediaObjectS3partialKey,
                                                                                 'Key': mediaObjectS3KeyEncodedHeader},
                                                                         ExpiresIn=3600)
             if obj_metadata['sha-256'] == requestsignature:
-                return HttpResponseRedirect(mediaStorageURLHeader,status=302,content_type="image/jpeg")
+                url = mediaStorageURLHeader
+                opener = urllib2.urlopen(url)
+                content_type = "application/octet-stream"
+                response = HttpResponse(opener.read(), content_type=content_type)
+                response["Content-Disposition"] = "attachment; filename=media.jpg"
+                return response
             else:
                 return HttpResponse(status=404)
         else:
