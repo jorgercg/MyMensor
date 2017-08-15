@@ -66,11 +66,42 @@
         {% block javascript %}
             <script src="{% static "js/raphael.min.js" %}"></script>
             <script type="text/javascript">
-
+                var shareToTwitter = false;
                 $('#id_vpIsSharedToTwitter').click(function () {
-                    var choice = confirm("{% trans "Please confirm that you explicitly want and authorizes the sharing of EVERY capture of this VP to the configure Twitter account." %}");
-                    if (!choice) {
-                        alert("Not accepted!!!!");
+                    if ($(this).is(':checked')) {
+                        swal({
+                                title: "Explicit Confirmation",
+                                text: "To confirm that you want to share ALL INCOMING MEDIA to this VP to the Twitter account configured in MyMensor, please type your MyMensro username below and click on confirm:",
+                                type: "input",
+                                showCancelButton: true,
+                                closeOnConfirm: false,
+                                animation: "slide-from-top",
+                                inputPlaceholder: "Write your MyMensor username"
+                            },
+                            function (inputValue) {
+                                if (inputValue === false) return false;
+
+                                if (inputValue === "") {
+                                    swal.showInputError("You need to write something!");
+                                    return false
+                                }
+
+                                if (!(inputValue === {{ request.user.username }})) {
+                                    swal.showInputError("You typed a wrong username.");
+                                    return false
+                                }
+
+                                if (inputValue === {{ request.user.username }}) {
+                                    shareToTwitter = true;
+                                    swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
+                                }
+
+
+                            });
+                        if (!shareToTwitter) {
+                            document.getElementById('id_vpIsSharedToTwitter').checked = false;
+                        }
+
                     }
 
 
