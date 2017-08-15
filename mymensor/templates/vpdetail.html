@@ -280,8 +280,7 @@
         <script type="text/javascript">
             SocialShareKit.init({
                 selector: '.ssk',
-                url: 'https://app.mymensor.com/mc/1/' + '{{ mediaObjectS3Key }}' + '/' + '{{ mediaSha256 }}',
-                text: '{% trans "Check this at MyMensor!" %}'
+                url: 'https://app.mymensor.com/mc/1/' + '{{ mediaObjectS3Key }}' + '/' + '{{ mediaSha256 }}'
             });
 
             console.log('?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}');
