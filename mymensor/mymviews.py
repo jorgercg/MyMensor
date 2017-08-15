@@ -323,44 +323,11 @@ def amazon_sns_processor(request):
                 if twitterAccount is not None:
                     twitter_api = Twython(TWITTER_KEY, TWITTER_SECRET, twitterAccount.twtAccessTokenKey,
                                           twitterAccount.twtAccessTokenSecret)
-                    if media_received.mediaContentType == "image/jpeg":
-                        if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(
-                                _('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
-                        else:
-                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
-                        filename = 'temp.jpg'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as image:
-                                for chunk in requesturl:
-                                    image.write(chunk)
-                            image = open(filename, 'rb')
-                            response = twitter_api.upload_media(media=image)
-                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
-                                                      media_ids=[response['media_id']])
-                            os.remove(filename)
-                        else:
-                            print("Unable to download media")
-                    if media_received.mediaContentType == "video/mp4":
-                        if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToTwitter = unicode(
-                                _('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
-                        else:
-                            mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
-                        filename = 'temp.mp4'
-                        requesturl = requests.get(url, stream=True)
-                        if requesturl.status_code == 200:
-                            with open(filename, 'wb') as video:
-                                for chunk in requesturl:
-                                    video.write(chunk)
-                            video = open(filename, 'rb')
-                            response = twitter_api.upload_video(media=video, media_type='video/mp4')
-                            twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter,
-                                                      media_ids=[response['media_id']])
-                            os.remove(filename)
-                        else:
-                            print("Unable to download media")
+                    if media_received.mediaRemark is None:
+                        mediaRemarkToBeSharedToTwitter = mcurl
+                    else:
+                        mediaRemarkToBeSharedToTwitter = media_received.mediaRemark + '\n\n' + mcurl
+                    twitter_api.update_status(status=mediaRemarkToBeSharedToTwitter)
             facebookAccount = None
             if vp_received.vpIsSharedToFacebook:
                 try:
@@ -368,24 +335,13 @@ def amazon_sns_processor(request):
                 except:
                     facebookAccount = None
                 if facebookAccount is not None:
-                    if media_received.mediaContentType == "image/jpeg":
-                        if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(
-                                _('Image Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
-                        else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
-                        data = {'url': url, 'caption': mediaRemarkToBeSharedToFB,
-                                'access_token': facebookAccount.fbLongTermAccesToken}
-                        feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/photos', data=data)
-                    if media_received.mediaContentType == "video/mp4":
-                        if media_received.mediaRemark is None:
-                            mediaRemarkToBeSharedToFB = unicode(
-                                _('Video Shared by MyMensor Bot \n\n Use the link to check the media: \n\n')) + mcurl
-                        else:
-                            mediaRemarkToBeSharedToFB = media_received.mediaRemark + '\n\n Use the link to check the media: \n\n' + mcurl
-                        data = {'file_url': url, 'description': mediaRemarkToBeSharedToFB,
-                                'access_token': facebookAccount.fbLongTermAccesToken}
-                        feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/videos', data=data)
+                    if media_received.mediaRemark is None:
+                        mediaRemarkToBeSharedToFB = ""
+                    else:
+                        mediaRemarkToBeSharedToFB = media_received.mediaRemark
+                    data = {'message': mediaRemarkToBeSharedToFB, 'link': mcurl,
+                            'access_token': facebookAccount.fbLongTermAccesToken}
+                    feedpostresponse = requests.post('https://graph.facebook.com/v2.10/me/feed', data=data)
             return HttpResponse(status=200)
     return HttpResponse(status=400)
 
