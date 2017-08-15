@@ -289,19 +289,8 @@
         <!-- Page Local Scripts
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <script>
-            var zoomlevel = 1;
+            var zoomlevel = 10;
             var precision = {{ locprecisioninm | floatformat:3 }};
-            if (precision < 10000) zoomlevel = 5;
-            if (precision < 4800) zoomlevel = 6;
-            if (precision < 2400) zoomlevel = 7;
-            if (precision < 1200) zoomlevel = 8;
-            if (precision < 600) zoomlevel = 9;
-            if (precision < 300) zoomlevel = 10;
-            if (precision < 160) zoomlevel = 11;
-            if (precision < 80) zoomlevel = 12;
-            if (precision < 40) zoomlevel = 13;
-            if (precision < 20) zoomlevel = 14;
-            if (precision < 10) zoomlevel = 15;
 
             var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
 
@@ -323,8 +312,10 @@
                 color: 'red',
                 fillColor: '#f03',
                 fillOpacity: 0.5,
-                radius: {{ locprecisioninm | floatformat:3 }}
+                radius: precision
             }).addTo(mymap);
+
+            mymap.fitBounds(circle.getBounds());
 
             var qr = new QRious({
                 element: document.getElementById('qrcodenew'),
