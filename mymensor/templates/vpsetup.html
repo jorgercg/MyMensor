@@ -78,23 +78,25 @@
                             inputValidator: function (value) {
                                 return new Promise(function (resolve, reject) {
                                     if (value === "{{ request.user.username }}") {
-                                        console.log("Before resolve:"+shareToTwitter);
+                                        console.log("Before resolve:" + shareToTwitter);
                                         resolve()
                                     } else {
-                                        console.log("Before reject:"+shareToTwitter);
+                                        console.log("Before reject:" + shareToTwitter);
                                         reject('You need to enter your username.')
                                     }
                                 })
                             }
                         }).then(function (result) {
                             shareToTwitter = true;
-                            console.log("result:"+result);
-                            console.log("After OK:"+shareToTwitter);
+                            console.log("result:" + result);
+                            console.log("After OK:" + shareToTwitter);
                             swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
+                        }).catch(function (reason) {
+                            console.log('Handle rejected promise (' + reason + ') here.');
                         });
 
                         if (!shareToTwitter) {
-                            console.log("If sharetotwitter is false:"+shareToTwitter);
+                            console.log("If sharetotwitter is false:" + shareToTwitter);
                             document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         }
 
