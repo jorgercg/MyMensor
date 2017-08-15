@@ -82,11 +82,13 @@
                                 if (inputValue === false) return false;
 
                                 if (inputValue === "") {
+                                    console.log("You need to write something!");
                                     swal.showInputError("You need to write something!");
                                     return false
                                 }
 
                                 if (!(inputValue === "{{ request.user.username }}" )) {
+                                    console.log("You typed a wrong username.");
                                     swal.showInputError("You typed a wrong username.");
                                     return false
                                 }
