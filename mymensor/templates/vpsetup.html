@@ -70,36 +70,24 @@
                 $('#id_vpIsSharedToTwitter').click(function () {
                     if ($(this).is(':checked')) {
                         swal({
-                                title: "Explicit Confirmation",
-                                text: "To confirm that you want to share ALL INCOMING MEDIA to this VP to the Twitter account configured in MyMensor, please type your MyMensro username below and click on confirm:",
-                                type: "input",
-                                showCancelButton: true,
-                                closeOnConfirm: false,
-                                animation: "slide-from-top",
-                                inputPlaceholder: "Write your MyMensor username"
-                            },
-                            function (inputValue) {
-                                if (inputValue === false) return false;
-
-                                if (inputValue === "") {
-                                    console.log("You need to write something!");
-                                    swal.showInputError("You need to write something!");
-                                    return false
-                                }
-
-                                if (!(inputValue === "{{ request.user.username }}" )) {
-                                    console.log("You typed a wrong username.");
-                                    swal.showInputError("You typed a wrong username.");
-                                    return false
-                                }
-
-                                if (inputValue === "{{ request.user.username }}") {
-                                    shareToTwitter = true;
-                                    swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
-                                }
-
-
-                            });
+                            title: 'Explicit Confirmation Needed!',
+                            text: 'To confirm that you want to share ALL INCOMING MEDIA to this VP to the Twitter account configured in MyMensor, please type your MyMensor username below and click on confirm:',
+                            input: 'text',
+                            inputPlaceholder: "Write your MyMensor username",
+                            showCancelButton: true,
+                            inputValidator: function (value) {
+                                return new Promise(function (resolve, reject) {
+                                    if (value === "{{ request.user.username }}") {
+                                        resolve()
+                                    } else {
+                                        reject('You need to enter your username.')
+                                    }
+                                })
+                            }
+                        }).then(function (result) {
+                            shareToTwitter = true;
+                            swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
+                        });
                         if (!shareToTwitter) {
                             document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         }

@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
         <link rel="stylesheet" href="{% static 'css/social-share-kit.css' %}">
         <link rel="stylesheet" href="{% static 'django_tables2/bootstrap.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/sweetalert.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sweetalert2.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/mymensorstyle.css' %}">
         <!-- Favicon
 	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -137,7 +137,8 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'subscription' %}">{% trans 'Subscription' %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'createmobileonlyuser' %}">{% trans 'Service User' %}</a>
+                            <a class="dropdown-item"
+                               href="{% url 'createmobileonlyuser' %}">{% trans 'Service User' %}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'support' %}">{% trans 'Support' %}</a>
                         </div>
@@ -242,9 +243,11 @@
     <script src="{% static "js/mymensor-jquery.js" %}"></script>
     <script src="{% static "js/jquery-eu-cookie-law-popup.js" %}"></script>
     <script src="{% static "js/social-share-kit.js" %}"></script>
-    <script src="{% static "js/sweetalert.js" %}"></script>
+    <script src="{% static "js/sweetalert2.min.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
     <!-- Page Local Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script>
