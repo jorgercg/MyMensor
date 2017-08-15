@@ -146,7 +146,7 @@ def mediacheckurl(request, messagetype, messagemymuser, mediaObjectS3partialKey,
                                                                                 'Key': mediaObjectS3KeyEncodedHeader},
                                                                         ExpiresIn=3600)
             if obj_metadata['sha-256'] == requestsignature:
-                return HttpResponseRedirect(mediaStorageURLHeader)
+                return HttpResponse(status=302, location=mediaStorageURLHeader)
             else:
                 return HttpResponse(status=404)
         else:
