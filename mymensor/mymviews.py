@@ -90,26 +90,17 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                                                                       'Key': mediaObjectS3KeyEncoded},
                                                               ExpiresIn=3600)
             mediaStorageURLHeader = mediaStorageURL
-            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3 = session.resource('s3')
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
             object.load()
             obj_metadata = object.metadata
             mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
+            mediaCheckURLOG = u''.join(['https://app.mymensor.com/mcurl/']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
-            if object.content_type == 'video/mp4':
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
-                mediaObjectS3KeyEncodedHeader = urllib.quote(
-                    'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
-                mediaStorageURLHeader = s3Client.generate_presigned_url('get_object',
-                                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                                'Key': mediaObjectS3KeyEncodedHeader},
-                                                                        ExpiresIn=3600)
+            mediaCheckURLOG = mediaCheckURLOG + mediaCheckURL
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
-                                                        'mediaStorageURLHeader': mediaStorageURLHeader,
+                                                        'mediaCheckURLOG': mediaCheckURLOG,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
                                                         'mediaTimeIsCertified': obj_metadata['timecertified'],
@@ -126,6 +117,40 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
         else:
             return HttpResponse(status=404)
 
+    return HttpResponse(status=404)
+
+
+def mediacheckurl(request, messagetype, messagemymuser, mediaObjectS3partialKey, requestsignature):
+    if request.method == "GET":
+        if mediaObjectS3partialKey != 0 and messagetype != 0 and requestsignature != 0 and messagemymuser != 0:
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+            s3Client = session.client('s3')
+            mediaObjectS3KeyEncoded = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey)
+            mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                      'Key': mediaObjectS3KeyEncoded},
+                                                              ExpiresIn=3600)
+            mediaStorageURLHeader = mediaStorageURL
+            s3 = session.resource('s3')
+            object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
+            object.load()
+            obj_metadata = object.metadata
+            if object.content_type == 'video/mp4':
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
+                mediaObjectS3KeyEncodedHeader = urllib.quote(
+                    'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
+                mediaStorageURLHeader = s3Client.generate_presigned_url('get_object',
+                                                                        Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                                'Key': mediaObjectS3KeyEncodedHeader},
+                                                                        ExpiresIn=3600)
+            if obj_metadata['sha-256'] == requestsignature:
+                return HttpResponseRedirect(mediaStorageURLHeader)
+            else:
+                return HttpResponse(status=404)
+        else:
+            return HttpResponse(status=404)
     return HttpResponse(status=404)
 
 
