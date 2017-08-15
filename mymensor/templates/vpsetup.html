@@ -86,12 +86,12 @@
                                     return false
                                 }
 
-                                if (!(inputValue === {{ request.user.username }})) {
+                                if (!(inputValue === "{{ request.user.username }}" )) {
                                     swal.showInputError("You typed a wrong username.");
                                     return false
                                 }
 
-                                if (inputValue === {{ request.user.username }}) {
+                                if (inputValue === "{{ request.user.username }}") {
                                     shareToTwitter = true;
                                     swal("Thank you for your confirmation!", "Please save VP configuration in order to start tweeting from MyMensor!", "success");
                                 }
