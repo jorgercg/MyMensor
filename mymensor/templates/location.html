@@ -77,7 +77,9 @@
                                 {% else %}
                                     <input id="showonlyloccert" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                {% trans "Show only location certified" %}
+                                <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="{% trans "Show only location certified" %}"></span>
                             </label>
                         </div>
                     </div>
@@ -90,7 +92,9 @@
                                 {% else %}
                                     <input id="showonlytimecert" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                {% trans "Show only time certified" %}
+                                <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="{% trans "Show only time certified" %}"></span>
                             </label>
                         </div>
                     </div>
