@@ -70,11 +70,12 @@
                     if ($(this).is(':checked')) {
                         document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         swal({
-                            title: 'Explicit Confirmation Needed!',
-                            text: 'Please type your MyMensor username below and click on the Confirm to hereby confirm that you are giving your explicit consent to MyMensor to automatically share ALL INCOMING MEDIA to this VP Folder directly to the Twitter account configured in your MyMensor Account. You also explicit confirm that you are aware that you will not be able to revise the content of the posting before it is actually posted.',
+                            title: '{{ swaltitle }}',
+                            text: '{{ swaltext }}' ,
                             input: 'text',
-                            inputPlaceholder: "Type your MyMensor username here.",
-                            confirmButtonText: 'Yes! I Confirm.',
+                            inputPlaceholder: '{{ swalinputPlaceholder }}',
+                            confirmButtonText: '{{ swalconfirmButtonText }}',
+                            cancelButtonText: '{{ swalcancelButtonText }}',
                             showCancelButton: true,
                             inputValidator: function (value) {
                                 return new Promise(function (resolve, reject) {
@@ -82,14 +83,14 @@
                                         document.getElementById('id_vpIsSharedToTwitter').checked = true;
                                         resolve()
                                     } else {
-                                        reject('You need to enter your username.')
+                                        reject('{{ swalreject }}')
                                     }
                                 })
                             }
                         }).then(function (result) {
                             shareToTwitter = true;
                             console.log("result:" + result);
-                            swal("Thank you for your confirmation!", "Please submit this VP configuration in order to start tweeting automatically from MyMensor!", "success");
+                            swal('{{ swalsuccesstitle }}', '{{ swalsuccesstext }}', "success");
                         }).catch(swal.noop);
                     }
 

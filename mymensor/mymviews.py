@@ -492,7 +492,8 @@ def location(request):
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
                        'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,
-                       'showonlytimecert': showonlytimecert, 'centerlat':centerlat, 'centerlng':centerlng, 'mapzoom':mapzoom,
+                       'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
+                       'mapzoom': mapzoom,
                        'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
                        'media_vpnumbers': media_vpnumbers, })
 
@@ -676,9 +677,24 @@ def vpSetupFormView(request):
     tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
         vp__vpNumber=currentvp)
     tagbboxes = Tagbbox.objects.filter(tag__in=tags)
+
+    swaltitle = _('Explicit Consent Needed!')
+    swaltext = _(
+        'Please type your MyMensor username below and click on the Confirm button below to hereby attest that you are giving your explicit consent to MyMensor to automatically share ALL INCOMING MEDIA to this VP Folder directly to the Twitter account configured in your MyMensor Account. You also explicit confirm that you know and agree that you will not be able to revise the content of the posting before it is actually posted.')
+    swalinputPlaceholder = _("Type your MyMensor username here.")
+    swalconfirmButtonText = _('Confirm')
+    swalcancelButtonText = _('Cancel')
+    swalreject = _('You need to enter your username.')
+    swalsuccesstitle = _("Thank you for your confirmation!")
+    swalsuccesstext = _("Please submit this VP configuration in order to start tweeting automatically from MyMensor!")
+
     return render(request, 'vpsetup.html',
                   {'form': form, 'vps': vps, 'currentvp': currentvp, 'descvpStorageURL': descvpStorageURL,
-                   'descvpTimeStamp': descvpTimeStamp, 'tagbboxes': tagbboxes, 'tags': tags})
+                   'descvpTimeStamp': descvpTimeStamp, 'tagbboxes': tagbboxes, 'tags': tags, 'swaltitle': swaltitle,
+                   'swaltext': swaltext, 'swalinputPlaceholder': swalinputPlaceholder,
+                   'swalconfirmButtonText': swalconfirmButtonText,
+                   'swalcancelButtonText': swalcancelButtonText, 'swalreject': swalreject,
+                   'swalsuccesstitle': swalsuccesstitle, 'swalsuccesstext': swalsuccesstext})
 
 
 @login_required
