@@ -51,7 +51,9 @@
                                 {% else %}
                                     <input id="showuserpath" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                {% trans "Show user path" %}
+                                <span class="fa fa-map-o" data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="{% trans "Show user path" %}"></span>
                             </label>
                         </div>
                     </div>
@@ -64,7 +66,9 @@
                                 {% else %}
                                     <input id="showlocationprecision" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                {% trans "Show location precision" %}
+                                <span class="fa fa-bullseye" data-toggle="tooltip"
+                                      data-placement="top"
+                                      title="{% trans "Show location precision" %}"></span>
                             </label>
                         </div>
                     </div>
@@ -77,7 +81,7 @@
                                 {% else %}
                                     <input id="showonlyloccert" class="form-check-input" type="checkbox" value="">
                                 {% endif %}
-                                <span class="fa fa-clock-o timecert" data-toggle="tooltip"
+                                <span class="fa fa-map-marker loccert" data-toggle="tooltip"
                                       data-placement="top"
                                       title="{% trans "Show only location certified" %}"></span>
                             </label>
