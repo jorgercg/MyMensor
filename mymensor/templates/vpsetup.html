@@ -71,9 +71,10 @@
                         document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         swal({
                             title: 'Explicit Confirmation Needed!',
-                            text: 'To confirm that you want to share ALL INCOMING MEDIA to this VP to the Twitter account configured in MyMensor, please type your MyMensor username below and click on confirm:',
+                            text: 'Please type your MyMensor username below and click on the Confirm to hereby confirm that you are giving your explicit consent to MyMensor to automatically share ALL INCOMING MEDIA to this VP Folder directly to the Twitter account configured in your MyMensor Account. You also explicit confirm that you are aware that you will not be able to revise the content of the posting before it is actually posted.',
                             input: 'text',
                             inputPlaceholder: "Write your MyMensor username",
+                            confirmButtonText: 'Confirm',
                             showCancelButton: true,
                             inputValidator: function (value) {
                                 return new Promise(function (resolve, reject) {
