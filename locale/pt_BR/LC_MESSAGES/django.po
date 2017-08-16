@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-16 12:13+0100\n"
-"PO-Revision-Date: 2017-08-16 12:18+0100\n"
+"POT-Creation-Date: 2017-08-16 20:16+0100\n"
+"PO-Revision-Date: 2017-08-16 20:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -236,10 +236,10 @@ msgid ""
 msgstr ""
 "Digite seu nome de usuário do MyMensor abaixo e clique no botão Confirmar "
 "abaixo para confirmar que você está dando seu consentimento explícito ao "
-"MyMensor para compartilhar automaticamente TODOS AS MÍDIAS QUE CHEGAREM a "
+"MyMensor para compartilhar automaticamente TODAS AS MÍDIAS QUE CHEGAREM a "
 "esta pasta de VP diretamente para a conta do Twitter configurada em sua "
 "Conta MyMensor. Você também confirma explicitamente que você sabe e concorda "
-"que não poderá rever o conteúdo da postagem antes de já estar postado."
+"que não poderá rever o conteúdo da postagem antes desta já estar postada."
 
 #: mymensor/mymviews.py:684
 msgid "Type your MyMensor username here."
@@ -885,13 +885,14 @@ msgstr "Nenhuma mídia para o VP#"
 msgid " in the selected timeframe."
 msgstr " no período de tempo selecionado."
 
-#: mymensor/templates/landing.html:18 mymensor/templates/landing.html:28
-msgid "Click to check at MyMensor"
-msgstr "Clique para ver no MyMensor"
-
+#: mymensor/templates/landing.html:17 mymensor/templates/landing.html:27
 #: mymensor/templates/landing.html:63
 msgid "MyMensor Media Check"
 msgstr "MyMensor Media Check (Verificação de Mídia)"
+
+#: mymensor/templates/landing.html:18 mymensor/templates/landing.html:28
+msgid "Click to check at MyMensor"
+msgstr "Clique para ver no MyMensor"
 
 #: mymensor/templates/landing.html:72
 msgid "Photo of "
@@ -991,25 +992,21 @@ msgstr ""
 "Por favor use o código à esquerda ou o endereço a seguir para obter a "
 "validação online desta mídia."
 
-#: mymensor/templates/location.html:50
-msgid "Show user path"
-msgstr ""
+#: mymensor/templates/location.html:56
+msgid "Show user path when capturing media"
+msgstr "Mostrar o caminho do usuário durante a captura das mídias"
 
-#: mymensor/templates/location.html:61
-msgid "Show location precision"
-msgstr ""
+#: mymensor/templates/location.html:71
+msgid "Show location precision of media captures"
+msgstr "Mostrar a precisão de localização quando as mídias foram capturadas"
 
-#: mymensor/templates/location.html:72
-#, fuzzy
-#| msgid "Capture location certified"
-msgid "Show only location certified"
-msgstr "Localização da captura certificada"
+#: mymensor/templates/location.html:86
+msgid "Show only location certified media captures"
+msgstr "Mostrar Apenas as mídias capturadas com localização certificada"
 
-#: mymensor/templates/location.html:83
-#, fuzzy
-#| msgid "Capture time certified"
-msgid "Show only time certified"
-msgstr "Horário de captura certificado"
+#: mymensor/templates/location.html:101
+msgid "Show only time certified media captures"
+msgstr "Mostrar Apenas as mídias capturadas com horário certificado"
 
 #: mymensor/templates/mobilebackup.html:5
 #: mymensor/templates/mobilebackup.html:9
