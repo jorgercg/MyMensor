@@ -386,6 +386,9 @@ def portfolio(request):
             maxcolumns = 10
         qtypervp = int(request.GET.get('qtypervp', maxcolumns))
         vpsselected = request.GET.getlist('vpsselected', default=None)
+        orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
+        showonlyloccert = int(request.GET.get('showonlyloccert', 1))
+        showonlytimecert = int(request.GET.get('showonlytimecert', 1))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -396,11 +399,28 @@ def portfolio(request):
         else:
             vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
             vpsselected = vps.values_list('vpNumber', flat=True)
-
-        medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber__in=vpsselected).filter(
-            mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        if showonlyloccert == 1 and showonlytimecert == 1:
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
+                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        elif showonlyloccert == 1 and showonlytimecert == 0:
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                vp__vpNumber__in=vpsselected).filter(
+                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        elif showonlyloccert == 0 and showonlytimecert == 1:
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
+                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+        else:
+            medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                vp__vpNumber__in=vpsselected).filter(
+                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
+        orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
+        orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
+        if not orgmymaccselected:
+            orgmymaccselected = orgmymacclist
         media_vpnumbers = []
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
@@ -418,7 +438,9 @@ def portfolio(request):
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'media_vpnumbers': media_vpnumbers, })
+                       'showonlyloccert': showonlyloccert,
+                       'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
+                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers, })
 
 
 # Location View

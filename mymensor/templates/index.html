@@ -64,6 +64,15 @@
                             {% endfor %}
                         </select>
                     </div>
+                    <div id="orgmymaccselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="orgmymaccselected"
+                                name="orgmymaccselected">
+                            {% for orgmymacc in orgmymacclist %}
+                                <option id="optionacc#{{ orgmymacc }}" value='{{ orgmymacc }}'
+                                        {% if orgmymacc in orgmymaccselected %}selected{% endif %}>{{ orgmymacc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <div class="mym-dash-item">
                         <button id="refreshbtn" type="button" class="mym-dash-item btn btn-outline-primary btn-lg"
                                 data-toggle="tooltip"
@@ -205,7 +214,8 @@
                                                 </div>
                                                 <a data-toggle="modal"
                                                    data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
-                                                   data-whatever="{{ media.mediaStorageURL }}"><span class="fa fa-play-circle-o fa-4x thumbnail"></span>
+                                                   data-whatever="{{ media.mediaStorageURL }}"><span
+                                                        class="fa fa-play-circle-o fa-4x thumbnail"></span>
                                                     <img class="card-img-top img-fluid"
                                                          src="{{ media.mediaThumbnailStorageURL }}"
                                                          alt="">
@@ -466,14 +476,16 @@
                         console.log(enddate);
                         //console.log({% url 'portfolio' %});
                         var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
                         var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -506,7 +518,8 @@
 
 
                 $(function () {
-                    console.log({{ qtypervp }});
+                    var showOnlyLocCertified = {{ showonlyloccert }};
+                    var showOnlyTimeCertified = {{ showonlytimecert }};
                     var $select = $('.1-100');
                     for (i = 1; i <= 20; i++) {
                         $select.append($('<option></option>').val(i).html(i))
@@ -519,10 +532,35 @@
                         var qtyselected = $(this).find(":selected").val();
                         console.log(qtyselected);
                         var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&' + vpssel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
+
+                    $('#showonlyloccert').click(function () {
+                        if ($(this).is(':checked')) {
+                            showOnlyLocCertified = 1;
+                        } else {
+                            showOnlyLocCertified = 0;
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#showonlytimecert').click(function () {
+                        if ($(this).is(':checked')) {
+                            showOnlyTimeCertified = 1;
+                        } else {
+                            showOnlyTimeCertified = 0;
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel;
+                    });
+
                 });
+
 
                 $(function () {
 
