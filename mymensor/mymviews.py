@@ -386,7 +386,9 @@ def portfolio(request):
             maxcolumns = 10
         qtypervp = int(request.GET.get('qtypervp', maxcolumns))
         vpsselected = request.GET.getlist('vpsselected', default=None)
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(vpIsUsed=True).order_by('vpNumber')
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
+            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+            'vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
@@ -444,7 +446,9 @@ def location(request):
         centerlat = float(request.GET.get('centerlat', 0))
         centerlng = float(request.GET.get('centerlng', 0))
         mapzoom = int(request.GET.get('mapzoom', 0))
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(vpIsUsed=True).order_by('vpNumber')
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
+            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+            'vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
