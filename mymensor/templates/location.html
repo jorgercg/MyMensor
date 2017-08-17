@@ -108,56 +108,59 @@
                 <div id="locationmapid"></div>
             </div>
             <hr>
+            <div id="mediaspervpview" class="d-flex align-content-start flex-wrap">
+                {% for vp in vps %}
+                    <p>VP#{{ vp.vpnumber }}: {{ vp.num_media }}</p>
+                {% endfor %}
+            </div>
             <div id="vpsview">
                 {% for vp in vps %}
-                    <div class="d-flex align-content-start flex-wrap">
-                        {% if vp.vpNumber in media_vpnumbers %}
-                            {% for media in medias %}
-                                {% if vp.vpNumber == media.mediaVpNumber %}
-                                    {% if media.mediaContentType == "image/jpeg" %}
-                                        <!-- Modal to Images -->
-                                        <div class="modal fade"
-                                             id="mediaModal{{ media.id }}"
-                                             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
-                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
+                    {% if vp.vpNumber in media_vpnumbers %}
+                        {% for media in medias %}
+                            {% if vp.vpNumber == media.mediaVpNumber %}
+                                {% if media.mediaContentType == "image/jpeg" %}
+                                    <!-- Modal to Images -->
+                                    <div class="modal fade"
+                                         id="mediaModal{{ media.id }}"
+                                         tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{ media.mediaVpNumber }}&mediaselected={{ media.id }}">
+                                                        <img id="mediaContent" class="img-fluid"
+                                                             src="{{ media.mediaStorageURL }}" alt="">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if media.mediaContentType == "video/mp4" %}
+                                    <!-- Modal to Videos -->
+                                    <div class="modal fade"
+                                         id="mediaModal{{ media.id }}"
+                                         tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="embed-responsive embed-responsive-16by9">
                                                         <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{ media.mediaVpNumber }}&mediaselected={{ media.id }}">
-                                                            <img id="mediaContent" class="img-fluid"
-                                                                 src="{{ media.mediaStorageURL }}" alt="">
+                                                            <video controls>
+                                                                <source src="{{ media.mediaStorageURL }}"
+                                                                        type="video/mp4">
+                                                            </video>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endif %}
-                                    {% if media.mediaContentType == "video/mp4" %}
-                                        <!-- Modal to Videos -->
-                                        <div class="modal fade"
-                                             id="mediaModal{{ media.id }}"
-                                             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
-                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-xl">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <div class="embed-responsive embed-responsive-16by9">
-                                                            <a href="{% url 'vpdetail' %}?startdate={{ start }}&enddate={{ end }}&vpselected={{ media.mediaVpNumber }}&mediaselected={{ media.id }}">
-                                                                <video controls>
-                                                                    <source src="{{ media.mediaStorageURL }}"
-                                                                            type="video/mp4">
-                                                                </video>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endif %}
+                                    </div>
                                 {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
             </div>
         {% endblock %}

@@ -469,7 +469,7 @@ def location(request):
         centerlng = float(request.GET.get('centerlng', 0))
         mapzoom = int(request.GET.get('mapzoom', 0))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
-            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).annotate(num_media=Count('media')).order_by(
             'vpNumber').distinct()
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
