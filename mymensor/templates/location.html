@@ -110,7 +110,11 @@
             <hr>
             <div id="mediaspervpview" class="d-flex align-content-start flex-wrap">
                 {% for vpann in vpsannotated %}
-                    <p>  VP#{{ vpann.vpNumber }}: {{ vpann.num_media }}  </p>
+                    <div class="card card-inverse card-info mb-3 text-center">
+                    <div class="card-block">
+                        <p>VP#{{ vpann.vpNumber }}: <strong>{{ vpann.num_media }}</strong></p>
+                    </div>
+                    </div>
                 {% endfor %}
             </div>
             <div id="vpsview">
