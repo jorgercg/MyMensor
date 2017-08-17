@@ -386,7 +386,7 @@ def portfolio(request):
             maxcolumns = 10
         qtypervp = int(request.GET.get('qtypervp', maxcolumns))
         vpsselected = request.GET.getlist('vpsselected', default=None)
-        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+        vps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).filter(vpIsUsed=True).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
