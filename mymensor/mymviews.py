@@ -492,7 +492,7 @@ def location(request):
             vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
                 media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
                 vpNumber__in=vpsselected).filter(
-                vpIsActive=True).exclude(media__mediaLocIsCertified=False).annotate(num_media=Count('media')).order_by('vpNumber')
+                vpIsActive=True).annotate(num_media=Count('media__mediaLocIsCertified=True')).order_by('vpNumber')
         elif showonlyloccert == 0 and showonlytimecert == 1:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
