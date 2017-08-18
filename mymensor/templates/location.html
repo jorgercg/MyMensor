@@ -108,11 +108,6 @@
                 <div id="locationmapid"></div>
             </div>
             <hr>
-            <div id="mediaspervpview" class="d-flex align-content-start flex-wrap">
-                {% for vpann in vpsannotated %}
-                    <span class="badge badge-pill badge-info">VP#{{ vpann.vpNumber }}: <strong>{{ vpann.num_media }}</strong></span>
-                {% endfor %}
-            </div>
             <div id="vpsview">
                 {% for vp in vps %}
                     {% if vp.vpNumber in media_vpnumbers %}
