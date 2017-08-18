@@ -471,7 +471,6 @@ def location(request):
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
-        vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
         if not vpsselected:
@@ -483,18 +482,33 @@ def location(request):
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+            vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(media__mediaLocIsCertified=True).filter(
+                media__mediaTimeIsCertified=True).filter(vpNumber__in=vpsselected).filter(
+                vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         elif showonlyloccert == 1 and showonlytimecert == 0:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+            vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(media__mediaLocIsCertified=True).filter(
+                vpNumber__in=vpsselected).filter(
+                vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         elif showonlyloccert == 0 and showonlytimecert == 1:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+            vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
+                media__mediaTimeIsCertified=True).filter(vpNumber__in=vpsselected).filter(
+                vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         else:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+            vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
+                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
+                vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
@@ -522,7 +536,7 @@ def location(request):
                        'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
                        'mapzoom': mapzoom,
                        'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
-                       'media_vpnumbers': media_vpnumbers, 'vpsannotated': vpsannotated })
+                       'media_vpnumbers': media_vpnumbers, 'vpsannotated': vpsannotated})
 
 
 @login_required
