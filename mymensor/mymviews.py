@@ -484,7 +484,7 @@ def location(request):
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
             vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
                 media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
-                vpIsActive=True).filter(media__mediaLocIsCertified=True).filter(media__mediaTimeIsCertified=True).annotate(num_media=Count('media')).order_by('vpNumber')
+                vpIsActive=True).exclude(media__mediaLocIsCertified=False).exclude(media__mediaTimeIsCertified=False).annotate(num_media=Count('media')).order_by('vpNumber')
         elif showonlyloccert == 1 and showonlytimecert == 0:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
@@ -492,14 +492,14 @@ def location(request):
             vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
                 media__mediaTimeStamp__range=[startdate, new_enddate]).filter(
                 vpNumber__in=vpsselected).filter(
-                vpIsActive=True).filter(media__mediaLocIsCertified=True).annotate(num_media=Count('media')).order_by('vpNumber')
+                vpIsActive=True).exclude(media__mediaLocIsCertified=False).annotate(num_media=Count('media')).order_by('vpNumber')
         elif showonlyloccert == 0 and showonlytimecert == 1:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
             vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
                 media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
-                vpIsActive=True).filter(media__mediaTimeIsCertified=True).annotate(num_media=Count('media')).order_by('vpNumber')
+                vpIsActive=True).exclude(media__mediaTimeIsCertified=False).annotate(num_media=Count('media')).order_by('vpNumber')
         else:
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
