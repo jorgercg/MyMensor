@@ -383,7 +383,7 @@ def portfolio(request):
             maxcolumns = 9
         elif 'tencolumn' in maxcolumnstxt:
             maxcolumns = 10
-        qtypervp = int(request.GET.get('qtypervp', maxcolumns))
+        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp',maxcolumns)))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
@@ -438,6 +438,7 @@ def portfolio(request):
         request.session['showonlytimecert'] = showonlytimecert
         request.session['startdate'] = startdateformatted
         request.session['enddate'] = enddateformatted
+        request.session['qtypervp'] = qtypervp
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
@@ -938,7 +939,7 @@ def procTagEditView(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = int(request.GET.get('qtypervp', 5))
+        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp',5)))
 
         medias = Media.objects.filter(vp__vpIsActive=True).filter(mediaProcessed=True).filter(
             vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by(
@@ -964,6 +965,7 @@ def procTagEditView(request):
             media__mediaProcessed=True).distinct()  # .values_list('media','tag','valValueEvaluated')
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
+        request.session['qtypervp'] = qtypervp
         return render(request, 'proctagedit.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
                                                     'mediasofthevaluelist': mediasofthevaluelist,
                                                     'tagsofthevaluelist': tagsofthevaluelist,
@@ -986,7 +988,7 @@ def tagProcessingFormView(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = int(request.GET.get('qtypervp', 5))
+        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', 5)))
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
             mediaProcessed=False).filter(vp__tag__isnull=False).filter(
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch').distinct()
@@ -1012,6 +1014,7 @@ def tagProcessingFormView(request):
             media__mediaProcessed=False).distinct()  # .values_list('media','tag','valValueEvaluated')
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
+        request.session['qtypervp'] = qtypervp
         return render(request, 'tagprocessing.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
                                                       'mediasofthevaluelist': mediasofthevaluelist,
                                                       'tagsofthevaluelist': tagsofthevaluelist,
