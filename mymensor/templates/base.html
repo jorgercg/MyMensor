@@ -115,7 +115,7 @@
                     {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" or stateofsubscription == "Empty" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text">
-                        {% trans "Trial until " %}{{ finaldateoftrial | localtime | date:"Y-b-d H:i:sO" }}
+                        {% trans "You have "%}{{ finaldateoftrial | timeuntil }}{% trans " left on your trial. " %}<a href="{% url 'createsubscription' %}">{% trans "Subscribe Now!" %}</a>
                         </span>
                     {% else %}
                         <span class="navbar-text">
