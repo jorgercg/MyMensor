@@ -467,8 +467,8 @@ def location(request):
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        vpsselected = request.GET.getlist('vpsselected', default=None)
-        orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
+        vpsselected = request.GET.getlist('vpsselected', request.session.get('vpsselected'))
+        orgmymaccselected = request.GET.getlist('orgmymaccselected', request.session.get('orgmymaccselected'))
         showlocationprecision = int(request.GET.get('showlocationprecision', request.session.get('showlocationprecision',0)))
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
@@ -531,6 +531,8 @@ def location(request):
         request.session['showlocationprecision'] = showlocationprecision
         request.session['startdate'] = startdateformatted
         request.session['enddate'] = enddateformatted
+        request.session['vpsselected'] = vpsselected
+        request.session['orgmymaccselected'] = orgmymaccselected
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
