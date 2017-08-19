@@ -494,9 +494,9 @@ def location(request):
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
-            vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
-                media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
-                vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
+        vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
+            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
+            vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
