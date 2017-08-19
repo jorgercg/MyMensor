@@ -143,14 +143,14 @@
                                                             {% if media.mediaLocIsCertified %}
                                                                 <span role="button"
                                                                       id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                      class="fa fa-map-marker loccert"
+                                                                      class="fa fa-map-marker loccert vpdetailspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                                             {% else %}
                                                                 <span role="button"
                                                                       id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                      class="fa fa-map-marker locnotcert"
+                                                                      class="fa fa-map-marker locnotcert vpdetailspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Capture location not certified' %}"></span>
@@ -249,14 +249,14 @@
                                                             {% if media.mediaLocIsCertified %}
                                                                 <span role="button"
                                                                       id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                      class="fa fa-map-marker loccert"
+                                                                      class="fa fa-map-marker loccert vpdetailspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
                                                             {% else %}
                                                                 <span role="button"
                                                                       id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                      class="fa fa-map-marker locnotcert"
+                                                                      class="fa fa-map-marker locnotcert vpdetailspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Capture location not certified' %}"></span>
@@ -507,7 +507,7 @@
                     var mediaid = 0;
                     var vpnumber = 0;
 
-                    $('span').click(function (event) {
+                    $('.vpdetailspan').click(function (event) {
                         event.preventDefault();
                         var spanclicked = $(this).attr('id');
                         if (spanclicked.lastIndexOf('location', 0) === 0) {
