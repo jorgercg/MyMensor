@@ -386,7 +386,7 @@ def portfolio(request):
         qtypervp = int(request.GET.get('qtypervp', maxcolumns))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showonlyloccert = int(request.GET.get('showonlyloccert', 1))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', 1))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
@@ -434,6 +434,7 @@ def portfolio(request):
                                                                                  Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                                          'Key': mediaObjectS3KeyForThumbnail},
                                                                                  ExpiresIn=3600)
+        request.session['showonlyloccert'] = showonlyloccert
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
@@ -461,7 +462,7 @@ def location(request):
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showlocationprecision = int(request.GET.get('showlocationprecision', 0))
-        showonlyloccert = int(request.GET.get('showonlyloccert', 1))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', 1))
         showuserpath = int(request.GET.get('showuserpath', 0))
         centerlat = float(request.GET.get('centerlat', 0))
@@ -516,6 +517,7 @@ def location(request):
                                                                                  Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                                          'Key': mediaObjectS3KeyForThumbnail},
                                                                                  ExpiresIn=3600)
+        request.session['showonlyloccert']=showonlyloccert
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
