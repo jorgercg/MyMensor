@@ -358,8 +358,8 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate',(datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
@@ -387,7 +387,7 @@ def portfolio(request):
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', 1))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -435,6 +435,9 @@ def portfolio(request):
                                                                                          'Key': mediaObjectS3KeyForThumbnail},
                                                                                  ExpiresIn=3600)
         request.session['showonlyloccert'] = showonlyloccert
+        request.session['showonlytimecert'] = showonlytimecert
+        request.session['startdate'] = startdateformatted
+        request.session['enddate'] = enddateformatted
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
@@ -455,16 +458,18 @@ def location(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(
+            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showlocationprecision = int(request.GET.get('showlocationprecision', 0))
+        showlocationprecision = int(request.GET.get('showlocationprecision', request.session.get('showlocationprecision',0)))
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', 1))
-        showuserpath = int(request.GET.get('showuserpath', 0))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
+        showuserpath = int(request.GET.get('showuserpath', request.session.get('showuserpath',0)))
         centerlat = float(request.GET.get('centerlat', 0))
         centerlng = float(request.GET.get('centerlng', 0))
         mapzoom = int(request.GET.get('mapzoom', 0))
@@ -518,6 +523,11 @@ def location(request):
                                                                                          'Key': mediaObjectS3KeyForThumbnail},
                                                                                  ExpiresIn=3600)
         request.session['showonlyloccert']=showonlyloccert
+        request.session['showonlytimecert'] = showonlytimecert
+        request.session['showuserpath'] = showuserpath
+        request.session['showlocationprecision'] = showlocationprecision
+        request.session['startdate'] = startdateformatted
+        request.session['enddate'] = enddateformatted
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
@@ -1105,9 +1115,11 @@ def TagStatusView(request):
             loaddcicfg(request)
         except ClientError as e:
             error_code = e
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(
+            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
@@ -1133,6 +1145,8 @@ def TagStatusView(request):
                 statusMediaTimeStamp__range=[startdate, new_enddate]).filter(statusTagNumber__in=tagsselected).order_by(
                 sort))
         tagstatustable.paginate(page=request.GET.get('page', 1), per_page=linesperpage)
+        request.session['startdate'] = startdateformatted
+        request.session['enddate'] = enddateformatted
         return render(request, 'tagstatus.html', {'tagstatustable': tagstatustable,
                                                   'start': startdateformatted,
                                                   'end': enddateformatted,
@@ -1152,9 +1166,11 @@ def TagStatusView(request):
 @user_passes_test(group_check)
 def export_tagstatus_csv(request):
     if request.method == 'GET':
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(
+            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         tagsselected = request.GET.getlist('tagsselected', default=None)
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
@@ -1205,9 +1221,11 @@ def tagAnalysisView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(
+            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = startdate.strftime('%Y-%m-%d')
         enddateformatted = enddate.strftime('%Y-%m-%d')
@@ -1233,6 +1251,8 @@ def tagAnalysisView(request):
             tagsselected = listofprocessedtagsnumbers.filter(statusTagNumber__in=tagsselected).order_by(
                 'statusTagNumber').values_list('statusTagNumber', flat=True)
         qtyoftagsselected = tagsselected.count()
+        request.session['startdate'] = startdateformatted
+        request.session['enddate'] = enddateformatted
         return render(request, 'taganalysis.html',
                       {'processedtags': processedtags, 'listofprocessedtagsnumbers': listofprocessedtagsnumbers,
                        'tagsselected': tagsselected, 'start': startdateformatted, 'end': enddateformatted,
@@ -1389,9 +1409,11 @@ def vpDetailView(request):
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
-            startdate = datetime.strptime(
-                request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-            enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+            startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+            enddate = datetime.strptime(
+                request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+                '%Y-%m-%d')
             new_enddate = enddate + timedelta(days=1)
             startdateformatted = startdate.strftime('%Y-%m-%d')
             enddateformatted = enddate.strftime('%Y-%m-%d')
@@ -1439,6 +1461,8 @@ def vpDetailView(request):
                                                                                     'Key': mediainstance.mediaObjectS3Key},
                                                                             ExpiresIn=3600)
             assetvps = Vp.objects.filter(asset__assetOwner=request.user).filter(vpIsActive=True).order_by('vpNumber')
+            request.session['startdate'] = startdateformatted
+            request.session['enddate'] = enddateformatted
             return render(request, 'vpdetail.html', {'vpselected': vpselected,
                                                      'vps': vps,
                                                      'assetvps': assetvps,
