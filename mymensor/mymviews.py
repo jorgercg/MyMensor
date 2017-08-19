@@ -440,7 +440,7 @@ def portfolio(request):
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
                        'showonlyloccert': showonlyloccert,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
-                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers, })
+                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers, 'maxcolumnstxt':maxcolumnstxt })
 
 
 # Location View
