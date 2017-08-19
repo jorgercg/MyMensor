@@ -384,8 +384,8 @@ def portfolio(request):
         elif 'tencolumn' in maxcolumnstxt:
             maxcolumns = 10
         qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp',maxcolumns)))
-        vpsselected = request.GET.getlist('vpsselected', default=None)
-        orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
+        vpsselected = request.GET.getlist('vpsselected', request.session.get('vpsselected'))
+        orgmymaccselected = request.GET.getlist('orgmymaccselected', request.session.get('orgmymaccselected'))
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
@@ -439,6 +439,8 @@ def portfolio(request):
         request.session['startdate'] = startdateformatted
         request.session['enddate'] = enddateformatted
         request.session['qtypervp'] = qtypervp
+        request.session['vpsselected'] = vpsselected
+        request.session['orgmymaccselected'] = orgmymaccselected
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
