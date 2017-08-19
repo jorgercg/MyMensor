@@ -57,6 +57,7 @@ class BraintreeSubscription(models.Model):
 
 class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
+    MYM_PLAN_CHOICES = (('MyMensor Media', 'MyMensor Media'), ('MyMensor Media and Data', 'MyMensor Media and Data'),)
 
     assetDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Description'))
     assetNumber = models.IntegerField(verbose_name="Asset Number")
@@ -68,8 +69,8 @@ class Asset(models.Model):
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, blank=True, verbose_name="Asset Registry code")
     assetDateOfEndEfTrialBeforeSubscription = models.DateTimeField(auto_now=False, null=True, verbose_name="End of Trial Befor Subscription")
-    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis",
-                                             verbose_name=_('Capture frequency unit'))
+    assetMyMensorPlan = models.CharField(max_length=50, choices=MYM_PLAN_CHOICES, default="MyMensor Media and Data", verbose_name=_('MyMensor Plan'))
+    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis", verbose_name=_('Capture frequency unit'))
     assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Minimum capture frequency value'))
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
