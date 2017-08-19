@@ -358,8 +358,7 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
@@ -440,7 +439,7 @@ def portfolio(request):
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
                        'showonlyloccert': showonlyloccert,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
-                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers, 'maxcolumnstxt':maxcolumnstxt })
+                           'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers })
 
 
 # Location View

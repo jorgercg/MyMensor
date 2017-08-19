@@ -89,215 +89,223 @@
                         {% if vp.vpNumber in media_vpnumbers %}
                             {% for media in medias %}
                                 {% if vp.vpNumber == media.mediaVpNumber %}
-                                    {% counter start=0 silent=True assign='mediaqtyinvp' %}
-                                    {% if qtypervp > mediaqtyinvp %}
-                                        {% if media.mediaContentType == "image/jpeg" %}
-                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                                <div class="card-header text-primary">
-                                                    <h5 data-toggle="tooltip" data-placement="top"
-                                                        title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
-                                                        {% if vp.vpNumber == 0 %}
-                                                        {% elif media.mediaProcessed %}
-                                                            <span role="button" id="processed{{ media.id }}"
-                                                                  class="fa fa-bar-chart vpprocessed"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-bar-chart vpnotprocessed"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  title="{% trans 'Not processed' %}"></span>
-                                                        {% endif %}
-                                                    </h5>
-                                                </div>
-                                                <a data-toggle="modal"
-                                                   data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
-                                                   data-whatever="{{ media.mediaStorageURL }}">
-                                                    <img class="card-img-top img-fluid"
-                                                         src="{{ media.mediaStorageURL }}"
-                                                         alt="">
-                                                </a>
-                                                <div class="card-block">
-                                                    <p class="card-text">
-                                                        {% if media.mediaArIsOn %}
-                                                            <span class="arused" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                                        {% else %}
-                                                            <span class="arnotused" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                                        {% endif %}
-                                                        {% if media.mediaTimeIsCertified %}
-                                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture time certified' %}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-clock-o timenotcert"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture time not certified' %}"></span>
-                                                        {% endif %}
-                                                        {% if media.mediaLocIsCertified %}
-                                                            <span role="button"
-                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                  class="fa fa-map-marker loccert" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
-                                                        {% else %}
-                                                            <span role="button"
-                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                  class="fa fa-map-marker locnotcert"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture location not certified' %}"></span>
-                                                        {% endif %}
-                                                        {% if media.mediaRemark is not None %}
-                                                            <span class="fa fa-edit remarkpresent" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{{ media.mediaRemark }}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-edit remarknotpresent"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'No remark for this media' %}"></span>
-                                                        {% endif %}
+                                    {% if media.mediaOriginalMymensorAccount in orgmymaccselected %}
+                                        {% counter start=0 silent=True assign='mediaqtyinvp' %}
+                                        {% if qtypervp > mediaqtyinvp %}
+                                            {% if media.mediaContentType == "image/jpeg" %}
+                                                <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                                    <div class="card-header text-primary">
+                                                        <h5 data-toggle="tooltip" data-placement="top"
+                                                            title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                                            {% if vp.vpNumber == 0 %}
+                                                            {% elif media.mediaProcessed %}
+                                                                <span role="button" id="processed{{ media.id }}"
+                                                                      class="fa fa-bar-chart vpprocessed"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-bar-chart vpnotprocessed"
+                                                                      data-toggle="tooltip" data-placement="top"
+                                                                      title="{% trans 'Not processed' %}"></span>
+                                                            {% endif %}
+                                                        </h5>
+                                                    </div>
+                                                    <a data-toggle="modal"
+                                                       data-target="#mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                                       data-whatever="{{ media.mediaStorageURL }}">
+                                                        <img class="card-img-top img-fluid"
+                                                             src="{{ media.mediaStorageURL }}"
+                                                             alt="">
+                                                    </a>
+                                                    <div class="card-block">
+                                                        <p class="card-text">
+                                                            {% if media.mediaArIsOn %}
+                                                                <span class="arused" data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                                            {% else %}
+                                                                <span class="arnotused" data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                                            {% endif %}
+                                                            {% if media.mediaTimeIsCertified %}
+                                                                <span class="fa fa-clock-o timecert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture time certified' %}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-clock-o timenotcert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture time not certified' %}"></span>
+                                                            {% endif %}
+                                                            {% if media.mediaLocIsCertified %}
+                                                                <span role="button"
+                                                                      id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                      class="fa fa-map-marker loccert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
+                                                            {% else %}
+                                                                <span role="button"
+                                                                      id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                      class="fa fa-map-marker locnotcert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture location not certified' %}"></span>
+                                                            {% endif %}
+                                                            {% if media.mediaRemark is not None %}
+                                                                <span class="fa fa-edit remarkpresent"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{{ media.mediaRemark }}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-edit remarknotpresent"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'No remark for this media' %}"></span>
+                                                            {% endif %}
 
-                                                    </p>
-                                                </div>
-                                                <div class="card-block">
-                                                    <p class="card-text">
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <p class="card-text">
                                                     <span class="fa fa-camera" data-toggle="tooltip"
                                                           data-placement="top"
                                                           title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
-                                                    </p>
-                                                </div>
-                                                <div class="card-footer text-muted">
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-footer text-muted">
                                                 <span class="fa fa-cloud-upload" data-toggle="tooltip"
                                                       data-placement="top"
                                                       title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
-                                                </div>
-                                            </div>
-                                            <!-- Modal to Images -->
-                                            <div class="modal fade"
-                                                 id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
-                                                 tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <img id="mediaContent" class="img-fluid"
-                                                                 src="{{ media.mediaStorageURL }}" alt="">
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        {% endif %}
-                                        {% if media.mediaContentType == "video/mp4" %}
-                                            <div class="card card-outline-primary m-2" style="width: 20rem;">
-                                                <div class="card-header text-primary">
-                                                    <h5 data-toggle="tooltip" data-placement="top"
-                                                        title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
-                                                        {% if vp.vpNumber == 0 %}
-                                                        {% elif media.mediaProcessed %}
-                                                            <span role="button" id="processed{{ media.id }}"
-                                                                  class="fa fa-bar-chart vpprocessed"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-bar-chart vpnotprocessed"
-                                                                  data-toggle="tooltip" data-placement="top"
-                                                                  title="{% trans 'Not processed' %}"></span>
-                                                        {% endif %}
-                                                    </h5>
-                                                </div>
-                                                <a data-toggle="modal"
-                                                   data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
-                                                   data-whatever="{{ media.mediaStorageURL }}"><span
-                                                        class="fa fa-play-circle-o fa-4x thumbnail"></span>
-                                                    <img class="card-img-top img-fluid"
-                                                         src="{{ media.mediaThumbnailStorageURL }}"
-                                                         alt="">
-                                                </a>
-                                                <div class="card-block">
-                                                    <p class="card-text">
-                                                        {% if media.mediaArIsOn %}
-                                                            <span class="arused" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
-                                                        {% else %}
-                                                            <span class="arnotused" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
-                                                        {% endif %}
-                                                        {% if media.mediaTimeIsCertified %}
-                                                            <span class="fa fa-clock-o timecert" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture time certified' %}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-clock-o timenotcert"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture time not certified' %}"></span>
-                                                        {% endif %}
-                                                        {% if media.mediaLocIsCertified %}
-                                                            <span role="button"
-                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                  class="fa fa-map-marker loccert" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
-                                                        {% else %}
-                                                            <span role="button"
-                                                                  id="location{{ media.id }}-{{ media.mediaVpNumber }}"
-                                                                  class="fa fa-map-marker locnotcert"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'Capture location not certified' %}"></span>
-                                                        {% endif %}
-                                                        {% if media.mediaRemark is not None %}
-                                                            <span class="fa fa-edit remarkpresent" data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{{ media.mediaRemark }}"></span>
-                                                        {% else %}
-                                                            <span class="fa fa-edit remarknotpresent"
-                                                                  data-toggle="tooltip"
-                                                                  data-placement="top"
-                                                                  title="{% trans 'No remark for this media' %}"></span>
-                                                        {% endif %}
-                                                    </p>
-                                                </div>
-                                                <div class="card-block">
-                                                    <p class="card-text">
-                                                    <span class="fa fa-video-camera" data-toggle="tooltip"
-                                                          data-placement="top"
-                                                          title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
-                                                    </p>
-                                                </div>
-                                                <div class="card-footer text-muted">
-                                                <span class="fa fa-cloud-upload" data-toggle="tooltip"
-                                                      data-placement="top"
-                                                      title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
-                                                </div>
-                                            </div>
-                                            <!-- Modal to Videos -->
-                                            <div class="modal fade"
-                                                 id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
-                                                 tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <div class="embed-responsive embed-responsive-16by9">
-                                                                <video controls>
-                                                                    <source src="{{ media.mediaStorageURL }}"
-                                                                            type="video/mp4">
-                                                                </video>
+                                                <!-- Modal to Images -->
+                                                <div class="modal fade"
+                                                     id="mediaImageModal{{ media.mediaMillisSinceEpoch }}"
+                                                     tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <img id="mediaContent" class="img-fluid"
+                                                                     src="{{ media.mediaStorageURL }}" alt="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            {% endif %}
+                                            {% if media.mediaContentType == "video/mp4" %}
+                                                <div class="card card-outline-primary m-2" style="width: 20rem;">
+                                                    <div class="card-header text-primary">
+                                                        <h5 data-toggle="tooltip" data-placement="top"
+                                                            title="{{ vp.vpDescription }}">VP#{{ media.mediaVpNumber }}
+                                                            {% if vp.vpNumber == 0 %}
+                                                            {% elif media.mediaProcessed %}
+                                                                <span role="button" id="processed{{ media.id }}"
+                                                                      class="fa fa-bar-chart vpprocessed"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-bar-chart vpnotprocessed"
+                                                                      data-toggle="tooltip" data-placement="top"
+                                                                      title="{% trans 'Not processed' %}"></span>
+                                                            {% endif %}
+                                                        </h5>
+                                                    </div>
+                                                    <a data-toggle="modal"
+                                                       data-target="#mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                                       data-whatever="{{ media.mediaStorageURL }}"><span
+                                                            class="fa fa-play-circle-o fa-4x thumbnail"></span>
+                                                        <img class="card-img-top img-fluid"
+                                                             src="{{ media.mediaThumbnailStorageURL }}"
+                                                             alt="">
+                                                    </a>
+                                                    <div class="card-block">
+                                                        <p class="card-text">
+                                                            {% if media.mediaArIsOn %}
+                                                                <span class="arused" data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                                            {% else %}
+                                                                <span class="arnotused" data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                                            {% endif %}
+                                                            {% if media.mediaTimeIsCertified %}
+                                                                <span class="fa fa-clock-o timecert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture time certified' %}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-clock-o timenotcert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture time not certified' %}"></span>
+                                                            {% endif %}
+                                                            {% if media.mediaLocIsCertified %}
+                                                                <span role="button"
+                                                                      id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                      class="fa fa-map-marker loccert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture location certified. Click here to see location map.' %}"></span>
+                                                            {% else %}
+                                                                <span role="button"
+                                                                      id="location{{ media.id }}-{{ media.mediaVpNumber }}"
+                                                                      class="fa fa-map-marker locnotcert"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'Capture location not certified' %}"></span>
+                                                            {% endif %}
+                                                            {% if media.mediaRemark is not None %}
+                                                                <span class="fa fa-edit remarkpresent"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{{ media.mediaRemark }}"></span>
+                                                            {% else %}
+                                                                <span class="fa fa-edit remarknotpresent"
+                                                                      data-toggle="tooltip"
+                                                                      data-placement="top"
+                                                                      title="{% trans 'No remark for this media' %}"></span>
+                                                            {% endif %}
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-block">
+                                                        <p class="card-text">
+                                                    <span class="fa fa-video-camera" data-toggle="tooltip"
+                                                          data-placement="top"
+                                                          title="{% trans 'Captured on' %}"></span> {{ media.mediaTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="card-footer text-muted">
+                                                <span class="fa fa-cloud-upload" data-toggle="tooltip"
+                                                      data-placement="top"
+                                                      title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                                    </div>
+                                                </div>
+                                                <!-- Modal to Videos -->
+                                                <div class="modal fade"
+                                                     id="mediaVideoModal{{ media.mediaMillisSinceEpoch }}"
+                                                     tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog modal-xl">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="embed-responsive embed-responsive-16by9">
+                                                                    <video controls>
+                                                                        <source src="{{ media.mediaStorageURL }}"
+                                                                                type="video/mp4">
+                                                                    </video>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
                                         {% endif %}
                                     {% endif %}
                                 {% endif %}
@@ -521,7 +529,7 @@
 
                 $(function () {
 
-                    console.log('{{ maxcolumnstxt }}' );
+                    console.log('{{ maxcolumnstxt }}');
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
                     var $select = $('.1-100');
