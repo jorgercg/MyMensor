@@ -100,7 +100,7 @@
                                                             {% if vp.vpNumber == 0 %}
                                                             {% elif media.mediaProcessed %}
                                                                 <span role="button" id="processed{{ media.id }}"
-                                                                      class="fa fa-bar-chart vpprocessed"
+                                                                      class="fa fa-bar-chart vpprocessed taganalysisspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
@@ -205,7 +205,7 @@
                                                             {% if vp.vpNumber == 0 %}
                                                             {% elif media.mediaProcessed %}
                                                                 <span role="button" id="processed{{ media.id }}"
-                                                                      class="fa fa-bar-chart vpprocessed"
+                                                                      class="fa fa-bar-chart vpprocessed taganalysisspan"
                                                                       data-toggle="tooltip"
                                                                       data-placement="top"
                                                                       title="{% trans 'Processed. Click to see evolution over time.' %}"></span>
@@ -579,7 +579,7 @@
                     var mediaid = 0;
 
                     // Submit post on submit
-                    $('span').click(function (event) {
+                    $('.taganalysisspan').click(function (event) {
                         event.preventDefault();
                         var spanclicked = $(this).attr('id');
                         if (spanclicked.lastIndexOf('processed', 0) === 0) {
