@@ -791,7 +791,7 @@ def tagSetupFormView(request):
                     currenttag = qtytagsinclient
                 else:
                     currenttag = listoftagsincurrentvp.first()
-                tag = Tag()
+
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()
