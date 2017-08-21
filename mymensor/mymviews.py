@@ -790,7 +790,8 @@ def tagSetupFormView(request):
                 elif qtytagsinclient > qtytagsindatabase:
                     currenttag = qtytagsinclient
                 else:
-                    currenttag = listoftagsincurrentvp[0]
+                    currenttag = listoftagsincurrentvp.first()
+                tag = Tag()
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()
@@ -802,8 +803,8 @@ def tagSetupFormView(request):
                 except tag.DoesNotExist:
                     tag = Tag.objects.create(
                         vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-                            vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
-                        tagQuestion='Tag question for TAG#' + str(currenttag))
+                            vpNumber=currentvp).get(), tagDescription=_('TAG#') + str(currenttag), tagNumber=currenttag,
+                        tagQuestion=_('Tag question for TAG#') + str(currenttag))
                     lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
                     vpoflasttag = lasttag.vp
                     listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
@@ -816,8 +817,8 @@ def tagSetupFormView(request):
                 currenttag = qtytagsinclient
                 tag = Tag.objects.create(
                     vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-                        vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
-                    tagQuestion='Tag question for TAG#' + str(currenttag))
+                        vpNumber=currentvp).get(), tagDescription=_('TAG#') + str(currenttag), tagNumber=currenttag,
+                    tagQuestion=_('Tag question for TAG#') + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
                 vpoflasttag = lasttag.vp
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
@@ -828,8 +829,8 @@ def tagSetupFormView(request):
                 currenttag = qtytagsinclient
                 tag = Tag.objects.create(
                     vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-                        vpNumber=currentvp).get(), tagDescription='TAG#' + str(currenttag), tagNumber=currenttag,
-                    tagQuestion='Tag question for TAG#' + str(currenttag))
+                        vpNumber=currentvp).get(), tagDescription=_('TAG#') + str(currenttag), tagNumber=currenttag,
+                    tagQuestion=_('Tag question for TAG#') + str(currenttag))
                 lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
                 vpoflasttag = lasttag.vp
                 listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
