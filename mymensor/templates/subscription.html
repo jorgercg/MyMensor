@@ -30,7 +30,9 @@
                                 {% trans "You have processed a total of " %}{{ processedtagqty }}{% trans " TAG instances so far." %}</p>
                         {% endif %}
                         {% if currentuserplan == "MyMensor Media and Data" and tagqty == 0 %}
-                            <p>{% trans "If you are not using any TAGs then most probably you can save some money by changing your plan to MEDIA only. Please check our docs!" %}</p>
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Pay Attention!</strong> Currently you are not using any TAGs then most probably you can save some money by changing your plan to MEDIA only. Please check our docs!
+                            </div>
                         {% endif %}
                     </div>
                 </div>
@@ -101,7 +103,8 @@
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
                                 <p>{% trans "Right now you are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                    <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
+                                    <button id="changeplanbtbn" type="button"
+                                            class="btn btn-outline-primary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
                                 </p>
                                 <p></p>
                                 <p>
@@ -170,7 +173,8 @@
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
                             <p>{% trans "Right now you are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
+                                <button id="changeplanbtbn" type="button"
+                                        class="btn btn-outline-primary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
                             </p>
                             <p></p>
                             <p>
@@ -197,7 +201,7 @@
                         document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         swal({
                             title: '{{ swaltitle }}',
-                            text: '{{ swaltext }}' ,
+                            text: '{{ swaltext }}',
                             input: 'text',
                             inputPlaceholder: '{{ swalinputPlaceholder }}',
                             confirmButtonText: '{{ swalconfirmButtonText }}',
