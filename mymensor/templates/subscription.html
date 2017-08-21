@@ -29,7 +29,9 @@
                             <p>
                                 {% trans "You have processed a total of " %}{{ processedtagqty }}{% trans " TAG instances so far." %}</p>
                         {% endif %}
-
+                        {% if currentuserplan == "MyMensor Media and Data" and tagqty == 0 %}
+                            <p>{% trans "If you are not using any TAGs then most probably you can save some money by changing your plan to MEDIA only. Please check our docs!" %}</p>
+                        {% endif %}
                     </div>
                 </div>
                 {% if btsubscription is not None %}
@@ -98,8 +100,8 @@
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
-                                <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                    <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                                <p>{% trans "Right now you are using the " %}{{ currentuserplan }}{% trans " Plan " %}
+                                    <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
                                 </p>
                                 <p></p>
                                 <p>
@@ -167,8 +169,8 @@
                     </div>
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
-                            <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                            <p>{% trans "Right now you are using the " %}{{ currentuserplan }}{% trans " Plan " %}
+                                <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
                             </p>
                             <p></p>
                             <p>
@@ -190,7 +192,7 @@
                         window.location = "{% url 'deletesubscription' %}";
                     }
                 });
-                $('#id_vpIsSharedToTwitter').click(function () {
+                $('#changeplanbtbn').click(function () {
                     if ($(this).is(':checked')) {
                         document.getElementById('id_vpIsSharedToTwitter').checked = false;
                         swal({
