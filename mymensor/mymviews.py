@@ -782,8 +782,7 @@ def tagSetupFormView(request):
             taginstance.delete()
         qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
         if qtytagsindatabase > 0:
-            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
-                vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
             qtytagsincurrentvp = listoftagsincurrentvp.count()
             if qtytagsincurrentvp > 0:
                 if currenttag_temp in listoftagsincurrentvp:
@@ -792,7 +791,6 @@ def tagSetupFormView(request):
                     currenttag = qtytagsinclient
                 else:
                     currenttag = listoftagsincurrentvp[0]
-                tag = Tag()
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()

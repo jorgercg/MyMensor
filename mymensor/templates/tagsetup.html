@@ -148,7 +148,7 @@
                 $('#currvp').change(function () {
                     var vpselected = $(this).find(":selected").val();
                     console.log("VPSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytagsindatabase }}';
+                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytagsindatabase }}'+'&currenttag=' + '{{ currenttag }}';
                 });
 
                 $('#inctags').click(function () {
