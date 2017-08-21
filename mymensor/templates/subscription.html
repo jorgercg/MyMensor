@@ -94,12 +94,12 @@
                         </div>
                     {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Empty" %}
                         <div class="row" style="padding-bottom: 20px">
-                            <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
+                            <h3>{% trans "Thanks for registering with Mymensor and using our Apps!" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
                                 <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                    <button type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                                    <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
                                 </p>
                                 <p></p>
                                 <p>
@@ -163,12 +163,12 @@
                     {% endif %}
                 {% else %}
                     <div class="row" style="padding-bottom: 20px">
-                        <h3>{% trans "Thanks for registering with Mymensor and using our Web App!" %}</h3>
+                        <h3>{% trans "Thanks for registering with Mymensor and using our Apps!" %}</h3>
                     </div>
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
                             <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                <button type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                                <button id="changeplanbtbn" type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
                             </p>
                             <p></p>
                             <p>
@@ -190,7 +190,36 @@
                         window.location = "{% url 'deletesubscription' %}";
                     }
                 });
+                $('#id_vpIsSharedToTwitter').click(function () {
+                    if ($(this).is(':checked')) {
+                        document.getElementById('id_vpIsSharedToTwitter').checked = false;
+                        swal({
+                            title: '{{ swaltitle }}',
+                            text: '{{ swaltext }}' ,
+                            input: 'text',
+                            inputPlaceholder: '{{ swalinputPlaceholder }}',
+                            confirmButtonText: '{{ swalconfirmButtonText }}',
+                            cancelButtonText: '{{ swalcancelButtonText }}',
+                            showCancelButton: true,
+                            inputValidator: function (value) {
+                                return new Promise(function (resolve, reject) {
+                                    if (value === "{{ request.user.username }}") {
+                                        document.getElementById('id_vpIsSharedToTwitter').checked = true;
+                                        resolve()
+                                    } else {
+                                        reject('{{ swalreject }}')
+                                    }
+                                })
+                            }
+                        }).then(function (result) {
+                            shareToTwitter = true;
+                            console.log("result:" + result);
+                            swal('{{ swalsuccesstitle }}', '{{ swalsuccesstext }}', "success");
+                        }).catch(swal.noop);
+                    }
 
+
+                });
 
             </script>
         {% endblock %}
