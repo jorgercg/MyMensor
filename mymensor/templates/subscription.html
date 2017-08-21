@@ -24,39 +24,45 @@
                             <h3>{% trans "Current Payment Method" %}</h3>
                         </div>
                         {% if succesful is True %}
-                        <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8">
-                                <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
+                            <div class="row" style="padding-bottom: 20px">
+                                <div class="col-lg-8">
+                                    <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
+                                </div>
                             </div>
-                        </div>
                         {% endif %}
                         {% if succesful is False %}
-                        <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8">
-                                <p>{% trans "We could not modify your payment method, please see result:" %}</p>
-                                <p>{{ result }}</p>
+                            <div class="row" style="padding-bottom: 20px">
+                                <div class="col-lg-8">
+                                    <p>{% trans "We could not modify your payment method, please see result:" %}</p>
+                                    <p>{{ result }}</p>
+                                </div>
                             </div>
-                        </div>
                         {% endif %}
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-5">
                                 {% if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card" %}
                                     <ul class="list-group">
-                                        <li class="list-group-item"><img src="{{btsubscription.braintreesubscriptionPaymentImageURL}}" style="padding-right: 12px;">    {{ btsubscription.braintreesubscriptionCClast4 }}</li>
+                                        <li class="list-group-item"><img
+                                                src="{{ btsubscription.braintreesubscriptionPaymentImageURL }}"
+                                                style="padding-right: 12px;"> {{ btsubscription.braintreesubscriptionCClast4 }}
+                                        </li>
                                         <li class="list-group-item">{{ btsubscription.braintreesubscriptionCCexpmonth }}
                                             / {{ btsubscription.braintreesubscriptionCCexpyear }}</li>
                                     </ul>
                                 {% endif %}
                                 {% if btsubscription.braintreesubscriptionPaymentInstrumentType == "paypal_account" %}
                                     <ul class="list-group">
-                                        <li class="list-group-item"><img src="{{btsubscription.braintreesubscriptionPaymentImageURL}}" style="padding-right: 12px;">  {{ btsubscription.braintreesubscriptionPayPalEmail }}</li>
+                                        <li class="list-group-item"><img
+                                                src="{{ btsubscription.braintreesubscriptionPaymentImageURL }}"
+                                                style="padding-right: 12px;"> {{ btsubscription.braintreesubscriptionPayPalEmail }}
+                                        </li>
                                     </ul>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8">
-                                <a href="{% url 'modifypaymentmethod' %}"class="btn btn-outline-info"
+                                <a href="{% url 'modifypaymentmethod' %}" class="btn btn-outline-info"
                                    role="button">{% trans "Modify Current Payment Method" %}</a>
                             </div>
                         </div>
@@ -78,6 +84,7 @@
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
+                                <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
                                 <p>
                                     {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                                 <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
@@ -93,6 +100,7 @@
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
                                 <p>{% trans "Your present subscription is canceled. " %}</p>
+                                <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
                                 <p>{% trans "If you would like to subscribe again to our service, please press the button below." %}</p>
                             </div>
                         </div>
@@ -125,6 +133,8 @@
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
                                 <p>
+                                    {% trans "You are using the " %}{{ currentuserplan | timeuntil }}{% trans " Plan" %}</p>
+                                <p>
                                     {% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
                             </div>
                         </div>
@@ -140,6 +150,7 @@
                     </div>
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
+                            <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
                             <p>
                                 {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                             <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>

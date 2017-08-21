@@ -1755,8 +1755,9 @@ def subscription(request):
             btsubscription = None
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
+        currentuserplan = currentAsset.assetMyMensorPlan
         return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
-                                                     'btsubscription': btsubscription,
+                                                     'btsubscription': btsubscription, 'currentuserplan': currentuserplan,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription})
     return HttpResponse(status=404)
 

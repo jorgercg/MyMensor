@@ -111,16 +111,16 @@
             {% endif %}
             {% if user.is_authenticated %}
                 <ul class="navbar-nav ml-auto">
-                    {% check_plan request as cureentuserplan %}
+                    {% check_plan request as currentuserplan %}
                     {% subscrip_state request as stateofsubscription %}
                     {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" or stateofsubscription == "Empty" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text">
-                        {{ cureentuserplan }}{% trans " Plan - " %}{% trans "You have "%}{{ finaldateoftrial |timeuntil }}{% trans " left on your trial. " %}<a href="{% url 'subscription' %}">{% trans "Subscribe Now!" %}</a>
+                        {{ currentuserplan }}{% trans " Plan - " %}{% trans "You have "%}{{ finaldateoftrial |timeuntil }}{% trans " left on your trial. " %}<a href="{% url 'subscription' %}">{% trans "Subscribe Now!" %}</a>
                         </span>
                     {% else %}
                         <span class="navbar-text">
-                        {{ cureentuserplan }}{% trans " Plan - " %}{% trans "Subscription " %}{{ stateofsubscription | upper }}
+                        {{ currentuserplan }}{% trans " Plan - " %}{% trans "Subscription " %}{{ stateofsubscription | upper }}
                         </span>
                     {% endif %}
                     <li class="nav-item dropdown">
