@@ -754,7 +754,6 @@ def tagSetupFormView(request):
         currentvp = int(request.POST.get('currentvp', 1))
         currenttag = int(request.POST.get('currenttag', 1))
         qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
-        tag = Tag()
         try:
             tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber=currentvp).filter(tagNumber=currenttag).get()
@@ -764,8 +763,7 @@ def tagSetupFormView(request):
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
-            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
-                vpNumber=currentvp).get())
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get())
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
             vpoflasttag = lasttag.vp
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
@@ -900,9 +898,9 @@ def save_tagboundingbox(request):
         tagnumber = int(received_json_data[0]['tagnumber'])
         taginstance = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(tagNumber=tagnumber).get()
         try:
-            tagbboxinstancepk = Tagbbox.objects.get(tag=taginstance).pk
+            tagbboxinstancepk = Tagbbox.objects.get(tag_id=taginstance.pk).pk
         except Tagbbox.DoesNotExist:
-            tagbboxinstancetmp = Tagbbox(tag=taginstance)
+            tagbboxinstancetmp = Tagbbox(tag_id=taginstance.pk)
             tagbboxinstancetmp.save()
             tagbboxinstancepk = tagbboxinstancetmp.pk
         tagbboxinstance = Tagbbox(pk=tagbboxinstancepk)
