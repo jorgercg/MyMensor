@@ -24,8 +24,10 @@
                         <p>{% trans "Last Login: " %}{{ userloggedin.last_login | localtime | date:"Y-b-d H:i:sO" }}</p>
                         <p>{% trans "You have " %}{{ mediaqty }}{% trans " medias stored in our servers." %}</p>
                         {% if currentuserplan == "MyMensor Media and Data" %}
-                            <p>{% trans "There are " %}{{ tagqty }}{% trans " TAGs configured to process your data." %}</p>
-                            <p>{% trans "You have processed a total of " %}{{ processedtagqty }}{% trans " TAG instances so far." %}</p>
+                            <p>
+                                {% trans "There are " %}{{ tagqty }}{% trans " TAGs configured to process your data." %}</p>
+                            <p>
+                                {% trans "You have processed a total of " %}{{ processedtagqty }}{% trans " TAG instances so far." %}</p>
                         {% endif %}
 
                     </div>
@@ -96,7 +98,10 @@
                         </div>
                         <div class="row" style="padding-bottom: 20px">
                             <div class="col-lg-8 ">
-                                <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
+                                <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
+                                    <button type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                                </p>
+                                <p></p>
                                 <p>
                                     {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                                 <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
@@ -162,7 +167,9 @@
                     </div>
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
-                            <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}<button type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button></p>
+                            <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan " %}
+                                <button type="button" class="btn btn-secondary">{% trans "Change Plan!" %}</button>
+                            </p>
                             <p></p>
                             <p>
                                 {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
