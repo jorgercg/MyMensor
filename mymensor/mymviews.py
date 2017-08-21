@@ -747,7 +747,7 @@ def tagSetupFormView(request):
         error_code = e
     currentvp = 1
     qtyvps = Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).count()
-    listoftagsindatabase = Tag.objects.filter(tagIsActive=True).filter(vp__asset__assetOwner=request.user)
+    listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
     qtytagsindatabase = listoftagsindatabase.count()
 
     if request.method == 'POST':
@@ -791,7 +791,7 @@ def tagSetupFormView(request):
                     currenttag = qtytagsinclient
                 else:
                     currenttag = listoftagsincurrentvp.first()
-
+                tag=Tag()
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()
