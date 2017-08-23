@@ -148,12 +148,6 @@ def changesubscriptionplan(request):
         )
         currentAsset = Asset.objects.get(assetOwner=request.user)
         currentuserplan = currentAsset.assetMyMensorPlan
-        if currentuserplan == "MyMensor Media and Data":
-            currentAsset.assetMyMensorPlan = "MyMensor Media"
-            currentAsset.save()
-        elif currentuserplan == "MyMensor Media":
-            currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
-            currentAsset.save()
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice.pk)
@@ -161,10 +155,14 @@ def changesubscriptionplan(request):
         btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan.pk)
         if currentuserplan == "MyMensor Media and Data":
             btplan = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorMEDIA").filter(braintreeplanPlanId__icontains=btmerchant.braintreemerchCurrency)
-            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.pk, braintreeplan_id=btplan.pk)
+            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
+            currentAsset.assetMyMensorPlan = "MyMensor Media"
+            currentAsset.save()
         elif currentuserplan == "MyMensor Media":
             btplan = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorAR").filter(braintreeplanPlanId__icontains=btmerchant.braintreemerchCurrency)
-            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.pk, braintreeplan_id=btplan.pk)
+            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
+            currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
+            currentAsset.save()
         succesful = False
         # try:
         result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
