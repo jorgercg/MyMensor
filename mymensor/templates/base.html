@@ -1,4 +1,4 @@
-{% load staticfiles is_active i18n tz counter assign subscrip_state trial_end_date check_plan %}
+{% load staticfiles is_active i18n tz counter assign subscrip_state trial_end_date check_plan is_media_plan_disabled %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     <!DOCTYPE html>
@@ -76,11 +76,11 @@
                             {% trans "Data" %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{% url 'tagstatus' %}">{% trans "Status" %}</a>
-                            <a class="dropdown-item" href="{% url 'taganalysis' %}">{% trans "Analysis" %}</a>
+                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagstatus' %}">{% trans "Status" %}</a>
+                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'taganalysis' %}">{% trans "Analysis" %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'tagprocessing' %}">{% trans "Processing" %}</a>
-                            <a class="dropdown-item" href="{% url 'proctagedit' %}">{% trans "Edit" %}</a>
+                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagprocessing' %}">{% trans "Processing" %}</a>
+                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'proctagedit' %}">{% trans "Edit" %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -91,7 +91,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'assetsetup' %}">{% trans "Asset" %}</a>
                             <a class="dropdown-item" href="{% url 'vpsetup' %}">{% trans "VPs" %}</a>
-                            <a class="dropdown-item" href="{% url 'tagsetup' %}">{% trans "TAGs" %}</a>
+                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagsetup' %}">{% trans "TAGs" %}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'markerdownload' %}">{% trans "Marker Download" %}</a>
                             <div class="dropdown-divider"></div>
