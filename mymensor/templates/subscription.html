@@ -10,7 +10,7 @@
             <div class="container">
                 {% if btsubscription is not None %}
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
-                        <div class="row" style="padding-bottom: 20px">
+                        <div class="row" style="padding-top:20px; padding-bottom: 20px">
                             <h3>{% trans "Current Payment Method" %}</h3>
                         </div>
                         {% if succesful is True %}
@@ -190,12 +190,6 @@
                             <p>
                                 {% trans "You have processed a total of " %}<b>{{ processedtagqty }}</b>{% trans " TAG instances so far." %}
                             </p>
-                        {% endif %}
-                        {% if currentuserplan == "MyMensor Media and Data" and tagqty == 0 %}
-                            <div class="alert alert-danger" role="alert">
-                                <strong>Attention!</strong> Currently you are not using any TAGs then most probably you
-                                can save some money by changing your plan to MEDIA only. Please check our docs!
-                            </div>
                         {% endif %}
                     </div>
                 </div>
