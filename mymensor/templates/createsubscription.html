@@ -14,7 +14,7 @@
             <div class="row" style="padding-bottom: 20px">
                 <div class="col-sm-8">
                     <p></p>
-                    <p>{% trans "Please choose below which plan you want to use, after that you will be taken to the payment page:" %}</p>
+                    <p>{% trans "Please choose below which of the available currencies you want to use for payment, after that you will be taken to the payment page:" %}</p>
                     <p></p>
                     <select id="set-price-select" name="priceselected">
                         {% for btplan in availablebtplans %}
@@ -22,7 +22,7 @@
                                 {% if price.braintreeplan == btplan %}
                                 <option id="op{{ price.id }}" value='{{ price.id }}'
                                         {% if price == currentbtprice %}selected{% endif %}>
-                                    {% trans "I choose the plan " %}{{ btplan.braintreeplanPlanName }}{% trans " and will pay " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
+                                    {% trans "I will pay for the plan " %}{{ btplan.braintreeplanPlanName }}{% trans " an amount of " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}

@@ -136,8 +136,14 @@ def startsubscription(request):
 @login_required
 def createsubscription(request):
     if request.method == "GET":
-        availablebtmerchants = BraintreeMerchant.objects.all()
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        currentuserplan = currentAsset.assetMyMensorPlan
         availablebtplans = BraintreePlan.objects.all()
+        if currentuserplan == "MyMensor Media and Data":
+            availablebtplans = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorAR")
+        elif currentuserplan == "MyMensor Media":
+            availablebtplans = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorMEDIA")
+        availablebtmerchants = BraintreeMerchant.objects.all()
         availablebtprices = BraintreePrice.objects.all()
         currentbtcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         currentbtsubscription = BraintreeSubscription()
