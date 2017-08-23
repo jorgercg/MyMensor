@@ -13,11 +13,12 @@ def mobonlyprefix():
 
 
 def setup_new_user(instance, **kwargs):
+    import pytz
     from mymensor.models import Asset, Vp
     from datetime import datetime, timedelta
     from mymensor.dcidatasync import writedciinitialcfg, writedciinitialvpschk
     asset = Asset(assetDescription="Asset1", assetNumber=1, assetOwner=instance, assetOwnerDescription=instance.email,
-                  assetDateOfEndEfTrialBeforeSubscription=datetime.utcnow() + timedelta(days=30))
+                  assetDateOfEndEfTrialBeforeSubscription=datetime.now(pytz.utc) + timedelta(days=30))
     asset.save()
     maxqtyvps = 31  ###### Maximum quantity of vps in a DCI + 1 !!!!!!!
     for i in range(0, maxqtyvps):
@@ -42,7 +43,7 @@ def setup_new_user(instance, **kwargs):
 
 
 def create_braintree_customer(instance):
-    import braintree
+    import braintree, pytz
     from datetime import datetime
     from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
         BRAINTREE_PRODUCTION
@@ -66,7 +67,7 @@ def create_braintree_customer(instance):
             btnewcustomer = BraintreeCustomer(braintreecustomerOwner=instance,
                                               braintreecustomerCustomerId=result.customer.id,
                                               braintreecustomerCustomerCreated=True,
-                                              braintreecustomerCustomerCreatedDate=datetime.utcnow())
+                                              braintreecustomerCustomerCreatedDate=datetime.now(pytz.utc))
         else:
             btnewcustomer = BraintreeCustomer(braintreecustomerOwner=instance,
                                               braintreecustomerCustomerCreated=False)
