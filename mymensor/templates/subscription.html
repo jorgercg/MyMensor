@@ -12,7 +12,7 @@
                     <h3>{% trans "Your Activity at MyMensor" %}</h3>
                 </div>
                 <div class="row" style="padding-bottom: 20px">
-                    <div class="col-lg-8">
+                    <div class="col">
                         <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
                         {% if currentuserplan == "MyMensor Media and Data" %}
                             <p>{% trans "This plan allows you to store <u>both media and data</u> in our servers. Your media will always be organized in the way you wish and you will be able to share it automatically in Twitter of email. By using this plan you can further analyse the data generated with your media captures, using the Data menu." %}</p>
@@ -46,14 +46,14 @@
                         </div>
                         {% if succesful is True %}
                             <div class="row" style="padding-bottom: 20px">
-                                <div class="col-lg-8">
+                                <div class="col">
                                     <p>{% trans "Your payment method was succesfully modified to the one listed below:" %}</p>
                                 </div>
                             </div>
                         {% endif %}
                         {% if succesful is False %}
                             <div class="row" style="padding-bottom: 20px">
-                                <div class="col-lg-8">
+                                <div class="col">
                                     <p>{% trans "We could not modify your payment method, please see result:" %}</p>
                                     <p>{{ result }}</p>
                                 </div>
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8">
+                            <div class="col">
                                 <a href="{% url 'modifypaymentmethod' %}" class="btn btn-outline-info"
                                    role="button">{% trans "Modify Current Payment Method" %}</a>
                             </div>
@@ -91,7 +91,7 @@
                             <h3>{% trans "Cancel Subscription" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col ">
                                 <p>{% trans "Press the button below to cancel your subscription. Nonetheless, you will be able to use your current account until the end of the present subscription period." %}</p>
                                 <p>
                                     {% trans "Your subscription is paid through " %}{{ btsubscription.braintreesubscriptionLastDay | localtime | date:"Y-b-d H:i:sO" }}</p>
@@ -104,23 +104,22 @@
                             <h3>{% trans "Thanks for registering with Mymensor and using our Apps!" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <p>
                                     {% trans "Right now you are using the <b>" %}{{ currentuserplan }}{% trans " Plan</b> " %}</p>
                                 {% if currentuserplan == "MyMensor Media and Data" %}
                                     <button id="changeplanbtbn" type="button"
-                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media Plan</b>" %}</button>
+                                        class="btn btn-outline-primary">{% trans "Take me to <b>MyMensor Media Plan</b>" %}</button>
                                 {% else %}
                                     <button id="changeplanbtbn" type="button"
-                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media and Data Plan</b>" %}</button>
+                                        class="btn btn-outline-primary">{% trans "Take me to <b>MyMensor Media and Data Plan</b>" %}</button>
                                 {% endif %}
                                 <p></p>
                                 <p>
                                     {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
-                                <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
                                 <p></p>
                                 <a class="btn btn-primary" href="{% url 'createsubscription' %}"
-                                   role="button">{% trans "Subscribe Now!" %}</a>
+                                   role="button">{% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                             </div>
                         </div>
                     {% elif btsubscription.braintreesubscriptionSubscriptionStatus == "Canceled" %}
@@ -128,14 +127,14 @@
                             <h3>{% trans "Thanks for using Mymensor!" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <p>{% trans "Your present subscription is canceled. " %}</p>
                                 <p>{% trans "You are using the " %}{{ currentuserplan }}{% trans " Plan" %}</p>
                                 <p>{% trans "If you would like to subscribe again to our service, please press the button below." %}</p>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                                    role="button">{% trans "Subscribe Again Now!" %}</a>
                             </div>
@@ -145,13 +144,13 @@
                             <h3>{% trans "Thanks for using Mymensor!" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <p>{% trans "Your last attempt to subscribe was unsuccessful. " %}</p>
                                 <p>{% trans "If you would like to try again to subscribe to our service, please press the button below." %}</p>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <a class="btn btn-primary" href="{% url 'createsubscription' %}"
                                    role="button">{% trans "Subscribe Now!" %}</a>
                             </div>
@@ -161,7 +160,7 @@
                             <h3>{% trans "Current Subscription Status" %}</h3>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <p>
                                     {% trans "You are using the " %}{{ currentuserplan | timeuntil }}{% trans " Plan" %}</p>
                                 <p>
@@ -169,7 +168,7 @@
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
-                            <div class="col-lg-8 ">
+                            <div class="col">
                                 <p>{% trans "If you wish, please contact support about your current status." %}</p>
                             </div>
                         </div>
@@ -179,23 +178,22 @@
                         <h3>{% trans "Thanks for registering with Mymensor and using our Apps!" %}</h3>
                     </div>
                     <div class="row" style="padding-bottom: 20px">
-                        <div class="col-lg-8 ">
+                        <div class="col">
                             <p>
                                     {% trans "Right now you are using the <b>" %}{{ currentuserplan }}{% trans " Plan</b> " %}</p>
                                 {% if currentuserplan == "MyMensor Media and Data" %}
                                     <button id="changeplanbtbn" type="button"
-                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media Plan</b>" %}</button>
+                                        class="btn btn-outline-primary">{% trans "Take me to <b>MyMensor Media Plan</b>" %}</button>
                                 {% else %}
                                     <button id="changeplanbtbn" type="button"
-                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media and Data Plan</b>" %}</button>
+                                        class="btn btn-outline-primary">{% trans "Take me to <b>MyMensor Media and Data Plan</b>" %}</button>
                                 {% endif %}
                                 <p></p>
-                            <p>
-                                {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
-                            <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
-                            <p></p>
-                            <a class="btn btn-primary" href="{% url 'createsubscription' %}"
-                               role="button">{% trans "Subscribe Now!" %}</a>
+                                <p>
+                                    {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
+                                <p></p>
+                                <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                                   role="button">{% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                         </div>
                     </div>
                 {% endif %}
