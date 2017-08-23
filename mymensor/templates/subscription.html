@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col">
                                 <p>{% trans "You are being charged " %}{{ btmercht.braintreemerchCurrency }} {{ btprice.braintrepricePrice }} {% trans " per month using the payment method below." %}</p>
-                                <p>{% trans "Your next billing will be: " %}{{ btmercht.braintreemerchCurrency }} {{ currentbtsubstatus.next_billing_period_amount }} {% trans " on " %}{{ currentbtsubstatus.next_billing_date | localtime | date:"Y-b-d"}}</p>
+                                <p>{% trans "Your next billing will be: " %}{{ btmercht.braintreemerchCurrency }} {{ currentbtsubstatus.next_billing_period_amount }} {% trans " on " %} {{ currentbtsubstatus.next_billing_date }}</p>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
