@@ -1757,6 +1757,7 @@ def subscription(request):
         tagqty = Tag.objects.filter(vp__asset__assetOwner=request.user).count()
         processedtagqty = ProcessedTag.objects.filter(tag__vp__asset__assetOwner=request.user).count()
         swalchgbtntitle = _('Really Change Plan?')
+        swalchgbtntext = _('You will change plan immediately and in the next monthly payment you will be charged the new subscription value, in the same currency as you pay now')
         swalchgbtnconfirmButtonText = _('Confirm')
         swalchgbtncancelButtonText = _('Cancel')
         swalchgbtnsuccesstitle = _("Done!")
@@ -1764,7 +1765,7 @@ def subscription(request):
         return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
                                                      'btsubscription': btsubscription, 'currentuserplan': currentuserplan,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription,
-                                                     'swalchgbtntitle':swalchgbtntitle,'swalchgbtnconfirmButtonText':swalchgbtnconfirmButtonText,
+                                                     'swalchgbtntitle':swalchgbtntitle,'swalchgbtntext':swalchgbtntext, 'swalchgbtnconfirmButtonText':swalchgbtnconfirmButtonText,
                                                      'swalchgbtncancelButtonText': swalchgbtncancelButtonText,
                                                      'swalchgbtnsuccesstitle': swalchgbtnsuccesstitle, 'swalchgbtncanceltitle': swalchgbtncanceltitle,
                                                      'mediaqty':mediaqty, 'tagqty':tagqty ,'processedtagqty':processedtagqty})

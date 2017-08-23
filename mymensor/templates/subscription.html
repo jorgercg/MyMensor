@@ -20,11 +20,11 @@
                                 {% if currentuserplan == "MyMensor Media and Data" %}
                                     <button id="changeplanbtbn" type="button"
                                             class="btn btn-outline-info"
-                                            style="margin-left: 10px">{% trans "Take me to <b>MyMensor Media Plan</b>" %}</button>
+                                            style="margin-left: 10px">{% trans "Take me to the <b>MyMensor Media Plan</b>" %}</button>
                                 {% else %}
                                     <button id="changeplanbtbn" type="button"
                                             class="btn btn-outline-info"
-                                            style="margin-left: 10px">{% trans "Take me to <b>MyMensor Media and Data Plan</b>" %}</button>
+                                            style="margin-left: 10px">{% trans "Take me to the <b>MyMensor Media and Data Plan</b>" %}</button>
                                 {% endif %}
                             </p>
                             <p></p>
@@ -147,11 +147,11 @@
                                 {% if currentuserplan == "MyMensor Media and Data" %}
                                     <button id="changeplanbtbn" type="button"
                                             class="btn btn-outline-info"
-                                            style="margin-left: 10px">{% trans "Take me to <b>MyMensor Media Plan</b>" %}</button>
+                                            style="margin-left: 10px">{% trans "Take me to the <b>MyMensor Media Plan</b>" %}</button>
                                 {% else %}
                                     <button id="changeplanbtbn" type="button"
                                             class="btn btn-outline-info"
-                                            style="margin-left: 10px">{% trans "Take me to <b>MyMensor Media and Data Plan</b>" %}</button>
+                                            style="margin-left: 10px">{% trans "Take me to the <b>MyMensor Media and Data Plan</b>" %}</button>
                                 {% endif %}
                             </p>
                             <p></p>
@@ -224,6 +224,9 @@
                 $('#changeplanbtbn').click(function () {
                     swal({
                         title: '{{ swalchgbtntitle }}',
+                        {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
+                        text: '{{ swalchgbtntext }}',
+                        {% endif %}
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonText: '{{ swalchgbtnconfirmButtonText }}',
