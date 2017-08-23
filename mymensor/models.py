@@ -7,8 +7,12 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework.authtoken.models import Token
 
 class BraintreePlan(models.Model):
+    CURRENCY_CHOICES = (('USD', 'USD'), ('EUR', 'EUR'), ('BRL', 'BRL'))
+
     braintreeplanPlanName = models.CharField(max_length=1024)
     braintreeplanPlanId = models.CharField(max_length=1024)
+    braintreeplanPlanMymensorType = models.CharField(max_length=1024, default="MEDIAANDDATA")
+    braintreeplanCurrency = models.CharField(max_length=50, choices=CURRENCY_CHOICES, default='USD')
     braintreeplanBillingCycleQty = models.IntegerField()
     braintreeplanBillingCycleUnit = models.CharField(max_length=255)
     braintreeplanBillingExpirationExists = models.BooleanField(default=False)
