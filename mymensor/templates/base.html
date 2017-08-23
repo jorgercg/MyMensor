@@ -120,7 +120,7 @@
                         </span>
                     {% else %}
                         <span class="navbar-text">
-                        {{ currentuserplan }}{% trans " Plan - " %}{% trans "Subscription " %}{{ stateofsubscription | upper }}
+                        {{ currentuserplan }}{% trans " Plan - " %}<a href="{% url 'subscription' %}"><u>{% trans "Subscription " %}{{ stateofsubscription | upper }}</u></a>
                         </span>
                     {% endif %}
                     <li class="nav-item dropdown">
