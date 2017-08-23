@@ -166,7 +166,7 @@ def changesubscriptionplan(request):
         result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
             "price": btprice.braintrepricePrice,
             "merchant_account_id": btmerchant.braintreemerchMerchId,
-            "plan_id": btplan.braintreeplanPlanId #É brincadeira!!!!
+            "plan_id": btplan.braintreeplanPlanId
         })
         if result.is_success:
             currentAsset.save()
