@@ -156,10 +156,12 @@ def changesubscriptionplan(request):
         if currentuserplan == "MyMensor Media and Data":
             btplan = BraintreePlan.objects.get(braintreeplanPlanMymensorType="MEDIA", braintreeplanCurrency=btmerchant.braintreemerchCurrency)
             btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
+            btsubscription.braintreeprice_id = btprice.id
             currentAsset.assetMyMensorPlan = "MyMensor Media"
         elif currentuserplan == "MyMensor Media":
             btplan = BraintreePlan.objects.get(braintreeplanPlanMymensorType="MEDIAANDDATA", braintreeplanCurrency=btmerchant.braintreemerchCurrency)
             btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
+            btsubscription.braintreeprice_id = btprice.id
             currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
         succesful = False
         # try:
