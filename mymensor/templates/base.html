@@ -61,7 +61,7 @@
                 src="{% static 'images/Logo_MyMensor_NEW3.svg' %}"
                 width="46" height="46" alt=""></a>
         <div id="navbarNavDropdown" class="collapse navbar-collapse">
-
+            {% is_media_plan_disabled request as media_plan_disabled %}
             {% if user.is_authenticated %}
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link {% is_active request 'portfolio' %}"
@@ -76,11 +76,20 @@
                             {% trans "Data" %}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagstatus' %}">{% trans "Status" %}</a>
-                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'taganalysis' %}">{% trans "Analysis" %}</a>
+                            <a class="dropdown-item {{ media_plan_disabled }}"
+                                    {% if media_plan_disabled != "disabled" %} href="{% url 'tagstatus' %}" {% else %}
+                               href="#" {% endif %}>{% trans "Status" %}</a>
+                            <a class="dropdown-item {{ media_plan_disabled }}"
+                                    {% if media_plan_disabled != "disabled" %} href="{% url 'taganalysis' %}" {% else %}
+                               href="#" {% endif %}>{% trans "Analysis" %}</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagprocessing' %}">{% trans "Processing" %}</a>
-                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'proctagedit' %}">{% trans "Edit" %}</a>
+                            <a class="dropdown-item {{ media_plan_disabled }}"
+                                    {% if media_plan_disabled != "disabled" %}
+                               href="{% url 'tagprocessing' %}" {% else %}
+                               href="#" {% endif %}>{% trans "Processing" %}</a>
+                            <a class="dropdown-item {{ media_plan_disabled }}"
+                                    {% if media_plan_disabled != "disabled" %} href="{% url 'proctagedit' %}" {% else %}
+                               href="#" {% endif %}>{% trans "Edit" %}</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -91,7 +100,9 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="{% url 'assetsetup' %}">{% trans "Asset" %}</a>
                             <a class="dropdown-item" href="{% url 'vpsetup' %}">{% trans "VPs" %}</a>
-                            <a class="dropdown-item {% is_media_plan_disabled request %}" href="{% url 'tagsetup' %}">{% trans "TAGs" %}</a>
+                            <a class="dropdown-item {{ media_plan_disabled }}"
+                                    {% if media_plan_disabled != "disabled" %} href="{% url 'tagsetup' %}" {% else %}
+                               href="#" {% endif %}>{% trans "TAGs" %}</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'markerdownload' %}">{% trans "Marker Download" %}</a>
                             <div class="dropdown-divider"></div>
@@ -116,11 +127,13 @@
                     {% if stateofsubscription == "Trial" or stateofsubscription == "TrialExpired" or stateofsubscription == "Empty" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text">
-                        {{ currentuserplan }}{% trans " Plan - " %}{% trans "You have "%}{{ finaldateoftrial |timeuntil }}{% trans " left on your trial. " %}<a href="{% url 'subscription' %}"><u>{% trans "Subscribe Now!" %}</u></a>
+                        {{ currentuserplan }}{% trans " Plan - " %}{% trans "You have " %}{{ finaldateoftrial |timeuntil }}{% trans " left on your trial. " %}<a
+                                href="{% url 'subscription' %}"><u>{% trans "Subscribe Now!" %}</u></a>
                         </span>
                     {% else %}
                         <span class="navbar-text">
-                        {{ currentuserplan }}{% trans " Plan - " %}<a href="{% url 'subscription' %}"><u>{% trans "Subscription " %}{{ stateofsubscription | upper }}</u></a>
+                        {{ currentuserplan }}{% trans " Plan - " %}<a
+                                href="{% url 'subscription' %}"><u>{% trans "Subscription " %}{{ stateofsubscription | upper }}</u></a>
                         </span>
                     {% endif %}
                     <li class="nav-item dropdown">
