@@ -1773,6 +1773,22 @@ def subscription(request):
 
 @login_required
 @user_passes_test(group_check)
+def changeplan(request):
+    if request.method == "GET":
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        currentuserplan = currentAsset.assetMyMensorPlan
+        if currentuserplan == "MyMensor Media and Data":
+            currentAsset.assetMyMensorPlan = "MyMensor Media"
+            currentAsset.save()
+        elif currentuserplan == "MyMensor Media":
+            currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
+            currentAsset.save()
+        subscription(request)
+    return  HttpResponse(status=404)
+
+
+@login_required
+@user_passes_test(group_check)
 def markerdownload(request):
     if request.method == "GET":
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,

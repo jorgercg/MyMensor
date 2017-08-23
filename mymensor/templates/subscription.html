@@ -180,11 +180,16 @@
                     </div>
                     <div class="row" style="padding-bottom: 20px">
                         <div class="col-lg-8 ">
-                            <p>{% trans "Right now you are using the " %}{{ currentuserplan }}{% trans " Plan " %}
-                                <button id="changeplanbtbn" type="button"
-                                        class="btn btn-outline-primary">{% trans "If you wish to do so, press here to change Plan!" %}</button>
-                            </p>
-                            <p></p>
+                            <p>
+                                    {% trans "Right now you are using the <b>" %}{{ currentuserplan }}{% trans " Plan</b> " %}</p>
+                                {% if currentuserplan == "MyMensor Media and Data" %}
+                                    <button id="changeplanbtbn" type="button"
+                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media Plan</b>" %}</button>
+                                {% else %}
+                                    <button id="changeplanbtbn" type="button"
+                                        class="btn btn-outline-primary">{% trans "Change me to <b>MyMensor Media and Data Plan</b>" %}</button>
+                                {% endif %}
+                                <p></p>
                             <p>
                                 {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                             <p>{% trans "If you would like to subscribe to our service, please press the button below." %}</p>
@@ -199,10 +204,33 @@
         {% block javascript %}
             <script type="text/javascript">
                 $('#cancel-subscription').click(function () {
-                    var choice = confirm("{% trans "Please confirm that you want to cancel your subscription." %}");
-                    if (choice) {
+                    swal({
+                        title: "{% trans "Please confirm that you want to cancel your subscription." %}",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: '{{ swalchgbtnconfirmButtonText }}',
+                        cancelButtonText: '{{ swalchgbtncancelButtonText }}',
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger'
+                    }).then(function () {
+                        swal({
+                            title: '{{ swalchgbtnsuccesstitle }}',
+                            type: 'success',
+                            showConfirmButton: false
+                        });
                         window.location = "{% url 'deletesubscription' %}";
-                    }
+                    }, function (dismiss) {
+                        // dismiss can be 'cancel', 'overlay',
+                        // 'close', and 'timer'
+                        if (dismiss === 'cancel') {
+                            swal({
+                                title: '{{ swalchgbtncanceltitle }}',
+                                type: 'error',
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                        }
+                    }).catch(swal.noop);
                 });
                 $('#changeplanbtbn').click(function () {
                     swal({
@@ -219,7 +247,7 @@
                             type: 'success',
                             showConfirmButton: false
                         });
-                        window.location = "{% url 'subscription' %}";
+                        window.location = "{% url 'chgplan' %}";
                     }, function (dismiss) {
                         // dismiss can be 'cancel', 'overlay',
                         // 'close', and 'timer'
