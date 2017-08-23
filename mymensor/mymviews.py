@@ -1770,6 +1770,7 @@ def subscription(request):
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         currentuserplan = currentAsset.assetMyMensorPlan
+        #put here the control to show or not the change plan button
         mediaqty = Media.objects.filter(vp__asset__assetOwner=request.user).count()
         tagqty = Tag.objects.filter(vp__asset__assetOwner=request.user).count()
         processedtagqty = ProcessedTag.objects.filter(tag__vp__asset__assetOwner=request.user).count()
