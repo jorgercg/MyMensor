@@ -41,7 +41,7 @@
                                    role="button">
                                     {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                             {% endif %}
-                            <p>{{ currentbtsubstatus.next_billing_period_amount }}  {{ currentbtsubstatus.billing_day_of_month }}  {{ currentbtsubstatus.balance }}</p>
+                            <p>{{ currentbtsubstatus.next_billing_period_amount }}  {{ currentbtsubstatus.billing_day_of_month }}  {{ currentbtsubstatus.next_billing_date }}</p>
                         </div>
                     </div>
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
@@ -65,7 +65,7 @@
                         {% endif %}
                         <div class="row">
                             <div class="col">
-                                <p>{% trans "You are currently paying " %}{{ btmercht.braintreemerchCurrency }} {{ btprice.braintrepricePrice }} {% trans " per month using the following payment method." %}</p>
+                                <p>{% trans "You are being charged " %}{{ btmercht.braintreemerchCurrency }} {{ btprice.braintrepricePrice }} {% trans " per month using the following payment method:" %}</p>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
