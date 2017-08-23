@@ -22,13 +22,13 @@
                         <p>
                             {% trans "First Login: " %}{{ userloggedin.date_joined | localtime | date:"Y-b-d H:i:sO" }}</p>
                         <p>{% trans "Last Login: " %}{{ userloggedin.last_login | localtime | date:"Y-b-d H:i:sO" }}</p>
-                        <p>{% trans "You have " %}<u>{{ mediaqty }}</u>{% trans " medias stored in our servers." %}</p>
+                        <p>{% trans "You have " %}<b>{{ mediaqty }}</b>{% trans " medias stored in our servers." %}</p>
                         {% if currentuserplan == "MyMensor Media and Data" %}
                             <p>
-                                {% trans "There are " %}<u>{{ tagqty }}</u>{% trans " TAGs configured to process your data." %}
+                                {% trans "There are " %}<b>{{ tagqty }}</b>{% trans " TAGs configured to process your data." %}
                             </p>
                             <p>
-                                {% trans "You have processed a total of " %}<u>{{ processedtagqty }}</u>{% trans " TAG instances so far." %}
+                                {% trans "You have processed a total of " %}<b>{{ processedtagqty }}</b>{% trans " TAG instances so far." %}
                             </p>
                         {% endif %}
                         {% if currentuserplan == "MyMensor Media and Data" and tagqty == 0 %}
@@ -209,21 +209,22 @@
                         confirmButtonClass: 'btn btn-success',
                         cancelButtonClass: 'btn btn-danger'
                     }).then(function () {
-                        swal(
-                            '{{ swalchgbtnsuccesstitle }}',
-                            '',
-                            'success'
-                        );
+                        swal({
+                            title:'{{ swalchgbtnsuccesstitle }}',
+                            type:'success',
+                            showConfirmButton: false
+                        });
                         window.location = "{% url 'subscription' %}";
                     }, function (dismiss) {
                         // dismiss can be 'cancel', 'overlay',
                         // 'close', and 'timer'
                         if (dismiss === 'cancel') {
-                            swal(
-                                '{{ swalchgbtncanceltitle }}',
-                                '',
-                                'error'
-                            )
+                            swal({
+                            title:'{{ swalchgbtncanceltitle }}',
+                            type:'error',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
                         }
                     }).catch(swal.noop);
                 });
