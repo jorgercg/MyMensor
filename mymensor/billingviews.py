@@ -157,12 +157,10 @@ def changesubscriptionplan(request):
             btplan = BraintreePlan.objects.get(braintreeplanPlanMymensorType="MEDIA", braintreeplanCurrency=btmerchant.braintreemerchCurrency)
             btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
             currentAsset.assetMyMensorPlan = "MyMensor Media"
-            currentAsset.save()
         elif currentuserplan == "MyMensor Media":
             btplan = BraintreePlan.objects.get(braintreeplanPlanMymensorType="MEDIAANDDATA", braintreeplanCurrency=btmerchant.braintreemerchCurrency)
             btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.id, braintreeplan_id=btplan.id)
             currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
-            currentAsset.save()
         succesful = False
         # try:
         result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
@@ -171,6 +169,7 @@ def changesubscriptionplan(request):
             "plan_id": btplan.braintreeplanPlanId
         })
         if result.is_success:
+            currentAsset.save()
             btsubscription.braintreesubscriptionResultObject = result
             btsubscription.braintreesubscriptionSubscriptionId = result.subscription.id
             btsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
@@ -198,7 +197,7 @@ def changesubscriptionplan(request):
             succesful = True
         else:
             btsubscription.braintreesubscriptionResultObject = result
-            btsubscription.braintreesubscriptionSubscriptionStatus = "Unsuccessful"
+            btsubscription.braintreesubscriptionSubscriptionStatus = "ChangeUnsuccessful"
             btsubscription.save()
             return render(request, 'changesubscriptionplan.html',
                           {"result": result,
