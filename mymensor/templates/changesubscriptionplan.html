@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n mymfilters %}
+{% if user.is_authenticated %}
+    {% block title %}{% trans "Change Subscription Plan" %} - {{ block.super }}{% endblock %}
+    {% block header %}
+    {% endblock %}
+    {% block content %}
+        <div class="container">
+            <div class="row" style="padding-bottom: 20px; padding-top: 20px;">
+                <p></p>
+                <h3>{% trans "Change Subscription Plan" %}</h3>
+                <p></p>
+            </div>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-5">
+                    {% if succesful %}
+                        <p></p>
+                        <p>{% trans "Your modification was succesful!" %}</p>
+                        <p></p>
+                    {% else %}
+                        <p></p>
+                        <p>{% trans "There was a problem while changing your subscription plan, please contact support." %}</p>
+                        <p></p>
+                        <p>{{ result }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% else %}
+    <h1>Not Logged In....</h1>
+{% endif %}

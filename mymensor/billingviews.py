@@ -134,6 +134,89 @@ def startsubscription(request):
 
 
 @login_required
+def changesubscriptionplan(request):
+    if request.method == "GET":
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        currentuserplan = currentAsset.assetMyMensorPlan
+        if currentuserplan == "MyMensor Media and Data":
+            currentAsset.assetMyMensorPlan = "MyMensor Media"
+            currentAsset.save()
+        elif currentuserplan == "MyMensor Media":
+            currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
+            currentAsset.save()
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice.pk)
+        btmerchant = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant.pk)
+        btplan = BraintreePlan.objects.get(pk=btprice.braintreeplan.pk)
+        if currentuserplan == "MyMensor Media and Data":
+            btplan = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorMEDIA").filter(braintreeplanPlanId__icontains=btmerchant.braintreemerchCurrency)
+            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.pk, braintreeplan_id=btplan.pk)
+        elif currentuserplan == "MyMensor Media":
+            btplan = BraintreePlan.objects.filter(braintreeplanPlanId__icontains="mymensorAR").filter(braintreeplanPlanId__icontains=btmerchant.braintreemerchCurrency)
+            btprice = BraintreePrice.objects.get(braintreemerchant_id=btmerchant.pk, braintreeplan_id=btplan.pk)
+        succesful = False
+        # try:
+        result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
+            "price": btprice.braintrepricePrice,
+            "merchant_account_id": btmerchant.braintreemerchMerchId,
+            "plan_id": btplan.braintreeplanPlanId
+        })
+        if result.is_success:
+            btsubscription.braintreesubscriptionResultObject = result
+            btsubscription.braintreesubscriptionSubscriptionId = result.subscription.id
+            btsubscription.braintreesubscriptionSubscriptionStatus = result.subscription.status
+            btcustomer.braintreecustomerPaymentMethodToken = result.subscription.payment_method_token
+            payment_method_result = braintree.PaymentMethod.find(result.subscription.payment_method_token)
+            btsubscription.braintreesubscriptionPayMthdResultObject = payment_method_result
+            if (payment_method_result.__class__ == braintree.credit_card.CreditCard):
+                btsubscription.braintreesubscriptionPaymentInstrumentType = "credit_card"
+            if (payment_method_result.__class__ == braintree.paypal_account.PayPalAccount):
+                btsubscription.braintreesubscriptionPaymentInstrumentType = "paypal_account"
+                btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
+                btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
+            btsubscription.braintreesubscriptionPaymentImageURL = payment_method_result.image_url
+            btsubscription.braintreesubscriptionLastDay = result.subscription.paid_through_date
+            if btsubscription.braintreesubscriptionPaymentInstrumentType == "credit_card":
+                btsubscription.braintreesubscriptionCClast4 = payment_method_result.masked_number
+                btsubscription.braintreesubscriptionCCtype = payment_method_result.card_type
+                btsubscription.braintreesubscriptionCCexpyear = payment_method_result.expiration_year
+                btsubscription.braintreesubscriptionCCexpmonth = payment_method_result.expiration_month
+            if btsubscription.braintreesubscriptionPaymentInstrumentType == "paypal_account":
+                btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
+                btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
+            btcustomer.save()
+            btsubscription.save()
+            succesful = True
+        else:
+            btsubscription.braintreesubscriptionResultObject = result
+            btsubscription.braintreesubscriptionSubscriptionStatus = "Unsuccessful"
+            btsubscription.save()
+            return render(request, 'changesubscriptionplan.html',
+                          {"result": result,
+                           "succesful": succesful})
+            # except:
+            # btsubscription.delete()
+            # return render(request, 'startsubscription.html',
+            # {"succesful": succesful})
+        return render(request, 'changesubscriptionplan.html',
+                      {"succesful": succesful,
+                       "result": result
+                       })
+    return HttpResponse(status=404)
+
+
+@login_required
 def createsubscription(request):
     if request.method == "GET":
         currentAsset = Asset.objects.get(assetOwner=request.user)

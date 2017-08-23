@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
-    MobileOnlyUser, MobileClientInstall
+    MobileOnlyUser, MobileClientInstall, BraintreePrice, BraintreeMerchant, BraintreePlan
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
@@ -1748,8 +1748,12 @@ def subscription(request):
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         try:
             btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+            btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
+            btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
         except:
             btsubscription = None
+            btprice = None
+            btmercht = None
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         currentuserplan = currentAsset.assetMyMensorPlan
@@ -1757,12 +1761,12 @@ def subscription(request):
         tagqty = Tag.objects.filter(vp__asset__assetOwner=request.user).count()
         processedtagqty = ProcessedTag.objects.filter(tag__vp__asset__assetOwner=request.user).count()
         swalchgbtntitle = _('Really Change Plan?')
-        swalchgbtntext = _('You will change plan immediately and in the next monthly payment you will be charged the new subscription value, in the same currency as you pay now')
+        swalchgbtntext = _('You will change plan immediately and in the next monthly payment you will be charged the new subscription rate, in the same currency as you pay now. There will be no prorating for downgrades in between billing cycles.')
         swalchgbtnconfirmButtonText = _('Confirm')
         swalchgbtncancelButtonText = _('Cancel')
         swalchgbtnsuccesstitle = _("Done!")
         swalchgbtncanceltitle = _("No change!")
-        return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer,
+        return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer, 'btprice':btprice, 'btmercht':btmercht,
                                                      'btsubscription': btsubscription, 'currentuserplan': currentuserplan,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription,
                                                      'swalchgbtntitle':swalchgbtntitle,'swalchgbtntext':swalchgbtntext, 'swalchgbtnconfirmButtonText':swalchgbtnconfirmButtonText,

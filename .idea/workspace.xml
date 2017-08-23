@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/billingviews.py" afterPath="$PROJECT_DIR$/mymensor/billingviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/urls.py" afterPath="$PROJECT_DIR$/mymensorapp/urls.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +50,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+            <state relative-caret-position="291">
+              <caret line="69" column="103" lean-forward="false" selection-start-line="69" selection-start-column="103" selection-end-line="69" selection-end-column="103" />
               <folding>
                 <element signature="e#644#685#0" expanded="true" />
               </folding>
@@ -54,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="1741" column="0" lean-forward="true" selection-start-line="1741" selection-start-column="0" selection-end-line="1741" selection-end-column="0" />
+            <state relative-caret-position="607">
+              <caret line="1768" column="117" lean-forward="false" selection-start-line="1768" selection-start-column="110" selection-end-line="1768" selection-end-column="117" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -69,7 +74,7 @@
       <file leaf-file-name="createsubscription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="-8">
               <caret line="16" column="55" lean-forward="false" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
               <folding />
             </state>
@@ -79,18 +84,38 @@
       <file leaf-file-name="billingviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1317">
-              <caret line="144" column="105" lean-forward="false" selection-start-line="144" selection-start-column="105" selection-end-line="144" selection-end-column="105" />
+            <state relative-caret-position="258">
+              <caret line="211" column="54" lean-forward="false" selection-start-line="211" selection-start-column="54" selection-end-line="211" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="changesubscriptionplan.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="94" lean-forward="false" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="updatepaymentmethod.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-362">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="228" column="24" lean-forward="false" selection-start-line="228" selection-start-column="24" selection-end-line="228" selection-end-column="24" />
+            <state relative-caret-position="485">
+              <caret line="66" column="200" lean-forward="false" selection-start-line="66" selection-start-column="200" selection-end-line="66" selection-end-column="200" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -98,18 +123,20 @@
                 <element signature="n#style#0;n#button#1;n#p#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#6;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#8;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#11;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#10;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#12;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#14;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#13;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#15;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#16;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#button#1;n#p#0;n#div#0;n#div#16;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#17;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#16;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#17;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#p#0;n#div#0;n#div#17;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#18;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,7 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mediaqtyinvp</find>
       <find>qrcode</find>
       <find>mediaStorageURL</find>
       <find>vpisactive</find>
@@ -178,6 +204,7 @@
       <find>Tag question for TAG#</find>
       <find>'TAG#'</find>
       <find>col</find>
+      <find>BraintreeCustomer</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -204,7 +231,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mymensor/braintreeviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/taganalysis.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/startsubscription.html" />
@@ -248,13 +274,14 @@
         <option value="$PROJECT_DIR$/mymensor/templates/tagsetup.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
         <option value="$PROJECT_DIR$/mymensor/templates/landing.html" />
-        <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
-        <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/createsubscription.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templatetags/is_media_plan_disabled.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+        <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
+        <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
       </list>
     </option>
   </component>
@@ -387,11 +414,11 @@
       <recent name="$PROJECT_DIR$/mymensor/static/fonts" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mymensor/templates" />
       <recent name="$PROJECT_DIR$/mymensor/templatetags" />
       <recent name="$PROJECT_DIR$/mymensor/static/js" />
       <recent name="$PROJECT_DIR$/mymensor/static/css" />
       <recent name="$PROJECT_DIR$/mymensor/static" />
-      <recent name="$PROJECT_DIR$/mymensor/templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -615,13 +642,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-03053" summary="19ago2017 19h37min">
-      <created>1503167842148</created>
-      <option name="number" value="03053" />
-      <option name="presentableId" value="LOCAL-03053" />
-      <option name="project" value="LOCAL" />
-      <updated>1503167842148</updated>
     </task>
     <task id="LOCAL-03054" summary="19ago2017 20h23min">
       <created>1503170598994</created>
@@ -959,7 +979,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503498801506</updated>
     </task>
-    <option name="localTasksCounter" value="3102" />
+    <task id="LOCAL-03102" summary="23ago2017 15h43min">
+      <created>1503499415491</created>
+      <option name="number" value="03102" />
+      <option name="presentableId" value="LOCAL-03102" />
+      <option name="project" value="LOCAL" />
+      <updated>1503499415491</updated>
+    </task>
+    <option name="localTasksCounter" value="3103" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1048,7 +1075,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="23ago2017 10h06min" />
     <MESSAGE value="23ago2017 10h35min" />
     <MESSAGE value="23ago2017 10h40min" />
     <MESSAGE value="23ago2017 10h44min" />
@@ -1073,7 +1099,8 @@
     <MESSAGE value="23ago2017 15h16min" />
     <MESSAGE value="23ago2017 15h22min" />
     <MESSAGE value="23ago2017 15h32min" />
-    <option name="LAST_COMMIT_MESSAGE" value="23ago2017 15h32min" />
+    <MESSAGE value="23ago2017 15h43min" />
+    <option name="LAST_COMMIT_MESSAGE" value="23ago2017 15h43min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1085,14 +1112,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/static/js/qrcode.min.js" />
-    <entry file="file://$PROJECT_DIR$/mymensor/static/js/qrious.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/mobilebackup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
@@ -1395,16 +1414,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="66" column="24" lean-forward="false" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
-          <folding>
-            <element signature="e#644#685#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templatetags/is_active.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1431,26 +1440,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1317">
-          <caret line="144" column="105" lean-forward="false" selection-start-line="144" selection-start-column="105" selection-end-line="144" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
+        <state relative-caret-position="-8">
           <caret line="16" column="55" lean-forward="false" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/updatepaymentmethod.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-362">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="69" column="103" lean-forward="false" selection-start-line="69" selection-start-column="103" selection-end-line="69" selection-end-column="103" />
+          <folding>
+            <element signature="e#644#685#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="94" lean-forward="false" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/billingviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="211" column="54" lean-forward="false" selection-start-line="211" selection-start-column="54" selection-end-line="211" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="607">
+          <caret line="1768" column="117" lean-forward="false" selection-start-line="1768" selection-start-column="110" selection-end-line="1768" selection-end-column="117" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="228" column="24" lean-forward="false" selection-start-line="228" selection-start-column="24" selection-end-line="228" selection-end-column="24" />
+        <state relative-caret-position="485">
+          <caret line="66" column="200" lean-forward="false" selection-start-line="66" selection-start-column="200" selection-end-line="66" selection-end-column="200" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1458,28 +1503,20 @@
             <element signature="n#style#0;n#button#1;n#p#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#6;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#11;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#10;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#12;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#14;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#13;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#15;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#16;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#1;n#p#0;n#div#0;n#div#16;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#17;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="1741" column="0" lean-forward="true" selection-start-line="1741" selection-start-column="0" selection-end-line="1741" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#75#0" expanded="true" />
+            <element signature="n#style#0;n#div#16;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#17;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#p#0;n#div#0;n#div#17;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#18;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
