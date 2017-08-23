@@ -4,6 +4,11 @@ register = Library()
 
 @register.simple_tag
 def is_media_plan_disabled(request):
-    if Asset.objects.get(assetOwner=request.user).assetMyMensorPlan == "MyMensor Media":
+    try:
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        currentuserplan = currentAsset.assetMyMensorPlan
+    except:
+        return
+    if currentuserplan == "MyMensor Media":
         return "disabled"
     return
