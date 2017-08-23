@@ -3,7 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from mymensor.models import BraintreeCustomer, Asset, BraintreeSubscription, BraintreePlan, BraintreeMerchant, \
     BraintreePrice
-import braintree, json
+import braintree, json, pytz
+from datetime import datetime, timedelta, date
 from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
     BRAINTREE_PRODUCTION
 
@@ -112,6 +113,7 @@ def startsubscription(request):
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "paypal_account":
                 btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
                 btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
+            btsubscription.braintreesubscriptionPlanMymensorTypeLastChangeDate=datetime.now(pytz.utc)
             btcustomer.save()
             btsubscription.save()
             succesful = True
@@ -194,6 +196,7 @@ def changesubscriptionplan(request):
             if btsubscription.braintreesubscriptionPaymentInstrumentType == "paypal_account":
                 btsubscription.braintreesubscriptionPayPalBillingAgreementId = payment_method_result.billing_agreement_id
                 btsubscription.braintreesubscriptionPayPalEmail = payment_method_result.email
+            btsubscription.braintreesubscriptionPlanMymensorTypeLastChangeDate = datetime.now(pytz.utc)
             btcustomer.save()
             btsubscription.save()
             succesful = True

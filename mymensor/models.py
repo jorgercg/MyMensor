@@ -12,7 +12,6 @@ class BraintreePlan(models.Model):
     braintreeplanPlanName = models.CharField(max_length=1024)
     braintreeplanPlanId = models.CharField(max_length=1024)
     braintreeplanPlanMymensorType = models.CharField(max_length=1024, default="MEDIAANDDATA")
-    braintreeplanPlanMymensorTypeLastChangeDate = models.DateTimeField(auto_now=False, null=True)
     braintreeplanCurrency = models.CharField(max_length=50, choices=CURRENCY_CHOICES, default='USD')
     braintreeplanBillingCycleQty = models.IntegerField()
     braintreeplanBillingCycleUnit = models.CharField(max_length=255)
@@ -56,6 +55,7 @@ class BraintreeSubscription(models.Model):
     braintreesubscriptionPayPalEmail = models.CharField(max_length=1024, null=True)
     braintreesubscriptionLastDay = models.DateTimeField(auto_now=False, null=True)
     braintreesubscriptionDBTimeStamp = models.DateTimeField(auto_now=True, null=True)
+    braintreesubscriptionPlanMymensorTypeLastChangeDate = models.DateTimeField(auto_now=False, null=True)
     braintreecustomer = models.ForeignKey(BraintreeCustomer, on_delete=models.CASCADE)
     braintreeprice = models.ForeignKey(BraintreePrice, on_delete=None)
 
