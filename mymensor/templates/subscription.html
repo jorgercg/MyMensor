@@ -135,23 +135,6 @@
                                    role="button">{% trans "Subscribe Now!" %}</a>
                             </div>
                         </div>
-                    {% else %}
-                        <div class="row" style="padding-top:20px; padding-bottom: 20px">
-                            <h3>{% trans "Current Subscription Status" %}</h3>
-                        </div>
-                        <div class="row" style="padding-bottom: 20px">
-                            <div class="col">
-                                <p>
-                                    {% trans "You are using the " %}{{ currentuserplan | timeuntil }}{% trans " Plan" %}</p>
-                                <p>
-                                    {% trans "Status: " %}{{ btsubscription.braintreesubscriptionSubscriptionStatus }}</p>
-                            </div>
-                        </div>
-                        <div class="row" style="padding-bottom: 20px">
-                            <div class="col">
-                                <p>{% trans "If you wish, please contact support about your current status." %}</p>
-                            </div>
-                        </div>
                     {% endif %}
                 {% else %}
                     <div class="row" style="padding-top:20px; padding-bottom: 20px">
