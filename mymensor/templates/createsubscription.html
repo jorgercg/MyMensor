@@ -12,7 +12,9 @@
                 <p></p>
             </div>
             <div class="row" style="padding-bottom: 20px">
-                <div class="col-sm-8">
+                <div class="col">
+                    <p>
+                        {% trans "You will subscribe to the <b>" %}{{ currentuserplan }}{% trans " Plan</b> " %}</p>
                     <p></p>
                     <p>{% trans "Please choose below which of the available currencies you want to use for payment, after that you will be taken to the payment page:" %}</p>
                     <p></p>
@@ -20,9 +22,9 @@
                         {% for btplan in availablebtplans %}
                             {% for price in availablebtprices %}
                                 {% if price.braintreeplan == btplan %}
-                                <option id="op{{ price.id }}" value='{{ price.id }}'
-                                        {% if price == currentbtprice %}selected{% endif %}>
-                                    {% trans "I will pay for the plan " %}{{ btplan.braintreeplanPlanName }}{% trans " an amount of " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
+                                    <option id="op{{ price.id }}" value='{{ price.id }}'
+                                            {% if price == currentbtprice %}selected{% endif %}>
+                                        {% trans "I will pay for the plan " %}{{ btplan.braintreeplanPlanName }}{% trans " an amount of " %}{{ price.braintreemerchant.braintreemerchCurrency }}{{ price.braintrepricePrice|floatformat:2 }}{% trans " per month" %}</option>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
