@@ -17,8 +17,9 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
-    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS
-import json, boto3, urllib, pytz, urllib2
+    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS, BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
+    BRAINTREE_PRODUCTION
+import json, boto3, urllib, pytz, urllib2, braintree
 from botocore.exceptions import ClientError
 from datetime import datetime, timedelta, date
 from mymensor.forms import AssetForm, VpForm, TagForm
@@ -1745,15 +1746,27 @@ def fbsecstagelogout(request):
 @user_passes_test(group_check)
 def subscription(request):
     if request.method == "GET":
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         try:
             btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
             btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
             btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
+            currentbtsubstatus = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
         except:
             btsubscription = None
             btprice = None
             btmercht = None
+            currentbtsubstatus = None
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         currentuserplan = currentAsset.assetMyMensorPlan
@@ -1767,7 +1780,7 @@ def subscription(request):
         swalchgbtnsuccesstitle = _("Done!")
         swalchgbtncanceltitle = _("No change!")
         return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer, 'btprice':btprice, 'btmercht':btmercht,
-                                                     'btsubscription': btsubscription, 'currentuserplan': currentuserplan,
+                                                     'btsubscription': btsubscription, 'currentuserplan': currentuserplan, 'currentbtsubstatus':currentbtsubstatus,
                                                      'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription,
                                                      'swalchgbtntitle':swalchgbtntitle,'swalchgbtntext':swalchgbtntext, 'swalchgbtnconfirmButtonText':swalchgbtnconfirmButtonText,
                                                      'swalchgbtncancelButtonText': swalchgbtncancelButtonText,
