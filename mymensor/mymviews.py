@@ -1783,8 +1783,8 @@ def changeplan(request):
         elif currentuserplan == "MyMensor Media":
             currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
             currentAsset.save()
-        subscription(request)
-    return  HttpResponse(status=404)
+        return subscription(request)
+    return  HttpResponse(status=402)
 
 
 @login_required
