@@ -41,7 +41,7 @@
                                    role="button">
                                     {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                             {% endif %}
-                            <p>{{ currentbtsubstatus.plan_id }}</p>
+                            <p>{{ currentbtsubstatus.next_billing_period_amount }}  {{ currentbtsubstatus.billing_day_of_month }}  {{ currentbtsubstatus.balance }}</p>
                         </div>
                     </div>
                     {% if btsubscription.braintreesubscriptionSubscriptionStatus == "Active" %}
