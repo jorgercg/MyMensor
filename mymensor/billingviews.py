@@ -164,7 +164,7 @@ def changesubscriptionplan(request):
         succesful = False
         # try:
         result = braintree.Subscription.update(btsubscription.braintreesubscriptionSubscriptionId, {
-            "price": btprice.braintrepricePrice,
+            "price": str(btprice.braintrepricePrice),
             "merchant_account_id": btmerchant.braintreemerchMerchId,
             "plan_id": btplan.braintreeplanPlanId
         })
