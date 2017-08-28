@@ -295,7 +295,8 @@
 
             var mymap = L.map('landingmapid', {
                 center: [{{ loclatitude }}, {{ loclongitude }}],
-                zoom: zoomlevel
+                zoom: zoomlevel,
+                preferCanvas: true
             });
 
             var id = 'appmymensor-47cc2df8';
