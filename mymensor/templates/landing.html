@@ -293,7 +293,10 @@
             var zoomlevel = 10;
             var precision = {{ locprecisioninm | floatformat:3 }};
 
-            var mymap = L.map('landingmapid').setView([{{ loclatitude }}, {{ loclongitude }}], zoomlevel);
+            var mymap = L.map('landingmapid', {
+                center: [{{ loclatitude }}, {{ loclongitude }}],
+                zoom: zoomlevel
+            });
 
             var id = 'appmymensor-47cc2df8';
 
