@@ -61,13 +61,15 @@
                                                                  width="46" height="46"
                                                                  class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
+            {% if request.user.username == "jorge" %}
 
+            {% endif %}
         </a>
     </nav>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-sm-6">
-                {% if mediaContentType == "image/jpeg" %}
+            {% if mediaContentType == "image/jpeg" %}
+                <div class="col-sm-6">
                     <div class="card card-outline-primary m-2 landingcard">
                         <div class="card-block">
                             <p class="card-text">
@@ -130,8 +132,8 @@
                             {% endif %}
                         </ul>
                     </div>
-                    </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
                     <div class="card card-outline-primary m-2 landingcard">
                         <div class="card-block">
                             <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
@@ -146,8 +148,10 @@
                                 {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                         </ul>
                     </div>
-                {% endif %}
-                {% if mediaContentType == "video/mp4" %}
+                </div>
+            {% endif %}
+            {% if mediaContentType == "video/mp4" %}
+                <div class="col-sm-6">
                     <div class="card card-outline-primary m-2 landingcard">
                         <div class="card-block">
                             <p class="card-text">
@@ -212,8 +216,8 @@
                             {% endif %}
                         </ul>
                     </div>
-                    </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="col-sm-6">
                     <div class="card card-outline-primary m-2 landingcard">
                         <div class="card-block">
                             <p class="card-text font-weight-bold">Location details</p>
@@ -228,113 +232,113 @@
                                 {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                         </ul>
                     </div>
-                {% endif %}
-
                 </div>
-            <!-- Modal -->
-            <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
-                        </div>
+            {% endif %}
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img id="mediaContent" class="img-fluid" src="{{ mediaStorageURL }}" alt="">
                     </div>
                 </div>
-            </div>
-            <div id="footer-dash" class="mym-dash">
-                <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
-                    <div class="mym-dash-item">
-                        <canvas id="qrcodenew"></canvas>
-                    </div>
-                    <div class="mym-dash-item">
-                        <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
-                            {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
-                            {% trans "Please use the code to the left or the following address to validate this media online." %}
-                            <a href="{{ mediaCheckURL }}">{{ mediaCheckURL }}</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Footer -->
-            {% block footer %}{% endblock %}
-        </div><!-- /.container -->
-        <div class="row language-selector">
-            <div class="col-md-5 mb-5">
-                <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
-                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select id="languageselect" name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                    selected="selected"{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
-                </form>
             </div>
         </div>
-        <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-        <script src="{% static "js/tether.min.js" %}"></script>
-        <script src="{% static "js/bootstrap.min.js" %}"></script>
-        <script src="{% static "js/leaflet.js" %}"></script>
-        <script src="{% static "js/mymensor-jquery.js" %}"></script>
-        <script src="{% static "js/qrious.min.js" %}"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-        <!-- Page Local Scripts
-        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-        <script>
-            var zoomlevel = 10;
-            var precision = {{ locprecisioninm | floatformat:3 }};
+        <div id="footer-dash" class="mym-dash">
+            <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
+                <div class="mym-dash-item">
+                    <canvas id="qrcodenew"></canvas>
+                </div>
+                <div class="mym-dash-item">
+                    <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
+                        {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
+                        {% trans "Please use the code to the left or the following address to validate this media online." %}
+                        <a href="{{ mediaCheckURL }}">{{ mediaCheckURL }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
 
-            var mymap = L.map('landingmapid', {
-                center: [{{ loclatitude }}, {{ loclongitude }}],
-                zoom: zoomlevel,
-                preferCanvas: true
-            });
 
-            var id = 'appmymensor-47cc2df8';
+        <!-- Footer -->
+        {% block footer %}{% endblock %}
+    </div><!-- /.container -->
+    <div class="row language-selector">
+        <div class="col-md-5 mb-5">
+            <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
+                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                <select id="languageselect" name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                selected="selected"{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
+            </form>
+        </div>
+    </div>
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "js/tether.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/leaflet.js" %}"></script>
+    <script src="{% static "js/mymensor-jquery.js" %}"></script>
+    <script src="{% static "js/qrious.min.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <!-- Page Local Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script>
+        var zoomlevel = 10;
+        var precision = {{ locprecisioninm | floatformat:3 }};
 
-            var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
+        var mymap = L.map('landingmapid', {
+            center: [{{ loclatitude }}, {{ loclongitude }}],
+            zoom: zoomlevel,
+            preferCanvas: true
+        });
 
-            var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
-                '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+        var id = 'appmymensor-47cc2df8';
 
-            L.tileLayer(host, {
-                id: id,
-                attribution: attribution
-            }).addTo(mymap);
+        var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
 
-            var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+        var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
+            '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
-            var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
-                color: 'red',
-                fillColor: '#f03',
-                fillOpacity: 0.5,
-                radius: precision
-            }).addTo(mymap);
+        L.tileLayer(host, {
+            id: id,
+            attribution: attribution
+        }).addTo(mymap);
 
-            mymap.fitBounds(circle.getBounds());
+        var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
 
-            var qr = new QRious({
-                element: document.getElementById('qrcodenew'),
-                padding: 0,
-                size: 50,
-                value: '{{ mediaCheckURL }}'
-            });
+        var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: precision
+        }).addTo(mymap);
 
-            console.log("{{ request.user.username }}");
+        mymap.fitBounds(circle.getBounds());
 
-        </script>
-        {% block javascript %}{% endblock %}
+        var qr = new QRious({
+            element: document.getElementById('qrcodenew'),
+            padding: 0,
+            size: 50,
+            value: '{{ mediaCheckURL }}'
+        });
+
+        console.log("{{ request.user.username }}");
+
+    </script>
+    {% block javascript %}{% endblock %}
     </body>
     </html>
 {% endlocaltime %}
