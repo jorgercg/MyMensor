@@ -300,9 +300,37 @@
     <script>
 
 
-        function toDataURL(url, callback) {
+        function createCORSRequest(method, url) {
             var xhr = new XMLHttpRequest();
-            xhr.open('get', url);
+            if ("withCredentials" in xhr) {
+
+                // Check if the XMLHttpRequest object has a "withCredentials" property.
+                // "withCredentials" only exists on XMLHTTPRequest2 objects.
+                xhr.open(method, url, true);
+
+            } else if (typeof XDomainRequest != "undefined") {
+
+                // Otherwise, check if XDomainRequest.
+                // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                xhr = new XDomainRequest();
+                xhr.open(method, url);
+
+            } else {
+
+                // Otherwise, CORS is not supported by the browser.
+                xhr = null;
+
+            }
+            return xhr;
+        }
+
+        function toDataURL(url, callback) {
+            //var xhr = new XMLHttpRequest();
+            var xhr = createCORSRequest('GET', url);
+            if (!xhr) {
+                throw new Error('CORS not supported');
+            } else {
+                xhr.open('get', url);
             xhr.responseType = 'blob';
             xhr.onload = function () {
                 var fr = new FileReader();
@@ -313,13 +341,13 @@
 
                 fr.readAsDataURL(xhr.response); // async call
             };
-
             xhr.send();
+            }
         }
 
         var encodedContent;
 
-        toDataURL(mediaimg.src , function (dataURL) {
+        toDataURL(mediaimg.src, function (dataURL) {
             encodedContent = dataURL;
             console.log("Encoding DONE!");
         });
@@ -373,7 +401,7 @@
                 content: [
                     'This is an sample PDF printed with pdfMake',
                     {
-                        image: 'data:image/jpeg;base64,'+encodedContent,
+                        image: 'data:image/jpeg;base64,' + encodedContent,
                         width: 150
                     }
                 ],
