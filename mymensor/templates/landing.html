@@ -319,7 +319,7 @@
 
         var encodedContent;
 
-        toDataURL(mediaimg.src , function (dataURL) {
+        toDataURL("{{ mediaStorageURL }}" , function (dataURL) {
             encodedContent = dataURL;
             console.log("Encoding DONE!");
         });
