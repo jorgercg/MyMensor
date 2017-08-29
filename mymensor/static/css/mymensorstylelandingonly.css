@@ -405,10 +405,18 @@ p {
 }
 
 .pdfbtn {
+    height: 100%;
     color: red;
     float: right;
     margin-left: 1rem;
     line-height: inherit;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 
 
