@@ -330,18 +330,18 @@
             if (!xhr) {
                 throw new Error('CORS not supported');
             } else {
-                xhr.open('get', url);
-            xhr.responseType = 'blob';
-            xhr.onload = function () {
-                var fr = new FileReader();
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.onload = function () {
+                    var fr = new FileReader();
 
-                fr.onload = function () {
-                    callback(this.result);
+                    fr.onload = function () {
+                        callback(this.result);
+                    };
+
+                    fr.readAsDataURL(xhr.response); // async call
                 };
-
-                fr.readAsDataURL(xhr.response); // async call
-            };
-            xhr.send();
+                xhr.send();
             }
         }
 
