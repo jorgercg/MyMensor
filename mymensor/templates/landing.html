@@ -62,7 +62,7 @@
                                                                  class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
             {% if request.user.username == "jorge" %}
-                <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="bottom"
+                <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="left"
                       title="{% trans 'Download Media Check PDF file' %}"></span>
             {% endif %}
         </a>
@@ -342,6 +342,22 @@
         $('#pdfgenbtn').click(function (event) {
             event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
+
+            var docDefinition = {
+                info: {
+                    title: 'awesome Document',
+                    author: 'john doe',
+                    subject: 'subject of document',
+                    keywords: 'keywords for document',
+                    creator: '',
+                    producer: ''
+                },
+                content: 'This is an sample PDF printed with pdfMake'
+            };
+
+            pdfMake.createPdf(docDefinition).download();
+
+
         });
 
     </script>
