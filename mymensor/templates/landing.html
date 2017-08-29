@@ -333,6 +333,7 @@
                 xhr.open('GET', url);
                 xhr.responseType = 'blob';
                 xhr.setRequestHeader('X-Custom-Header', 'tstvalue');
+                xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
                 xhr.onload = function () {
                     var fr = new FileReader();
 
