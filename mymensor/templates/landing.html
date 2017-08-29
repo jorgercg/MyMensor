@@ -306,7 +306,7 @@
 
                 // Check if the XMLHttpRequest object has a "withCredentials" property.
                 // "withCredentials" only exists on XMLHTTPRequest2 objects.
-                xhr.open(method, url, false);
+                xhr.open(method, url, true);
 
             } else if (typeof XDomainRequest != "undefined") {
 
@@ -333,7 +333,7 @@
                 xhr.open('GET', url);
                 xhr.responseType = 'blob';
                 xhr.setRequestHeader('X-Custom-Header', 'tstvalue');
-                xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                xhr.setRequestHeader('Access-Control-Allow-Origin', 'https://app.mymensor.com');
                 xhr.onload = function () {
                     var fr = new FileReader();
 
