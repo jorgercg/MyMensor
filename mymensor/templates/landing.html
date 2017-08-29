@@ -332,6 +332,7 @@
             } else {
                 xhr.open('GET', url);
                 xhr.responseType = 'blob';
+                xhr.setRequestHeader('X-Custom-Header', 'tstvalue');
                 xhr.onload = function () {
                     var fr = new FileReader();
 
@@ -340,6 +341,9 @@
                     };
 
                     fr.readAsDataURL(xhr.response); // async call
+                };
+                xhr.onerror = function () {
+                    console.log('Oops, there was an error making the request.');
                 };
                 xhr.send();
             }
