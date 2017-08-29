@@ -298,6 +298,32 @@
     <!-- Page Local Scripts
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script>
+
+
+        function toDataURL(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', url);
+            xhr.responseType = 'blob';
+            xhr.onload = function () {
+                var fr = new FileReader();
+
+                fr.onload = function () {
+                    callback(this.result);
+                };
+
+                fr.readAsDataURL(xhr.response); // async call
+            };
+
+            xhr.send();
+        }
+
+        var encodedContent;
+
+        toDataURL("{{ mediaStorageURL }}", function (dataURL) {
+            encodedContent = dataURL;
+            console.log("Encoding DONE!");
+        });
+
         var zoomlevel = 10;
         var precision = {{ locprecisioninm | floatformat:3 }};
 
@@ -344,16 +370,23 @@
             console.log("Clicked on: PDFGENBTN");
 
             var docDefinition = {
+                content: [
+                    'This is an sample PDF printed with pdfMake',
+                    {
+                        image: 'data:image/jpeg;base64,'+encodedContent,
+                        width: 150
+                    }
+                ],
                 info: {
                     title: 'awesome Document',
                     author: 'john doe',
                     subject: 'subject of document',
                     keywords: 'keywords for document',
-                    creator: 'asdfgCreator',
-                    producer: 'asdfgProducer'
-                },
-                content: 'This is an sample PDF printed with pdfMake'
+                    creator: 'MyMensor',
+                    producer: 'MyMensor'
+                }
             };
+
 
             pdfMake.createPdf(docDefinition).download();
 
