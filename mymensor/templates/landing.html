@@ -318,6 +318,7 @@
 
         convertFileToDataURLviaFileReader(mediaimg.src, function (dataURL) {
             encodedContent = dataURL;
+            console.log("data:"+encodedContent);
             console.log("Encoding DONE!");
         });
 
