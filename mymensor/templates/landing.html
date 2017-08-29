@@ -246,7 +246,7 @@
                 </div>
             </div>
         </div>
-        <div id="footer-dash" class="mym-dash">
+        <div id="footer-dash">
             <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
                 <div class="mym-dash-item">
                     <canvas id="qrcodenew"></canvas>
@@ -265,25 +265,23 @@
         <!-- Footer -->
         {% block footer %}{% endblock %}
 
-        <div class="row language-selector">
-            <div class="col-md-5 mb-5">
-                <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                    <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
-                    <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                    <select id="languageselect" name="language">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        {% get_available_languages as LANGUAGES %}
-                        {% get_language_info_list for LANGUAGES as languages %}
-                        {% for language in languages %}
-                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                    selected="selected"{% endif %}>
-                                {{ language.name_local }} ({{ language.code }})
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
-                </form>
-            </div>
+        <div class="language-selector d-flex justify-content-sm-start flex-nowrap">
+            <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
+                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                <select id="languageselect" name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                selected="selected"{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
+            </form>
         </div>
     </div><!-- /.container -->
     <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
