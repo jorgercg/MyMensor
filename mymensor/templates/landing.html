@@ -62,8 +62,8 @@
                                                                  class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
             {% if request.user.username == "jorge" %}
-                <span class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="top"
-                                          title="{% trans 'Download Media Check PDF file' %}"></span>
+                <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="bottom"
+                      title="{% trans 'Download Media Check PDF file' %}"></span>
             {% endif %}
         </a>
     </nav>
@@ -338,6 +338,11 @@
         });
 
         console.log("{{ request.user.username }}");
+
+        $('#pdfgenbtn').click(function (event) {
+            event.preventDefault();
+            console.log("Clicked on: PDFGENBTN");
+        });
 
     </script>
     {% block javascript %}{% endblock %}
