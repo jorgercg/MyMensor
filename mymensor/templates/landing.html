@@ -302,6 +302,7 @@
 
         function toDataURL(url, callback) {
             var xhr = new XMLHttpRequest();
+            xhr.setRequestHeader("Access-Control-Request-Headers", "Authorization");
             xhr.open('get', url);
             xhr.responseType = 'blob';
             xhr.onload = function () {
