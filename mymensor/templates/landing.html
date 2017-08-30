@@ -113,10 +113,10 @@
             };
             img.src = url;
         }
-
-        convertFileToDataURLviaFileReader("{{ mediaStorageURL | escapejs}}", function (dataURL) {
+        {% autoescape off %}
+        convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
             encodedContent = dataURL;
-
+        {% endautoescape %}
         });
 
 
