@@ -316,6 +316,7 @@
     <script src="{% static "js/tether.min.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/leaflet.js" %}"></script>
+    <script src="{% static "js/leaflet-image.js" %}"></script>
     <script src="{% static "js/mymensor-jquery.js" %}"></script>
     <script src="{% static "js/qrious.min.js" %}"></script>
     <script src="{% static "js/pdfmake.min.js" %}"></script>
@@ -326,6 +327,7 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script>
         var encodedContent;
+        var encodedMapContent;
 
         function convertFileToDataURLviaFileReader(url, callback) {
             var xhr = new XMLHttpRequest();
@@ -397,11 +399,20 @@
             event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
 
+            leafletImage(mymap, function (err, canvas) {
+                encodedMapContent = canvas.toDataURL();
+            });
+
             var docDefinition = {
                 content: [
                     'This is an sample PDF printed with pdfMake',
                     {
                         image: encodedContent,
+                        width: 150
+                    },
+                    'This is a map:',
+                    {
+                        image: encodedMapContent,
                         width: 150
                     }
                 ],
