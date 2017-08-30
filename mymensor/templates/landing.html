@@ -344,9 +344,13 @@
         {% autoescape off %}
             convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
                 encodedContent = dataURL;
-                document.getElementById("mediaimg").src = encodedContent;
-                document.getElementById("mediaimgthumb").src = encodedContent;
-                document.getElementById("mediaContent").src = encodedContent;
+                {% if mediaContentType == "image/jpeg" %}
+                    document.getElementById("mediaimg").src = encodedContent;
+                    document.getElementById("mediaContent").src = encodedContent;
+                {% endif %}
+                {% if mediaContentType == "video/mp4" %}
+                    document.getElementById("mediaimgthumb").src = encodedContent;
+                {% endif %}
             });
         {% endautoescape %}
 
