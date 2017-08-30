@@ -401,34 +401,31 @@
 
             leafletImage(mymap, function (err, canvas) {
                 encodedMapContent = canvas.toDataURL();
-            });
-
-            var docDefinition = {
-                content: [
-                    'This is an sample PDF printed with pdfMake',
-                    {
-                        image: encodedContent,
-                        width: 150
-                    },
-                    'This is a map:',
-                    {
-                        image: encodedMapContent,
-                        width: 150
+                var docDefinition = {
+                    content: [
+                        'This is an sample PDF printed with pdfMake',
+                        {
+                            image: encodedContent,
+                            width: 150
+                        },
+                        'This is a map:',
+                        {
+                            image: encodedMapContent,
+                            width: 150
+                        }
+                    ],
+                    info: {
+                        title: 'awesome Document',
+                        author: 'john doe',
+                        subject: 'subject of document',
+                        keywords: 'keywords for document',
+                        creator: 'MyMensor',
+                        producer: 'MyMensor'
                     }
-                ],
-                info: {
-                    title: 'awesome Document',
-                    author: 'john doe',
-                    subject: 'subject of document',
-                    keywords: 'keywords for document',
-                    creator: 'MyMensor',
-                    producer: 'MyMensor'
-                }
-            };
+                };
 
-
-            pdfMake.createPdf(docDefinition).download();
-
+                pdfMake.createPdf(docDefinition).download();
+            });
 
         });
 
