@@ -67,6 +67,62 @@
             {% endif %}
         </a>
     </nav>
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "js/tether.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/leaflet.js" %}"></script>
+    <script src="{% static "js/mymensor-jquery.js" %}"></script>
+    <script src="{% static "js/qrious.min.js" %}"></script>
+    <script src="{% static "js/pdfmake.min.js" %}"></script>
+    <script src="{% static "js/vfs_fonts.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <!-- Page Local Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script>
+        var encodedContent;
+
+
+        function convertFileToDataURLviaFileReader(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    callback(reader.result);
+                };
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+
+        function convertImgToDataURLviaCanvas(url, callback, outputFormat) {
+            var img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.onload = function () {
+                var canvas = document.createElement('CANVAS');
+                var ctx = canvas.getContext('2d');
+                var dataURL;
+                canvas.height = this.height;
+                canvas.width = this.width;
+                ctx.drawImage(this, 0, 0);
+                dataURL = canvas.toDataURL(outputFormat);
+                callback(dataURL);
+                canvas = null;
+            };
+            img.src = url;
+        }
+
+        convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
+            encodedContent = dataURL;
+
+        });
+
+
+
+
+    </script>
     <div class="container-fluid">
         <div class="row justify-content-center">
             {% if mediaContentType == "image/jpeg" %}
@@ -285,44 +341,8 @@
             </form>
         </div>
     </div><!-- /.container -->
-    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-    <script src="{% static "js/tether.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/leaflet.js" %}"></script>
-    <script src="{% static "js/mymensor-jquery.js" %}"></script>
-    <script src="{% static "js/qrious.min.js" %}"></script>
-    <script src="{% static "js/pdfmake.min.js" %}"></script>
-    <script src="{% static "js/vfs_fonts.js" %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-    <!-- Page Local Scripts
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
     <script>
-
-        var encodedContent;
-
-        function convertImgToDataURLviaCanvas(url, callback, outputFormat) {
-            var img = new Image();
-            img.crossOrigin = 'Anonymous';
-            img.onload = function () {
-                var canvas = document.createElement('CANVAS');
-                var ctx = canvas.getContext('2d');
-                var dataURL;
-                canvas.height = this.height;
-                canvas.width = this.width;
-                ctx.drawImage(this, 0, 0);
-                dataURL = canvas.toDataURL(outputFormat);
-                callback(dataURL);
-                canvas = null;
-            };
-            img.src = url;
-        }
-
-        convertImgToDataURLviaCanvas(mediaimg.src, function (dataURL) {
-            encodedContent = dataURL;
-            console.log("data:" + encodedContent);
-            console.log("Encoding DONE!");
-        });
 
         var zoomlevel = 10;
         var precision = {{ locprecisioninm | floatformat:3 }};
@@ -362,8 +382,6 @@
             size: 50,
             value: '{{ mediaCheckURL }}'
         });
-
-        console.log("{{ request.user.username }}");
 
         $('#pdfgenbtn').click(function (event) {
             event.preventDefault();
