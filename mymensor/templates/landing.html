@@ -420,6 +420,8 @@
                             width: 500
                         },
                         '\n',
+                        {text: qrcodevalue, link: qrcodevalue},
+                        '\n',
                         {qr: qrcodevalue, fit: 150, alignment: 'right'}
                     ],
                     info: {
@@ -432,7 +434,7 @@
                     }
                 };
 
-                pdfMake.createPdf(docDefinition).download();
+                pdfMake.createPdf(docDefinition).download({defaultFileName:"mymensormediacheck.pdf"});
             });
 
         });
