@@ -395,6 +395,10 @@
             value: '{{ mediaCheckURL }}'
         });
 
+        {% autoescape off %}
+        var qrcodevalue = '{{ mediaCheckURL }}';
+        {% endautoescape %}
+
         $('#pdfgenbtn').click(function (event) {
             event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
@@ -406,13 +410,15 @@
                         'This is an sample PDF printed with pdfMake',
                         {
                             image: encodedContent,
-                            width: 150
+                            width: 450
                         },
                         'This is a map:',
                         {
                             image: encodedMapContent,
-                            width: 150
-                        }
+                            width: 450
+                        },
+                        '\n',
+                        {qr: qrcodevalue, fit: 150, alignment: 'right'}
                     ],
                     info: {
                         title: 'awesome Document',
