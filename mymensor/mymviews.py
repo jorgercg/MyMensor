@@ -17,7 +17,8 @@ from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox,
 from mymensor.serializer import AmazonSNSNotificationSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
-    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS, BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
+    TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS, BRAINTREE_MERCHANT_ID, \
+    BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
     BRAINTREE_PRODUCTION
 import json, boto3, urllib, pytz, urllib2, braintree
 from botocore.exceptions import ClientError
@@ -90,7 +91,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                                                               Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                       'Key': mediaObjectS3KeyEncoded},
                                                               ExpiresIn=3600)
-            mediaStorageURLHeader = mediaStorageURL
+            videoStorageURL = mediaStorageURL
             s3 = session.resource('s3')
             object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
             object.load()
@@ -99,8 +100,19 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
             mediaCheckURLOG = u''.join(['https://app.mymensor.com/mcurl/']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
             mediaCheckURLOG = mediaCheckURLOG + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+            if object.content_type == 'video/mp4':
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
+                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
+                mediaObjectS3KeyEncodedHeader = urllib.quote(
+                    'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
+                mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                  Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                          'Key': mediaObjectS3KeyEncodedHeader},
+                                                                  ExpiresIn=3600)
+
             if obj_metadata['sha-256'] == requestsignature:
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
+                                                        'videoStorageURL':videoStorageURL,
                                                         'mediaCheckURLOG': mediaCheckURLOG,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
@@ -359,8 +371,11 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate',(datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = datetime.strptime(
+            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
@@ -384,11 +399,11 @@ def portfolio(request):
             maxcolumns = 9
         elif 'tencolumn' in maxcolumnstxt:
             maxcolumns = 10
-        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp',maxcolumns)))
+        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', maxcolumns)))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -445,7 +460,7 @@ def portfolio(request):
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
                        'showonlyloccert': showonlyloccert,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
-                           'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers })
+                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers})
 
 
 # Location View
@@ -461,17 +476,18 @@ def location(request):
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
         startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         enddate = datetime.strptime(
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showlocationprecision = int(request.GET.get('showlocationprecision', request.session.get('showlocationprecision',0)))
-        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert',1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert',1)))
-        showuserpath = int(request.GET.get('showuserpath', request.session.get('showuserpath',0)))
+        showlocationprecision = int(
+            request.GET.get('showlocationprecision', request.session.get('showlocationprecision', 0)))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
+        showuserpath = int(request.GET.get('showuserpath', request.session.get('showuserpath', 0)))
         centerlat = float(request.GET.get('centerlat', 0))
         centerlng = float(request.GET.get('centerlng', 0))
         mapzoom = int(request.GET.get('mapzoom', 0))
@@ -524,7 +540,7 @@ def location(request):
                                                                                  Params={'Bucket': AWS_S3_BUCKET_NAME,
                                                                                          'Key': mediaObjectS3KeyForThumbnail},
                                                                                  ExpiresIn=3600)
-        request.session['showonlyloccert']=showonlyloccert
+        request.session['showonlyloccert'] = showonlyloccert
         request.session['showonlytimecert'] = showonlytimecert
         request.session['showuserpath'] = showuserpath
         request.session['showlocationprecision'] = showlocationprecision
@@ -764,7 +780,8 @@ def tagSetupFormView(request):
             qtytagsindatabase = listoftagsindatabase.count()
             form = TagForm(request.POST, instance=tag)
         except tag.DoesNotExist:
-            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(vpNumber=currentvp).get())
+            tag = Tag(vp=Vp.objects.filter(vpIsActive=True).filter(asset__assetOwner=request.user).filter(
+                vpNumber=currentvp).get())
             lasttag = Tag.objects.filter(vp__asset__assetOwner=request.user).order_by('tagNumber').last()
             vpoflasttag = lasttag.vp
             listoftagsindatabase = Tag.objects.filter(vp__asset__assetOwner=request.user)
@@ -783,7 +800,8 @@ def tagSetupFormView(request):
             taginstance.delete()
         qtytagsinclient = int(request.GET.get('qtytags', qtytagsindatabase))
         if qtytagsindatabase > 0:
-            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
+            listoftagsincurrentvp = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(
+                vp__vpNumber=currentvp).values_list('tagNumber', flat=True).order_by('tagNumber')
             qtytagsincurrentvp = listoftagsincurrentvp.count()
             if qtytagsincurrentvp > 0:
                 if currenttag_temp in listoftagsincurrentvp:
@@ -792,7 +810,7 @@ def tagSetupFormView(request):
                     currenttag = qtytagsinclient
                 else:
                     currenttag = listoftagsincurrentvp.first()
-                tag=Tag()
+                tag = Tag()
                 try:
                     tag = Tag.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=currentvp).filter(
                         tagNumber=currenttag).get()
@@ -937,7 +955,7 @@ def procTagEditView(request):
             request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
         enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp',5)))
+        qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', 5)))
 
         medias = Media.objects.filter(vp__vpIsActive=True).filter(mediaProcessed=True).filter(
             vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by(
@@ -1117,7 +1135,7 @@ def TagStatusView(request):
         except ClientError as e:
             error_code = e
         startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         enddate = datetime.strptime(
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
@@ -1168,7 +1186,7 @@ def TagStatusView(request):
 def export_tagstatus_csv(request):
     if request.method == 'GET':
         startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         enddate = datetime.strptime(
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
@@ -1223,7 +1241,7 @@ def tagAnalysisView(request):
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
         startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-        datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         enddate = datetime.strptime(
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
@@ -1411,7 +1429,7 @@ def vpDetailView(request):
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
             startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+                datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
             enddate = datetime.strptime(
                 request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
                 '%Y-%m-%d')
@@ -1770,23 +1788,27 @@ def subscription(request):
         currentAsset = Asset.objects.get(assetOwner=request.user)
         dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
         currentuserplan = currentAsset.assetMyMensorPlan
-        #put here the control to show or not the change plan button
+        # put here the control to show or not the change plan button
         mediaqty = Media.objects.filter(vp__asset__assetOwner=request.user).count()
         tagqty = Tag.objects.filter(vp__asset__assetOwner=request.user).count()
         processedtagqty = ProcessedTag.objects.filter(tag__vp__asset__assetOwner=request.user).count()
         swalchgbtntitle = _('Really Change Plan?')
-        swalchgbtntext = _('You will change plan immediately and in the next monthly payment you will be charged the new subscription rate, in the same currency as you pay now. There will be no prorating for downgrades in between billing cycles.')
+        swalchgbtntext = _(
+            'You will change plan immediately and in the next monthly payment you will be charged the new subscription rate, in the same currency as you pay now. There will be no prorating for downgrades in between billing cycles.')
         swalchgbtnconfirmButtonText = _('Confirm')
         swalchgbtncancelButtonText = _('Cancel')
         swalchgbtnsuccesstitle = _("Done!")
         swalchgbtncanceltitle = _("No change!")
-        return render(request, 'subscription.html', {'userloggedin': request.user, 'btcustomer': btcustomer, 'btprice':btprice, 'btmercht':btmercht,
-                                                     'btsubscription': btsubscription, 'currentuserplan': currentuserplan, 'currentbtsubstatus':currentbtsubstatus,
-                                                     'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription,
-                                                     'swalchgbtntitle':swalchgbtntitle,'swalchgbtntext':swalchgbtntext, 'swalchgbtnconfirmButtonText':swalchgbtnconfirmButtonText,
-                                                     'swalchgbtncancelButtonText': swalchgbtncancelButtonText,
-                                                     'swalchgbtnsuccesstitle': swalchgbtnsuccesstitle, 'swalchgbtncanceltitle': swalchgbtncanceltitle,
-                                                     'mediaqty':mediaqty, 'tagqty':tagqty ,'processedtagqty':processedtagqty})
+        return render(request, 'subscription.html',
+                      {'userloggedin': request.user, 'btcustomer': btcustomer, 'btprice': btprice, 'btmercht': btmercht,
+                       'btsubscription': btsubscription, 'currentuserplan': currentuserplan,
+                       'currentbtsubstatus': currentbtsubstatus,
+                       'dateofendoftrialbeforesubscription': dateofendoftrialbeforesubscription,
+                       'swalchgbtntitle': swalchgbtntitle, 'swalchgbtntext': swalchgbtntext,
+                       'swalchgbtnconfirmButtonText': swalchgbtnconfirmButtonText,
+                       'swalchgbtncancelButtonText': swalchgbtncancelButtonText,
+                       'swalchgbtnsuccesstitle': swalchgbtnsuccesstitle, 'swalchgbtncanceltitle': swalchgbtncanceltitle,
+                       'mediaqty': mediaqty, 'tagqty': tagqty, 'processedtagqty': processedtagqty})
     return HttpResponse(status=404)
 
 
@@ -1803,7 +1825,7 @@ def changeplan(request):
             currentAsset.assetMyMensorPlan = "MyMensor Media and Data"
             currentAsset.save()
         return subscription(request)
-    return  HttpResponse(status=404)
+    return HttpResponse(status=404)
 
 
 @login_required

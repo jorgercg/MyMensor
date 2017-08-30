@@ -67,62 +67,6 @@
             {% endif %}
         </a>
     </nav>
-    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
-    <script src="{% static "js/tether.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/leaflet.js" %}"></script>
-    <script src="{% static "js/mymensor-jquery.js" %}"></script>
-    <script src="{% static "js/qrious.min.js" %}"></script>
-    <script src="{% static "js/pdfmake.min.js" %}"></script>
-    <script src="{% static "js/vfs_fonts.js" %}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-    <!-- Page Local Scripts
-    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <script>
-        var encodedContent;
-
-
-        function convertFileToDataURLviaFileReader(url, callback) {
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                var reader = new FileReader();
-                reader.onloadend = function () {
-                    callback(reader.result);
-                };
-                reader.readAsDataURL(xhr.response);
-            };
-            xhr.open('GET', url);
-            xhr.responseType = 'blob';
-            xhr.send();
-        }
-
-        function convertImgToDataURLviaCanvas(url, callback, outputFormat) {
-            var img = new Image();
-            img.crossOrigin = 'Anonymous';
-            img.onload = function () {
-                var canvas = document.createElement('CANVAS');
-                var ctx = canvas.getContext('2d');
-                var dataURL;
-                canvas.height = this.height;
-                canvas.width = this.width;
-                ctx.drawImage(this, 0, 0);
-                dataURL = canvas.toDataURL(outputFormat);
-                callback(dataURL);
-                canvas = null;
-            };
-            img.src = url;
-        }
-        {% autoescape off %}
-        convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
-            encodedContent = dataURL;
-        {% endautoescape %}
-        });
-
-
-
-
-    </script>
     <div class="container-fluid">
         <div class="row justify-content-center">
             {% if mediaContentType == "image/jpeg" %}
@@ -156,8 +100,12 @@
                                 {% endif %}
                             </p>
                         </div>
-                        <a data-toggle="modal" data-target="#mediaModal" data-whatever="">
-                            <img id="mediaimg" class="card-img-top img-fluid" src="" alt="">
+                        <a data-toggle="modal"
+                           data-target="#mediaImageModal"
+                           data-whatever="">
+                            <img id="mediaimg" class="card-img-top img-fluid"
+                                 src=""
+                                 alt="">
                         </a>
                         <ul class="list-group list-group-flush">
                             {% if mediaArIsOn == "1" %}
@@ -238,11 +186,14 @@
                                 {% endif %}
                             </p>
                         </div>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <video controls>
-                                <source src="" type="video/mp4">
-                            </video>
-                        </div>
+                        <a data-toggle="modal"
+                           data-target="#mediaVideoModal"
+                           data-whatever=""><span
+                                class="fa fa-play-circle-o fa-4x thumbnail"></span>
+                            <img id="mediaimgthumb" class="card-img-top img-fluid"
+                                 src=""
+                                 alt="">
+                        </a>
                         <ul class="list-group list-group-flush">
                             {% if mediaArIsOn == "1" %}
                                 <li class="list-group-item"><span
@@ -292,13 +243,33 @@
                 </div>
             {% endif %}
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="mediaModal" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel"
+        <!-- Modal to Images -->
+        <div class="modal fade"
+             id="mediaImageModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-body">
                         <img id="mediaContent" class="img-fluid" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal to Videos -->
+        <div class="modal fade"
+             id="mediaVideoModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video controls>
+                                <source src="{{ videoStorageURL }}"
+                                        type="video/mp4">
+                            </video>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -341,8 +312,43 @@
             </form>
         </div>
     </div><!-- /.container -->
-
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "js/tether.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/leaflet.js" %}"></script>
+    <script src="{% static "js/mymensor-jquery.js" %}"></script>
+    <script src="{% static "js/qrious.min.js" %}"></script>
+    <script src="{% static "js/pdfmake.min.js" %}"></script>
+    <script src="{% static "js/vfs_fonts.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <!-- Page Local Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script>
+        var encodedContent;
+
+        function convertFileToDataURLviaFileReader(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    callback(reader.result);
+                };
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+
+        {% autoescape off %}
+            convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
+                encodedContent = dataURL;
+                document.getElementById("mediaimg").src = encodedContent;
+                document.getElementById("mediaimgthumb").src = encodedContent;
+                document.getElementById("mediaContent").src = encodedContent;
+            });
+        {% endautoescape %}
 
         var zoomlevel = 10;
         var precision = {{ locprecisioninm | floatformat:3 }};
