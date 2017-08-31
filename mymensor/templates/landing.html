@@ -396,7 +396,7 @@
         });
 
         {% autoescape off %}
-        var qrcodevalue = '{{ mediaCheckURL }}';
+            var qrcodevalue = '{{ mediaCheckURL }}';
         {% endautoescape %}
 
         $('#pdfgenbtn').click(function (event) {
@@ -406,23 +406,43 @@
             leafletImage(mymap, function (err, canvas) {
                 encodedMapContent = canvas.toDataURL();
                 var docDefinition = {
+                    pageSize: 'A4',
+                    pageOrientation: 'landscape',
+                    // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+                    pageMargins: [40, 60, 40, 60],
                     content: [
-                        'Media Captured',
+                        {text: 'MyMensor Media Check', fontSize: 20, decorationColor: 'blue', alignment: 'right'},
+                        '\n',
                         {
                             image: encodedContent,
                             alignment: 'center',
                             width: 500
                         },
-                        'Location',
+                        '\n',
                         {
                             image: encodedMapContent,
                             alignment: 'center',
                             width: 500
                         },
                         '\n',
-                        {text: qrcodevalue, link: qrcodevalue},
-                        '\n',
-                        {qr: qrcodevalue, fit: 150, alignment: 'right'}
+                        {
+                            columns: [
+                                {
+                                    width: '*',
+                                    text: qrcodevalue,
+                                    fontSize: 8,
+			                        italics: true,
+                                    decoration: 'underline',
+                                    decorationColor: 'blue',
+                                    link: qrcodevalue
+                                },
+                                {
+                                    width: '105',
+                                    qr: qrcodevalue,
+                                    fit: 100, alignment: 'center'
+                                }
+                            ]
+                        }
                     ],
                     info: {
                         title: 'awesome Document',
@@ -434,7 +454,7 @@
                     }
                 };
 
-                pdfMake.createPdf(docDefinition).download({defaultFileName:"mymensormediacheck.pdf"});
+                pdfMake.createPdf(docDefinition).download("mymensormediacheck.pdf");
             });
 
         });
