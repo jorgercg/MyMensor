@@ -156,7 +156,11 @@
                 <div class="col-sm-6">
                     <div class="card card-outline-primary m-2">
                         <div class="card-block">
-                            <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% if mediaLocIsCertified %}
+                                <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% else %}
+                                <p class="card-text font-weight-bold text-danger"><s>{% trans "Location details" %}</s> {% trans "NOT CERTIFIED" %}</p>
+                            {% endif %}
                         </div>
                         <div id="landingmapid"></div>
                         <ul class="list-group list-group-flush">
@@ -248,7 +252,11 @@
                 <div class="col-sm-6">
                     <div class="card card-outline-primary m-2">
                         <div class="card-block">
-                            <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% if mediaLocIsCertified %}
+                                <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% else %}
+                                <p class="card-text font-weight-bold text-danger"><s>{% trans "Location details" %}</s> {% trans "NOT CERTIFIED" %}</p>
+                            {% endif %}
                         </div>
                         <div id="landingmapid"></div>
                         <ul class="list-group list-group-flush">
