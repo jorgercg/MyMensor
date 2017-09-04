@@ -488,19 +488,18 @@
                                     }
                                 ]
                             },
-                            '\n',
                             {
                                 image: encodedContent,
                                 alignment: 'center',
-                                width: 515
+                                width: 515,
+                                margin: [0,5,0,5]
                             },
-                            '\n',
                             {
                                 image: encodedMapContent,
                                 alignment: 'center',
-                                width: 515
+                                width: 515,
+                                margin: [0,5,0,5]
                             },
-                            '\n',
                             {
                                 columns: [
                                     {
@@ -510,7 +509,8 @@
                                                 {
                                                     text: 'CAPTURE TIME CERTIFIED: {{ mediaTimeStamp }}\n',
                                                     fontSize: 9,
-                                                    color: 'green'
+                                                    color: 'green',
+                                                    margin: [0,5,0,5]
                                                 },
                                             {% else %}
                                                 {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
@@ -519,14 +519,16 @@
                                                     fontSize: 9,
                                                     color: 'red',
                                                     decoration: 'lineThrough',
-                                                    decorationColor: 'red'
+                                                    decorationColor: 'red',
+                                                    margin: [0,5,0,5]
                                                 },
                                             {% endif %}
                                             {% if mediaLocIsCertified == "1" %}
                                                 {
                                                     text: 'CAPTURE LOCATION CERTIFIED: Lat={{ loclatitude|floatformat:6 }}˚  -  Lon={{ loclongitude|floatformat:6 }}˚  -  Acc*={{ locprecisioninm|floatformat:1 }}m\n',
                                                     fontSize: 9,
-                                                    color: 'green'
+                                                    color: 'green',
+                                                    margin: [0,5,0,5]
                                                 },
                                             {% else %}
                                                 {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
@@ -535,18 +537,19 @@
                                                     fontSize: 9,
                                                     color: 'red',
                                                     decoration: 'lineThrough',
-                                                    decorationColor: 'red'
+                                                    decorationColor: 'red',
+                                                    margin: [0,5,0,5]
                                                 },
                                             {% endif %}
-                                            {text: ' \n', fontsize: 6},
                                             {% if mediaArIsOn == "1" %}
-                                                {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                                {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8, margin: [0,5,0,5]},
                                             {% else %}
-                                                {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                                {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8, margin: [0,5,0,5]},
                                             {% endif %}
                                             {
                                                 text: 'Please use the code to the right or the below address to validate this document online.\n',
-                                                fontSize: 8
+                                                fontSize: 8,
+                                                margin: [0,10,0,0]
                                             },
                                             {
                                                 text: qrcodevalue,
