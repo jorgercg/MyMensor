@@ -515,7 +515,7 @@
                                         {% else %}
                                             {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
                                             {
-                                                text: '{{ mediaTimeStamp }}',
+                                                text: '{{ mediaTimeStamp }}\n',
                                                 fontSize: 9,
                                                 color: 'red',
                                                 decoration: 'lineThrough',
@@ -538,11 +538,11 @@
                                                 decorationColor: 'red'
                                             },
                                         {% endif %}
-                                        {text: '\n'},
+                                        {text: '\n', fontsize: 6},
                                     {% if mediaArIsOn == "1" %}
-                                        {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 9},
+                                        {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8},
                                     {% else %}
-                                        {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 9},
+                                        {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
                                     {% endif %}
                                     {text: 'Please use the code to the right or the below address to validate this document online. Please refer to the online page for the accuracy definition.\n', fontSize: 8},
                                 {
