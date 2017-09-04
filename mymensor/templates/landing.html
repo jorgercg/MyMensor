@@ -517,7 +517,7 @@
                                             fontSize: 9,
                                             color: 'green',
                                             noWrap: true
-                                        }, {rowSpan: 6, qr: qrcodevalue, fit: 100}],
+                                        }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
                                         [{
                                             border: [true, true, false, true],
                                             text: 'Capture location was certified:',
@@ -526,19 +526,19 @@
                                             noWrap: true
                                         }, {
                                             border: [false, true, true, true],
-                                            text: 'LAT={{ loclatitude|floatformat:6 }}˚  -  LON={{ loclongitude|floatformat:6 }}˚  -  ACC*={{ locprecisioninm|floatformat:1 }}m',
+                                            text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
                                             fontSize: 9,
                                             color: 'green',
                                             noWrap: true
                                         }, ''],
-                                        [{colSpan: 2, border: [false, false, false, false], text: 'Augmented Reality was used to capture this media.', fontSize: 8}, '', ''],
+                                        [{colSpan: 2, border: [false, false, false, false], text: '\nAugmented Reality was used to capture this media.', fontSize: 7}, '', ''],
                                         [{
                                             colSpan: 2, border: [false, false, false, false], text: 'Please use the code to the right or the below address to validate this document online.',
-                                            fontSize: 8
+                                            fontSize: 7
                                         }, '', ''],
                                         [{
                                             colSpan: 2, border: [false, false, false, false], text: qrcodevalue,
-                                            fontSize: 8,
+                                            fontSize: 7,
                                             italics: true,
                                             color: 'blue',
                                             decoration: 'underline',
@@ -547,7 +547,7 @@
                                         }, '', ''],
                                         [{
                                             colSpan: 2, border: [false, false, false, false], text: '*Please refer to the online page for the accuracy definition.',
-                                            fontSize: 6
+                                            fontSize: 5
                                         }, '', '']
                                     ]
                                 },
