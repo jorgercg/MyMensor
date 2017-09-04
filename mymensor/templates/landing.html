@@ -509,18 +509,21 @@
                                             border: [true, true, false, true],
                                             text: 'Capture time was certified:',
                                             fontSize: 9,
-                                            color: 'green'
+                                            color: 'green',
+                                            noWrap: true
                                         }, {
                                             border: [false, true, true, true],
                                             text: '{{ mediaTimeStamp }}',
                                             fontSize: 9,
-                                            color: 'green'
+                                            color: 'green',
+                                            noWrap: true
                                         }, {rowSpan: 6, qr: qrcodevalue, fit: 100}],
                                         [{
                                             border: [true, true, false, true],
                                             text: 'Capture location was certified:',
                                             fontSize: 9,
-                                            color: 'green'
+                                            color: 'green',
+                                            noWrap: true
                                         }, {
                                             border: [false, true, true, true],
                                             text: 'LAT={{ loclatitude|floatformat:6 }}˚  -  LON={{ loclongitude|floatformat:6 }}˚  -  ACC*={{ locprecisioninm|floatformat:1 }}m',
