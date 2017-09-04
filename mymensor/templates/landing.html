@@ -455,135 +455,137 @@
             leafletImage(mymap, function (err, canvas) {
                 encodedMapContent = canvas.toDataURL();
                 var docDefinition = {
-                    pageSize: 'A4',
-                    pageOrientation: 'portrait',
-                    // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-                    pageMargins: [40, 40, 40, 40],
-                    content: [
-                        {
-                            columns: [
-                                {
-                                    width: 55,
-                                    image: encodedMyMensorLogo,
-                                    alignment: 'left',
-                                    fit: [50, 50]
-                                },
-                                {
-                                    width: '*',
-                                    text: [
-                                        'MyMensor Media Check\n',
-                                        {% if mediaTimeIsCertified == "1" %}
-                                            {text: 'CAPTURE TIME CERTIFIED\n', fontSize: 9, color: 'green'},
-                                        {% else %}
-                                            {text: 'CAPTURE TIME NOT CERTIFIED\n', fontSize: 9, color: 'red'},
-                                        {% endif %}
-                                        {% if mediaLocIsCertified == "1" %}
-                                            {text: 'CAPTURE LOCATION CERTIFIED\n', fontSize: 9, color: 'green'}
-                                        {% else %}
-                                            {text: 'CAPTURE LOCATION NOT CERTIFIED\n', fontSize: 9, color: 'red'}
-                                        {% endif %}
-                                    ],
-                                    fontSize: 20,
-                                    alignment: 'right'
-                                }
-                            ]
-                        },
-                        '\n',
-                        {
-                            image: encodedContent,
-                            alignment: 'center',
-                            width: 515
-                        },
-                        '\n',
-                        {
-                            image: encodedMapContent,
-                            alignment: 'center',
-                            width: 515
-                        },
-                        '\n',
-                        {
-                            columns: [
-                                {
-                                    width: '*',
-                                    text: [
-                                        {% if mediaTimeIsCertified == "1" %}
+                        pageSize: 'A4',
+                        pageOrientation: 'portrait',
+                        // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+                        pageMargins: [40, 40, 40, 40],
+                        content: [
+                            {
+                                columns: [
+                                    {
+                                        width: 55,
+                                        image: encodedMyMensorLogo,
+                                        alignment: 'left',
+                                        fit: [50, 50]
+                                    },
+                                    {
+                                        width: '*',
+                                        text: [
+                                            'MyMensor Media Check\n',
+                                            {% if mediaTimeIsCertified == "1" %}
+                                                {text: 'CAPTURE TIME CERTIFIED\n', fontSize: 9, color: 'green'},
+                                            {% else %}
+                                                {text: 'CAPTURE TIME NOT CERTIFIED\n', fontSize: 9, color: 'red'},
+                                            {% endif %}
+                                            {% if mediaLocIsCertified == "1" %}
+                                                {text: 'CAPTURE LOCATION CERTIFIED\n', fontSize: 9, color: 'green'}
+                                            {% else %}
+                                                {text: 'CAPTURE LOCATION NOT CERTIFIED\n', fontSize: 9, color: 'red'}
+                                            {% endif %}
+                                        ],
+                                        fontSize: 20,
+                                        alignment: 'right'
+                                    }
+                                ]
+                            },
+                            '\n',
+                            {
+                                image: encodedContent,
+                                alignment: 'center',
+                                width: 515
+                            },
+                            '\n',
+                            {
+                                image: encodedMapContent,
+                                alignment: 'center',
+                                width: 515
+                            },
+                            '\n',
+                            {
+                                columns: [
+                                    {
+                                        width: '*',
+                                        text: [
+                                            {% if mediaTimeIsCertified == "1" %}
+                                                {
+                                                    text: 'CAPTURE TIME CERTIFIED: {{ mediaTimeStamp }}\n',
+                                                    fontSize: 9,
+                                                    color: 'green'
+                                                },
+                                            {% else %}
+                                                {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                                {
+                                                    text: '{{ mediaTimeStamp }}\n',
+                                                    fontSize: 9,
+                                                    color: 'red',
+                                                    decoration: 'lineThrough',
+                                                    decorationColor: 'red'
+                                                },
+                                            {% endif %}
+                                            {% if mediaLocIsCertified == "1" %}
+                                                {
+                                                    text: 'CAPTURE LOCATION CERTIFIED: Lat={{ loclatitude|floatformat:6 }}˚  -  Lon={{ loclongitude|floatformat:6 }}˚  -  Acc*={{ locprecisioninm|floatformat:1 }}m\n',
+                                                    fontSize: 9,
+                                                    color: 'green'
+                                                },
+                                            {% else %}
+                                                {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                                {
+                                                    text: 'Lat={{ loclatitude|floatformat:6 }}˚ - Lon={{ loclongitude|floatformat:6 }}˚ - Acc*={{ locprecisioninm|floatformat:1 }}m\n',
+                                                    fontSize: 9,
+                                                    color: 'red',
+                                                    decoration: 'lineThrough',
+                                                    decorationColor: 'red'
+                                                },
+                                            {% endif %}
+                                            {text: ' \n', fontsize: 6},
+                                            {% if mediaArIsOn == "1" %}
+                                                {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                            {% else %}
+                                                {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                            {% endif %}
                                             {
-                                                text: 'CAPTURE TIME CERTIFIED: {{ mediaTimeStamp }}\n',
-                                                fontSize: 9,
-                                                color: 'green'
+                                                text: 'Please use the code to the right or the below address to validate this document online.\n',
+                                                fontSize: 8
                                             },
-                                        {% else %}
-                                            {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
                                             {
-                                                text: '{{ mediaTimeStamp }}\n',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                decoration: 'lineThrough',
-                                                decorationColor: 'red'
+                                                text: qrcodevalue,
+                                                fontSize: 8,
+                                                italics: true,
+                                                color: 'blue',
+                                                decoration: 'underline',
+                                                decorationColor: 'blue',
+                                                link: qrcodevalue
                                             },
-                                        {% endif %}
-                                        {% if mediaLocIsCertified == "1" %}
                                             {
-                                                text: 'CAPTURE LOCATION CERTIFIED: Lat={{ loclatitude|floatformat:6 }}˚  -  Lon={{ loclongitude|floatformat:6 }}˚  -  Acc*={{ locprecisioninm|floatformat:1 }}m\n',
-                                                fontSize: 9,
-                                                color: 'green'
-                                            },
-                                        {% else %}
-                                            {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
-                                            {
-                                                text: 'Lat={{ loclatitude|floatformat:6 }}˚ - Lon={{ loclongitude|floatformat:6 }}˚ - Acc*={{ locprecisioninm|floatformat:1 }}m\n',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                decoration: 'lineThrough',
-                                                decorationColor: 'red'
-                                            },
-                                        {% endif %}
-                                        {text: '\n', fontsize: 6},
-                                    {% if mediaArIsOn == "1" %}
-                                        {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8},
-                                    {% else %}
-                                        {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
-                                    {% endif %}
-                                    {text: 'Please use the code to the right or the below address to validate this document online. *Please refer to the online page for the accuracy definition.\n', fontSize: 8},
-                                {
-                                    text: qrcodevalue,
-                                    fontSize: 8,
-                                    italics: true,
-                                    color: 'blue',
-                                    decoration: 'underline',
-                                    decorationColor: 'blue',
-                                    link: qrcodevalue
-                                }
-                            ]
+                                                text: '*Please refer to the online page for the accuracy definition.\n',
+                                                fontSize: 6
+                                            }
+                                        ]
 
-                        },
-                        {
-                            width: '105',
-                            qr: qrcodevalue,
-                            fit: 100, alignment: 'center'
+                                    },
+                                    {
+                                        width: '80',
+                                        qr: qrcodevalue,
+                                        fit: 80, alignment: 'center'
+                                    }
+                                ]
+                            }
+                        ],
+                        info: {
+                            title: 'MyMensor Media Check',
+                            author:
+                                'MyMensor',
+                            subject:
+                                'subject of document',
+                            keywords:
+                                'keywords for document',
+                            creator:
+                                'MyMensor',
+                            producer:
+                                'MyMensor'
                         }
-                    ]
-                }
-            ],
-                info: {
-                    title: 'MyMensor Media Check',
-                        author
-                :
-                    'MyMensor',
-                        subject
-                :
-                    'subject of document',
-                        keywords
-                :
-                    'keywords for document',
-                        creator
-                :
-                    'MyMensor',
-                        producer
-                :
-                    'MyMensor'
-                }
-            }
+                    }
                 ;
 
                 pdfMake.createPdf(docDefinition).download("mymensormediacheck.pdf");
