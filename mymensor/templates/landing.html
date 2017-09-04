@@ -524,14 +524,14 @@
                                         {% endif %}
                                         {% if mediaLocIsCertified == "1" %}
                                             {
-                                                text: 'CAPTURE LOCATION CERTIFIED: Latitude={{ loclatitude|floatformat:6 }} degrees  -  Longitude={{ loclongitude|floatformat:6 }}  -  Accuracy={{ locprecisioninm|floatformat:1 }} meters\n',
+                                                text: 'CAPTURE LOCATION CERTIFIED: Lat={{ loclatitude|floatformat:6 }}˚  -  Lon={{ loclongitude|floatformat:6 }}˚  -  Acc*={{ locprecisioninm|floatformat:1 }}m\n',
                                                 fontSize: 9,
                                                 color: 'green'
                                             },
                                         {% else %}
                                             {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
                                             {
-                                                text: 'Latitude={{ loclatitude|floatformat:6 }} degrees  -  Longitude={{ loclongitude|floatformat:6 }}  -  Accuracy={{ locprecisioninm|floatformat:1 }} meters\n',
+                                                text: 'Lat={{ loclatitude|floatformat:6 }}˚ - Lon={{ loclongitude|floatformat:6 }}˚ - Acc*={{ locprecisioninm|floatformat:1 }}m\n',
                                                 fontSize: 9,
                                                 color: 'red',
                                                 decoration: 'lineThrough',
@@ -544,7 +544,7 @@
                                     {% else %}
                                         {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
                                     {% endif %}
-                                    {text: 'Please use the code to the right or the below address to validate this document online. Please refer to the online page for the accuracy definition.\n', fontSize: 8},
+                                    {text: 'Please use the code to the right or the below address to validate this document online. *Please refer to the online page for the accuracy definition.\n', fontSize: 8},
                                 {
                                     text: qrcodevalue,
                                     fontSize: 8,
