@@ -172,7 +172,7 @@
                                 <li class="list-group-item">
                                     {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
                                 <li class="list-group-item">
-                                    {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                                    {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
                                     <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
@@ -181,7 +181,7 @@
                                     <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>{% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>
@@ -282,7 +282,7 @@
                                 <li class="list-group-item">
                                     {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
                                 <li class="list-group-item">
-                                    {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                                    {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
                                     <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
@@ -291,7 +291,7 @@
                                     <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>{% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>

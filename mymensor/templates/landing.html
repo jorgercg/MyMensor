@@ -145,7 +145,9 @@
                             {% if mediaLocIsCertified == "1" %}
                                 <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
                             {% else %}
-                                <p class="card-text font-weight-bold text-danger"><s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}</p>
+                                <p class="card-text font-weight-bold text-danger">
+                                    <s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </p>
                             {% endif %}
                         </div>
                         <div id="landingmapid"></div>
@@ -156,16 +158,19 @@
                                 <li class="list-group-item">
                                     {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
                                 <li class="list-group-item">
-                                    {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                                    {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>
@@ -248,7 +253,9 @@
                             {% if mediaLocIsCertified == "1" %}
                                 <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
                             {% else %}
-                                <p class="card-text font-weight-bold text-danger"><s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}</p>
+                                <p class="card-text font-weight-bold text-danger">
+                                    <s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </p>
                             {% endif %}
                         </div>
                         <div id="landingmapid"></div>
@@ -262,13 +269,16 @@
                                     {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>
@@ -495,6 +505,47 @@
                             columns: [
                                 {
                                     width: '*',
+                                    text: [
+                                        {% if mediaTimeIsCertified == "1" %}
+                                            {
+                                                text: 'CAPTURE TIME CERTIFIED: {{ mediaTimeStamp }}\n',
+                                                fontSize: 9,
+                                                color: 'green'
+                                            },
+                                        {% else %}
+                                            {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                            {
+                                                text: '{{ mediaTimeStamp }}',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red'
+                                            },
+                                        {% endif %}
+                                        {% if mediaLocIsCertified == "1" %}
+                                            {
+                                                text: 'CAPTURE LOCATION CERTIFIED: Latitude={{ loclatitude|floatformat:6 }} degrees  -  Longitude={{ loclongitude|floatformat:6 }}  -  Accuracy={{ locprecisioninm|floatformat:1 }} meters\n',
+                                                fontSize: 9,
+                                                color: 'green'
+                                            },
+                                        {% else %}
+                                            {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                            {
+                                                text: 'Latitude={{ loclatitude|floatformat:6 }} degrees  -  Longitude={{ loclongitude|floatformat:6 }}  -  Accuracy={{ locprecisioninm|floatformat:1 }} meters\n',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red'
+                                            },
+                                        {% endif %}
+                                        {text: '\n'},
+                                    {% if mediaArIsOn == "1" %}
+                                        {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 9},
+                                    {% else %}
+                                        {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 9},
+                                    {% endif %}
+                                    {text: 'Please use the code to the right or the below address to validate this document online. Please refer to the online page for the accuracy definition.\n', fontSize: 8},
+                                {
                                     text: qrcodevalue,
                                     fontSize: 8,
                                     italics: true,
@@ -502,24 +553,38 @@
                                     decoration: 'underline',
                                     decorationColor: 'blue',
                                     link: qrcodevalue
-                                },
-                                {
-                                    width: '105',
-                                    qr: qrcodevalue,
-                                    fit: 100, alignment: 'center'
                                 }
                             ]
+
+                        },
+                        {
+                            width: '105',
+                            qr: qrcodevalue,
+                            fit: 100, alignment: 'center'
                         }
-                    ],
-                    info: {
-                        title: 'MyMensor Media Check',
-                        author: 'MyMensor',
-                        subject: 'subject of document',
-                        keywords: 'keywords for document',
-                        creator: 'MyMensor',
-                        producer: 'MyMensor'
-                    }
-                };
+                    ]
+                }
+            ],
+                info: {
+                    title: 'MyMensor Media Check',
+                        author
+                :
+                    'MyMensor',
+                        subject
+                :
+                    'subject of document',
+                        keywords
+                :
+                    'keywords for document',
+                        creator
+                :
+                    'MyMensor',
+                        producer
+                :
+                    'MyMensor'
+                }
+            }
+                ;
 
                 pdfMake.createPdf(docDefinition).download("mymensormediacheck.pdf");
             });
