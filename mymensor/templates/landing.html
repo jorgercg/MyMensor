@@ -503,16 +503,15 @@
                                 columns: [
                                     {
                                         width: '*',
-                                        margin: [0,5,0,5],
                                         text: [
                                             {% if mediaTimeIsCertified == "1" %}
                                                 {
-                                                    text: 'CAPTURE TIME CERTIFIED: {{ mediaTimeStamp }}\n',
+                                                    text: 'Capture time was certified: {{ mediaTimeStamp }}\n',
                                                     fontSize: 9,
                                                     color: 'green'
                                                 },
                                             {% else %}
-                                                {text: 'CAPTURE TIME NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                                {text: 'Capture time was not certified: ', fontSize: 9, color: 'red'},
                                                 {
                                                     text: '{{ mediaTimeStamp }}\n',
                                                     fontSize: 9,
@@ -521,17 +520,16 @@
                                                     decorationColor: 'red'
                                                 },
                                             {% endif %}
-                                            {text: "\n"},
                                             {% if mediaLocIsCertified == "1" %}
                                                 {
-                                                    text: 'CAPTURE LOCATION CERTIFIED: Lat={{ loclatitude|floatformat:6 }}˚  -  Lon={{ loclongitude|floatformat:6 }}˚  -  Acc*={{ locprecisioninm|floatformat:1 }}m\n',
+                                                    text: 'Capture location was certified: LAT={{ loclatitude|floatformat:6 }}˚  -  LON={{ loclongitude|floatformat:6 }}˚  -  ACC*={{ locprecisioninm|floatformat:1 }}m\n',
                                                     fontSize: 9,
                                                     color: 'green'
                                                 },
                                             {% else %}
-                                                {text: 'CAPTURE LOCATION NOT CERTIFIED: ', fontSize: 9, color: 'red'},
+                                                {text: 'Capture location was not certified: ', fontSize: 9, color: 'red'},
                                                 {
-                                                    text: 'Lat={{ loclatitude|floatformat:6 }}˚ - Lon={{ loclongitude|floatformat:6 }}˚ - Acc*={{ locprecisioninm|floatformat:1 }}m\n',
+                                                    text: 'LAT={{ loclatitude|floatformat:6 }}˚ - LON={{ loclongitude|floatformat:6 }}˚ - ACC*={{ locprecisioninm|floatformat:1 }}m\n',
                                                     fontSize: 9,
                                                     color: 'red',
                                                     decoration: 'lineThrough',
@@ -540,11 +538,10 @@
                                             {% endif %}
                                             {text: "\n"},
                                             {% if mediaArIsOn == "1" %}
-                                                {text: 'AUGMENTED REALITY USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                                {text: 'Augmented Reality was used to capture this media\n', fontSize: 8},
                                             {% else %}
-                                                {text: 'AUGMENTED REALITY NOT USED TO CAPTURE MEDIA\n', fontSize: 8},
+                                                {text: 'Augmented Reality was not used to capture this media\n', fontSize: 8},
                                             {% endif %}
-                                            {text: "\n"},
                                             {
                                                 text: 'Please use the code to the right or the below address to validate this document online.\n',
                                                 fontSize: 8
@@ -569,7 +566,7 @@
                                     {
                                         width: '100',
                                         qr: qrcodevalue,
-                                        fit: 100, alignment: 'right', margin: [0,5,0,5]
+                                        fit: 100, alignment: 'right'
                                     }
                                 ]
                             }
