@@ -505,35 +505,83 @@
                                     headerRows: 0,
                                     widths: ['*', 'auto', 100],
                                     body: [
+                                        {% if mediaTimeIsCertified == "1" %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: 'Capture time was certified:',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ mediaTimeStamp }}',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                        {% else %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: 'Capture time was not certified:',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ mediaTimeStamp }}',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red',
+                                                noWrap: true
+                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                        {% endif %}
+                                        {% if mediaLocIsCertified == "1" %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: 'Capture location was certified:',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, ''],
+                                        {% else %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: 'Capture location was not certified:',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red',
+                                                noWrap: true
+                                            }, ''],
+                                        {% endif %}
+                                        {% if mediaArIsOn == "1" %}
                                         [{
-                                            border: [true, true, false, true],
-                                            text: 'Capture time was certified:',
-                                            fontSize: 9,
-                                            color: 'green',
-                                            noWrap: true
-                                        }, {
-                                            border: [false, true, true, true],
-                                            text: '{{ mediaTimeStamp }}',
-                                            fontSize: 9,
-                                            color: 'green',
-                                            noWrap: true
-                                        }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: '\nAugmented Reality was used to capture this media.',
+                                            fontSize: 7
+                                        }, '', ''],
+                                        {% else %}
+                                            [{
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: '\nAugmented Reality was not used to capture this media.',
+                                            fontSize: 7
+                                        }, '', ''],
+                                        {% endif %}
                                         [{
-                                            border: [true, true, false, true],
-                                            text: 'Capture location was certified:',
-                                            fontSize: 9,
-                                            color: 'green',
-                                            noWrap: true
-                                        }, {
-                                            border: [false, true, true, true],
-                                            text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
-                                            fontSize: 9,
-                                            color: 'green',
-                                            noWrap: true
-                                        }, ''],
-                                        [{colSpan: 2, border: [false, false, false, false], text: '\nAugmented Reality was used to capture this media.', fontSize: 7}, '', ''],
-                                        [{
-                                            colSpan: 2, border: [false, false, false, false], text: 'Please use the code to the right or the below address to validate this document online.',
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: 'Please use the code to the right or the below address to validate this document online.',
                                             fontSize: 7
                                         }, '', ''],
                                         [{
@@ -546,8 +594,10 @@
                                             link: qrcodevalue
                                         }, '', ''],
                                         [{
-                                            colSpan: 2, border: [false, false, false, false], text: '*Please refer to the online page for the accuracy definition.',
-                                            fontSize: 5
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: '*Please refer to the online page for the accuracy definition.',
+                                            fontSize: 6
                                         }, '', '']
                                     ]
                                 },
