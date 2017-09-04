@@ -492,12 +492,40 @@
                                 image: encodedContent,
                                 alignment: 'center',
                                 width: 515,
-                                margin: [0,5,0,5]
+                                margin: [0, 5, 0, 5]
                             },
                             {
                                 image: encodedMapContent,
                                 alignment: 'center',
                                 width: 515
+                            },
+                            {
+                                margin: [0,5,0,5],
+                                table: {
+                                    headerRows: 0,
+                                    widths: ['*', 100],
+                                    body: [
+                                        [{border: [true, true, true, true], text:'Capture time was certified: {{ mediaTimeStamp }}\n',
+                                                    fontSize: 9,
+                                                    color: 'green'}, {rowSpan: 4, qr: qrcodevalue, fit: 100}],
+                                        [{border: [true, true, true, true], text: 'Capture location was certified: LAT={{ loclatitude|floatformat:6 }}˚  -  LON={{ loclongitude|floatformat:6 }}˚  -  ACC*={{ locprecisioninm|floatformat:1 }}m\n',
+                                                    fontSize: 9,
+                                                    color: 'green'}, ''],
+                                        [{text: 'Augmented Reality was used to capture this media.', fontSize: 8}, ''],
+                                        [{text: 'Please use the code to the right or the below address to validate this document online.',
+                                                fontSize: 8}, ''],
+                                        [{colSpan: 2, text: qrcodevalue,
+                                                fontSize: 8,
+                                                italics: true,
+                                                color: 'blue',
+                                                decoration: 'underline',
+                                                decorationColor: 'blue',
+                                                link: qrcodevalue}, ''],
+                                        [{colSpan: 2, text: '*Please refer to the online page for the accuracy definition.',
+                                                fontSize: 6}, '']
+                                    ]
+                                },
+                                layout: 'noBorders'
                             },
                             {
                                 columns: [
@@ -538,9 +566,12 @@
                                             {% endif %}
                                             {text: "\n"},
                                             {% if mediaArIsOn == "1" %}
-                                                {text: 'Augmented Reality was used to capture this media\n', fontSize: 8},
+                                                {text: 'Augmented Reality was used to capture this media.\n', fontSize: 8},
                                             {% else %}
-                                                {text: 'Augmented Reality was not used to capture this media\n', fontSize: 8},
+                                                {
+                                                    text: 'Augmented Reality was not used to capture this media.\n',
+                                                    fontSize: 8
+                                                },
                                             {% endif %}
                                             {
                                                 text: 'Please use the code to the right or the below address to validate this document online.\n',
@@ -557,7 +588,7 @@
                                             },
                                             {text: "\n"},
                                             {
-                                                text: '*Please refer to the online page for the accuracy definition.\n',
+                                                text: '*Please refer to the online page for the accuracy definition.',
                                                 fontSize: 6
                                             }
                                         ]
