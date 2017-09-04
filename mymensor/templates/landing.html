@@ -62,10 +62,8 @@
                                                                  width="46" height="46"
                                                                  class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
-            {% if request.user.username == "jorge" %}
-                <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="left"
-                      title="{% trans 'Download Media Check PDF file' %}"></span>
-            {% endif %}
+            <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn" data-toggle="tooltip" data-placement="left"
+                  title="{% trans 'Download Media Check PDF file' %}"></span>
         </a>
     </nav>
     <div class="container-fluid">
@@ -564,19 +562,19 @@
                                             }, ''],
                                         {% endif %}
                                         {% if mediaArIsOn == "1" %}
-                                        [{
-                                            colSpan: 2,
-                                            border: [false, false, false, false],
-                                            text: '\nAugmented Reality was used to capture this media.',
-                                            fontSize: 7
-                                        }, '', ''],
+                                            [{
+                                                colSpan: 2,
+                                                border: [false, false, false, false],
+                                                text: '\nAugmented Reality was used to capture this media.',
+                                                fontSize: 7
+                                            }, '', ''],
                                         {% else %}
                                             [{
-                                            colSpan: 2,
-                                            border: [false, false, false, false],
-                                            text: '\nAugmented Reality was not used to capture this media.',
-                                            fontSize: 7
-                                        }, '', ''],
+                                                colSpan: 2,
+                                                border: [false, false, false, false],
+                                                text: '\nAugmented Reality was not used to capture this media.',
+                                                fontSize: 7
+                                            }, '', ''],
                                         {% endif %}
                                         [{
                                             colSpan: 2,
@@ -604,83 +602,6 @@
                                 layout: {
                                     defaultBorder: false
                                 }
-                            },
-                            {text: "\n"},
-                            {text: "\n"},
-                            {text: "\n"},
-                            {
-                                columns: [
-                                    {
-                                        width: '*',
-                                        text: [
-                                            {% if mediaTimeIsCertified == "1" %}
-                                                {
-                                                    text: 'Capture time was certified: {{ mediaTimeStamp }}\n',
-                                                    fontSize: 9,
-                                                    color: 'green'
-                                                },
-                                            {% else %}
-                                                {text: 'Capture time was not certified: ', fontSize: 9, color: 'red'},
-                                                {
-                                                    text: '{{ mediaTimeStamp }}\n',
-                                                    fontSize: 9,
-                                                    color: 'red',
-                                                    decoration: 'lineThrough',
-                                                    decorationColor: 'red'
-                                                },
-                                            {% endif %}
-                                            {% if mediaLocIsCertified == "1" %}
-                                                {
-                                                    text: 'Capture location was certified: LAT={{ loclatitude|floatformat:6 }}˚  -  LON={{ loclongitude|floatformat:6 }}˚  -  ACC*={{ locprecisioninm|floatformat:1 }}m\n',
-                                                    fontSize: 9,
-                                                    color: 'green'
-                                                },
-                                            {% else %}
-                                                {text: 'Capture location was not certified: ', fontSize: 9, color: 'red'},
-                                                {
-                                                    text: 'LAT={{ loclatitude|floatformat:6 }}˚ - LON={{ loclongitude|floatformat:6 }}˚ - ACC*={{ locprecisioninm|floatformat:1 }}m\n',
-                                                    fontSize: 9,
-                                                    color: 'red',
-                                                    decoration: 'lineThrough',
-                                                    decorationColor: 'red'
-                                                },
-                                            {% endif %}
-                                            {text: "\n"},
-                                            {% if mediaArIsOn == "1" %}
-                                                {text: 'Augmented Reality was used to capture this media.\n', fontSize: 8},
-                                            {% else %}
-                                                {
-                                                    text: 'Augmented Reality was not used to capture this media.\n',
-                                                    fontSize: 8
-                                                },
-                                            {% endif %}
-                                            {
-                                                text: 'Please use the code to the right or the below address to validate this document online.\n',
-                                                fontSize: 8
-                                            },
-                                            {
-                                                text: qrcodevalue,
-                                                fontSize: 8,
-                                                italics: true,
-                                                color: 'blue',
-                                                decoration: 'underline',
-                                                decorationColor: 'blue',
-                                                link: qrcodevalue
-                                            },
-                                            {text: "\n"},
-                                            {
-                                                text: '*Please refer to the online page for the accuracy definition.',
-                                                fontSize: 6
-                                            }
-                                        ]
-
-                                    },
-                                    {
-                                        width: '100',
-                                        qr: qrcodevalue,
-                                        fit: 100, alignment: 'right'
-                                    }
-                                ]
                             }
                         ],
                         info: {
