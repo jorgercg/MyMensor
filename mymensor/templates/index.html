@@ -341,7 +341,7 @@
                     var end = moment("{{ end }}");
 
                     function cb(start, end) {
-                        $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
+                        $('#reportrange span').html(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ") + ' - ' + end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                     }
 
                     $('#reportrange').daterangepicker({
