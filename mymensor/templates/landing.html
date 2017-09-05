@@ -318,13 +318,9 @@
         <div id="footer-dash">
             <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
                 <div class="mym-dash-item">
-                    <canvas id="qrcodenew"></canvas>
-                </div>
-                <div class="mym-dash-item">
                     <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
                         {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
-                        {% trans "Please use the code to the left or the following address to validate this media online." %}
-                        <a href="{{ mediaCheckURL }}">{{ mediaCheckURL }}</a>
+                        {% trans "Please use the PDF button on top of the page to download a printable version of this page." %}
                     </p>
                 </div>
             </div>
@@ -359,7 +355,6 @@
     <script src="{% static "js/leaflet.js" %}"></script>
     <script src="{% static "js/leaflet-image.js" %}"></script>
     <script src="{% static "js/mymensor-jquery.js" %}"></script>
-    <script src="{% static "js/qrious.min.js" %}"></script>
     <script src="{% static "js/pdfmake.min.js" %}"></script>
     <script src="{% static "js/vfs_fonts.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -429,13 +424,6 @@
         }).addTo(mymap);
 
         mymap.fitBounds(circle.getBounds());
-
-        var qr = new QRious({
-            element: document.getElementById('qrcodenew'),
-            padding: 0,
-            size: 50,
-            value: '{{ mediaCheckURL }}'
-        });
 
         {% autoescape off %}
             var qrcodevalue = '{{ mediaCheckURL }}';
