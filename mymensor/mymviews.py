@@ -22,7 +22,9 @@ from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S
     BRAINTREE_PRODUCTION
 import json, boto3, urllib, pytz, urllib2, braintree
 from botocore.exceptions import ClientError
-from datetime import datetime, timedelta, date
+from dateutil.parser import *
+from dateutil.tz import *
+from datetime import *
 from mymensor.forms import AssetForm, VpForm, TagForm
 from mymensor.mymfunctions import isfloat, mobonlyprefix
 from django.db.models import Q, Count
@@ -371,8 +373,8 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        startdate = parse(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
+        enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
