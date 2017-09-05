@@ -373,8 +373,8 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = parse(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d'))), yearfirst=True)
-        enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc).strftime('%Y-%m-%d'))), yearfirst=True)
+        startdate = parse(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
+        enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))), yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
@@ -434,8 +434,8 @@ def portfolio(request):
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = startdate #.strftime('%Y-%m-%d')
+        enddateformatted = enddate #.strftime('%Y-%m-%d')
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
         orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
         if not orgmymaccselected:
