@@ -72,6 +72,13 @@ body {
     line-height: inherit;
 }
 
+.locnotcertinlocation {
+    color: red;
+    float: left;
+    margin-left: 0.2rem;
+    line-height: inherit;
+}
+
 .precisioninlocation {
     color: red;
     float: left;
@@ -79,8 +86,22 @@ body {
     line-height: inherit;
 }
 
+.precisionnotinlocation {
+    color: darkgray;
+    float: left;
+    margin-left: 0.2rem;
+    line-height: inherit;
+}
+
 .pathinlocation {
     color: deepskyblue;
+    float: left;
+    margin-left: 0.2rem;
+    line-height: inherit;
+}
+
+.pathnotinlocation {
+    color: darkgray;
     float: left;
     margin-left: 0.2rem;
     line-height: inherit;
@@ -116,6 +137,13 @@ body {
 
 .timecertinlocation {
     color: green;
+    float: left;
+    margin-left: 0.21rem;
+    line-height: inherit;
+}
+
+.timenotcertinlocation {
+    color: red;
     float: left;
     margin-left: 0.21rem;
     line-height: inherit;
