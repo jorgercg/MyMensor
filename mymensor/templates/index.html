@@ -15,32 +15,29 @@
                                 <span id="selcdates"></span> <b class="caret"></b>
                             </div>
                             <div class="d-flex flex-row justify-content-around align-items-center flex-wrap">
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        {% if showonlyloccert == 1 %}
-                                            <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Showing only location certified media captures" %}"></span>
-                                        {% else %}
-                                            <span id="showonlyloccert" class="fa fa-map-marker locnotcertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Showing media captures, even with no location certification" %}"></span>
-                                        {% endif %}
-                                    </label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <label class="form-check-label">
-                                        {% if showonlytimecert == 1 %}
-                                            <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Showing only time certified media captures" %}"></span>
-                                        {% else %}
-                                            <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Show media captures, even with no time certificyion" %}"></span>
-                                        {% endif %}
-                                    </label>
-                                </div>
+                                {% if showonlyloccert == 1 %}
+                                    <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing only location certified media captures" %}"></span>
+                                {% else %}
+                                    <span id="showonlyloccert" class="fa fa-map-marker locnotcertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing media captures, even with no location certification" %}"></span>
+                                {% endif %}
+
+                                {% if showonlytimecert == 1 %}
+                                    <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing only time certified media captures" %}"></span>
+                                {% else %}
+                                    <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Show media captures, even with no time certificyion" %}"></span>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
