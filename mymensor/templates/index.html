@@ -18,16 +18,14 @@
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showonlyloccert == 1 %}
-                                            <input id="showonlyloccert" class="form-check-input" type="checkbox"
-                                                   value=""
-                                                   checked>
-                                        {% else %}
-                                            <input id="showonlyloccert" class="form-check-input" type="checkbox"
-                                                   value="">
-                                        {% endif %}
-                                        <span class="fa fa-map-marker loccertinlocation" data-toggle="tooltip"
+                                            <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation" data-toggle="tooltip"
                                               data-placement="top"
                                               title="{% trans "Show only location certified media captures" %}"></span>
+                                        {% else %}
+                                            <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation" data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="{% trans "Show only location certified media captures" %}"></span>
+                                        {% endif %}
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
