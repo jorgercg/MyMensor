@@ -1477,14 +1477,13 @@ def vpDetailView(request):
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
-            startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-                datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-            enddate = datetime.strptime(
-                request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
-                '%Y-%m-%d')
+            startdate = parse(request.GET.get('startdate', request.session.get('startdate', (
+            datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
+            enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))),
+                            yearfirst=True)
             new_enddate = enddate + timedelta(days=1)
-            startdateformatted = startdate.strftime('%Y-%m-%d')
-            enddateformatted = enddate.strftime('%Y-%m-%d')
+            startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
+            enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
             vpselected = int(request.GET.get('vpselected', 0))
             mediaselected = int(request.GET.get('mediaselected', 0))
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpNumber=vpselected).filter(
