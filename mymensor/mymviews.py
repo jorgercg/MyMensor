@@ -569,8 +569,8 @@ def location(request):
         vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
             vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
-        startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
-        enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
         orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
         if not orgmymaccselected:
@@ -600,8 +600,7 @@ def location(request):
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
                        'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,'showlastmedia':showlastmedia,
                        'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
-                       'mapzoom': mapzoom,
-                       'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
+                       'mapzoom': mapzoom, 'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
                        'media_vpnumbers': media_vpnumbers, 'vpsannotated': vpsannotated})
 
 
