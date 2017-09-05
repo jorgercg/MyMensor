@@ -55,7 +55,18 @@
                                     <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Show media captures, even with no time certificyion" %}"></span>
+                                          title="{% trans "Show media captures, even with no time certification" %}"></span>
+                                {% endif %}
+                                {% if showlastmedia == 1 %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmediainlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Forcibly showing the last of the media captures" %}"></span>
+                                {% else %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmedianotinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Not necessarily showing last of the media captures" %}"></span>
                                 {% endif %}
                             </div>
                         </div>

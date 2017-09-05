@@ -26,7 +26,6 @@
                                           data-placement="top"
                                           title="{% trans "Showing media captures, even with no location certification" %}"></span>
                                 {% endif %}
-
                                 {% if showonlytimecert == 1 %}
                                     <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation"
                                           data-toggle="tooltip"
@@ -36,7 +35,18 @@
                                     <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Show media captures, even with no time certificyion" %}"></span>
+                                          title="{% trans "Show media captures, even with no time certification" %}"></span>
+                                {% endif %}
+                                {% if showlastmedia == 1 %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmediainlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Forcibly showing the last of the media captures" %}"></span>
+                                {% else %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmedianotinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Not necessarily showing last of the media captures" %}"></span>
                                 {% endif %}
                             </div>
                         </div>
@@ -481,14 +491,14 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} + '&showlastmedia='+ {{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -525,6 +535,7 @@
                     console.log('{{ maxcolumnstxt }}');
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
+                    var showLastMedia = {{ showlastmedia }};
                     var $select = $('.1-100');
                     for (i = 1; i <= 20; i++) {
                         $select.append($('<option></option>').val(i).html(i))
@@ -539,7 +550,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlyloccert').click(function () {
@@ -552,7 +563,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlytimecert').click(function () {
@@ -565,7 +576,20 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&showlastmedia=' +{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#showlastmedia').click(function () {
+                        if ($(this).hasClass('showlastmediainlocation')) {
+                            showLastMedia = 0;
+                            $(this).removeClass('showlastmediainlocation').addClass('showlastmedianotinlocation');
+                        } else {
+                            showLastMedia = 1;
+                            $(this).removeClass('showlastmedianotinlocation').addClass('showlastmediainlocation');
+                        }
+                        var vpssel = $('#vpsselected').serialize();
+                        var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+ '&showlastmedia=' + showLastMedia + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });

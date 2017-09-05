@@ -404,6 +404,7 @@ def portfolio(request):
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
+        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -415,6 +416,10 @@ def portfolio(request):
             vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
             vpsselected = vps.values_list('vpNumber', flat=True)
         if showonlyloccert == 1 and showonlytimecert == 1:
+            lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+            if lastmedia.mediaTimeStamp - new_enddate > 0:
+                new_enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
@@ -455,10 +460,11 @@ def portfolio(request):
         request.session['startdate'] = startdateformatted
         request.session['enddate'] = enddateformatted
         request.session['qtypervp'] = qtypervp
+        request.session['showlastmedia'] = showlastmedia
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'showonlyloccert': showonlyloccert,
+                       'showonlyloccert': showonlyloccert, 'showlastmedia':showlastmedia,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
                        'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers})
 
