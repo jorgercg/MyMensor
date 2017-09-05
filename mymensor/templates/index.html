@@ -335,10 +335,11 @@
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
-                $(function () {
+                var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                    var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
-                    var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+                $(function () {
 
                     function cb(start, end) {
                         $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
@@ -526,7 +527,7 @@
                                 }
                             }
                             console.log("Clicked on: mediaid=" + mediaid + " vpnumber=" + vpnumber);  // sanity check
-                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + "{{ start }}" + '&enddate=' + "{{ end }}" + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
+                            window.location = '{% url 'vpdetail' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&vpselected=' + vpnumber + '&mediaselected=' + mediaid;
                         }
                     });
                 });
@@ -551,7 +552,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlyloccert').click(function () {
@@ -564,7 +565,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlytimecert').click(function () {
@@ -577,7 +578,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&showlastmedia=' +{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&showlastmedia=' +{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showlastmedia').click(function () {
@@ -590,7 +591,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+ '&showlastmedia=' + showLastMedia + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+ '&showlastmedia=' + showLastMedia + '&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -621,7 +622,7 @@
                             data: {mediaid: mediaid}, // data sent with the post request
                             // handle a successful response
                             success: function (json) {
-                                var output = '{% url 'taganalysis' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}';
+                                var output = '{% url 'taganalysis' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                                 console.log(json); // log the returned json to the console
                                 console.log("success"); // another sanity check
                                 for (i = 0; i < json.result.length; i++) {
