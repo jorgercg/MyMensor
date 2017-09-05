@@ -18,59 +18,57 @@
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showuserpath == 1 %}
-                                            <input id="showuserpath" class="form-check-input" type="checkbox" value=""
-                                                   checked>
-                                        {% else %}
-                                            <input id="showuserpath" class="form-check-input" type="checkbox" value="">
-                                        {% endif %}
-                                        <span class="fa fa-map-o pathinlocation" data-toggle="tooltip"
+                                            <span id="showuserpath" class="fa fa-map-o pathinlocation" data-toggle="tooltip"
                                               data-placement="top"
-                                              title="{% trans "Show user path when capturing media" %}"></span>
+                                              title="{% trans "Showing user path when capturing media" %}"></span>
+                                        {% else %}
+                                            <span id="showuserpath" class="fa fa-map-o pathnotinlocation" data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="{% trans "Not showing user path when capturing media" %}"></span>
+                                        {% endif %}
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showlocationprecision == 1 %}
-                                            <input id="showlocationprecision" class="form-check-input" type="checkbox"
-                                                   value=""
-                                                   checked>
-                                        {% else %}
-                                            <input id="showlocationprecision" class="form-check-input" type="checkbox"
-                                                   value="">
-                                        {% endif %}
-                                        <span class="fa fa-bullseye precisioninlocation" data-toggle="tooltip"
+                                            <span id="showlocationprecision" class="fa fa-bullseye precisioninlocation" data-toggle="tooltip"
                                               data-placement="top"
-                                              title="{% trans "Show location accuracy of media captures" %}"></span>
+                                              title="{% trans "Showing location accuracy of media captures" %}"></span>
+                                        {% else %}
+                                            <span id="showlocationprecision" class="fa fa-bullseye precisionnotinlocation" data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="{% trans "Not showing location accuracy of media captures" %}"></span>
+                                        {% endif %}
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showonlyloccert == 1 %}
-                                            <input id="showonlyloccert" class="form-check-input" type="checkbox"
-                                                   value=""
-                                                   checked>
+                                            <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="{% trans "Showing only location certified media captures" %}"></span>
                                         {% else %}
-                                            <input id="showonlyloccert" class="form-check-input" type="checkbox"
-                                                   value="">
+                                            <span id="showonlyloccert" class="fa fa-map-marker locnotcertinlocation"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="{% trans "Showing media captures, even with no location certification" %}"></span>
                                         {% endif %}
-                                        <span class="fa fa-map-marker loccertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Show only location certified media captures" %}"></span>
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showonlytimecert == 1 %}
-                                            <input id="showonlytimecert" class="form-check-input" type="checkbox"
-                                                   value=""
-                                                   checked>
+                                            <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="{% trans "Showing only time certified media captures" %}"></span>
                                         {% else %}
-                                            <input id="showonlytimecert" class="form-check-input" type="checkbox"
-                                                   value="">
+                                            <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation"
+                                                  data-toggle="tooltip"
+                                                  data-placement="top"
+                                                  title="{% trans "Show media captures, even with no time certificyion" %}"></span>
                                         {% endif %}
-                                        <span class="fa fa-clock-o timecertinlocation" data-toggle="tooltip"
-                                              data-placement="top"
-                                              title="{% trans "Show only time certified media captures" %}"></span>
                                     </label>
                                 </div>
                             </div>
@@ -367,10 +365,12 @@
                     var markerShape = ['circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'circle', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'square', 'star', 'penta'];
 
                     $('#showlocationprecision').click(function () {
-                        if ($(this).is(':checked')) {
-                            showLocationPrecision = 1;
-                        } else {
+                        if ($(this).hasClass('precisioninlocation')) {
                             showLocationPrecision = 0;
+                            $(this).removeClass('precisioninlocation').addClass('precisionnotinlocation');
+                        } else {
+                            showLocationPrecision = 1;
+                            $(this).removeClass('precisionnotinlocation').addClass('precisioninlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
@@ -381,10 +381,12 @@
                     });
 
                     $('#showuserpath').click(function () {
-                        if ($(this).is(':checked')) {
-                            showUserPath = 1;
-                        } else {
+                        if ($(this).hasClass('pathinlocation')) {
                             showUserPath = 0;
+                            $(this).removeClass('pathinlocation').addClass('pathnotinlocation');
+                        } else {
+                            showUserPath = 1;
+                            $(this).removeClass('pathnotinlocation').addClass('pathinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
@@ -395,10 +397,12 @@
                     });
 
                     $('#showonlyloccert').click(function () {
-                        if ($(this).is(':checked')) {
-                            showOnlyLocCertified = 1;
-                        } else {
+                        if ($(this).hasClass('loccertinlocation')) {
                             showOnlyLocCertified = 0;
+                            $(this).removeClass('loccertinlocation').addClass('locnotcertinlocation');
+                        } else {
+                            showOnlyLocCertified = 1;
+                            $(this).removeClass('locnotcertinlocation').addClass('loccertinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
@@ -406,10 +410,12 @@
                     });
 
                     $('#showonlytimecert').click(function () {
-                        if ($(this).is(':checked')) {
-                            showOnlyTimeCertified = 1;
-                        } else {
+                        if ($(this).hasClass('timecertinlocation')) {
                             showOnlyTimeCertified = 0;
+                            $(this).removeClass('timecertinlocation').addClass('timenotcertinlocation');
+                        } else {
+                            showOnlyTimeCertified = 1;
+                            $(this).removeClass('timenotcertinlocation').addClass('timecertinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
