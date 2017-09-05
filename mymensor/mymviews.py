@@ -374,7 +374,7 @@ def portfolio(request):
         startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
         datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
         enddate = datetime.strptime(
-            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
+            request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc).strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
