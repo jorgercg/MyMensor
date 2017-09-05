@@ -403,7 +403,7 @@ def portfolio(request):
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
-        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 1)))
+        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 0)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -496,11 +496,10 @@ def location(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(
-            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
-            '%Y-%m-%d')
+        startdate = parse(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
+        enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))),
+                        yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
@@ -508,6 +507,7 @@ def location(request):
             request.GET.get('showlocationprecision', request.session.get('showlocationprecision', 0)))
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
+        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 0)))
         showuserpath = int(request.GET.get('showuserpath', request.session.get('showuserpath', 0)))
         centerlat = float(request.GET.get('centerlat', 0))
         centerlng = float(request.GET.get('centerlng', 0))
@@ -523,26 +523,46 @@ def location(request):
             vps = vps.filter(vpNumber__in=vpsselected).order_by('vpNumber')
             vpsselected = vps.values_list('vpNumber', flat=True)
         if showonlyloccert == 1 and showonlytimecert == 1:
+            lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+            if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                new_enddate = lastmedia.mediaTimeStamp
+                enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 1 and showonlytimecert == 0:
+            lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+            if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                new_enddate = lastmedia.mediaTimeStamp
+                enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 0 and showonlytimecert == 1:
+            lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+            if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                new_enddate = lastmedia.mediaTimeStamp
+                enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         else:
+            lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+            if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                new_enddate = lastmedia.mediaTimeStamp
+                enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
             vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
+        enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
         orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
         if not orgmymaccselected:
@@ -570,7 +590,7 @@ def location(request):
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
-                       'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,
+                       'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,'showlastmedia':showlastmedia,
                        'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
                        'mapzoom': mapzoom,
                        'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,

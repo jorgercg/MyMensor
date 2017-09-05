@@ -61,12 +61,12 @@
                                     <span id="showlastmedia" class="fa fa-fast-forward showlastmediainlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Forcibly showing the last of the media captures" %}"></span>
+                                          title="{% trans "Showing the last of the media captures" %}"></span>
                                 {% else %}
                                     <span id="showlastmedia" class="fa fa-fast-forward showlastmedianotinlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Not necessarily showing last of the media captures" %}"></span>
+                                          title="{% trans "Not necessarily showing the last of the media captures" %}"></span>
                                 {% endif %}
                             </div>
                         </div>
@@ -172,18 +172,19 @@
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
-                $(function () {
+                var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                    var start = moment("{{ start }}");
-                    var end = moment("{{ end }}");
+                var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+                $(function () {
 
                     function cb(start, end) {
                         $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                     }
 
                     $('#reportrange').daterangepicker({
-                        startDate: {{ start }},
-                        endDate: {{ end }},
+                        startDate: start,
+                        endDate: end,
                         "alwaysShowCalendars": true,
                         {% if LANGUAGE_CODE == "pt" %}
                             ranges: {
@@ -320,11 +321,10 @@
                     cb(start, end);
 
                     $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                        var startdate = picker.startDate.format('YYYY-MM-DD');
-                        var enddate = picker.endDate.format('YYYY-MM-DD');
+                        var startdate = encodeURIComponent(picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+                        var enddate = encodeURIComponent(picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                         console.log(startdate);
                         console.log(enddate);
-                        //console.log({% url 'portfolio' %});
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
@@ -336,7 +336,7 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }}+'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }}+'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
                 });
@@ -374,7 +374,7 @@
                         centerlat = mymap.getCenter().lat;
                         centerlng = mymap.getCenter().lng;
                         mapzoom = mymap.getZoom();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + showLocationPrecision + '&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
                     });
 
                     $('#showuserpath').click(function () {
@@ -390,7 +390,7 @@
                         centerlat = mymap.getCenter().lat;
                         centerlng = mymap.getCenter().lng;
                         mapzoom = mymap.getZoom();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=' + centerlat + '&centerlng=' + centerlng + '&mapzoom=' + mapzoom;
                     });
 
                     $('#showonlyloccert').click(function () {
@@ -403,7 +403,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
                     $('#showonlytimecert').click(function () {
@@ -416,7 +416,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'location' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + showUserPath + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
                     var colorNames = ['blue', 'red', 'orange', 'yellow', 'cyan', 'purple', 'violet', 'pink', 'green', 'black'];
