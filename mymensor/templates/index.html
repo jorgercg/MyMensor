@@ -345,7 +345,6 @@
                     }
 
                     $('#reportrange').daterangepicker({
-                        timePicker24Hour: true,
                         startDate: start,
                         endDate: end,
                         "alwaysShowCalendars": true,
@@ -484,8 +483,8 @@
                     cb(start, end);
 
                     $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                        var startdate = picker.startDate.format('YYYY-MM-DD');
-                        var enddate = picker.endDate.format('YYYY-MM-DD');
+                        var startdate = picker.startDate.format(moment.ISO_8601);
+                        var enddate = picker.endDate.format(moment.ISO_8601);
                         console.log(startdate);
                         console.log(enddate);
                         //console.log({% url 'portfolio' %});
