@@ -550,10 +550,10 @@
                     $('#showonlyloccert').click(function () {
                         if ($(this).hasClass('loccertinlocation')) {
                             showOnlyLocCertified = 0;
-                            $(this).setClass('locnotcertinlocation')
+                            $(this).removeClass('loccertinlocation').addClass('locnotcertinlocation');
                         } else {
                             showOnlyLocCertified = 1;
-                            $(this).setClass('loccertinlocation')
+                            $(this).removeClass('locnotcertinlocation').addClass('loccertinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
