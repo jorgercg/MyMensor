@@ -560,10 +560,10 @@
 
                     $('#showonlytimecert').click(function () {
                         if ($(this).hasClass('timecertinlocation')) {
-                            showOnlyTimeCertified = 1;
+                            showOnlyTimeCertified = 0;
                             $(this).removeClass('timecertinlocation').addClass('timenotcertinlocation');
                         } else {
-                            showOnlyTimeCertified = 0;
+                            showOnlyTimeCertified = 1;
                             $(this).removeClass('timenotcertinlocation').addClass('timecertinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
