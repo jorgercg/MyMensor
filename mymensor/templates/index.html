@@ -41,12 +41,12 @@
                                     <span id="showlastmedia" class="fa fa-fast-forward showlastmediainlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Forcibly showing the last of the media captures" %}"></span>
+                                          title="{% trans "Showing the last of the media captures" %}"></span>
                                 {% else %}
                                     <span id="showlastmedia" class="fa fa-fast-forward showlastmedianotinlocation"
                                           data-toggle="tooltip"
                                           data-placement="top"
-                                          title="{% trans "Not necessarily showing last of the media captures" %}"></span>
+                                          title="{% trans "Not necessarily showing the last of the media captures" %}"></span>
                                 {% endif %}
                             </div>
                         </div>
@@ -340,9 +340,6 @@
                     var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
                     var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                    console.log('Start:'+start);
-                    console.log('End:'+end);
-
                     function cb(start, end) {
                         $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                     }
@@ -535,7 +532,6 @@
 
                 $(function () {
 
-                    console.log('{{ maxcolumnstxt }}');
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
                     var showLastMedia = {{ showlastmedia }};
