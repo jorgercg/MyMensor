@@ -483,8 +483,8 @@
                     cb(start, end);
 
                     $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                        var startdate = picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
-                        var enddate = picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                        var startdate = picker.startDate.format("YYYY-MM-DDTHH:mm:ssZZ");
+                        var enddate = picker.endDate.format("YYYY-MM-DDTHH:mm:ssZZ");
                         console.log(startdate);
                         console.log(enddate);
                         //console.log({% url 'portfolio' %});
