@@ -345,8 +345,8 @@
                     }
 
                     $('#reportrange').daterangepicker({
-                        startDate: {{ start }},
-                        endDate: {{ end }},
+                        startDate: start,
+                        endDate: end,
                         "alwaysShowCalendars": true,
                         {% if LANGUAGE_CODE == "pt" %}
                             ranges: {
