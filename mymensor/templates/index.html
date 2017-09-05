@@ -31,16 +31,14 @@
                                 <div class="form-check form-check-inline">
                                     <label class="form-check-label">
                                         {% if showonlytimecert == 1 %}
-                                            <input id="showonlytimecert" class="form-check-input" type="checkbox"
-                                                   value=""
-                                                   checked>
-                                        {% else %}
-                                            <input id="showonlytimecert" class="form-check-input" type="checkbox"
-                                                   value="">
-                                        {% endif %}
-                                        <span class="fa fa-clock-o timecertinlocation" data-toggle="tooltip"
+                                            <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation" data-toggle="tooltip"
                                               data-placement="top"
-                                              title="{% trans "Show only time certified media captures" %}"></span>
+                                              title="{% trans "Showing only time certified media captures" %}"></span>
+                                        {% else %}
+                                            <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation" data-toggle="tooltip"
+                                              data-placement="top"
+                                              title="{% trans "Show media captures, even with no time certificyion" %}"></span>
+                                        {% endif %}
                                     </label>
                                 </div>
                             </div>
@@ -561,10 +559,12 @@
                     });
 
                     $('#showonlytimecert').click(function () {
-                        if ($(this).is(':checked')) {
+                        if ($(this).hasClass('timecertinlocation')) {
                             showOnlyTimeCertified = 1;
+                            $(this).removeClass('timecertinlocation').addClass('timenotcertinlocation');
                         } else {
                             showOnlyTimeCertified = 0;
+                            $(this).removeClass('timenotcertinlocation').addClass('timecertinlocation');
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
