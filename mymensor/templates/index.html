@@ -498,7 +498,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} + '&showlastmedia='+ {{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} + '&showlastmedia='+ {{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
