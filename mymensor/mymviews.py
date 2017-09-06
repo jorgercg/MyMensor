@@ -500,10 +500,11 @@ def location(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = parse(request.GET.get('startdate', request.session.get('startdate', (
-        datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
-        enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))),
-                        yearfirst=True)
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
@@ -999,9 +1000,11 @@ def procTagEditView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', 5)))
 
@@ -1048,9 +1051,11 @@ def tagProcessingFormView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(
-            request.GET.get('startdate', (datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d')), '%Y-%m-%d')
-        enddate = datetime.strptime(request.GET.get('enddate', datetime.today().strftime('%Y-%m-%d')), '%Y-%m-%d')
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', 5)))
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
@@ -1182,11 +1187,11 @@ def TagStatusView(request):
             loaddcicfg(request)
         except ClientError as e:
             error_code = e
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(
-            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
-            '%Y-%m-%d')
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
         enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
@@ -1233,11 +1238,11 @@ def TagStatusView(request):
 @user_passes_test(group_check)
 def export_tagstatus_csv(request):
     if request.method == 'GET':
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(
-            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
-            '%Y-%m-%d')
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         tagsselected = request.GET.getlist('tagsselected', default=None)
         sort = request.GET.get('sort', '-statusMediaTimeStamp')
@@ -1288,11 +1293,11 @@ def tagAnalysisView(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = datetime.strptime(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.today() - timedelta(days=29)).strftime('%Y-%m-%d'))), '%Y-%m-%d')
-        enddate = datetime.strptime(
-            request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
-            '%Y-%m-%d')
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+        datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+        enddate = parse(
+            urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+            yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
         enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
@@ -1476,8 +1481,11 @@ def vpDetailView(request):
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
-            startdate = parse(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
-            enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))), yearfirst=True)
+            startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
+            datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
+            enddate = parse(
+                urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
+                yearfirst=True)
             new_enddate = enddate + timedelta(days=1)
             startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
             enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
