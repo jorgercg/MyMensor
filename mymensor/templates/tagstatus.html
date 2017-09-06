@@ -61,28 +61,26 @@
 {% block javascript %}
     <script type="text/javascript">
         $('#tagsselected').chosen();
+
+        {% get_current_language as LANGUAGE_CODE %}
+
+        moment.locale('{{ LANGUAGE_CODE }}');
+
+        var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+        var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
         $('#linesperpage option[value="{{ linesperpage }}"]').attr('selected', 'selected');
 
         $(function () {
-
-            {% get_current_language as LANGUAGE_CODE %}
-
-            moment.locale('{{ LANGUAGE_CODE }}');
-
-            var start = moment("{{ start }}");
-            var end = moment("{{ end }}");
-
-            console.log("{{ start }}");
-            console.log("{{ end }}");
-            console.log("{{ tagsselected }}");
 
             function cb(start, end) {
                 $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
             }
 
             $('#reportrange').daterangepicker({
-                startDate: {{ start }},
-                endDate: {{ end }},
+                startDate: start,
+                endDate: end,
                 "alwaysShowCalendars": true,
                 {% if LANGUAGE_CODE == "pt" %}
                     ranges: {
@@ -219,42 +217,34 @@
             cb(start, end);
 
             $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                var startdate = picker.startDate.format('YYYY-MM-DD');
-                var enddate = picker.endDate.format('YYYY-MM-DD');
-                console.log(startdate);
-                console.log(enddate);
+                var startdate = encodeURIComponent(picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+                var enddate = encodeURIComponent(picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                 var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
-                console.log("linesperpage:" + linesperpage);
-                console.log('Chosen:' + tagssel);
                 window.location = '{% url 'tagstatus' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#linesperpage').change(function () {
                 var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
-                console.log("linesperpage:" + linesperpage);
-                console.log('Chosen:' + tagssel);
-                window.location = '{% url 'tagstatus' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
+                window.location = '{% url 'tagstatus' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#refreshbtn').click(function () {
                 var linesperpage = $('#linesperpage').val();
                 var tagssel = $('#tagsselected').serialize();
-                console.log("linesperpage:" + linesperpage);
-                console.log('Chosen:' + tagssel);
-                window.location = '{% url 'tagstatus' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&linesperpage=' + linesperpage + '&' + tagssel;
+                window.location = '{% url 'tagstatus' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&linesperpage=' + linesperpage + '&' + tagssel;
             });
 
             $('#exprtcsvbtn').click(function () {
                 var tagssel = $('#tagsselected').serialize();
-                window.location = '{% url 'export_tagstatus_csv' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&sort=' + '{{ tablesort }}' + '&' + tagssel;
+                window.location = '{% url 'export_tagstatus_csv' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&sort=' + '{{ tablesort }}' + '&' + tagssel;
             });
 
             $('.mym-table').on('click', 'tr', function () {
                 var td = this.cells[0];  // the first <td>
                 if (!isNaN($(td).text())) {
-                    window.location = '{% url 'taganalysis' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&tagsselected=' + $(td).text();
+                    window.location = '{% url 'taganalysis' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&tagsselected=' + $(td).text();
                 }
             });
 

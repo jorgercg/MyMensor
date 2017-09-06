@@ -265,22 +265,26 @@
 
                  */
 
+
+                {% get_current_language as LANGUAGE_CODE %}
+
+                moment.locale('{{ LANGUAGE_CODE }}');
+
+                var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+                var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+
                 $(function () {
 
-                    {% get_current_language as LANGUAGE_CODE %}
-
-                    moment.locale('{{ LANGUAGE_CODE }}');
-
-                    var start = moment("{{ start }}");
-                    var end = moment("{{ end }}");
 
                     function cb(start, end) {
                         $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                     }
 
                     $('#reportrange').daterangepicker({
-                        startDate: {{ start }},
-                        endDate: {{ end }},
+                        startDate: start,
+                        endDate: end,
                         "alwaysShowCalendars": true,
                         {% if LANGUAGE_CODE == "pt" %}
                             ranges: {
@@ -417,8 +421,8 @@
                     cb(start, end);
 
                     $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                        var startdate = picker.startDate.format('YYYY-MM-DD');
-                        var enddate = picker.endDate.format('YYYY-MM-DD');
+                        var startdate = encodeURIComponent(picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+                        var enddate = encodeURIComponent(picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                         console.log(startdate);
                         console.log(enddate);
                         console.log('{% url 'proctagedit' %}');
@@ -437,7 +441,7 @@
                     $('#qtytodisplaypervp').change(function () {
                         var qtyselected = $(this).find(":selected").val();
                         console.log(qtyselected);
-                        window.location = '{% url 'proctagedit' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&qtypervp=' + qtyselected;
+                        window.location = '{% url 'proctagedit' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + qtyselected;
                     });
                 });
 

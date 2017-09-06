@@ -489,24 +489,19 @@
                 cb(start, end);
 
                 $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                    var startdate = picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
-                    var enddate = picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
-                    console.log(startdate);
-                    console.log(enddate);
+                    var startdate = encodeURIComponent(picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+                    var enddate = encodeURIComponent(picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
                     var tagssel = $('#tagsselected').serialize();
-                    console.log('Chosen:' + tagssel);
                     window.location = '{% url 'vpdetail' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}';
                 });
 
                 $('#vpselected').change(function () {
                     var vpselected = $(this).find(":selected").val();
-                    console.log("vpselected:" + vpselected);
                     window.location = '{% url 'vpdetail' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&vpselected=' + vpselected + '&mediaselected=' + '{{mediaselected}}';
                 });
 
                 $('#mediaselected').change(function () {
                     var mediaselected = $(this).find(":selected").val();
-                    console.log("mediaselected:" + mediaselected);
                     window.location = '{% url 'vpdetail' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + mediaselected;
                 });
 
