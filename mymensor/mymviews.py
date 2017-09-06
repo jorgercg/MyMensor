@@ -534,9 +534,10 @@ def location(request):
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                     mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
-                if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                    new_enddate = lastmedia.mediaTimeStamp
-                    enddate = lastmedia.mediaTimeStamp
+                if lastmedia:
+                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                        new_enddate = lastmedia.mediaTimeStamp
+                        enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
@@ -544,9 +545,10 @@ def location(request):
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
-                if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                    new_enddate = lastmedia.mediaTimeStamp
-                    enddate = lastmedia.mediaTimeStamp
+                if lastmedia:
+                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                        new_enddate = lastmedia.mediaTimeStamp
+                        enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
@@ -554,9 +556,10 @@ def location(request):
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                     mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
-                if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                    new_enddate = lastmedia.mediaTimeStamp
-                    enddate = lastmedia.mediaTimeStamp
+                if lastmedia:
+                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                        new_enddate = lastmedia.mediaTimeStamp
+                        enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
@@ -564,9 +567,10 @@ def location(request):
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
-                if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                    new_enddate = lastmedia.mediaTimeStamp
-                    enddate = lastmedia.mediaTimeStamp
+                if lastmedia:
+                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
+                        new_enddate = lastmedia.mediaTimeStamp
+                        enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
