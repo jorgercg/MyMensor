@@ -339,19 +339,17 @@
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
-                var start = moment("{{ start }}");
-                var end = moment("{{ end }}");
+                var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                console.log("{{ start }}");
-                console.log("{{ end }}");
+                var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
                 function cb(start, end) {
                     $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                 }
 
                 $('#reportrange').daterangepicker({
-                    startDate: {{ start }},
-                    endDate: {{ end }},
+                    startDate: start,
+                    endDate: end,
                     "alwaysShowCalendars": true,
                     {% if LANGUAGE_CODE == "pt" %}
                         ranges: {
@@ -500,13 +498,13 @@
                 $('#vpselected').change(function () {
                     var vpselected = $(this).find(":selected").val();
                     console.log("vpselected:" + vpselected);
-                    window.location = '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + vpselected + '&mediaselected=' + '{{mediaselected}}';
+                    window.location = '{% url 'vpdetail' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&vpselected=' + vpselected + '&mediaselected=' + '{{mediaselected}}';
                 });
 
                 $('#mediaselected').change(function () {
                     var mediaselected = $(this).find(":selected").val();
                     console.log("mediaselected:" + mediaselected);
-                    window.location = '{% url 'vpdetail' %}' + '?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + mediaselected;
+                    window.location = '{% url 'vpdetail' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + mediaselected;
                 });
 
 
