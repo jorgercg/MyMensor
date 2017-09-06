@@ -373,16 +373,8 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        try:
-            startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
-            enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))), yearfirst=True)
-        except:
-            request.session.flush()
-            startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.now(pytz.utc) - timedelta(days=29))))), yearfirst=True)
-            enddate = parse(
-                urllib.unquote(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc)))),
-                yearfirst=True)
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', urllib.quote((datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z')) ))), yearfirst=True)
+        enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote((datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
