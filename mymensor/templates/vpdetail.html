@@ -175,13 +175,16 @@
                                     {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>
@@ -285,13 +288,16 @@
                                     {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
                             {% else %}
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                                 <li class="list-group-item text-danger">
-                                    <s>{% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                    <s>
+                                        {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
                                 </li>
                             {% endif %}
                         </ul>
@@ -319,11 +325,17 @@
                 url: 'https://app.mymensor.com/mc/1/' + '{{ mediaObjectS3Key }}' + '/' + '{{ mediaSha256 }}'
             });
 
-            console.log('?startdate=' + '{{ start }}' + '&enddate=' + '{{ end }}' + '&vpselected=' + '{{vpselected}}' + '&mediaselected=' + '{{mediaselected}}');
-
             $('#vpselected').chosen();
-
             $('#mediaselected').chosen();
+
+            {% get_current_language as LANGUAGE_CODE %}
+
+            moment.locale('{{ LANGUAGE_CODE }}');
+
+            var start = moment("{{ start }}", "YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
+            var end = moment("{{ end }}", "YYYY-MM-DDTHH:mm:ss.SSSZZ");
+
 
             {% if mediaProcessed and mediaArIsOn %}
                 console.log("Media not movable!!!");
@@ -334,15 +346,6 @@
             {% endif %}
 
             $(function () {
-
-                {% get_current_language as LANGUAGE_CODE %}
-
-                moment.locale('{{ LANGUAGE_CODE }}');
-
-                var start = moment("{{ start }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
-
-                var end = moment("{{ end }}","YYYY-MM-DDTHH:mm:ss.SSSZZ");
-
                 function cb(start, end) {
                     $('#reportrange span').html(start.format('YYYY-MMM-DD') + ' - ' + end.format('YYYY-MMM-DD'));
                 }
@@ -486,8 +489,8 @@
                 cb(start, end);
 
                 $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
-                    var startdate = picker.startDate.format('YYYY-MM-DD');
-                    var enddate = picker.endDate.format('YYYY-MM-DD');
+                    var startdate = picker.startDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                    var enddate = picker.endDate.format("YYYY-MM-DDTHH:mm:ss.SSSZZ");
                     console.log(startdate);
                     console.log(enddate);
                     var tagssel = $('#tagsselected').serialize();
