@@ -454,8 +454,8 @@ def portfolio(request):
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
-        startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
-        enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
         orgmymacclist = orgmymacc.values_list('mediaOriginalMymensorAccount', flat=True)
         if not orgmymaccselected:
@@ -1008,8 +1008,8 @@ def procTagEditView(request):
         medias = Media.objects.filter(vp__vpIsActive=True).filter(mediaProcessed=True).filter(
             vp__asset__assetOwner=request.user).filter(mediaTimeStamp__range=[startdate, new_enddate]).order_by(
             'mediaMillisSinceEpoch')
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                     Params={'Bucket': AWS_S3_BUCKET_NAME,
@@ -1056,8 +1056,8 @@ def tagProcessingFormView(request):
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
             mediaProcessed=False).filter(vp__tag__isnull=False).filter(
             mediaTimeStamp__range=[startdate, new_enddate]).order_by('mediaMillisSinceEpoch').distinct()
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         for media in medias:
             media.mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                     Params={'Bucket': AWS_S3_BUCKET_NAME,
@@ -1188,8 +1188,8 @@ def TagStatusView(request):
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         processedtags = TagStatusTable.objects.filter(processedTag__media__vp__asset__assetOwner=request.user).filter(
             statusMediaTimeStamp__range=[startdate, new_enddate]).order_by('statusMediaMillisSinceEpoch')
         listofprocessedtagsnumbers = processedtags.order_by('statusTagNumber', 'statusMediaMillisSinceEpoch').distinct(
@@ -1294,8 +1294,8 @@ def tagAnalysisView(request):
             request.GET.get('enddate', request.session.get('enddate', datetime.today().strftime('%Y-%m-%d'))),
             '%Y-%m-%d')
         new_enddate = enddate + timedelta(days=1)
-        startdateformatted = startdate.strftime('%Y-%m-%d')
-        enddateformatted = enddate.strftime('%Y-%m-%d')
+        startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
+        enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(vp__vpIsActive=True).filter(
             mediaProcessed=True).filter(mediaTimeStamp__range=[startdate, new_enddate])
         for media in medias:
@@ -1476,10 +1476,8 @@ def vpDetailView(request):
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
-            startdate = parse(request.GET.get('startdate', request.session.get('startdate', (
-            datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
-            enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))),
-                            yearfirst=True)
+            startdate = parse(request.GET.get('startdate', request.session.get('startdate', (datetime.now(pytz.utc) - timedelta(days=29)))), yearfirst=True)
+            enddate = parse(request.GET.get('enddate', request.session.get('enddate', datetime.now(pytz.utc))), yearfirst=True)
             new_enddate = enddate + timedelta(days=1)
             startdateformatted = startdate.strftime('%Y-%m-%d %H:%M:%S %z')
             enddateformatted = enddate.strftime('%Y-%m-%d %H:%M:%S %z')
