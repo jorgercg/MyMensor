@@ -603,6 +603,7 @@ def location(request):
         request.session['showlocationprecision'] = showlocationprecision
         request.session['startdate'] = startdateformatted
         request.session['enddate'] = enddateformatted
+        request.session['showlastmedia'] = showlastmedia
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
