@@ -645,6 +645,29 @@ def cognitoauth(request):
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         )
+
+        if BRAINTREE_PRODUCTION:
+            braintree_env = braintree.Environment.Production
+        else:
+            braintree_env = braintree.Environment.Sandbox
+        braintree.Configuration.configure(
+            braintree_env,
+            merchant_id=BRAINTREE_MERCHANT_ID,
+            public_key=BRAINTREE_PUBLIC_KEY,
+            private_key=BRAINTREE_PRIVATE_KEY,
+        )
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        try:
+            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+            btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
+            btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
+            currentbtsubstatus = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
+        except:
+            btsubscription = None
+            btprice = None
+            btmercht = None
+            currentbtsubstatus = None
+
         try:
             mymensormobileclienttype = request.META['HTTP_FROM']
         except KeyError:
@@ -688,6 +711,11 @@ def cognitoauth(request):
 
         if qtyofinstallactiveduringlastmonth > MYMMENSORMOBILE_MAX_INSTALLS:
             return HttpResponse(status=403)
+
+        dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
+
+        if btsubscription==None and (datetime.today() - dateofendoftrialbeforesubscription > timedelta(days=1)):
+            HttpResponse(status=400)
 
         usergroup = 'mymARwebapp'
 
