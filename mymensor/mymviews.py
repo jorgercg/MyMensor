@@ -687,7 +687,7 @@ def cognitoauth(request):
 
         assetinstance = Asset.objects.get(assetOwner=request.user)
 
-        thirtydaysago = datetime.today() - timedelta(days=30)
+        thirtydaysago = datetime.now(pytz.utc) - timedelta(days=30)
 
         qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
             mobileClientInstallLastAccessTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
@@ -715,7 +715,7 @@ def cognitoauth(request):
 
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
 
-        if btsubscription==None and (datetime.today() - dateofendoftrialbeforesubscription > timedelta(days=1)):
+        if btsubscription==None and (datetime.now(pytz.utc) - dateofendoftrialbeforesubscription > timedelta(days=1)):
             messages.warning(request, _('Your trial period has expired, you will not be able to upload any media to the server.'))
             HttpResponse(status=400)
 
