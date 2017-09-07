@@ -716,8 +716,7 @@ def cognitoauth(request):
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
 
         if btsubscription==None and (datetime.now(pytz.utc) - dateofendoftrialbeforesubscription > timedelta(days=1)):
-            messages.warning(request._request, _('Your trial period has expired, you will not be able to upload any media to the server.'))
-            HttpResponse(status=400)
+            HttpResponse(status=432)
 
         usergroup = 'mymARwebapp'
 
