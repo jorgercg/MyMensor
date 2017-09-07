@@ -646,7 +646,6 @@ def cognitoauth(request):
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
         )
-
         if BRAINTREE_PRODUCTION:
             braintree_env = braintree.Environment.Production
         else:
@@ -657,44 +656,26 @@ def cognitoauth(request):
             public_key=BRAINTREE_PUBLIC_KEY,
             private_key=BRAINTREE_PRIVATE_KEY,
         )
-        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
-        try:
-            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-            btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
-            btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
-            currentbtsubstatus = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
-        except:
-            btsubscription = None
-            btprice = None
-            btmercht = None
-            currentbtsubstatus = None
-
         try:
             mymensormobileclienttype = request.META['HTTP_FROM']
         except KeyError:
             mymensormobileclienttype = "UNKNOWN"
-
+        # No mobile client type set
         if mymensormobileclienttype == "UNKNOWN":
             return HttpResponse(status=400)
-
         try:
             mymclientguid = request.META['HTTP_WARNING']
         except KeyError:
             mymclientguid = "NOTSET"
-
+        # No mobile GUID set
         if mymclientguid == "NOTSET":
             return HttpResponse(status=400)
-
         assetinstance = Asset.objects.get(assetOwner=request.user)
-
         thirtydaysago = datetime.now(pytz.utc) - timedelta(days=30)
-
         qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
             mobileClientInstallLastAccessTimeStamp__gte=thirtydaysago).distinct('mobileClientInstallGUID').count()
-
         qtyofinstallevermade = MobileClientInstall.objects.filter(asset=assetinstance).distinct(
             'mobileClientInstallGUID').count()
-
         mobclientinstallinstace = MobileClientInstall()
         try:
             mobclientinstallinstace = MobileClientInstall.objects.get(asset=assetinstance,
@@ -709,26 +690,40 @@ def cognitoauth(request):
                                                           mobileClientInstallLastAccessTimeStamp=timenow)
             mobclientinstallinstace.save(force_insert=True)
             qtyofinstallactiveduringlastmonth = qtyofinstallactiveduringlastmonth + 1
-
+        # More than MYMMENSORMOBILE_MAX_INSTALLS per username including service users
         if qtyofinstallactiveduringlastmonth > MYMMENSORMOBILE_MAX_INSTALLS:
             return HttpResponse(status=433)
 
-        dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
-
-        if btsubscription==None and (datetime.now(pytz.utc) - dateofendoftrialbeforesubscription > timedelta(days=1)):
-            return HttpResponse(status=432)
-
         usergroup = 'mymARwebapp'
-
         token = (Token.objects.get(user_id=request.user.id)).key
-
         username = request.user.username
-
         if request.user.groups.filter(name__in=['mymARmobileapp']).exists():
             # TODO: Bring the prefix from Asset (Firstly put it there, obviusly....)
             usernameprefix = username[:7]
             username = username.replace(usernameprefix, '')
             usergroup = 'mymARmobileapp'
+            masteruser = User.objects.get(username=username)
+            assetinstance = Asset.objects.get(assetOwner=masteruser)
+
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
+        try:
+            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+            btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
+            btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
+            currentbtsubstatus = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
+        except:
+            btsubscription = None
+            btprice = None
+            btmercht = None
+            currentbtsubstatus = None
+
+        dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
+        # Trial expired
+        if btsubscription==None and (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
+            return HttpResponse(status=432)
+        # More than 30 days delayed payment.
+        if (datetime.now(pytz.utc) < btsubscription.braintreesubscriptionLastDay + timedelta(days=30)):
+            return HttpResponse(status=434)
 
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
