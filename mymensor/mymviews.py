@@ -719,10 +719,10 @@ def cognitoauth(request):
 
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
         # Trial expired
-        if btsubscription==None and (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
+        if (btsubscription is None) and (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
             return HttpResponse(status=432)
         # More than 30 days delayed payment.
-        if (datetime.now(pytz.utc) < btsubscription.braintreesubscriptionLastDay + timedelta(days=30)):
+        if (btsubscription is not None) and (datetime.now(pytz.utc) < btsubscription.braintreesubscriptionLastDay):
             return HttpResponse(status=434)
 
         response = client.get_open_id_token_for_developer_identity(
