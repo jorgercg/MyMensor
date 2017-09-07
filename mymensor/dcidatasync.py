@@ -1,9 +1,10 @@
 import xml.etree.ElementTree as ET
 import boto3, urllib
-from django.contrib.staticfiles import finders
+from django.contrib import messages
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, ASSETFILES_FOLDER
 from mymensor.models import Asset
 from mymensor.models import Vp as modelVp
+from django.utils.translation import ugettext_lazy as _
 
 
 def str2bool(v):
@@ -42,15 +43,8 @@ def loaddcicfg(request):
     try:
         root = ET.fromstring(vpsfilecontents)
     except:
+        messages.error(request, _('There is a problem with your setup files. Please restore backup.'))
         return
-
-    for Parameters in root.findall('Parameters'):
-        AssetId = Parameters.find('AssetId').text
-        FrequencyUnit = Parameters.find('FrequencyUnit').text
-        FrequencyValue = Parameters.find('FrequencyValue').text
-        QtyVps = Parameters.find('QtyVps').text
-        TolerancePosition = Parameters.find('TolerancePosition').text
-        ToleranceRotation = Parameters.find('ToleranceRotation').text
 
     VpNumber = []
     VpDescFileSize = []
@@ -72,30 +66,48 @@ def loaddcicfg(request):
     VpSuperMarkerId = []
     VpFrequencyUnit = []
     VpFrequencyValue = []
+    AssetId = ''
+    FrequencyUnit = ''
+    FrequencyValue = ''
+    QtyVps = ''
+    TolerancePosition = ''
+    ToleranceRotation = ''
 
-    counter = 0
-    for Vp in root.findall('Vp'):
-        VpNumber.append(Vp.find('VpNumber').text)
-        VpDescFileSize.append(Vp.find('VpDescFileSize').text)
-        VpMarkerFileSize.append(Vp.find('VpMarkerFileSize').text)
-        VpArIsConfigured.append(Vp.find('VpArIsConfigured').text)
-        VpIsVideo.append(Vp.find('VpIsVideo').text)
-        VpXCameraDistance.append(Vp.find('VpXCameraDistance').text)
-        VpYCameraDistance.append(Vp.find('VpYCameraDistance').text)
-        VpZCameraDistance.append(Vp.find('VpZCameraDistance').text)
-        VpXCameraRotation.append(Vp.find('VpXCameraRotation').text)
-        VpYCameraRotation.append(Vp.find('VpYCameraRotation').text)
-        VpZCameraRotation.append(Vp.find('VpZCameraRotation').text)
-        VpLocDescription.append(Vp.find('VpLocDescription').text)
-        VpMarkerlessMarkerWidth.append(Vp.find('VpMarkerlessMarkerWidth').text)
-        VpMarkerlessMarkerHeigth.append(Vp.find('VpMarkerlessMarkerHeigth').text)
-        VpIsAmbiguous.append(Vp.find('VpIsAmbiguous').text)
-        VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
-        VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
-        VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
-        VpFrequencyUnit.append('millis')
-        VpFrequencyValue.append('0')
-        counter += 1
+    try:
+        for Parameters in root.findall('Parameters'):
+            AssetId = Parameters.find('AssetId').text
+            FrequencyUnit = Parameters.find('FrequencyUnit').text
+            FrequencyValue = Parameters.find('FrequencyValue').text
+            QtyVps = Parameters.find('QtyVps').text
+            TolerancePosition = Parameters.find('TolerancePosition').text
+            ToleranceRotation = Parameters.find('ToleranceRotation').text
+
+        counter = 0
+        for Vp in root.findall('Vp'):
+            VpNumber.append(Vp.find('VpNumber').text)
+            VpDescFileSize.append(Vp.find('VpDescFileSize').text)
+            VpMarkerFileSize.append(Vp.find('VpMarkerFileSize').text)
+            VpArIsConfigured.append(Vp.find('VpArIsConfigured').text)
+            VpIsVideo.append(Vp.find('VpIsVideo').text)
+            VpXCameraDistance.append(Vp.find('VpXCameraDistance').text)
+            VpYCameraDistance.append(Vp.find('VpYCameraDistance').text)
+            VpZCameraDistance.append(Vp.find('VpZCameraDistance').text)
+            VpXCameraRotation.append(Vp.find('VpXCameraRotation').text)
+            VpYCameraRotation.append(Vp.find('VpYCameraRotation').text)
+            VpZCameraRotation.append(Vp.find('VpZCameraRotation').text)
+            VpLocDescription.append(Vp.find('VpLocDescription').text)
+            VpMarkerlessMarkerWidth.append(Vp.find('VpMarkerlessMarkerWidth').text)
+            VpMarkerlessMarkerHeigth.append(Vp.find('VpMarkerlessMarkerHeigth').text)
+            VpIsAmbiguous.append(Vp.find('VpIsAmbiguous').text)
+            VpFlashTorchIsOn.append(Vp.find('VpFlashTorchIsOn').text)
+            VpIsSuperSingle.append(Vp.find('VpIsSuperSingle').text)
+            VpSuperMarkerId.append(Vp.find('VpSuperMarkerId').text)
+            VpFrequencyUnit.append('millis')
+            VpFrequencyValue.append('0')
+            counter += 1
+    except:
+        messages.error(request, _('There is a problem with your setup files. Please restore backup.'))
+        return
 
     loadasset = Asset.objects.get(assetOwner=request.user)
     loadasset.assetNumber = int(AssetId)
