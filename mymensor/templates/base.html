@@ -163,11 +163,15 @@
     </nav>
     <div class="container-fluid">
         {% if messages %}
-            <ul class="messages">
+            <ul class="messages m-0 p-0">
                 {% for message in messages %}
                     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
                         <div class="alert alert-danger m-2" role="alert">
                             <strong>{% trans "Important!" %}</strong> {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info m-2" role="alert">
+                            <strong>{% trans "INFO" %}</strong> {{ message }}
                         </div>
                     {% endif %}
                 {% endfor %}
