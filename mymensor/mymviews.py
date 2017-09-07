@@ -711,12 +711,12 @@ def cognitoauth(request):
             qtyofinstallactiveduringlastmonth = qtyofinstallactiveduringlastmonth + 1
 
         if qtyofinstallactiveduringlastmonth > MYMMENSORMOBILE_MAX_INSTALLS:
-            return HttpResponse(status=403)
+            return HttpResponse(status=433)
 
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
 
         if btsubscription==None and (datetime.now(pytz.utc) - dateofendoftrialbeforesubscription > timedelta(days=1)):
-            HttpResponse(status=432)
+            return HttpResponse(status=432)
 
         usergroup = 'mymARwebapp'
 
