@@ -43,7 +43,7 @@ def loaddcicfg(request):
     try:
         root = ET.fromstring(vpsfilecontents)
     except:
-        messages.error(request, _('There is a problem with your setup files. Please restore backup.'))
+        messages.error(request, _('There is a problem with your smartphone setup files. Please restore backup.'))
         return
 
     VpNumber = []
@@ -106,7 +106,7 @@ def loaddcicfg(request):
             VpFrequencyValue.append('0')
             counter += 1
     except:
-        messages.error(request, _('There is a problem with your setup files. Please restore backup.'))
+        messages.error(request, _('There is a problem with your smartphone setup files. Please restore backup.'))
         return
 
     loadasset = Asset.objects.get(assetOwner=request.user)
