@@ -722,8 +722,8 @@ def cognitoauth(request):
         if (btsubscription is None) and (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
             return HttpResponse(status=432)
         # More than 30 days delayed payment.
-        #if (btsubscription is not None) and (datetime.now(pytz.utc) < btsubscription.braintreesubscriptionLastDay):
-        #    return HttpResponse(status=434)
+        if (btsubscription is not None) and (datetime.now(pytz.utc) < btsubscription.braintreesubscriptionLastDay):
+            return HttpResponse(status=434)
 
         response = client.get_open_id_token_for_developer_identity(
             IdentityPoolId='eu-west-1:963bc158-d9dd-4ae2-8279-b5a8b1524f73',
