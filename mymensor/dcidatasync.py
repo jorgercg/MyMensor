@@ -39,7 +39,10 @@ def loaddcicfg(request):
     object = s3.Object(AWS_S3_BUCKET_NAME, s3_object_key)
     vpsfilecontents = object.get()['Body'].read()
 
-    root = ET.fromstring(vpsfilecontents)
+    try:
+        root = ET.fromstring(vpsfilecontents)
+    except:
+        return
 
     for Parameters in root.findall('Parameters'):
         AssetId = Parameters.find('AssetId').text
