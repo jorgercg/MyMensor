@@ -4,6 +4,7 @@ from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, render_to_response
+from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -715,6 +716,7 @@ def cognitoauth(request):
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
 
         if btsubscription==None and (datetime.today() - dateofendoftrialbeforesubscription > timedelta(days=1)):
+            messages.warning(request, _('Your trial period has expired, you will not be able to upload any media to the server.'))
             HttpResponse(status=400)
 
         usergroup = 'mymARwebapp'

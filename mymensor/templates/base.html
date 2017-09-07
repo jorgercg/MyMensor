@@ -169,6 +169,10 @@
                         <div class="alert alert-danger m-2" role="alert">
                             <strong>{% trans "Important!" %}</strong> {{ message }}
                         </div>
+                    {% elif message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                        <div class="alert alert-warning m-2" role="alert">
+                            <strong>{% trans "Warning!" %}</strong> {{ message }}
+                        </div>
                     {% else %}
                         <div class="alert alert-info m-2" role="alert">
                             <strong>{% trans "INFO" %}</strong> {{ message }}
