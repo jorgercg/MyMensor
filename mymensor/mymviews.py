@@ -509,7 +509,7 @@ def location(request):
             (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote(
             (datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
-        new_enddate = enddate + timedelta(days=1)
+        new_enddate = enddate #+ timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showlocationprecision = int(
