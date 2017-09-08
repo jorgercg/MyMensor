@@ -632,6 +632,42 @@ def mediafeed(request):
         return render(request, 'mediafeed.html', {'medias': medias, 'vps': vps})
 
 
+def subscription_state(assetinstance):
+    if BRAINTREE_PRODUCTION:
+        braintree_env = braintree.Environment.Production
+    else:
+        braintree_env = braintree.Environment.Sandbox
+    braintree.Configuration.configure(
+        braintree_env,
+        merchant_id=BRAINTREE_MERCHANT_ID,
+        public_key=BRAINTREE_PUBLIC_KEY,
+        private_key=BRAINTREE_PRIVATE_KEY,
+    )
+    try:
+        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
+        btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+        if btsubscription.braintreesubscriptionSubscriptionStatus != "Empty":
+            try:
+                currentbtsubscription = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
+            except:
+                return "NotFound"
+            btsubscription.braintreesubscriptionResultObject = currentbtsubscription
+            btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
+            btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
+            btsubscription.save()
+        else:
+            return btsubscription.braintreesubscriptionSubscriptionStatus
+    except:
+        btsubscription = None
+    dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
+    if dateofendoftrialbeforesubscription is not None:
+        if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
+            return "Trial"
+        else:
+            return "TrialExpired"
+    return "TrialPeriodNotSet"
+
+
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
@@ -642,16 +678,6 @@ def cognitoauth(request):
             'eu-west-1',
             aws_access_key_id=AWS_ACCESS_KEY_ID,
             aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-        )
-        if BRAINTREE_PRODUCTION:
-            braintree_env = braintree.Environment.Production
-        else:
-            braintree_env = braintree.Environment.Sandbox
-        braintree.Configuration.configure(
-            braintree_env,
-            merchant_id=BRAINTREE_MERCHANT_ID,
-            public_key=BRAINTREE_PUBLIC_KEY,
-            private_key=BRAINTREE_PRIVATE_KEY,
         )
         try:
             mymensormobileclienttype = request.META['HTTP_FROM']
@@ -702,17 +728,9 @@ def cognitoauth(request):
             masteruser = User.objects.get(username=username)
             assetinstance = Asset.objects.get(assetOwner=masteruser)
 
-        btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
-        try:
-            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-            btprice = BraintreePrice.objects.get(pk=btsubscription.braintreeprice_id)
-            btmercht = BraintreeMerchant.objects.get(pk=btprice.braintreemerchant_id)
-            currentbtsubstatus = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
-        except:
-            btsubscription = None
-            btprice = None
-            btmercht = None
-            currentbtsubstatus = None
+        subscriptionState = subscription_state(assetinstance)
+
+
 
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
         # Trial expired
