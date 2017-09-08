@@ -181,6 +181,13 @@
                 console.log('start:'+start);
                 console.log('end:'+end);
 
+                console.log('startFORMATTED:'+start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+                console.log('endFORMATTED:'+end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ"));
+
+                console.log('startURIFORMATTED:'+encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")));
+                console.log('endURIFORMATTED:'+encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")));
+
+
                 $(function () {
 
                     function cb(start, end) {
