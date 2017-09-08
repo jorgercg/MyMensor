@@ -328,7 +328,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showLastMedia }}  +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
+                        window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showlastmedia }}  +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
                     $('#refreshbtn').click(function () {
@@ -336,7 +336,7 @@
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
                         console.log('Chosen:' + orgmymaccsel);
-                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }}+'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia=' + {{ showLastMedia }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
+                        window.location = '{% url 'location' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&showlocationprecision=' + {{ showlocationprecision }}+'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia=' + {{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
                 });
