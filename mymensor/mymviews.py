@@ -655,8 +655,15 @@ def subscription_state(assetinstance):
             btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
             btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
             btsubscription.save()
-        else:
             return btsubscription.braintreesubscriptionSubscriptionStatus
+        else:
+            dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
+            if dateofendoftrialbeforesubscription is not None:
+                if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
+                    return "Trial"
+                else:
+                    return "TrialExpired"
+            return "TrialPeriodNotSet"
     except:
         btsubscription = None
     dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
