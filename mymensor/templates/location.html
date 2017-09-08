@@ -164,6 +164,8 @@
 
             <script type="text/javascript">
 
+                console.log('orgmymacclist: {{ orgmymacclist }}');
+
                 $('#vpsselected').chosen();
 
                 $('#orgmymaccselected').chosen();
@@ -516,17 +518,12 @@
                         {% endfor %}
                     }
 
-                    //&bound1=LatLng(-22.98953,%20-43.37746)&bound2=LatLng(-22.89468,%20-43.05302)
-
-                    //var b1 = [-22.98953, -43.37746];
-                    //var b2 = [-22.89468, -43.05302];
                     if (mapzoom == 0) {
                         mymap.fitBounds(markerGroup.getBounds());
                     } else {
                         mymap.setView(L.latLng(centerlat, centerlng), mapzoom, true);
                     }
 
-                    //mymap.fitBounds(b1,b2);
                 });
 
 
