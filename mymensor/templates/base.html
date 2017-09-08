@@ -124,7 +124,7 @@
                 <ul class="navbar-nav ml-auto">
                     {% check_plan request as currentuserplan %}
                     {% subscrip_state request as stateofsubscription %}
-                    {% if stateofsubscription == "Trial" or stateofsubscription == "Empty" %}
+                    {% if stateofsubscription == "Trial" or stateofsubscription == "Trial Period Not Set" %}
                         {% trial_end_date request as finaldateoftrial %}
                         <span class="navbar-text">
                         {{ currentuserplan }}{% trans " Plan - " %}{% trans "You have " %}{{ finaldateoftrial |timeuntil }}{% trans " left on your trial. " %}<a

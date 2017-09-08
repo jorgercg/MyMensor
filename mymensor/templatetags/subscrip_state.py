@@ -16,7 +16,7 @@ def subscrip_state(request):
     currentAsset = Asset.objects.get(assetOwner=request.user)
     dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
     if dateofendoftrialbeforesubscription:
-        if (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
+        if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
             return "Trial"
         else:
             return "TrialExpired"
