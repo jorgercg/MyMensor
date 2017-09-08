@@ -66,21 +66,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="126" column="104" lean-forward="false" selection-start-line="126" selection-start-column="104" selection-end-line="126" selection-end-column="104" />
+            <state relative-caret-position="310">
+              <caret line="137" column="69" lean-forward="false" selection-start-line="137" selection-start-column="69" selection-end-line="137" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscrip_state.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subscrip_state.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+            <state relative-caret-position="330">
+              <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding>
                 <element signature="e#21#56#0" expanded="true" />
               </folding>
@@ -236,8 +236,8 @@
         <option value="$PROJECT_DIR$/mymensor/templates/tagstatus.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
-        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
+        <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
       </list>
     </option>
   </component>
@@ -620,13 +620,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-03279" summary="06set2017 11h46min">
-      <created>1504694804779</created>
-      <option name="number" value="03279" />
-      <option name="presentableId" value="LOCAL-03279" />
-      <option name="project" value="LOCAL" />
-      <updated>1504694804779</updated>
-    </task>
     <task id="LOCAL-03280" summary="06set2017 11h56min">
       <created>1504695406827</created>
       <option name="number" value="03280" />
@@ -963,7 +956,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504876908243</updated>
     </task>
-    <option name="localTasksCounter" value="3328" />
+    <task id="LOCAL-03328" summary="08set2017 14h36min">
+      <created>1504877786308</created>
+      <option name="number" value="03328" />
+      <option name="presentableId" value="LOCAL-03328" />
+      <option name="project" value="LOCAL" />
+      <updated>1504877786308</updated>
+    </task>
+    <option name="localTasksCounter" value="3329" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1052,7 +1052,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="07set2017 13h33min" />
     <MESSAGE value="07set2017 13h38min" />
     <MESSAGE value="07set2017 13h52min" />
     <MESSAGE value="07set2017 14h04min" />
@@ -1077,7 +1076,8 @@
     <MESSAGE value="08set2017 13h23min" />
     <MESSAGE value="08set2017 14h01min" />
     <MESSAGE value="08set2017 14h21min" />
-    <option name="LAST_COMMIT_MESSAGE" value="08set2017 14h21min" />
+    <MESSAGE value="08set2017 14h36min" />
+    <option name="LAST_COMMIT_MESSAGE" value="08set2017 14h36min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1448,14 +1448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="126" column="104" lean-forward="false" selection-start-line="126" selection-start-column="104" selection-end-line="126" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-554">
@@ -1466,11 +1458,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+        <state relative-caret-position="330">
+          <caret line="22" column="30" lean-forward="true" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
           <folding>
             <element signature="e#21#56#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="137" column="69" lean-forward="false" selection-start-line="137" selection-start-column="69" selection-end-line="137" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
