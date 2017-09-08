@@ -509,7 +509,7 @@ def location(request):
             (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote(
             (datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
-        new_enddate = enddate #+ timedelta(days=1)
+        #new_enddate = enddate #+ timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showlocationprecision = int(
@@ -522,7 +522,7 @@ def location(request):
         centerlng = float(request.GET.get('centerlng', 0))
         mapzoom = int(request.GET.get('mapzoom', 0))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
-            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
+            media__mediaTimeStamp__range=[startdate, enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
         vpslist = vps
         vpsselectedfromlist = vps.values_list('vpNumber', flat=True)
@@ -536,48 +536,45 @@ def location(request):
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                     mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
-                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                        new_enddate = lastmedia.mediaTimeStamp
+                    if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
+                        #new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
-                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+                mediaTimeStamp__range=[startdate, enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 1 and showonlytimecert == 0:
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
-                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                        new_enddate = lastmedia.mediaTimeStamp
+                    if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
+                        #new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
-                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+                mediaTimeStamp__range=[startdate, enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 0 and showonlytimecert == 1:
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                     mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
-                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                        new_enddate = lastmedia.mediaTimeStamp
+                    if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
+                        #new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
-                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
+                mediaTimeStamp__range=[startdate, enddate]).order_by('-mediaMillisSinceEpoch')
         else:
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
-                    if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
-                        new_enddate = lastmedia.mediaTimeStamp
+                    if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
+                        #new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
-                mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
-        vpsannotated = Vp.objects.filter(asset__assetOwner=request.user).filter(
-            media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpNumber__in=vpsselected).filter(
-            vpIsActive=True).annotate(num_media=Count('media')).order_by('vpNumber')
+                mediaTimeStamp__range=[startdate, enddate]).order_by('-mediaMillisSinceEpoch')
         startdateformatted = urllib.quote(startdate.strftime('%Y-%m-%d %H:%M:%S %z'))
         enddateformatted = urllib.quote(enddate.strftime('%Y-%m-%d %H:%M:%S %z'))
         orgmymacc = medias.order_by('mediaOriginalMymensorAccount').distinct('mediaOriginalMymensorAccount')
@@ -611,7 +608,7 @@ def location(request):
                        'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,'showlastmedia':showlastmedia,
                        'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
                        'mapzoom': mapzoom, 'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
-                       'media_vpnumbers': media_vpnumbers, 'vpsannotated': vpsannotated})
+                       'media_vpnumbers': media_vpnumbers})
 
 
 @login_required
