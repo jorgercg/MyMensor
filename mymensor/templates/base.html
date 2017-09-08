@@ -295,6 +295,7 @@
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script>
         $(document).ready(function () {
+            console.log('it is:'+"[{{ redirect_to }}]");
             if ($(".eupopup").length > 0) {
                 $(document).euCookieLawPopup().init({
                     {% get_current_language as LANGUAGE_CODE %}
