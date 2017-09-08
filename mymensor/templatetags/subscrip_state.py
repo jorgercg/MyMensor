@@ -10,7 +10,8 @@ def subscrip_state(request):
     try:
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-        return btsubscription.braintreesubscriptionSubscriptionStatus
+        if btsubscription.braintreesubscriptionSubscriptionStatus != "Empty":
+            return btsubscription.braintreesubscriptionSubscriptionStatus
     except:
         btsubscription = None
     currentAsset = Asset.objects.get(assetOwner=request.user)
