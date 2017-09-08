@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" afterPath="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/base.html" afterPath="$PROJECT_DIR$/mymensor/templates/base.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
+            <state relative-caret-position="-213">
+              <caret line="665" column="0" lean-forward="true" selection-start-line="665" selection-start-column="0" selection-end-line="665" selection-end-column="0" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -88,8 +89,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1805">
-              <caret line="236" column="89" lean-forward="false" selection-start-line="236" selection-start-column="89" selection-end-line="236" selection-end-column="89" />
+            <state relative-caret-position="441">
+              <caret line="144" column="93" lean-forward="false" selection-start-line="144" selection-start-column="93" selection-end-line="144" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -115,11 +116,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscrip_state.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subscrip_state.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="34" lean-forward="true" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+            <state relative-caret-position="645">
+              <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding>
                 <element signature="e#21#56#0" expanded="true" />
               </folding>
@@ -244,9 +245,9 @@
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
+        <option value="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
-        <option value="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
       </list>
     </option>
   </component>
@@ -629,13 +630,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-03292" summary="07set2017 10h51min">
-      <created>1504777879525</created>
-      <option name="number" value="03292" />
-      <option name="presentableId" value="LOCAL-03292" />
-      <option name="project" value="LOCAL" />
-      <updated>1504777879525</updated>
-    </task>
     <task id="LOCAL-03293" summary="07set2017 10h57min">
       <created>1504778226306</created>
       <option name="number" value="03293" />
@@ -972,7 +966,14 @@
       <option name="project" value="LOCAL" />
       <updated>1504891564086</updated>
     </task>
-    <option name="localTasksCounter" value="3341" />
+    <task id="LOCAL-03341" summary="08set2017 18h29min">
+      <created>1504891788788</created>
+      <option name="number" value="03341" />
+      <option name="presentableId" value="LOCAL-03341" />
+      <option name="project" value="LOCAL" />
+      <updated>1504891788788</updated>
+    </task>
+    <option name="localTasksCounter" value="3342" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1061,7 +1062,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="08set2017 11h51min" />
     <MESSAGE value="08set2017 12h07min" />
     <MESSAGE value="08set2017 12h45min" />
     <MESSAGE value="08set2017 13h04min" />
@@ -1086,7 +1086,8 @@
     <MESSAGE value="08set2017 18h04min" />
     <MESSAGE value="08set2017 18h15min" />
     <MESSAGE value="08set2017 18h25min" />
-    <option name="LAST_COMMIT_MESSAGE" value="08set2017 18h25min" />
+    <MESSAGE value="08set2017 18h29min" />
+    <option name="LAST_COMMIT_MESSAGE" value="08set2017 18h29min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1456,28 +1457,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1805">
-          <caret line="236" column="89" lean-forward="false" selection-start-line="236" selection-start-column="89" selection-end-line="236" selection-end-column="89" />
+        <state relative-caret-position="441">
+          <caret line="144" column="93" lean-forward="false" selection-start-line="144" selection-start-column="93" selection-end-line="144" selection-end-column="93" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#75#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="34" lean-forward="true" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+        <state relative-caret-position="645">
+          <caret line="43" column="0" lean-forward="true" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="e#21#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-213">
+          <caret line="665" column="0" lean-forward="true" selection-start-line="665" selection-start-column="0" selection-end-line="665" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#75#0" expanded="true" />
           </folding>
         </state>
       </provider>
