@@ -6,18 +6,6 @@ def isfloat(value):
         return False
 
 
-def millis_since_epoch(dt):
-    from datetime import datetime
-    epoch = datetime.utcfromtimestamp(0)
-    delta = dt - epoch
-    return delta.total_seconds()*1000
-
-
-def utc_datetime(millis):
-    from datetime import datetime, timedelta
-    return datetime(1970,1,1)+timedelta(milliseconds=millis)
-
-
 def mobonlyprefix():
     import random, string
     code = ''.join(random.choice(string.uppercase) for i in range(3))
