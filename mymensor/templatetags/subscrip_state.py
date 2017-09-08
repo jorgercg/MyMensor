@@ -1,16 +1,37 @@
 ## subscrip_state.py
 from django.template import Library
 from datetime import datetime
-import pytz
+import pytz, braintree
 from mymensor.models import Asset, BraintreeCustomer, BraintreeSubscription
+from mymensorapp.settings import BRAINTREE_MERCHANT_ID, BRAINTREE_PRIVATE_KEY, BRAINTREE_PUBLIC_KEY, \
+    BRAINTREE_PRODUCTION
 register = Library()
 
 @register.simple_tag
 def subscrip_state(request):
+    if BRAINTREE_PRODUCTION:
+        braintree_env = braintree.Environment.Production
+    else:
+        braintree_env = braintree.Environment.Sandbox
+    braintree.Configuration.configure(
+        braintree_env,
+        merchant_id=BRAINTREE_MERCHANT_ID,
+        public_key=BRAINTREE_PUBLIC_KEY,
+        private_key=BRAINTREE_PRIVATE_KEY,
+    )
     try:
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
         if btsubscription.braintreesubscriptionSubscriptionStatus != "Empty":
+            try:
+                currentbtsubscription = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
+            except:
+                return "NotFound"
+            btsubscription.braintreesubscriptionResultObject = currentbtsubscription
+            btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
+            btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
+            btsubscription.save()
+        else:
             return btsubscription.braintreesubscriptionSubscriptionStatus
     except:
         btsubscription = None
