@@ -234,7 +234,7 @@
                 <div class="col-md-5 mb-3">
                     <h6 class="text-uppercase">{% trans "Language" %}</h6></li>
                     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                        <input name="next" type="hidden" value="{% url 'portfolio' %}"/>
+                        <input name="next" type="hidden" value="https://app.mymensor.com/portfolio/"/>
                         <select name="language">
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
