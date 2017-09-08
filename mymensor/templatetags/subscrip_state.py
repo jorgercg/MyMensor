@@ -36,8 +36,8 @@ def subscrip_state(request):
                 return "TrialExpired"
         return "TrialPeriodNotSet"
     btsubscription.braintreesubscriptionResultObject = currentbtsubscription
-    btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
-    btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
+    btsubscription.braintreesubscriptionLastDay = currentbtsubscription.paid_through_date
+    btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.status
     btsubscription.save()
     return btsubscription.braintreesubscriptionSubscriptionStatus
 
