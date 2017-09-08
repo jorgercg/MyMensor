@@ -86,9 +86,9 @@
 
             moment.locale('{{ LANGUAGE_CODE }}');
 
-            var start = moment("{{ start }}", "YYYY-MM-DDTHH:mm:ss.SSSZZ");
+            var start = moment(decodeURIComponent("{{ start }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-            var end = moment("{{ end }}", "YYYY-MM-DDTHH:mm:ss.SSSZZ");
+            var end = moment(decodeURIComponent("{{ end }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
             $(function () {
 
