@@ -727,9 +727,25 @@ def cognitoauth(request):
 
         subscriptionState = subscription_state(assetinstance)
 
+        if subscriptionState == "NoMyMSubscriptionFound":
+            return HttpResponse(status=432)
 
+        if subscriptionState == "TrialPeriodNotSet":
+            return HttpResponse(status=432)
 
-        dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
+        if subscriptionState == "TrialExpired":
+            return HttpResponse(status=432)
+
+        if subscriptionState == "PastDue":
+            return HttpResponse(status=434)
+
+        if subscriptionState == "Canceled":
+            btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
+            btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+            if datetime.now(pytz.utc) > btsubscription.braintreesubscriptionLastDay:
+                return HttpResponse(status=434)
+
+        #dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
         # Trial expired
         #if (btsubscription is None) and (datetime.now(pytz.utc) < dateofendoftrialbeforesubscription):
         #    return HttpResponse(status=432)
