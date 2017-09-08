@@ -22,32 +22,22 @@ def subscrip_state(request):
     try:
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=request.user)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-        if btsubscription.braintreesubscriptionSubscriptionStatus != "Empty":
-            try:
-                currentbtsubscription = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
-            except:
-                return "NotFound"
-            btsubscription.braintreesubscriptionResultObject = currentbtsubscription
-            btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
-            btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
-            btsubscription.save()
-            return btsubscription.braintreesubscriptionSubscriptionStatus
-        else:
-            currentAsset = Asset.objects.get(assetOwner=request.user)
-            dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
-            if dateofendoftrialbeforesubscription is not None:
-                if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
-                    return "Trial"
-                else:
-                    return "TrialExpired"
-            return "TrialPeriodNotSet"
     except:
-        btsubscription = None
-    currentAsset = Asset.objects.get(assetOwner=request.user)
-    dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
-    if dateofendoftrialbeforesubscription is not None:
-        if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
-            return "Trial"
-        else:
-            return "TrialExpired"
-    return "TrialPeriodNotSet"
+        return "NoMyMSubscriptionFound"
+    try:
+        currentbtsubscription = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
+    except:
+        currentAsset = Asset.objects.get(assetOwner=request.user)
+        dateofendoftrialbeforesubscription = currentAsset.assetDateOfEndEfTrialBeforeSubscription
+        if dateofendoftrialbeforesubscription is not None:
+            if datetime.now(pytz.utc) < dateofendoftrialbeforesubscription:
+                return "Trial"
+            else:
+                return "TrialExpired"
+        return "TrialPeriodNotSet"
+    btsubscription.braintreesubscriptionResultObject = currentbtsubscription
+    btsubscription.braintreesubscriptionLastDay = currentbtsubscription.subscription.paid_through_date
+    btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.subscription.status
+    btsubscription.save()
+    return btsubscription.braintreesubscriptionSubscriptionStatus
+
