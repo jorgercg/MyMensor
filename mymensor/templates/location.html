@@ -328,6 +328,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
+                        console.log('Chosen:' + orgmymaccsel);
                         window.location = '{% url 'location' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&showlocationprecision=' + {{ showlocationprecision }} +'&showuserpath=' + {{ showuserpath }} +'&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showlastmedia }}  +'&' + vpssel + '&' + orgmymaccsel + '&centerlat=0' + '&centerlng=0' + '&mapzoom=0';
                     });
 
@@ -372,6 +373,8 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        console.log('Chosen:' + vpssel);
+                        console.log('Chosen:' + orgmymaccsel);
                         centerlat = mymap.getCenter().lat;
                         centerlng = mymap.getCenter().lng;
                         mapzoom = mymap.getZoom();
@@ -388,6 +391,8 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
+                        console.log('Chosen:' + vpssel);
+                        console.log('Chosen:' + orgmymaccsel);
                         centerlat = mymap.getCenter().lat;
                         centerlng = mymap.getCenter().lng;
                         mapzoom = mymap.getZoom();
