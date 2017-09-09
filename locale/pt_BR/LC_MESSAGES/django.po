@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-16 20:16+0100\n"
-"PO-Revision-Date: 2017-08-16 20:19+0100\n"
+"POT-Creation-Date: 2017-09-09 11:22+0100\n"
+"PO-Revision-Date: 2017-09-09 12:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -18,162 +18,173 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.3\n"
 
-#: mymensor/models.py:61
+#: mymensor/dcidatasync.py:46 mymensor/dcidatasync.py:109
+msgid ""
+"There is a problem with your smartphone setup files. Please restore backup."
+msgstr ""
+"Existe um problema com os arquivos de configuração no seu smartphone. "
+"Restaure o backup."
+
+#: mymensor/models.py:67
 msgid "Asset Description"
 msgstr "Descrição do Ativo"
 
-#: mymensor/models.py:66
+#: mymensor/models.py:72
 msgid "Asset Owner Description"
 msgstr "Descrição do Proprietário do Ativo"
 
-#: mymensor/models.py:72
+#: mymensor/models.py:77
+msgid "MyMensor Plan"
+msgstr "Plano MyMensor"
+
+#: mymensor/models.py:78
 msgid "Capture frequency unit"
 msgstr "Unidade da frequência de captura"
 
-#: mymensor/models.py:73
+#: mymensor/models.py:79
 msgid "Minimum capture frequency value"
 msgstr "Valor mínimo para a frequência de captura"
 
-#: mymensor/models.py:90
+#: mymensor/models.py:96
 msgid "Mobile Only User Prefix"
 msgstr "Prefixo de Usuário Móvel"
 
-#: mymensor/models.py:128
+#: mymensor/models.py:134
 msgid "vp description"
 msgstr "descrição do VP"
 
-#: mymensor/models.py:152
+#: mymensor/models.py:158
 msgid "unit for the vp capture frequency"
 msgstr "unidade para a frequência de captura do VP"
 
-#: mymensor/models.py:153
+#: mymensor/models.py:159
 msgid "minimum vp capture frequency"
 msgstr "valor mínimo para a frequência de captura do VP"
 
-#: mymensor/models.py:156
+#: mymensor/models.py:162
 msgid "share all of this vp captures to the Twitter Account configured."
 msgstr ""
 "compartilhar todas as capturas deste VP para a conta do Twitter configurada."
 
-#: mymensor/models.py:158
+#: mymensor/models.py:164
 msgid "share all of this vp captures to the Facebook Account configured."
 msgstr ""
 "compartilhar todas as capturas deste VP para a conta do Facebook configurada."
 
-#: mymensor/models.py:160
+#: mymensor/models.py:166
 msgid "send all of this vp captures to the following email."
 msgstr "enviar todas as capturas deste VP para o email abaixo."
 
-#: mymensor/models.py:165
+#: mymensor/models.py:171
 msgid "tag description"
 msgstr "descrição do TAG"
 
-#: mymensor/models.py:167
+#: mymensor/models.py:173
 msgid "tag is active"
 msgstr "TAG está ativo"
 
-#: mymensor/models.py:170
+#: mymensor/models.py:176
 msgid "question that shall be answered when processing this tag"
 msgstr "questão que deve ser respondida quando processar este TAG"
 
-#: mymensor/models.py:171
+#: mymensor/models.py:177
 msgid "unit to be used when processing this tag"
 msgstr "unidade a ser usada quando processar este TAG"
 
-#: mymensor/models.py:173
+#: mymensor/models.py:179
 msgid "minimum value from which the tag will be flagged as in LOW RED state"
 msgstr ""
 "valor mínimo a partir do qual este TAG será marcado como em estado VERMELHO "
 "BAIXO"
 
-#: mymensor/models.py:175
+#: mymensor/models.py:181
 msgid "minimum value from which the tag will be flagged as in LOW YELLOW state"
 msgstr ""
 "valor mínimo a partir do qual este TAG será marcado como em estado AMARELO "
 "BAIXO"
 
-#: mymensor/models.py:176
+#: mymensor/models.py:182
 msgid "expected value for the tag"
 msgstr "valor esperado para este TAG"
 
-#: mymensor/models.py:178
+#: mymensor/models.py:184
 msgid ""
 "maximum value from which the tag will be flagged as in HIGH YELLOW state"
 msgstr ""
 "valor máximo a partir do qual este TAG será marcado como em estado AMARELO "
 "ALTO"
 
-#: mymensor/models.py:180
+#: mymensor/models.py:186
 msgid "maximum value from which the tag will be flagged as in HIGH RED state"
 msgstr ""
 "valor máximo a partir do qual este TAG será marcado como em estado VERMELHO "
 "ALTO"
 
-#: mymensor/models.py:300 mymensor/tables.py:7
+#: mymensor/models.py:306 mymensor/tables.py:7
 msgid "NOT PROCESSED"
 msgstr "NÃO PROCESSADO"
 
-#: mymensor/models.py:300 mymensor/tables.py:7
+#: mymensor/models.py:306 mymensor/tables.py:7
 msgid "PROCESSED"
 msgstr "PROCESSADO"
 
-#: mymensor/models.py:300 mymensor/tables.py:7
+#: mymensor/models.py:306 mymensor/tables.py:7
 msgid "LOW RED"
 msgstr "VERMELHO BAIXO"
 
-#: mymensor/models.py:300 mymensor/tables.py:7
+#: mymensor/models.py:306 mymensor/tables.py:7
 msgid "LOW YELLOW"
 msgstr "AMARELO BAIXO"
 
-#: mymensor/models.py:301 mymensor/tables.py:7
+#: mymensor/models.py:307 mymensor/tables.py:7
 msgid "GREEN"
 msgstr "VERDE"
 
-#: mymensor/models.py:302 mymensor/tables.py:8
+#: mymensor/models.py:308 mymensor/tables.py:8
 msgid "HIGH YELLOW"
 msgstr "AMARELO ALTO"
 
-#: mymensor/models.py:302 mymensor/tables.py:8
+#: mymensor/models.py:308 mymensor/tables.py:8
 msgid "HIGH RED"
 msgstr "VERMELHO ALTO"
 
-#: mymensor/models.py:305 mymensor/tables.py:10
+#: mymensor/models.py:311 mymensor/tables.py:10
 msgid "Tag#"
 msgstr "Tag#"
 
-#: mymensor/models.py:306 mymensor/tables.py:11
+#: mymensor/models.py:312 mymensor/tables.py:11
 msgid "Tag Description"
 msgstr "Descrição do TAG"
 
-#: mymensor/models.py:307 mymensor/tables.py:12
+#: mymensor/models.py:313 mymensor/tables.py:12
 msgid "VP#"
 msgstr "VP#"
 
-#: mymensor/models.py:308 mymensor/tables.py:13
+#: mymensor/models.py:314 mymensor/tables.py:13
 msgid "VP Description"
 msgstr "Descrição do VP"
 
-#: mymensor/models.py:309 mymensor/tables.py:14
+#: mymensor/models.py:315 mymensor/tables.py:14
 msgid "Value"
 msgstr "Valor"
 
-#: mymensor/models.py:310 mymensor/tables.py:15
+#: mymensor/models.py:316 mymensor/tables.py:15
 msgid "Unit"
 msgstr "Unidade"
 
-#: mymensor/models.py:311 mymensor/tables.py:16
+#: mymensor/models.py:317 mymensor/tables.py:16
 msgid "Media Time"
 msgstr "Horário da Mídia"
 
-#: mymensor/models.py:313 mymensor/tables.py:17
+#: mymensor/models.py:319 mymensor/tables.py:17
 msgid "Processing Time"
 msgstr "Horário de Processamento"
 
-#: mymensor/models.py:314 mymensor/tables.py:18 mymensor/templates/base.html:79
+#: mymensor/models.py:320 mymensor/tables.py:18 mymensor/templates/base.html:81
 msgid "Status"
 msgstr "Status"
 
-#: mymensor/mymviews.py:263
+#: mymensor/mymviews.py:279
 msgid ""
 "Image Shared by MyMensor Bot \n"
 "\n"
@@ -181,7 +192,7 @@ msgstr ""
 "Imagem compartilhada pelo MyMensor Bot \n"
 "\n"
 
-#: mymensor/mymviews.py:265 mymensor/mymviews.py:269
+#: mymensor/mymviews.py:281 mymensor/mymviews.py:285
 msgid ""
 "\n"
 "\n"
@@ -193,11 +204,11 @@ msgstr ""
 "(Enviado por MyMensor Bot - siga o link para verificar a imagem no mymensor."
 "com) \n"
 
-#: mymensor/mymviews.py:277
+#: mymensor/mymviews.py:293
 msgid "MyMensor Bot sent you this PHOTO by request of "
 msgstr "MyMensor Bot te mandou esta foto a pedido de "
 
-#: mymensor/mymviews.py:291
+#: mymensor/mymviews.py:307
 msgid ""
 "Video Shared by MyMensor Bot \n"
 "\n"
@@ -205,7 +216,7 @@ msgstr ""
 "Vídeo compartilhado pelo MyMensor Bot\n"
 "\n"
 
-#: mymensor/mymviews.py:293 mymensor/mymviews.py:297
+#: mymensor/mymviews.py:309 mymensor/mymviews.py:313
 msgid ""
 "\n"
 "\n"
@@ -217,15 +228,15 @@ msgstr ""
 "(Enviado por MyMensor Bot - siga o link para verificar o vídeo no mymensor."
 "com) \n"
 
-#: mymensor/mymviews.py:305
+#: mymensor/mymviews.py:321
 msgid "MyMensor Bot sent you this VIDEO by request of "
 msgstr "MyMensor Bot lhe enviou este vídeo por pedido de "
 
-#: mymensor/mymviews.py:681
+#: mymensor/mymviews.py:840
 msgid "Explicit Consent Needed!"
 msgstr "Consentimento explícito necessário!"
 
-#: mymensor/mymviews.py:683
+#: mymensor/mymviews.py:842
 msgid ""
 "Please type your MyMensor username below and click on the Confirm button "
 "below to hereby attest that you are giving your explicit consent to MyMensor "
@@ -241,33 +252,64 @@ msgstr ""
 "Conta MyMensor. Você também confirma explicitamente que você sabe e concorda "
 "que não poderá rever o conteúdo da postagem antes desta já estar postada."
 
-#: mymensor/mymviews.py:684
+#: mymensor/mymviews.py:843
 msgid "Type your MyMensor username here."
 msgstr "Digite seu nome de usuário MyMensor aqui."
 
-#: mymensor/mymviews.py:685
+#: mymensor/mymviews.py:844 mymensor/mymviews.py:1897
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: mymensor/mymviews.py:686
+#: mymensor/mymviews.py:845 mymensor/mymviews.py:1898
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: mymensor/mymviews.py:687
+#: mymensor/mymviews.py:846
 msgid "You need to enter your username."
 msgstr "Você precisa digitar seu nome de usuário."
 
-#: mymensor/mymviews.py:688
+#: mymensor/mymviews.py:847
 msgid "Thank you for your confirmation!"
 msgstr "Agradecemos a sua confirmação!"
 
-#: mymensor/mymviews.py:689
+#: mymensor/mymviews.py:848
 msgid ""
 "Please submit this VP configuration in order to start tweeting automatically "
 "from MyMensor!"
 msgstr ""
 "Por favor envie esta configuração de VP para começar a twittar "
 "automaticamente do MyMensor!"
+
+#: mymensor/mymviews.py:926 mymensor/mymviews.py:940 mymensor/mymviews.py:952
+msgid "TAG#"
+msgstr "TAG#"
+
+#: mymensor/mymviews.py:927 mymensor/mymviews.py:941 mymensor/mymviews.py:953
+msgid "Tag question for TAG#"
+msgstr "Pergunta para o TAG #"
+
+#: mymensor/mymviews.py:1894
+msgid "Really Change Plan?"
+msgstr "Quer mesmo mudar de Plano?"
+
+#: mymensor/mymviews.py:1896
+msgid ""
+"You will change plan immediately and in the next monthly payment you will be "
+"charged the new subscription rate, in the same currency as you pay now. "
+"There will be no prorating for downgrades in between billing cycles."
+msgstr ""
+"A mudança de plano acontecerá imediatamente. Para qualquer upgrade ou "
+"downgrade do nível do plano, será cobrada a nova taxa no próximo ciclo de "
+"cobrança, na mesma moeda que pagas hoje. Não haverá prorrateamento para "
+"downgrades entre os ciclos de cobrança."
+
+#: mymensor/mymviews.py:1899
+msgid "Done!"
+msgstr "Pronto!"
+
+#: mymensor/mymviews.py:1900
+msgid "No change!"
+msgstr "Sem mudanças!"
 
 #: mymensor/templates/404.html:8
 msgid "404 Error"
@@ -309,139 +351,196 @@ msgstr "Mídia"
 msgid "Data"
 msgstr "Dados"
 
-#: mymensor/templates/base.html:80
+#: mymensor/templates/base.html:84
 msgid "Analysis"
 msgstr "Análise"
 
-#: mymensor/templates/base.html:82
+#: mymensor/templates/base.html:89
 msgid "Processing"
 msgstr "Processamento"
 
-#: mymensor/templates/base.html:83
+#: mymensor/templates/base.html:92
 msgid "Edit"
 msgstr "Editar"
 
-#: mymensor/templates/base.html:89
+#: mymensor/templates/base.html:98
 msgid "Setup"
 msgstr "Configurar"
 
-#: mymensor/templates/base.html:92
+#: mymensor/templates/base.html:101
 msgid "Asset"
 msgstr "Ativo"
 
-#: mymensor/templates/base.html:93
+#: mymensor/templates/base.html:102
 msgid "VPs"
 msgstr "VPs"
 
-#: mymensor/templates/base.html:94
+#: mymensor/templates/base.html:105
 msgid "TAGs"
 msgstr "TAGs"
 
-#: mymensor/templates/base.html:96
+#: mymensor/templates/base.html:107
 msgid "Marker Download"
 msgstr "Baixar Marcadores"
 
-#: mymensor/templates/base.html:98
+#: mymensor/templates/base.html:109
 msgid "Mobile Backup"
 msgstr "Backup Smartphone"
 
-#: mymensor/templates/base.html:105
+#: mymensor/templates/base.html:116
 msgid "Login"
 msgstr "Login"
 
-#: mymensor/templates/base.html:108
+#: mymensor/templates/base.html:119
 #: mymensor/templates/registration/login.html:40
 #: mymensor/templates/registration/registration_form.html:4
 msgid "Register"
 msgstr "Registrar"
 
-#: mymensor/templates/base.html:118
-msgid "Trial until "
-msgstr "Avaliação até "
+#: mymensor/templates/base.html:130 mymensor/templates/base.html:135
+#: mymensor/templates/base.html:140 mymensor/templates/base.html:145
+#: mymensor/templates/base.html:150
+msgid " Plan - "
+msgstr " Plano - "
 
-#: mymensor/templates/base.html:122
+#: mymensor/templates/base.html:130 mymensor/templates/subscription.html:187
+msgid "You have "
+msgstr "Você tem "
+
+#: mymensor/templates/base.html:130
+msgid " left on your trial. "
+msgstr " restantes na sua avaliação. "
+
+#: mymensor/templates/base.html:131 mymensor/templates/base.html:136
+#: mymensor/templates/base.html:141 mymensor/templates/base.html:146
+#: mymensor/templates/subscription.html:142
+msgid "Subscribe Now!"
+msgstr "Assine Já!"
+
+#: mymensor/templates/base.html:135
+msgid "You trial has EXPIRED. "
+msgstr "Sua avaliação EXPIROU. "
+
+#: mymensor/templates/base.html:140
+msgid "Trial Period Not Set. "
+msgstr "Período de avaliação não definido. "
+
+#: mymensor/templates/base.html:145
+msgid "CONTACT SUPPORT. "
+msgstr "Fale com o suporte. "
+
+#: mymensor/templates/base.html:151
 msgid "Subscription "
 msgstr "Assinatura "
 
-#: mymensor/templates/base.html:128
+#: mymensor/templates/base.html:157
 msgid "Logged in as: "
 msgstr "Logado como: "
 
-#: mymensor/templates/base.html:131
+#: mymensor/templates/base.html:160
 msgid "Logout"
 msgstr "Sair"
 
-#: mymensor/templates/base.html:133
+#: mymensor/templates/base.html:162
 #: mymensor/templates/registration/password_change_form.html:4
 #: mymensor/templates/registration/password_change_form.html:17
 msgid "Change password"
 msgstr "Mudar senha"
 
-#: mymensor/templates/base.html:135 mymensor/templates/fbmain.html:4
+#: mymensor/templates/base.html:164 mymensor/templates/fbmain.html:4
 #: mymensor/templates/fbmain.html:13
 msgid "Facebook Account"
 msgstr "Conta do Facebook"
 
-#: mymensor/templates/base.html:136 mymensor/templates/twtinfo.html:4
+#: mymensor/templates/base.html:165 mymensor/templates/twtinfo.html:4
 #: mymensor/templates/twtmain.html:4 mymensor/templates/twtmain.html:13
 msgid "Twitter Account"
 msgstr "Conta do Twitter"
 
-#: mymensor/templates/base.html:138 mymensor/templates/subscription.html:6
+#: mymensor/templates/base.html:167 mymensor/templates/subscription.html:6
 msgid "Subscription"
 msgstr "Assinatura"
 
-#: mymensor/templates/base.html:141
+#: mymensor/templates/base.html:170
 #: mymensor/templates/createmobileonlyuserresult.html:4
 msgid "Service User"
 msgstr "Usuário de Serviço"
 
-#: mymensor/templates/base.html:143 mymensor/templates/support.html:3
+#: mymensor/templates/base.html:172 mymensor/templates/support.html:3
 msgid "Support"
 msgstr "Suporte"
 
-#: mymensor/templates/base.html:159
+#: mymensor/templates/base.html:185
+msgid "Important!"
+msgstr "Importante!"
+
+#: mymensor/templates/base.html:189
+msgid "Warning!"
+msgstr "Atenção!"
+
+#: mymensor/templates/base.html:193
+msgid "INFO"
+msgstr "INFO"
+
+#: mymensor/templates/base.html:207
 msgid "About"
 msgstr "Sobre"
 
-#: mymensor/templates/base.html:161
+#: mymensor/templates/base.html:209
 msgid "The journey was long, but we are just starting! Contact us anytime at "
 msgstr ""
 "A jornada foi longa, mas estamos apenas começando! Entre em contato a "
 "qualquer momento em "
 
-#: mymensor/templates/base.html:168
+#: mymensor/templates/base.html:216
 msgid "Product"
 msgstr "Produto"
 
-#: mymensor/templates/base.html:170
+#: mymensor/templates/base.html:218
 msgid "Docs"
 msgstr "Docs"
 
-#: mymensor/templates/base.html:172
+#: mymensor/templates/base.html:220
 msgid "Videos"
 msgstr "Vídeos"
 
-#: mymensor/templates/base.html:175
+#: mymensor/templates/base.html:223
 msgid "FAQ"
 msgstr "FAQ"
 
-#: mymensor/templates/base.html:182
+#: mymensor/templates/base.html:230
 #: mymensor/templates/registration/registration_form.html:35
 msgid "Terms of Service"
 msgstr "Termos de Serviço"
 
-#: mymensor/templates/base.html:185
+#: mymensor/templates/base.html:233
 msgid "Privacy"
 msgstr "Privacidade"
 
-#: mymensor/templates/base.html:192 mymensor/templates/landing.html:265
+#: mymensor/templates/base.html:240 mymensor/templates/landing.html:335
 msgid "Language"
 msgstr "Idioma"
 
-#: mymensor/templates/base.html:206 mymensor/templates/landing.html:278
+#: mymensor/templates/base.html:254 mymensor/templates/landing.html:348
 msgid "Set"
 msgstr "Definir"
+
+#: mymensor/templates/changesubscriptionplan.html:4
+#: mymensor/templates/changesubscriptionplan.html:11
+msgid "Change Subscription Plan"
+msgstr "Mudar Plano de Assinatura"
+
+#: mymensor/templates/changesubscriptionplan.html:18
+msgid "Your modification was succesful!"
+msgstr "Sua modificação foi bem-sucedida!"
+
+#: mymensor/templates/changesubscriptionplan.html:22
+msgid ""
+"There was a problem while changing your subscription plan, please contact "
+"support."
+msgstr ""
+"Houve um problema durante a alteração do seu plano de assinatura, entre em "
+"contato com o suporte."
 
 #: mymensor/templates/createmobileonlyuserresult.html:11
 msgid "Service User Status"
@@ -516,7 +615,7 @@ msgstr "Criar Usuário de Serviço com esta senha"
 #: mymensor/templates/createmobileonlyuserresult.html:116
 #: mymensor/templates/createmobileonlyuserresult.html:130
 #: mymensor/templates/mobilebackup.html:57
-#: mymensor/templates/mobilebackup.html:82
+#: mymensor/templates/mobilebackup.html:83
 msgid "Waiting..."
 msgstr "Aguardando…"
 
@@ -526,26 +625,34 @@ msgid "Create Subscription"
 msgstr "Criar Assinatura"
 
 #: mymensor/templates/createsubscription.html:17
+msgid "You will subscribe to the <b>"
+msgstr "Você assinará o <b> Plano "
+
+#: mymensor/templates/createsubscription.html:17
+msgid " Plan</b> "
+msgstr " </b> "
+
+#: mymensor/templates/createsubscription.html:19
 msgid ""
-"Please choose below which plan you want to use, after that you will be taken "
-"to the payment page:"
+"Please choose below which of the available currencies you want to use for "
+"payment, after that you will be taken to the payment page:"
 msgstr ""
-"Por favor, escolha abaixo o plano que você deseja usar, depois disso você "
-"será levado para a página de pagamento:"
+"Por favor, escolha abaixo qual das moedas disponíveis que deseja usar para "
+"pagamento, depois você será levado para a página de pagamento:"
 
-#: mymensor/templates/createsubscription.html:25
-msgid "I choose the plan "
-msgstr "Eu escolho o plano"
+#: mymensor/templates/createsubscription.html:27
+msgid "I will pay for the plan "
+msgstr "Vou pagar pelo plano "
 
-#: mymensor/templates/createsubscription.html:25
-msgid " and will pay "
-msgstr " e pagarei "
+#: mymensor/templates/createsubscription.html:27
+msgid " an amount of "
+msgstr " uma quantia de "
 
-#: mymensor/templates/createsubscription.html:25
+#: mymensor/templates/createsubscription.html:27
 msgid " per month"
 msgstr " por mês"
 
-#: mymensor/templates/createsubscription.html:31
+#: mymensor/templates/createsubscription.html:33
 msgid "Go!"
 msgstr "Pronto!"
 
@@ -766,109 +873,126 @@ msgstr "Efetue o login para distribuir capturas do MyMensor para o Facebook."
 msgid "You are distributing MyMensor captures to the Facebbok accout of "
 msgstr "Você está distribuindo capturas MyMensor para a conta do Facebook de "
 
-#: mymensor/templates/index.html:19 mymensor/templates/proctagedit.html:18
-#: mymensor/templates/tagprocessing.html:18
-#: mymensor/templates/tagstatus.html:17
-msgid "Show "
-msgstr "Mostrar "
+#: mymensor/templates/index.html:22 mymensor/templates/location.html:42
+msgid "Showing only location certified media captures"
+msgstr "Mostrando apenas as mídias capturadas com localização certificada"
 
-#: mymensor/templates/index.html:21 mymensor/templates/proctagedit.html:20
-#: mymensor/templates/tagprocessing.html:20
-msgid " entries per VP"
-msgstr " itens por VP"
+#: mymensor/templates/index.html:27 mymensor/templates/location.html:47
+msgid "Showing media captures, even with no location certification"
+msgstr "Mostrando capturas de mídia, mesmo sem certificação de localização"
 
-#: mymensor/templates/index.html:36 mymensor/templates/location.html:38
+#: mymensor/templates/index.html:33 mymensor/templates/location.html:53
+msgid "Showing only time certified media captures"
+msgstr "Mostrando apenas as mídias capturadas com horário certificado"
+
+#: mymensor/templates/index.html:38 mymensor/templates/location.html:58
+msgid "Show media captures, even with no time certification"
+msgstr "Mostrar capturas de mídia, mesmo sem certificação de horário"
+
+#: mymensor/templates/index.html:44 mymensor/templates/location.html:64
+msgid "Showing the last of the media captures"
+msgstr "Mostrando a última das capturas de mídia"
+
+#: mymensor/templates/index.html:49 mymensor/templates/location.html:69
+msgid "Not necessarily showing the last of the media captures"
+msgstr "Não necessariamente mostrando a última das capturas de mídia"
+
+#: mymensor/templates/index.html:58
+msgid "Quantity of medias for each VP"
+msgstr "Quantidade de mídias para cada VP"
+
+#: mymensor/templates/index.html:82 mymensor/templates/location.html:95
 msgid "Refresh with current selection"
 msgstr "Recarregar com a seleção atual"
 
-#: mymensor/templates/index.html:62 mymensor/templates/index.html:164
+#: mymensor/templates/index.html:109 mymensor/templates/index.html:214
 #: mymensor/templates/mediafeed.html:19 mymensor/templates/mediafeed.html:76
 msgid "Processed. Click to see evolution over time."
 msgstr "Processado. Clique para ver a evolução ao longo do tempo."
 
-#: mymensor/templates/index.html:66 mymensor/templates/index.html:168
+#: mymensor/templates/index.html:113 mymensor/templates/index.html:218
 #: mymensor/templates/mediafeed.html:21 mymensor/templates/mediafeed.html:78
 msgid "Not processed"
 msgstr "Não processado"
 
-#: mymensor/templates/index.html:82 mymensor/templates/index.html:184
-#: mymensor/templates/landing.html:77 mymensor/templates/landing.html:157
+#: mymensor/templates/index.html:129 mymensor/templates/index.html:235
+#: mymensor/templates/landing.html:81 mymensor/templates/landing.html:188
 #: mymensor/templates/mediafeed.html:31 mymensor/templates/mediafeed.html:92
 #: mymensor/templates/proctagedit.html:60
 #: mymensor/templates/proctagedit.html:146
 #: mymensor/templates/tagprocessing.html:60
 #: mymensor/templates/tagprocessing.html:146
-#: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:182
+#: mymensor/templates/vpdetail.html:92 mymensor/templates/vpdetail.html:203
 msgid "Augmented reality used to capture"
 msgstr "Realidade aumentada usada para capturar"
 
-#: mymensor/templates/index.html:86 mymensor/templates/index.html:188
-#: mymensor/templates/landing.html:80 mymensor/templates/landing.html:160
+#: mymensor/templates/index.html:133 mymensor/templates/index.html:239
+#: mymensor/templates/landing.html:84 mymensor/templates/landing.html:191
 #: mymensor/templates/mediafeed.html:33 mymensor/templates/mediafeed.html:94
 #: mymensor/templates/proctagedit.html:64
 #: mymensor/templates/proctagedit.html:150
 #: mymensor/templates/tagprocessing.html:64
 #: mymensor/templates/tagprocessing.html:150
-#: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:185
+#: mymensor/templates/vpdetail.html:95 mymensor/templates/vpdetail.html:206
 msgid "Augmented reality not used to capture"
 msgstr "Realidade aumentada não usada para capturar"
 
-#: mymensor/templates/index.html:91 mymensor/templates/index.html:193
-#: mymensor/templates/landing.html:84 mymensor/templates/landing.html:164
+#: mymensor/templates/index.html:139 mymensor/templates/index.html:245
+#: mymensor/templates/landing.html:88 mymensor/templates/landing.html:195
 #: mymensor/templates/mediafeed.html:36 mymensor/templates/mediafeed.html:97
 #: mymensor/templates/proctagedit.html:69
 #: mymensor/templates/proctagedit.html:155
 #: mymensor/templates/tagprocessing.html:69
 #: mymensor/templates/tagprocessing.html:155
-#: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:189
+#: mymensor/templates/vpdetail.html:99 mymensor/templates/vpdetail.html:210
 msgid "Capture time certified"
 msgstr "Horário de captura certificado"
 
-#: mymensor/templates/index.html:96 mymensor/templates/index.html:198
-#: mymensor/templates/landing.html:87 mymensor/templates/landing.html:167
+#: mymensor/templates/index.html:144 mymensor/templates/index.html:250
+#: mymensor/templates/landing.html:91 mymensor/templates/landing.html:198
 #: mymensor/templates/mediafeed.html:38 mymensor/templates/mediafeed.html:99
 #: mymensor/templates/proctagedit.html:73
 #: mymensor/templates/proctagedit.html:159
 #: mymensor/templates/tagprocessing.html:73
 #: mymensor/templates/tagprocessing.html:159
-#: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:192
+#: mymensor/templates/vpdetail.html:102 mymensor/templates/vpdetail.html:213
 msgid "Capture time not certified"
 msgstr "Horário de captura não certificado"
 
-#: mymensor/templates/index.html:103 mymensor/templates/index.html:205
+#: mymensor/templates/index.html:152 mymensor/templates/index.html:258
 msgid "Capture location certified. Click here to see location map."
 msgstr ""
 "Localização da captura certificada. Clique aqui para ver a localização no "
 "mapa."
 
-#: mymensor/templates/index.html:110 mymensor/templates/index.html:212
-#: mymensor/templates/landing.html:94 mymensor/templates/landing.html:174
+#: mymensor/templates/index.html:159 mymensor/templates/index.html:265
+#: mymensor/templates/landing.html:98 mymensor/templates/landing.html:205
 #: mymensor/templates/mediafeed.html:43 mymensor/templates/mediafeed.html:104
 #: mymensor/templates/proctagedit.html:82
 #: mymensor/templates/proctagedit.html:168
 #: mymensor/templates/tagprocessing.html:82
 #: mymensor/templates/tagprocessing.html:168
-#: mymensor/templates/vpdetail.html:109 mymensor/templates/vpdetail.html:199
+#: mymensor/templates/vpdetail.html:109 mymensor/templates/vpdetail.html:220
 msgid "Capture location not certified"
 msgstr "Localização da captura não certificada"
 
-#: mymensor/templates/index.html:120 mymensor/templates/index.html:222
+#: mymensor/templates/index.html:170 mymensor/templates/index.html:276
 msgid "No remark for this media"
 msgstr "Nenhum comentário para esta mídia"
 
-#: mymensor/templates/index.html:129 mymensor/templates/index.html:230
-#: mymensor/templates/landing.html:74 mymensor/templates/landing.html:154
+#: mymensor/templates/index.html:179 mymensor/templates/index.html:284
+#: mymensor/templates/landing.html:78 mymensor/templates/landing.html:185
 #: mymensor/templates/mediafeed.html:49 mymensor/templates/mediafeed.html:110
 #: mymensor/templates/proctagedit.html:109
 #: mymensor/templates/proctagedit.html:195
 #: mymensor/templates/tagprocessing.html:109
 #: mymensor/templates/tagprocessing.html:195
 #: mymensor/templates/tagsetup.html:68 mymensor/templates/vpdetail.html:89
-#: mymensor/templates/vpdetail.html:179 mymensor/templates/vpsetup.html:29
+#: mymensor/templates/vpdetail.html:200 mymensor/templates/vpsetup.html:29
 msgid "Captured on"
 msgstr "Capturada em"
 
-#: mymensor/templates/index.html:135 mymensor/templates/index.html:236
+#: mymensor/templates/index.html:185 mymensor/templates/index.html:290
 #: mymensor/templates/mediafeed.html:53 mymensor/templates/mediafeed.html:114
 #: mymensor/templates/proctagedit.html:115
 #: mymensor/templates/proctagedit.html:201
@@ -877,16 +1001,16 @@ msgstr "Capturada em"
 msgid "Received at server on"
 msgstr "Recebida no servidor em"
 
-#: mymensor/templates/index.html:263
+#: mymensor/templates/index.html:318
 msgid "No media for VP#"
 msgstr "Nenhuma mídia para o VP#"
 
-#: mymensor/templates/index.html:263
+#: mymensor/templates/index.html:318
 msgid " in the selected timeframe."
 msgstr " no período de tempo selecionado."
 
 #: mymensor/templates/landing.html:17 mymensor/templates/landing.html:27
-#: mymensor/templates/landing.html:63
+#: mymensor/templates/landing.html:64
 msgid "MyMensor Media Check"
 msgstr "MyMensor Media Check (Verificação de Mídia)"
 
@@ -894,81 +1018,113 @@ msgstr "MyMensor Media Check (Verificação de Mídia)"
 msgid "Click to check at MyMensor"
 msgstr "Clique para ver no MyMensor"
 
-#: mymensor/templates/landing.html:72
+#: mymensor/templates/landing.html:66
+msgid "Download Media Check PDF file"
+msgstr "Baixe o arquivo PDF do Media Check"
+
+#: mymensor/templates/landing.html:76
 msgid "Photo of "
 msgstr "Foto de "
 
-#: mymensor/templates/landing.html:91 mymensor/templates/landing.html:171
+#: mymensor/templates/landing.html:95 mymensor/templates/landing.html:202
 #: mymensor/templates/mediafeed.html:41 mymensor/templates/mediafeed.html:102
 #: mymensor/templates/proctagedit.html:78
 #: mymensor/templates/proctagedit.html:164
 #: mymensor/templates/tagprocessing.html:78
 #: mymensor/templates/tagprocessing.html:164
-#: mymensor/templates/vpdetail.html:106 mymensor/templates/vpdetail.html:196
+#: mymensor/templates/vpdetail.html:106 mymensor/templates/vpdetail.html:217
 msgid "Capture location certified"
 msgstr "Localização da captura certificada"
 
-#: mymensor/templates/landing.html:104 mymensor/templates/landing.html:186
+#: mymensor/templates/landing.html:112 mymensor/templates/landing.html:220
 msgid " augmented reality used to capture"
 msgstr " realidade aumentada usada para capturar"
 
-#: mymensor/templates/landing.html:108 mymensor/templates/landing.html:190
+#: mymensor/templates/landing.html:116 mymensor/templates/landing.html:224
 msgid " augmented reality not used to capture"
 msgstr " realidade aumentada não usada para capturar"
 
-#: mymensor/templates/landing.html:113 mymensor/templates/landing.html:195
+#: mymensor/templates/landing.html:121 mymensor/templates/landing.html:229
 msgid " the capture time was certified by MyMensor"
 msgstr " horário de captura certificado por MyMensor"
 
-#: mymensor/templates/landing.html:117 mymensor/templates/landing.html:199
+#: mymensor/templates/landing.html:125 mymensor/templates/landing.html:233
 msgid " the capture time was not certified by MyMensor"
 msgstr " horário de captura não certificado por MyMensor"
 
-#: mymensor/templates/landing.html:122 mymensor/templates/landing.html:204
+#: mymensor/templates/landing.html:130 mymensor/templates/landing.html:238
 msgid " the capture location was certified by MyMensor"
 msgstr " localização da captura certificada por MyMensor"
 
-#: mymensor/templates/landing.html:126 mymensor/templates/landing.html:208
+#: mymensor/templates/landing.html:134 mymensor/templates/landing.html:242
 msgid " the capture location was not certified by MyMensor"
 msgstr " localização da captura não certificada por MyMensor"
 
-#: mymensor/templates/landing.html:135 mymensor/templates/vpdetail.html:159
-#: mymensor/templates/vpdetail.html:251
+#: mymensor/templates/landing.html:144 mymensor/templates/landing.html:147
+#: mymensor/templates/landing.html:252 mymensor/templates/landing.html:255
+#: mymensor/templates/vpdetail.html:160 mymensor/templates/vpdetail.html:163
+#: mymensor/templates/vpdetail.html:273 mymensor/templates/vpdetail.html:276
 msgid "Location details"
 msgstr "Detalhes da Localização"
 
-#: mymensor/templates/landing.html:140 mymensor/templates/landing.html:222
-#: mymensor/templates/vpdetail.html:164 mymensor/templates/vpdetail.html:256
+#: mymensor/templates/landing.html:147 mymensor/templates/landing.html:163
+#: mymensor/templates/landing.html:167 mymensor/templates/landing.html:171
+#: mymensor/templates/landing.html:255 mymensor/templates/landing.html:271
+#: mymensor/templates/landing.html:275 mymensor/templates/landing.html:279
+#: mymensor/templates/vpdetail.html:163 mymensor/templates/vpdetail.html:179
+#: mymensor/templates/vpdetail.html:183 mymensor/templates/vpdetail.html:187
+#: mymensor/templates/vpdetail.html:276 mymensor/templates/vpdetail.html:292
+#: mymensor/templates/vpdetail.html:296 mymensor/templates/vpdetail.html:300
+msgid "CAPTURE LOCATION NOT CERTIFIED"
+msgstr "LOCALIZAÇÃO DE CAPTURA NÃO CERTIFICADA"
+
+#: mymensor/templates/landing.html:155 mymensor/templates/landing.html:163
+#: mymensor/templates/landing.html:263 mymensor/templates/landing.html:271
+#: mymensor/templates/vpdetail.html:171 mymensor/templates/vpdetail.html:179
+#: mymensor/templates/vpdetail.html:284 mymensor/templates/vpdetail.html:292
 msgid " Latitude: "
 msgstr " Latitude: "
 
-#: mymensor/templates/landing.html:140 mymensor/templates/landing.html:142
-#: mymensor/templates/landing.html:222 mymensor/templates/landing.html:224
-#: mymensor/templates/vpdetail.html:164 mymensor/templates/vpdetail.html:166
-#: mymensor/templates/vpdetail.html:256 mymensor/templates/vpdetail.html:258
+#: mymensor/templates/landing.html:155 mymensor/templates/landing.html:157
+#: mymensor/templates/landing.html:163 mymensor/templates/landing.html:167
+#: mymensor/templates/landing.html:263 mymensor/templates/landing.html:265
+#: mymensor/templates/landing.html:271 mymensor/templates/landing.html:275
+#: mymensor/templates/vpdetail.html:171 mymensor/templates/vpdetail.html:173
+#: mymensor/templates/vpdetail.html:179 mymensor/templates/vpdetail.html:183
+#: mymensor/templates/vpdetail.html:284 mymensor/templates/vpdetail.html:286
+#: mymensor/templates/vpdetail.html:292 mymensor/templates/vpdetail.html:296
 msgid " degrees"
 msgstr " graus"
 
-#: mymensor/templates/landing.html:142 mymensor/templates/landing.html:224
-#: mymensor/templates/vpdetail.html:166 mymensor/templates/vpdetail.html:258
+#: mymensor/templates/landing.html:157 mymensor/templates/landing.html:167
+#: mymensor/templates/landing.html:265 mymensor/templates/landing.html:275
+#: mymensor/templates/vpdetail.html:173 mymensor/templates/vpdetail.html:183
+#: mymensor/templates/vpdetail.html:286 mymensor/templates/vpdetail.html:296
 msgid " Longitude: "
 msgstr " Longitude: "
 
-#: mymensor/templates/landing.html:144 mymensor/templates/landing.html:226
-#: mymensor/templates/vpdetail.html:168 mymensor/templates/vpdetail.html:260
-msgid " Precision: "
+#: mymensor/templates/landing.html:159 mymensor/templates/landing.html:171
+#: mymensor/templates/vpdetail.html:175 mymensor/templates/vpdetail.html:187
+#: mymensor/templates/vpdetail.html:288 mymensor/templates/vpdetail.html:300
+msgid " Accuracy: "
 msgstr " Precisão: "
 
-#: mymensor/templates/landing.html:144 mymensor/templates/landing.html:226
-#: mymensor/templates/vpdetail.html:168 mymensor/templates/vpdetail.html:260
+#: mymensor/templates/landing.html:159 mymensor/templates/landing.html:171
+#: mymensor/templates/landing.html:267 mymensor/templates/landing.html:279
+#: mymensor/templates/vpdetail.html:175 mymensor/templates/vpdetail.html:187
+#: mymensor/templates/vpdetail.html:288 mymensor/templates/vpdetail.html:300
 msgid " meters"
 msgstr " metros"
 
-#: mymensor/templates/landing.html:152
+#: mymensor/templates/landing.html:183
 msgid "Video of "
 msgstr "Vídeo de "
 
-#: mymensor/templates/landing.html:249
+#: mymensor/templates/landing.html:267 mymensor/templates/landing.html:279
+msgid " Precision: "
+msgstr " Precisão: "
+
+#: mymensor/templates/landing.html:321
 msgid ""
 "The media above was produced using the MyMensor mobile app on the date, time "
 "and location above stated."
@@ -976,7 +1132,7 @@ msgstr ""
 "A mídia acima foi produzida usando o aplicativo móvel MyMensor na data, hora "
 "e local acima indicados."
 
-#: mymensor/templates/landing.html:250
+#: mymensor/templates/landing.html:322
 msgid ""
 "Below the media one can read if capture time and location were certified or "
 "not by MyMensor."
@@ -984,29 +1140,29 @@ msgstr ""
 "Abaixo da mídia pode ler-se se o horário de captura e a localização foram "
 "certificadas ou não pelo MyMensor."
 
-#: mymensor/templates/landing.html:251
+#: mymensor/templates/landing.html:323
 msgid ""
-"Please use the code to the left or the following address to validate this "
-"media online."
+"Please use the PDF button on top of the page to download a printable version "
+"of this page."
 msgstr ""
-"Por favor use o código à esquerda ou o endereço a seguir para obter a "
-"validação online desta mídia."
+"Use o botão PDF no topo da página para baixar uma versão imprimível desta "
+"página."
 
-#: mymensor/templates/location.html:56
-msgid "Show user path when capturing media"
-msgstr "Mostrar o caminho do usuário durante a captura das mídias"
+#: mymensor/templates/location.html:21
+msgid "Showing user path when capturing media"
+msgstr "Mostrando o caminho do usuário ao capturar as mídias"
 
-#: mymensor/templates/location.html:71
-msgid "Show location precision of media captures"
-msgstr "Mostrar a precisão de localização quando as mídias foram capturadas"
+#: mymensor/templates/location.html:25
+msgid "Not showing user path when capturing media"
+msgstr "Não mostrando o caminho do usuário ao capturar as mídias"
 
-#: mymensor/templates/location.html:86
-msgid "Show only location certified media captures"
-msgstr "Mostrar Apenas as mídias capturadas com localização certificada"
+#: mymensor/templates/location.html:31
+msgid "Showing location accuracy of media captures"
+msgstr "Exibindo precisão de localização de capturas de mídia"
 
-#: mymensor/templates/location.html:101
-msgid "Show only time certified media captures"
-msgstr "Mostrar Apenas as mídias capturadas com horário certificado"
+#: mymensor/templates/location.html:36
+msgid "Not showing location accuracy of media captures"
+msgstr "Não mostrando precisão de localização de capturas de mídia"
 
 #: mymensor/templates/mobilebackup.html:5
 #: mymensor/templates/mobilebackup.html:9
@@ -1041,12 +1197,12 @@ msgstr "Restaurar Backup"
 msgid "Backup done!"
 msgstr "Backup feito!"
 
-#: mymensor/templates/mobilebackup.html:74
-#: mymensor/templates/mobilebackup.html:99
+#: mymensor/templates/mobilebackup.html:75
+#: mymensor/templates/mobilebackup.html:101
 msgid "Error"
 msgstr "Erro"
 
-#: mymensor/templates/mobilebackup.html:91
+#: mymensor/templates/mobilebackup.html:92
 msgid "Backup restore done!"
 msgstr "Restauração de backup feita!"
 
@@ -1080,6 +1236,17 @@ msgstr "Autorizar"
 #: mymensor/templates/updatepaymentmethod.html:43
 msgid "en_US"
 msgstr "pt_BR"
+
+#: mymensor/templates/proctagedit.html:18
+#: mymensor/templates/tagprocessing.html:18
+#: mymensor/templates/tagstatus.html:17
+msgid "Show "
+msgstr "Mostrar "
+
+#: mymensor/templates/proctagedit.html:20
+#: mymensor/templates/tagprocessing.html:20
+msgid " entries per VP"
+msgstr " itens por VP"
 
 #: mymensor/templates/proctagedit.html:41
 #: mymensor/templates/proctagedit.html:127
@@ -1422,43 +1589,123 @@ msgid ""
 msgstr ""
 "Houve um problema ao registrar sua assinatura, por favor contacte o suporte."
 
-#: mymensor/templates/subscription.html:12
-msgid "Your Activity at MyMensor"
-msgstr "Sua atividade no MyMensor"
+#: mymensor/templates/subscription.html:13
+msgid "Current MyMensor Plan"
+msgstr "Plano MyMensor Atual"
 
 #: mymensor/templates/subscription.html:17
-msgid "First Login: "
-msgstr "Primeiro login: "
+msgid "Thanks for using our Apps!"
+msgstr "Obrigado por usar as nossas Apps!"
 
-#: mymensor/templates/subscription.html:18
-msgid "Last Login: "
-msgstr "Último login: "
+#: mymensor/templates/subscription.html:19
+#: mymensor/templates/subscription.html:153
+msgid "Right now you are using the <b>"
+msgstr "Agora você está usando o <b> Plano "
 
-#: mymensor/templates/subscription.html:24
-msgid "Current Payment Method"
-msgstr "Método de pagamento atual"
+#: mymensor/templates/subscription.html:19
+#: mymensor/templates/subscription.html:153
+msgid " Plan</b>    "
+msgstr " </b>    "
 
-#: mymensor/templates/subscription.html:29
+#: mymensor/templates/subscription.html:23
+#: mymensor/templates/subscription.html:157
+msgid "Take me to the <b>MyMensor Media Plan</b>"
+msgstr "Leve-me ao <b>Plano MyMensor Media</b>"
+
+#: mymensor/templates/subscription.html:27
+#: mymensor/templates/subscription.html:161
+msgid "Take me to the <b>MyMensor Media and Data Plan</b>"
+msgstr "Leve-me ao <b>Plano MyMensor Media and Data</b>"
+
+#: mymensor/templates/subscription.html:32
+#: mymensor/templates/subscription.html:166
+msgid ""
+"This plan allows you to store <u>both media and data</u> in our servers. "
+"Your media will always be organized in the way you wish and you will be able "
+"to share it automatically in Twitter of email. By using this plan you can "
+"further analyse the data generated with your media captures, using the Data "
+"menu."
+msgstr ""
+"Este plano permite armazenar <u>mídia e dados</u> em nossos servidores. Sua "
+"mídia sempre estará organizada da maneira que desejar e você poderá "
+"compartilhá-la automaticamente no Twitter ou por e-mail. Ao usar este plano, "
+"você pode analisar mais detalhadamente os dados gerados com suas capturas de "
+"mídia, usando o menu Dados."
+
+#: mymensor/templates/subscription.html:34
+msgid ""
+"This plan allows you to store <u>media</u> in our servers. Your media will "
+"always be organized in the way you wish and you will be able to share it "
+"automatically in Twitter or email. If you need to store and <b>explore data "
+"together with your media</b>, please consider <b>upgrading to the Media and "
+"Data Plan!</b>"
+msgstr ""
+"Este plano permite armazenar <u>mídia</u> em nossos servidores. Sua mídia "
+"sempre estará organizada da maneira que desejar e você poderá compartilhá-la "
+"automaticamente no Twitter ou por email. Se você precisa armazenar e "
+"<b>explorar dados junto com sua mídia</b> , considere a <b>atualização para "
+"o Plano de Dados e Mídia.</b>"
+
+#: mymensor/templates/subscription.html:38
+#: mymensor/templates/subscription.html:171
+msgid "You are currently on a trial period that will extend for another "
+msgstr "Você está atualmente em uma avaliação que se estenderá por mais "
+
+#: mymensor/templates/subscription.html:42
+#: mymensor/templates/subscription.html:175
+msgid "I want to subscribe to <b>"
+msgstr "Eu quero assinar o <b>Plano "
+
+#: mymensor/templates/subscription.html:42
+#: mymensor/templates/subscription.html:175
+msgid " Plan</b> NOW!"
+msgstr " </b> AGORA!"
+
+#: mymensor/templates/subscription.html:48
+msgid "Current Rate, Currency and Payment Method"
+msgstr "Taxa de assinatura atual, moeda e método de pagamento"
+
+#: mymensor/templates/subscription.html:53
 msgid "Your payment method was succesfully modified to the one listed below:"
 msgstr ""
 "Seu método de pagamento foi modificado com sucesso para aquele listado "
 "abaixo:"
 
-#: mymensor/templates/subscription.html:36
+#: mymensor/templates/subscription.html:60
 msgid "We could not modify your payment method, please see result:"
 msgstr ""
 "Não foi possível modificar o método de pagamento, por favor veja o resultado:"
 
-#: mymensor/templates/subscription.html:60
+#: mymensor/templates/subscription.html:67
+msgid "Your paid subscription started on "
+msgstr "Sua inscrição paga começou em "
+
+#: mymensor/templates/subscription.html:68
+msgid "You are being charged "
+msgstr "Você está sendo cobrado "
+
+#: mymensor/templates/subscription.html:68
+msgid " per month using the payment method below."
+msgstr " por mês usando o método de pagamento abaixo."
+
+#: mymensor/templates/subscription.html:69
+msgid "Your next billing will be: "
+msgstr "A sua próxima cobrança será: "
+
+#: mymensor/templates/subscription.html:69
+msgid " on "
+msgstr " em "
+
+#: mymensor/templates/subscription.html:97
 msgid "Modify Current Payment Method"
 msgstr "Modificar o Método de Pagamento Atual"
 
-#: mymensor/templates/subscription.html:64
-#: mymensor/templates/subscription.html:72
+#: mymensor/templates/subscription.html:101
+#: mymensor/templates/subscription.html:109
 msgid "Cancel Subscription"
 msgstr "Cancelar Assinatura"
 
-#: mymensor/templates/subscription.html:68
+#: mymensor/templates/subscription.html:105
 msgid ""
 "Press the button below to cancel your subscription. Nonetheless, you will be "
 "able to use your current account until the end of the present subscription "
@@ -1467,44 +1714,28 @@ msgstr ""
 "Pressione o botão abaixo para cancelar a sua subscrição. No entanto, você "
 "poderá usar sua conta atual até o fim do atual período de assinatura."
 
-#: mymensor/templates/subscription.html:70
+#: mymensor/templates/subscription.html:107
 msgid "Your subscription is paid through "
 msgstr "Sua assinatura está paga até "
 
-#: mymensor/templates/subscription.html:77
-#: mymensor/templates/subscription.html:139
-msgid "Thanks for registering with Mymensor and using our Web App!"
-msgstr "Obrigado por registrar-se com Mymensor e usar a nossa Web App!"
-
-#: mymensor/templates/subscription.html:82
-#: mymensor/templates/subscription.html:144
-msgid "You are currently on a trial period that will extend for another "
-msgstr ""
-"Você está atualmente em um período experimental que se estenderá por mais "
-
-#: mymensor/templates/subscription.html:83
-#: mymensor/templates/subscription.html:145
-msgid ""
-"If you would like to subscribe to our service, please press the button below."
-msgstr ""
-"Se você quiser assinar nosso serviço, por favor pressione o botão abaixo."
-
-#: mymensor/templates/subscription.html:86
-#: mymensor/templates/subscription.html:118
-#: mymensor/templates/subscription.html:148
-msgid "Subscribe Now!"
-msgstr "Assine Já!"
-
-#: mymensor/templates/subscription.html:91
-#: mymensor/templates/subscription.html:107
+#: mymensor/templates/subscription.html:114
+#: mymensor/templates/subscription.html:131
 msgid "Thanks for using Mymensor!"
 msgstr "Obrigado por usar o MyMensor!"
 
-#: mymensor/templates/subscription.html:95
+#: mymensor/templates/subscription.html:118
 msgid "Your present subscription is canceled. "
 msgstr "Seu presente assinatura está cancelada. "
 
-#: mymensor/templates/subscription.html:96
+#: mymensor/templates/subscription.html:119
+msgid "You are using the "
+msgstr ""
+
+#: mymensor/templates/subscription.html:119
+msgid " Plan"
+msgstr ""
+
+#: mymensor/templates/subscription.html:120
 msgid ""
 "If you would like to subscribe again to our service, please press the button "
 "below."
@@ -1512,15 +1743,15 @@ msgstr ""
 "Se você gostaria de assinar novamente o nosso serviço, por favor pressione o "
 "botão abaixo."
 
-#: mymensor/templates/subscription.html:102
+#: mymensor/templates/subscription.html:126
 msgid "Subscribe Again Now!"
 msgstr "Assine Novamente Já!"
 
-#: mymensor/templates/subscription.html:111
+#: mymensor/templates/subscription.html:135
 msgid "Your last attempt to subscribe was unsuccessful. "
 msgstr "Sua última tentativa para assinar o serviço não teve sucesso. "
 
-#: mymensor/templates/subscription.html:112
+#: mymensor/templates/subscription.html:136
 msgid ""
 "If you would like to try again to subscribe to our service, please press the "
 "button below."
@@ -1528,19 +1759,56 @@ msgstr ""
 "Se você quiser tentar novamente assinar o nosso serviço, pressione o botão "
 "abaixo."
 
-#: mymensor/templates/subscription.html:123
-msgid "Current Subscription Status"
-msgstr "Status da assinatura atual"
+#: mymensor/templates/subscription.html:148
+msgid "Thanks for registering with Mymensor and using our Apps!"
+msgstr "Obrigado por registrar-se com Mymensor e usar as nossas Apps!"
 
-#: mymensor/templates/subscription.html:128
-msgid "Status: "
-msgstr "Status: "
+#: mymensor/templates/subscription.html:168
+msgid ""
+"This plan allows you to store <u>media</u> in our servers. Your media will "
+"always be organized in the way you wish and you will be able to share it "
+"automatically in Twitter of email. If you need to store data together with "
+"your media, please consider upgrading to the Media and Data Plan!"
+msgstr ""
+"Este plano permite armazenar <u>mídia</u> em nossos servidores. Sua mídia "
+"sempre estará organizada da maneira que desejar e você poderá compartilhá-la "
+"automaticamente no Twitter ou por email. Se você precisa armazenar e "
+"<b>explorar dados junto com sua mídia</b> , considere a <b>atualização para "
+"o Plano de Dados e Mídia.</b>"
 
-#: mymensor/templates/subscription.html:133
-msgid "If you wish, please contact support about your current status."
-msgstr "Se desejar, entre em contato com o suporte sobre seu status atual."
+#: mymensor/templates/subscription.html:180
+msgid "Your Activity at MyMensor"
+msgstr "Sua atividade no MyMensor"
 
-#: mymensor/templates/subscription.html:157
+#: mymensor/templates/subscription.html:185
+msgid "First Login: "
+msgstr "Primeiro login: "
+
+#: mymensor/templates/subscription.html:186
+msgid "Last Login: "
+msgstr "Último login: "
+
+#: mymensor/templates/subscription.html:187
+msgid " medias stored in our servers."
+msgstr " medias armazenadas em nossos servidores."
+
+#: mymensor/templates/subscription.html:190
+msgid "There are "
+msgstr "Existem "
+
+#: mymensor/templates/subscription.html:190
+msgid " TAGs configured to process your data."
+msgstr " TAGs configurados para processar seus dados."
+
+#: mymensor/templates/subscription.html:193
+msgid "You have processed a total of "
+msgstr "Você processou um total de "
+
+#: mymensor/templates/subscription.html:193
+msgid " TAG instances so far."
+msgstr " instâncias de TAGs até agora."
+
+#: mymensor/templates/subscription.html:204
 msgid "Please confirm that you want to cancel your subscription."
 msgstr "Por favor, confirme que você deseja cancelar a sua assinatura."
 
@@ -1733,85 +2001,85 @@ msgid "Please confirm that you want to delete this media from MyMensor server."
 msgstr ""
 "Por favor, confirme que você deseja excluir essa mídia do servidor MyMensor."
 
-#: mymensor/templates/vpdetail.html:119 mymensor/templates/vpdetail.html:211
+#: mymensor/templates/vpdetail.html:119 mymensor/templates/vpdetail.html:232
 msgid " means that augmented reality was used to capture this media"
 msgstr ""
 " significa que a realidade aumentada foi usada para capturar essa mídia"
 
-#: mymensor/templates/vpdetail.html:123 mymensor/templates/vpdetail.html:215
+#: mymensor/templates/vpdetail.html:123 mymensor/templates/vpdetail.html:236
 msgid " means that augmented reality was not used to capture this media"
 msgstr ""
 " significa que a realidade aumentada não foi usada para capturar essa mídia"
 
-#: mymensor/templates/vpdetail.html:128 mymensor/templates/vpdetail.html:220
+#: mymensor/templates/vpdetail.html:128 mymensor/templates/vpdetail.html:241
 msgid " means that the capture time was certified by MyMensor"
 msgstr " significa que o horário de captura foi certificado pelo MyMensor"
 
-#: mymensor/templates/vpdetail.html:132 mymensor/templates/vpdetail.html:224
+#: mymensor/templates/vpdetail.html:132 mymensor/templates/vpdetail.html:245
 msgid " means that the capture time was not certified by MyMensor"
 msgstr " significa que o horário de captura não foi certificado pelo MyMensor"
 
-#: mymensor/templates/vpdetail.html:137 mymensor/templates/vpdetail.html:229
+#: mymensor/templates/vpdetail.html:137 mymensor/templates/vpdetail.html:250
 msgid " means that the capture location was certified by MyMensor"
 msgstr " significa que o local de captura foi certificado pelo MyMensor"
 
-#: mymensor/templates/vpdetail.html:141 mymensor/templates/vpdetail.html:233
+#: mymensor/templates/vpdetail.html:141 mymensor/templates/vpdetail.html:254
 msgid " means that the capture location was not certified by MyMensor"
 msgstr " significa que o local de captura não foi certificado pelo MyMensor"
 
-#: mymensor/templates/vpdetail.html:150 mymensor/templates/vpdetail.html:242
+#: mymensor/templates/vpdetail.html:150 mymensor/templates/vpdetail.html:263
 msgid " No remark for this media"
 msgstr " Nenhum comentário para esta mídia"
 
-#: mymensor/templates/vpdetail.html:562
+#: mymensor/templates/vpdetail.html:594
 msgid "Media deleted."
 msgstr "Mídia excluída."
 
-#: mymensor/templates/vpdetail.html:570
+#: mymensor/templates/vpdetail.html:602
 msgid "Error: file not deleted."
 msgstr "Erro: arquivo não excluído."
 
-#: mymensor/templates/vpdetail.html:586
+#: mymensor/templates/vpdetail.html:618
 msgid "Media moved."
 msgstr "Mídia movida."
 
-#: mymensor/templates/vpdetail.html:594
+#: mymensor/templates/vpdetail.html:626
 msgid "Error: media not moved."
 msgstr "Erro: mídia não movida."
 
-#: mymensorapp/settings.py:223
+#: mymensorapp/settings.py:225
 msgid "One column"
 msgstr ""
 
-#: mymensorapp/settings.py:228
+#: mymensorapp/settings.py:230
 msgid "Two column"
 msgstr ""
 
-#: mymensorapp/settings.py:233
+#: mymensorapp/settings.py:235
 msgid "Three column"
 msgstr ""
 
-#: mymensorapp/settings.py:238
+#: mymensorapp/settings.py:240
 msgid "Four column"
 msgstr ""
 
-#: mymensorapp/settings.py:243
+#: mymensorapp/settings.py:245
 msgid "Five column"
 msgstr ""
 
-#: mymensorapp/settings.py:248
+#: mymensorapp/settings.py:250
 msgid "Six column"
 msgstr ""
 
-#: mymensorapp/settings.py:253
+#: mymensorapp/settings.py:255
 msgid "Seven column"
 msgstr ""
 
-#: mymensorapp/settings.py:258
+#: mymensorapp/settings.py:260
 msgid "Eight column"
 msgstr ""
 
-#: mymensorapp/settings.py:263 mymensorapp/settings.py:268
+#: mymensorapp/settings.py:265 mymensorapp/settings.py:270
 msgid "Nine column"
 msgstr ""
 
@@ -2912,6 +3180,34 @@ msgstr ""
 msgid "Index of %(directory)s"
 msgstr ""
 
+#~ msgid "Trial until "
+#~ msgstr "Avaliação até "
+
+#~ msgid " and will pay "
+#~ msgstr " e pagarei "
+
+#~ msgid ""
+#~ "Please use the code to the left or the following address to validate this "
+#~ "media online."
+#~ msgstr ""
+#~ "Por favor use o código à esquerda ou o endereço a seguir para obter a "
+#~ "validação online desta mídia."
+
+#~ msgid ""
+#~ "If you would like to subscribe to our service, please press the button "
+#~ "below."
+#~ msgstr ""
+#~ "Se você quiser assinar nosso serviço, por favor pressione o botão abaixo."
+
+#~ msgid "Current Subscription Status"
+#~ msgstr "Status da assinatura atual"
+
+#~ msgid "Status: "
+#~ msgstr "Status: "
+
+#~ msgid "If you wish, please contact support about your current status."
+#~ msgstr "Se desejar, entre em contato com o suporte sobre seu status atual."
+
 #~ msgid ""
 #~ "Image Shared by MyMensor Bot \n"
 #~ "\n"
@@ -2951,6 +3247,3 @@ msgstr ""
 
 #~ msgid "Your Billing History"
 #~ msgstr "Histórico de Cobranças"
-
-#~ msgid "Password change"
-#~ msgstr "Alterar senha"
