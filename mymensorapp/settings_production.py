@@ -12,7 +12,7 @@ CSRF_COOKIE_SECURE = True
 
 
 # UPDATE BEFORE LAUNCH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#ALLOWED_HOSTS = ['app.mymensor.com', 'mymensor.herokuapp.com']
+ALLOWED_HOSTS = ['app.mymensor.com']
 
 DEBUG = True
 
