@@ -459,9 +459,9 @@
                                         text: [
                                             '{{ pdftitle }}',
                                             {% if mediaTimeIsCertified == "1" %}
-                                                {text: '{{ pdfcaptimecert }}', fontSize: 9, color: 'green'},
+                                                {text: '{{ pdfcaptimecert }}\n', fontSize: 9, color: 'green'},
                                             {% else %}
-                                                {text: '{{ pdfcaptimenotcert }}', fontSize: 9, color: 'red'},
+                                                {text: '{{ pdfcaptimenotcert }}\n', fontSize: 9, color: 'red'},
                                             {% endif %}
                                             {% if mediaLocIsCertified == "1" %}
                                                 {text: 'CAPTURE LOCATION CERTIFIED\n', fontSize: 9, color: 'green'}
