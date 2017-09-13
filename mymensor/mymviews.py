@@ -124,8 +124,8 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 pdftblcaploccert = _('Capture location was certified:')
                 pdftblcaplocnotcert = _('Capture location was not certified:')
                 pdflatitude = _('Latitude=')
-                pdflongitude = _('˚  Longitude=')
-                pdfaccuracy = _('˚  Accuracy*=')
+                pdflongitude = _('  Longitude=')
+                pdfaccuracy = _('  Accuracy*=')
                 pdfaron = _('Augmented Reality was used to capture this media.')
                 pdfaroff = _('Augmented Reality was not used to capture this media.')
                 pdflinktxt = _(
