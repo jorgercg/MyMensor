@@ -634,11 +634,12 @@
                 ;
 
                 pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
+
+                document.getElementById('landingmapid').style.height= '';
+
+                mymap.invalidateSize();
+
             });
-
-            document.getElementById('landingmapid').style.height= '';
-
-            mymap.invalidateSize();
 
         });
 
