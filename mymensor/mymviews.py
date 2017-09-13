@@ -114,8 +114,32 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                                                                   ExpiresIn=3600)
 
             if obj_metadata['sha-256'] == requestsignature:
+                pdftitle = _('MyMensor Media Check\n')
+                pdfcaptimecert = _('CAPTURE TIME CERTIFIED\n')
+                pdfcaptimenotcert = _('CAPTURE TIME NOT CERTIFIED\n')
+                pdfcaploccert = _('CAPTURE LOCATION CERTIFIED\n')
+                pdfcaplocnotcert = _('CAPTURE LOCATION NOT CERTIFIED\n')
+                pdftblcaptimecert = _('Capture time was certified:')
+                pdftblcaptimenotcert = _('Capture time was not certified:')
+                pdftblcaploccert = _('Capture location was certified:')
+                pdftblcaplocnotcert = _('Capture location was not certified:')
+                pdflatitude = _('Latitude=')
+                pdflongitude = _('˚  Longitude=')
+                pdfaccuracy = _('˚  Accuracy*=')
+                pdfaron = _('Augmented Reality was used to capture this media.')
+                pdfaroff = _('Augmented Reality was not used to capture this media.')
+                pdflinktxt = _(
+                    'Please use the code to the right or the below address to validate this document online.')
+                pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
+                pdfinfotitle = _('MyMensor Media Check')
+                pdfinfoauthor = _('MyMensor')
+                pdfinfosubject = _('subject of document')
+                pdfinfokeywords = _('keywords for document')
+                pdfinfocreator = _('MyMensor')
+                pdfinfoproducer = _('MyMensor')
+                pdffilename = _("mymensormediacheck.pdf")
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
-                                                        'videoStorageURL':videoStorageURL,
+                                                        'videoStorageURL': videoStorageURL,
                                                         'mediaCheckURLOG': mediaCheckURLOG,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
@@ -127,6 +151,29 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                                                         'locprecisioninm': obj_metadata['locprecisioninm'],
                                                         'mediasignature': obj_metadata['sha-256'],
                                                         'mediaCheckURL': mediaCheckURL,
+                                                        'pdftitle': pdftitle,
+                                                        'pdfcaptimecert': pdfcaptimecert,
+                                                        'pdfcaptimenotcert': pdfcaptimenotcert,
+                                                        'pdfcaploccert': pdfcaploccert,
+                                                        'pdfcaplocnotcert': pdfcaplocnotcert,
+                                                        'pdftblcaptimecert': pdftblcaptimecert,
+                                                        'pdftblcaptimenotcert': pdftblcaptimenotcert,
+                                                        'pdftblcaploccert': pdftblcaploccert,
+                                                        'pdftblcaplocnotcert': pdftblcaplocnotcert,
+                                                        'pdflatitude': pdflatitude,
+                                                        'pdflongitude': pdflongitude,
+                                                        'pdfaccuracy': pdfaccuracy,
+                                                        'pdfaron': pdfaron,
+                                                        'pdfaroff': pdfaroff,
+                                                        'pdflinktxt': pdflinktxt,
+                                                        'pdfaccuracydefinition': pdfaccuracydefinition,
+                                                        'pdfinfotitle': pdfinfotitle,
+                                                        'pdfinfoauthor': pdfinfoauthor,
+                                                        'pdfinfosubject': pdfinfosubject,
+                                                        'pdfinfokeywords': pdfinfokeywords,
+                                                        'pdfinfocreator': pdfinfocreator,
+                                                        'pdfinfoproducer': pdfinfoproducer,
+                                                        'pdffilename': pdffilename
                                                         })
             else:
                 return HttpResponse(status=404)
@@ -374,8 +421,10 @@ def portfolio(request):
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
-        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', urllib.quote((datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z')) ))), yearfirst=True)
-        enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote((datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
+        startdate = parse(urllib.unquote(request.GET.get('startdate', request.session.get('startdate', urllib.quote(
+            (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
+        enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote(
+            (datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
         maxcolumnstxt = request.device.matched
         maxcolumns = 10
@@ -417,8 +466,10 @@ def portfolio(request):
             vpsselected = vps.values_list('vpNumber', flat=True)
         if showonlyloccert == 1 and showonlytimecert == 1:
             if showlastmedia == 1:
-                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
-                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                    mediaLocIsCertified=True).filter(
+                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by(
+                    '-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
                         new_enddate = lastmedia.mediaTimeStamp
@@ -428,7 +479,8 @@ def portfolio(request):
                 mediaTimeStamp__range=[startdate, new_enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 1 and showonlytimecert == 0:
             if showlastmedia == 1:
-                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                    mediaLocIsCertified=True).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
@@ -440,7 +492,8 @@ def portfolio(request):
         elif showonlyloccert == 0 and showonlytimecert == 1:
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
-                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by(
+                    '-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - new_enddate).total_seconds() > 0:
                         new_enddate = lastmedia.mediaTimeStamp
@@ -488,7 +541,7 @@ def portfolio(request):
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'showonlyloccert': showonlyloccert, 'showlastmedia':showlastmedia,
+                       'showonlyloccert': showonlyloccert, 'showlastmedia': showlastmedia,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
                        'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers})
 
@@ -509,7 +562,7 @@ def location(request):
             (datetime.now(pytz.utc) - timedelta(days=29)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote(
             (datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
-        #new_enddate = enddate #+ timedelta(days=1)
+        # new_enddate = enddate #+ timedelta(days=1)
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showlocationprecision = int(
@@ -533,22 +586,25 @@ def location(request):
             vpsselected = vps.values_list('vpNumber', flat=True)
         if showonlyloccert == 1 and showonlytimecert == 1:
             if showlastmedia == 1:
-                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
-                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                    mediaLocIsCertified=True).filter(
+                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by(
+                    '-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
-                        #new_enddate = lastmedia.mediaTimeStamp
+                        # new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
                 mediaTimeStamp__range=[startdate, enddate]).order_by('-mediaMillisSinceEpoch')
         elif showonlyloccert == 1 and showonlytimecert == 0:
             if showlastmedia == 1:
-                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
+                lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
+                    mediaLocIsCertified=True).filter(
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
-                        #new_enddate = lastmedia.mediaTimeStamp
+                        # new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(mediaLocIsCertified=True).filter(
                 vp__vpNumber__in=vpsselected).filter(
@@ -556,10 +612,11 @@ def location(request):
         elif showonlyloccert == 0 and showonlytimecert == 1:
             if showlastmedia == 1:
                 lastmedia = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
-                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
+                    mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).order_by(
+                    '-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
-                        #new_enddate = lastmedia.mediaTimeStamp
+                        # new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 mediaTimeIsCertified=True).filter(vp__vpNumber__in=vpsselected).filter(
@@ -570,7 +627,7 @@ def location(request):
                     vp__vpNumber__in=vpsselected).order_by('-mediaMillisSinceEpoch').first()
                 if lastmedia:
                     if (lastmedia.mediaTimeStamp - enddate).total_seconds() > 0:
-                        #new_enddate = lastmedia.mediaTimeStamp
+                        # new_enddate = lastmedia.mediaTimeStamp
                         enddate = lastmedia.mediaTimeStamp
             medias = Media.objects.filter(vp__asset__assetOwner=request.user).filter(
                 vp__vpNumber__in=vpsselected).filter(
@@ -605,7 +662,7 @@ def location(request):
         return render(request, 'location.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'vpsselected': vpsselected, 'vpslist': vpslist, 'showlocationprecision': showlocationprecision,
-                       'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert,'showlastmedia':showlastmedia,
+                       'showuserpath': showuserpath, 'showonlyloccert': showonlyloccert, 'showlastmedia': showlastmedia,
                        'showonlytimecert': showonlytimecert, 'centerlat': centerlat, 'centerlng': centerlng,
                        'mapzoom': mapzoom, 'orgmymaccselected': orgmymaccselected, 'orgmymacclist': orgmymacclist,
                        'media_vpnumbers': media_vpnumbers})

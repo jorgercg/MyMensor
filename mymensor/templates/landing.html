@@ -457,11 +457,11 @@
                                     {
                                         width: '*',
                                         text: [
-                                            'MyMensor Media Check\n',
+                                            '{{ pdftitle }}',
                                             {% if mediaTimeIsCertified == "1" %}
-                                                {text: 'CAPTURE TIME CERTIFIED\n', fontSize: 9, color: 'green'},
+                                                {text: '{{ pdfcaptimecert }}', fontSize: 9, color: 'green'},
                                             {% else %}
-                                                {text: 'CAPTURE TIME NOT CERTIFIED\n', fontSize: 9, color: 'red'},
+                                                {text: '{{ pdfcaptimenotcert }}', fontSize: 9, color: 'red'},
                                             {% endif %}
                                             {% if mediaLocIsCertified == "1" %}
                                                 {text: 'CAPTURE LOCATION CERTIFIED\n', fontSize: 9, color: 'green'}
@@ -564,14 +564,14 @@
                                             [{
                                                 colSpan: 2,
                                                 border: [false, false, false, false],
-                                                text: '\nAugmented Reality was used to capture this media.',
+                                                text: 'Augmented Reality was used to capture this media.',
                                                 fontSize: 7
                                             }, '', ''],
                                         {% else %}
                                             [{
                                                 colSpan: 2,
                                                 border: [false, false, false, false],
-                                                text: '\nAugmented Reality was not used to capture this media.',
+                                                text: 'Augmented Reality was not used to capture this media.',
                                                 fontSize: 7
                                             }, '', ''],
                                         {% endif %}
