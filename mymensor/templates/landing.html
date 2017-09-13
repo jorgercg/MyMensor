@@ -430,12 +430,12 @@
         {% endautoescape %}
 
         $('#pdfgenbtn').click(function (event) {
-
+            event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
 
             document.getElementById('landingmapid').setAttribute('height', '260px');
 
-            mymap.invalidateSize(false);
+            mymap.invalidateSize();
 
             console.log("H="+document.getElementById('landingmapid').getAttribute('height'));
 
