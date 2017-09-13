@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-09 11:22+0100\n"
-"PO-Revision-Date: 2017-09-09 12:44+0100\n"
+"POT-Creation-Date: 2017-09-13 14:44+0100\n"
+"PO-Revision-Date: 2017-09-13 14:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -184,7 +184,93 @@ msgstr "Horário de Processamento"
 msgid "Status"
 msgstr "Status"
 
-#: mymensor/mymviews.py:279
+#: mymensor/mymviews.py:117 mymensor/mymviews.py:134
+#: mymensor/templates/landing.html:17 mymensor/templates/landing.html:27
+#: mymensor/templates/landing.html:64
+msgid "MyMensor Media Check"
+msgstr "MyMensor Media Check (Verificação de Mídia)"
+
+#: mymensor/mymviews.py:118
+msgid "CAPTURE TIME CERTIFIED"
+msgstr "HORÁRIO DE CAPTURA CERTIFICADO"
+
+#: mymensor/mymviews.py:119
+msgid "CAPTURE TIME NOT CERTIFIED"
+msgstr "HORÁRIO DE CAPTURA NÃO CERTIFICADO"
+
+#: mymensor/mymviews.py:120
+msgid "CAPTURE LOCATION CERTIFIED"
+msgstr "LOCALIZAÇÃO DE CAPTURA CERTIFICADA"
+
+#: mymensor/mymviews.py:121 mymensor/templates/landing.html:147
+#: mymensor/templates/landing.html:163 mymensor/templates/landing.html:167
+#: mymensor/templates/landing.html:171 mymensor/templates/landing.html:255
+#: mymensor/templates/landing.html:271 mymensor/templates/landing.html:275
+#: mymensor/templates/landing.html:279 mymensor/templates/vpdetail.html:163
+#: mymensor/templates/vpdetail.html:179 mymensor/templates/vpdetail.html:183
+#: mymensor/templates/vpdetail.html:187 mymensor/templates/vpdetail.html:276
+#: mymensor/templates/vpdetail.html:292 mymensor/templates/vpdetail.html:296
+#: mymensor/templates/vpdetail.html:300
+msgid "CAPTURE LOCATION NOT CERTIFIED"
+msgstr "LOCALIZAÇÃO DE CAPTURA NÃO CERTIFICADA"
+
+#: mymensor/mymviews.py:122
+msgid "Capture time was certified:"
+msgstr "Horário de captura certificado:"
+
+#: mymensor/mymviews.py:123
+msgid "Capture time was not certified:"
+msgstr "Horário de captura não certificado:"
+
+#: mymensor/mymviews.py:124
+msgid "Capture location was certified:"
+msgstr "Localização de captura certificada:"
+
+#: mymensor/mymviews.py:125
+msgid "Capture location was not certified:"
+msgstr "Localização de captura não certificada:"
+
+#: mymensor/mymviews.py:126
+msgid "Latitude"
+msgstr "Latitude"
+
+#: mymensor/mymviews.py:127
+msgid "Longitude"
+msgstr "Longitude"
+
+#: mymensor/mymviews.py:128
+msgid "Accuracy"
+msgstr "Precisão"
+
+#: mymensor/mymviews.py:129
+msgid "Augmented Reality was used to capture this media."
+msgstr "A realidade aumentada foi usada para capturar essa mídia."
+
+#: mymensor/mymviews.py:130
+msgid "Augmented Reality was not used to capture this media."
+msgstr "A realidade aumentada não foi usada para capturar essa mídia."
+
+#: mymensor/mymviews.py:132
+msgid ""
+"Please use the code to the right or the below address to validate this "
+"document online."
+msgstr ""
+"Por favor use o código à direita ou o endereço a seguir para obter a "
+"validação online desta mídia."
+
+#: mymensor/mymviews.py:133
+msgid "*Please refer to the online page for the accuracy definition."
+msgstr "*Por favor consulte a página on-line para a definição de precisão."
+
+#: mymensor/mymviews.py:136
+msgid "Media from VP#"
+msgstr "Mídia do VP#"
+
+#: mymensor/mymviews.py:138 mymensor/mymviews.py:139
+msgid "MyMensor"
+msgstr "MyMensor"
+
+#: mymensor/mymviews.py:326
 msgid ""
 "Image Shared by MyMensor Bot \n"
 "\n"
@@ -192,7 +278,7 @@ msgstr ""
 "Imagem compartilhada pelo MyMensor Bot \n"
 "\n"
 
-#: mymensor/mymviews.py:281 mymensor/mymviews.py:285
+#: mymensor/mymviews.py:328 mymensor/mymviews.py:332
 msgid ""
 "\n"
 "\n"
@@ -204,11 +290,11 @@ msgstr ""
 "(Enviado por MyMensor Bot - siga o link para verificar a imagem no mymensor."
 "com) \n"
 
-#: mymensor/mymviews.py:293
+#: mymensor/mymviews.py:340
 msgid "MyMensor Bot sent you this PHOTO by request of "
 msgstr "MyMensor Bot te mandou esta foto a pedido de "
 
-#: mymensor/mymviews.py:307
+#: mymensor/mymviews.py:354
 msgid ""
 "Video Shared by MyMensor Bot \n"
 "\n"
@@ -216,7 +302,7 @@ msgstr ""
 "Vídeo compartilhado pelo MyMensor Bot\n"
 "\n"
 
-#: mymensor/mymviews.py:309 mymensor/mymviews.py:313
+#: mymensor/mymviews.py:356 mymensor/mymviews.py:360
 msgid ""
 "\n"
 "\n"
@@ -228,15 +314,15 @@ msgstr ""
 "(Enviado por MyMensor Bot - siga o link para verificar o vídeo no mymensor."
 "com) \n"
 
-#: mymensor/mymviews.py:321
+#: mymensor/mymviews.py:368
 msgid "MyMensor Bot sent you this VIDEO by request of "
 msgstr "MyMensor Bot lhe enviou este vídeo por pedido de "
 
-#: mymensor/mymviews.py:840
+#: mymensor/mymviews.py:897
 msgid "Explicit Consent Needed!"
 msgstr "Consentimento explícito necessário!"
 
-#: mymensor/mymviews.py:842
+#: mymensor/mymviews.py:899
 msgid ""
 "Please type your MyMensor username below and click on the Confirm button "
 "below to hereby attest that you are giving your explicit consent to MyMensor "
@@ -252,27 +338,27 @@ msgstr ""
 "Conta MyMensor. Você também confirma explicitamente que você sabe e concorda "
 "que não poderá rever o conteúdo da postagem antes desta já estar postada."
 
-#: mymensor/mymviews.py:843
+#: mymensor/mymviews.py:900
 msgid "Type your MyMensor username here."
 msgstr "Digite seu nome de usuário MyMensor aqui."
 
-#: mymensor/mymviews.py:844 mymensor/mymviews.py:1897
+#: mymensor/mymviews.py:901 mymensor/mymviews.py:1954
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: mymensor/mymviews.py:845 mymensor/mymviews.py:1898
+#: mymensor/mymviews.py:902 mymensor/mymviews.py:1955
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: mymensor/mymviews.py:846
+#: mymensor/mymviews.py:903
 msgid "You need to enter your username."
 msgstr "Você precisa digitar seu nome de usuário."
 
-#: mymensor/mymviews.py:847
+#: mymensor/mymviews.py:904
 msgid "Thank you for your confirmation!"
 msgstr "Agradecemos a sua confirmação!"
 
-#: mymensor/mymviews.py:848
+#: mymensor/mymviews.py:905
 msgid ""
 "Please submit this VP configuration in order to start tweeting automatically "
 "from MyMensor!"
@@ -280,19 +366,19 @@ msgstr ""
 "Por favor envie esta configuração de VP para começar a twittar "
 "automaticamente do MyMensor!"
 
-#: mymensor/mymviews.py:926 mymensor/mymviews.py:940 mymensor/mymviews.py:952
+#: mymensor/mymviews.py:983 mymensor/mymviews.py:997 mymensor/mymviews.py:1009
 msgid "TAG#"
 msgstr "TAG#"
 
-#: mymensor/mymviews.py:927 mymensor/mymviews.py:941 mymensor/mymviews.py:953
+#: mymensor/mymviews.py:984 mymensor/mymviews.py:998 mymensor/mymviews.py:1010
 msgid "Tag question for TAG#"
 msgstr "Pergunta para o TAG #"
 
-#: mymensor/mymviews.py:1894
+#: mymensor/mymviews.py:1951
 msgid "Really Change Plan?"
 msgstr "Quer mesmo mudar de Plano?"
 
-#: mymensor/mymviews.py:1896
+#: mymensor/mymviews.py:1953
 msgid ""
 "You will change plan immediately and in the next monthly payment you will be "
 "charged the new subscription rate, in the same currency as you pay now. "
@@ -303,11 +389,11 @@ msgstr ""
 "cobrança, na mesma moeda que pagas hoje. Não haverá prorrateamento para "
 "downgrades entre os ciclos de cobrança."
 
-#: mymensor/mymviews.py:1899
+#: mymensor/mymviews.py:1956
 msgid "Done!"
 msgstr "Pronto!"
 
-#: mymensor/mymviews.py:1900
+#: mymensor/mymviews.py:1957
 msgid "No change!"
 msgstr "Sem mudanças!"
 
@@ -1009,11 +1095,6 @@ msgstr "Nenhuma mídia para o VP#"
 msgid " in the selected timeframe."
 msgstr " no período de tempo selecionado."
 
-#: mymensor/templates/landing.html:17 mymensor/templates/landing.html:27
-#: mymensor/templates/landing.html:64
-msgid "MyMensor Media Check"
-msgstr "MyMensor Media Check (Verificação de Mídia)"
-
 #: mymensor/templates/landing.html:18 mymensor/templates/landing.html:28
 msgid "Click to check at MyMensor"
 msgstr "Clique para ver no MyMensor"
@@ -1066,17 +1147,6 @@ msgstr " localização da captura não certificada por MyMensor"
 #: mymensor/templates/vpdetail.html:273 mymensor/templates/vpdetail.html:276
 msgid "Location details"
 msgstr "Detalhes da Localização"
-
-#: mymensor/templates/landing.html:147 mymensor/templates/landing.html:163
-#: mymensor/templates/landing.html:167 mymensor/templates/landing.html:171
-#: mymensor/templates/landing.html:255 mymensor/templates/landing.html:271
-#: mymensor/templates/landing.html:275 mymensor/templates/landing.html:279
-#: mymensor/templates/vpdetail.html:163 mymensor/templates/vpdetail.html:179
-#: mymensor/templates/vpdetail.html:183 mymensor/templates/vpdetail.html:187
-#: mymensor/templates/vpdetail.html:276 mymensor/templates/vpdetail.html:292
-#: mymensor/templates/vpdetail.html:296 mymensor/templates/vpdetail.html:300
-msgid "CAPTURE LOCATION NOT CERTIFIED"
-msgstr "LOCALIZAÇÃO DE CAPTURA NÃO CERTIFICADA"
 
 #: mymensor/templates/landing.html:155 mymensor/templates/landing.html:163
 #: mymensor/templates/landing.html:263 mymensor/templates/landing.html:271
@@ -3185,13 +3255,6 @@ msgstr ""
 
 #~ msgid " and will pay "
 #~ msgstr " e pagarei "
-
-#~ msgid ""
-#~ "Please use the code to the left or the following address to validate this "
-#~ "media online."
-#~ msgstr ""
-#~ "Por favor use o código à esquerda ou o endereço a seguir para obter a "
-#~ "validação online desta mídia."
 
 #~ msgid ""
 #~ "If you would like to subscribe to our service, please press the button "
