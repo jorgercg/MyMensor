@@ -137,7 +137,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 pdfinfokeywords = object.content_type
                 pdfinfocreator = _('MyMensor')
                 pdfinfoproducer = _('MyMensor')
-                pdffilename = 'mymensormediacheck'+obj_metadata['phototakenmillis']+'.pdf'
+                pdffilename = 'mymensormediacheck '+obj_metadata['datetime']+'.pdf'
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'videoStorageURL': videoStorageURL,
                                                         'mediaCheckURLOG': mediaCheckURLOG,
