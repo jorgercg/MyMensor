@@ -433,9 +433,9 @@
             event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
 
-            document.getElementById('landingmapid').style.height="520px";
+            //document.getElementById('landingmapid').style.height="520px";
 
-            mymap.invalidateSize();
+            //mymap.invalidateSize();
 
             convertFileToDataURLviaFileReader(document.getElementById('logomymensor').src, function (dataURL) {
                 encodedMyMensorLogo = dataURL;
