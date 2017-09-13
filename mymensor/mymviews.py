@@ -132,12 +132,12 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                     'Please use the code to the right or the below address to validate this document online.')
                 pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
                 pdfinfotitle = _('MyMensor Media Check')
-                pdfinfoauthor = _('MyMensor')
-                pdfinfosubject = _('subject of document')
-                pdfinfokeywords = _('keywords for document')
+                pdfinfoauthor = obj_metadata['mymensoraccount']
+                pdfinfosubject = _('Media from VP#')+obj_metadata['vp']
+                pdfinfokeywords = obj_metadata['Content-Type']
                 pdfinfocreator = _('MyMensor')
                 pdfinfoproducer = _('MyMensor')
-                pdffilename = _("mymensormediacheck.pdf")
+                pdffilename = 'mymensormediacheck'+obj_metadata['phototakenmillis']+'.pdf'
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'videoStorageURL': videoStorageURL,
                                                         'mediaCheckURLOG': mediaCheckURLOG,
