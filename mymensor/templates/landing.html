@@ -433,16 +433,17 @@
             event.preventDefault();
             console.log("Clicked on: PDFGENBTN");
 
-            var mapwidth = document.getElementById('landingmapid').getAttribute('width');
+            var mapsize = mymap.getSize();
+
+            console.log("width x height ="+mapsize.x+" x "+mapsize.y);
+
+            var mapwidth = mapsize.x;
 
             var mapheigth = (mapwidth*720/1280);
 
             console.log("width x height ="+mapwidth+" x "+mapheigth);
 
-            console.log("Size="+mymap.getSize());
-
             document.getElementById('landingmapid').style.height= mapheigth+"px";
-
 
             mymap.invalidateSize();
 
