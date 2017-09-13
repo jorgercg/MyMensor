@@ -310,7 +310,7 @@ p {
 }
 
 #landingmapid {
-    height: 200px;
+    height: 520px;
 }
 
 .landingtitle {
@@ -347,13 +347,23 @@ p {
     padding-left: 1rem;
 }
 
+@media (min-width: 384px) {
+    body {
+        overflow: visible;
+    }
+
+    #landingmapid {
+        height: 104px;
+    }
+}
+
 @media (min-width: 576px) {
     body {
         overflow: visible;
     }
 
     #landingmapid {
-        height: 165px;
+        height: 156px;
     }
 }
 
@@ -363,37 +373,57 @@ p {
     }
 
     #landingmapid {
-        height: 220px;
+        height: 208px;
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 960px) {
     body {
         overflow: visible;
     }
 
     #landingmapid {
-        height: 284px;
+        height: 260px;
     }
 }
 
-@media (min-width: 1345px) {
+@media (min-width: 1152px) {
+    body {
+        overflow: visible;
+    }
+
+    #landingmapid {
+        height: 312px;
+    }
+}
+
+@media (min-width: 1344px) {
     body {
         overflow: hidden;
     }
 
     #landingmapid {
-        height: 386px;
+        height: 365px;
     }
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1536px) {
     body {
         overflow: hidden;
     }
 
     #landingmapid {
-        height: 520px;
+        height: 416px;
+    }
+}
+
+@media (min-width: 1728px) {
+    body {
+        overflow: hidden;
+    }
+
+    #landingmapid {
+        height: 468px;
     }
 }
 
