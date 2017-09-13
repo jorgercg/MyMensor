@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mymensor/static/js/leaflet.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensorapp/settings_production.py" afterPath="$PROJECT_DIR$/mymensorapp/settings_production.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/js/leaflet.js" afterPath="$PROJECT_DIR$/mymensor/static/js/leaflet.js" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,8 +57,8 @@
       <file leaf-file-name="settings_production.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensorapp/settings_production.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+            <state relative-caret-position="300">
+              <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -88,7 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mym-dash</find>
       <find>landingtitle</find>
       <find>mediaContent</find>
       <find>mediaStorageURL</find>
@@ -118,6 +118,7 @@
       <find>orgmymaccselected</find>
       <find>{{ start }}&quot;</find>
       <find>{{ start }}</find>
+      <find>return path.indexOf('url')===0?path.replace(/^url\([\&quot;\']?/, '').replace(/marker-icon\.png[\&quot;\']?\)$/, '') : '';</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -270,6 +271,27 @@
             <path>
               <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="leaflet.js" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
               <item name="mymensorapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -314,19 +336,19 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mymensor/static/js" />
+      <recent name="$PROJECT_DIR$/assetfiles" />
+      <recent name="$PROJECT_DIR$/mymensorapp/static" />
+      <recent name="$PROJECT_DIR$/mymensor/static/css" />
+      <recent name="$PROJECT_DIR$/mymensor/static/images" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mymensor/static/images" />
       <recent name="$PROJECT_DIR$/mymensor/static/js" />
       <recent name="$PROJECT_DIR$/mymensor/templates" />
       <recent name="$PROJECT_DIR$/mymensor/templatetags" />
       <recent name="$PROJECT_DIR$/mymensor/static/css" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assetfiles" />
-      <recent name="$PROJECT_DIR$/mymensorapp/static" />
-      <recent name="$PROJECT_DIR$/mymensor/static/css" />
-      <recent name="$PROJECT_DIR$/mymensor/static/images" />
-      <recent name="$PROJECT_DIR$/mymensor/static/fonts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -550,13 +572,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-03306" summary="07set2017 14h04min">
-      <created>1504789463114</created>
-      <option name="number" value="03306" />
-      <option name="presentableId" value="LOCAL-03306" />
-      <option name="project" value="LOCAL" />
-      <updated>1504789463114</updated>
     </task>
     <task id="LOCAL-03307" summary="07set2017 15h11min">
       <created>1504793499452</created>
@@ -894,7 +909,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505221611164</updated>
     </task>
-    <option name="localTasksCounter" value="3355" />
+    <task id="LOCAL-03355" summary="13set2017 11h50min">
+      <created>1505299808401</created>
+      <option name="number" value="03355" />
+      <option name="presentableId" value="LOCAL-03355" />
+      <option name="project" value="LOCAL" />
+      <updated>1505299808402</updated>
+    </task>
+    <option name="localTasksCounter" value="3356" />
     <servers />
   </component>
   <component name="TodoView">
@@ -916,7 +938,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.288" sideWeight="0.47816828" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32359082" sideWeight="0.4978701" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7098121" sideWeight="0.48935038" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7098121" sideWeight="0.48935038" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13045794" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -983,7 +1005,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="08set2017 14h41min" />
     <MESSAGE value="08set2017 14h51min" />
     <MESSAGE value="08set2017 15h13min" />
     <MESSAGE value="08set2017 15h15min" />
@@ -1008,7 +1029,8 @@
     <MESSAGE value="10set2017 12h58min" />
     <MESSAGE value="11set2017 20h30min" />
     <MESSAGE value="12set2017 14h06min" />
-    <option name="LAST_COMMIT_MESSAGE" value="12set2017 14h06min" />
+    <MESSAGE value="13set2017 11h50min" />
+    <option name="LAST_COMMIT_MESSAGE" value="13set2017 11h50min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1108,13 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="880">
           <caret line="232" column="0" lean-forward="true" selection-start-line="232" selection-start-column="0" selection-end-line="232" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1316,6 +1331,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="772">
           <caret line="69" column="103" lean-forward="false" selection-start-line="69" selection-start-column="103" selection-end-line="69" selection-end-column="103" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1370,10 +1386,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="4" column="6880" lean-forward="false" selection-start-line="4" selection-start-column="6880" selection-end-line="4" selection-end-column="6880" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensorapp/settings_production.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="300">
+          <caret line="20" column="44" lean-forward="false" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
