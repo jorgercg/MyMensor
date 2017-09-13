@@ -134,7 +134,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 pdfinfotitle = _('MyMensor Media Check')
                 pdfinfoauthor = obj_metadata['mymensoraccount']
                 pdfinfosubject = _('Media from VP#')+obj_metadata['vp']
-                pdfinfokeywords = obj_metadata['Content-Type']
+                pdfinfokeywords = object.content_type
                 pdfinfocreator = _('MyMensor')
                 pdfinfoproducer = _('MyMensor')
                 pdffilename = 'mymensormediacheck'+obj_metadata['phototakenmillis']+'.pdf'
