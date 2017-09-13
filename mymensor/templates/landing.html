@@ -457,16 +457,16 @@
                                     {
                                         width: '*',
                                         text: [
-                                            '{{ pdftitle }}',
+                                            '{{ pdftitle }}\n',
                                             {% if mediaTimeIsCertified == "1" %}
                                                 {text: '{{ pdfcaptimecert }}\n', fontSize: 9, color: 'green'},
                                             {% else %}
                                                 {text: '{{ pdfcaptimenotcert }}\n', fontSize: 9, color: 'red'},
                                             {% endif %}
                                             {% if mediaLocIsCertified == "1" %}
-                                                {text: 'CAPTURE LOCATION CERTIFIED\n', fontSize: 9, color: 'green'}
+                                                {text: '{{ pdfcaploccert }}\n', fontSize: 9, color: 'green'}
                                             {% else %}
-                                                {text: 'CAPTURE LOCATION NOT CERTIFIED\n', fontSize: 9, color: 'red'}
+                                                {text: '{{ pdfcaplocnotcert }}\n', fontSize: 9, color: 'red'}
                                             {% endif %}
                                         ],
                                         fontSize: 20,
@@ -505,7 +505,7 @@
                                         {% if mediaTimeIsCertified == "1" %}
                                             [{
                                                 border: [true, true, false, true],
-                                                text: 'Capture time was certified:',
+                                                text: '{{ pdftblcaptimecert }}',
                                                 fontSize: 9,
                                                 noWrap: true
                                             }, {
@@ -517,7 +517,7 @@
                                         {% else %}
                                             [{
                                                 border: [true, true, false, true],
-                                                text: 'Capture time was not certified:',
+                                                text: '{{ pdftblcaptimenotcert }}',
                                                 fontSize: 9,
                                                 color: 'red',
                                                 noWrap: true
@@ -534,25 +534,25 @@
                                         {% if mediaLocIsCertified == "1" %}
                                             [{
                                                 border: [true, true, false, true],
-                                                text: 'Capture location was certified:',
+                                                text: '{{ pdftblcaploccert }}',
                                                 fontSize: 9,
                                                 noWrap: true
                                             }, {
                                                 border: [false, true, true, true],
-                                                text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
+                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
                                                 fontSize: 9,
                                                 noWrap: true
                                             }, ''],
                                         {% else %}
                                             [{
                                                 border: [true, true, false, true],
-                                                text: 'Capture location was not certified:',
+                                                text: '{{ pdftblcaplocnotcert }}',
                                                 fontSize: 9,
                                                 color: 'red',
                                                 noWrap: true
                                             }, {
                                                 border: [false, true, true, true],
-                                                text: 'Latitude={{ loclatitude|floatformat:6 }}˚  Longitude={{ loclongitude|floatformat:6 }}˚  Accuracy*={{ locprecisioninm|floatformat:1 }}m',
+                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
                                                 fontSize: 9,
                                                 color: 'red',
                                                 decoration: 'lineThrough',
@@ -564,21 +564,21 @@
                                             [{
                                                 colSpan: 2,
                                                 border: [false, false, false, false],
-                                                text: 'Augmented Reality was used to capture this media.',
+                                                text: '{{ pdfaron }}',
                                                 fontSize: 7
                                             }, '', ''],
                                         {% else %}
                                             [{
                                                 colSpan: 2,
                                                 border: [false, false, false, false],
-                                                text: 'Augmented Reality was not used to capture this media.',
+                                                text: '{{ pdfaroff }}',
                                                 fontSize: 7
                                             }, '', ''],
                                         {% endif %}
                                         [{
                                             colSpan: 2,
                                             border: [false, false, false, false],
-                                            text: 'Please use the code to the right or the below address to validate this document online.',
+                                            text: '{{ pdflinktxt }}',
                                             fontSize: 7
                                         }, '', ''],
                                         [{
@@ -593,7 +593,7 @@
                                         [{
                                             colSpan: 2,
                                             border: [false, false, false, false],
-                                            text: '*Please refer to the online page for the accuracy definition.',
+                                            text: '{{ pdfaccuracydefinition }}',
                                             fontSize: 6
                                         }, '', '']
                                     ]
@@ -604,22 +604,22 @@
                             }
                         ],
                         info: {
-                            title: 'MyMensor Media Check',
+                            title: '{{ pdfinfotitle }}',
                             author:
-                                'MyMensor',
+                                '{{ pdfinfoauthor }}',
                             subject:
-                                'subject of document',
+                                '{{ pdfinfosubject }}',
                             keywords:
-                                'keywords for document',
+                                '{{ pdfinfokeywords }}',
                             creator:
-                                'MyMensor',
+                                '{{ pdfinfocreator }}',
                             producer:
-                                'MyMensor'
+                                '{{ pdfinfoproducer }}'
                         }
                     }
                 ;
 
-                pdfMake.createPdf(docDefinition).download("mymensormediacheck.pdf");
+                pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
             });
 
         });
