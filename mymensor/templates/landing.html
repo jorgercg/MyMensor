@@ -636,7 +636,7 @@
                 pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
             });
 
-            document.getElementById('landingmapid').removeAttribute('height');
+            document.getElementById('landingmapid').style.height= '';
 
             mymap.invalidateSize();
 
