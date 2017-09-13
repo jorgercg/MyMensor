@@ -435,6 +435,8 @@
 
             document.getElementById('landingmapid').setAttribute('height', '260px');
 
+            console.log("H="+document.getElementById('landingmapid').getAttribute('height'));
+
             convertFileToDataURLviaFileReader(document.getElementById('logomymensor').src, function (dataURL) {
                 encodedMyMensorLogo = dataURL;
             });
