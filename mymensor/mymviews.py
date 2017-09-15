@@ -63,6 +63,30 @@ def landingView(request):
             mediaCheckURL = u''.join(['https://app.mymensor.com/landing/?type=']) + str(messagetype)
             mediaCheckURL = mediaCheckURL + '&key=' + mediaObjectS3KeyEncoded + '&signature=' + requestsignature
             if obj_metadata['sha-256'] == requestsignature:
+                pdftitle = _('MyMensor Media Check')
+                pdfcaptimecert = _('CAPTURE TIME CERTIFIED')
+                pdfcaptimenotcert = _('CAPTURE TIME NOT CERTIFIED')
+                pdfcaploccert = _('CAPTURE LOCATION CERTIFIED')
+                pdfcaplocnotcert = _('CAPTURE LOCATION NOT CERTIFIED')
+                pdftblcaptimecert = _('Capture time was certified:')
+                pdftblcaptimenotcert = _('Capture time was not certified:')
+                pdftblcaploccert = _('Capture location was certified:')
+                pdftblcaplocnotcert = _('Capture location was not certified:')
+                pdflatitude = _('Latitude')
+                pdflongitude = _('Longitude')
+                pdfaccuracy = _('Accuracy')
+                pdfaron = _('Augmented Reality was used to capture this media.')
+                pdfaroff = _('Augmented Reality was not used to capture this media.')
+                pdflinktxt = _(
+                    'Please use the code to the right or the below address to validate this document online.')
+                pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
+                pdfinfotitle = _('MyMensor Media Check')
+                pdfinfoauthor = obj_metadata['mymensoraccount']
+                pdfinfosubject = _('Media from VP#') + obj_metadata['vp']
+                pdfinfokeywords = object.content_type
+                pdfinfocreator = _('MyMensor')
+                pdfinfoproducer = _('MyMensor')
+                pdffilename = 'mymensormediacheck ' + obj_metadata['datetime'] + '.pdf'
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'mediaContentType': object.content_type,
                                                         'mediaArIsOn': obj_metadata['isarswitchon'],
@@ -74,6 +98,29 @@ def landingView(request):
                                                         'locprecisioninm': obj_metadata['locprecisioninm'],
                                                         'mediasignature': obj_metadata['sha-256'],
                                                         'mediaCheckURL': mediaCheckURL,
+                                                        'pdftitle': pdftitle,
+                                                        'pdfcaptimecert': pdfcaptimecert,
+                                                        'pdfcaptimenotcert': pdfcaptimenotcert,
+                                                        'pdfcaploccert': pdfcaploccert,
+                                                        'pdfcaplocnotcert': pdfcaplocnotcert,
+                                                        'pdftblcaptimecert': pdftblcaptimecert,
+                                                        'pdftblcaptimenotcert': pdftblcaptimenotcert,
+                                                        'pdftblcaploccert': pdftblcaploccert,
+                                                        'pdftblcaplocnotcert': pdftblcaplocnotcert,
+                                                        'pdflatitude': pdflatitude,
+                                                        'pdflongitude': pdflongitude,
+                                                        'pdfaccuracy': pdfaccuracy,
+                                                        'pdfaron': pdfaron,
+                                                        'pdfaroff': pdfaroff,
+                                                        'pdflinktxt': pdflinktxt,
+                                                        'pdfaccuracydefinition': pdfaccuracydefinition,
+                                                        'pdfinfotitle': pdfinfotitle,
+                                                        'pdfinfoauthor': pdfinfoauthor,
+                                                        'pdfinfosubject': pdfinfosubject,
+                                                        'pdfinfokeywords': pdfinfokeywords,
+                                                        'pdfinfocreator': pdfinfocreator,
+                                                        'pdfinfoproducer': pdfinfoproducer,
+                                                        'pdffilename': pdffilename
                                                         })
             else:
                 return HttpResponse(status=404)
