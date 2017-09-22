@@ -4,6 +4,18 @@
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106891333-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments)
+            };
+            gtag('js', new Date());
+
+            gtag('config', 'UA-106891333-2');
+        </script>
         <!-- Basic Page Needs.
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
         <meta charset="utf-8">
@@ -13,7 +25,9 @@
                 MyMensor Media Check
             {% endblock %}
         </title>
-        <meta name="MyMensor WebApp" content="">
+        <meta name="description" content="MyMensor WebApp">
+        <meta name="keywords" content="MyMensor">
+        <meta name="author" content="Celtapps">
         <meta property="og:title" content="{% trans "MyMensor Media Check" %}">
         <meta property="og:description" content="{% trans "Click to check at MyMensor" %}">
         <meta property="og:image" content="{{ mediaCheckURLOG }}">
@@ -435,15 +449,15 @@
 
             var mapsize = mymap.getSize();
 
-            console.log("width x height ="+mapsize.x+" x "+mapsize.y);
+            console.log("width x height =" + mapsize.x + " x " + mapsize.y);
 
             var mapwidth = mapsize.x;
 
-            var mapheigth = (mapwidth*720/1280);
+            var mapheigth = (mapwidth * 720 / 1280);
 
-            console.log("width x height ="+mapwidth+" x "+mapheigth);
+            console.log("width x height =" + mapwidth + " x " + mapheigth);
 
-            document.getElementById('landingmapid').style.height= mapheigth+"px";
+            document.getElementById('landingmapid').style.height = mapheigth + "px";
 
             mymap.invalidateSize();
 
@@ -502,11 +516,16 @@
                             {
                                 background: 'white',
                                 text: [
-                                    {text:'Leaflet', fontSize: 7, color: '#00afef', link: 'http://leafletjs.com' },
-                                    {text:' | © 2017 • ', fontSize: 7 },
-                                    {text:'Omniscale', fontSize: 7, color: '#00afef', link: 'https://maps.omniscale.com/' },
-                                    {text:' • Map data: ', fontSize: 7 },
-                                    {text:'OpenStreetMap ', fontSize: 7, color: '#00afef', link: 'https://www.openstreetmap.org/copyright' }
+                                    {text: 'Leaflet', fontSize: 7, color: '#00afef', link: 'http://leafletjs.com'},
+                                    {text: ' | © 2017 • ', fontSize: 7},
+                                    {text: 'Omniscale', fontSize: 7, color: '#00afef', link: 'https://maps.omniscale.com/'},
+                                    {text: ' • Map data: ', fontSize: 7},
+                                    {
+                                        text: 'OpenStreetMap ',
+                                        fontSize: 7,
+                                        color: '#00afef',
+                                        link: 'https://www.openstreetmap.org/copyright'
+                                    }
                                 ],
                                 absolutePosition: {x: 378, y: 670}
                             },
@@ -635,7 +654,7 @@
 
                 pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
 
-                document.getElementById('landingmapid').style.height= '';
+                document.getElementById('landingmapid').style.height = '';
 
                 mymap.invalidateSize();
 
