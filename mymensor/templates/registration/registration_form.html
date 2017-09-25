@@ -28,7 +28,7 @@
                             {% if field.errors %}
                                 <small class="form-text text-danger">{{ field.errors|join:"<br \>" }}</small>
                             {% endif %}
-                            {{ field|add_class:"form-control nocapsinput" }}
+                            {{ field|add_class:"form-control" }}
                         </div>
                     {% endfor %}
                     <p class="text-justify">{% trans "By creating and Account you agree with our " %}<a
