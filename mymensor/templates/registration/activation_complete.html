@@ -18,3 +18,12 @@
     </div>
 
 {% endblock %}
+{% block javascript %}
+    <script type="text/javascript">
+        {% if user.is_authenticated %}
+            $(document).ready(function () {
+                window.location = '{% url 'portfolio' %}';
+            });
+        {% endif %}
+    </script>
+{% endblock %}
