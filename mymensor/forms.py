@@ -1,13 +1,5 @@
-from django.forms import ModelForm, widgets, TextInput
+from django.forms import ModelForm
 from mymensor.models import Asset, Vp, Tag, BraintreeCustomer
-from registration.forms import RegistrationForm
-
-class MyMensorRegistrationForm(RegistrationForm):
-
-    class Meta:
-        widgets = {
-            'username': TextInput(attrs={'autocapitalize':'off'}),
-        }
 
 class AssetForm(ModelForm):
 
