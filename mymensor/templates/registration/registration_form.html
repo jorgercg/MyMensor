@@ -53,6 +53,9 @@
 {% endblock %}
 {% block javascript %}
     <script type="text/javascript">
+        $(document).ready(function () {
+           document.getElementById("id_username").setAttribute('autocapitalize', 'off');
+        });
         {% if user.is_authenticated %}
             $(document).ready(function () {
                 window.location = '{% url 'portfolio' %}';
