@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" afterPath="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +43,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="279">
@@ -51,6 +51,26 @@
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="check_plan.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/templatetags/check_plan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="subscrip_state.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -162,7 +182,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/proctagedit.html" />
         <option value="$PROJECT_DIR$/mymensor/mymfunctions.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/index.html" />
-        <option value="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/location.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/vpdetail.html" />
         <option value="$PROJECT_DIR$/mymensor/static/css/mymensorstylelandingonly.css" />
@@ -175,6 +194,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/registration/activation_complete.html" />
         <option value="$PROJECT_DIR$/mymensor/templates/registration/registration_form.html" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
+        <option value="$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py" />
       </list>
     </option>
   </component>
@@ -246,6 +266,12 @@
               <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
               <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="templatetags" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
@@ -529,13 +555,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-03354" summary="12set2017 14h06min">
-      <created>1505221611163</created>
-      <option name="number" value="03354" />
-      <option name="presentableId" value="LOCAL-03354" />
-      <option name="project" value="LOCAL" />
-      <updated>1505221611164</updated>
     </task>
     <task id="LOCAL-03355" summary="13set2017 11h50min">
       <created>1505299808401</created>
@@ -873,7 +892,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506354601295</updated>
     </task>
-    <option name="localTasksCounter" value="3403" />
+    <task id="LOCAL-03403" summary="26set2017 16h47min">
+      <created>1506440855282</created>
+      <option name="number" value="03403" />
+      <option name="presentableId" value="LOCAL-03403" />
+      <option name="project" value="LOCAL" />
+      <updated>1506440855282</updated>
+    </task>
+    <option name="localTasksCounter" value="3404" />
     <servers />
   </component>
   <component name="TodoView">
@@ -962,7 +988,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="13set2017 16h41min" />
     <MESSAGE value="13set2017 16h48min" />
     <MESSAGE value="13set2017 16h55min" />
     <MESSAGE value="13set2017 16h57min" />
@@ -987,7 +1012,8 @@
     <MESSAGE value="25set2017 16h42min" />
     <MESSAGE value="25set2017 16h46min" />
     <MESSAGE value="25set2017 16h49min" />
-    <option name="LAST_COMMIT_MESSAGE" value="25set2017 16h49min" />
+    <MESSAGE value="26set2017 16h47min" />
+    <option name="LAST_COMMIT_MESSAGE" value="26set2017 16h47min" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -999,13 +1025,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/is_media_plan_disabled.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/createsubscription.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-8">
@@ -1200,13 +1219,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet.js" />
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/leaflet-src-whitenoisebug.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1279,6 +1291,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
           <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1364,6 +1377,22 @@
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/check_plan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templatetags/subscrip_state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
