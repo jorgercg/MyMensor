@@ -747,12 +747,14 @@ def subscription_state(assetinstance):
         public_key=BRAINTREE_PUBLIC_KEY,
         private_key=BRAINTREE_PRIVATE_KEY,
     )
+    #try:
+    #    btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
+    #    btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
+    #except:
+    #    return "NoMyMSubscriptionFound"
     try:
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
         btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-    except:
-        return "NoMyMSubscriptionFound"
-    try:
         currentbtsubscription = braintree.Subscription.find(btsubscription.braintreesubscriptionSubscriptionId)
     except:
         dateofendoftrialbeforesubscription = assetinstance.assetDateOfEndEfTrialBeforeSubscription
