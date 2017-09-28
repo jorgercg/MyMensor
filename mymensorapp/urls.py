@@ -48,7 +48,7 @@ urlpatterns = [
     url(r'^robots.txt$', TemplateView.as_view(template_name="robots.txt", content_type="text/plain"), name="robots_file"),
     url(r'^google2b3414d31be14bcd.html$', TemplateView.as_view(template_name="google2b3414d31be14bcd.html"), name="google2b3414d31be14bcd"),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^mobileregistration/$', mymviews.CreateUserView.as_view(), name='mobileregistration')
+    url(r'^mobileregistration/$', mymviews.create_new_user, name='mobileregistration')
 ]
 
 urlpatterns += i18n_patterns(

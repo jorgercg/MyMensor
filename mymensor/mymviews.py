@@ -773,11 +773,15 @@ def subscription_state(assetinstance):
     return btsubscription.braintreesubscriptionSubscriptionStatus
 
 
-class CreateUserView(CreateAPIView):
-    #CreateAPIView restricts to only POST Method
-    model = User
-    permission_classes = (AllowAny,)
-    serializer_class = CreateUserSerializer
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def create_new_user(request):
+    serialized = CreateUserSerializer(data=request.data)
+    if serialized.is_valid():
+        serialized.save()
+        return HttpResponse(serialized.data, status=201)
+    else:
+        return HttpResponse(serialized._errors, status=400)
 
 
 @api_view(['GET'])
