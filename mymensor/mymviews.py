@@ -12,7 +12,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
-from rest_framework.generics import CreateAPIView
+from rest_framework.response import Response
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
@@ -779,9 +779,9 @@ def create_new_user(request):
     serialized = CreateUserSerializer(data=request.data)
     if serialized.is_valid():
         serialized.save()
-        return HttpResponse(serialized.data, status=201)
+        return Response(serialized.data, status=201)
     else:
-        return HttpResponse(serialized._errors, status=400)
+        return Response(serialized._errors, status=400)
 
 
 @api_view(['GET'])
