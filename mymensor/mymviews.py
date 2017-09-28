@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
+from django.contrib.auth import get_user_model
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -9,13 +10,14 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
+from rest_framework.generics import CreateAPIView
 from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
     MobileOnlyUser, MobileClientInstall, BraintreePrice, BraintreeMerchant, BraintreePlan
-from mymensor.serializer import AmazonSNSNotificationSerializer
+from mymensor.serializer import AmazonSNSNotificationSerializer, CreateUserSerializer
 from mymensor.dcidatasync import loaddcicfg, writedcicfg
 from mymensorapp.settings import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_BUCKET_NAME, TWITTER_KEY, \
     TWITTER_SECRET, FB_APP_SECRET, FB_APP_ID, MYMMENSORMOBILE_MAX_INSTALLS, BRAINTREE_MERCHANT_ID, \
@@ -769,6 +771,13 @@ def subscription_state(assetinstance):
     btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.status
     btsubscription.save()
     return btsubscription.braintreesubscriptionSubscriptionStatus
+
+
+class CreateUserView(CreateAPIView):
+    #CreateAPIView restricts to only POST Method
+    model = User
+    permission_classes = (AllowAny,)
+    serializer_class = CreateUserSerializer
 
 
 @api_view(['GET'])
