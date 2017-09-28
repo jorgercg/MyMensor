@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from .models import AmazonSNSNotification, AmazonS3Message
+from django.core import exceptions
 from django.contrib.auth.models import User
+import django.contrib.auth.password_validation as validators
 
 
 class AmazonSNSNotificationSerializer(serializers.ModelSerializer):
@@ -55,3 +57,17 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+    def validate(self, data):
+        user = User(**data)
+        password = data.get('password')
+        errors = dict()
+        try:
+            validators.validate_password(password=password, user=user)
+        except exceptions.ValidationError as e:
+            errors['password'] = list(e.messages)
+
+        if errors:
+            raise serializers.ValidationError(errors)
+
+        return super(CreateUserSerializer, self).validate(data)
