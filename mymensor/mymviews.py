@@ -772,7 +772,7 @@ def subscription_state(assetinstance):
     btsubscription.save()
     return btsubscription.braintreesubscriptionSubscriptionStatus
 
-
+@api_view(['POST'])
 class CreateUserView(CreateAPIView):
     #CreateAPIView restricts to only POST Method
     model = User
