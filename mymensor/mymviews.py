@@ -772,7 +772,7 @@ def subscription_state(assetinstance):
     btsubscription.save()
     return btsubscription.braintreesubscriptionSubscriptionStatus
 
-
+@csrf_exempt
 @api_view(['POST'])
 @permission_classes((AllowAny,))
 def create_new_user(request):
