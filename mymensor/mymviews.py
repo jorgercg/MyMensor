@@ -329,20 +329,12 @@ def amazon_sns_processor(request):
             media_received.mediaObjectS3Key = amzs3msg.s3_object_key
             media_received.mediaContentType = object.content_type
             media_received.mediaSha256 = obj_metadata['sha-256']
-            try:
-                media_received.mediaLatitude = obj_metadata['loclatitude']
-                media_received.mediaLongitude = obj_metadata['loclongitude']
-                media_received.mediaAltitude = obj_metadata['localtitude']
-                media_received.mediaLocPrecisionInMeters = obj_metadata['locprecisioninm']
-                media_received.mediaLocMethod = obj_metadata['locmethod']
-                media_received.mediaLocMillis = obj_metadata['locmillis']
-            except:
-                media_received.mediaLatitude = 0
-                media_received.mediaLongitude = 0
-                media_received.mediaAltitude = 0
-                media_received.mediaLocPrecisionInMeters = 0
-                media_received.mediaLocMethod = 'LOCOFF'
-                media_received.mediaLocMillis = 0
+            media_received.mediaLatitude = obj_metadata['loclatitude']
+            media_received.mediaLongitude = obj_metadata['loclongitude']
+            media_received.mediaAltitude = obj_metadata['localtitude']
+            media_received.mediaLocPrecisionInMeters = obj_metadata['locprecisioninm']
+            media_received.mediaLocMethod = obj_metadata['locmethod']
+            media_received.mediaLocMillis = obj_metadata['locmillis']
             media_received.mediaLocIsCertified = obj_metadata['loccertified']
             media_received.mediaTimeIsCertified = obj_metadata['timecertified']
             media_received.mediaArIsOn = obj_metadata['isarswitchon']
