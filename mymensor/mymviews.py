@@ -500,9 +500,9 @@ def portfolio(request):
         qtypervp = int(request.GET.get('qtypervp', request.session.get('qtypervp', maxcolumns)))
         vpsselected = request.GET.getlist('vpsselected', default=None)
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
-        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
-        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 0)))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 0)))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 0)))
+        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -616,9 +616,9 @@ def location(request):
         orgmymaccselected = request.GET.getlist('orgmymaccselected', default=None)
         showlocationprecision = int(
             request.GET.get('showlocationprecision', request.session.get('showlocationprecision', 0)))
-        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 1)))
-        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 1)))
-        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 0)))
+        showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 0)))
+        showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 0)))
+        showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 1)))
         showuserpath = int(request.GET.get('showuserpath', request.session.get('showuserpath', 0)))
         centerlat = float(request.GET.get('centerlat', 0))
         centerlng = float(request.GET.get('centerlng', 0))
