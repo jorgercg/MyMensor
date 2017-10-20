@@ -81,8 +81,8 @@
                         </select>
                     </div>
                     <div id="orgmymaccselector" class="mym-dash-item">
-                        <select class="vpselectedclass" multiple="multiple" id="orgmymaccselected"
-                                name="orgmymaccselected" style="max-width: 23rem;">
+                        <select class="orgmymaccselectedclass" multiple="multiple" id="orgmymaccselected"
+                                name="orgmymaccselected">
                             {% for orgmymacc in orgmymacclist %}
                                 <option id="optionacc#{{ orgmymacc }}" value='{{ orgmymacc }}'
                                         {% if orgmymacc in orgmymaccselected %}selected{% endif %}>{{ orgmymacc }}</option>
