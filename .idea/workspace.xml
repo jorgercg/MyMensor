@@ -4,7 +4,6 @@
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" afterPath="$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/location.html" afterPath="$PROJECT_DIR$/mymensor/templates/location.html" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,8 +90,18 @@
       <file leaf-file-name="mymensorstyle.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="395">
-              <caret line="782" column="0" lean-forward="true" selection-start-line="782" selection-start-column="0" selection-end-line="782" selection-end-column="0" />
+            <state relative-caret-position="687">
+              <caret line="824" column="27" lean-forward="false" selection-start-line="824" selection-start-column="27" selection-end-line="824" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chosen.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-548">
+              <caret line="240" column="39" lean-forward="false" selection-start-line="240" selection-start-column="25" selection-end-line="240" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -111,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mediaModal</find>
       <find>thumb</find>
       <find>precision</find>
       <find>showonlyloccert</find>
@@ -140,6 +148,7 @@
       <find>button</find>
       <find>modal</find>
       <find>modal-xl</find>
+      <find>chosen-choices</find>
       <find>orgmymaccselected</find>
     </findStrings>
     <replaceStrings>
@@ -602,13 +611,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-03369" summary="13set2017 15h34min">
-      <created>1505313246344</created>
-      <option name="number" value="03369" />
-      <option name="presentableId" value="LOCAL-03369" />
-      <option name="project" value="LOCAL" />
-      <updated>1505313246344</updated>
-    </task>
     <task id="LOCAL-03370" summary="13set2017 15h52min">
       <created>1505314371744</created>
       <option name="number" value="03370" />
@@ -945,7 +947,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508510449006</updated>
     </task>
-    <option name="localTasksCounter" value="3418" />
+    <task id="LOCAL-03418" summary="20out2017 15h47">
+      <created>1508510835308</created>
+      <option name="number" value="03418" />
+      <option name="presentableId" value="LOCAL-03418" />
+      <option name="project" value="LOCAL" />
+      <updated>1508510835308</updated>
+    </task>
+    <option name="localTasksCounter" value="3419" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1034,7 +1043,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="25set2017 11h46min" />
     <MESSAGE value="25set2017 12h03min" />
     <MESSAGE value="25set2017 12h38min" />
     <MESSAGE value="25set2017 12h48min" />
@@ -1059,7 +1067,8 @@
     <MESSAGE value="01out2017 19h29min" />
     <MESSAGE value="16out2017 15h51" />
     <MESSAGE value="20out2017 15h40" />
-    <option name="LAST_COMMIT_MESSAGE" value="20out2017 15h40" />
+    <MESSAGE value="20out2017 15h47" />
+    <option name="LAST_COMMIT_MESSAGE" value="20out2017 15h47" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1071,13 +1080,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="94" lean-forward="false" selection-start-line="21" selection-start-column="94" selection-end-line="21" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/pdfmake.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1415,6 +1417,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-548">
+          <caret line="240" column="39" lean-forward="false" selection-start-line="240" selection-start-column="25" selection-end-line="240" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/location.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1425,8 +1435,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/css/mymensorstyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="782" column="0" lean-forward="true" selection-start-line="782" selection-start-column="0" selection-end-line="782" selection-end-column="0" />
+        <state relative-caret-position="687">
+          <caret line="824" column="27" lean-forward="false" selection-start-line="824" selection-start-column="27" selection-end-line="824" selection-end-column="27" />
           <folding />
         </state>
       </provider>
