@@ -296,23 +296,24 @@
                                 title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error',
                                 showConfirmButton: true
+                            }).then(function () {
+                                console.log(JSON.stringify(geoipResponse));
+                                window.location = "{% url 'subscription' %}";
                             });
-                            console.log(JSON.stringify(geoipResponse));
-                            window.location = "{% url 'subscription' %}";
                         }
-                    };
 
-                    /* We don't really care what the error is, we'll send them
-                     * to the default site. */
-                    var onError = function (error) {
-                        console.log("An error ocurred, using default: " + defaultSite);
-                    };
+                        /* We don't really care what the error is, we'll send them
+                         * to the default site. */
+                        var onError = function (error) {
+                            console.log("An error ocurred, using default: " + defaultSite);
+                        };
 
-                    geoip2.insights(onSuccess, onError);
+                        geoip2.insights(onSuccess, onError);
 
-                    //href="{% url 'createsubscription' %}"
+                        //href="{% url 'createsubscription' %}"
 
-                });
+                    }
+                );
 
             </script>
         {% endblock %}
