@@ -311,26 +311,29 @@
                         else {
                             swal({
                                 title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
-                                type: 'error',
-                                showConfirmButton: true
+                                type: 'error'
                             }).then(function () {
+
+                            }, function (dismiss) {
+                                // dismiss can be 'cancel', 'overlay',
+                                // 'close', and 'timer'
                                 console.log(JSON.stringify(geoipResponse));
                                 window.location = "{% url 'subscription' %}";
-                            });
+                            }).catch(swal.noop);
+
+                            /* We don't really care what the error is, we'll send them
+                             * to the default site. */
+                            var onError = function (error) {
+                                console.log("An error ocurred, using default: " + defaultSite);
+                            };
+
+                            geoip2.insights(onSuccess, onError);
+
+                            //href="{% url 'createsubscription' %}"
+
                         }
-
-                        /* We don't really care what the error is, we'll send them
-                         * to the default site. */
-                        var onError = function (error) {
-                            console.log("An error ocurred, using default: " + defaultSite);
-                        };
-
-                        geoip2.insights(onSuccess, onError);
-
-                        //href="{% url 'createsubscription' %}"
-
                     }
-                });
+                );
 
             </script>
         {% endblock %}
