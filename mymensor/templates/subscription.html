@@ -202,6 +202,8 @@
         {% endblock %}
         {% block javascript %}
             <script type="text/javascript">
+                var subscriberFirstName = null;
+                var subscriberLastName = null;
                 $('#cancel-subscription').click(function () {
                     swal({
                         title: "{% trans "Please confirm that you want to cancel your subscription." %}",
@@ -299,7 +301,6 @@
                             console.log("Received a connection from: " + code);
                             swal({
                                 title: '{% trans "Subscriber Information" %}',
-                                text: '{% trans "Please complete the fields below." %}',
                                 html:
                                 '<input id="swal-input1" class="swal2-input" placeholder="{% trans "First Name" %}">' +
                                 '<input id="swal-input2" class="swal2-input" placeholder="{% trans "Last Name" %}">',
@@ -311,9 +312,22 @@
                                 cancelButtonClass: 'btn btn-danger',
                                 preConfirm: function () {
                                     return new Promise(function (resolve) {
+                                        subscriberFirstName = $('#swal-input1').val();
+                                        subscriberLastName = $('#swal-input2').val();
+                                        if ((subscriberFirstName == null) || (subscriberFirstName == null)) {
+                                            swal({
+                                                title: '{% trans "All fields are required!" %}',
+                                                text: '{% trans "Please complete correctly." %}',
+                                                type: 'error'
+                                            }).then(function () {
+                                                console.log(JSON.stringify(geoipResponse));
+                                                window.location = "{% url 'subscription' %}";
+                                            }).catch(swal.noop);
+                                            return;
+                                        }
                                         resolve([
-                                            $('#swal-input1').val(),
-                                            $('#swal-input2').val()
+                                            subscriberFirstName,
+                                            subscriberLastName
                                         ])
                                     })
                                 },
