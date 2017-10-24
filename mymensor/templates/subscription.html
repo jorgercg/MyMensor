@@ -341,7 +341,7 @@
                                                         text: '{% trans "Error while trying to complete your registration info prior to subscription. Please try again. If the problem continues contact support." %}',
                                                         type: 'error'
                                                     }).then(function () {
-                                                        //window.location = "{% url 'subscription' %}";
+                                                        window.location = "{% url 'subscription' %}";
                                                     }).catch(swal.noop);
                                                 }
                                             });
@@ -366,7 +366,7 @@
                                 swal(JSON.stringify(result));
                                 console.log(JSON.stringify(geoipResponse))
                             }, function(dismiss){
-                                console("Reject:["+dismiss+"]");
+                                //console("Reject:["+dismiss+"]");
                             }).catch(swal.noop)
                         }
                         else {
