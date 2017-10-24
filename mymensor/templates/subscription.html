@@ -336,7 +336,13 @@
                                                 // handle a non-successful response
                                                 error: function (xhr, errmsg, err) {
                                                     console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                                                    reject();
+                                                    swal({
+                                                        title: '{% trans "Oops..." %}',
+                                                        text: '{% trans "Error while trying to complete your registration info prior to subscription. Please try again. If the problem continues contact support." %}',
+                                                        type: 'error'
+                                                    }).then(function () {
+                                                        window.location = "{% url 'subscription' %}";
+                                                    }).catch(swal.noop);
                                                 }
                                             });
                                         }
@@ -359,8 +365,6 @@
                             }).then(function (result) {
                                 swal(JSON.stringify(result));
                                 console.log(JSON.stringify(geoipResponse))
-                            }, function (reject) {
-                                console.log("reject FIRED");
                             }).catch(swal.noop)
                         }
                         else {
