@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/css/sweetalert2.min.css" afterPath="$PROJECT_DIR$/mymensor/static/css/sweetalert2.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/static/js/sweetalert2.min.js" afterPath="$PROJECT_DIR$/mymensor/static/js/sweetalert2.min.js" />
     </list>
     <ignored path="mymensorapp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="313" column="64" lean-forward="false" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
+            <state relative-caret-position="743">
+              <caret line="348" column="40" lean-forward="true" selection-start-line="348" selection-start-column="40" selection-end-line="348" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -65,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subscription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-234">
-              <caret line="275" column="22" lean-forward="true" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+            <state relative-caret-position="-91">
+              <caret line="275" column="22" lean-forward="false" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -307,6 +308,20 @@
               <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
               <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
               <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MyMensor" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MyMensor" type="462c0819:PsiDirectoryNode" />
+              <item name="mymensor" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -359,19 +374,19 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/mymensor/static/js" />
-      <recent name="$PROJECT_DIR$/assetfiles" />
-      <recent name="$PROJECT_DIR$/mymensorapp/static" />
-      <recent name="$PROJECT_DIR$/mymensor/static/css" />
-      <recent name="$PROJECT_DIR$/mymensor/static/images" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/mymensor/static/js" />
       <recent name="$PROJECT_DIR$/mymensor/static/css/images" />
       <recent name="$PROJECT_DIR$/mymensor/static/images" />
       <recent name="$PROJECT_DIR$/mymensor/templates" />
       <recent name="$PROJECT_DIR$/mymensor/templatetags" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/mymensor/static/js" />
+      <recent name="$PROJECT_DIR$/mymensor/static/css" />
+      <recent name="$PROJECT_DIR$/assetfiles" />
+      <recent name="$PROJECT_DIR$/mymensorapp/static" />
+      <recent name="$PROJECT_DIR$/mymensor/static/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -595,13 +610,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
-    </task>
-    <task id="LOCAL-03391" summary="22set2017 11h10min">
-      <created>1506075041349</created>
-      <option name="number" value="03391" />
-      <option name="presentableId" value="LOCAL-03391" />
-      <option name="project" value="LOCAL" />
-      <updated>1506075041349</updated>
     </task>
     <task id="LOCAL-03392" summary="22set2017 14h08min">
       <created>1506085727715</created>
@@ -939,7 +947,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508843766667</updated>
     </task>
-    <option name="localTasksCounter" value="3440" />
+    <task id="LOCAL-03440" summary="24out2017 12h18">
+      <created>1508843937520</created>
+      <option name="number" value="03440" />
+      <option name="presentableId" value="LOCAL-03440" />
+      <option name="project" value="LOCAL" />
+      <updated>1508843937520</updated>
+    </task>
+    <option name="localTasksCounter" value="3441" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1028,7 +1043,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="01out2017 19h29min" />
     <MESSAGE value="16out2017 15h51" />
     <MESSAGE value="20out2017 15h40" />
     <MESSAGE value="20out2017 15h47" />
@@ -1053,7 +1067,8 @@
     <MESSAGE value="24out2017 12h10" />
     <MESSAGE value="24out2017 12h13" />
     <MESSAGE value="24out2017 12h16" />
-    <option name="LAST_COMMIT_MESSAGE" value="24out2017 12h16" />
+    <MESSAGE value="24out2017 12h18" />
+    <option name="LAST_COMMIT_MESSAGE" value="24out2017 12h18" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1065,13 +1080,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mymensor/static/js/pdfmake.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/js/vfs_fonts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1402,14 +1410,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="313" column="64" lean-forward="false" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="503">
@@ -1420,8 +1420,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="275" column="22" lean-forward="true" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+        <state relative-caret-position="-91">
+          <caret line="275" column="22" lean-forward="false" selection-start-line="275" selection-start-column="22" selection-end-line="275" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/static/js/sweetalert2.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-874">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="743">
+          <caret line="348" column="40" lean-forward="true" selection-start-line="348" selection-start-column="40" selection-end-line="348" selection-end-column="40" />
           <folding />
         </state>
       </provider>
