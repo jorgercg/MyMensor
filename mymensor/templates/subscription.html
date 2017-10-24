@@ -271,15 +271,15 @@
                     console.log("complete-info-before-subscription was called!"); // sanity check
                     var sites = {
                         "br": true,
-                        "pt": false,
+                        "pt": true,
                         "us": true
                     };
                     var defaultSite = "us";
 
                     var onSuccess = function (geoipResponse) {
                         /* There's no guarantee that a successful response object
-                         * has any particular property, so we need to code defensively. !geoipResponse.country.iso_code */
-                        {
+                         * has any particular property, so we need to code defensively.  */
+                        if (!geoipResponse.country.iso_code) {
                             console.log("Failed to retrieve country iso code");
                             swal({
                                 title: '{% trans "No country!" %}',
