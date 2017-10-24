@@ -322,7 +322,7 @@
                                                 data: {
                                                     first_name: subscriberFirstName,
                                                     last_name: subscriberLastName,
-                                                    assetGeoIpResponse: geoipResponse,
+                                                    assetGeoIpResponse: JSON.stringify(geoipResponse),
                                                     assetCountryGeoIp: geoipResponse.country.iso_code,
                                                     assetIpGeoIp: geoipResponse.traits.ip_address
                                                 }, // data sent with the post request
@@ -356,7 +356,7 @@
                                                 text: '{% trans "Please complete correctly." %}',
                                                 type: 'error'
                                             }).then(function () {
-                                                console.log(JSON.stringify(geoipResponse));
+                                                //console.log(JSON.stringify(geoipResponse));
                                                 window.location = "{% url 'subscription' %}";
                                             }).catch(swal.noop);
                                             return;
