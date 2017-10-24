@@ -273,8 +273,10 @@
                     //console.log("complete-info-before-subscription was called!"); // sanity check
                     var sites = {
                         "br": true,
-                        "pt": false,
-                        "us": false
+                        "pt": true,
+                        "us": false,
+                        "de": false,
+                        "ca": false
                     };
                     var defaultSite = "us";
 
@@ -354,7 +356,7 @@
                                             subscriberLastName = null;
                                             swal({
                                                 title: '{% trans "All fields are required!" %}',
-                                                text: '{% trans "Please complete correctly." %}',
+                                                text: '{% trans "Please complete fields correctly." %}',
                                                 type: 'error'
                                             }).then(function () {
                                                 //console.log(JSON.stringify(geoipResponse));
@@ -366,18 +368,18 @@
                                 },
                                 allowOutsideClick: false
                             }).then(function (result) {
-                                swal(JSON.stringify(result));
-                                //window.location = "{% url 'createsubscription' %}";
+                                //swal(JSON.stringify(result));
+                                window.location = "{% url 'createsubscription' %}";
                                 //console.log(JSON.stringify(geoipResponse))
                             }, function (dismiss) {
                                 //console("Reject:["+dismiss+"]");
                             }).catch(swal.noop)
                         }
                         else {
-                            console.log("Received a connection from NOT ACCEPTED: " + code);
+                            //console.log("Received a connection from NOT ACCEPTED: " + code);
                             swal({
                                 title: '{% trans "Sorry!" %}',
-                                text: '{% trans "We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
+                                text: '{% trans "We currently do not accept subscriptions from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error'
                             }).then(function () {
                                 //console.log(JSON.stringify(geoipResponse));
