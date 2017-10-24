@@ -37,7 +37,8 @@
                                 <p>
                                     {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                                 <p></p>
-                                <a id="complete-info-before-subscription" class="btn btn-primary" href="{% url 'createsubscription' %}"
+                                <a id="complete-info-before-subscription" class="btn btn-primary"
+                                   href="{% url 'createsubscription' %}"
                                    role="button">
                                     {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                             {% endif %}
@@ -64,9 +65,12 @@
                         {% endif %}
                         <div class="row">
                             <div class="col">
-                                <p>{% trans "Your paid subscription started on " %}{{ currentbtsubstatus.first_billing_date }}.</p>
-                                <p>{% trans "You are being charged " %}{{ btmercht.braintreemerchCurrency }} {{ btprice.braintrepricePrice }} {% trans " per month using the payment method below." %}</p>
-                                <p>{% trans "Your next billing will be: " %}{{ btmercht.braintreemerchCurrency }} {{ currentbtsubstatus.next_billing_period_amount }} {% trans " on " %} {{ currentbtsubstatus.next_billing_date }}.</p>
+                                <p>
+                                    {% trans "Your paid subscription started on " %}{{ currentbtsubstatus.first_billing_date }}.</p>
+                                <p>
+                                    {% trans "You are being charged " %}{{ btmercht.braintreemerchCurrency }} {{ btprice.braintrepricePrice }} {% trans " per month using the payment method below." %}</p>
+                                <p>
+                                    {% trans "Your next billing will be: " %}{{ btmercht.braintreemerchCurrency }} {{ currentbtsubstatus.next_billing_period_amount }} {% trans " on " %} {{ currentbtsubstatus.next_billing_date }}.</p>
                             </div>
                         </div>
                         <div class="row" style="padding-bottom: 20px">
@@ -170,7 +174,8 @@
                             <p>
                                 {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                             <p></p>
-                            <a id="complete-info-before-subscription" class="btn btn-primary" href="{% url 'createsubscription' %}"
+                            <a id="complete-info-before-subscription" class="btn btn-primary"
+                               href="{% url 'createsubscription' %}"
                                role="button">
                                 {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                         </div>
@@ -263,6 +268,43 @@
                             });
                         }
                     }).catch(swal.noop);
+                });
+                $('#complete-info-before-subscription').click(function () {
+                    console.log("complete-info-before-subscription was called!"); // sanity check
+                    var sites = {
+                        "br": true,
+                        "pt": true,
+                        "us": true
+                    };
+                    var defaultSite = "us";
+
+                    var onSuccess = function (geoipResponse) {
+                        /* There's no guarantee that a successful response object
+                         * has any particular property, so we need to code defensively. */
+                        if (!geoipResponse.country.iso_code) {
+                            console.log("Failed to retriev country iso code");
+                            return;
+                        }
+
+                        /* ISO country codes are in upper case. */
+                        var code = geoipResponse.country.iso_code.toLowerCase();
+
+                        if (sites[code]) {
+                            console.log("Received a connection from: " + code);
+                        }
+                        else {
+                            console.log("Received a connection from a country not listed, using default: " + defaultSite);
+                        }
+                    };
+
+                    /* We don't really care what the error is, we'll send them
+                     * to the default site. */
+                    var onError = function (error) {
+                        console.log("An error ocurred, using default: " + defaultSite);
+                    };
+
+                    geoip2.country(onSuccess, onError);
+
                 });
 
             </script>
