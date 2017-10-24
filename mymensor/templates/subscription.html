@@ -309,6 +309,7 @@
                             }).catch(swal.noop)
                         }
                         else {
+                            console.log("Received a connection from NOT ACCEPTED: " + code);
                             swal({
                                 title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error'
