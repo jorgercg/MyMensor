@@ -315,19 +315,21 @@
                                         subscriberFirstName = $.trim($('#swal-input1').val());
                                         subscriberLastName = $.trim($('#swal-input2').val());
                                         if ((subscriberFirstName) && (subscriberLastName)) {
-                                            console.log("OK!!!!!");
+                                            //console.log("OK!!!!!");
                                             $.ajax({
                                                 url: "completereg/", // the endpoint
                                                 type: "POST", // http method
                                                 data: {
                                                     first_name: subscriberFirstName,
                                                     last_name: subscriberLastName,
-                                                    geoipresp: geoipResponse
+                                                    assetGeoIpResponse: geoipResponse,
+                                                    assetCountryGeoIp: geoipResponse.country.iso_code,
+                                                    assetIpGeoIp: geoipResponse.traits.ip_address
                                                 }, // data sent with the post request
                                                 // handle a successful response
                                                 success: function (json) {
-                                                    console.log(json); // log the returned json to the console
-                                                    console.log("success"); // another sanity check
+                                                    //console.log(json); // log the returned json to the console
+                                                    //console.log("success"); // another sanity check
                                                     resolve([
                                                         subscriberFirstName,
                                                         subscriberLastName
@@ -364,8 +366,9 @@
                                 allowOutsideClick: false
                             }).then(function (result) {
                                 swal(JSON.stringify(result));
-                                console.log(JSON.stringify(geoipResponse))
-                            }, function(dismiss){
+                                //window.location = "{% url 'createsubscription' %}";
+                                //console.log(JSON.stringify(geoipResponse))
+                            }, function (dismiss) {
                                 //console("Reject:["+dismiss+"]");
                             }).catch(swal.noop)
                         }
@@ -376,7 +379,7 @@
                                 text: '{% trans "We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error'
                             }).then(function () {
-                                console.log(JSON.stringify(geoipResponse));
+                                //console.log(JSON.stringify(geoipResponse));
                                 window.location = "{% url 'subscription' %}";
                             }).catch(swal.noop);
                         }
@@ -390,15 +393,12 @@
                             text: '{% trans "An unknown error occured! Please try again. If problem persists contact support in order to try and find a solution." %}',
                             type: 'error'
                         }).then(function () {
-                            console.log(JSON.stringify(geoipResponse));
+                            //console.log(JSON.stringify(geoipResponse));
                             window.location = "{% url 'subscription' %}";
                         }).catch(swal.noop);
                     };
 
                     geoip2.insights(onSuccess, onError);
-
-                    //href="{% url 'createsubscription' %}"
-
 
                     // This function gets cookie with a given name
                     function getCookie(name) {

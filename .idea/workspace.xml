@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/models.py" afterPath="$PROJECT_DIR$/mymensor/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/mymviews.py" afterPath="$PROJECT_DIR$/mymensor/mymviews.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
     </list>
@@ -57,8 +58,8 @@
       <file leaf-file-name="mymviews.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="2036" column="38" lean-forward="false" selection-start-line="2036" selection-start-column="38" selection-end-line="2036" selection-end-column="38" />
+            <state relative-caret-position="611">
+              <caret line="2053" column="0" lean-forward="true" selection-start-line="2053" selection-start-column="0" selection-end-line="2053" selection-end-column="0" />
               <folding>
                 <element signature="e#0#75#0" expanded="true" />
               </folding>
@@ -69,8 +70,18 @@
       <file leaf-file-name="subscription.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="368" column="34" lean-forward="false" selection-start-line="368" selection-start-column="34" selection-end-line="368" selection-end-column="34" />
+            <state relative-caret-position="384">
+              <caret line="326" column="64" lean-forward="false" selection-start-line="326" selection-start-column="52" selection-end-line="326" selection-end-column="64" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensor/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="541">
+              <caret line="77" column="26" lean-forward="false" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -219,7 +230,6 @@
         <option value="$PROJECT_DIR$/mymensor/templates/createsubscription.html" />
         <option value="$PROJECT_DIR$/mymensor/templatetags/is_media_plan_disabled.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/changesubscriptionplan.html" />
-        <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/billingviews.py" />
         <option value="$PROJECT_DIR$/mymensor/dcidatasync.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/mobilebackup.html" />
@@ -247,6 +257,7 @@
         <option value="$PROJECT_DIR$/mymensor/templates/base.html" />
         <option value="$PROJECT_DIR$/mymensorapp/urls.py" />
         <option value="$PROJECT_DIR$/mymensor/templates/subscription.html" />
+        <option value="$PROJECT_DIR$/mymensor/models.py" />
         <option value="$PROJECT_DIR$/mymensor/mymviews.py" />
       </list>
     </option>
@@ -631,13 +642,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-03409" summary="28set2017 12h04min">
-      <created>1506596703495</created>
-      <option name="number" value="03409" />
-      <option name="presentableId" value="LOCAL-03409" />
-      <option name="project" value="LOCAL" />
-      <updated>1506596703495</updated>
-    </task>
     <task id="LOCAL-03410" summary="28set2017 13h54min">
       <created>1506603253185</created>
       <option name="number" value="03410" />
@@ -974,7 +978,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508857178268</updated>
     </task>
-    <option name="localTasksCounter" value="3458" />
+    <task id="LOCAL-03458" summary="24out2017 16h01">
+      <created>1508857309046</created>
+      <option name="number" value="03458" />
+      <option name="presentableId" value="LOCAL-03458" />
+      <option name="project" value="LOCAL" />
+      <updated>1508857309046</updated>
+    </task>
+    <option name="localTasksCounter" value="3459" />
     <servers />
   </component>
   <component name="TodoView">
@@ -998,9 +1009,9 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32904884" sideWeight="0.4978701" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7098121" sideWeight="0.48935038" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1682641" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1682641" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960597" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11980831" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11980831" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1063,7 +1074,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="24out2017 11h50" />
     <MESSAGE value="24out2017 11h52" />
     <MESSAGE value="24out2017 12h02" />
     <MESSAGE value="24out2017 12h05" />
@@ -1088,7 +1098,8 @@
     <MESSAGE value="24out2017 15h51" />
     <MESSAGE value="24out2017 15h54" />
     <MESSAGE value="24out2017 15h59" />
-    <option name="LAST_COMMIT_MESSAGE" value="24out2017 15h59" />
+    <MESSAGE value="24out2017 16h01" />
+    <option name="LAST_COMMIT_MESSAGE" value="24out2017 16h01" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1351,13 +1362,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="54" column="83" lean-forward="true" selection-start-line="54" selection-start-column="83" selection-end-line="54" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/static/css/chosen.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="635">
@@ -1446,18 +1450,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/mymensor/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="77" column="26" lean-forward="false" selection-start-line="77" selection-start-column="26" selection-end-line="77" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="368" column="34" lean-forward="false" selection-start-line="368" selection-start-column="34" selection-end-line="368" selection-end-column="34" />
+        <state relative-caret-position="384">
+          <caret line="326" column="64" lean-forward="false" selection-start-line="326" selection-start-column="52" selection-end-line="326" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/mymviews.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="2036" column="38" lean-forward="false" selection-start-line="2036" selection-start-column="38" selection-end-line="2036" selection-end-column="38" />
+        <state relative-caret-position="611">
+          <caret line="2053" column="0" lean-forward="true" selection-start-line="2053" selection-start-column="0" selection-end-line="2053" selection-end-column="0" />
           <folding>
             <element signature="e#0#75#0" expanded="true" />
           </folding>

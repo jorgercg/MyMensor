@@ -2034,6 +2034,21 @@ def subscription(request):
 @user_passes_test(group_check)
 def completereg(request):
     if request.method=="POST":
+        try:
+            currentUser = User.objects.get(id=request.user.id)
+            currentUser.first_name = request.POST.get('first_name')
+            currentUser.last_name = request.POST.get('last_name')
+            currentUser.save()
+        except:
+            return HttpResponse(status=404)
+        try:
+            currentAsset = Asset.objects.get(assetOwner=request.user)
+            currentAsset.assetGeoIpResponse = request.POST.get('assetGeoIpResponse')
+            currentAsset.assetCountryGeoIp = request.POST.get('assetCountryGeoIp')
+            currentAsset.assetIpGeoIp = request.POST.get('assetIpGeoIp')
+            currentAsset.save()
+        except:
+            return HttpResponse(status=404)
         return HttpResponse(status=200)
     return HttpResponse(status=404)
 
