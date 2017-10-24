@@ -279,7 +279,7 @@
                     var onSuccess = function (geoipResponse) {
                         /* There's no guarantee that a successful response object
                          * has any particular property, so we need to code defensively. !geoipResponse.country.iso_code */
-                        if (true) {
+                        if (1==1) {
                             console.log("Failed to retrieve country iso code");
                             swal({
                                 title: '{% trans "No country!" %}',
@@ -333,7 +333,7 @@
                         console.log("An error ocurred, using default: " + defaultSite);
                         swal({
                             title: '{% trans "Oops..." %}',
-                            text: '{% trans "An unknown error has occured! Please try again. If problem persists contact support in order to try and find a solution." %}',
+                            text: '{% trans "An unknown error occured! Please try again. If problem persists contact support in order to try and find a solution." %}',
                             type: 'error'
                         }).then(function () {
                             console.log(JSON.stringify(geoipResponse));
