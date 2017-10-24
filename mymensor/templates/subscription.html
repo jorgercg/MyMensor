@@ -280,7 +280,7 @@
                         /* There's no guarantee that a successful response object
                          * has any particular property, so we need to code defensively. */
                         if (!geoipResponse.country.iso_code) {
-                            console.log("Failed to retriev country iso code");
+                            console.log("Failed to retrieve country iso code");
                             return;
                         }
 
@@ -289,9 +289,11 @@
 
                         if (sites[code]) {
                             console.log("Received a connection from: " + code);
+                            console.log(JSON.stringify(geoipResponse))
                         }
                         else {
                             console.log("Received a connection from a country not listed, using default: " + defaultSite);
+                            console.log(JSON.stringify(geoipResponse))
                         }
                     };
 
