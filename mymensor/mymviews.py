@@ -2034,7 +2034,7 @@ def subscription(request):
 @user_passes_test(group_check)
 def completereg(request):
     if request.method=="POST":
-        pass
+        return HttpResponse(status=400)
     return HttpResponse(status=404)
 
 

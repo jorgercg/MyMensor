@@ -316,15 +316,14 @@
                                         subscriberLastName = $.trim($('#swal-input2').val());
                                         if ((subscriberFirstName) && (subscriberLastName)) {
                                             console.log("OK!!!!!");
-                                            resolve([
-                                                        subscriberFirstName,
-                                                        subscriberLastName
-                                                    ])
-                                            /*
                                             $.ajax({
-                                                url: "", // the endpoint
+                                                url: "completereg/", // the endpoint
                                                 type: "POST", // http method
-                                                data: {first_name: subscriberFirstName, last_name: subscriberLastName}, // data sent with the post request
+                                                data: {
+                                                    first_name: subscriberFirstName,
+                                                    last_name: subscriberLastName,
+                                                    geoipresp: geoipResponse
+                                                }, // data sent with the post request
                                                 // handle a successful response
                                                 success: function (json) {
                                                     console.log(json); // log the returned json to the console
@@ -337,10 +336,9 @@
                                                 // handle a non-successful response
                                                 error: function (xhr, errmsg, err) {
                                                     console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                                                    $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-danger')
+                                                    reject();
                                                 }
                                             });
-                                            */
                                         }
                                         else {
                                             subscriberFirstName = null;
@@ -361,6 +359,8 @@
                             }).then(function (result) {
                                 swal(JSON.stringify(result));
                                 console.log(JSON.stringify(geoipResponse))
+                            }, function (reject) {
+                                console.log("reject FIRED");
                             }).catch(swal.noop)
                         }
                         else {
