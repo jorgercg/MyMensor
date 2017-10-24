@@ -340,7 +340,7 @@
                                                         title: '{% trans "Oops..." %}',
                                                         text: '{% trans "Error while trying to complete your registration info prior to subscription. Please try again. If the problem continues contact support." %}',
                                                         type: 'error'
-                                                    }).then(function () {
+                                                    }).then(function (result) {
                                                         window.location = "{% url 'subscription' %}";
                                                     }).catch(swal.noop);
                                                 }
