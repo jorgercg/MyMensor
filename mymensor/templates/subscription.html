@@ -278,10 +278,17 @@
 
                     var onSuccess = function (geoipResponse) {
                         /* There's no guarantee that a successful response object
-                         * has any particular property, so we need to code defensively. */
-                        if (!geoipResponse.country.iso_code) {
+                         * has any particular property, so we need to code defensively. !geoipResponse.country.iso_code */
+                        if (true) {
                             console.log("Failed to retrieve country iso code");
-                            return;
+                            swal({
+                                title: '{% trans "No country!" %}',
+                                text: '{% trans "We could not determine from which country your are coming from! Please try again. If problem persists contact support in order to try and find a solution." %}',
+                                type: 'error'
+                            }).then(function () {
+                                console.log(JSON.stringify(geoipResponse));
+                                window.location = "{% url 'subscription' %}";
+                            }).catch(swal.noop);
                         }
 
                         /* ISO country codes are in upper case. */
@@ -311,7 +318,8 @@
                         else {
                             console.log("Received a connection from NOT ACCEPTED: " + code);
                             swal({
-                                title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
+                                title: '{% trans "Sorry!" %}',
+                                text: '{% trans "We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error'
                             }).then(function () {
                                 console.log(JSON.stringify(geoipResponse));
@@ -323,6 +331,14 @@
                      * to the default site. */
                     var onError = function (error) {
                         console.log("An error ocurred, using default: " + defaultSite);
+                        swal({
+                            title: '{% trans "Oops..." %}',
+                            text: '{% trans "An unknown error has occured! Please try again. If problem persists contact support in order to try and find a solution." %}',
+                            type: 'error'
+                        }).then(function () {
+                            console.log(JSON.stringify(geoipResponse));
+                            window.location = "{% url 'subscription' %}";
+                        }).catch(swal.noop);
                     };
 
                     geoip2.insights(onSuccess, onError);
