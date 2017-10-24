@@ -314,7 +314,14 @@
                                     return new Promise(function (resolve) {
                                         subscriberFirstName = $('#swal-input1').val();
                                         subscriberLastName = $('#swal-input2').val();
-                                        if ((!subscriberFirstName) && (!subscriberFirstName)) {
+                                        if ((subscriberFirstName) && (subscriberFirstName)) {
+                                            console.log("OK!!!!!");
+                                            resolve([
+                                                subscriberFirstName,
+                                                subscriberLastName
+                                            ])
+                                        }
+                                        else {
                                             swal({
                                                 title: '{% trans "All fields are required!" %}',
                                                 text: '{% trans "Please complete correctly." %}',
@@ -325,10 +332,6 @@
                                             }).catch(swal.noop);
                                             return;
                                         }
-                                        resolve([
-                                            subscriberFirstName,
-                                            subscriberLastName
-                                        ])
                                     })
                                 },
                                 allowOutsideClick: false
