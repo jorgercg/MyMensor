@@ -68,6 +68,7 @@ urlpatterns += i18n_patterns(
     url(r'^markerdownload/$', mymviews.markerdownload, name='markerdownload'),
     url(r'^subscription/chgplan/$', mymviews.changeplan, name='chgplan'),
     url(r'^subscription/$', mymviews.subscription, name='subscription'),
+    url(r'^subscription/completereg/$', mymviews.completereg, name='completereg') ,
     url(r'^startsubscription/$', billingviews.startsubscription, name='startsubscription'),
     url(r'^changesubscriptionplan/$', billingviews.changesubscriptionplan, name='changesubscriptionplan'),
     url(r'^subscriptionmodifypaymentmethod/$', billingviews.modifypaymentmethodinsubscription, name='modifypaymentmethodinsubscription'),

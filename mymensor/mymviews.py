@@ -2032,6 +2032,14 @@ def subscription(request):
 
 @login_required
 @user_passes_test(group_check)
+def completereg(request):
+    if request.method=="POST":
+        pass
+    return HttpResponse(status=404)
+
+
+@login_required
+@user_passes_test(group_check)
 def changeplan(request):
     if request.method == "GET":
         currentAsset = Asset.objects.get(assetOwner=request.user)

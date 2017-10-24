@@ -312,10 +312,14 @@
                                 cancelButtonClass: 'btn btn-danger',
                                 preConfirm: function () {
                                     return new Promise(function (resolve) {
-                                        subscriberFirstName = $('#swal-input1').val();
-                                        subscriberLastName = $('#swal-input2').val();
+                                        subscriberFirstName = $.trim($('#swal-input1').val());
+                                        subscriberLastName = $.trim($('#swal-input2').val());
                                         if ((subscriberFirstName) && (subscriberFirstName)) {
                                             console.log("OK!!!!!");
+                                            resolve([
+                                                        subscriberFirstName,
+                                                        subscriberLastName
+                                                    ])
                                             /*
                                             $.ajax({
                                                 url: "", // the endpoint
