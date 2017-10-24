@@ -37,7 +37,7 @@
                                 <p>
                                     {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                                 <p></p>
-                                <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                                <a id="complete-info-before-subscription" class="btn btn-primary" href="{% url 'createsubscription' %}"
                                    role="button">
                                     {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                             {% endif %}
@@ -170,7 +170,7 @@
                             <p>
                                 {% trans "You are currently on a trial period that will extend for another " %}{{ dateofendoftrialbeforesubscription|timeuntil }}</p>
                             <p></p>
-                            <a class="btn btn-primary" href="{% url 'createsubscription' %}"
+                            <a id="complete-info-before-subscription" class="btn btn-primary" href="{% url 'createsubscription' %}"
                                role="button">
                                 {% trans "I want to subscribe to <b>" %}{{ currentuserplan }}{% trans " Plan</b> NOW!" %}</a>
                         </div>
