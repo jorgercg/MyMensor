@@ -271,7 +271,7 @@
                     console.log("complete-info-before-subscription was called!"); // sanity check
                     var sites = {
                         "br": true,
-                        "pt": true,
+                        "pt": false,
                         "us": true
                     };
                     var defaultSite = "us";
@@ -292,8 +292,14 @@
                             console.log(JSON.stringify(geoipResponse))
                         }
                         else {
-                            console.log("Received a connection from a country not listed, using default: " + defaultSite);
+                            swal({
+                                title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
+                                type: 'error',
+                                showConfirmButton: true,
+                                timer: 1000
+                            });
                             console.log(JSON.stringify(geoipResponse))
+                            window.location = "{% url 'subscription' %}";
                         }
                     };
 

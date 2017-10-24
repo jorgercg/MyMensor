@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="">
+    <list default="true" id="c0d960ca-ed90-4228-b714-5f96a854e243" name="Default" comment="24out2017 10h36">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mymensor/templates/subscription.html" afterPath="$PROJECT_DIR$/mymensor/templates/subscription.html" />
     </list>
@@ -46,8 +46,8 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="323" column="39" lean-forward="false" selection-start-line="323" selection-start-column="39" selection-end-line="323" selection-end-column="39" />
+            <state relative-caret-position="218">
+              <caret line="313" column="64" lean-forward="true" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -68,8 +68,18 @@
       <file leaf-file-name="subscription.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="304" column="0" lean-forward="true" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
+            <state relative-caret-position="212">
+              <caret line="273" column="35" lean-forward="false" selection-start-line="273" selection-start-column="35" selection-end-line="273" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="503">
+              <caret line="69" column="69" lean-forward="false" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -110,7 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fa</find>
       <find>showonlytimecert</find>
       <find>maxcolumnstxt</find>
       <find>strptime</find>
@@ -140,6 +149,7 @@
       <find>changeplanbtbn</find>
       <find>cancel-subscription</find>
       <find>I want to subscribe to</find>
+      <find>swal</find>
     </findStrings>
     <replaceStrings>
       <replace>get</replace>
@@ -586,13 +596,6 @@
       <option name="presentableId" value="Default" />
       <updated>1471962629559</updated>
     </task>
-    <task id="LOCAL-03375" summary="13set2017 16h24min">
-      <created>1505316256133</created>
-      <option name="number" value="03375" />
-      <option name="presentableId" value="LOCAL-03375" />
-      <option name="project" value="LOCAL" />
-      <updated>1505316256133</updated>
-    </task>
     <task id="LOCAL-03376" summary="13set2017 16h29min">
       <created>1505316587663</created>
       <option name="number" value="03376" />
@@ -929,7 +932,14 @@
       <option name="project" value="LOCAL" />
       <updated>1508837611700</updated>
     </task>
-    <option name="localTasksCounter" value="3424" />
+    <task id="LOCAL-03424" summary="24out2017 10h36">
+      <created>1508837804736</created>
+      <option name="number" value="03424" />
+      <option name="presentableId" value="LOCAL-03424" />
+      <option name="project" value="LOCAL" />
+      <updated>1508837804736</updated>
+    </task>
+    <option name="localTasksCounter" value="3425" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1018,7 +1028,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="25set2017 16h39min" />
     <MESSAGE value="25set2017 16h42min" />
     <MESSAGE value="25set2017 16h46min" />
     <MESSAGE value="25set2017 16h49min" />
@@ -1043,7 +1052,8 @@
     <MESSAGE value="24out2017 10h10" />
     <MESSAGE value="24out2017 10h14" />
     <MESSAGE value="24out2017 10h33" />
-    <option name="LAST_COMMIT_MESSAGE" value="24out2017 10h33" />
+    <MESSAGE value="24out2017 10h36" />
+    <option name="LAST_COMMIT_MESSAGE" value="24out2017 10h36" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1382,14 +1392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="50" column="72" lean-forward="false" selection-start-line="50" selection-start-column="72" selection-end-line="50" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
@@ -1402,16 +1404,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="323" column="39" lean-forward="false" selection-start-line="323" selection-start-column="39" selection-end-line="323" selection-end-column="39" />
+        <state relative-caret-position="218">
+          <caret line="313" column="64" lean-forward="true" selection-start-line="313" selection-start-column="64" selection-end-line="313" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mymensorapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="69" column="69" lean-forward="false" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mymensor/templates/subscription.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="304" column="0" lean-forward="true" selection-start-line="304" selection-start-column="0" selection-end-line="304" selection-end-column="0" />
+        <state relative-caret-position="212">
+          <caret line="273" column="35" lean-forward="false" selection-start-line="273" selection-start-column="35" selection-end-line="273" selection-end-column="35" />
           <folding />
         </state>
       </provider>
