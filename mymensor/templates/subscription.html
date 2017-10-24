@@ -295,10 +295,9 @@
                             swal({
                                 title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error',
-                                showConfirmButton: true,
-                                timer: 1000
+                                showConfirmButton: true
                             });
-                            console.log(JSON.stringify(geoipResponse))
+                            console.log(JSON.stringify(geoipResponse));
                             window.location = "{% url 'subscription' %}";
                         }
                     };
