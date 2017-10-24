@@ -298,11 +298,17 @@
                         if (sites[code]) {
                             console.log("Received a connection from: " + code);
                             swal({
-                                title: '{% trans "Pleae enter your first and last names in the fields below" %}',
+                                title: '{% trans "Subscriber Information" %}',
+                                text: '{% trans "Please complete the fields below." %}',
                                 html:
                                 '<input id="swal-input1" class="swal2-input" placeholder="{% trans "First Name" %}">' +
                                 '<input id="swal-input2" class="swal2-input" placeholder="{% trans "Last Name" %}">',
                                 focusConfirm: false,
+                                showCancelButton: true,
+                                confirmButtonText: '{% trans "Submit" %}',
+                                showLoaderOnConfirm: true,
+                                confirmButtonClass: 'btn btn-success',
+                                cancelButtonClass: 'btn btn-danger',
                                 preConfirm: function () {
                                     return new Promise(function (resolve) {
                                         resolve([
@@ -310,7 +316,8 @@
                                             $('#swal-input2').val()
                                         ])
                                     })
-                                }
+                                },
+                                allowOutsideClick: false
                             }).then(function (result) {
                                 swal(JSON.stringify(result));
                                 console.log(JSON.stringify(geoipResponse))
