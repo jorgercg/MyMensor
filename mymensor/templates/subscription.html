@@ -270,7 +270,7 @@
                     }).catch(swal.noop);
                 });
                 $('#complete-info-before-subscription').click(function () {
-                    console.log("complete-info-before-subscription was called!"); // sanity check
+                    //console.log("complete-info-before-subscription was called!"); // sanity check
                     var sites = {
                         "br": true,
                         "pt": true,
@@ -296,9 +296,10 @@
 
                         /* ISO country codes are in upper case. */
                         var code = geoipResponse.country.iso_code.toLowerCase();
+                        var completeResponse = JSON.stringify(geoipResponse);
 
                         if (sites[code]) {
-                            console.log("Received a connection from: " + code);
+                            //console.log("Received a connection from: " + code);
                             swal({
                                 title: '{% trans "Subscriber Information" %}',
                                 html:
@@ -322,7 +323,7 @@
                                                 data: {
                                                     first_name: subscriberFirstName,
                                                     last_name: subscriberLastName,
-                                                    assetGeoIpResponse: JSON.stringify(geoipResponse),
+                                                    assetGeoIpResponse: completeResponse,
                                                     assetCountryGeoIp: geoipResponse.country.iso_code,
                                                     assetIpGeoIp: geoipResponse.traits.ip_address
                                                 }, // data sent with the post request
