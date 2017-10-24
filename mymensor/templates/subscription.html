@@ -314,10 +314,6 @@
                                 title: '{% trans "Sorry! We currently do not accept subscription from your country. Please contact us in order to try and find a solution! All the best!" %}',
                                 type: 'error'
                             }).then(function () {
-
-                            }, function (dismiss) {
-                                // dismiss can be 'cancel', 'overlay',
-                                // 'close', and 'timer'
                                 console.log(JSON.stringify(geoipResponse));
                                 window.location = "{% url 'subscription' %}";
                             }).catch(swal.noop);
