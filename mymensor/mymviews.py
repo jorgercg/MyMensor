@@ -889,7 +889,7 @@ def create_new_user(request):
 @permission_classes((IsAuthenticated,))
 def mobiletowebapp(request):
     if request.method == "GET":
-        return redirect('portfolio')
+        return redirect('portfolio',request)
     return HttpResponse(status=400)
 
 
