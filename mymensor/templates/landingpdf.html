@@ -1,0 +1,669 @@
+{% load staticfiles i18n tz mymfilters %}
+{% localtime on %}
+    {% get_current_timezone as TIME_ZONE %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106891333-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments)
+            };
+            gtag('js', new Date());
+
+            gtag('config', 'UA-106891333-2');
+        </script>
+        <!-- Basic Page Needs.
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            {% block title %}
+                MyMensor Media Check
+            {% endblock %}
+        </title>
+        <meta name="description" content="MyMensor WebApp">
+        <meta name="keywords" content="MyMensor">
+        <meta name="author" content="Celtapps">
+        <meta property="og:title" content="{% trans "MyMensor Media Check" %}">
+        <meta property="og:description" content="{% trans "Click to check at MyMensor" %}">
+        <meta property="og:image" content="{{ mediaCheckURLOG }}">
+        <meta property="og:image:width" content="1280">
+        <meta property="og:image:height" content="720">
+        <meta property="og:url" content="{{ mediaCheckURL }}">
+        <meta property="og:site_name" content="MyMensor WebApp">
+        <meta property="fb:app_id" content="286196915140475"/>
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{% trans "MyMensor Media Check" %}">
+        <meta name="twitter:description" content="{% trans "Click to check at MyMensor" %}">
+        <meta name="twitter:image" content="{{ mediaCheckURLOG }}">
+
+
+        <!-- Mobile Specific Metas
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- FONT
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+        <!-- CSS
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mymensorstylelandingonly.css' %}">
+        <!-- Favicon
+	    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon-32x32.png' %}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{% static 'images/favicon-16x16.png' %}" sizes="16x16">
+        <link rel="manifest" href="{% static 'images/manifest.json' %}">
+        <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#00afef">
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+        <meta name="msapplication-config" content="images/browserconfig.xml">
+        <meta name="theme-color" content="#00afef">
+        {% block header %}{% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;" id="myNavbar">
+        <a class="navbar-brand" href="https://mymensor.com"><img id="logomymensor"
+                                                                 src="{% static 'images/Logo_MyMensor_pdf.png' %}"
+                                                                 width="46" height="46"
+                                                                 class="d-inline-block align-center" alt=""><span
+                class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
+            <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn fa-2x" data-toggle="tooltip" data-placement="left"
+                  title="{% trans 'Download Media Check PDF file' %}"></span>
+        </a>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            {% if mediaContentType == "image/jpeg" %}
+                <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text">
+                                <span>{% trans "Photo of " %}</span>
+                                <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                {% if mediaArIsOn == "1" %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                {% endif %}
+                                {% if mediaTimeIsCertified == "1" %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time not certified' %}"></span>
+                                {% endif %}
+                                {% if mediaLocIsCertified == "1" %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location not certified' %}"></span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <a data-toggle="modal"
+                           data-target="#mediaImageModal"
+                           data-whatever="">
+                            <img id="mediaimg" class="card-img-top img-fluid"
+                                 src=""
+                                 alt="">
+                        </a>
+                        <ul class="list-group list-group-flush">
+                            {% if mediaArIsOn == "1" %}
+                                <li class="list-group-item"><span
+                                        class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
+                                </li>
+                            {% endif %}
+                            {% if mediaTimeIsCertified == "1" %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
+                                </li>
+                            {% endif %}
+                            {% if mediaLocIsCertified == "1" %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            {% if mediaLocIsCertified == "1" %}
+                                <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% else %}
+                                <p class="card-text font-weight-bold text-danger">
+                                    <s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div id="landingmapid"></div>
+                        <ul class="list-group list-group-flush">
+                            {% if mediaLocIsCertified == "1" %}
+                                <li class="list-group-item">
+                                    {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">
+                                    {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">
+                                    {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                            {% else %}
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Accuracy: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+            {% if mediaContentType == "video/mp4" %}
+                <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            <p class="card-text">
+                                <span>{% trans "Video of " %}</span>
+                                <span class="fa fa-video-camera" data-toggle="tooltip" data-placement="top"
+                                      title="{% trans 'Captured on' %}"></span> {{ mediaTimeStamp }}
+                                {% if mediaArIsOn == "1" %}
+                                    <span class="arused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality used to capture' %}">AR ON</span>
+                                {% else %}
+                                    <span class="arnotused" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Augmented reality not used to capture' %}">AR OFF</span>
+                                {% endif %}
+                                {% if mediaTimeIsCertified == "1" %}
+                                    <span class="fa fa-clock-o timecert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-clock-o timenotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture time not certified' %}"></span>
+                                {% endif %}
+                                {% if mediaLocIsCertified == "1" %}
+                                    <span class="fa fa-map-marker loccert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location certified' %}"></span>
+                                {% else %}
+                                    <span class="fa fa-map-marker locnotcert" data-toggle="tooltip" data-placement="top"
+                                          title="{% trans 'Capture location not certified' %}"></span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <a data-toggle="modal"
+                           data-target="#mediaVideoModal"
+                           data-whatever=""><span
+                                class="fa fa-play-circle-o fa-5x thumbnail"></span>
+                            <img id="mediaimgthumb" class="card-img-top img-fluid"
+                                 src=""
+                                 alt="">
+                        </a>
+                        <ul class="list-group list-group-flush">
+                            {% if mediaArIsOn == "1" %}
+                                <li class="list-group-item"><span
+                                        class="arusedinnotes">AR ON</span>{% trans ' augmented reality used to capture' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="arnotusedinnotes">AR OFF</span> {% trans ' augmented reality not used to capture' %}
+                                </li>
+                            {% endif %}
+                            {% if mediaTimeIsCertified == "1" %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timecertinnotes"></span>{% trans ' the capture time was certified by MyMensor' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-clock-o timenotcertinnotes"></span>{% trans ' the capture time was not certified by MyMensor' %}
+                                </li>
+                            {% endif %}
+                            {% if mediaLocIsCertified == "1" %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker loccertinnotes"></span>{% trans ' the capture location was certified by MyMensor' %}
+                                </li>
+                            {% else %}
+                                <li class="list-group-item"><span
+                                        class="fa fa-map-marker locnotcertinnotes"></span>{% trans ' the capture location was not certified by MyMensor' %}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card card-outline-primary m-2 landingcard">
+                        <div class="card-block">
+                            {% if mediaLocIsCertified == "1" %}
+                                <p class="card-text font-weight-bold">{% trans "Location details" %}</p>
+                            {% else %}
+                                <p class="card-text font-weight-bold text-danger">
+                                    <s>{% trans "Location details" %}</s> {% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </p>
+                            {% endif %}
+                        </div>
+                        <div id="landingmapid"></div>
+                        <ul class="list-group list-group-flush">
+                            {% if mediaLocIsCertified == "1" %}
+                                <li class="list-group-item">
+                                    {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">
+                                    {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %}</li>
+                                <li class="list-group-item">
+                                    {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %}</li>
+                            {% else %}
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Latitude: ' %}{{ loclatitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Longitude: ' %}{{ loclongitude|floatformat:6 }}{% trans ' degrees' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                                <li class="list-group-item text-danger">
+                                    <s>
+                                        {% trans ' Precision: ' %}{{ locprecisioninm|floatformat:1 }}{% trans ' meters' %} </s>{% trans "CAPTURE LOCATION NOT CERTIFIED" %}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <!-- Modal to Images -->
+        <div class="modal fade"
+             id="mediaImageModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img id="mediaContent" class="img-fluid" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal to Videos -->
+        <div class="modal fade"
+             id="mediaVideoModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video controls>
+                                <source src="{{ videoStorageURL }}"
+                                        type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer-dash">
+            <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
+                <div class="mym-dash-item">
+                    <p class="landingfootertext">{% trans "The media above was produced using the MyMensor mobile app on the date, time and location above stated." %}
+                        {% trans "Below the media one can read if capture time and location were certified or not by MyMensor." %}
+                        {% trans "Please use the PDF button on top of the page to download a printable version of this page." %}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        {% block footer %}{% endblock %}
+
+        <div class="language-selector d-flex justify-content-sm-start flex-nowrap">
+            <form class="form-inline" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                <label class="mr-sm-2" for="languageselect">{% trans "Language" %}</label>
+                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                <select id="languageselect" name="language">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
+                                selected="selected"{% endif %}>
+                            {{ language.name_local }} ({{ language.code }})
+                        </option>
+                    {% endfor %}
+                </select>
+                <input class="btn btn-primary btn-sm" type="submit" value="{% trans 'Set' %}"/>
+            </form>
+        </div>
+    </div><!-- /.container -->
+    <script src="{% static "js/jquery-3.1.1.min.js" %}"></script>
+    <script src="{% static "js/tether.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/leaflet-src-whitenoisebug.js" %}"></script>
+    <script src="{% static "js/leaflet-image.js" %}"></script>
+    <script src="{% static "js/mymensor-jquery.js" %}"></script>
+    <script src="{% static "js/pdfmake.min.js" %}"></script>
+    <script src="{% static "js/vfs_fonts.js" %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+    <!-- Page Local Scripts
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script>
+        var encodedContent;
+        var encodedMapContent;
+        var encodedMyMensorLogo;
+
+        function convertFileToDataURLviaFileReader(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    callback(reader.result);
+                };
+                reader.readAsDataURL(xhr.response);
+            };
+            xhr.open('GET', url);
+            xhr.responseType = 'blob';
+            xhr.send();
+        }
+
+        {% autoescape off %}
+            convertFileToDataURLviaFileReader("{{ mediaStorageURL }}", function (dataURL) {
+                encodedContent = dataURL;
+                {% if mediaContentType == "image/jpeg" %}
+                    document.getElementById("mediaimg").src = encodedContent;
+                    document.getElementById("mediaContent").src = encodedContent;
+                {% endif %}
+                {% if mediaContentType == "video/mp4" %}
+                    document.getElementById("mediaimgthumb").src = encodedContent;
+                {% endif %}
+            });
+        {% endautoescape %}
+
+        var zoomlevel = 10;
+        var precision = {{ locprecisioninm | floatformat:3 }};
+
+        var mymap = L.map('landingmapid', {
+            center: [{{ loclatitude }}, {{ loclongitude }}],
+            zoom: zoomlevel,
+            preferCanvas: true
+        });
+
+        var id = 'appmymensor-47cc2df8';
+
+        var host = 'https://maps.omniscale.net/v2/' + id + '/style.default/{z}/{x}/{y}.png';
+
+        var attribution = '&copy; 2017 &middot; <a href="https://maps.omniscale.com/">Omniscale</a> ' +
+            '&middot; Map data: <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+
+        L.tileLayer(host, {
+            id: id,
+            attribution: attribution
+        }).addTo(mymap);
+
+        var marker = L.marker([{{ loclatitude }}, {{ loclongitude }}]).addTo(mymap);
+
+        var circle = L.circle([{{ loclatitude }}, {{ loclongitude }}], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: precision
+        }).addTo(mymap);
+
+        mymap.fitBounds(circle.getBounds());
+
+        {% autoescape off %}
+            var qrcodevalue = '{{ mediaCheckURL }}';
+        {% endautoescape %}
+
+        $(document).ready(function (event) {
+            event.preventDefault();
+            console.log("Clicked on: PDFGENBTN");
+
+            var mapsize = mymap.getSize();
+
+            console.log("width x height =" + mapsize.x + " x " + mapsize.y);
+
+            var mapwidth = mapsize.x;
+
+            var mapheigth = (mapwidth * 720 / 1280);
+
+            console.log("width x height =" + mapwidth + " x " + mapheigth);
+
+            document.getElementById('landingmapid').style.height = mapheigth + "px";
+
+            mymap.invalidateSize();
+
+            convertFileToDataURLviaFileReader(document.getElementById('logomymensor').src, function (dataURL) {
+                encodedMyMensorLogo = dataURL;
+            });
+
+
+            leafletImage(mymap, function (err, canvas) {
+                encodedMapContent = canvas.toDataURL();
+                var docDefinition = {
+                        pageSize: 'A4',
+                        pageOrientation: 'portrait',
+                        // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+                        pageMargins: [40, 40, 40, 40],
+                        content: [
+                            {
+                                columns: [
+                                    {
+                                        width: 55,
+                                        image: encodedMyMensorLogo,
+                                        alignment: 'left',
+                                        fit: [50, 50]
+                                    },
+                                    {
+                                        width: '*',
+                                        text: [
+                                            '{{ pdftitle }}\n',
+                                            {% if mediaTimeIsCertified == "1" %}
+                                                {text: '{{ pdfcaptimecert }}\n', fontSize: 9, color: 'green'},
+                                            {% else %}
+                                                {text: '{{ pdfcaptimenotcert }}\n', fontSize: 9, color: 'red'},
+                                            {% endif %}
+                                            {% if mediaLocIsCertified == "1" %}
+                                                {text: '{{ pdfcaploccert }}\n', fontSize: 9, color: 'green'}
+                                            {% else %}
+                                                {text: '{{ pdfcaplocnotcert }}\n', fontSize: 9, color: 'red'}
+                                            {% endif %}
+                                        ],
+                                        fontSize: 20,
+                                        alignment: 'right'
+                                    }
+                                ]
+                            },
+                            {
+                                image: encodedContent,
+                                alignment: 'center',
+                                width: 515,
+                                margin: [0, 5, 0, 5]
+                            },
+                            {
+                                image: encodedMapContent,
+                                alignment: 'center',
+                                width: 515
+                            },
+                            {
+                                background: 'white',
+                                text: [
+                                    {text: 'Leaflet', fontSize: 7, color: '#00afef', link: 'http://leafletjs.com'},
+                                    {text: ' | © 2017 • ', fontSize: 7},
+                                    {text: 'Omniscale', fontSize: 7, color: '#00afef', link: 'https://maps.omniscale.com/'},
+                                    {text: ' • Map data: ', fontSize: 7},
+                                    {
+                                        text: 'OpenStreetMap ',
+                                        fontSize: 7,
+                                        color: '#00afef',
+                                        link: 'https://www.openstreetmap.org/copyright'
+                                    }
+                                ],
+                                absolutePosition: {x: 378, y: 670}
+                            },
+                            {
+                                margin: [0, 10, 0, 0],
+                                table: {
+                                    headerRows: 0,
+                                    widths: ['*', 'auto', 100],
+                                    body: [
+                                        {% if mediaTimeIsCertified == "1" %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: '{{ pdftblcaptimecert }}',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ mediaTimeStamp }}',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                        {% else %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: '{{ pdftblcaptimenotcert }}',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ mediaTimeStamp }}',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red',
+                                                noWrap: true
+                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                        {% endif %}
+                                        {% if mediaLocIsCertified == "1" %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: '{{ pdftblcaploccert }}',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
+                                                fontSize: 9,
+                                                noWrap: true
+                                            }, ''],
+                                        {% else %}
+                                            [{
+                                                border: [true, true, false, true],
+                                                text: '{{ pdftblcaplocnotcert }}',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                noWrap: true
+                                            }, {
+                                                border: [false, true, true, true],
+                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
+                                                fontSize: 9,
+                                                color: 'red',
+                                                decoration: 'lineThrough',
+                                                decorationColor: 'red',
+                                                noWrap: true
+                                            }, ''],
+                                        {% endif %}
+                                        {% if mediaArIsOn == "1" %}
+                                            [{
+                                                colSpan: 2,
+                                                border: [false, false, false, false],
+                                                text: '{{ pdfaron }}',
+                                                fontSize: 7
+                                            }, '', ''],
+                                        {% else %}
+                                            [{
+                                                colSpan: 2,
+                                                border: [false, false, false, false],
+                                                text: '{{ pdfaroff }}',
+                                                fontSize: 7
+                                            }, '', ''],
+                                        {% endif %}
+                                        [{
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: '{{ pdflinktxt }}',
+                                            fontSize: 7
+                                        }, '', ''],
+                                        [{
+                                            colSpan: 2, border: [false, false, false, false], text: qrcodevalue,
+                                            fontSize: 7,
+                                            italics: true,
+                                            color: '#00afef',
+                                            decoration: 'underline',
+                                            decorationColor: '#00afef',
+                                            link: qrcodevalue
+                                        }, '', ''],
+                                        [{
+                                            colSpan: 2,
+                                            border: [false, false, false, false],
+                                            text: '{{ pdfaccuracydefinition }}',
+                                            fontSize: 6
+                                        }, '', '']
+                                    ]
+                                },
+                                layout: {
+                                    defaultBorder: false
+                                }
+                            }
+                        ],
+                        info: {
+                            title: '{{ pdfinfotitle }}',
+                            author:
+                                '{{ pdfinfoauthor }}',
+                            subject:
+                                '{{ pdfinfosubject }}',
+                            keywords:
+                                '{{ pdfinfokeywords }}',
+                            creator:
+                                '{{ pdfinfocreator }}',
+                            producer:
+                                '{{ pdfinfoproducer }}'
+                        }
+                    }
+                ;
+
+                pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
+
+                document.getElementById('landingmapid').style.height = '';
+
+                mymap.invalidateSize();
+
+            });
+
+        });
+
+    </script>
+    {% block javascript %}{% endblock %}
+    </body>
+    </html>
+{% endlocaltime %}
