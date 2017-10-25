@@ -910,14 +910,14 @@ def cognitoauth(request):
             mymensormobileclienttype = "UNKNOWN"
         # No mobile client type set
         if mymensormobileclienttype == "UNKNOWN":
-            return HttpResponse(status=491)
+            return HttpResponse(status=400)
         try:
             mymclientguid = request.META['HTTP_WARNING']
         except KeyError:
             mymclientguid = "NOTSET"
         # No mobile GUID set
         if mymclientguid == "NOTSET":
-            return HttpResponse(status=492)
+            return HttpResponse(status=400)
         assetinstance = Asset.objects.get(assetOwner=request.user)
         thirtydaysago = datetime.now(pytz.utc) - timedelta(days=30)
         qtyofinstallactiveduringlastmonth = MobileClientInstall.objects.filter(asset=assetinstance).filter(
