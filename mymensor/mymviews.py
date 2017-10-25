@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, redirect
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
@@ -889,7 +889,7 @@ def create_new_user(request):
 @permission_classes((IsAuthenticated,))
 def mobiletowebapp(request):
     if request.method == "GET":
-        portfolio(request)
+        return redirect('portfolio')
     return HttpResponse(status=400)
 
 
