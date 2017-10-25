@@ -399,7 +399,7 @@ p {
 
 @media (min-width: 1344px) {
     body {
-        overflow: hidden;
+        overflow: visible;
     }
 
     #landingmapid {
@@ -409,7 +409,7 @@ p {
 
 @media (min-width: 1536px) {
     body {
-        overflow: hidden;
+        overflow: visible;
     }
 
     #landingmapid {
@@ -419,7 +419,7 @@ p {
 
 @media (min-width: 1728px) {
     body {
-        overflow: hidden;
+        overflow: visible;
     }
 
     #landingmapid {
@@ -429,7 +429,7 @@ p {
 
 @media (min-width: 1910px) {
     body {
-        overflow: hidden;
+        overflow: visible;
     }
 
     #landingmapid {
@@ -458,81 +458,4 @@ p {
     left: 45%;
     top: 35%;
     margin: auto;
-}
-
-@media print {
-    #landingmapid {
-        height: 350px;
-    }
-
-    .list-group-item {
-        font-size: 0.5rem;
-        line-height: 0.75rem;
-        padding-top: 0.1rem;
-        padding-bottom: 0.1rem;
-    }
-
-    .landingcard {
-        width: 90%;
-    }
-
-    .leaflet-control {
-        visibility: hidden;
-    }
-
-    .card-text {
-        font-size: 0.75rem;
-        line-height: 1rem;
-        padding-top: 0.1rem;
-        padding-bottom: 0.1rem;
-    }
-
-    .navbar {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    .landingfootertext {
-        padding: 0.5rem;
-        font-size: 0.5rem;
-        line-height: 0.75rem;
-    }
-
-    .landingtitle {
-        margin-left: 1rem;
-        margin-right: 1rem;
-        float: right;
-        padding-top: 0.5rem;
-    }
-
-    .card-block {
-        padding-top: 0.2rem;
-        padding-bottom: 0.2rem;
-    }
-
-    .body {
-        overflow: hidden;
-    }
-
-    #footer-dash {
-        background-color: #e3f2fd;
-        padding-top: 0;
-        padding-right: 1rem;
-        padding-bottom: 0;
-        padding-left: 1rem;
-    }
-
-    .container-fluid {
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    .language-selector {
-        visibility: hidden;
-    }
-
-    .pdfbtn {
-        visibility: hidden;
-    }
-
 }
