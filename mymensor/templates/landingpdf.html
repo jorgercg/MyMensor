@@ -114,7 +114,7 @@
                         <a data-toggle="modal"
                            data-target="#mediaImageModal"
                            data-whatever="">
-                            <img id="mediaimg" class="card-img-top"
+                            <img id="mediaimg" class="card-img-top img-fluid"
                                  src=""
                                  alt="">
                         </a>
@@ -222,7 +222,7 @@
                            data-target="#mediaVideoModal"
                            data-whatever=""><span
                                 class="fa fa-play-circle-o fa-5x thumbnail"></span>
-                            <img id="mediaimgthumb" class="card-img-top"
+                            <img id="mediaimgthumb" class="card-img-top img-fluid"
                                  src=""
                                  alt="">
                         </a>
@@ -295,6 +295,37 @@
                     </div>
                 </div>
             {% endif %}
+        </div>
+        <!-- Modal to Images -->
+        <div class="modal fade"
+             id="mediaImageModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <img id="mediaContent" class="img-fluid" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal to Videos -->
+        <div class="modal fade"
+             id="mediaVideoModal"
+             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <video controls>
+                                <source src="{{ videoStorageURL }}"
+                                        type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="footer-dash">
             <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
