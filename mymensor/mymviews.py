@@ -561,7 +561,6 @@ def amazon_sns_processor(request):
 # Portfolio View
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-@login_required
 @user_passes_test(group_check)
 def portfolio(request):
     if request.user.is_authenticated:
