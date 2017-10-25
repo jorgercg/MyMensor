@@ -887,6 +887,15 @@ def create_new_user(request):
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
+def mobiletowebapp(request):
+    if request.method == "GET":
+        portfolio(request)
+    return HttpResponse(status=400)
+
+
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
 def cognitoauth(request):
     if request.method == "GET":
         client = boto3.client(
