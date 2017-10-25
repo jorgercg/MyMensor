@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -887,9 +887,15 @@ def create_new_user(request):
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
+@user_passes_test(group_check)
 def mobiletowebapp(request):
     if request.method == "GET":
-        return HttpResponseRedirect(reverse('portfolio'))
+        user = request.user
+        if user is not None:
+            login(request,user)
+            return HttpResponseRedirect(reverse('portfolio'))
+        else:
+            HttpResponse(status=400)
     return HttpResponse(status=400)
 
 
