@@ -76,8 +76,6 @@
                                                                  width="46" height="46"
                                                                  class="d-inline-block align-center" alt=""><span
                 class="landingtitle">{% trans 'MyMensor Media Check' %}</span>
-            <span id="pdfgenbtn" class="fa fa-file-pdf-o pdfbtn fa-2x" data-toggle="tooltip" data-placement="left"
-                  title="{% trans 'Download Media Check PDF file' %}"></span>
         </a>
     </nav>
     <div class="container-fluid">
@@ -116,7 +114,7 @@
                         <a data-toggle="modal"
                            data-target="#mediaImageModal"
                            data-whatever="">
-                            <img id="mediaimg" class="card-img-top img-fluid"
+                            <img id="mediaimg" class="card-img-top"
                                  src=""
                                  alt="">
                         </a>
@@ -224,7 +222,7 @@
                            data-target="#mediaVideoModal"
                            data-whatever=""><span
                                 class="fa fa-play-circle-o fa-5x thumbnail"></span>
-                            <img id="mediaimgthumb" class="card-img-top img-fluid"
+                            <img id="mediaimgthumb" class="card-img-top"
                                  src=""
                                  alt="">
                         </a>
@@ -297,37 +295,6 @@
                     </div>
                 </div>
             {% endif %}
-        </div>
-        <!-- Modal to Images -->
-        <div class="modal fade"
-             id="mediaImageModal"
-             tabindex="-1" role="dialog" aria-labelledby="mediaImageModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <img id="mediaContent" class="img-fluid" src="" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal to Videos -->
-        <div class="modal fade"
-             id="mediaVideoModal"
-             tabindex="-1" role="dialog" aria-labelledby="mediaVideoModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <video controls>
-                                <source src="{{ videoStorageURL }}"
-                                        type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="footer-dash">
             <div id="footer-dash-flexbox" class="d-flex justify-content-sm-start flex-nowrap">
@@ -469,195 +436,193 @@
             leafletImage(mymap, function (err, canvas) {
                 encodedMapContent = canvas.toDataURL();
                 var docDefinition = {
-                        pageSize: 'A4',
-                        pageOrientation: 'portrait',
-                        // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-                        pageMargins: [40, 40, 40, 40],
-                        content: [
-                            {
-                                columns: [
-                                    {
-                                        width: 55,
-                                        image: encodedMyMensorLogo,
-                                        alignment: 'left',
-                                        fit: [50, 50]
-                                    },
-                                    {
-                                        width: '*',
-                                        text: [
-                                            '{{ pdftitle }}\n',
-                                            {% if mediaTimeIsCertified == "1" %}
-                                                {text: '{{ pdfcaptimecert }}\n', fontSize: 9, color: 'green'},
-                                            {% else %}
-                                                {text: '{{ pdfcaptimenotcert }}\n', fontSize: 9, color: 'red'},
-                                            {% endif %}
-                                            {% if mediaLocIsCertified == "1" %}
-                                                {text: '{{ pdfcaploccert }}\n', fontSize: 9, color: 'green'}
-                                            {% else %}
-                                                {text: '{{ pdfcaplocnotcert }}\n', fontSize: 9, color: 'red'}
-                                            {% endif %}
-                                        ],
-                                        fontSize: 20,
-                                        alignment: 'right'
-                                    }
-                                ]
-                            },
-                            {
-                                image: encodedContent,
-                                alignment: 'center',
-                                width: 515,
-                                margin: [0, 5, 0, 5]
-                            },
-                            {
-                                image: encodedMapContent,
-                                alignment: 'center',
-                                width: 515
-                            },
-                            {
-                                background: 'white',
-                                text: [
-                                    {text: 'Leaflet', fontSize: 7, color: '#00afef', link: 'http://leafletjs.com'},
-                                    {text: ' | © 2017 • ', fontSize: 7},
-                                    {text: 'Omniscale', fontSize: 7, color: '#00afef', link: 'https://maps.omniscale.com/'},
-                                    {text: ' • Map data: ', fontSize: 7},
-                                    {
-                                        text: 'OpenStreetMap ',
-                                        fontSize: 7,
-                                        color: '#00afef',
-                                        link: 'https://www.openstreetmap.org/copyright'
-                                    }
-                                ],
-                                absolutePosition: {x: 378, y: 670}
-                            },
-                            {
-                                margin: [0, 10, 0, 0],
-                                table: {
-                                    headerRows: 0,
-                                    widths: ['*', 'auto', 100],
-                                    body: [
+                    pageSize: 'A4',
+                    pageOrientation: 'portrait',
+                    // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
+                    pageMargins: [40, 40, 40, 40],
+                    content: [
+                        {
+                            columns: [
+                                {
+                                    width: 55,
+                                    image: encodedMyMensorLogo,
+                                    alignment: 'left',
+                                    fit: [50, 50]
+                                },
+                                {
+                                    width: '*',
+                                    text: [
+                                        '{{ pdftitle }}\n',
                                         {% if mediaTimeIsCertified == "1" %}
-                                            [{
-                                                border: [true, true, false, true],
-                                                text: '{{ pdftblcaptimecert }}',
-                                                fontSize: 9,
-                                                noWrap: true
-                                            }, {
-                                                border: [false, true, true, true],
-                                                text: '{{ mediaTimeStamp }}',
-                                                fontSize: 9,
-                                                noWrap: true
-                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                            {text: '{{ pdfcaptimecert }}\n', fontSize: 9, color: 'green'},
                                         {% else %}
-                                            [{
-                                                border: [true, true, false, true],
-                                                text: '{{ pdftblcaptimenotcert }}',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                noWrap: true
-                                            }, {
-                                                border: [false, true, true, true],
-                                                text: '{{ mediaTimeStamp }}',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                decoration: 'lineThrough',
-                                                decorationColor: 'red',
-                                                noWrap: true
-                                            }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                            {text: '{{ pdfcaptimenotcert }}\n', fontSize: 9, color: 'red'},
                                         {% endif %}
                                         {% if mediaLocIsCertified == "1" %}
-                                            [{
-                                                border: [true, true, false, true],
-                                                text: '{{ pdftblcaploccert }}',
-                                                fontSize: 9,
-                                                noWrap: true
-                                            }, {
-                                                border: [false, true, true, true],
-                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
-                                                fontSize: 9,
-                                                noWrap: true
-                                            }, ''],
+                                            {text: '{{ pdfcaploccert }}\n', fontSize: 9, color: 'green'}
                                         {% else %}
-                                            [{
-                                                border: [true, true, false, true],
-                                                text: '{{ pdftblcaplocnotcert }}',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                noWrap: true
-                                            }, {
-                                                border: [false, true, true, true],
-                                                text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
-                                                fontSize: 9,
-                                                color: 'red',
-                                                decoration: 'lineThrough',
-                                                decorationColor: 'red',
-                                                noWrap: true
-                                            }, ''],
+                                            {text: '{{ pdfcaplocnotcert }}\n', fontSize: 9, color: 'red'}
                                         {% endif %}
-                                        {% if mediaArIsOn == "1" %}
-                                            [{
-                                                colSpan: 2,
-                                                border: [false, false, false, false],
-                                                text: '{{ pdfaron }}',
-                                                fontSize: 7
-                                            }, '', ''],
-                                        {% else %}
-                                            [{
-                                                colSpan: 2,
-                                                border: [false, false, false, false],
-                                                text: '{{ pdfaroff }}',
-                                                fontSize: 7
-                                            }, '', ''],
-                                        {% endif %}
+                                    ],
+                                    fontSize: 20,
+                                    alignment: 'right'
+                                }
+                            ]
+                        },
+                        {
+                            image: encodedContent,
+                            alignment: 'center',
+                            width: 515,
+                            margin: [0, 5, 0, 5]
+                        },
+                        {
+                            image: encodedMapContent,
+                            alignment: 'center',
+                            width: 515
+                        },
+                        {
+                            background: 'white',
+                            text: [
+                                {text: 'Leaflet', fontSize: 7, color: '#00afef', link: 'http://leafletjs.com'},
+                                {text: ' | © 2017 • ', fontSize: 7},
+                                {text: 'Omniscale', fontSize: 7, color: '#00afef', link: 'https://maps.omniscale.com/'},
+                                {text: ' • Map data: ', fontSize: 7},
+                                {
+                                    text: 'OpenStreetMap ',
+                                    fontSize: 7,
+                                    color: '#00afef',
+                                    link: 'https://www.openstreetmap.org/copyright'
+                                }
+                            ],
+                            absolutePosition: {x: 378, y: 670}
+                        },
+                        {
+                            margin: [0, 10, 0, 0],
+                            table: {
+                                headerRows: 0,
+                                widths: ['*', 'auto', 100],
+                                body: [
+                                    {% if mediaTimeIsCertified == "1" %}
+                                        [{
+                                            border: [true, true, false, true],
+                                            text: '{{ pdftblcaptimecert }}',
+                                            fontSize: 9,
+                                            noWrap: true
+                                        }, {
+                                            border: [false, true, true, true],
+                                            text: '{{ mediaTimeStamp }}',
+                                            fontSize: 9,
+                                            noWrap: true
+                                        }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                    {% else %}
+                                        [{
+                                            border: [true, true, false, true],
+                                            text: '{{ pdftblcaptimenotcert }}',
+                                            fontSize: 9,
+                                            color: 'red',
+                                            noWrap: true
+                                        }, {
+                                            border: [false, true, true, true],
+                                            text: '{{ mediaTimeStamp }}',
+                                            fontSize: 9,
+                                            color: 'red',
+                                            decoration: 'lineThrough',
+                                            decorationColor: 'red',
+                                            noWrap: true
+                                        }, {rowSpan: 6, qr: qrcodevalue, fit: 100, alignment: 'right'}],
+                                    {% endif %}
+                                    {% if mediaLocIsCertified == "1" %}
+                                        [{
+                                            border: [true, true, false, true],
+                                            text: '{{ pdftblcaploccert }}',
+                                            fontSize: 9,
+                                            noWrap: true
+                                        }, {
+                                            border: [false, true, true, true],
+                                            text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
+                                            fontSize: 9,
+                                            noWrap: true
+                                        }, ''],
+                                    {% else %}
+                                        [{
+                                            border: [true, true, false, true],
+                                            text: '{{ pdftblcaplocnotcert }}',
+                                            fontSize: 9,
+                                            color: 'red',
+                                            noWrap: true
+                                        }, {
+                                            border: [false, true, true, true],
+                                            text: '{{ pdflatitude }}={{ loclatitude|floatformat:6 }}˚  {{ pdflongitude }}={{ loclongitude|floatformat:6 }}˚  {{ pdfaccuracy }}*={{ locprecisioninm|floatformat:1 }}m',
+                                            fontSize: 9,
+                                            color: 'red',
+                                            decoration: 'lineThrough',
+                                            decorationColor: 'red',
+                                            noWrap: true
+                                        }, ''],
+                                    {% endif %}
+                                    {% if mediaArIsOn == "1" %}
                                         [{
                                             colSpan: 2,
                                             border: [false, false, false, false],
-                                            text: '{{ pdflinktxt }}',
+                                            text: '{{ pdfaron }}',
                                             fontSize: 7
                                         }, '', ''],
-                                        [{
-                                            colSpan: 2, border: [false, false, false, false], text: qrcodevalue,
-                                            fontSize: 7,
-                                            italics: true,
-                                            color: '#00afef',
-                                            decoration: 'underline',
-                                            decorationColor: '#00afef',
-                                            link: qrcodevalue
-                                        }, '', ''],
+                                    {% else %}
                                         [{
                                             colSpan: 2,
                                             border: [false, false, false, false],
-                                            text: '{{ pdfaccuracydefinition }}',
-                                            fontSize: 6
-                                        }, '', '']
-                                    ]
-                                },
-                                layout: {
-                                    defaultBorder: false
-                                }
+                                            text: '{{ pdfaroff }}',
+                                            fontSize: 7
+                                        }, '', ''],
+                                    {% endif %}
+                                    [{
+                                        colSpan: 2,
+                                        border: [false, false, false, false],
+                                        text: '{{ pdflinktxt }}',
+                                        fontSize: 7
+                                    }, '', ''],
+                                    [{
+                                        colSpan: 2, border: [false, false, false, false], text: qrcodevalue,
+                                        fontSize: 7,
+                                        italics: true,
+                                        color: '#00afef',
+                                        decoration: 'underline',
+                                        decorationColor: '#00afef',
+                                        link: qrcodevalue
+                                    }, '', ''],
+                                    [{
+                                        colSpan: 2,
+                                        border: [false, false, false, false],
+                                        text: '{{ pdfaccuracydefinition }}',
+                                        fontSize: 6
+                                    }, '', '']
+                                ]
+                            },
+                            layout: {
+                                defaultBorder: false
                             }
-                        ],
-                        info: {
-                            title: '{{ pdfinfotitle }}',
-                            author:
-                                '{{ pdfinfoauthor }}',
-                            subject:
-                                '{{ pdfinfosubject }}',
-                            keywords:
-                                '{{ pdfinfokeywords }}',
-                            creator:
-                                '{{ pdfinfocreator }}',
-                            producer:
-                                '{{ pdfinfoproducer }}'
                         }
+                    ],
+                    info: {
+                        title: '{{ pdfinfotitle }}',
+                        author:
+                            '{{ pdfinfoauthor }}',
+                        subject:
+                            '{{ pdfinfosubject }}',
+                        keywords:
+                            '{{ pdfinfokeywords }}',
+                        creator:
+                            '{{ pdfinfocreator }}',
+                        producer:
+                            '{{ pdfinfoproducer }}'
                     }
-                ;
+                };
 
                 pdfMake.createPdf(docDefinition).download("{{ pdffilename }}");
 
                 document.getElementById('landingmapid').style.height = '';
 
                 mymap.invalidateSize();
-
 
 
             });
