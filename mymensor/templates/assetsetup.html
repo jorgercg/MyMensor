@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n mymfilters %}
+{% load staticfiles i18n tz mymfilters %}
 {% if user.is_authenticated %}
     {% block title %}Asset Setup - {{ block.super }}{% endblock %}
     {% block header %}
