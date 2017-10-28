@@ -47,9 +47,9 @@
                                                 <img class="card-img-top img-fluid" src="{{ media.mediaStorageURL }}"
                                                      alt="">
                                             </a>
-                                            <div id="{{ vp.vpNumber }}" class="card-block">
+                                            <div class="card-block">
                                                 <p class="card-text">
-                                                    <a data-toggle="modal" data-target="#mediaModal"
+                                                    <a data-toggle="modal" data-target="#mediaModal{{ vp.vpNumber }}"
                                                        data-whatever="{{ vp.vpStdPhotoStorageURL }}">
                                                         <span class="fa fa-picture-o descvp" data-toggle="tooltip"
                                                               data-placement="top"
@@ -113,6 +113,19 @@
                                                 <span class="fa fa-cloud-upload" data-toggle="tooltip"
                                                       data-placement="top"
                                                       title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                            </div>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="mediaModal{{ vp.vpNumber }}" tabindex="-1" role="dialog"
+                                             aria-labelledby="mediaModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <img id="mediaContent" class="img-fluid"
+                                                             src="{{ media.mediaStorageURL }}" alt="">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -578,7 +591,7 @@
                 });
 
                 $('#mediaModal').on('shown.bs.modal', function (e) {
-                    console.log("Clicked on:"+e.target.id);
+                    console.log("Clicked on:" + e.target.id);
                 })
 
 
