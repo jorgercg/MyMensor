@@ -578,7 +578,7 @@
                 });
 
                 $('#mediaModal').on('shown.bs.modal', function (e) {
-                    console.log("Clicked on:"+this.relatedTarget);
+                    console.log("Clicked on:"+e.relatedTarget.nodeName);
                 })
 
 
