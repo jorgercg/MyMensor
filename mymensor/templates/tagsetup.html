@@ -1,547 +1,552 @@
 {% extends 'base.html' %}
-{% load staticfiles i18n mymfilters %}
-{% if user.is_authenticated %}
-    {% block title %}TAGs Setup - {{ block.super }}{% endblock %}
-    {% block header %}
-    {% endblock %}
-    {% block content %}
-        <div class="mym-dash">
-            <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
-                <div id="vpselector" class="mym-dash-item">
-                    <select id="currvp">
-                        {% for vp in vps %}
-                            <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>
-                                VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div id="tagselectorforeachvp" class="mym-dash-item">
-                    <select id="currtag">
-                        {% for tag in tags %}
-                            <option value="{{ tag.tagNumber }}" {% if tag.tagNumber == currenttag %}selected{% endif %}>
-                                TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
-                        {% empty %}
-                            <option value="">{% trans "No TAGs" %}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div id="tagstotalqtyselector" class="mym-dash-item">
-                    <button id="inctags" type="button" class="btn btn-outline-primary">
-                        {% trans 'Add a TAG in VP#' %}{{ currentvp }}</button>
-                </div>
-                <div id="lasttag" class="mym-dash-item">
-                    {% if lasttag is not None %}
-                        <span class="badge badge-pill badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}{% trans " in VP#" %}{{ vpoflasttag.vpNumber }}</span>
+{% load staticfiles i18n tz mymfilters %}
+{% localtime on %}
+    {% if user.is_authenticated %}
+        {% block title %}TAGs Setup - {{ block.super }}{% endblock %}
+        {% block header %}
+        {% endblock %}
+        {% block content %}
+            <div class="mym-dash">
+                <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
+                    <div id="vpselector" class="mym-dash-item">
+                        <select id="currvp">
+                            {% for vp in vps %}
+                                <option value="{{ vp.vpNumber }}" {% if vp.vpNumber == currentvp %}selected{% endif %}>
+                                    VP#{{ vp.vpNumber }} - {{ vp.vpDescription }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="tagselectorforeachvp" class="mym-dash-item">
+                        <select id="currtag">
+                            {% for tag in tags %}
+                                <option value="{{ tag.tagNumber }}"
+                                        {% if tag.tagNumber == currenttag %}selected{% endif %}>
+                                    TAG#{{ tag.tagNumber }} - {{ tag.tagDescription }}</option>
+                            {% empty %}
+                                <option value="">{% trans "No TAGs" %}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="tagstotalqtyselector" class="mym-dash-item">
+                        <button id="inctags" type="button" class="btn btn-outline-primary">
+                            {% trans 'Add a TAG in VP#' %}{{ currentvp }}</button>
+                    </div>
+                    <div id="lasttag" class="mym-dash-item">
+                        {% if lasttag is not None %}
+                            <span class="badge badge-pill badge-info">{% trans "Last tag is TAG#" %}{{ lasttag.tagNumber }}{% trans " in VP#" %}{{ vpoflasttag.vpNumber }}</span>
+                        {% else %}
+                            <span class="badge badge-pill badge-info">{% trans "No TAGs" %}</span>
+                        {% endif %}
+                    </div>
+                    {% if tags is None %}
+                        <div id="tagstotalqtydecuder" class="mym-dash-item">
+                            <button id="deltagOFF" type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="{% trans 'No tags to be deleted!' %}">
+                                {% trans 'No TAGs' %}</button>
+                        </div>
+                    {% elif currenttag == lasttag.tagNumber %}
+                        <div id="tagstotalqtydecuder" class="mym-dash-item">
+                            <button id="deltag" type="button" class="btn btn-outline-danger">
+                                {% trans 'Delete TAG#' %}{{ currenttag }}</button>
+                        </div>
                     {% else %}
-                        <span class="badge badge-pill badge-info">{% trans "No TAGs" %}</span>
+                        <div id="tagstotalqtydecuder" class="mym-dash-item">
+                            <button id="deltagOFF" type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
+                                    data-placement="left"
+                                    title="{% trans 'This is not the last TAG, so you cannot delete it! You can deactivate it in the form below.' %}">
+                                {% trans 'Delete TAG#' %}{{ currenttag }}</button>
+                        </div>
                     {% endif %}
                 </div>
-                {% if tags is None %}
-                    <div id="tagstotalqtydecuder" class="mym-dash-item">
-                        <button id="deltagOFF" type="button" class="btn btn-outline-secondary" data-toggle="tooltip"
-                                data-placement="top"
-                                title="{% trans 'No tags to be deleted!' %}">
-                            {% trans 'No TAGs' %}</button>
-                    </div>
-                {% elif currenttag == lasttag.tagNumber %}
-                    <div id="tagstotalqtydecuder" class="mym-dash-item">
-                        <button id="deltag" type="button" class="btn btn-outline-danger">
-                            {% trans 'Delete TAG#' %}{{ currenttag }}</button>
-                    </div>
-                {% else %}
-                    <div id="tagstotalqtydecuder" class="mym-dash-item">
-                        <button id="deltagOFF" type="button" class="btn btn-outline-secondary"  data-toggle="tooltip"
-                                data-placement="left"
-                                title="{% trans 'This is not the last TAG, so you cannot delete it! You can deactivate it in the form below.' %}">
-                            {% trans 'Delete TAG#' %}{{ currenttag }}</button>
-                    </div>
-                {% endif %}
             </div>
-        </div>
-        <hr>
-        <div class="row" style="padding-bottom: 20px">
-            <div class="col-sm-7">
-                <div class="card card-outline-primary m-2">
-                    <div id="cardblock" class="card-block">
-                        <p class="card-text">
+            <hr>
+            <div class="row" style="padding-bottom: 20px">
+                <div class="col-sm-7">
+                    <div class="card card-outline-primary m-2">
+                        <div id="cardblock" class="card-block">
+                            <p class="card-text">
                             <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
                                   title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
-                        </p>
-                    </div>
-                    <div id="wrapper">
-                        <div id="paper" class="papercontainer">
+                            </p>
+                        </div>
+                        <div id="wrapper">
+                            <div id="paper" class="papercontainer">
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            {% if currenttag is not None %}
+                            <a id="startmarktagbtn" role="button" class="btn btn-primary">
+                                {% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
+                            <a id="clearmarktagbtn" role="button"
+                               class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
+                            {% endif %}
                         </div>
                     </div>
-                    <div class="card-block">
-                        <a id="startmarktagbtn" role="button" class="btn btn-primary">
-                            {% trans 'Mark position of TAG#' %}{{ curenttag }}{% trans ' in the VP standard photo' %}</a>
-                        <a id="clearmarktagbtn" role="button"
-                           class="btn btn-outline-primary">{% trans 'Clear marking' %}</a>
+                </div>
+                <div class="col-sm-5">
+                    <div id="tagedition">
+                        <form role="form" action="." method="post"> {% csrf_token %}
+                            {% if form.non_field_errors %}
+                                <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
+                            {% endif %}
+                            {% for hidden in form.hidden_fields %}
+                                {{ hidden }}
+                            {% endfor %}
+                            {% for field in form.visible_fields %}
+                                <div class="form-group {% if field.errors %}has-error{% endif %}">
+                                    {{ field.label_tag|add_class:"control-label" }}
+                                    {% if field.help_text %}
+                                        <span class="help-block">{{ field.help_text }}</span>
+                                    {% endif %}
+                                    {% if field.errors %}
+                                        <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
+                                    {% endif %}
+                                    {{ field|add_class:"form-control" }}
+                                </div>
+                            {% endfor %}
+                            <input type="hidden" name="currentvp" value="{{ currentvp }}">
+                            <input type="hidden" name="currenttag" value="{{ currenttag }}">
+                            {% if form is not None %}
+                                <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
+                            {% endif %}
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5">
-                <div id="tagedition">
-                    <form role="form" action="." method="post"> {% csrf_token %}
-                        {% if form.non_field_errors %}
-                            <div class="alert alert-danger">{{ form.non_field_errors|join:"<br \>" }}</div>
-                        {% endif %}
-                        {% for hidden in form.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-                        {% for field in form.visible_fields %}
-                            <div class="form-group {% if field.errors %}has-error{% endif %}">
-                                {{ field.label_tag|add_class:"control-label" }}
-                                {% if field.help_text %}
-                                    <span class="help-block">{{ field.help_text }}</span>
-                                {% endif %}
-                                {% if field.errors %}
-                                    <span class="help-block">{{ field.errors|join:"<br \>" }}</span>
-                                {% endif %}
-                                {{ field|add_class:"form-control" }}
-                            </div>
-                        {% endfor %}
-                        <input type="hidden" name="currentvp" value="{{ currentvp }}">
-                        <input type="hidden" name="currenttag" value="{{ currenttag }}">
-                        {% if form is not None %}
-                            <input class="btn btn-success" type="submit" value="{% trans 'Submit' %}">
-                        {% endif %}
-                    </form>
-                </div>
-            </div>
-        </div>
-    {% endblock %}
-    {% block javascript %}
-        <script src="{% static "js/raphael.min.js" %}"></script>
-        <script type="text/javascript">
-            var dynwidth = 0;
-            var dynheight = 0;
-            console.log("{{ descvpStorageURL }}");
-            $('#currvp').chosen();
-            $('#currtag').chosen();
-            //$(window).resize(function () {
-            //    location.reload();
-            //});
-            $(function () {
-                dynwidth = document.getElementById('cardblock').offsetWidth;
-                dynheight = (dynwidth / 1280) * 720;
-                console.log('dynwidth:' + dynwidth);
-                console.log('dynheight:' + dynheight);
-                document.getElementById("wrapper").style.width = Math.round(dynwidth) + "px";
-                document.getElementById("wrapper").style.height = Math.round(dynheight) + "px";
-                document.getElementById("paper").style.width = Math.round(dynwidth) + "px";
-                document.getElementById("paper").style.height = Math.round(dynheight) + "px";
-            });
-            $(function () {
-
-                var qttags = {{ qtytagsindatabase }};
-                var qtvps = {{ qtyvps }};
-
-                console.log("INITIAL: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}' + " lasttag.tagNumber=" + '{{ lasttag.tagNumber }}' + " qtytagsindatabase=" + '{{ qtytagsindatabase }}');
-
-                $('#currtag').change(function () {
-                    var tagselected = $(this).find(":selected").val();
-                    console.log("TAGSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + tagselected);
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + '{{ qtytagsindatabase }}' + '&currenttag=' + tagselected;
+        {% endblock %}
+        {% block javascript %}
+            <script src="{% static "js/raphael.min.js" %}"></script>
+            <script type="text/javascript">
+                var dynwidth = 0;
+                var dynheight = 0;
+                console.log("{{ descvpStorageURL }}");
+                $('#currvp').chosen();
+                $('#currtag').chosen();
+                //$(window).resize(function () {
+                //    location.reload();
+                //});
+                $(function () {
+                    dynwidth = document.getElementById('cardblock').offsetWidth;
+                    dynheight = (dynwidth / 1280) * 720;
+                    console.log('dynwidth:' + dynwidth);
+                    console.log('dynheight:' + dynheight);
+                    document.getElementById("wrapper").style.width = Math.round(dynwidth) + "px";
+                    document.getElementById("wrapper").style.height = Math.round(dynheight) + "px";
+                    document.getElementById("paper").style.width = Math.round(dynwidth) + "px";
+                    document.getElementById("paper").style.height = Math.round(dynheight) + "px";
                 });
-
-                $('#currvp').change(function () {
-                    var vpselected = $(this).find(":selected").val();
-                    console.log("VPSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytagsindatabase }}'+'&currenttag=' + '{{ currenttag }}';
-                });
-
-                $('#inctags').click(function () {
-                    console.log("Clicked on inctags!!!!");
-                    qttags = qttags + 1;
-                    console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
-                    window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + qttags;
-                });
-
-                $('#deltag').click(function () {
-                    console.log("Clicked on deltag!!!!");
-                    qttags = qttags - 1;
-                    console.log("DELTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
-                    var choice = confirm("{% trans "Please confirm this TAG deletion." %}");
-                    if (choice) {
-                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}' + '&tagdeleted=' + '{{ currenttag }}';
-                    }
-
-
-                });
-
-            });
-            // Function to take care of the tag marking
-            $(function () {
-
-                var containerwidth = 0;
-                var containerheight = 0;
-
-                /**
-                 * A Simple Vector Shape Drawing App with RaphaelJS and jQuery
-                 * copyright 2010 Kayla Rose Martin - Licensed under the MIT license
-                 * Inspired by http://stackoverflow.com/questions/3582344/draw-a-connection-line-in-raphaeljs
-                 **/
-
-                /* Then edited by Cary FitzHugh to add an example of exporting the SVG and adding polygons
-
-                 */
-
-
-                (function (Raphael) {
-                    /// Plugin - replaces original RaphaelJS .image constructor
-                    /// with one that respects original dimensions.
-                    /// Optional overrides for each dimension.
-                    /// @drzaus @zaus
-                    /// based on http://stackoverflow.com/questions/10802702/raphael-js-image-with-its-original-width-and-height-size
-                    /// modified 13/08/2013 by @Huniku to support asynchronous loads
-
-                    var originalRaphaelImageFn = Raphael.fn.image;
-
-                    Raphael.fn.imageAsync = function (url, x, y, w, h) {
-                        var dfd = new jQuery.Deferred();
-                        var done = false;
-                        var paper = this;
-                        // fix the image dimensions to match original scale unless otherwise provided
-                        if (!w || !h) {
-                            //Create the new image and set the onload event to call
-                            //the original paper.image function with the desired dimensions
-                            var img = new Image();
-                            img.onload = function () {
-                                if (done)
-                                    return;
-                                if (!w) w = img.width;
-                                if (!h) h = img.height;
-                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
-                            };
-                            //Begin loading of the image
-                            img.src = url;
-
-                            //If the images is already loaded (i.e. it was in the local cache)
-                            //img.onload will not fire, so call paper.image here.
-                            //Set done to ensure img.onload does not fire.
-                            if (img.width != 0) {
-                                if (!w) w = img.width;
-                                if (!h) h = img.height;
-                                done = true;
-                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
-                            }
-                        }
-                        else
-                            dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
-                        return dfd.promise();
-                    };
-                })(Raphael);
-
-
-                /*!
-                 * raphaeljs.serialize
-                 *
-                 * Copyright (c) 2010 Jonathan Spies
-                 * Licensed under the MIT license:
-                 * (http://www.opensource.org/licenses/mit-license.php)
-                 *
-                 * Modified to return proportional values to container size by Jorge Goncalves in 2017
-                 *
-                 */
-
-                var RaphaelSerializeProportional = {
-                    json: function (paper) {
-                        var svgdata = [];
-
-                        containerwidth = $('#paper').width();
-                        containerheight = $('#paper').height();
-
-                        paper.forEach(function (node) {
-                            if (node && node.type) {
-                                switch (node.type) {
-                                    case "rect":
-                                        var object = {
-                                            type: node.type,
-                                            x: node.attrs['x'] / containerwidth,
-                                            y: node.attrs['y'] / containerheight,
-                                            width: node.attrs['width'] / containerwidth,
-                                            height: node.attrs['height'] / containerheight,
-                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
-                                            'stroke-width': node.attrs['stroke-width'],
-                                            fill: node.attrs['fill'],
-                                            tagnumber: {{ currenttag }}
-                                        };
-                                        console.log('containerwidth' + containerwidth);
-                                        console.log('containerheight' + containerheight);
-                                        console.log('node.attrs[x]' + node.attrs['x']);
-                                        console.log('node.attrs[y]' + node.attrs['y']);
-                                        console.log('node.attrs[width]' + node.attrs['width']);
-                                        console.log('node.attrs[width]' + node.attrs['height']);
-                                        break;
-                                    case "text":
-                                        var object = {
-                                            type: node.type,
-                                            font: node.attrs['font'],
-                                            'font-family': node.attrs['font-family'],
-                                            'font-size': node.attrs['font-size'],
-                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
-                                            fill: node.attrs['fill'] === 0 ? 'none' : node.attrs['fill'],
-                                            'stroke-width': node.attrs['stroke-width'],
-                                            x: node.attrs['x'],
-                                            y: node.attrs['y'],
-                                            text: node.attrs['text'],
-                                            'text-anchor': node.attrs['text-anchor']
-                                        };
-                                        break;
-
-                                        var object = {
-                                            type: node.type,
-                                            fill: node.attrs['fill'],
-                                            opacity: node.attrs['opacity'],
-                                            translation: node.attrs['translation'],
-                                            scale: node.attrs['scale'],
-                                            path: path,
-                                            stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
-                                            'stroke-width': node.attrs['stroke-width'],
-                                            transform: node.transformations ? node.transformations.join(' ') : ''
-                                        }
-                                }
-
-                                if (object) {
-                                    svgdata.push(object);
-                                }
-                            }
-                        });
-
-                        return (JSON.stringify(svgdata));
-                    },
-
-                    load_json: function (paper, json) {
-                        if (typeof(json) == "string") {
-                            json = JSON.parse(json);
-                        } // allow stringified or object input
-
-                        var set = paper.set();
-                        $.each(json, function (index, node) {
-                            try {
-                                var el = paper[node.type]().attr(node);
-                                set.push(el);
-                            } catch (e) {
-                            }
-                        });
-                        return set;
-                    }
-                };
-
-
                 $(function () {
 
+                    var qttags = {{ qtytagsindatabase }};
+                    var qtvps = {{ qtyvps }};
 
-                    function getOffset(el) {
-                        var _x = 0;
-                        var _y = 0;
-                        while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
-                            _x += el.offsetLeft - el.scrollLeft;
-                            _y += el.offsetTop - el.scrollTop;
-                            el = el.offsetParent;
+                    console.log("INITIAL: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + '{{ currenttag }}' + " lasttag.tagNumber=" + '{{ lasttag.tagNumber }}' + " qtytagsindatabase=" + '{{ qtytagsindatabase }}');
+
+                    $('#currtag').change(function () {
+                        var tagselected = $(this).find(":selected").val();
+                        console.log("TAGSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + tagselected);
+                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + '{{ qtytagsindatabase }}' + '&currenttag=' + tagselected;
+                    });
+
+                    $('#currvp').change(function () {
+                        var vpselected = $(this).find(":selected").val();
+                        console.log("VPSELECTED: qtvps=" + qtvps + " qtytags=" + qttags + " vpselected=" + vpselected + " tagselected=" + '{{ currenttag }}');
+                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + vpselected + '&qtytags=' + '{{ qtytagsindatabase }}' + '&currenttag=' + '{{ currenttag }}';
+                    });
+
+                    $('#inctags').click(function () {
+                        console.log("Clicked on inctags!!!!");
+                        qttags = qttags + 1;
+                        console.log("INCTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
+                        window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + qttags;
+                    });
+
+                    $('#deltag').click(function () {
+                        console.log("Clicked on deltag!!!!");
+                        qttags = qttags - 1;
+                        console.log("DELTAGSCLICKED: qtvps=" + qtvps + " qttags=" + qttags + " vpselected=" + '{{ currentvp }}' + " tagselected=" + qttags);
+                        var choice = confirm("{% trans "Please confirm this TAG deletion." %}");
+                        if (choice) {
+                            window.location = '{% url 'tagsetup' %}' + '?qtyvps=' + '{{ qtyvps }}' + '&currentvp=' + '{{ currentvp }}' + '&qtytags=' + qttags + '&currenttag=' + '{{ currenttag }}' + '&tagdeleted=' + '{{ currenttag }}';
                         }
-                        return {top: _y, left: _x};
-                    }
 
-                    var $paper = $("#paper");
 
-                    var mediapaperwidth = dynwidth - 32;
-                    var mediapaperheight = (mediapaperwidth / 1280) * 720;
+                    });
 
-                    var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
+                });
+                // Function to take care of the tag marking
+                $(function () {
 
-                    var descurltmp = "{{ descvpStorageURL }}";
+                    var containerwidth = 0;
+                    var containerheight = 0;
 
-                    var descurl = descurltmp.replace(/&amp;/g, "&");
+                    /**
+                     * A Simple Vector Shape Drawing App with RaphaelJS and jQuery
+                     * copyright 2010 Kayla Rose Martin - Licensed under the MIT license
+                     * Inspired by http://stackoverflow.com/questions/3582344/draw-a-connection-line-in-raphaeljs
+                     **/
 
-                    console.log("descurl:" + descurl);
+                    /* Then edited by Cary FitzHugh to add an example of exporting the SVG and adding polygons
 
-                    var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
-                    dfd.done(function (result) {  //result is a Raphael element
-                        console.log('done');
-                        var paperx = getOffset(document.getElementById('paper')).left + 16;
-                        var papery = getOffset(document.getElementById('paper')).top;
+                     */
 
-                        console.log('paperx:' + paperx);
-                        console.log('papery:' + papery);
 
-                        var painter = {};
-                        var shapes = [];
-                        var tagnumbers = [];
+                    (function (Raphael) {
+                        /// Plugin - replaces original RaphaelJS .image constructor
+                        /// with one that respects original dimensions.
+                        /// Optional overrides for each dimension.
+                        /// @drzaus @zaus
+                        /// based on http://stackoverflow.com/questions/10802702/raphael-js-image-with-its-original-width-and-height-size
+                        /// modified 13/08/2013 by @Huniku to support asynchronous loads
 
-                        {% if tagbbox is not None %}
+                        var originalRaphaelImageFn = Raphael.fn.image;
 
-                            var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
-                            var propy = {{ tagbbox.tagbboxY }} * mediapaperheight;
-                            var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
-                            var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
+                        Raphael.fn.imageAsync = function (url, x, y, w, h) {
+                            var dfd = new jQuery.Deferred();
+                            var done = false;
+                            var paper = this;
+                            // fix the image dimensions to match original scale unless otherwise provided
+                            if (!w || !h) {
+                                //Create the new image and set the onload event to call
+                                //the original paper.image function with the desired dimensions
+                                var img = new Image();
+                                img.onload = function () {
+                                    if (done)
+                                        return;
+                                    if (!w) w = img.width;
+                                    if (!h) h = img.height;
+                                    dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                                };
+                                //Begin loading of the image
+                                img.src = url;
 
-                            var bbox = paper.rect(propx, propy, propwidth, propheight);
-                            shapes.push(bbox);
-                            bbox.attr('stroke', "rgb(0,175,239)");
-                            bbox.attr('stroke-width', 2);
-
-                            var tagnumber = paper.text(propx + (propwidth / 2), propy + 20, "Tag#{{ currenttag }}");
-                            tagnumbers.push(tagnumber);
-                            tagnumber.attr('stroke', "rgb(0,175,239)");
-                            tagnumber.attr('stroke-width', 2);
-                            tagnumber.attr('font-family', "Verdana");
-                            tagnumber.attr('font-size', 20);
-
-                        {% endif %}
-
-                        painter.brush = function () {
+                                //If the images is already loaded (i.e. it was in the local cache)
+                                //img.onload will not fire, so call paper.image here.
+                                //Set done to ensure img.onload does not fire.
+                                if (img.width != 0) {
+                                    if (!w) w = img.width;
+                                    if (!h) h = img.height;
+                                    done = true;
+                                    dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                                }
+                            }
+                            else
+                                dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                            return dfd.promise();
                         };
+                    })(Raphael);
 
-                        $('#startmarktagbtn').bind('click', function (e) {
 
-                            if (shapes.length > 0) {
+                    /*!
+                     * raphaeljs.serialize
+                     *
+                     * Copyright (c) 2010 Jonathan Spies
+                     * Licensed under the MIT license:
+                     * (http://www.opensource.org/licenses/mit-license.php)
+                     *
+                     * Modified to return proportional values to container size by Jorge Goncalves in 2017
+                     *
+                     */
+
+                    var RaphaelSerializeProportional = {
+                        json: function (paper) {
+                            var svgdata = [];
+
+                            containerwidth = $('#paper').width();
+                            containerheight = $('#paper').height();
+
+                            paper.forEach(function (node) {
+                                if (node && node.type) {
+                                    switch (node.type) {
+                                        case "rect":
+                                            var object = {
+                                                type: node.type,
+                                                x: node.attrs['x'] / containerwidth,
+                                                y: node.attrs['y'] / containerheight,
+                                                width: node.attrs['width'] / containerwidth,
+                                                height: node.attrs['height'] / containerheight,
+                                                stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                                'stroke-width': node.attrs['stroke-width'],
+                                                fill: node.attrs['fill'],
+                                                tagnumber: {{ currenttag }}
+                                            };
+                                            console.log('containerwidth' + containerwidth);
+                                            console.log('containerheight' + containerheight);
+                                            console.log('node.attrs[x]' + node.attrs['x']);
+                                            console.log('node.attrs[y]' + node.attrs['y']);
+                                            console.log('node.attrs[width]' + node.attrs['width']);
+                                            console.log('node.attrs[width]' + node.attrs['height']);
+                                            break;
+                                        case "text":
+                                            var object = {
+                                                type: node.type,
+                                                font: node.attrs['font'],
+                                                'font-family': node.attrs['font-family'],
+                                                'font-size': node.attrs['font-size'],
+                                                stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                                fill: node.attrs['fill'] === 0 ? 'none' : node.attrs['fill'],
+                                                'stroke-width': node.attrs['stroke-width'],
+                                                x: node.attrs['x'],
+                                                y: node.attrs['y'],
+                                                text: node.attrs['text'],
+                                                'text-anchor': node.attrs['text-anchor']
+                                            };
+                                            break;
+
+                                            var object = {
+                                                type: node.type,
+                                                fill: node.attrs['fill'],
+                                                opacity: node.attrs['opacity'],
+                                                translation: node.attrs['translation'],
+                                                scale: node.attrs['scale'],
+                                                path: path,
+                                                stroke: node.attrs['stroke'] === 0 ? 'none' : node.attrs['stroke'],
+                                                'stroke-width': node.attrs['stroke-width'],
+                                                transform: node.transformations ? node.transformations.join(' ') : ''
+                                            }
+                                    }
+
+                                    if (object) {
+                                        svgdata.push(object);
+                                    }
+                                }
+                            });
+
+                            return (JSON.stringify(svgdata));
+                        },
+
+                        load_json: function (paper, json) {
+                            if (typeof(json) == "string") {
+                                json = JSON.parse(json);
+                            } // allow stringified or object input
+
+                            var set = paper.set();
+                            $.each(json, function (index, node) {
+                                try {
+                                    var el = paper[node.type]().attr(node);
+                                    set.push(el);
+                                } catch (e) {
+                                }
+                            });
+                            return set;
+                        }
+                    };
+
+
+                    $(function () {
+
+
+                        function getOffset(el) {
+                            var _x = 0;
+                            var _y = 0;
+                            while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+                                _x += el.offsetLeft - el.scrollLeft;
+                                _y += el.offsetTop - el.scrollTop;
+                                el = el.offsetParent;
+                            }
+                            return {top: _y, left: _x};
+                        }
+
+                        var $paper = $("#paper");
+
+                        var mediapaperwidth = dynwidth - 32;
+                        var mediapaperheight = (mediapaperwidth / 1280) * 720;
+
+                        var paper = new Raphael('paper', mediapaperwidth, mediapaperheight);
+
+                        var descurltmp = "{{ descvpStorageURL }}";
+
+                        var descurl = descurltmp.replace(/&amp;/g, "&");
+
+                        console.log("descurl:" + descurl);
+
+                        var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
+                        dfd.done(function (result) {  //result is a Raphael element
+                            console.log('done');
+                            var paperx = getOffset(document.getElementById('paper')).left + 16;
+                            var papery = getOffset(document.getElementById('paper')).top;
+
+                            console.log('paperx:' + paperx);
+                            console.log('papery:' + papery);
+
+                            var painter = {};
+                            var shapes = [];
+                            var tagnumbers = [];
+
+                            {% if tagbbox is not None %}
+
+                                var propx = {{ tagbbox.tagbboxX }} * mediapaperwidth;
+                                var propy = {{ tagbbox.tagbboxY }} * mediapaperheight;
+                                var propwidth = {{ tagbbox.tagbboxWidth }} * mediapaperwidth;
+                                var propheight = {{ tagbbox.tagbboxHeight }} * mediapaperheight;
+
+                                var bbox = paper.rect(propx, propy, propwidth, propheight);
+                                shapes.push(bbox);
+                                bbox.attr('stroke', "rgb(0,175,239)");
+                                bbox.attr('stroke-width', 2);
+
+                                var tagnumber = paper.text(propx + (propwidth / 2), propy + 20, "Tag#{{ currenttag }}");
+                                tagnumbers.push(tagnumber);
+                                tagnumber.attr('stroke', "rgb(0,175,239)");
+                                tagnumber.attr('stroke-width', 2);
+                                tagnumber.attr('font-family', "Verdana");
+                                tagnumber.attr('font-size', 20);
+
+                            {% endif %}
+
+                            painter.brush = function () {
+                            };
+
+                            $('#startmarktagbtn').bind('click', function (e) {
+
+                                if (shapes.length > 0) {
+                                    while (shapes.length > 0) {
+                                        var shape = shapes.pop();
+                                        shape.remove();
+                                    }
+                                }
+                                if (tagnumbers.length > 0) {
+                                    while (tagnumbers.length > 0) {
+                                        var tagnumber = tagnumbers.pop();
+                                        tagnumber.remove();
+                                    }
+                                }
+
+                                painter.brush = function (e) {
+                                    var startx = e.clientX - paperx;
+                                    var starty = e.clientY - papery;
+
+                                    var shape = paper.rect(startx, starty, 1, 1);
+                                    shapes.push(shape);
+                                    shape.attr('stroke', "rgb(0,175,239)");
+                                    shape.attr('stroke-width', 2);
+                                    $paper.bind('mousemove', function (e) {
+                                        var x = [startx, e.clientX - paperx].sort(function (a, b) {
+                                            return a - b;
+                                        });
+                                        var y = [starty, e.clientY - papery].sort(function (a, b) {
+                                            return a - b;
+                                        });
+
+                                        shape.attr('x', x[0]);
+                                        shape.attr('y', y[0]);
+                                        shape.attr('width', x[1] - x[0]);
+                                        shape.attr('height', y[1] - y[0]);
+                                    });
+                                    $paper.bind('mouseup', function (e) {
+                                        $paper.unbind('mousemove');
+                                        $paper.unbind('mouseup');
+                                        // save selection on mouseup
+                                        var json = RaphaelSerializeProportional.json(paper);
+                                        saving_tagbboxvalues(json);
+                                    });
+                                };
+                            });
+
+                            $('#clearmarktagbtn').bind('click', function (e) {
                                 while (shapes.length > 0) {
                                     var shape = shapes.pop();
                                     shape.remove();
                                 }
-                            }
-                            if (tagnumbers.length > 0) {
                                 while (tagnumbers.length > 0) {
                                     var tagnumber = tagnumbers.pop();
                                     tagnumber.remove();
                                 }
-                            }
+                            });
 
-                            painter.brush = function (e) {
-                                var startx = e.clientX - paperx;
-                                var starty = e.clientY - papery;
+                            $paper.bind('mousedown', function (e) {
+                                console.log('mousedown');
+                                painter.brush.call(this, e);
+                            });
 
-                                var shape = paper.rect(startx, starty, 1, 1);
-                                shapes.push(shape);
-                                shape.attr('stroke', "rgb(0,175,239)");
-                                shape.attr('stroke-width', 2);
-                                $paper.bind('mousemove', function (e) {
-                                    var x = [startx, e.clientX - paperx].sort(function (a, b) {
-                                        return a - b;
-                                    });
-                                    var y = [starty, e.clientY - papery].sort(function (a, b) {
-                                        return a - b;
-                                    });
-
-                                    shape.attr('x', x[0]);
-                                    shape.attr('y', y[0]);
-                                    shape.attr('width', x[1] - x[0]);
-                                    shape.attr('height', y[1] - y[0]);
-                                });
-                                $paper.bind('mouseup', function (e) {
-                                    $paper.unbind('mousemove');
-                                    $paper.unbind('mouseup');
-                                    // save selection on mouseup
-                                    var json = RaphaelSerializeProportional.json(paper);
-                                    saving_tagbboxvalues(json);
-                                });
-                            };
                         });
-
-                        $('#clearmarktagbtn').bind('click', function (e) {
-                            while (shapes.length > 0) {
-                                var shape = shapes.pop();
-                                shape.remove();
-                            }
-                            while (tagnumbers.length > 0) {
-                                var tagnumber = tagnumbers.pop();
-                                tagnumber.remove();
-                            }
-                        });
-
-                        $paper.bind('mousedown', function (e) {
-                            console.log('mousedown');
-                            painter.brush.call(this, e);
-                        });
-
                     });
-                });
 
-                // AJAX for posting
-                function saving_tagbboxvalues(jsondata) {
-                    console.log("Saving tagbboxvalues is working!"); // sanity check
-                    $.ajax({
-                        url: "save_tagbboxvalues/", // the endpoint
-                        type: "POST", // http method
-                        data: jsondata, // data sent with the post request
-                        // handle a successful response
-                        success: function (json) {
-                            $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-success');
-                            $('#startmarktagbtn').removeClass('btn-danger').addClass('btn-success');
-                            console.log(json); // log the returned json to the console
-                            console.log("success"); // another sanity check
-                            location.reload();
-                        },
-                        // handle a non-successful response
-                        error: function (xhr, errmsg, err) {
-                            //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                            //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-                            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-                            $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-danger')
-                        }
-                    });
-                };
+                    // AJAX for posting
+                    function saving_tagbboxvalues(jsondata) {
+                        console.log("Saving tagbboxvalues is working!"); // sanity check
+                        $.ajax({
+                            url: "save_tagbboxvalues/", // the endpoint
+                            type: "POST", // http method
+                            data: jsondata, // data sent with the post request
+                            // handle a successful response
+                            success: function (json) {
+                                $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-success');
+                                $('#startmarktagbtn').removeClass('btn-danger').addClass('btn-success');
+                                console.log(json); // log the returned json to the console
+                                console.log("success"); // another sanity check
+                                location.reload();
+                            },
+                            // handle a non-successful response
+                            error: function (xhr, errmsg, err) {
+                                //$('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                                //    " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+                                console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                                $('#startmarktagbtn').removeClass('btn-primary').addClass('btn-danger')
+                            }
+                        });
+                    };
 
 
-                // This function gets cookie with a given name
-                function getCookie(name) {
-                    var cookieValue = null;
-                    if (document.cookie && document.cookie != '') {
-                        var cookies = document.cookie.split(';');
-                        for (var i = 0; i < cookies.length; i++) {
-                            var cookie = jQuery.trim(cookies[i]);
-                            // Does this cookie string begin with the name we want?
-                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                                break;
+                    // This function gets cookie with a given name
+                    function getCookie(name) {
+                        var cookieValue = null;
+                        if (document.cookie && document.cookie != '') {
+                            var cookies = document.cookie.split(';');
+                            for (var i = 0; i < cookies.length; i++) {
+                                var cookie = jQuery.trim(cookies[i]);
+                                // Does this cookie string begin with the name we want?
+                                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                    break;
+                                }
                             }
                         }
+                        return cookieValue;
                     }
-                    return cookieValue;
-                }
 
-                var csrftoken = getCookie('csrftoken');
+                    var csrftoken = getCookie('csrftoken');
 
-                /*
-                 The functions below will create a header with csrftoken
-                 */
+                    /*
+                     The functions below will create a header with csrftoken
+                     */
 
-                function csrfSafeMethod(method) {
-                    // these HTTP methods do not require CSRF protection
-                    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-                }
+                    function csrfSafeMethod(method) {
+                        // these HTTP methods do not require CSRF protection
+                        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                    }
 
-                function sameOrigin(url) {
-                    // test that a given url is a same-origin URL
-                    // url could be relative or scheme relative or absolute
-                    var host = document.location.host; // host + port
-                    var protocol = document.location.protocol;
-                    var sr_origin = '//' + host;
-                    var origin = protocol + sr_origin;
-                    // Allow absolute or scheme relative URLs to same origin
-                    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
-                        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
-                        // or any other URL that isn't scheme relative or absolute i.e relative.
-                        !(/^(\/\/|http:|https:).*/.test(url));
-                }
+                    function sameOrigin(url) {
+                        // test that a given url is a same-origin URL
+                        // url could be relative or scheme relative or absolute
+                        var host = document.location.host; // host + port
+                        var protocol = document.location.protocol;
+                        var sr_origin = '//' + host;
+                        var origin = protocol + sr_origin;
+                        // Allow absolute or scheme relative URLs to same origin
+                        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                            // or any other URL that isn't scheme relative or absolute i.e relative.
+                            !(/^(\/\/|http:|https:).*/.test(url));
+                    }
 
-                $.ajaxSetup({
-                    beforeSend: function (xhr, settings) {
-                        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
-                            // Send the token to same-origin, relative URLs only.
-                            // Send the token only if the method warrants CSRF protection
-                            // Using the CSRFToken value acquired earlier
-                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    $.ajaxSetup({
+                        beforeSend: function (xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                                // Send the token to same-origin, relative URLs only.
+                                // Send the token only if the method warrants CSRF protection
+                                // Using the CSRFToken value acquired earlier
+                                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
                         }
-                    }
+                    });
+
+
                 });
-
-
-            });
-        </script>
-    {% endblock %}
-{% else %}
-    <h1>Not Logged In....</h1>
-{% endif %}
+            </script>
+        {% endblock %}
+    {% else %}
+        <h1>Not Logged In....</h1>
+    {% endif %}
+{% endlocaltime %}
