@@ -660,6 +660,7 @@
                             var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         } else {
                             console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
+                            paper.clear();
                             paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         }
 
