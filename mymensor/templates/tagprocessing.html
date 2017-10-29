@@ -658,46 +658,44 @@
                         if (clickcounter{{ vp.vpNumber }} == 0) {
                             console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                             var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
+                            var descurltmp = "{{ vp.vpStdPhotoStorageURL }}";
+
+                            var descurl = descurltmp.replace(/&amp;/g, "&");
+
+                            var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
+                            dfd.done(function (result) {  //result is a Raphael element
+
+                                {% for tag in tags %}
+                                    {% if tag.vp.id == vp.id %}
+                                        {% for tagbbox in tagbboxes %}
+
+                                            {% if tagbbox.tag == tag %}
+                                                var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
+                                                mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
+                                                {{ tagbbox.tagbboxHeight }} * mediapaperheight);
+                                                bbox.attr('stroke', "rgb(0,175,239)");
+                                                bbox.attr('stroke-width', 2);
+                                                var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
+                                                ), {{ tagbbox.tagbboxY }} *
+                                                mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
+                                                );
+                                                tagnumber.attr('stroke', "rgb(0,175,239)");
+                                                tagnumber.attr('stroke-width', 2);
+                                                tagnumber.attr('font-family', "Verdana");
+                                                tagnumber.attr('font-size', 20);
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    {% endif %}
+                                {% endfor %}
+
+                            });
                         } else {
                             console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                             paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
-                            paper.clear();
                         }
 
-
-                        var descurltmp = "{{ vp.vpStdPhotoStorageURL }}";
-
-                        var descurl = descurltmp.replace(/&amp;/g, "&");
-
-                        var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
-                        dfd.done(function (result) {  //result is a Raphael element
-
-                            {% for tag in tags %}
-                                {% if tag.vp.id == vp.id %}
-                                    {% for tagbbox in tagbboxes %}
-
-                                        {% if tagbbox.tag == tag %}
-                                            var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
-                                            mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
-                                            {{ tagbbox.tagbboxHeight }} * mediapaperheight);
-                                            bbox.attr('stroke', "rgb(0,175,239)");
-                                            bbox.attr('stroke-width', 2);
-                                            var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
-                                            ), {{ tagbbox.tagbboxY }} *
-                                            mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
-                                            );
-                                            tagnumber.attr('stroke', "rgb(0,175,239)");
-                                            tagnumber.attr('stroke-width', 2);
-                                            tagnumber.attr('font-family', "Verdana");
-                                            tagnumber.attr('font-size', 20);
-                                        {% endif %}
-
-                                    {% endfor %}
-
-                                {% endif %}
-                            {% endfor %}
-
-                        });
                     });
 
                 {% endfor %}
