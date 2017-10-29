@@ -603,7 +603,7 @@
                 {% for vp in vps %}
 
                     $('#mediaModal{{ vp.vpNumber }}').on('shown.bs.modal', function (e) {
-                        console.log("Clicked on:" + e.target.id);
+                        console.log("Clicked on:" + e.target.id + " clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                         dynwidth = document.getElementById('modalbody{{ vp.vpNumber }}').offsetWidth;
                         dynheight = (dynwidth / 1280) * 720;
                         document.getElementById("wrapper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
