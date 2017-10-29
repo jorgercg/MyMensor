@@ -122,7 +122,7 @@
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
-                                                    <div class="modal-body">
+                                                    <div id="modalbody{{ vp.vpNumber }}" class="modal-body">
                                                         <div id="wrapper{{ vp.vpNumber }}">
                                                             <div id="paper{{ vp.vpNumber }}" class="papercontainer">
                                                             </div>
@@ -289,6 +289,9 @@
 
                 var end = moment(decodeURIComponent("{{ end }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
+
+                var dynwidth = 0;
+                var dynheight = 0;
 
                 $(function () {
 
@@ -598,6 +601,13 @@
                     $('#mediaModal{{ vp.vpNumber }}').on('shown.bs.modal', function (e) {
                         console.log("Clicked on:" + e.target.id);
                     });
+
+                    dynwidth = document.getElementById('modalbody{{ vp.vpNumber }}').offsetWidth;
+                    dynheight = (dynwidth / 1280) * 720;
+                    document.getElementById("wrapper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
+                    document.getElementById("wrapper{{ vp.vpNumber }}").style.height = Math.round(dynheight) + "px";
+                    document.getElementById("paper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
+                    document.getElementById("paper{{ vp.vpNumber }}").style.height = Math.round(dynheight) + "px";
 
                     (function (Raphael) {
 
