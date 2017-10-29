@@ -654,9 +654,11 @@
                         var mediapaperheight = (mediapaperwidth / 1280) * 720;
 
                         if (clickcounter{{ vp.vpNumber }} = 0) {
+                            console.log("clickcounter{{ vp.vpNumber }}="+clickcounter{{ vp.vpNumber }});
                             var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         } else {
-                            var paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
+                            console.log("clickcounter{{ vp.vpNumber }}="+clickcounter{{ vp.vpNumber }});
+                            paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         }
 
 
