@@ -289,6 +289,9 @@
 
                 var end = moment(decodeURIComponent("{{ end }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
+                {% for vp in vps %}
+                    var clickcounter{{ vp.vpNumber }} = -1;
+                {% endfor %}
 
                 var dynwidth = 0;
                 var dynheight = 0;
@@ -599,11 +602,8 @@
                 });
                 {% for vp in vps %}
 
-                    var clickcounter{{ vp.vpNumber }} = -1;
-
                     $('#mediaModal{{ vp.vpNumber }}').on('shown.bs.modal', function (e) {
                         console.log("Clicked on:" + e.target.id);
-                        clickcounter{{ vp.vpNumber }} = clickcounter{{ vp.vpNumber }} + 1;
                         dynwidth = document.getElementById('modalbody{{ vp.vpNumber }}').offsetWidth;
                         dynheight = (dynwidth / 1280) * 720;
                         document.getElementById("wrapper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
@@ -653,11 +653,13 @@
                         var mediapaperwidth = dynwidth - 32;
                         var mediapaperheight = (mediapaperwidth / 1280) * 720;
 
+                        clickcounter{{ vp.vpNumber }}++;
+
                         if (clickcounter{{ vp.vpNumber }} = 0) {
-                            console.log("clickcounter{{ vp.vpNumber }}="+clickcounter{{ vp.vpNumber }});
+                            console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                             var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         } else {
-                            console.log("clickcounter{{ vp.vpNumber }}="+clickcounter{{ vp.vpNumber }});
+                            console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                             paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         }
 
@@ -673,21 +675,21 @@
                                 {% if tag.vp.id == vp.id %}
                                     {% for tagbbox in tagbboxes %}
 
-                                            {% if tagbbox.tag == tag %}
-                                                var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
-                                                mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
-                                                {{ tagbbox.tagbboxHeight }} * mediapaperheight);
-                                                bbox.attr('stroke', "rgb(0,175,239)");
-                                                bbox.attr('stroke-width', 2);
-                                                var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
-                                                ), {{ tagbbox.tagbboxY }} *
-                                                mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
-                                                );
-                                                tagnumber.attr('stroke', "rgb(0,175,239)");
-                                                tagnumber.attr('stroke-width', 2);
-                                                tagnumber.attr('font-family', "Verdana");
-                                                tagnumber.attr('font-size', 20);
-                                            {% endif %}
+                                        {% if tagbbox.tag == tag %}
+                                            var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
+                                            mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
+                                            {{ tagbbox.tagbboxHeight }} * mediapaperheight);
+                                            bbox.attr('stroke', "rgb(0,175,239)");
+                                            bbox.attr('stroke-width', 2);
+                                            var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
+                                            ), {{ tagbbox.tagbboxY }} *
+                                            mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
+                                            );
+                                            tagnumber.attr('stroke', "rgb(0,175,239)");
+                                            tagnumber.attr('stroke-width', 2);
+                                            tagnumber.attr('font-family', "Verdana");
+                                            tagnumber.attr('font-size', 20);
+                                        {% endif %}
 
                                     {% endfor %}
 
