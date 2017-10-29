@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz counter assign %}
+{% load staticfiles i18n tz counter assign %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     {% if user.is_authenticated %}
@@ -238,6 +238,7 @@
             </div>
         {% endblock %}
         {% block javascript %}
+            <script src="{% static "js/raphael.min.js" %}"></script>
             <script type="text/javascript">
                 /*
 
