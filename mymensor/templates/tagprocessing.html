@@ -151,7 +151,7 @@
                                             </div>
                                             <div class="card-block">
                                                 <p class="card-text">
-                                                    <a data-toggle="modal" data-target="#mediaModal"
+                                                    <a data-toggle="modal" data-target="#mediaModal{{ vp.vpNumber }}"
                                                        data-whatever="{{ vp.vpStdPhotoStorageURL }}">
                                                         <span class="fa fa-picture-o descvp" data-toggle="tooltip"
                                                               data-placement="top"
@@ -215,6 +215,22 @@
                                                 <span class="fa fa-cloud-upload" data-toggle="tooltip"
                                                       data-placement="top"
                                                       title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
+                                            </div>
+                                        </div>
+                                        <!-- Modal for DESCVP Images-->
+                                        <div class="modal fade" id="mediaModal{{ vp.vpNumber }}" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="mediaModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div id="modalbody{{ vp.vpNumber }}" class="modal-body">
+                                                        <div id="wrapper{{ vp.vpNumber }}">
+                                                            <div id="paper{{ vp.vpNumber }}" class="papercontainer">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endif %}
@@ -599,15 +615,14 @@
                     });
 
                 });
+
                 {% for vp in vps %}
 
                     $('#mediaModal{{ vp.vpNumber }}').on('shown.bs.modal', function (e) {
-                        console.log("Clicked on:" + e.target.id + " clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
 
                         clickcounter{{ vp.vpNumber }}++;
 
                         if (clickcounter{{ vp.vpNumber }} == 0) {
-                            console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
 
                             dynwidth = document.getElementById('modalbody{{ vp.vpNumber }}').offsetWidth;
                             dynheight = (dynwidth / 1280) * 720;
@@ -687,11 +702,7 @@
                                     {% endif %}
                                 {% endfor %}
                             });
-                        } else {
-                            console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
-                            //paper = Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         }
-
                     });
 
                 {% endfor %}

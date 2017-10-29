@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n tz counter assign %}
+{% load staticfiles i18n tz counter assign %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
     {% if user.is_authenticated %}
@@ -49,7 +49,7 @@
                                             </a>
                                             <div class="card-block">
                                                 <p class="card-text">
-                                                    <a data-toggle="modal" data-target="#mediaModal"
+                                                    <a data-toggle="modal" data-target="#mediaModal{{ vp.vpNumber }}"
                                                        data-whatever="{{ vp.vpStdPhotoStorageURL }}">
                                                         <span class="fa fa-picture-o descvp" data-toggle="tooltip"
                                                               data-placement="top"
@@ -115,6 +115,22 @@
                                                       title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
                                             </div>
                                         </div>
+                                        <!-- Modal for DESCVP Images-->
+                                        <div class="modal fade" id="mediaModal{{ vp.vpNumber }}" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="mediaModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div id="modalbody{{ vp.vpNumber }}" class="modal-body">
+                                                        <div id="wrapper{{ vp.vpNumber }}">
+                                                            <div id="paper{{ vp.vpNumber }}" class="papercontainer">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                     {% if media.mediaContentType == "video/mp4" %}
                                         <div class="card card-outline-primary m-2" style="width: 20rem;">
@@ -135,7 +151,7 @@
                                             </div>
                                             <div class="card-block">
                                                 <p class="card-text">
-                                                    <a data-toggle="modal" data-target="#mediaModal"
+                                                    <a data-toggle="modal" data-target="#mediaModal{{ vp.vpNumber }}"
                                                        data-whatever="{{ vp.vpStdPhotoStorageURL }}">
                                                         <span class="fa fa-picture-o descvp" data-toggle="tooltip"
                                                               data-placement="top"
@@ -201,6 +217,22 @@
                                                       title="{% trans 'Received at server on' %}"></span> {{ media.mediaDBTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
                                             </div>
                                         </div>
+                                        <!-- Modal for DESCVP Images-->
+                                        <div class="modal fade" id="mediaModal{{ vp.vpNumber }}" tabindex="-1"
+                                             role="dialog"
+                                             aria-labelledby="mediaModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-xl">
+                                                <div class="modal-content">
+                                                    <div id="modalbody{{ vp.vpNumber }}" class="modal-body">
+                                                        <div id="wrapper{{ vp.vpNumber }}">
+                                                            <div id="paper{{ vp.vpNumber }}" class="papercontainer">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             {% endif %}
@@ -222,6 +254,7 @@
             </div>
         {% endblock %}
         {% block javascript %}
+            <script src="{% static "js/raphael.min.js" %}"></script>
             <script type="text/javascript">
 
                 /*
@@ -270,10 +303,16 @@
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
-                var start = moment(decodeURIComponent("{{ start }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                var start = moment(decodeURIComponent("{{ start }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                var end = moment(decodeURIComponent("{{ end }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                var end = moment(decodeURIComponent("{{ end }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
+                {% for vp in vps %}
+                    var clickcounter{{ vp.vpNumber }} = -1;
+                {% endfor %}
+
+                var dynwidth = 0;
+                var dynheight = 0;
 
                 $(function () {
 
@@ -580,6 +619,97 @@
                     });
 
                 });
+
+                {% for vp in vps %}
+
+                    $('#mediaModal{{ vp.vpNumber }}').on('shown.bs.modal', function (e) {
+
+                        clickcounter{{ vp.vpNumber }}++;
+
+                        if (clickcounter{{ vp.vpNumber }} == 0) {
+
+                            dynwidth = document.getElementById('modalbody{{ vp.vpNumber }}').offsetWidth;
+                            dynheight = (dynwidth / 1280) * 720;
+                            document.getElementById("wrapper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
+                            document.getElementById("wrapper{{ vp.vpNumber }}").style.height = Math.round(dynheight) + "px";
+                            document.getElementById("paper{{ vp.vpNumber }}").style.width = Math.round(dynwidth) + "px";
+                            document.getElementById("paper{{ vp.vpNumber }}").style.height = Math.round(dynheight) + "px";
+
+                            (function (Raphael) {
+
+                                var originalRaphaelImageFn = Raphael.fn.image;
+
+                                Raphael.fn.imageAsync = function (url, x, y, w, h) {
+                                    var dfd = new jQuery.Deferred();
+                                    var done = false;
+                                    var paper = this;
+                                    // fix the image dimensions to match original scale unless otherwise provided
+                                    if (!w || !h) {
+                                        //Create the new image and set the onload event to call
+                                        //the original paper.image function with the desired dimensions
+                                        var img = new Image();
+                                        img.onload = function () {
+                                            if (done)
+                                                return;
+                                            if (!w) w = img.width;
+                                            if (!h) h = img.height;
+                                            dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                                        };
+                                        //Begin loading of the image
+                                        img.src = url;
+
+                                        //If the images is already loaded (i.e. it was in the local cache)
+                                        //img.onload will not fire, so call paper.image here.
+                                        //Set done to ensure img.onload does not fire.
+                                        if (img.width != 0) {
+                                            if (!w) w = img.width;
+                                            if (!h) h = img.height;
+                                            done = true;
+                                            dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                                        }
+                                    }
+                                    else
+                                        dfd.resolve(originalRaphaelImageFn.call(paper, url, x, y, w, h));
+                                    return dfd.promise();
+                                };
+                            })(Raphael);
+
+                            var mediapaperwidth = dynwidth - 32;
+                            var mediapaperheight = (mediapaperwidth / 1280) * 720;
+
+                            var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
+                            var descurltmp = "{{ vp.vpStdPhotoStorageURL }}";
+
+                            var descurl = descurltmp.replace(/&amp;/g, "&");
+
+                            var dfd = paper.imageAsync(descurl, 0, 0, mediapaperwidth, mediapaperheight);
+                            dfd.done(function (result) {  //result is a Raphael element
+                                {% for tag in tags %}
+                                    {% if tag.vp.id == vp.id %}
+                                        {% for tagbbox in tagbboxes %}
+                                            {% if tagbbox.tag == tag %}
+                                                var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
+                                                mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
+                                                {{ tagbbox.tagbboxHeight }} * mediapaperheight);
+                                                bbox.attr('stroke', "rgb(0,175,239)");
+                                                bbox.attr('stroke-width', 2);
+                                                var tagnumber = paper.text({{ tagbbox.tagbboxX }} * mediapaperwidth + ({{ tagbbox.tagbboxWidth }} * mediapaperwidth / 2
+                                                ), {{ tagbbox.tagbboxY }} *
+                                                mediapaperheight + 20, "Tag#{{ tag.tagNumber }}"
+                                                );
+                                                tagnumber.attr('stroke', "rgb(0,175,239)");
+                                                tagnumber.attr('stroke-width', 2);
+                                                tagnumber.attr('font-family', "Verdana");
+                                                tagnumber.attr('font-size', 20);
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            });
+                        }
+                    });
+
+                {% endfor %}
 
 
             </script>

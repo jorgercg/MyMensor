@@ -1318,11 +1318,12 @@ def procTagEditView(request):
         mediasofthevaluelist = values.values_list('media__id', flat=True)
         tagsofthevaluelist = values.values_list('tag__id', flat=True)
         request.session['qtypervp'] = qtypervp
+        tagbboxes = Tagbbox.objects.filter(tag__in=tags)
         return render(request, 'proctagedit.html', {'medias': medias, 'vps': vps, 'tags': tags, 'values': values,
                                                     'mediasofthevaluelist': mediasofthevaluelist,
                                                     'tagsofthevaluelist': tagsofthevaluelist,
                                                     'start': startdateformatted, 'end': enddateformatted,
-                                                    'qtypervp': qtypervp})
+                                                    'qtypervp': qtypervp, 'tagbboxes':tagbboxes})
 
 
 @login_required
