@@ -673,7 +673,7 @@
                             {% for tag in tags %}
                                 {% if tag.vp.id == vp.id %}
                                     {% for tagbbox in tagbboxes %}
-                                        {% if tagbox.tag.id == tag.id %}
+
                                             {% if tagbbox.tag == tag %}
                                                 var bbox = paper.rect({{ tagbbox.tagbboxX }} * mediapaperwidth, {{ tagbbox.tagbboxY }} *
                                                 mediapaperheight, {{ tagbbox.tagbboxWidth }} * mediapaperwidth,
@@ -689,7 +689,7 @@
                                                 tagnumber.attr('font-family', "Verdana");
                                                 tagnumber.attr('font-size', 20);
                                             {% endif %}
-                                        {% endif %}
+
                                     {% endfor %}
 
                                 {% endif %}
