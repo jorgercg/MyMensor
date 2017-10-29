@@ -655,7 +655,7 @@
 
                         clickcounter{{ vp.vpNumber }}++;
 
-                        if (clickcounter{{ vp.vpNumber }} = 0) {
+                        if (clickcounter{{ vp.vpNumber }} == 0) {
                             console.log("clickcounter{{ vp.vpNumber }}=" + clickcounter{{ vp.vpNumber }});
                             var paper = new Raphael('paper{{ vp.vpNumber }}', mediapaperwidth, mediapaperheight);
                         } else {
