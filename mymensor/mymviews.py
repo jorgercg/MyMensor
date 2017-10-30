@@ -1064,8 +1064,9 @@ def vpSetupFormView(request):
         object = s3.Object(AWS_S3_BUCKET_NAME, vp.vpStdPhotoStorageURL)
         object.load()
         obj_metadata = object.metadata
-        descvpTimeStamp = obj_metadata['datetime']
-        descvpTimeStamp = descvpTimeStamp.replace(" ","T")
+        descvpTimeStampTemp = obj_metadata['datetime']
+        descvpTimeStampTemp = descvpTimeStampTemp.replace(" ","T")
+        descvpTimeStamp = parse(descvpTimeStampTemp, yearfirst=True)
     except:
         descvpTimeStamp = " "
     tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
@@ -1229,8 +1230,9 @@ def tagSetupFormView(request):
         object = s3.Object(AWS_S3_BUCKET_NAME, vp.vpStdPhotoStorageURL)
         object.load()
         obj_metadata = object.metadata
-        descvpTimeStamp = obj_metadata['datetime']
-        descvpTimeStamp = descvpTimeStamp.replace(" ", "T")
+        descvpTimeStampTemp = obj_metadata['datetime']
+        descvpTimeStampTemp = descvpTimeStampTemp.replace(" ", "T")
+        descvpTimeStamp = parse(descvpTimeStampTemp, yearfirst=True)
     except:
         descvpTimeStamp = " "
     return render(request, 'tagsetup.html',
