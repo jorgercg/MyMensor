@@ -1065,6 +1065,7 @@ def vpSetupFormView(request):
         object.load()
         obj_metadata = object.metadata
         descvpTimeStamp = obj_metadata['datetime']
+        descvpTimeStamp = descvpTimeStamp.replace(" ","T")
     except:
         descvpTimeStamp = " "
     tags = Tag.objects.filter(vp__vpIsActive=True).filter(vp__asset__assetOwner=request.user).filter(
@@ -1229,6 +1230,7 @@ def tagSetupFormView(request):
         object.load()
         obj_metadata = object.metadata
         descvpTimeStamp = obj_metadata['datetime']
+        descvpTimeStamp = descvpTimeStamp.replace(" ", "T")
     except:
         descvpTimeStamp = " "
     return render(request, 'tagsetup.html',
