@@ -26,7 +26,7 @@
                         <div id="cardblock" class="card-block">
                             <p class="card-text">
                                 <span class="fa fa-camera" data-toggle="tooltip" data-placement="top"
-                                      title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp }}
+                                      title="{% trans 'Captured on' %}"></span> {{ descvpTimeStamp | localtime | date:"Y-b-d H:i:sO" }}
                             </p>
                         </div>
                         <div id="wrapper">
