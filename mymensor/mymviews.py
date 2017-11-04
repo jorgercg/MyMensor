@@ -1648,7 +1648,7 @@ def createdcicfgbackup(request):
         try:
             for key_to_backup in keys_to_backup['Contents']:
                 if "_backup" not in key_to_backup['Key']:
-                    if key_to_backup['Key']==usernameEncoded:
+                    if key_to_backup['Key'] == usernameEncoded:
                         replace = usernameEncoded
                         withstring = usernameEncoded + "_backup"
                         newprefix, found, endpart = key_to_backup['Key'].partition(replace)

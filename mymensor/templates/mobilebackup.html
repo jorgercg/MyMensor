@@ -64,13 +64,13 @@
                             $(button_id).removeClass('btn-outline-primary').addClass('btn-success');
                             $(button_id).removeClass('btn-danger').addClass('btn-success');
                             $(button_id).text("{% trans "Backup done!" %}");
-                            //console.log(json); // log the returned json to the console
+                            console.log(json); // log the returned json to the console
                             //console.log("success"); // another sanity check
                             window.location.reload(true);
                         },
                         // handle a non-successful response
                         error: function (xhr, errmsg, err) {
-                            //console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+                            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
                             $(button_id).removeClass('btn-outline-primary').addClass('btn-danger');
                             $(button_id).text("{% trans "Error" %}");
                         }
