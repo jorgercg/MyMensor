@@ -182,11 +182,11 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
                 pdfinfotitle = _('MyMensor Media Check')
                 pdfinfoauthor = obj_metadata['mymensoraccount']
-                pdfinfosubject = _('Media from VP#')+obj_metadata['vp']
+                pdfinfosubject = _('Media from VP#') + obj_metadata['vp']
                 pdfinfokeywords = object.content_type
                 pdfinfocreator = _('MyMensor')
                 pdfinfoproducer = _('MyMensor')
-                pdffilename = 'mymensormediacheck '+obj_metadata['datetime']+'.pdf'
+                pdffilename = 'mymensormediacheck ' + obj_metadata['datetime'] + '.pdf'
                 return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
                                                         'videoStorageURL': videoStorageURL,
                                                         'mediaCheckURLOG': mediaCheckURLOG,
@@ -321,48 +321,48 @@ def mediacheckpdf(request, messagetype, messagemymuser, mediaObjectS3partialKey,
                 pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
                 pdfinfotitle = _('MyMensor Media Check')
                 pdfinfoauthor = obj_metadata['mymensoraccount']
-                pdfinfosubject = _('Media from VP#')+obj_metadata['vp']
+                pdfinfosubject = _('Media from VP#') + obj_metadata['vp']
                 pdfinfokeywords = object.content_type
                 pdfinfocreator = _('MyMensor')
                 pdfinfoproducer = _('MyMensor')
-                pdffilename = 'mymensormediacheck '+obj_metadata['datetime']+'.pdf'
+                pdffilename = 'mymensormediacheck ' + obj_metadata['datetime'] + '.pdf'
                 return render(request, 'landingpdf.html', {'mediaStorageURL': mediaStorageURL,
-                                                        'videoStorageURL': videoStorageURL,
-                                                        'mediaCheckURLOG': mediaCheckURLOG,
-                                                        'mediaContentType': object.content_type,
-                                                        'mediaArIsOn': obj_metadata['isarswitchon'],
-                                                        'mediaTimeIsCertified': obj_metadata['timecertified'],
-                                                        'mediaLocIsCertified': obj_metadata['loccertified'],
-                                                        'mediaTimeStamp': obj_metadata['datetime'],
-                                                        'loclatitude': obj_metadata['loclatitude'],
-                                                        'loclongitude': obj_metadata['loclongitude'],
-                                                        'locprecisioninm': obj_metadata['locprecisioninm'],
-                                                        'mediasignature': obj_metadata['sha-256'],
-                                                        'mediaCheckURL': mediaCheckURL,
-                                                        'pdftitle': pdftitle,
-                                                        'pdfcaptimecert': pdfcaptimecert,
-                                                        'pdfcaptimenotcert': pdfcaptimenotcert,
-                                                        'pdfcaploccert': pdfcaploccert,
-                                                        'pdfcaplocnotcert': pdfcaplocnotcert,
-                                                        'pdftblcaptimecert': pdftblcaptimecert,
-                                                        'pdftblcaptimenotcert': pdftblcaptimenotcert,
-                                                        'pdftblcaploccert': pdftblcaploccert,
-                                                        'pdftblcaplocnotcert': pdftblcaplocnotcert,
-                                                        'pdflatitude': pdflatitude,
-                                                        'pdflongitude': pdflongitude,
-                                                        'pdfaccuracy': pdfaccuracy,
-                                                        'pdfaron': pdfaron,
-                                                        'pdfaroff': pdfaroff,
-                                                        'pdflinktxt': pdflinktxt,
-                                                        'pdfaccuracydefinition': pdfaccuracydefinition,
-                                                        'pdfinfotitle': pdfinfotitle,
-                                                        'pdfinfoauthor': pdfinfoauthor,
-                                                        'pdfinfosubject': pdfinfosubject,
-                                                        'pdfinfokeywords': pdfinfokeywords,
-                                                        'pdfinfocreator': pdfinfocreator,
-                                                        'pdfinfoproducer': pdfinfoproducer,
-                                                        'pdffilename': pdffilename
-                                                        })
+                                                           'videoStorageURL': videoStorageURL,
+                                                           'mediaCheckURLOG': mediaCheckURLOG,
+                                                           'mediaContentType': object.content_type,
+                                                           'mediaArIsOn': obj_metadata['isarswitchon'],
+                                                           'mediaTimeIsCertified': obj_metadata['timecertified'],
+                                                           'mediaLocIsCertified': obj_metadata['loccertified'],
+                                                           'mediaTimeStamp': obj_metadata['datetime'],
+                                                           'loclatitude': obj_metadata['loclatitude'],
+                                                           'loclongitude': obj_metadata['loclongitude'],
+                                                           'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                           'mediasignature': obj_metadata['sha-256'],
+                                                           'mediaCheckURL': mediaCheckURL,
+                                                           'pdftitle': pdftitle,
+                                                           'pdfcaptimecert': pdfcaptimecert,
+                                                           'pdfcaptimenotcert': pdfcaptimenotcert,
+                                                           'pdfcaploccert': pdfcaploccert,
+                                                           'pdfcaplocnotcert': pdfcaplocnotcert,
+                                                           'pdftblcaptimecert': pdftblcaptimecert,
+                                                           'pdftblcaptimenotcert': pdftblcaptimenotcert,
+                                                           'pdftblcaploccert': pdftblcaploccert,
+                                                           'pdftblcaplocnotcert': pdftblcaplocnotcert,
+                                                           'pdflatitude': pdflatitude,
+                                                           'pdflongitude': pdflongitude,
+                                                           'pdfaccuracy': pdfaccuracy,
+                                                           'pdfaron': pdfaron,
+                                                           'pdfaroff': pdfaroff,
+                                                           'pdflinktxt': pdflinktxt,
+                                                           'pdfaccuracydefinition': pdfaccuracydefinition,
+                                                           'pdfinfotitle': pdfinfotitle,
+                                                           'pdfinfoauthor': pdfinfoauthor,
+                                                           'pdfinfosubject': pdfinfosubject,
+                                                           'pdfinfokeywords': pdfinfokeywords,
+                                                           'pdfinfocreator': pdfinfocreator,
+                                                           'pdfinfoproducer': pdfinfoproducer,
+                                                           'pdffilename': pdffilename
+                                                           })
             else:
                 return HttpResponse(status=404)
         else:
@@ -849,10 +849,10 @@ def subscription_state(assetinstance):
         public_key=BRAINTREE_PUBLIC_KEY,
         private_key=BRAINTREE_PRIVATE_KEY,
     )
-    #try:
+    # try:
     #    btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
     #    btsubscription = BraintreeSubscription.objects.get(braintreecustomer=btcustomer)
-    #except:
+    # except:
     #    return "NoMyMSubscriptionFound"
     try:
         btcustomer = BraintreeCustomer.objects.get(braintreecustomerOwner=assetinstance.assetOwner)
@@ -871,6 +871,7 @@ def subscription_state(assetinstance):
     btsubscription.braintreesubscriptionSubscriptionStatus = currentbtsubscription.status
     btsubscription.save()
     return btsubscription.braintreesubscriptionSubscriptionStatus
+
 
 @csrf_exempt
 @api_view(['POST'])
@@ -892,7 +893,7 @@ def mobiletowebapp(request):
     if request.method == "GET":
         user = request.user
         if user is not None:
-            login(request,user)
+            login(request, user)
             return HttpResponseRedirect(reverse('portfolio'))
         else:
             HttpResponse(status=400)
@@ -1065,7 +1066,7 @@ def vpSetupFormView(request):
         object.load()
         obj_metadata = object.metadata
         descvpTimeStampTemp = obj_metadata['datetime']
-        descvpTimeStampTemp = descvpTimeStampTemp.replace(" ","T")
+        descvpTimeStampTemp = descvpTimeStampTemp.replace(" ", "T")
         descvpTimeStamp = parse(descvpTimeStampTemp, yearfirst=True)
     except:
         descvpTimeStamp = " "
@@ -1327,7 +1328,7 @@ def procTagEditView(request):
                                                     'mediasofthevaluelist': mediasofthevaluelist,
                                                     'tagsofthevaluelist': tagsofthevaluelist,
                                                     'start': startdateformatted, 'end': enddateformatted,
-                                                    'qtypervp': qtypervp, 'tagbboxes':tagbboxes})
+                                                    'qtypervp': qtypervp, 'tagbboxes': tagbboxes})
 
 
 @login_required
@@ -1378,7 +1379,7 @@ def tagProcessingFormView(request):
                                                       'mediasofthevaluelist': mediasofthevaluelist,
                                                       'tagsofthevaluelist': tagsofthevaluelist,
                                                       'start': startdateformatted, 'end': enddateformatted,
-                                                      'qtypervp': qtypervp, 'tagbboxes':tagbboxes})
+                                                      'qtypervp': qtypervp, 'tagbboxes': tagbboxes})
 
 
 @login_required
@@ -1642,32 +1643,30 @@ def createdcicfgbackup(request):
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
         usernameEncoded = "usrcfg/" + urllib.quote(request.user.username)
-        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncoded)
+        usernameEncodedPrefix = "usrcfg/" + urllib.quote(request.user.username) + "/"
+        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncodedPrefix)
         s3 = session.resource('s3')
         bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
             for key_to_backup in keys_to_backup['Contents']:
                 if "_backup" not in key_to_backup['Key']:
-                    if key_to_backup['Key'] == usernameEncoded:
-                        #replace = usernameEncoded
-                        #withstring = usernameEncoded + "_backup"
-                        #newprefix, found, endpart = key_to_backup['Key'].partition(replace)
-                        #newprefix += withstring + endpart
-                        #obj = bucket.Object(newprefix)
-                        usernameEncodedBackup = usernameEncoded + "_backup"
-                        obj = bucket.Object(usernameEncodedBackup)
-                        obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
-                        backupinstance = MobileSetupBackup(backupOwner=request.user)
-                        backupinstance.backupDescription = "Manual user-requested backup"
-                        backupinstance.backupName = request.user.username + "_backup"
-                        backupinstance.save()
-                        return HttpResponse(
-                            json.dumps({"result": "backup_saved"}),
-                            content_type="application/json",
-                            status=200
-                        )
+                    replace = usernameEncoded
+                    withstring = usernameEncoded + "_backup"
+                    newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                    newprefix += withstring + endpart
+                    obj = bucket.Object(newprefix)
+                    obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
+                    backupinstance = MobileSetupBackup(backupOwner=request.user)
+                    backupinstance.backupDescription = "Manual user-requested backup"
+                    backupinstance.backupName = request.user.username + "_backup"
+                    backupinstance.save()
+                    return HttpResponse(
+                        json.dumps({"result": "backup_saved"}),
+                        content_type="application/json",
+                        status=200
+                    )
             return HttpResponse(
-                json.dumps({"usernameEncoded":usernameEncoded}),
+                json.dumps({"error_user_not_found": usernameEncoded}),
                 content_type="application/json",
                 status=400
             )
@@ -2162,7 +2161,7 @@ def subscription(request):
 @login_required
 @user_passes_test(group_check)
 def completereg(request):
-    if request.method=="POST":
+    if request.method == "POST":
         try:
             currentUser = User.objects.get(id=request.user.id)
             currentUser.first_name = request.POST.get('first_name')
