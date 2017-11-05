@@ -6,7 +6,7 @@
     {% block content %}
         <div class="container" style="padding-bottom: 20px">
             <br>
-            <h3>{% trans "Mobile Setup Backup"%}</h3>
+            <h3>{% trans "Mobile Setup Backup" %}</h3>
             <p>
                 {% if backupinstance == None %}
                     <p>{% trans "No backup of the mobile configuration setup was ever made in this account" %}</p>
@@ -42,11 +42,9 @@
                     if (button_id == "#createbackup") {
                         create_backup();
                     }
-                    ;
                     if (button_id == "#restorebackup") {
                         restore_backup();
                     }
-                    ;
 
 
                 });
