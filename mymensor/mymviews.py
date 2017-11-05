@@ -1665,7 +1665,7 @@ def createdcicfgbackup(request):
                             status=200
                         )
             return HttpResponse(
-                json.dumps({"result":keys_to_backup['Contents']}),
+                json.dumps({"result":usernameEncoded}),
                 content_type="application/json",
                 status=400
             )
