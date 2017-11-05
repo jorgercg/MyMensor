@@ -1649,11 +1649,13 @@ def createdcicfgbackup(request):
             for key_to_backup in keys_to_backup['Contents']:
                 if "_backup" not in key_to_backup['Key']:
                     if key_to_backup['Key'] == usernameEncoded:
-                        replace = usernameEncoded
-                        withstring = usernameEncoded + "_backup"
-                        newprefix, found, endpart = key_to_backup['Key'].partition(replace)
-                        newprefix += withstring + endpart
-                        obj = bucket.Object(newprefix)
+                        #replace = usernameEncoded
+                        #withstring = usernameEncoded + "_backup"
+                        #newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                        #newprefix += withstring + endpart
+                        #obj = bucket.Object(newprefix)
+                        usernameEncodedBackup = usernameEncoded + "_backup"
+                        obj = bucket.Object(usernameEncodedBackup)
                         obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
                         backupinstance = MobileSetupBackup(backupOwner=request.user)
                         backupinstance.backupDescription = "Manual user-requested backup"
@@ -1665,7 +1667,7 @@ def createdcicfgbackup(request):
                             status=200
                         )
             return HttpResponse(
-                json.dumps({"result":usernameEncoded}),
+                json.dumps({"usernameEncoded":usernameEncoded}),
                 content_type="application/json",
                 status=400
             )
