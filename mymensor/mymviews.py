@@ -1664,6 +1664,11 @@ def createdcicfgbackup(request):
                             content_type="application/json",
                             status=200
                         )
+            return HttpResponse(
+                json.dumps(keys_to_backup),
+                content_type="application/json",
+                status=400
+            )
         except ClientError as e:
             error_code = e
             return HttpResponse(
