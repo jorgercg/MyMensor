@@ -1639,36 +1639,30 @@ def mobileBackupFormView(request):
 @user_passes_test(group_check)
 def createdcicfgbackup(request):
     if request.method == 'POST':
-        session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                        aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-        s3Client = session.client('s3')
-        usernameEncoded = "usrcfg/" + urllib.quote(request.user.username)
-        usernameEncodedPrefix = "usrcfg/" + urllib.quote(request.user.username) + "/"
-        keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncodedPrefix)
-        s3 = session.resource('s3')
-        bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
         try:
+            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+            s3Client = session.client('s3')
+            usernameEncoded = "usrcfg/" + urllib.quote(request.user.username)
+            usernameEncodedPrefix = usernameEncoded + "/"
+            keys_to_backup = s3Client.list_objects_v2(Bucket=AWS_S3_BUCKET_NAME, Prefix=usernameEncodedPrefix)
+            s3 = session.resource('s3')
+            bucket = s3.Bucket(AWS_S3_BUCKET_NAME)
             for key_to_backup in keys_to_backup['Contents']:
-                if "_backup" not in key_to_backup['Key']:
-                    replace = usernameEncoded
-                    withstring = usernameEncoded + "_backup"
-                    newprefix, found, endpart = key_to_backup['Key'].partition(replace)
-                    newprefix += withstring + endpart
-                    obj = bucket.Object(newprefix)
-                    obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
-                    backupinstance = MobileSetupBackup(backupOwner=request.user)
-                    backupinstance.backupDescription = "Manual user-requested backup"
-                    backupinstance.backupName = request.user.username + "_backup"
-                    backupinstance.save()
-                    return HttpResponse(
-                        json.dumps({"result": "backup_saved"}),
-                        content_type="application/json",
-                        status=200
-                    )
+                replace = usernameEncoded
+                withstring = usernameEncoded + "_backup"
+                newprefix, found, endpart = key_to_backup['Key'].partition(replace)
+                newprefix += withstring + endpart
+                obj = bucket.Object(newprefix)
+                obj.copy_from(CopySource=AWS_S3_BUCKET_NAME + '/' + key_to_backup['Key'])
+            backupinstance = MobileSetupBackup(backupOwner=request.user)
+            backupinstance.backupDescription = "Manual user-requested backup"
+            backupinstance.backupName = request.user.username + "_backup"
+            backupinstance.save()
             return HttpResponse(
-                json.dumps({"error_user_not_found": usernameEncoded}),
+                json.dumps({"result": "backup_saved"}),
                 content_type="application/json",
-                status=400
+                status=200
             )
         except ClientError as e:
             error_code = e
