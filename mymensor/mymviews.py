@@ -8,6 +8,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
+from django.template import RequestContext
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -37,6 +38,10 @@ from twython import Twython
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext_lazy as _
 
+def handler500(request):
+    response = render_to_response('500.html', {}, context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
 
 def group_check(user):
     return user.groups.filter(name__in=['mymARwebapp']).exists()
