@@ -38,11 +38,6 @@ from twython import Twython
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext_lazy as _
 
-def handler500(request):
-    response = render_to_response('500.html', {}, context_instance=RequestContext(request))
-    response.status_code = 500
-    return response
-
 def group_check(user):
     return user.groups.filter(name__in=['mymARwebapp']).exists()
 
@@ -233,7 +228,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 else:
                     return HttpResponse(status=404)
             except:
-                return HttpResponse(status=500)
+                return HttpResponse(status=402)
         else:
             return HttpResponse(status=404)
 
@@ -375,7 +370,7 @@ def mediacheckpdf(request, messagetype, messagemymuser, mediaObjectS3partialKey,
                 else:
                     return HttpResponse(status=404)
             except:
-                return HttpResponse(status=500)
+                return HttpResponse(status=402)
         else:
             return HttpResponse(status=404)
 

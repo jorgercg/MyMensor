@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Media Check Error" %} - {{ block.super }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <p style="margin-bottom: 150px"></p>
+        <p></p>
+        <h2>{% trans "Media Check Error" %}</h2>
+        <p></p>
+        <p> {% trans "Sorry! This page cannot be served as the media is not in the server yet." %}</p>
+        <p> {% trans "Either the internet connection is poor and the media could not arrive here or the subscription have expired." %}</p>
+        <p></p>
+        <p style="margin-bottom: 150px"></p>
+    </div>
+{% endblock %}
