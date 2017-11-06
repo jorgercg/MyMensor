@@ -373,7 +373,7 @@ def mediacheckpdf(request, messagetype, messagemymuser, mediaObjectS3partialKey,
                 else:
                     return HttpResponse(status=404)
             except:
-                return HttpResponse(status=500)
+                return TemplateResponse(request, "mediacheckerror.html")
         else:
             return HttpResponse(status=404)
 
