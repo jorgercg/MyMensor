@@ -135,97 +135,100 @@ def landingView(request):
 def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, requestsignature):
     if request.method == "GET":
         if mediaObjectS3partialKey != 0 and messagetype != 0 and requestsignature != 0 and messagemymuser != 0:
-            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-            s3Client = session.client('s3')
-            mediaObjectS3KeyEncoded = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey)
-            mediaStorageURL = s3Client.generate_presigned_url('get_object',
-                                                              Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                      'Key': mediaObjectS3KeyEncoded},
-                                                              ExpiresIn=3600)
-            videoStorageURL = mediaStorageURL
-            s3 = session.resource('s3')
-            object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
-            object.load()
-            obj_metadata = object.metadata
-            mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
-            mediaCheckURLOG = u''.join(['https://app.mymensor.com/mcurl/']) + str(messagetype)
-            mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
-            mediaCheckURLOG = mediaCheckURLOG + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
-            if object.content_type == 'video/mp4':
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
-                mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
-                mediaObjectS3KeyEncodedHeader = urllib.quote(
-                    'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
+            try:
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3Client = session.client('s3')
+                mediaObjectS3KeyEncoded = urllib.quote('cap/' + messagemymuser + '/' + mediaObjectS3partialKey)
                 mediaStorageURL = s3Client.generate_presigned_url('get_object',
                                                                   Params={'Bucket': AWS_S3_BUCKET_NAME,
-                                                                          'Key': mediaObjectS3KeyEncodedHeader},
+                                                                          'Key': mediaObjectS3KeyEncoded},
                                                                   ExpiresIn=3600)
+                videoStorageURL = mediaStorageURL
+                s3 = session.resource('s3')
+                object = s3.Object(AWS_S3_BUCKET_NAME, mediaObjectS3KeyEncoded)
+                object.load()
+                obj_metadata = object.metadata
+                mediaCheckURL = u''.join(['https://app.mymensor.com/mc/']) + str(messagetype)
+                mediaCheckURLOG = u''.join(['https://app.mymensor.com/mcurl/']) + str(messagetype)
+                mediaCheckURL = mediaCheckURL + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+                mediaCheckURLOG = mediaCheckURLOG + '/' + mediaObjectS3KeyEncoded + '/' + requestsignature + '/'
+                if object.content_type == 'video/mp4':
+                    mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKey.replace('_v_', '_t_')
+                    mediaObjectS3partialKeyForThumbnail = mediaObjectS3partialKeyForThumbnail.replace('.mp4', '.jpg')
+                    mediaObjectS3KeyEncodedHeader = urllib.quote(
+                        'cap/' + messagemymuser + '/' + mediaObjectS3partialKeyForThumbnail)
+                    mediaStorageURL = s3Client.generate_presigned_url('get_object',
+                                                                      Params={'Bucket': AWS_S3_BUCKET_NAME,
+                                                                              'Key': mediaObjectS3KeyEncodedHeader},
+                                                                      ExpiresIn=3600)
 
-            if obj_metadata['sha-256'] == requestsignature:
-                pdftitle = _('MyMensor Media Check')
-                pdfcaptimecert = _('CAPTURE TIME CERTIFIED')
-                pdfcaptimenotcert = _('CAPTURE TIME NOT CERTIFIED')
-                pdfcaploccert = _('CAPTURE LOCATION CERTIFIED')
-                pdfcaplocnotcert = _('CAPTURE LOCATION NOT CERTIFIED')
-                pdftblcaptimecert = _('Capture time was certified:')
-                pdftblcaptimenotcert = _('Capture time was not certified:')
-                pdftblcaploccert = _('Capture location was certified:')
-                pdftblcaplocnotcert = _('Capture location was not certified:')
-                pdflatitude = _('Latitude')
-                pdflongitude = _('Longitude')
-                pdfaccuracy = _('Accuracy')
-                pdfaron = _('Augmented Reality was used to capture this media.')
-                pdfaroff = _('Augmented Reality was not used to capture this media.')
-                pdflinktxt = _(
-                    'Please use the code to the right or the below address to validate this document online.')
-                pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
-                pdfinfotitle = _('MyMensor Media Check')
-                pdfinfoauthor = obj_metadata['mymensoraccount']
-                pdfinfosubject = _('Media from VP#') + obj_metadata['vp']
-                pdfinfokeywords = object.content_type
-                pdfinfocreator = _('MyMensor')
-                pdfinfoproducer = _('MyMensor')
-                pdffilename = 'mymensormediacheck ' + obj_metadata['datetime'] + '.pdf'
-                return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
-                                                        'videoStorageURL': videoStorageURL,
-                                                        'mediaCheckURLOG': mediaCheckURLOG,
-                                                        'mediaContentType': object.content_type,
-                                                        'mediaArIsOn': obj_metadata['isarswitchon'],
-                                                        'mediaTimeIsCertified': obj_metadata['timecertified'],
-                                                        'mediaLocIsCertified': obj_metadata['loccertified'],
-                                                        'mediaTimeStamp': obj_metadata['datetime'],
-                                                        'loclatitude': obj_metadata['loclatitude'],
-                                                        'loclongitude': obj_metadata['loclongitude'],
-                                                        'locprecisioninm': obj_metadata['locprecisioninm'],
-                                                        'mediasignature': obj_metadata['sha-256'],
-                                                        'mediaCheckURL': mediaCheckURL,
-                                                        'pdftitle': pdftitle,
-                                                        'pdfcaptimecert': pdfcaptimecert,
-                                                        'pdfcaptimenotcert': pdfcaptimenotcert,
-                                                        'pdfcaploccert': pdfcaploccert,
-                                                        'pdfcaplocnotcert': pdfcaplocnotcert,
-                                                        'pdftblcaptimecert': pdftblcaptimecert,
-                                                        'pdftblcaptimenotcert': pdftblcaptimenotcert,
-                                                        'pdftblcaploccert': pdftblcaploccert,
-                                                        'pdftblcaplocnotcert': pdftblcaplocnotcert,
-                                                        'pdflatitude': pdflatitude,
-                                                        'pdflongitude': pdflongitude,
-                                                        'pdfaccuracy': pdfaccuracy,
-                                                        'pdfaron': pdfaron,
-                                                        'pdfaroff': pdfaroff,
-                                                        'pdflinktxt': pdflinktxt,
-                                                        'pdfaccuracydefinition': pdfaccuracydefinition,
-                                                        'pdfinfotitle': pdfinfotitle,
-                                                        'pdfinfoauthor': pdfinfoauthor,
-                                                        'pdfinfosubject': pdfinfosubject,
-                                                        'pdfinfokeywords': pdfinfokeywords,
-                                                        'pdfinfocreator': pdfinfocreator,
-                                                        'pdfinfoproducer': pdfinfoproducer,
-                                                        'pdffilename': pdffilename
-                                                        })
-            else:
-                return HttpResponse(status=404)
+                if obj_metadata['sha-256'] == requestsignature:
+                    pdftitle = _('MyMensor Media Check')
+                    pdfcaptimecert = _('CAPTURE TIME CERTIFIED')
+                    pdfcaptimenotcert = _('CAPTURE TIME NOT CERTIFIED')
+                    pdfcaploccert = _('CAPTURE LOCATION CERTIFIED')
+                    pdfcaplocnotcert = _('CAPTURE LOCATION NOT CERTIFIED')
+                    pdftblcaptimecert = _('Capture time was certified:')
+                    pdftblcaptimenotcert = _('Capture time was not certified:')
+                    pdftblcaploccert = _('Capture location was certified:')
+                    pdftblcaplocnotcert = _('Capture location was not certified:')
+                    pdflatitude = _('Latitude')
+                    pdflongitude = _('Longitude')
+                    pdfaccuracy = _('Accuracy')
+                    pdfaron = _('Augmented Reality was used to capture this media.')
+                    pdfaroff = _('Augmented Reality was not used to capture this media.')
+                    pdflinktxt = _(
+                        'Please use the code to the right or the below address to validate this document online.')
+                    pdfaccuracydefinition = _('*Please refer to the online page for the accuracy definition.')
+                    pdfinfotitle = _('MyMensor Media Check')
+                    pdfinfoauthor = obj_metadata['mymensoraccount']
+                    pdfinfosubject = _('Media from VP#') + obj_metadata['vp']
+                    pdfinfokeywords = object.content_type
+                    pdfinfocreator = _('MyMensor')
+                    pdfinfoproducer = _('MyMensor')
+                    pdffilename = 'mymensormediacheck ' + obj_metadata['datetime'] + '.pdf'
+                    return render(request, 'landing.html', {'mediaStorageURL': mediaStorageURL,
+                                                            'videoStorageURL': videoStorageURL,
+                                                            'mediaCheckURLOG': mediaCheckURLOG,
+                                                            'mediaContentType': object.content_type,
+                                                            'mediaArIsOn': obj_metadata['isarswitchon'],
+                                                            'mediaTimeIsCertified': obj_metadata['timecertified'],
+                                                            'mediaLocIsCertified': obj_metadata['loccertified'],
+                                                            'mediaTimeStamp': obj_metadata['datetime'],
+                                                            'loclatitude': obj_metadata['loclatitude'],
+                                                            'loclongitude': obj_metadata['loclongitude'],
+                                                            'locprecisioninm': obj_metadata['locprecisioninm'],
+                                                            'mediasignature': obj_metadata['sha-256'],
+                                                            'mediaCheckURL': mediaCheckURL,
+                                                            'pdftitle': pdftitle,
+                                                            'pdfcaptimecert': pdfcaptimecert,
+                                                            'pdfcaptimenotcert': pdfcaptimenotcert,
+                                                            'pdfcaploccert': pdfcaploccert,
+                                                            'pdfcaplocnotcert': pdfcaplocnotcert,
+                                                            'pdftblcaptimecert': pdftblcaptimecert,
+                                                            'pdftblcaptimenotcert': pdftblcaptimenotcert,
+                                                            'pdftblcaploccert': pdftblcaploccert,
+                                                            'pdftblcaplocnotcert': pdftblcaplocnotcert,
+                                                            'pdflatitude': pdflatitude,
+                                                            'pdflongitude': pdflongitude,
+                                                            'pdfaccuracy': pdfaccuracy,
+                                                            'pdfaron': pdfaron,
+                                                            'pdfaroff': pdfaroff,
+                                                            'pdflinktxt': pdflinktxt,
+                                                            'pdfaccuracydefinition': pdfaccuracydefinition,
+                                                            'pdfinfotitle': pdfinfotitle,
+                                                            'pdfinfoauthor': pdfinfoauthor,
+                                                            'pdfinfosubject': pdfinfosubject,
+                                                            'pdfinfokeywords': pdfinfokeywords,
+                                                            'pdfinfocreator': pdfinfocreator,
+                                                            'pdfinfoproducer': pdfinfoproducer,
+                                                            'pdffilename': pdffilename
+                                                            })
+                else:
+                    return HttpResponse(status=404)
+            except:
+                return HttpResponse(status=500)
         else:
             return HttpResponse(status=404)
 
