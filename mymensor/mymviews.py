@@ -228,7 +228,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 else:
                     return HttpResponse(status=404)
             except:
-                return HttpResponse(status=402)
+                return HttpResponse(status=500)
         else:
             return HttpResponse(status=404)
 

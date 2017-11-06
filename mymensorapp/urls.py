@@ -87,6 +87,7 @@ urlpatterns += i18n_patterns(
     url(r'^createmobileonlyuser/password/', mymviews.savemobileonlyuser, name='savemobileonlyuser'),
     url(r'^createmobileonlyuser/delete/', mymviews.deletemobileonlyuser, name='deletemobileonlyuser'),
     url(r'^mobileonlyerror/$', TemplateView.as_view(template_name='mobileonlyerror.html'), name='mobileonlyerror'),
+    url(r'^mediacheckerror/$', TemplateView.as_view(template_name='mediacheckerror.html'), name='mediacheckerror'),
 
     # account urls
     url(r'^accounts/', include('registration.backends.default.urls')),
