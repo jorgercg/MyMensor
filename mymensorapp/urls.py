@@ -23,7 +23,6 @@ from instant.views import instant_auth
 from mymensor import mymviews, billingviews
 from django.conf.urls.i18n import i18n_patterns
 
-handler500 = mymviews.handler500
 
 urlpatterns = [
     url(r'^landing/$', mymviews.landingView, name='landing'),
@@ -132,3 +131,5 @@ urlpatterns += i18n_patterns(
 
     url(r'^export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
 )
+
+handler500 = mymviews.handler500
