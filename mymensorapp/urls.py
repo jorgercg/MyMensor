@@ -23,6 +23,8 @@ from instant.views import instant_auth
 from mymensor import mymviews, billingviews
 from django.conf.urls.i18n import i18n_patterns
 
+handler500 = mymviews.handler500
+
 urlpatterns = [
     url(r'^landing/$', mymviews.landingView, name='landing'),
     url(r'^mc/([0-9])/cap/(.+)/([0-9]+_[pv]_[0-9]{13}[.][jpgm4]{3})/([0-9A-Z]{64})/$', mymviews.mediacheck, name='mediacheck'),

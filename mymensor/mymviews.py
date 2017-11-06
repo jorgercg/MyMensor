@@ -37,6 +37,11 @@ from twython import Twython
 from django.utils.encoding import smart_str
 from django.utils.translation import ugettext_lazy as _
 
+
+def handler500(request):
+    return render(request, '500.html', status=500)
+
+
 def group_check(user):
     return user.groups.filter(name__in=['mymARwebapp']).exists()
 
