@@ -8,7 +8,6 @@ from django.shortcuts import render, render_to_response, redirect
 from django.contrib import messages
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.template.response import TemplateResponse
-from django.template import RequestContext
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -228,7 +227,7 @@ def mediacheck(request, messagetype, messagemymuser, mediaObjectS3partialKey, re
                 else:
                     return HttpResponse(status=404)
             except:
-                return HttpResponse(status=500)
+                return HttpResponseServerError(status=500)
         else:
             return HttpResponse(status=404)
 
