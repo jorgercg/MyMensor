@@ -581,7 +581,10 @@ def portfolio(request):
         enddate = parse(urllib.unquote(request.GET.get('enddate', request.session.get('enddate', urllib.quote(
             (datetime.now(pytz.utc)).strftime('%Y-%m-%d %H:%M:%S %z'))))), yearfirst=True)
         new_enddate = enddate + timedelta(days=1)
-        maxcolumnstxt = request.device.matched
+        try:
+            maxcolumnstxt = request.device.matched
+        except:
+            maxcolumnstxt = 'fivecolumn'
         maxcolumns = 10
         if 'onecolumn' in maxcolumnstxt:
             maxcolumns = 1
