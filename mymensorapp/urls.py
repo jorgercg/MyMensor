@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import url, include, handler500
 from django.contrib import admin
 from django.views.generic import TemplateView, RedirectView
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
@@ -23,6 +23,7 @@ from instant.views import instant_auth
 from mymensor import mymviews, billingviews
 from django.conf.urls.i18n import i18n_patterns
 
+handler500 = 'mymensor.mymviews.server_error'
 
 urlpatterns = [
     url(r'^landing/$', mymviews.landingView, name='landing'),
@@ -132,4 +133,3 @@ urlpatterns += i18n_patterns(
     url(r'^export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
 )
 
-handler500 = 'mymensor.mymviews.handler500'
