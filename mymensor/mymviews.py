@@ -41,7 +41,6 @@ from django.utils.translation import ugettext_lazy as _
 def handler500(request):
     return render(request, '500.html', status=500)
 
-
 def group_check(user):
     return user.groups.filter(name__in=['mymARwebapp']).exists()
 

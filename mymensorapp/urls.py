@@ -132,4 +132,4 @@ urlpatterns += i18n_patterns(
     url(r'^export_tagstatus_csv/', mymviews.export_tagstatus_csv, name='export_tagstatus_csv'),
 )
 
-handler500 = mymviews.handler500
+handler500 = 'mymensor.mymviews.handler500'
