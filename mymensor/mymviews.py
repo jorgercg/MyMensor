@@ -388,86 +388,90 @@ def amazon_sns_processor(request):
         body = json.loads(body_unicode)
         serializer = AmazonSNSNotificationSerializer(data=body)
         if serializer.is_valid():
-            amzSns = AmazonSNSNotification(**serializer.validated_data)
-            amzSns.save()
-            message_json = json.loads(body['Message'])
-            amzs3msg = AmazonS3Message()
-            amzs3msg.amazonSNSNotification = amzSns
-            message_items = message_json['Records'][0]
-            amzs3msg.eventVersion = message_items['eventVersion']
-            amzs3msg.eventSource = message_items['eventSource']
-            amzs3msg.awsRegion = message_items['awsRegion']
-            amzs3msg.eventTime = message_items['eventTime']
-            amzs3msg.eventName = message_items['eventName']
-            amzs3msg.userIdentity_principalId = message_items['userIdentity']['principalId']
-            amzs3msg.requestParameters_sourceIPAddress = message_items['requestParameters']['sourceIPAddress']
-            amzs3msg.responseElements_x_amz_request_id = message_items['responseElements']['x-amz-request-id']
-            amzs3msg.responseElements_x_amz_id_2 = message_items['responseElements']['x-amz-id-2']
-            amzs3msg.s3_s3SchemaVersion = message_items['s3']['s3SchemaVersion']
-            amzs3msg.s3_configurationId = message_items['s3']['configurationId']
-            amzs3msg.s3_bucket_name = message_items['s3']['bucket']['name']
-            amzs3msg.s3_bucket_arn = message_items['s3']['bucket']['arn']
-            amzs3msg.s3_bucket_ownerIdentity_principalId = message_items['s3']['bucket']['ownerIdentity']['principalId']
-            amzs3msg.s3_object_key = urllib.unquote(message_items['s3']['object']['key'])
-            amzs3msg.s3_object_size = message_items['s3']['object']['size']
-            amzs3msg.s3_object_eTag = message_items['s3']['object']['eTag']
-            amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
-            amzs3msg.s3_object_sequencer = message_items['s3']['object']['sequencer']
-            amzs3msg.save()
-
-            session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
-                                            aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
-            s3 = session.resource('s3')
-            object = s3.Object(amzs3msg.s3_bucket_name, amzs3msg.s3_object_key)
-            object.load()
-            obj_metadata = object.metadata
-            media_received = Media()
-            media_received.amazonS3Message = amzs3msg
-            media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
-            media_received.mediaVpNumber = obj_metadata['vp']
-            media_received.mediaMymensorAccount = urllib.unquote(obj_metadata['mymensoraccount'])
-            media_received.mediaOriginalMymensorAccount = urllib.unquote(obj_metadata['origmymacc'])
-            media_received.mediaDeviceId = obj_metadata['deviceid']
-            media_received.mediaClientType = obj_metadata['clitype']
-
-            # Fetching the info necessary to fill the vp_id i.e. pk information
-            media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
-            media_asset_id = Asset.objects.get(assetOwner=media_user_id).pk
-            media_received.vp = Vp.objects.get(asset=media_asset_id, vpNumber=media_received.mediaVpNumber)
-            media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
-            media_received.mediaObjectS3Key = amzs3msg.s3_object_key
-            media_received.mediaContentType = object.content_type
-            media_received.mediaSha256 = obj_metadata['sha-256']
-            media_received.mediaLatitude = obj_metadata['loclatitude']
-            media_received.mediaLongitude = obj_metadata['loclongitude']
-            media_received.mediaAltitude = obj_metadata['localtitude']
-            media_received.mediaLocPrecisionInMeters = obj_metadata['locprecisioninm']
-            media_received.mediaLocMethod = obj_metadata['locmethod']
-            media_received.mediaLocMillis = obj_metadata['locmillis']
-            media_received.mediaLocIsCertified = obj_metadata['loccertified']
-            media_received.mediaTimeIsCertified = obj_metadata['timecertified']
-            media_received.mediaArIsOn = obj_metadata['isarswitchon']
-            media_received.mediaTimeStamp = obj_metadata['datetime']
             try:
-                media_received.mediaRemark = urllib.unquote(obj_metadata['remark']).decode('utf-8')
+                amzSns = AmazonSNSNotification(**serializer.validated_data)
+                amzSns.save()
+                message_json = json.loads(body['Message'])
+                amzs3msg = AmazonS3Message()
+                amzs3msg.amazonSNSNotification = amzSns
+                message_items = message_json['Records'][0]
+                amzs3msg.eventVersion = message_items['eventVersion']
+                amzs3msg.eventSource = message_items['eventSource']
+                amzs3msg.awsRegion = message_items['awsRegion']
+                amzs3msg.eventTime = message_items['eventTime']
+                amzs3msg.eventName = message_items['eventName']
+                amzs3msg.userIdentity_principalId = message_items['userIdentity']['principalId']
+                amzs3msg.requestParameters_sourceIPAddress = message_items['requestParameters']['sourceIPAddress']
+                amzs3msg.responseElements_x_amz_request_id = message_items['responseElements']['x-amz-request-id']
+                amzs3msg.responseElements_x_amz_id_2 = message_items['responseElements']['x-amz-id-2']
+                amzs3msg.s3_s3SchemaVersion = message_items['s3']['s3SchemaVersion']
+                amzs3msg.s3_configurationId = message_items['s3']['configurationId']
+                amzs3msg.s3_bucket_name = message_items['s3']['bucket']['name']
+                amzs3msg.s3_bucket_arn = message_items['s3']['bucket']['arn']
+                amzs3msg.s3_bucket_ownerIdentity_principalId = message_items['s3']['bucket']['ownerIdentity']['principalId']
+                amzs3msg.s3_object_key = urllib.unquote(message_items['s3']['object']['key'])
+                amzs3msg.s3_object_size = message_items['s3']['object']['size']
+                amzs3msg.s3_object_eTag = message_items['s3']['object']['eTag']
+                amzs3msg.s3_object_versionId = message_items['s3']['object']['versionId']
+                amzs3msg.s3_object_sequencer = message_items['s3']['object']['sequencer']
+                amzs3msg.save()
+
+                session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
+                                                aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
+                s3 = session.resource('s3')
+                object = s3.Object(amzs3msg.s3_bucket_name, amzs3msg.s3_object_key)
+                object.load()
+                obj_metadata = object.metadata
+                media_received = Media()
+                media_received.amazonS3Message = amzs3msg
+                media_received.mediaMillisSinceEpoch = obj_metadata['phototakenmillis']
+                media_received.mediaVpNumber = obj_metadata['vp']
+                media_received.mediaMymensorAccount = urllib.unquote(obj_metadata['mymensoraccount'])
+                media_received.mediaOriginalMymensorAccount = urllib.unquote(obj_metadata['origmymacc'])
+                media_received.mediaDeviceId = obj_metadata['deviceid']
+                media_received.mediaClientType = obj_metadata['clitype']
+
+                # Fetching the info necessary to fill the vp_id i.e. pk information
+                media_user_id = User.objects.get(username=media_received.mediaMymensorAccount).pk
+                media_asset_id = Asset.objects.get(assetOwner=media_user_id).pk
+                media_received.vp = Vp.objects.get(asset=media_asset_id, vpNumber=media_received.mediaVpNumber)
+                media_received.mediaAssetNumber = Asset.objects.get(pk=media_asset_id).assetNumber
+                media_received.mediaObjectS3Key = amzs3msg.s3_object_key
+                media_received.mediaContentType = object.content_type
+                media_received.mediaSha256 = obj_metadata['sha-256']
+                media_received.mediaLatitude = obj_metadata['loclatitude']
+                media_received.mediaLongitude = obj_metadata['loclongitude']
+                media_received.mediaAltitude = obj_metadata['localtitude']
+                media_received.mediaLocPrecisionInMeters = obj_metadata['locprecisioninm']
+                media_received.mediaLocMethod = obj_metadata['locmethod']
+                media_received.mediaLocMillis = obj_metadata['locmillis']
+                media_received.mediaLocIsCertified = obj_metadata['loccertified']
+                media_received.mediaTimeIsCertified = obj_metadata['timecertified']
+                media_received.mediaArIsOn = obj_metadata['isarswitchon']
+                media_received.mediaTimeStamp = obj_metadata['datetime']
+                try:
+                    media_received.mediaRemark = urllib.unquote(obj_metadata['remark']).decode('utf-8')
+                except:
+                    media_received.mediaRemark = None
+                    # Presently the Mobile App DOES NOT PROCESS the VPs
+                media_received.mediaProcessed = False
+
+                listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
+
+                vp_received = media_received.vp
+                vp_received.vpIsUsed = True
+
+                if media_received.mediaSha256 in listofmediaindb:
+                    return HttpResponse(status=200)
+                else:
+                    media_received.save()
+                    vp_received.save()
+
+                publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
+                        data={"username": media_received.mediaMymensorAccount})
             except:
-                media_received.mediaRemark = None
-            # Presently the Mobile App DOES NOT PROCESS the VPs
-            media_received.mediaProcessed = False
+                return HttpResponse(status=400)
 
-            listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
-
-            vp_received = media_received.vp
-            vp_received.vpIsUsed = True
-
-            if media_received.mediaSha256 in listofmediaindb:
-                return HttpResponse(status=200)
-            else:
-                media_received.save()
-                vp_received.save()
-
-            publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
-                    data={"username": media_received.mediaMymensorAccount})
             session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                             aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
             s3Client = session.client('s3')
