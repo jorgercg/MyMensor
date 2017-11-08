@@ -453,7 +453,7 @@ def amazon_sns_processor(request):
                     media_received.mediaRemark = urllib.unquote(obj_metadata['remark']).decode('utf-8')
                 except:
                     media_received.mediaRemark = None
-                    # Presently the Mobile App DOES NOT PROCESS the VPs
+                # Presently the Mobile App DOES NOT PROCESS the VPs
                 media_received.mediaProcessed = False
 
                 listofmediaindb = Media.objects.filter(vp=media_received.vp).values_list('mediaSha256', flat=True)
@@ -901,7 +901,6 @@ def create_new_user(request):
         return Response(serialized._errors, status=400)
 
 
-@api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 @user_passes_test(group_check)
