@@ -901,6 +901,7 @@ def create_new_user(request):
         return Response(serialized._errors, status=400)
 
 
+@api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 @user_passes_test(group_check)
