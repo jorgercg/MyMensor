@@ -144,7 +144,7 @@
                 <ul class="navbar-nav ml-auto">
                     {% check_plan request as currentuserplan %}
                     {% subscrip_state request as stateofsubscription %}
-                    {% if user.username is not "jorge" %}
+                    {% if user.username != "jorge" %}
                         {% if stateofsubscription == "Trial" %}
                             {% trial_end_date request as finaldateoftrial %}
                             <span class="navbar-text">
