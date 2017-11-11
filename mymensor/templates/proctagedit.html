@@ -8,19 +8,84 @@
             <div class="mym-dash">
                 <div class="d-flex flex-row justify-content-start align-items-center flex-wrap">
                     <div class="mym-dash-item">
-                        <div id="reportrange"
-                             style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
-                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-                            <span id="selcdates"></span> <b class="caret"></b>
+                        <div class="d-flex flex-column justify-content-around">
+                            <div id="reportrange"
+                                 style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 18rem ">
+                                <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+                                <span id="selcdates"></span> <b class="caret"></b>
+                            </div>
+                            <div class="d-flex flex-row justify-content-around align-items-center flex-wrap">
+                                {% if showonlyloccert == 1 %}
+                                    <span id="showonlyloccert" class="fa fa-map-marker loccertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing only location certified media captures" %}"></span>
+                                {% else %}
+                                    <span id="showonlyloccert" class="fa fa-map-marker locnotcertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing media captures, even with no location certification" %}"></span>
+                                {% endif %}
+                                {% if showonlytimecert == 1 %}
+                                    <span id="showonlytimecert" class="fa fa-clock-o timecertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing only time certified media captures" %}"></span>
+                                {% else %}
+                                    <span id="showonlytimecert" class="fa fa-clock-o timenotcertinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Show media captures, even with no time certification" %}"></span>
+                                {% endif %}
+                                {% if showlastmedia == 1 %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmediainlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Showing the last of the media captures" %}"></span>
+                                {% else %}
+                                    <span id="showlastmedia" class="fa fa-fast-forward showlastmedianotinlocation"
+                                          data-toggle="tooltip"
+                                          data-placement="top"
+                                          title="{% trans "Not necessarily showing the last of the media captures" %}"></span>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                    <div id="qtyselector" class="mym-dash-item">
-                        <p>{% trans 'Show ' %}</p>
-                        <select id="qtytodisplaypervp" class="1-100"></select>
-                        <p>{% trans ' entries per VP' %}</p>
+                    <div class="mym-dash-item">
+                        <div id="qtyselector" class="mym-dash-item">
+                            <select id="qtytodisplaypervp" class="1-100" data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="{% trans "Quantity of medias for each VP" %}"></select>
+                        </div>
+                    </div>
+                    <div id="vpselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="vpsselected" name="vpsselected">
+                            {% for vpnumber in vpslist %}
+                                <option id="optionvp#{{ vpnumber.vpNumber }}" value='{{ vpnumber.vpNumber }}'
+                                        {% if vpnumber.vpNumber in vpsselected %}selected{% endif %}>
+                                    VP#{{ vpnumber.vpNumber }} - {{ vpnumber.vpDescription }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="orgmymaccselector" class="mym-dash-item">
+                        <select class="vpselectedclass" multiple="multiple" id="orgmymaccselected"
+                                name="orgmymaccselected">
+                            {% for orgmymacc in orgmymacclist %}
+                                <option id="optionacc#{{ orgmymacc }}" value='{{ orgmymacc }}'
+                                        {% if orgmymacc in orgmymaccselected %}selected{% endif %}>{{ orgmymacc }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mym-dash-item">
+                        <button id="refreshbtn" type="button" class="mym-dash-item btn btn-outline-primary btn-lg"
+                                data-toggle="tooltip"
+                                data-placement="top" title="{% trans 'Refresh with current selection' %}">
+                            <span class="fa fa-refresh"></span>
+                        </button>
                     </div>
                 </div>
             </div>
+
             <hr>
             <div id="vpsview">
                 {% for vp in vps %}
