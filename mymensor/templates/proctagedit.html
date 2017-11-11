@@ -541,6 +541,9 @@
                     for (i = 1; i <= 20; i++) {
                         $select.append($('<option></option>').val(i).html(i))
                     }
+                    for (i = 30; i <= 101; i = i + 10) {
+                        $select.append($('<option></option>').val(i).html(i))
+                    }
                     $('.1-100 option[value="{{ qtypervp }}"]').attr('selected', 'selected');
                     $('#qtytodisplaypervp').change(function () {
                         var qtyselected = $(this).find(":selected").val();
