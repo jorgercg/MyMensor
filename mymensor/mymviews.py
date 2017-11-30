@@ -622,6 +622,7 @@ def portfolio(request):
         showonlyloccert = int(request.GET.get('showonlyloccert', request.session.get('showonlyloccert', 0)))
         showonlytimecert = int(request.GET.get('showonlytimecert', request.session.get('showonlytimecert', 0)))
         showlastmedia = int(request.GET.get('showlastmedia', request.session.get('showlastmedia', 1)))
+        showwelcomebanner = int(request.GET.get('showwelcomebanner', request.session.get('showwelcomebanner', 1)))
         vps = Vp.objects.filter(asset__assetOwner=request.user).filter(asset__vp__media__isnull=False).filter(
             media__mediaTimeStamp__range=[startdate, new_enddate]).filter(vpIsActive=True).order_by(
             'vpNumber').distinct()
@@ -709,7 +710,7 @@ def portfolio(request):
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
-                       'showonlyloccert': showonlyloccert, 'showlastmedia': showlastmedia,
+                       'showonlyloccert': showonlyloccert, 'showlastmedia': showlastmedia, 'showwelcomebanner':showwelcomebanner,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
                        'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers})
 

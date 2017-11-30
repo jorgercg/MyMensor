@@ -85,6 +85,16 @@
                     </div>
                 </div>
             </div>
+            {% if showwelcomebanner == 1 %}
+                <div class="welcomebanner">
+                    <hr>
+                    <p>Welcome banner</p>
+                    <label class="form-check-label">
+                        <input id="toggleshowwelcomebanner" class="form-check-input" type="checkbox" value=""/>
+                        {% trans " Do not show this again." %}
+                    </label>
+                </div>
+            {% endif %}
             <div id="vpsview">
                 {% for vp in vps %}
                     <hr>
@@ -335,9 +345,9 @@
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
-                var start = moment(decodeURIComponent("{{ start }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                var start = moment(decodeURIComponent("{{ start }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
-                var end = moment(decodeURIComponent("{{ end }}"),"YYYY-MM-DDTHH:mm:ss.SSSZZ");
+                var end = moment(decodeURIComponent("{{ end }}"), "YYYY-MM-DDTHH:mm:ss.SSSZZ");
 
                 $(function () {
 
@@ -491,14 +501,14 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + startdate + '&enddate=' + enddate + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#refreshbtn').click(function () {
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} + '&showlastmedia='+ {{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }} +'&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                 });
@@ -509,7 +519,6 @@
                     var spanid = "";
                     var mediaid = 0;
                     var vpnumber = 0;
-
 
 
                     $('.vpdetailspan').click(function (event) {
@@ -537,6 +546,7 @@
                     var showOnlyLocCertified = {{ showonlyloccert }};
                     var showOnlyTimeCertified = {{ showonlytimecert }};
                     var showLastMedia = {{ showlastmedia }};
+                    var showwelcomebanner = {{ showwelcomebanner }};
                     var $select = $('.1-100');
                     for (i = 1; i <= 20; i++) {
                         $select.append($('<option></option>').val(i).html(i))
@@ -551,7 +561,7 @@
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
                         console.log('Chosen:' + vpssel);
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + qtyselected + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlyloccert').click(function () {
@@ -564,7 +574,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia='+{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + showOnlyLocCertified + '&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showonlytimecert').click(function () {
@@ -577,7 +587,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&showlastmedia=' +{{ showlastmedia }} +'&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + showOnlyTimeCertified + '&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#showlastmedia').click(function () {
@@ -590,7 +600,19 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+ '&showlastmedia=' + showLastMedia + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + showLastMedia +'&showwelcomebanner=' + {{ showwelcomebanner }} + '&' + vpssel + '&' + orgmymaccsel;
+                    });
+
+                    $('#toggleshowwelcomebanner').click(function () {
+                        if ($(this).is(':checked')) {
+                            showwelcomebanner = 0;
+                            var vpssel = $('#vpsselected').serialize();
+                            var orgmymaccsel = $('#orgmymaccselected').serialize();
+                            window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + {{ showlastmedia }} +'&showwelcomebanner=' + showwelcomebanner + '&' + vpssel + '&' + orgmymaccsel;
+                        } else {
+                            showwelcomebanner = 1;
+                            $('#regbutton').attr('disabled', true); //disable input
+                        }
                     });
 
                 });
