@@ -2,6 +2,7 @@
 {% load staticfiles i18n tz counter assign %}
 {% localtime on %}
     {% get_current_timezone as TIME_ZONE %}
+    {% get_current_language as LANGUAGE_CODE %}
     {% if user.is_authenticated %}
         {% block title %}Portfolio - {{ block.super }}{% endblock %}
         {% block content %}
@@ -88,8 +89,20 @@
             {% if showwelcomebanner == 1 %}
                 <hr>
                 <div id="bannerwelcome" class="welcomebanner">
-                    <button id="dismisswelcomebanner" type="button" class="btn btn-outline-info float-right">{% trans "Dismiss" %}</button>
-                    <p class="mx-auto text-info" >{% trans "Welcome to MyMensor WebApp!" %}</p>
+                    <button id="dismisswelcomebanner" type="button"
+                            class="btn btn-outline-info float-right">{% trans "Dismiss" %}</button>
+                    <p class="text-info text-justify">{% trans "Welcome to MyMensor WebApp!" %}</p>
+                    <p class="mt-2 text-justify">{% trans "In this page you will see all the captures that you will make with the MyMensor Mobile App." %}</p>
+                    <p class="text-justify">{% trans "If you have not done it yet, please " %}<a
+                            href='https://play.google.com/store/apps/details?id=com.mymensorar&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'
+                            target="_blank">{% trans "download" %}</a>{% trans " it and install in your mobile phone, using the same credentials that you have used here." %}
+                    </p>
+                    <p class="text-justify">{% trans "Please check the " %}<a class="text-muted"
+                                                         href="https://mymensor.com/{{ LANGUAGE_CODE }}/">{% trans "information" %}</a>{% trans " in or website that includes videos, cases, how-tos and FAQs to help you learn how to use MyMensor power!" %}
+                    </p>
+                    <p class="text-justify">{% trans "If you cannot clarify your doubts using the above methods, please send us an email to " %}
+                        <a href="mailto: support@mymensor.com">support@mymensor.com</a> {% trans " and we will responded as soon as practically possible." %}
+                    </p>
                     <label class="ml-2 form-check-label">
                         <input id="toggleshowwelcomebanner" class="form-check-input" type="checkbox" value=""/>
                         {% trans " Do not show this again." %}
@@ -341,8 +354,6 @@
                 $('#vpsselected').chosen();
 
                 $('#orgmymaccselected').chosen();
-
-                {% get_current_language as LANGUAGE_CODE %}
 
                 moment.locale('{{ LANGUAGE_CODE }}');
 
@@ -601,7 +612,7 @@
                         }
                         var vpssel = $('#vpsselected').serialize();
                         var orgmymaccsel = $('#orgmymaccselected').serialize();
-                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + showLastMedia +'&showwelcomebanner=' + {{ showwelcomebanner }} + '&' + vpssel + '&' + orgmymaccsel;
+                        window.location = '{% url 'portfolio' %}' + '?startdate=' + encodeURIComponent(start.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&enddate=' + encodeURIComponent(end.format("YYYY-MM-DDTHH:mm:ss.SSSZZ")) + '&qtypervp=' + '{{ qtypervp }}' + '&showonlyloccert=' + {{ showonlyloccert }} +'&showonlytimecert=' + {{ showonlytimecert }}+'&showlastmedia=' + showLastMedia + '&showwelcomebanner=' + {{ showwelcomebanner }} +'&' + vpssel + '&' + orgmymaccsel;
                     });
 
                     $('#toggleshowwelcomebanner').click(function () {
@@ -616,7 +627,7 @@
                         }
                     });
 
-                    $('#dismisswelcomebanner').click(function(){
+                    $('#dismisswelcomebanner').click(function () {
                         $('#bannerwelcome').hide();
                     });
 
