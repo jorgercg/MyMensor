@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user, login
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.views.decorators.csrf import csrf_exempt
@@ -41,8 +41,18 @@ from django.utils.translation import ugettext_lazy as _
 def server_error(request):
     return render(request, '500.html', status=500)
 
+
 def group_check(user):
     return user.groups.filter(name__in=['mymARwebapp']).exists()
+
+
+def has_group(request):
+    try:
+        currentuser = get_user(request)
+        currentusergroups = Group.objects.filter(user_id=currentuser.pk)
+        return currentusergroups
+    except:
+        return None
 
 
 def landingView(request):
@@ -583,6 +593,7 @@ def portfolio(request):
             loaddcicfg(request)
         except ClientError as e:
             error_code = e
+        grouplistforcurrentuser = has_group(request)
         session = boto3.session.Session(aws_access_key_id=AWS_ACCESS_KEY_ID,
                                         aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
         s3Client = session.client('s3')
@@ -712,7 +723,7 @@ def portfolio(request):
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
                        'showonlyloccert': showonlyloccert, 'showlastmedia': showlastmedia, 'showwelcomebanner':showwelcomebanner,
                        'showonlytimecert': showonlytimecert, 'orgmymaccselected': orgmymaccselected,
-                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers})
+                       'orgmymacclist': orgmymacclist, 'media_vpnumbers': media_vpnumbers, 'grouplistforcurrentuser':grouplistforcurrentuser})
 
 
 # Location View
