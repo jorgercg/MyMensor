@@ -49,7 +49,7 @@ def group_check(user):
 def has_group(request):
     try:
         currentuser = get_user(request)
-        currentusergroups = currentuser.groups
+        currentusergroups = currentuser.groups.values_list('name', flat=True)
         return currentusergroups
     except:
         return None
