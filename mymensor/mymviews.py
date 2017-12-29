@@ -718,6 +718,7 @@ def portfolio(request):
         request.session['enddate'] = enddateformatted
         request.session['qtypervp'] = qtypervp
         request.session['showlastmedia'] = showlastmedia
+        request.session['showwelcomebanner'] = showwelcomebanner
         return render(request, 'index.html',
                       {'medias': medias, 'vps': vps, 'start': startdateformatted, 'end': enddateformatted,
                        'qtypervp': qtypervp, 'vpsselected': vpsselected, 'vpslist': vpslist,
