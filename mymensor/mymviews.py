@@ -13,7 +13,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from instant.producers import publish
+#from instant.producers import publish
 from mymensor.models import Asset, Vp, Tag, Media, Value, ProcessedTag, Tagbbox, AmazonS3Message, AmazonSNSNotification, \
     TagStatusTable, MobileSetupBackup, TwitterAccount, FacebookAccount, BraintreeCustomer, BraintreeSubscription, \
     MobileOnlyUser, MobileClientInstall, BraintreePrice, BraintreeMerchant, BraintreePlan
@@ -480,8 +480,8 @@ def amazon_sns_processor(request):
                     media_received.save()
                     vp_received.save()
 
-                publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
-                        data={"username": media_received.mediaMymensorAccount})
+                #publish(message='New media arrived on server', event_class="NewMedia", channel="my_mensor_public",
+                #        data={"username": media_received.mediaMymensorAccount})
             except:
                 return HttpResponse(status=400)
 
