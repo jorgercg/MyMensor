@@ -64,12 +64,12 @@ class Asset(models.Model):
     FREQ_UNIT_CHOICES = (('millis', 'millis'), ('hour', 'hour'), ('day', 'day'), ('week', 'week'), ('month', 'month'),)
     MYM_PLAN_CHOICES = (('MyMensor Media', 'MyMensor Media'), ('MyMensor Media and Data', 'MyMensor Media and Data'),)
 
-    assetDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Description'))
+    assetDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Company Name - your company name'))
     assetNumber = models.IntegerField(verbose_name="Asset Number")
     assetIsActive = models.BooleanField(default=True, verbose_name="Asset is active")
     assetOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1,
                                    verbose_name="Asset Owner")  ###### FK
-    assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Asset Owner Description'))
+    assetOwnerDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Company Description - your company description'))
     assetOwnerKey = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Key")
     assetOwnerIdentityId = models.CharField(max_length=1024, null=True, blank=True, verbose_name="Asset Owner Identity Id")
     assetRegistryCode = models.CharField(max_length=255, null=True, blank=True, verbose_name="Asset Registry code")
@@ -78,12 +78,59 @@ class Asset(models.Model):
     assetIpGeoIp = models.CharField(max_length=50,null=True, verbose_name="Asset IP from GeoIp")
     assetDateOfEndEfTrialBeforeSubscription = models.DateTimeField(auto_now=False, null=True, verbose_name="End of Trial Befor Subscription")
     assetMyMensorPlan = models.CharField(max_length=50, choices=MYM_PLAN_CHOICES, default="MyMensor Media and Data", verbose_name=_('MyMensor Plan'))
-    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis", verbose_name=_('Capture frequency unit'))
-    assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Minimum capture frequency value'))
+    assetDciFrequencyUnit = models.CharField(max_length=50, choices=FREQ_UNIT_CHOICES, default="millis", verbose_name=_('Master Capture frequency unit for VPs'))
+    assetDciFrequencyValue = models.IntegerField(default=20000, verbose_name=_('Master Minimum capture frequency value for VPs'))
     assetDciQtyVps = models.IntegerField(default=31, verbose_name="Quantity of Vps in Asset")
     assetDciTolerancePosition = models.IntegerField(default=50, verbose_name="Position tolerance for capture")
     assetDciToleranceRotation = models.IntegerField(default=10, verbose_name="Rotation tolerance for capture")
     assetDciClientSoftwareType = models.CharField(max_length=255, null=True, blank=True, verbose_name="Client Software Type")
+    assetCompanyLogo = models.CharField(max_length=255, null=True)
+
+
+class Client(models.Model):
+    clientOwner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    clientName = models.CharField(max_length=1024, null=True, verbose_name=_('Client Name'))
+    clientNumber = models.IntegerField(null=True, verbose_name=_('Client Number'))
+    clientDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Client Description'))
+    clientAddressLineOne = models.CharField(max_length=1024, null=True, verbose_name=_('Client Address Line One'))
+    clientAddressLineTwo = models.CharField(max_length=1024, null=True, verbose_name=_('Client Address Line Two'))
+    clientCountry = models.CharField(max_length=1024, null=True, verbose_name=_('Client Country'))
+
+
+class Project(models.Model):
+    REPO_STYLE_CHOICES = (('standard', 'standard'), )
+    projectClient = models.ForeignKey(Client, on_delete=models.CASCADE)  ###### FK
+    projectName = models.CharField(max_length=1024, null=True, verbose_name=_('Project Name'))
+    projectNumber = models.IntegerField(null=True, verbose_name=_('Project Number'))
+    projectDescription = models.CharField(max_length=1024, null=True, verbose_name=_('Project Description'))
+    projecttAddressLineOne = models.CharField(max_length=1024, null=True, verbose_name=_('Project Address Line One'))
+    projectAddressLineTwo = models.CharField(max_length=1024, null=True, verbose_name=_('Project Address Line Two'))
+    projectCountry = models.CharField(max_length=1024, null=True, verbose_name=_('Project Country'))
+    projectReportLayoutStyle = models.IntegerField(choices=REPO_STYLE_CHOICES, default="standard", verbose_name=_('Project Report Style'))
+    projectInfoOne = models.CharField(max_length=1024, null=True, verbose_name=_('Info One'))
+    projectInfoTwo = models.CharField(max_length=1024, null=True, verbose_name=_('Info Two'))
+    projectInfoThree = models.CharField(max_length=1024, null=True, verbose_name=_('Info Three'))
+    projectInfoFour = models.CharField(max_length=1024, null=True, verbose_name=_('Info Four'))
+    projectInfoFive = models.CharField(max_length=1024, null=True, verbose_name=_('Info Five'))
+
+
+class Report(models.Model):
+    reportProject = models.ForeignKey(Project, on_delete=models.CASCADE)  ###### FK
+    reportCreator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)  ###### FK
+    reportCode = models.CharField(max_length=50, null=True, verbose_name=_('Report Code'))
+    reportCreationDate = models.DateTimeField(auto_now=False, null=True)
+    reportTitle = models.CharField(max_length=1024, default=_('Field Report'),
+                                               verbose_name=_('Report Title'))
+    reportFirstSectionTitle = models.CharField(max_length=1024, default=_('People present during site visit'),
+                                               verbose_name=_('Report First Section Title'))
+    reportSecondSectionTitle = models.CharField(max_length=1024, default=_('Items'),
+                                               verbose_name=_('Report Second Section Title'))
+    reportThirdSectionTitle = models.CharField(max_length=1024, default=_('Terms and conditions'),
+                                               verbose_name=_('Report Third Section Title'))
+    reportTermsAndConditions = models.CharField(max_length=4096, null=True)
+    reportItemFirstColumnTitle = models.CharField(max_length=50, default=_('Item'), verbose_name=_('Item First Column'))
+    reportItemSecondColumnTitle = models.CharField(max_length=50, default=_('Description'), verbose_name=_('Item Second Column'))
+    reportItemThirdColumnTitle = models.CharField(max_length=50, default=_('Assigned to'), verbose_name=_('Item Third Column'))
 
 
 class MobileClientInstall(models.Model):
@@ -277,6 +324,14 @@ class Media(models.Model):
     mediaOriginalMymensorAccount = models.CharField(max_length=255, null=True)
     mediaDeviceId = models.CharField(max_length=255, null=True)
     mediaClientType = models.CharField(max_length=255, null=True)
+
+
+class ReportItem(models.Model):
+    reportitemReport = models.ForeignKey(Report, on_delete=models.CASCADE)  ###### FK
+    reportitemFirstSection = models.CharField(max_length=1024, null=True, verbose_name=_('First Section Text'))
+    reportitemSecondSection = models.CharField(max_length=1024, null=True, verbose_name=_('Second Section Text'))
+    reportitemThirdSection = models.CharField(max_length=1024, null=True, verbose_name=_('Third Section Text'))
+    reportitemMedia = models.ForeignKey(Media, null=True)
 
 
 class ProcessedTag(models.Model):
