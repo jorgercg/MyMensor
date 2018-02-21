@@ -584,7 +584,7 @@ def amazon_sns_processor(request):
     return HttpResponse(status=400)
 
 
-# Portfolio View
+# Portfolio View with all photos
 @login_required
 @user_passes_test(group_check)
 def portfolio(request):
