@@ -990,8 +990,8 @@ def cognitoauth(request):
             usernameprefix = username[:7]
             username = username.replace(usernameprefix, '')
             usergroup = 'mymARmobileapp'
-            masteruser = User.objects.get(username=username)
-            assetinstance = Asset.objects.get(assetOwner=masteruser)
+            mainuser = User.objects.get(username=username)
+            assetinstance = Asset.objects.get(assetOwner=mainuser)
 
         subscriptionState = subscription_state(assetinstance)
 
